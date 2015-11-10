@@ -1,0 +1,35 @@
+$linkColor: #fff #3FA4F4 !default;
+$activeLinkColor: #3FA4F4 #3FA4F4 !default;
+@mixin childLink($linkColor:$linkColor) {
+  > a {
+    color: nth($linkColor, 1);
+    &:hover, &:focus, .active {
+      color: nth($linkColor, 2);
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  color: nth($linkColor, 1);
+  &:hover, &:focus, .active {
+    color: nth($linkColor, 2);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@mixin pFirstMargin() {
+  > p:first-child {
+    margin-top: 10px;
+  }
+}
+
+//only show one line
+@mixin ellipsisText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin ellipsisMultiText($multi) {
+  position: relative;
+  height: $defaultLineHeight * $multi;
+  overflow: hidden;
+}

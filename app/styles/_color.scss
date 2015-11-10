@@ -1,0 +1,94 @@
+$primaryColor: #3FA4F4;
+$dangerColor: #a94442;
+$strikingColor: #e04c4c;
+$successColor: #00cc52;
+
+$darkColor: #333;
+//dark
+$darkGrayColor: #666;
+//darkgray
+$grayColor: #888;
+//gary
+$grayLightColor: #999;
+//garylight
+$lightGrayColor: #C7C7C7;
+//lightgray
+$lightColor: #d8d8d8;
+//light
+$lightWhiteColor: #f1f1f1;
+//lightwhite
+$whiteColor: #fff;
+//white
+
+$defaultBackground: $lightWhiteColor;
+$whiteBackground: $whiteColor;
+$lightGrayBackground: $lightGrayColor;
+
+$colors: (
+        primary: $primaryColor,
+        success: $successColor,
+        danger: $dangerColor,
+        striking: $strikingColor,
+        whitem:$whiteColor,
+        light-white:$lightWhiteColor,
+        light:$lightColor,
+        light-gray:$lightGrayColor,
+        gray-light:$grayLightColor,
+        graym:$grayColor,
+        dark-gray: $darkGrayColor,
+        dark: $darkColor,
+);
+@each $name, $color in $colors {
+  .background-#{$name} {
+    background-color: $color;
+  }
+  .font-#{$name} {
+    color: $color;
+  }
+  .border-bottom-#{$name} {
+    border-bottom: 1px solid $color;
+  }
+}
+
+.striking-white {
+  background-color: $strikingColor;
+  color: $whiteColor;
+}
+
+.white-success {
+  background-color: $whiteColor;
+  color: $successColor;
+}
+
+.white-danger {
+  background-color: $whiteColor;
+  color: $dangerColor;
+}
+
+.btn-primary {
+  background-color: $primaryColor;
+  border-color: darken($primaryColor, 8%);
+  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
+    background-color: darken($primaryColor, 8%);
+    border-color: darken($primaryColor, 8%);
+  }
+}
+
+.btn-success {
+  background-color: lighten($successColor, 3%);
+  border-color: $successColor;
+  //border: 0;
+  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
+    background-color: $successColor;
+    border-color: $successColor;
+  }
+  &:focus, &:active:focus {
+    outline: 5px auto $successColor
+  }
+}
+
+.nav > li.disabled {
+  > a:hover, > a:focus, > a {
+    color: $grayLightColor;
+  }
+}

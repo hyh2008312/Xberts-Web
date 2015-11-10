@@ -1,0 +1,37 @@
+{
+  "name": "yeodjango",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.3.0",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.3.0",
+    "angular-cookies": "^1.3.0",
+    "angular-resource": "^1.3.0",
+    "angular-route": "^1.3.0",
+    "angular-sanitize": "^1.3.0",
+    "angular-touch": "^1.3.0",
+    "angular-ui-router": "~0.2.15",
+    "ngInfiniteScroll": "~1.2.1",
+    "angular-local-storage": "~0.2.3",
+    "angular-moment": "~0.10.3",
+    "angular-summernote": "~0.5.1",
+    "angular-bootstrap": "~0.14.3",
+    "ng-file-upload": "~9.1.2",
+    "font-awesome": "~4.4.0",
+    "ng-tags-input": "~3.0.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.3.0"
+  },
+  "appPath": "app",
+  "moduleName": "yeodjangoApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,283 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  background-color: $defaultBackground;
+  padding: $bodyPaddingTop 0 $bodyPaddingBottom 0;
+  min-height: 100%;
+}
+
+footer {
+  background-color: $lightGrayBackground;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  > .container {
+    @include pFirstMargin();
+  }
+}
+
+section {
+  padding-top: $sectionSpace;
+  padding-bottom: $sectionSpace;
+}
+section.header{
+  padding-top: 27px;
+}
+
+.section-title {
+  text-align: center;
+  h1 {
+    font-size: 48px;
+  }
+  h3 {
+    color: $grayColor;
+    font-weight: normal;
+  }
+}
+
+.section-fixed {
+  height: $sectionFixedHeight;
+  background: rgba(0, 0, 0, 0.6) no-repeat center;
+  background-size: cover;
+  position: relative;
+  > .cover-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: inherit;
+    background-color: rgba(0, 0, 0, 0.2);
+    //background: transparent;
+    z-index: 3;
+    h1 {
+      color: $whiteColor;
+    }
+    h2 {
+      color: $whiteColor;
+    }
+    h3 {
+      color: #f8f8f8;
+    }
+    h4, p {
+      color: $lightGrayColor;
+      margin-top: 20px;;
+    }
+  }
+  .section-title {
+    text-align: center;
+    position: relative;
+
+    h3 {
+      color: $lightColor;
+      font-weight: normal;
+    }
+  }
+
+}
+
+.section-title + .section-body {
+  margin-top: $sectionSpace;
+}
+
+.panel-heading {
+  padding: 15px;
+}
+
+h3.panel-title {
+  font-size: 24px;
+}
+
+a {
+  color: $primaryColor;
+  &:hover {
+    color: darken($primaryColor, 20%);
+    cursor: pointer;
+  }
+}
+a.block-link{
+  display: block;
+  &:hover,&:active{
+    text-decoration: none;
+  }
+}
+.full-page {
+  margin-top: 0;
+}
+
+.partial-page {
+  margin-top: $sectionSpace;
+}
+
+.navbar-inverse {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-fixed-top {
+  border-bottom: 0;
+}
+
+.navbar {
+  .navbar-brand {
+    padding: $navbarBrandPaddingTop 15px $navbarBrandPaddingBottom 0;
+    margin-left: 0;
+  }
+  .nav {
+    > li {
+      margin-right: 1px;
+      > a {
+        padding: $navbarLinkPaddingTop 10px $navbarLinkPaddingBottom 10px;
+        > .avatar-text-smaller-1 {
+          margin-top: -4px;
+        }
+      }
+      > a.top-right-badge-x {
+        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 10px)
+      }
+      @include childLink();
+      &.active {
+        @include childLink($activeLinkColor);
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          border-bottom: 3px solid rgb(63, 164, 244);
+        }
+      }
+    }
+  }
+  .navbar-right.nav {
+    position: relative;
+    > li {
+      > a {
+        padding: $navbarLinkPaddingTop 8px $navbarLinkPaddingBottom 8px;
+      }
+      > a.top-right-badge-x {
+        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
+      }
+      &.dropdown.dropdown-right {
+        position: static;
+        > .dropdown-menu {
+          //width: 100%;
+          position: fixed;
+          top: 50px;
+          right: 20px;
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
+.navbar-inverse {
+  .dropdown {
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+    .dropdown-menu {
+      padding: 0;
+    }
+  }
+
+  .dropdown-menu > li {
+    > a {
+      position: relative;
+      padding: 5px 10px;
+    }
+    @include childLink();
+  }
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+  border-radius: 0;
+  background-size: 100% 100%;
+  background-color: rgba(0, 0, 0, 0.6)
+}
+
+.form-inline {
+  margin-bottom: 15px;
+}
+
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
+  margin-left: 0;
+}
+
+.radio-inline, .checkbox-inline {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tab-content {
+  padding-top: $defaultPadding * 4;
+}
+
+.note-editor {
+  border: 1px solid $lightGrayColor;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.pr {
+  position: relative;
+}
+
+.hide {
+  display: none;
+}
+
+.note-editable img {
+  max-width: 100%;
+}
+
+$xy: (
+        a5-10: 5px 10px,
+        a10-10: 5px 10px,
+);
+@each $name, $top-left in $xy {
+  .padding-#{$name} {
+    padding: nth($top-left, 1) nth($top-left, 2);
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .jumbotron h2 {
+    font-size: 36px;
+    margin-top: 0;
+  }
+  .jumbotron h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  /* Remove the padding we set earlier */
+  .navbar {
+    > .container {
+      .navbar-brand {
+        margin-left: 0;
+      }
+    }
+  }
+  .navbar-right {
+    float: right !important;
+    margin-right: -8px;
+  }
+}

@@ -1,0 +1,68 @@
+<form name="projectForm" ng-submit="projectFormSubmit()" ng-controller="ProjectinfoCtrl">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label>Project Title:</label>
+                <input type="text" class="form-control" name='title' ng-model="project.title"
+                       placeholder="Create a compelling title to introduce your hardware project"
+                       required
+                       ng-required="true" ng-maxlength="200">
+
+                <p class="message-error" ng-show="projectForm.submitted && projectForm.title.$error.required">
+                    *required</p>
+
+                <p class="message-error" ng-show="projectForm.submitted && projectForm.title.$error.maxlength">*
+                    no more than 200 chars.</p>
+            </div>
+            <div class="form-group">
+                <label>Describe your project:</label>
+                <summernote config="summerNoteFull" ng-model="project.details" on-change="change(contents)"
+                            on-image-upload="imageUpload(files)" editable="editable"
+                            editor="editor"></summernote>
+
+
+            </div>
+            <div class="row">
+
+                <div class="form-group col-sm-6">
+                    <label>Select a category for your project:</label>
+                    <select class="form-control" ng-required="true" ng-model="project.project_category">
+                        <option value="">-- Select a category --</option>
+                        <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
+                                ng-selected="project.project_category==projectType.id">{{ projectType.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label>Project Cover Image:</label>
+
+            <div class="card margin-bottom">
+                <div class="card-header" style="background-image: url({{ project.logo }})">
+                    <div class="mask" ngf-background="projectTemp.logo"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm btn-block" type="file" name="logo" ngf-select
+                    ng-model="projectTemp.logo"
+                    accept="image/*"
+                    ngf-max-size="'1MB'" ng-switch="projectTemp.logo != null ">
+                <span ng-switch-when="true">Change</span>
+                <span ng-switch-when="false">Upload</span>
+
+            </button>
+            <p class='message-error' ng-show="projectForm.logo.$error.maxSize">File too large: max 1MB</p>
+
+            <p class="message-error" ng-show="projectForm.submitted && projectForm.logoRequired">*
+                required</p>
+        </div>
+    </div>
+    <div class="row">
+        <p class='message-error text-center' ng-show="projectForm.submitted && projectForm.$invalid">Please check your
+            input. </p>
+
+        <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Next</button>
+        </p>
+    </div>
+</form>
+
