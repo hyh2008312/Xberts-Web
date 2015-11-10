@@ -74,12 +74,12 @@ angular
     $stateProvider
       .state('projects', {
         url: "/projects",
-        templateUrl: "/views/projects.html",
+        templateUrl: "views/projects.html",
         controller: "ProjectsCtrl"
       })
       .state('launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: '/views/launchproject.html',
+        templateUrl: 'views/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
@@ -99,18 +99,18 @@ angular
       })
       .state('resources', {
         url: "/resources",
-        templateUrl: "/views/resources.html",
+        templateUrl: "views/resources.html",
         controller: "ResourcesCtrl"
       })
       .state('events', {
         url: "/events/",
-        templateUrl: '/views/events.html',
+        templateUrl: 'views/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events'
       })
       .state('event', {
         url: "/events/:eventId",
-        templateUrl: '/views/event.html',
+        templateUrl: 'views/event.html',
         controller: 'EventCtrl',
         resolve: {
           event: ['EventLoad','$stateParams',function (EventLoad,$stateParams) {
@@ -121,7 +121,7 @@ angular
 
       .state('launch', {
         url: "/launch",
-        templateUrl: '/views/eventlauch.html',
+        templateUrl: 'views/eventlauch.html',
         controller: 'EventLauchCtrl'
       });
   }]);
