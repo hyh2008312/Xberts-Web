@@ -51,7 +51,7 @@ section.header{
     width: 100%;
     height: 100%;
     padding: inherit;
-    background-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
     //background: transparent;
     z-index: 3;
     h1 {
@@ -223,6 +223,9 @@ a.block-link{
 .note-editor {
   border: 1px solid $lightGrayColor;
 }
+.border-clear{
+  border:none;
+}
 
 .align-left {
   text-align: left;
@@ -253,6 +256,7 @@ $xy: (
     padding: nth($top-left, 1) nth($top-left, 2);
   }
 }
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

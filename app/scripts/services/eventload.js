@@ -10,7 +10,6 @@
 angular.module('yeodjangoApp')
   .factory('EventLoad', ['Event', '$q', function (Event, $q) {
     return function ($stateParams) {
-      console.log($stateParams);
       var delay = $q.defer();
       Event.get({id:$stateParams.eventId}, function (event) {
         delay.resolve(event);

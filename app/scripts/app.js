@@ -70,58 +70,70 @@ angular
       .setStorageType('sessionStorage');
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/projects");
+    $urlRouterProvider.otherwise("/main");
     $stateProvider
+      .state('main', {
+        url: "/main",
+        templateUrl: '/views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
       .state('projects', {
         url: "/projects",
-        templateUrl: "views/projects.html",
+        templateUrl: "/views/projects.html",
         controller: "ProjectsCtrl"
       })
       .state('launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: 'views/launchproject.html',
+        templateUrl: '/views/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
-          projectTypes: ['SystemData',function (SystemData) {
+          projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
           }],
-          targetGeos: ['SystemData',function (SystemData) {
+          targetGeos: ['SystemData', function (SystemData) {
             return SystemData.getTargetGeosPromise();
           }],
-          supportTypes: ['SystemData',function (SystemData) {
+          supportTypes: ['SystemData', function (SystemData) {
             return SystemData.getSupportTypesPromise();
           }],
-          transportationModels:['SystemData', function (SystemData) {
+          transportationModels: ['SystemData', function (SystemData) {
             return SystemData.getTransportationModelsPromise();
           }]
         }
       })
       .state('resources', {
         url: "/resources",
-        templateUrl: "views/resources.html",
+        templateUrl: "/views/resources.html",
         controller: "ResourcesCtrl"
       })
       .state('events', {
         url: "/events/",
-        templateUrl: 'views/events.html',
+        templateUrl: '/views/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events'
       })
       .state('event', {
         url: "/events/:eventId",
-        templateUrl: 'views/event.html',
+        templateUrl: '/views/event.html',
         controller: 'EventCtrl',
         resolve: {
-          event: ['EventLoad','$stateParams',function (EventLoad,$stateParams) {
+          event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
             return EventLoad($stateParams);
           }]
         }
       })
 
       .state('launch', {
-        url: "/launch",
-        templateUrl: 'views/eventlauch.html',
-        controller: 'EventLauchCtrl'
+        url: "/launch/:eventId",
+        templateUrl: '/views/eventlauch.html',
+        controller: 'EventLauchCtrl',
+        resolve: {
+          event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
+            var eventId = $stateParams.eventId || null;
+            return eventId === null ? {} : EventLoad($stateParams)
+          }]
+        }
       });
   }]);
