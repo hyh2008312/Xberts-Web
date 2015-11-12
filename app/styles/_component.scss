@@ -53,7 +53,7 @@ $avatarTextTypes: (
 
 }
 
-$numbers: (1 2 3 5 8);
+$numbers: (1 2 3 4 5 8 10);
 @each $number in $numbers {
   .p-#{$number} {
     @if ($number==1) {
@@ -254,7 +254,7 @@ $avatarTypes: (
   text-align: center;
   border-bottom: 1px solid $lightColor;
   padding: 20px;
-  min-width: 200px;
+  //margin-bottom: 20px;
   > img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;

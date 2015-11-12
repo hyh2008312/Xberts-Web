@@ -1,13 +1,12 @@
-<section class="section-fixed"
-         style="height:600px;margin-top:-50px;background-image: url(/images/landing-0924.jpg)">
+<section class="section-fixed landing-page" style="background-image: url(/images/landing-0924.jpg)">
   <div class="cover-layer">
-    <div class="section-title " style="margin-top:180px">
+    <div class="section-title">
 
       <h1>Connect smart hardware innovators with distributors,<br/>
         retailers and sales agent partners around the world</h1>
 
     </div>
-    <div class="row" style="margin-top:30px;margin-bottom: 10px">
+    <div class="row" style="margin-top:30px">
       <p class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
         <a href="/auth/register/ " class="btn btn-lg btn-primary btn-block">Get Started</a>
       </p>
@@ -18,7 +17,8 @@
   <div class="container">
     <div class="section-title">
       <h2>How It Works</h2>
-      <h3> </h3>
+
+      <h3></h3>
     </div>
     <div class="row section-body">
       <div class="col-md-4 col-sm-6">
@@ -26,7 +26,7 @@
           <div class="profile border-clear">
             <img ng-src="/images/new-howitworks-1.png">
 
-            <h4 class="profile-title">Submit your smart hardware project and distribution request</h4>
+            <p class="landing-p font-graym">Submit your smart hardware project and distribution request</p>
 
           </div>
         </div>
@@ -36,7 +36,7 @@
           <div class="profile border-clear">
             <img ng-src="/images/new-howitworks-2.png">
 
-            <h4 class="profile-title p-2">Get matched with distribution partners from around the world</h4>
+            <p class="landing-p font-graym">Get matched with distribution partners from around the world</p>
 
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="profile border-clear">
             <img ng-src="/images/new-howitworks-3.png">
 
-            <h4 class="profile-title p-2">Get matched with distribution partners from around the world</h4>
+            <p class="landing-p font-graym">Build your distribution network and sell your product globally</p>
 
           </div>
         </div>
@@ -60,11 +60,11 @@
     <div class="section-title">
       <h2>Featured Smart Hardware Projects</h2>
 
-      <h3>Generate sales leads and promote your project</h3>
+      <h3>Seeking distribution partners and product reviewers</h3>
     </div>
 
     <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="project in projects">
+      <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items">
         <a class="block-link" href="/projects/{{ project.id }}/">
           <div class="card">
             <div class="card-header" style="background-image: url({{ project.image }})">
@@ -104,12 +104,12 @@
         </a>
       </div>
     </div>
-    <br/>
-    <br/>
-    <div class="row" style="margin-bottom: 10px">
-      <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <p></p>
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
         <a ui-sref="projects" class="btn btn-lg btn-primary btn-block">View More Projects</a>
-      </p>
+      </div>
     </div>
   </div>
 </section>
@@ -118,11 +118,11 @@
     <div class="section-title">
       <h2>Expo Events & Trade Show</h2>
 
-      <h3>Generate sales leads and promote your project</h3>
+      <h3>Present the best innovative products to global audiences</h3>
     </div>
 
     <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="event in events">
+      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
         <div class="card cover">
           <div class="card-header"
                style="background-image:url({{ event.logo }});">
@@ -149,13 +149,12 @@
         </div>
       </div>
     </div>
-    <br/>
-    <br/>
+    <p></p>
 
-    <div class="row" style="margin-bottom: 10px">
-      <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
         <a ui-sref="events" class="btn btn-lg btn-primary btn-block">View More Events</a>
-      </p>
+      </div>
     </div>
   </div>
 </section>
@@ -164,12 +163,12 @@
     <div class="section-title">
       <h2>Expert Mentors & Industry Leaders</h2>
 
-      <h3>Conduct market research and develop your growth strategy</h3>
+      <h3>Conduct market research and develop market entry strategy</h3>
     </div>
 
 
     <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="expert in experts">
+      <div class="col-md-3 col-sm-6" ng-repeat="expert in experts">
         <div class="card cover">
           <div class="profile">
             <img ng-src="{{ expert.avatar }}">
@@ -178,12 +177,12 @@
 
             <p class="profile-country p-1"><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
 
-            <p class="profile-title p-2">{{ expert.company_title }}</p>
+            <p class="profile-title p-4">{{ expert.company_title }}</p>
 
           </div>
           <div class="cover-layer cover-layer-top">
             <div class="cover-header">
-              <p class="p-5">{{ expert.biography }}</p>
+              <p class="p-10">{{ expert.biography }}</p>
 
               <p class="text-center">
                 <a ng-href="/xberts/{{ expert.user_id }}/#?xbertTab=feedback" class="btn btn-primary">Ask
@@ -194,14 +193,106 @@
         </div>
       </div>
     </div>
-    <br/>
-    <br/>
+    <p></p>
 
-    <div class="row" style="margin-bottom: 10px">
-      <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
         <a href="/xberts/" class="btn btn-lg btn-primary btn-block">View More Experts</a>
-      </p>
+      </div>
     </div>
+  </div>
+</section>
+<section class="background-whitem">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why You Should Use Xberts</h2>
+
+      <h3></h3>
+    </div>
+
+
+    <div class="row section-body">
+      <div class="col-md-6">
+          <h3>For Makers:</h3>
+
+          <div class="landing-p" style="margin-top: 15px">
+            <p class="align-justify font-graym">Find trusted distribution channels to partner with</p>
+
+            <p class="align-justify font-graym">Showcase your hardware innovation to the world</p>
+
+            <p class="align-justify font-graym">Get product feedback from our global community</p>
+          </div>
+          <div class="row" style="margin-top:30px;">
+            <div class="col-xs-8 col-xs-offset-1">
+              <a href="/projects/launch/ " class="btn  btn-primary btn-block">Launch a Smart Product</a>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <h3>For Distributors:</h3>
+
+        <div class="landing-p" style="margin-top: 15px">
+          <p class="align-justify font-graym">Find the next generation of smart products to sell</p>
+
+          <p class="align-justify font-graym">Increase your revenue with the best-rated projects</p>
+
+          <p class="align-justify font-graym">Discover the latest smart hardware industry trend</p>
+        </div>
+        <div class="row" style="margin-top:30px;">
+          <div class="col-xs-8 col-xs-offset-1">
+            <a href="/auth/register/ " class="btn btn-success btn-block">Become a Distribution Partner</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h2>What Our Users Say</h2>
+
+      <h3>TESTIMONIALS</h3>
+    </div>
+
+
+    <div class="section-body">
+      <ul class="media-list">
+        <li class="media" style="padding-right: 90px">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-circle" src="/images/mentee_alex.jpg" width="80" height="80">
+            </a>
+          </div>
+          <div class="media-body background-whitem padding-a5-10 ">
+            <p class="font-gray-light">"I had an incredibly positive experience on Xberts.
+              The team was able to connect me to an amazing and relevant partner,
+              and the entire process took just a few days.
+              Everyone was incredibly responsive to my inquiries and always responded immediately.
+              I strongly recommend Xberts to any hardware entrepreneur and will be continuously using this service going
+              forward."</p>
+
+            <p>Alex Klokus, <span class="font-gray-light">CEO of Habet, NYU Alum</span></p>
+          </div>
+        </li>
+        <li class="media" style="padding-left: 90px">
+          <div class="media-body background-whitem padding-a5-10 ">
+            <p class="font-gray-light">
+              "Through Xberts, I was able to connect with amazing partners, to whom I other wise would not have access.
+              The platform was easy to use, and I was connected within days. I highly recommend Xberts to any hardware
+              entrepreneur that is looking to catalyze the growth of their start-up!"</p>
+
+            <p>Aaron Goldstein, <span class="font-gray-light">Co-Founder, FeverSmart</span></p>
+          </div>
+          <div class="media-right">
+            <a href="#">
+              <img class="media-object img-circle" src="/images/mentee_aaron.png" width="80" height="80">
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p></p>
   </div>
 </section>
 

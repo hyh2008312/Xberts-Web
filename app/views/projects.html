@@ -11,7 +11,7 @@
   </div>
   <div class="row section-body" infinite-scroll="paginator.load()" infinite-scroll-distance='0'
        infinite-scroll-disabled="paginator.loading || !paginator.hasNext()">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in paginator.items">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
       <a class="block-link" href="/projects/{{ project.id }}/">
       <div class="card">
         <div class="card-header" style="background-image: url({{ project.image }})">

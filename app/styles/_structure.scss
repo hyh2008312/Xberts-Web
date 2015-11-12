@@ -22,7 +22,7 @@ footer {
 
 section {
   padding-top: $sectionSpace;
-  padding-bottom: $sectionSpace;
+  padding-bottom: $sectionSpace + 20px;
 }
 section.header{
   padding-top: 27px;
@@ -51,7 +51,7 @@ section.header{
     width: 100%;
     height: 100%;
     padding: inherit;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     //background: transparent;
     z-index: 3;
     h1 {
@@ -91,7 +91,12 @@ section.header{
 h3.panel-title {
   font-size: 24px;
 }
-
+.landing-p{
+  font-size: 20px;
+  p{
+    font-size: 20px;
+  }
+}
 a {
   color: $primaryColor;
   &:hover {
@@ -234,7 +239,9 @@ a.block-link{
 .align-right {
   text-align: right;
 }
-
+.align-justify{
+  text-align: justify;
+}
 .pr {
   position: relative;
 }
@@ -256,7 +263,6 @@ $xy: (
     padding: nth($top-left, 1) nth($top-left, 2);
   }
 }
-
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -283,5 +289,25 @@ $xy: (
   .navbar-right {
     float: right !important;
     margin-right: -8px;
+  }
+  .landing-page{
+    height: 600px;
+    margin-top: -50px;
+    .section-title{
+      margin-top:150px;
+    }
+  }
+}
+@media screen and (max-width: 767px){
+  .landing-page{
+    margin-top: -50px;
+    height: 500px;
+    .section-title{
+      text-align: left;
+      h1{
+        font-size: 36px;
+      }
+      margin-top:80px;
+    }
   }
 }

@@ -74,18 +74,50 @@ angular
     $stateProvider
       .state('main', {
         url: "/main",
-        templateUrl: '/views/main.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        resolve:{
+          projectPaginator:['Paginator','ProjectsNoDetail',function(Paginator,ProjectsNoDetail){
+            var fetchFunction = function (nextPage, callback) {
+              ProjectsNoDetail.get({page: nextPage,is_recommended: 'True'}, callback);
+            };
+            var paginator = Paginator('projectRec', fetchFunction);
+            return paginator.load();
+          }],
+          eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
+            var fetchFunction = function (nextPage, callback) {
+              EventNoDetail.get({page: nextPage}, callback);
+            };
+            var paginator = Paginator('event', fetchFunction);
+            return paginator.load();
+          }],
+          expertPaginator:['Paginator','Expert',function(Paginator,Expert){
+            var fetchFunction = function (nextPage, callback) {
+              Expert.get({page: nextPage,recommended: 'True'}, callback);
+            };
+            var paginator = Paginator('expertRec', fetchFunction);
+            return paginator.load();
+          }]
+        }
       })
       .state('projects', {
         url: "/projects",
-        templateUrl: "/views/projects.html",
-        controller: "ProjectsCtrl"
+        templateUrl: "views/projects.html",
+        controller: "ProjectsCtrl",
+        resolve: {
+          projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
+            var fetchFunction = function (nextPage, callback) {
+              ProjectsNoDetail.get({page: nextPage}, callback);
+            };
+            var paginator = Paginator('project', fetchFunction);
+            return paginator.load();
+          }]
+        }
       })
       .state('launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: '/views/launchproject.html',
+        templateUrl: 'views/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
@@ -105,18 +137,27 @@ angular
       })
       .state('resources', {
         url: "/resources",
-        templateUrl: "/views/resources.html",
+        templateUrl: "views/resources.html",
         controller: "ResourcesCtrl"
       })
       .state('events', {
         url: "/events/",
-        templateUrl: '/views/events.html',
+        templateUrl: 'views/events.html',
         controller: 'EventsCtrl',
-        controllerAs: 'events'
+        controllerAs: 'events',
+        resolve:{
+          eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
+            var fetchFunction = function (nextPage, callback) {
+              EventNoDetail.get({page: nextPage}, callback);
+            };
+            var paginator = Paginator('event', fetchFunction);
+            return paginator.load();
+          }]
+        }
       })
       .state('event', {
         url: "/events/:eventId",
-        templateUrl: '/views/event.html',
+        templateUrl: 'views/event.html',
         controller: 'EventCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -127,7 +168,7 @@ angular
 
       .state('launch', {
         url: "/launch/:eventId",
-        templateUrl: '/views/eventlauch.html',
+        templateUrl: 'views/eventlauch.html',
         controller: 'EventLauchCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {

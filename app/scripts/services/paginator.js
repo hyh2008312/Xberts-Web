@@ -9,7 +9,7 @@
  */
 //todo: 优化，将watch(回调),load spin整合进来,加载出错信息
 angular.module('yeodjangoApp')
-  .factory('Paginator', ['localStorageService', function (localStorageService) {
+  .factory('Paginator', ['localStorageService','$q', function (localStorageService,$q) {
     // Service logic
     // ...
     // Public API here
@@ -24,6 +24,22 @@ angular.module('yeodjangoApp')
           return this.next === 'true';
         },
         load: function () {
+          var delay = $q.defer();
+          if (!this.hasNext() || this.loading){
+            return this;
+          }
+          var self = this;
+          self.loading = true;
+          fetchFunction(self.currentPage + 1, function (resource) {
+            self.currentPage++;
+            self.next = resource.next !== null ? 'true' : 'false';
+            self.items = self.items.concat(resource.results);
+            self.loading = false;
+            delay.resolve(self);
+          });
+          return delay.promise;
+        },
+        loadNext: function () {
           if (!this.hasNext() || this.loading) return;
           var self = this;
           self.loading = true;

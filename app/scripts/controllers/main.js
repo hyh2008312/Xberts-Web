@@ -8,27 +8,11 @@
  * Controller of the yeodjangoApp
  */
 angular.module('yeodjangoApp')
-  .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'ProjectsNoDetail', 'EventNoDetail', 'Expert',
-    function ($scope, $state, modalWrap, ProjectsNoDetail, EventNoDetail, Expert) {
-      this.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
-      $scope.projects = [];
-      $scope.events = [];
-      $scope.experts = [];
-      ProjectsNoDetail.get(function (projects) {
-        $scope.projects = projects.results;
-      });
-      EventNoDetail.get(function (events) {
-        $scope.events = events.results;
-      });
-      Expert.get({recommended: 'True'}, function (experts) {
-        $scope.experts = experts.results;
-      });
-
-      $scope.items = ['item1', 'item2', 'item3'];
+  .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator',
+    function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator) {
+      $scope.eventPaginator = eventPaginator;
+      $scope.projectPaginator = projectPaginator;
+      $scope.expertPaginator = expertPaginator;
 
       var requestModal = new modalWrap('views/requestmodal.html', 'RequestModalCtrl');
       $scope.openRequestModal = function () {
