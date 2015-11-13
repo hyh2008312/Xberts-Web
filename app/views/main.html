@@ -23,7 +23,7 @@
     <div class="row section-body">
       <div class="col-md-4 col-sm-6">
         <div class="card cover border-clear">
-          <div class="profile border-clear">
+          <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-1.png">
 
             <p class="landing-p font-graym">Submit your smart hardware project and distribution request</p>
@@ -33,7 +33,7 @@
       </div>
       <div class="col-md-4 col-sm-6">
         <div class="card cover border-clear">
-          <div class="profile border-clear">
+          <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-2.png">
 
             <p class="landing-p font-graym">Get matched with distribution partners from around the world</p>
@@ -43,7 +43,7 @@
       </div>
       <div class="col-md-4 col-sm-6">
         <div class="card cover border-clear">
-          <div class="profile border-clear">
+          <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-3.png">
 
             <p class="landing-p font-graym">Build your distribution network and sell your product globally</p>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items">
+      <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items  | limitTo:3">
         <a class="block-link" href="/projects/{{ project.id }}/">
           <div class="card">
             <div class="card-header" style="background-image: url({{ project.image }})">
@@ -122,7 +122,7 @@
     </div>
 
     <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
+      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items | limitTo:3">
         <div class="card cover">
           <div class="card-header"
                style="background-image:url({{ event.logo }});">
@@ -168,7 +168,7 @@
 
 
     <div class="row section-body">
-      <div class="col-md-3 col-sm-6" ng-repeat="expert in experts">
+      <div class="col-md-3 col-sm-6" ng-repeat="expert in expertPaginator.items  | limitTo:4">
         <div class="card cover">
           <div class="profile">
             <img ng-src="{{ expert.avatar }}">

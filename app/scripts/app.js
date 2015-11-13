@@ -89,7 +89,7 @@ angular
             var fetchFunction = function (nextPage, callback) {
               EventNoDetail.get({page: nextPage}, callback);
             };
-            var paginator = Paginator('event', fetchFunction);
+            var paginator = Paginator('eventRec', fetchFunction);
             return paginator.load();
           }],
           expertPaginator:['Paginator','Expert',function(Paginator,Expert){

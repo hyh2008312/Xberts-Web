@@ -10,5 +10,5 @@
 angular.module('yeodjangoApp')
   .controller('EventsCtrl',['$scope','EventNoDetail','eventPaginator', function ($scope,EventNoDetail,eventPaginator) {
     $scope.eventPaginator = eventPaginator;
-    $scope.eventPaginator.watch($scope,'paginator.currentPage');
+    $scope.eventPaginator.watch($scope,'eventPaginator.currentPage');
   }]);

@@ -2,10 +2,10 @@
   <div class="section-title">
     <h2>Expo Events & Trade Show</h2>
 
-    <h3>Generate sales leads and promote your project</h3>
+    <h3>Present the best innovative products to global audiences</h3>
   </div>
-  <div class="row section-body" infinite-scroll="paginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="paginator.loading || !paginator.hasNext()">
+  <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
+       infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
     <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
       <div class="card cover">
         <div class="card-header"
@@ -33,4 +33,5 @@
       </div>
     </div>
   </div>
+  <load-more class="row spin-large" ng-if="eventPaginator.loading"></load-more>
 </section>

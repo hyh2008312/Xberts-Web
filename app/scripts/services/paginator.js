@@ -35,13 +35,15 @@ angular.module('yeodjangoApp')
             self.next = resource.next !== null ? 'true' : 'false';
             self.items = self.items.concat(resource.results);
             self.loading = false;
+            localStorageService.set(self.name + '_currentPage', self.currentPage);
+            localStorageService.set(self.name + '_items', self.items);
+            localStorageService.set(self.name + '_next', self.next);
             delay.resolve(self);
           });
           return delay.promise;
         },
         loadNext: function () {
           if (!this.hasNext() || this.loading) return;
-          var self = this;
           self.loading = true;
           fetchFunction(self.currentPage + 1, function (resource) {
             self.currentPage++;

@@ -10,5 +10,5 @@
 angular.module('yeodjangoApp')
   .controller('ProjectsCtrl', ['$scope', 'projectPaginator', function ($scope, projectPaginator) {
     $scope.projectPaginator = projectPaginator;
-    $scope.projectPaginator.watch($scope,'paginator.currentPage');
+    $scope.projectPaginator.watch($scope,'projectPaginator.currentPage');
   }]);
