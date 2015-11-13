@@ -112,13 +112,13 @@ $numbers: (1 2 3 4 5 8 10);
       //transition: width 0.2s
       width: 100%;
       bottom: -5px;
-      left:0;
+      left: 0;
       //border-bottom: 1px solid $lightGrayColor
     }
   }
-  &:last-child{
-    > .item-body{
-      &:after{
+  &:last-child {
+    > .item-body {
+      &:after {
         border-bottom-width: 0;
       }
     }
@@ -139,7 +139,6 @@ $avatarTypes: (
     @include item(nth($size, 1), nth($size, 2), $whiteColor);
   }
 }
-
 
 .card {
   border: 1px solid $lightGrayColor;
@@ -190,7 +189,7 @@ $avatarTypes: (
     //background-color: $primaryColor;
     > .cover-layer-top {
       display: block;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.7);
       -webkit-transition: padding 0.5s;
       -moz-transition: padding 0.5s;
       -ms-transition: padding 0.5s;
@@ -201,9 +200,9 @@ $avatarTypes: (
         padding: 10%;
       }
     }
-    >.cover-layer-right{
+    > .cover-layer-right {
       display: block;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.7);
       -webkit-transition: padding-right 1s;
       -moz-transition: padding-right 1s;
       -ms-transition: padding-right 1s;
@@ -240,15 +239,17 @@ $avatarTypes: (
     }
   }
 }
-.mask{
+
+.mask {
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
   left: 0;
   background: transparent no-repeat center;
   background-size: cover;
 }
+
 .profile {
   background-color: $whiteColor;
   text-align: center;
@@ -280,6 +281,7 @@ $avatarTypes: (
     margin-bottom: 0;
   }
 }
+
 .profile-square {
   background-color: $whiteColor;
   text-align: center;
@@ -309,9 +311,9 @@ $avatarTypes: (
   }
 }
 
-.backdrop{
+.backdrop {
   position: fixed;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   //bottom: 0;
@@ -336,15 +338,14 @@ $spinTypes: (
     padding: $size / 4;
   }
   .backdrop .spin-#{$name} {
-    margin-top:-3 * $size / 4;
-    margin-left:-3 * $size / 4;
+    margin-top: -3 * $size / 4;
+    margin-left: -3 * $size / 4;
     position: fixed;
-    top:50%;
-    left:50%;
+    top: 50%;
+    left: 50%;
     z-index: 10001;
   }
 }
-
 
 %message {
   padding-top: 5px;
@@ -372,10 +373,28 @@ $message-types: (
     @include message($color);
   }
 }
-.breadcrumbs{
-  ul{
-    li{
+
+.breadcrumbs {
+  ul {
+    li {
       float: left;
     }
+  }
+}
+
+.ul-list {
+  border: 1px solid #ddd;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+  li {
+    padding: 10px 32px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+  }
+  .ul-list-title{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-bottom: 1px solid #d6d5d0;
   }
 }

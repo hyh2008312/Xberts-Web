@@ -65,9 +65,9 @@
             </li>
             <li ng-class="{active: $state.includes('events')}"><a ui-sref="events"
                                                                      class="fade-in-line">EVENTS</a></li>
-            <li ng-class="{active: $state.includes('forum'),dropdown:true}"><a href="/xberts/" class="fade-in-line">EXPERTS</a>
+            <li ng-class="{active: $state.includes('forum'),dropdown:true}"><a ui-sref="experts" class="fade-in-line">EXPERTS</a>
               <ul class="dropdown-menu navbar-inverse">
-                <li><a ng-href="/xberts/">Expert Mentors</a></li>
+                <li><a ui-sref="experts">Expert Mentors</a></li>
                 <li><a href="/qa/home/">Expert Q&A</a></li>
               </ul>
             </li>
@@ -232,6 +232,9 @@
 <script src="scripts/services/eventnodetail.js"></script>
 <script src="scripts/filters/tagsplit.js"></script>
 <script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/experts.js"></script>
+<script src="scripts/services/stage.js"></script>
+<script src="scripts/services/stagesload.js"></script>
 <!-- endbuild -->
 </body>
 </html>

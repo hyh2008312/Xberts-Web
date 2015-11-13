@@ -44,6 +44,7 @@ angular.module('yeodjangoApp')
         },
         loadNext: function () {
           if (!this.hasNext() || this.loading) return;
+          var self = this;
           self.loading = true;
           fetchFunction(self.currentPage + 1, function (resource) {
             self.currentPage++;

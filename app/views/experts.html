@@ -1,0 +1,28 @@
+<section class="container header">
+  <div class="jumbotron section-title" style="background-image: url(/images/banner-experts.jpg)">
+    <h2 class="font-whitem">Work with expert mentors to accelerate your hardware projects!</h2>
+
+    <div class="row">
+      <h3 class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+        <a class="btn btn-lg btn-primary btn-block" href="/auth/edtbiography/?type=apply1">Become an Expert</a>
+      </h3>
+    </div>
+  </div>
+  <div class="row section-body">
+    <div class="col-sm-4 col-md-3">
+      <ul class="ul-list" ng-repeat="stage in stages">
+        <li class="ul-list-title">{{ stage.stage }}</li>
+        <li class="list-item padding-top-10 padding-bottom-10 font-12 border-top text-indent"
+            ng-repeat="career in stage.careers"
+            ng-class=""
+            ng-click="">{{ career.career_field }}
+          <i class="fa fa-check text-success pull-right"
+             ng-show=""></i>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-4 col-md-3">
+
+    </div>
+  </div>
+</section>
