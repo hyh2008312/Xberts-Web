@@ -74,27 +74,33 @@ angular
     $stateProvider
       .state('main', {
         url: "/main",
-        templateUrl: '/views/main.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
         resolve:{
           projectPaginator:['Paginator','ProjectsNoDetail',function(Paginator,ProjectsNoDetail){
-            var fetchFunction = function (nextPage, callback) {
-              ProjectsNoDetail.get({page: nextPage,is_recommended: 'True'}, callback);
+            var fetchFunction = function (nextPage,otherParams, callback) {
+              var params={page: nextPage,is_recommended: 'True'};
+              angular.extend(params,otherParams);
+              ProjectsNoDetail.get(params, callback);
             };
             var paginator = Paginator('projectRec', fetchFunction);
             return paginator.load();
           }],
           eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
-            var fetchFunction = function (nextPage, callback) {
-              EventNoDetail.get({page: nextPage}, callback);
+            var fetchFunction = function (nextPage, otherParams,callback) {
+              var params={page: nextPage};
+              angular.extend(params,otherParams);
+              EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('eventRec', fetchFunction);
             return paginator.load();
           }],
           expertPaginator:['Paginator','Expert',function(Paginator,Expert){
-            var fetchFunction = function (nextPage, callback) {
-              Expert.get({page: nextPage,recommended: 'True'}, callback);
+            var fetchFunction = function (nextPage,otherParams, callback) {
+              var params={page: nextPage,recommended: 'True'};
+              angular.extend(params,otherParams);
+              Expert.get(params, callback);
             };
             var paginator = Paginator('expertRec', fetchFunction);
             return paginator.load();
@@ -103,12 +109,15 @@ angular
       })
       .state('projects', {
         url: "/projects",
-        templateUrl: "/views/projects.html",
+        templateUrl: "views/projects.html",
         controller: "ProjectsCtrl",
         resolve: {
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
-            var fetchFunction = function (nextPage, callback) {
-              ProjectsNoDetail.get({page: nextPage}, callback);
+            var fetchFunction = function (nextPage,otherParams, callback) {
+              var params={page: nextPage};
+              angular.extend(params,otherParams);
+              ProjectsNoDetail.get(params, callback);
+
             };
             var paginator = Paginator('project', fetchFunction);
             return paginator.load();
@@ -117,7 +126,7 @@ angular
       })
       .state('launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: '/views/launchproject.html',
+        templateUrl: 'views/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
@@ -137,18 +146,20 @@ angular
       })
       .state('resources', {
         url: "/resources",
-        templateUrl: "/views/resources.html",
+        templateUrl: "views/resources.html",
         controller: "ResourcesCtrl"
       })
       .state('events', {
         url: "/events/",
-        templateUrl: '/views/events.html',
+        templateUrl: 'views/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events',
         resolve:{
           eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
-            var fetchFunction = function (nextPage, callback) {
-              EventNoDetail.get({page: nextPage}, callback);
+            var fetchFunction = function (nextPage,otherParams, callback) {
+              var params={page: nextPage};
+              angular.extend(params,otherParams);
+              EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('event', fetchFunction);
             return paginator.load();
@@ -157,7 +168,7 @@ angular
       })
       .state('event', {
         url: "/events/:eventId",
-        templateUrl: '/views/event.html',
+        templateUrl: 'views/event.html',
         controller: 'EventCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -167,19 +178,28 @@ angular
       })
       .state('experts', {
         url: "/experts",
-        templateUrl: '/views/experts.html',
+        templateUrl: 'views/experts.html',
         controller: 'ExpertsCtrl',
         controllerAs: 'experts',
         resolve: {
           stages: ['SystemData', function (SystemData) {
             return SystemData.getStagesPromise();
+          }],
+          expertPaginator:['Paginator','Expert',function(Paginator,Expert){
+            var fetchFunction = function (nextPage,otherParams, callback) {
+              var params={page: nextPage};
+              angular.extend(params,otherParams);
+              Expert.get(params, callback);
+            };
+            var paginator = Paginator('expert', fetchFunction);
+            return paginator.load();
           }]
         }
       })
 
       .state('launch', {
         url: "/launch/:eventId",
-        templateUrl: '/views/eventlauch.html',
+        templateUrl: 'views/eventlauch.html',
         controller: 'EventLauchCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {

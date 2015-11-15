@@ -11,13 +11,19 @@
 angular.module('yeodjangoApp')
   .filter('tagsplit', function () {
     var tagsSplit=function (tagstring) {
-      if(tagstring===undefined || tagstring===""){
+      if(tagstring===undefined || tagstring==="" || tagstring===[]){
         return "";
       }
-      var tags=tagstring.split(',');
-      var newTagsString=tags.join("  #");
-
+      var newTagsString;
+      if(typeof (tagstring)==="string"){
+        var tags=tagstring.split(',');
+        newTagsString=tags.join("  #");
+      }
+      if(tagstring instanceof Array){
+        newTagsString=tagstring.join("  #");
+      }
       return "#"+newTagsString;
+
     };
     return tagsSplit;
   });

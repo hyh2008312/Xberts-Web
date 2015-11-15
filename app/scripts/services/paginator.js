@@ -17,6 +17,7 @@ angular.module('yeodjangoApp')
       var paginator = {
         name: name,
         currentPage: localStorageService.get(name + '_currentPage') || 0,
+        params:{},
         next: localStorageService.get(name + '_next') || 'true',
         items: localStorageService.get(name + '_items') || [],
         loading: false,
@@ -25,12 +26,12 @@ angular.module('yeodjangoApp')
         },
         load: function () {
           var delay = $q.defer();
-          if (!this.hasNext() || this.loading){
+          if (this.items.length>0 || !this.hasNext() || this.loading){
             return this;
           }
           var self = this;
           self.loading = true;
-          fetchFunction(self.currentPage + 1, function (resource) {
+          fetchFunction(self.currentPage + 1,self.params, function (resource) {
             self.currentPage++;
             self.next = resource.next !== null ? 'true' : 'false';
             self.items = self.items.concat(resource.results);
@@ -46,7 +47,7 @@ angular.module('yeodjangoApp')
           if (!this.hasNext() || this.loading) return;
           var self = this;
           self.loading = true;
-          fetchFunction(self.currentPage + 1, function (resource) {
+          fetchFunction(self.currentPage + 1,self.params, function (resource) {
             self.currentPage++;
             self.next = resource.next !== null ? 'true' : 'false';
             self.items = self.items.concat(resource.results);

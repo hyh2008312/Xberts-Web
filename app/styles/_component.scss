@@ -65,19 +65,36 @@ $numbers: (1 2 3 4 5 8 10);
 }
 
 @mixin item($imageSize,$padding,$color) {
-  min-height: $imageSize;
+  min-height: $imageSize + 20px;
   position: relative;
-  padding: 5px 10px 5px $imageSize + $padding + 10px;
-  > img {
-    width: $imageSize;
-    height: $imageSize;
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
+  padding: 10px 16px 10px $imageSize + $padding + 16px;
+  border-bottom: 1px solid $lightColor;
+  @if $color == $whiteColor {
+    //background-color: $whiteColor;
+  } @else {
+    background-color: $whiteColor;
+    &:hover{
+      background-color: $lightWhiteColor;
+    }
   }
+  p{
+    margin-bottom: 5px;
+  }
+  > .item-image{
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: $imageSize;
+    > img {
+      width: $imageSize;
+      height: $imageSize;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+  }
+
   > .item-body {
     position: relative;
     > .item-body-header {
@@ -88,13 +105,13 @@ $numbers: (1 2 3 4 5 8 10);
       }
     }
     > .item-body-title {
-      color: $color;
+      color: $darkGrayColor;
     }
     > .item-body-detail {
       @if $color == $whiteColor {
         color: $lightColor;
       } @else {
-        color: $darkGrayColor;
+        color: $grayLightColor;
       }
     }
     > .item-body-footer {
@@ -383,18 +400,59 @@ $message-types: (
 }
 
 .ul-list {
-  border: 1px solid #ddd;
+  border: 1px solid $lightColor;
   list-style-type: none;
   padding: 0;
   margin-bottom: 0;
   li {
     padding: 10px 32px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $lightColor;
     background: #fff;
+    &:hover{
+      background-color: $lightWhiteColor;
+    }
+  }
+  .active{
+    background-color: $lightWhiteColor;
   }
   .ul-list-title{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: $lightColor;
     padding: 16px;
-    border-bottom: 1px solid #d6d5d0;
+    border-bottom: 1px solid $lightColor;
+    &:hover{
+      background-color: $lightColor;
+    }
   }
+}
+.list{
+  border: 1px solid $lightColor;
+}
+.list-title {
+  background-color: $lightColor;
+  padding: 16px;
+  border-bottom: 1px solid $lightColor;
+}
+
+.list-search {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.search .input-sm {
+  padding: 5px 25px;;
+  border-radius: 15px;
+}
+
+.search .fa-search {
+  position: absolute;
+  left: 22px;;
+  top: 0.6em;
+  z-index: 3
+}
+
+.search .fa-times {
+  position: absolute;
+  top: 0.6em;
+  right: 22px;
+  color: #bcbec0;;
 }

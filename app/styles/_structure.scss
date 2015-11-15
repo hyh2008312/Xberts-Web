@@ -224,6 +224,11 @@ a.block-link{
 .tab-content {
   padding-top: $defaultPadding * 4;
 }
+.label{display: inline-block;}
+.label-default{
+  margin-right: 2px;
+  background-color: $lightGrayColor;
+}
 
 .note-editor {
   border: 1px solid $lightGrayColor;

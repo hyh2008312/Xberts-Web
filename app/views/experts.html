@@ -14,15 +14,56 @@
         <li class="ul-list-title">{{ stage.stage }}</li>
         <li class="list-item padding-top-10 padding-bottom-10 font-12 border-top text-indent"
             ng-repeat="career in stage.careers"
-            ng-class=""
-            ng-click="">{{ career.career_field }}
+            ng-class="{'active':experts.career_fields__id==career.id}"
+            ng-click="onExpertsCareer(career.id);">{{ career.career_field }}
           <i class="fa fa-check text-success pull-right"
-             ng-show=""></i>
+             ng-show="experts.career_fields__id==career.id"></i>
         </li>
       </ul>
     </div>
-    <div class="col-sm-4 col-md-3">
+    <div class="col-sm-4 col-md-9">
+      <div class="list" infinite-scroll="expertPaginator.loadNext()" infinite-scroll-distance='0'
+           infinite-scroll-disabled="expertPaginator.loading || !expertPaginator.hasNext()">
+        <div class="list-title list-search">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5">
+              <select class="form-control input-sm" ng-model="experts.country" ng-change="onSearch();">
+                <option value="">-- All Geographies --</option>
+                <option ng-repeat="country in countries"
+                        value="{{ country.code }}"
+                        ng-selected="experts.country==country.code">{{ country.name }}</option>
+              </select>
+            </div>
+            <div class="col-xs-12 col-sm-6  col-md-4 col-md-offset-3">
+              <div class="search">
+                <input type="text" name='search' class="form-control input-sm" placeholder="Search for..."
+                       ng-model="experts.search"
+                       ng-keydown="onKeyDown($event);">
+                <a class="fa fa-search" ng-click="onSearch();"></a>
+                <a class="fa fa-times" ng-click="onClearSearch();"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item-avatar-large" style="min-height: 127px;" ng-repeat="expert in expertPaginator.items">
+          <div class="item-image text-center">
+            <img ng-src="{{ expert.avatar }}">
+            <a href="/xberts/{{ expert.user_id }}/#?xbertTab=feedback" class="btn btn-xs btn-primary">Contact</a>
+          </div>
+          <div class="item-body">
+            <p class="item-body-header">
+              <span><a ng-href="/xberts/{{ expert.user_id }}/">{{ expert.short_name }}</a></span>
+              <span class="pull-right">{{ expert.country }}</span></p>
+            <p class="item-body-title">{{ expert.company_title}}</p>
+            <p>
+              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise }}</span>
+            </p>
+            <p class="item-body-detail">{{ expert.biography }}</p>
+          </div>
+        </div>
 
+      </div>
+      <load-more class="row spin-large" ng-if="expertPaginator.loading"></load-more>
     </div>
   </div>
 </section>
