@@ -1,0 +1,29 @@
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h3>Showcase your hardware project and get introduced to global business partners!</h3>
+    </div>
+
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="section-body">
+      <uib-tabset>
+        <uib-tab heading="Step 1. General Profile" active="tabs[0].active" disable="tabs[0].disable">
+          <div ng-include src="'/views/profileinfo.html'"></div>
+        </uib-tab>
+        <uib-tab heading="Step 2. Survey" active="tabs[1].active" disable="tabs[1].disable">
+        </uib-tab>
+        <uib-tab heading="Step 3. Confirmation" active="tabs[2].active"  disable="tabs[2].disable" select="select(2)">
+        </uib-tab>
+        <uib-tab heading="Step 4. Submit" active="tabs[3].active" disable="tabs[3].disable" select="select(3)">
+          <h1 class="text-center text-danger">
+            Your product has been submitted for approval! We will review your product and get back to you as soon as possible.
+          </h1>
+          <!--<h2 class="text-center"><a href="#">Check out your project now! (<redirect href="/projects/{{ projectId }}/" redirected="{{ redirect }}">2s</redirect>)</a></h2>-->
+        </uib-tab>
+      </uib-tabset>
+    </div>
+  </div>
+</section>
