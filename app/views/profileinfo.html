@@ -1,12 +1,13 @@
-<form name="companyForm" class="form-horizontal">
+<form name="profileForm" class="form-horizontal" ng-controller="ProfileinfoCtrl">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Personal Information</div>
         <div class="panel-body">
           <div class="form-group">
-            <label class="col-md-3 control-label">Gender: </label>
-            <div class="col-md-9">
+            <label class="col-md-4 control-label">Gender: </label>
+
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio"
                        name="gender"
@@ -19,7 +20,7 @@
                 <input type="radio"
                        name="gender"
                        ng-model="profile.gender"
-                       ng-value="M"
+                       ng-value="F"
                        ng-required="true"
                   /> Female
               </label>
@@ -27,20 +28,28 @@
                 <input type="radio"
                        name="gender"
                        ng-model="profile.gender"
-                       ng-value="M"
+                       ng-value="I"
                        ng-required="true"
                   /> I prefer not to disclose
               </label>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Date of Birth:</label>
+            <label class="col-md-4 control-label">Date of Birth:</label>
+
             <div class="col-md-5">
-              <input type="date" class="form-control" ng-model="profile.birth">
+              <input type="date" class="form-control"
+                     name="birth"
+                     ng-model="profile.birth"
+                     ng-required="true"
+                >
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.birth.$error.required">
+                *required</p>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Phone Number: </label>
+            <label class="col-md-4 control-label">Phone Number: </label>
+
             <div class="col-md-5">
               <input type="text" class="form-control"
                      name="phone"
@@ -48,61 +57,59 @@
                      ng-maxlength="20"
                      ng-pattern="/^[0-9,+,-]*\d$/"
                      ng-required="true">
-            </div>
-
-            <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.required">
-              *required</p>
-
-            <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.pattern">
-              [0-9,+,-]</p>
-
-            <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.maxlength">* no more
-              than 20 chars.</p>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Email: </label>
-            <div class="col-md-5">
-              <input type="email" class="form-control"
-                     name="phone"
-                     ng-model="profile.phone"
-                     ng-maxlength="20"
-                     ng-pattern="/^[0-9,+,-]*\d$/"
-                     ng-required="true">
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.required">
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.phone.$error.required">
                 *required</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.pattern">
+              <p class="message-error" ng-show="profileForm.phone.$error.pattern">
                 [0-9,+,-]</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.maxlength">* no more
+              <p class="message-error" ng-show="profileForm.phone.$error.maxlength">* no more
                 than 20 chars.</p>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Industry: </label>
+            <label class="col-md-4 control-label">Email: </label>
+
             <div class="col-md-5">
-              <select class="form-control" ng-model="profile.industry">
+              <input type="email" class="form-control"
+                     name="email"
+                     ng-model="profile.email"
+                     ng-maxlength="60"
+                     ng-required="true">
+
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.email.$error.required">
+                *required</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Industry: </label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="industry" ng-model="profile.industry" ng-required="true">
                 <option value="">--choose a industry--</option>
                 <option>China</option>
                 <option>Japan</option>
               </select>
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.industry.$error.required">
+                *required</p>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Company Size: </label>
+            <label class="col-md-4 control-label">Company Size: </label>
+
             <div class="col-md-5">
-              <input type="text" class="form-control"
-                     name="address"
-                     ng-model="profile.state"
-                     ng-maxlength="200"
+              <input type="number" class="form-control"
+                     name="scale"
+                     ng-model="profile.scale"
                      ng-required="true"/>
             </div>
 
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Career Status: </label>
+            <label class="col-md-4 control-label">Career Status: </label>
+
             <div class="col-md-5">
-              <select class="form-control">
+              <select class="form-control" name="career_status" ng-model="profile.career_status" ng-required="true">
                 <option value="">--choose a status--</option>
                 <option>Entry Level</option>
                 <option>Professional</option>
@@ -114,11 +121,12 @@
 
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Job Function: </label>
+            <label class="col-md-4 control-label">Job Function: </label>
+
             <div class="col-md-5">
               <input type="text" class="form-control"
-                     name="address"
-                     ng-model="profile.state"
+                     name="job_function"
+                     ng-model="profile.job_function"
                      ng-maxlength="200"
                      ng-required="true"/>
             </div>
@@ -127,11 +135,12 @@
 
 
           <div class="form-group">
-            <label class="col-md-3 control-label">Job Title: </label>
+            <label class="col-md-4 control-label">Job Title: </label>
+
             <div class="col-md-5">
               <input type="text" class="form-control"
-                     name="address"
-                     ng-model="profile.state"
+                     name="job_title"
+                     ng-model="profile.job_title"
                      ng-maxlength="200"
                      ng-required="true"/>
             </div>
@@ -142,74 +151,79 @@
       <div class="panel panel-default">
         <div class="panel-heading">Shipping Address</div>
         <div class="panel-body">
-            <div class="form-group">
-              <label class="col-md-3 control-label">Address line 1: </label>
-              <div class="col-md-5">
-                <input type="text" class="form-control"
-                       name="address1"
-                       ng-model="profile.address1"
-                       ng-maxlength="200"
-                       ng-required="true"/>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Address line 1: </label>
 
-                <p class="message-error" ng-show="companyForm.submitted && companyForm.name.$error.required">
-                  *required</p>
+            <div class="col-md-5">
+              <input type="text" class="form-control"
+                     name="address1"
+                     ng-model="profile.address1"
+                     ng-maxlength="200"
+                     ng-required="true"/>
 
-                <p class="message-error" ng-show="companyForm.submitted && companyForm.name.$error.maxlength">* no more
-                  than 200 chars.</p>
-              </div>
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.address1.$error.required">
+                *required</p>
+
+              <p class="message-error" ng-show="profileForm.address1.$error.maxlength">* no more
+                than 200 chars.</p>
             </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">Address line 2: </label>
-              <div class="col-md-5">
-                <input type="text" class="form-control"
-                       name="address2"
-                       ng-model="profile.address2"
-                       ng-maxlength="200"
-                       ng-required="true">
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Address line 2: </label>
 
-                <p class="message-error" ng-show="companyForm.submitted && companyForm.web.$error.required">
-                  *required</p>
+            <div class="col-md-5">
+              <input type="text" class="form-control"
+                     name="address2"
+                     ng-model="profile.address2"
+                     ng-maxlength="200"
+                     ng-required="true">
 
-                <p class="message-error" ng-show="companyForm.submitted && companyForm.web.$error.maxlength">* no more
-                  than 200 chars.</p>
-              </div>
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.address2.$error.required">
+                *required</p>
+
+              <p class="message-error" ng-show="profileForm.address2.$error.maxlength">* no more
+                than 200 chars.</p>
             </div>
-            <div class="form-group ">
-              <label class="col-md-3 control-label">City: </label>
-              <div class="col-md-5">
+          </div>
+          <div class="form-group ">
+            <label class="col-md-4 control-label">City: </label>
+
+            <div class="col-md-5">
               <input type="text" class="form-control"
                      name="city"
                      ng-model="profile.city"
                      ng-maxlength="200"
                      ng-required="true"/>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.address.$error.required">
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.city.$error.required">
                 *required</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.address.$error.maxlength">* no more
+              <p class="message-error" ng-show="profileForm.city.$error.maxlength">* no more
                 than 200 chars.</p>
-                </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label">State/Province/Region: </label>
-              <div class="col-md-5">
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">State/Province/Region: </label>
+
+            <div class="col-md-5">
               <input type="text" class="form-control"
-                     name="address"
+                     name="state"
                      ng-model="profile.state"
                      ng-maxlength="200"
                      ng-required="true"/>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.address.$error.required">
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.state.$error.required">
                 *required</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.address.$error.maxlength">* no more
+              <p class="message-error" ng-show="profileForm.state.$error.maxlength">* no more
                 than 200 chars.</p>
-                </div>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-md-3 control-label">ZIP: </label>
-              <div class="col-md-5">
+          <div class="form-group">
+            <label class="col-md-4 control-label">ZIP: </label>
+
+            <div class="col-md-5">
               <input type="text" class="form-control"
                      name="zip"
                      ng-model="profile.zip"
@@ -217,66 +231,110 @@
                      ng-pattern="/^[0-9,+,-]*\d$/"
                      ng-required="true">
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.required">
+              <p class="message-error" ng-show="profileForm.submitted && profileForm.zip.$error.required">
                 *required</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.pattern">
+              <p class="message-error" ng-show="profileForm.zip.$error.pattern">
                 [0-9,+,-]</p>
 
-              <p class="message-error" ng-show="companyForm.submitted && companyForm.phone.$error.maxlength">* no more
+              <p class="message-error" ng-show="profileForm.zip.$error.maxlength">* no more
                 than 20 chars.</p>
-                </div>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-md-3 control-label">Country: </label>
-              <div class="col-md-5">
-                <select class="form-control" ng-model="profile.country">
-                  <option value="">--chose a country--</option>
-                  <option>China</option>
-                  <option>Japan</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Country: </label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="country" ng-model="profile.country">
+                <option value="">--chose a country--</option>
+                <option>China</option>
+                <option>Japan</option>
+              </select>
             </div>
+          </div>
 
         </div>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">Social Media Information</div>
         <div class="panel-body">
-          <div class="form-inline">
-            <label>Do you have a LinkedIn account?</label>
-            <input type="radio" name="linkedin" value="Yes"/> YES
-            <input type="radio" name="linkedin" value="No"/> NO
+          <div class="form-group">
+            <label class="col-md-4 control-label">Do you have a LinkedIn account?</label>
+
+            <div class="col-md-8">
+              <label class="radio-inline">
+                <input type="radio"
+                       name="linkedin"
+                       ng-model="profile.linkedin"
+                       ng-value="true"
+                       ng-required="true"
+                  /> YES</label>
+              <label class="radio-inline">
+                <input type="radio"
+                       name="linkedin"
+                       ng-model="profile.linkedin"
+                       ng-value="false"
+                       ng-required="true"
+                  /> NO
+              </label>
+            </div>
           </div>
-          <div class="form-inline" style="padding-left: 32px">
-            <label>How many connections do you have on LinkedIn?</label>
-            <input type="number" class="form-control"/>
+          <div class="form-group" ng-if="profile.linkedin">
+            <label class="col-md-4 control-label">How many connections do you have on LinkedIn?</label>
+
+            <div class="col-md-5">
+              <input type="number" class="form-control"
+                     name="linkedin_connections"
+                     ng-model="profile.linkedin_connections"/>
+            </div>
           </div>
-          <div class="form-inline" style="padding-left: 32px">
-            <label>Please provide your LinkedIn profile URL?</label>
-            <input type="input" class="form-control"/>
+          <div class="form-group" ng-if="profile.linkedin">
+            <label class="col-md-4 control-label">Please provide your LinkedIn profile URL?</label>
+
+            <div class="col-md-5">
+              <input type="text" class="form-control"
+                     name="linkedin_url"
+                     ng-model="profile.linkedin_url"/>
+            </div>
           </div>
-          <div class="form-inline">
-            <label>Do you have a any other social media account?</label>
-            <select class="form-control">
-              <option>Blog</option>
-              <option>Facebook</option>
-              <option>Twitter</option>
-            </select>
+          <div class="form-group">
+            <label class="col-md-4 control-label">What's your most used social media?</label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="other_social"
+                      ng-model="profile.other_social">
+                <option value="">--choose a social media--</option>
+                <option>Facebook</option>
+                <option>Twitter</option>
+                <option>Yotube</option>
+                <option value="other">Other</option>
+                <option value="none">None</option>
+              </select>
+            </div>
           </div>
-          <div class="form-inline" style="padding-left: 32px">
-            <label>How many connections do you have on your social media platform?</label>
-            <input type="number" class="form-control"/>
+          <div class="form-group" ng-if="profile.other_social!='none'">
+            <label class="col-md-4 control-label">How many connections do you have on your social media
+              platform?</label>
+
+            <div class="col-md-5">
+              <input type="number" class="form-control"
+                     name="other_social_connections"
+                     ng-model="profile.other_social_connections"/>
+            </div>
           </div>
-          <div class="form-inline" style="padding-left: 32px">
-            <label>Please provide your Social Media Direct Link?</label>
-            <input type="input" class="form-control"/>
+          <div class="form-group" ng-if="profile.other_social!='none'">
+            <label class="col-md-4 control-label">Please provide your Social Media Direct Link?</label>
+
+            <div class="col-md-5">
+              <input type="input" class="form-control"
+                     name="other_social_url"
+                     ng-model="profile.other_social_url"/></div>
           </div>
         </div>
       </div>
       <div class="row">
-        <p class='message-error text-center' ng-show="companyForm.submitted && companyForm.$invalid">Please check
+        <p class='message-error text-center' ng-show="profileForm.submitted && profileForm.$invalid">Please check
           your
           input. </p>
 
