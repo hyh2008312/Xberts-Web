@@ -27,6 +27,9 @@ angular.module('yeodjangoApp')
       // model
       $scope.event = event;
       $scope.event.$promise=undefined;
+      if ($scope.event.id) {
+        $scope.event.when = new Date($scope.event.when);
+      }
       $scope.eventTemp = {
         tags: tagsParse($scope.event.tags),
         tempId: $scope.event.temp || 0,
