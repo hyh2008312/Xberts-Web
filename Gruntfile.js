@@ -466,13 +466,81 @@ module.exports = function (grunt) {
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       },
-      index:{
-        files: [
-          {
-            src: '<%= yeoman.app %>/index.html',
-            dest: '<%= yeoman.app %>/templates/<%= yeoman.app %>/index.html'
-          }
-        ]
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: 'index*.html',
+          dest: '../xberts_server/v2/templates/v2/'
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: ['fonts/*', 'images/*', 'scripts/*', 'styles/*'],
+          dest: '../xberts_server/v2/static/v2/'
+        }]
+      }
+    },
+
+    'string-replace': {
+      distJS: {
+        files: [{
+          src: '<%= yeoman.dist %>/scripts/scripts.*.js',
+          dest: '<%= yeoman.dist %>/scripts/'
+        }],
+        options: {
+          saveUnchanged: false,
+          replacements: [{
+            pattern: /\/views\//g,
+            replacement: 'views/'
+          }, {
+            pattern: /url\((\/images\/[^ ]+)\)/g,
+            replacement: 'url(/static/v2$1)'
+          }, {
+            pattern: /(src|ng-src)="(\/images\/[^ ]+\.(png|jpg))"/g,
+            replacement: '$1="/static/v2$2"'
+          }]
+        }
+      },
+      distHTML: {
+        files: [{
+          src: '<%= yeoman.dist %>/index.html',
+          dest: '<%= yeoman.dist %>/'
+        }],
+        options: {
+          saveUnchanged: false,
+          replacements: [{
+            pattern: /<!--\n<auth/,
+            replacement: '\n<auth'
+          }, {
+            pattern: /<\/auth>\n-->/,
+            replacement: '</auth>\n'
+          }, {
+            pattern: /(href|src)="([^ ]+\.(css|js))"/g,
+            replacement: '$1="/static/v2/$2"'
+          }, {
+            pattern: /src="([^ ]+\.(png|jpg))"/g,
+            replacement: 'src="/static/v2$1"'
+          }]
+        }
+      },
+      debugIndex: {
+        files: [{
+          src: '<%= yeoman.app %>/index.html',
+          dest: '<%= yeoman.dist %>/index_debug.html'
+        }],
+        options: {
+          saveUnchanged: false,
+          replacements: [{
+            pattern: /<!--\n<auth/,
+            replacement: '\n<auth'
+          }, {
+            pattern: /<\/auth>\n-->/,
+            replacement: '</auth>\n'
+          }, {
+            pattern: /src="(scripts\/[^ ]+\.js)"/g,
+            replacement: 'src="/$1"'
+          }]
+        }
       }
     },
 
@@ -546,8 +614,12 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'string-replace:distJS',
+    'string-replace:distHTML',
+    'string-replace:debugIndex'
   ]);
+
   grunt.registerTask('buildServe',[
     'configureProxies:server',
     'connect:dist:keepalive'
