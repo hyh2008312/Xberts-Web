@@ -1,0 +1,23 @@
+<form name="reviewForm" ng-submit="reviewFormSubmit()" class="form-horizontal" ng-controller="ReviewapplicationinfoCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default" ng-repeat="survey in review.surveys">
+        <div class="panel-heading">{{ survey.name }}</div>
+        <div class="panel-body">
+          <question-input ng-repeat="question in survey.questions" question="question"></question-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class='message-error text-center' ng-show="reviewForm.submitted && reviewForm.$invalid">Please check
+          your
+          input. </p>
+
+        <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <button type="submit" class="btn btn-lg btn-primary btn-block">Next</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</form>
+

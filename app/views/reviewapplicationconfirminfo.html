@@ -1,0 +1,66 @@
+<form name="reviewApplicantForm" ng-submit="reviewApplicantConfirmFormSubmit()" class="form-horizontal" ng-controller="ReviewapplicationconfirminfoCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Candidate Disclaim</div>
+        <div class="panel-body">
+          <p><i>If you apply to be a Product Reviewer, you perform the following operations:</i></p>
+
+          <p>• Install and use the product for an extended period of time<br/>
+            • Update us regularly about your progress<br/>
+            • Write and submit a honest product review WITHIN TWO WEEKS after you receive the sample product<br/>
+            • Post your review on your social networks with the authorization from the Sponsor<br/>
+            • Suggest new ideas and features that you would like to have in a future release of the product
+          </p>
+
+          <p>I understand and agree to perform the above operations as a "Snap" Product Reviewer</p>
+
+          <p>I grant Xberts.com and Sponsor the right to translate, quote and distribute my review in multiple languages
+            for marketing purpose</p>
+
+          <p>Xberts.com assumes no responsibility for any Product/Service provided by our sponsor or partner in any way.
+            You expressly understand and agree that your use of the Product/Service provided by Xberts.com is at your
+            sole responsibility of risk. </p>
+          <br/>
+
+          <p>I accept all the terms and conditions as outlined above. I am of legal age and I have necessary capacity to
+            execute this agreement. </p>
+
+          <div class="form-inline">
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="agree"
+                       ng-model="reviewApplicant.agree"
+                       ng-value="true"
+                       ng-required="true">I Agree:
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" name="agree"
+                       ng-model="reviewApplicant.agree"
+                       ng-value="false"
+                       ng-required="true">I Don' t Agree:
+              </label>
+            </div>
+          </div>
+          <div class="form-inline">
+            <label>Sign your e-signature (initials only）</label>
+            <input type="text" class="form-control" name="signature"
+                   ng-model="reviewApplicant.signature" ng-required="true">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <p class='message-error text-center' ng-show="reviewForm.submitted && reviewForm.$invalid">Please check
+          your
+          input. </p>
+
+        <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="!reviewApplicant.agree">Submit</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</form>
+

@@ -77,29 +77,29 @@ angular
         templateUrl: '/views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
-        resolve:{
-          projectPaginator:['Paginator','ProjectsNoDetail',function(Paginator,ProjectsNoDetail){
-            var fetchFunction = function (nextPage,otherParams, callback) {
-              var params={page: nextPage,is_recommended: 'True'};
-              angular.extend(params,otherParams);
+        resolve: {
+          projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage, is_recommended: 'True'};
+              angular.extend(params, otherParams);
               ProjectsNoDetail.get(params, callback);
             };
             var paginator = Paginator('projectRec', fetchFunction);
             return paginator.load();
           }],
-          eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
-            var fetchFunction = function (nextPage, otherParams,callback) {
-              var params={page: nextPage};
-              angular.extend(params,otherParams);
+          eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('eventRec', fetchFunction);
             return paginator.load();
           }],
-          expertPaginator:['Paginator','Expert',function(Paginator,Expert){
-            var fetchFunction = function (nextPage,otherParams, callback) {
-              var params={page: nextPage,recommended: 'True'};
-              angular.extend(params,otherParams);
+          expertPaginator: ['Paginator', 'Expert', function (Paginator, Expert) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage, recommended: 'True'};
+              angular.extend(params, otherParams);
               Expert.get(params, callback);
             };
             var paginator = Paginator('expertRec', fetchFunction);
@@ -113,9 +113,9 @@ angular
         controller: "ProjectsCtrl",
         resolve: {
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
-            var fetchFunction = function (nextPage,otherParams, callback) {
-              var params={page: nextPage};
-              angular.extend(params,otherParams);
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
               ProjectsNoDetail.get(params, callback);
 
             };
@@ -154,11 +154,11 @@ angular
         templateUrl: '/views/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events',
-        resolve:{
-          eventPaginator:['Paginator','EventNoDetail',function(Paginator,EventNoDetail){
-            var fetchFunction = function (nextPage,otherParams, callback) {
-              var params={page: nextPage};
-              angular.extend(params,otherParams);
+        resolve: {
+          eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('event', fetchFunction);
@@ -185,10 +185,10 @@ angular
           stages: ['SystemData', function (SystemData) {
             return SystemData.getStagesPromise();
           }],
-          expertPaginator:['Paginator','Expert',function(Paginator,Expert){
-            var fetchFunction = function (nextPage,otherParams, callback) {
-              var params={page: nextPage};
-              angular.extend(params,otherParams);
+          expertPaginator: ['Paginator', 'Expert', function (Paginator, Expert) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
               Expert.get(params, callback);
             };
             var paginator = Paginator('expert', fetchFunction);
@@ -208,10 +208,22 @@ angular
           }]
         }
       })
-      .state('review', {
-        url: "/review",
-        templateUrl: '/views/review.html',
-        controller: 'ReviewCtrl',
-        controllerAs: 'review'
+      .state('reviewApplicant', {
+        url: "/review/:reviewId/applicant",
+        templateUrl: '/views/reviewapplication.html',
+        controller: 'ReviewapplicationCtrl',
+        resolve: {
+          profile: function () {
+            return {};
+          },
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewLoad($stateParams)
+          }],
+          reviewer: ['ProfileReviewerLoad', function (ProfileReviewerLoad) {
+            return ProfileReviewerLoad();
+          }]
+
+        }
       });
   }]);

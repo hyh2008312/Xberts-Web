@@ -24,6 +24,7 @@ angular.module('yeodjangoApp')
     };
 
     $scope.$on('stepBroadcast', function (e, d) {
+      d=Number(d);
       if (d === 2) {
         $scope.$emit('backdropOn', 'query distributions');
         Distribution.query({project_id: $scope.projectId}, function (results) {
