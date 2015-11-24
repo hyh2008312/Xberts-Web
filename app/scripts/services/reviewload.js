@@ -2,19 +2,19 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.EventLoad
+ * @name yeodjangoApp.ReviewLoad
  * @description
- * # EventLoad
+ * # ReviewLoad
  * Factory in the yeodjangoApp.
  */
 angular.module('yeodjangoApp')
-  .factory('EventLoad', ['Event', '$q', function (Event, $q) {
+  .factory('ReviewLoad', ['Review', '$q', function (Review, $q) {
     return function ($stateParams) {
       var delay = $q.defer();
-      Event.get({id:$stateParams.eventId}, function (event) {
-        delay.resolve(event);
+      Review.get({id:$stateParams.reviewId}, function (review) {
+        delay.resolve(review);
       }, function () {
-        delay.reject(('Unable to fetch project'));
+        delay.reject(('Unable to fetch review'));
       });
       return delay.promise;
     };

@@ -17,5 +17,5 @@ angular.module('yeodjangoApp')
         delay.reject(('Unable to fetch project'));
       });
       return delay.promise;
-    }
+    };
   }]);

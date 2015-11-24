@@ -134,7 +134,10 @@
               <div class="form-group col-sm-6">
                 <label>Organizer Name: </label>
                 <input type="text" class="form-control" placeholder="organizer name" ng-model="event.organizer_name"
+                       ng-maxlength="100"
                        ng-required="true"/>
+                <p class="message-error" ng-show="eventForm.submitted && eventForm.organizer_name.$error.maxlength">* no more than
+                  100 chars</p>
               </div>
             </div>
           </div>

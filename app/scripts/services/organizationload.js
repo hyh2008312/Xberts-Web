@@ -17,5 +17,5 @@ angular.module('yeodjangoApp')
         delay.reject(('Unable to fetch organization'));
       });
       return delay.promise;
-    }
+    };
   }]);
