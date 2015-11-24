@@ -3,5 +3,7 @@
 /.tmp
 /.sass-cache
 /bower_components
+
+# Intellij
 /.idea
-/xberts_web.iml
+*.iml
