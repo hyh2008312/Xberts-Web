@@ -41,6 +41,9 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/ng-tags-input/ng-tags-input.min.js',
+      'bower_components/intl-tel-input/build/js/intlTelInput.min.js',
+      'bower_components/intl-tel-input/lib/libphonenumber/build/utils.js',
+      'bower_components/international-phone-number/releases/international-phone-number.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

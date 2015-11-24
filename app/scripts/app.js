@@ -25,7 +25,8 @@ angular
     'ngTagsInput',
     'ui.bootstrap',
     //'ngImgCrop',
-    'ngFileUpload'
+    'ngFileUpload',
+    'internationalPhoneNumber'
   ])
   .run(['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -69,6 +70,12 @@ angular
       .setPrefix('xberts')
       .setStorageType('sessionStorage');
   }])
+  .config(['ipnConfig', function (ipnConfig) {
+    ipnConfig.autoHideDialCode=false;
+    ipnConfig.nationalMode=false;
+    ipnConfig.autoPlaceholder=false;
+  }])
+
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
     $stateProvider

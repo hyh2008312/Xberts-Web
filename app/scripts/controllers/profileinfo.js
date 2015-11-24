@@ -23,8 +23,15 @@ angular.module('yeodjangoApp')
     $scope.profileFormSubmit = function () {
       //project pre process
 
-      if ($scope.profileForm.$valid) {
+
+      $scope.profileForm.phoneError=!$scope.profile.phone_number;
+
+      if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
         $scope.$emit('backdropOn', 'post');
+        if(!$scope.profile.linkedin){
+          $scope.profile.linkedin_url='';
+          $scope.profile.linkedin_connections='';
+        }
         $scope.profile.$put(function (resp) {
           $scope.$emit('backdropOff', 'success');
           $scope.$emit('reviewStep', '0');
