@@ -82,8 +82,8 @@ module.exports = function (grunt) {
       },
       proxies: [
         {
-          context: ['/projects', '/resources', '/media', '/v2', '/xberts', '/auth', '/adviceapp','/static','/review'],
-          host: '127.0.0.1',
+          context: ['/adviceapp', '/projects', '/resources', '/media', '/v2', '/xberts', '/auth', '/logout', '/static', '/review'],
+          host: 'localhost',
           port: 8000,
           https: false
           //rewrite:{
