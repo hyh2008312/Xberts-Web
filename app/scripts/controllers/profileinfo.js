@@ -9,7 +9,6 @@
  */
 angular.module('yeodjangoApp')
   .controller('ProfileinfoCtrl',['$scope','SystemConstant',function ($scope, SystemConstant) {
-    console.log($scope.profile);
     $scope.COUNTRIES = SystemConstant.COUNTRIES;
     $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
     $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -18,6 +17,7 @@ angular.module('yeodjangoApp')
     $scope.INDUSTRY = SystemConstant.INDUSTRY;
     $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
     $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
+    $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
 
     //submit
     $scope.profileFormSubmit = function () {

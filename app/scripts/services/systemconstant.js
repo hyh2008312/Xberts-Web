@@ -349,10 +349,18 @@ angular.module('yeodjangoApp')
       {code: '0', name: 'None'}
     ];
     var LINKEDIN_CONNECTION=[
+      {code:'1',name:'1-10'},
+      {code:'2',name:'11-50'},
+      {code:'3',name:'51-100'},
+      {code:'4',name:'101-500'},
+      {code:'5',name:'500+'}
+    ];
+    var OTHER_CONNECTION=[
       {code:'1',name:'1-50'},
       {code:'2',name:'51-100'},
       {code:'3',name:'101-500'},
-      {code:'4',name:'500+'}
+      {code:'4',name:'501-1000'},
+      {code:'5',name:'1000+'}
     ];
 
     var systemConstant = {};
@@ -364,6 +372,7 @@ angular.module('yeodjangoApp')
     systemConstant.INDUSTRY = INDUSTRY;
     systemConstant.SOCIAL_TYPE = SOCIAL_TYPE;
     systemConstant.LINKEDIN_CONNECTION = LINKEDIN_CONNECTION;
+    systemConstant.OTHER_CONNECTION = OTHER_CONNECTION;
 
     // Public API here
     return systemConstant;

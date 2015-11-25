@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Date of Birth:</label>
+            <label class="col-md-4 control-label">Date of Birth(YYYY-MM-DD):</label>
 
             <div class="col-md-5">
               <input type="text" class="form-control" name="birth" uib-datepicker-popup
@@ -111,11 +111,7 @@
               <input type="text" class="form-control"
                      name="address2"
                      ng-model="profile.address_line2"
-                     ng-maxlength="200"
-                     ng-required="true">
-
-              <p class="message-error" ng-show="profileForm.submitted && profileForm.address2.$error.required">
-                *required</p>
+                     ng-maxlength="200">
 
               <p class="message-error" ng-show="profileForm.address2.$error.maxlength">* no more
                 than 200 chars.</p>
@@ -278,7 +274,7 @@
 
             <div class="col-md-5">
               <select class="form-control" name="country" ng-model="profile.other_social_connections"
-                      ng-required="true" ng-options="item.code as item.name for item in LINKEDIN_CONNECTION">
+                      ng-required="true" ng-options="item.code as item.name for item in OTHER_CONNECTION">
                 <option value="">--chose a change--</option>
               </select>
             </div>
