@@ -10,7 +10,7 @@ angular.module('yeodjangoApp')
   .directive('save',['Interact','$rootScope', function (Interact,$rootScope) {
     return {
       template: '<div>' +
-      '<button class="btn" ng-class="{ \'btn-primary\':joiner.vote , \'btn-success\':!joiner.vote }">' +
+      '<button class="btn" ng-class="{ \'btn-primary\':joiner.vote , \'btn-success\':!joiner.vote }" ng-click="save()">' +
       '<i class="fa fa-heart fa-lg"></i>' +
       '</button>' +
       ' <span ng-bind="project.interact.vote_amount"></span> Interest</div>',
@@ -25,7 +25,8 @@ angular.module('yeodjangoApp')
           scope.joiner=results[0];
           console.log(scope.joiner);
         });
-        //element.get()
+        scope.save=function(){
+        }
       }
     };
   }]);
