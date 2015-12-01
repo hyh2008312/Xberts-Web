@@ -72,6 +72,8 @@
                 <li><a href="/qa/home/">Expert Q&A</a></li>
               </ul>
             </li>
+            <li ng-class="{active: $state.includes('about')}"><a ui-sref="about"
+                                                                 class="fade-in-line">ABOUT</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -144,7 +146,7 @@
 <div ui-view></div>
 <footer>
   <div class="container text-center">
-    <p>About Us&nbsp;|&nbsp;<a href="mailto:postmaster@xberts.com" target="_blank">Contact Us</a></p>
+    <p><a ui-sref="about">About Us</a>&nbsp;|&nbsp;<a href="mailto:info@xberts.com" target="_blank">Contact Us</a></p>
 
     <p>2015 Xberts Inc. All rights reserved.</p>
 

@@ -117,7 +117,9 @@ a.block-link{
 .partial-page {
   margin-top: $sectionSpace;
 }
-
+.full-image >img{
+  width: 100%;
+}
 .navbar-inverse {
   background-color: rgba(0, 0, 0, 0.7);
   border-color: rgba(0, 0, 0, 0.7);
