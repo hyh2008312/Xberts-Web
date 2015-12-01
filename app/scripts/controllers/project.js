@@ -18,24 +18,14 @@ angular.module('yeodjangoApp')
       $scope.transportationModels = SystemData.getTransportationModels();
       $scope.distributions = distributions;
       $scope.project=project;
+      console.log(project);
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
       });
       // before entering into detail page, should the project interact info
       $scope.feedbacks = Interact.Feedback({interact_id: $scope.project.interact.id});
       $scope.feedbacks.get(function(results){
-        console.log(results);
       });
-      //$scope.join=Interact.Join({interact_id: $scope.project.interact.id,joiner_id:$rootScope.user.getUserId()});
-      //$scope.join.get(function(results){
-      //  $scope.joiner=results[0];
-      //  console.log($scope.joiner);
-      //});
-      $scope.joins=Interact.Join({interact_id: $scope.project.interact.id,vote:true});
-      $scope.joins.get(function(results){
-        console.log(results);
-      });
-
       $scope.tabs = [
         {active: true, disable: false},
         {active: false, disable: false},
@@ -43,7 +33,6 @@ angular.module('yeodjangoApp')
         {active: false, disable: false}
       ];
       $scope.select = function (step) {
-        console.log(step);
         $scope.$broadcast('projectBroadcast', step);
       };
     }]);
