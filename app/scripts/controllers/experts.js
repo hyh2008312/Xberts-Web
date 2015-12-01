@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ExpertsCtrl
+ * @name xbertsApp.controller:ExpertsCtrl
  * @description
  * # ExpertsCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ExpertsCtrl', function ($scope,SystemData,SystemConstant,expertPaginator) {
     $scope.experts={};
     $scope.stages=SystemData.getStages();

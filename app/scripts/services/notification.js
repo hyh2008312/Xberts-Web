@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Notification
+ * @name xbertsApp.Notification
  * @description
  * # Notification
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Notification', ['$resource', '$rootScope',function ($resource,$rootScope) {
     // Service logic
     // ...

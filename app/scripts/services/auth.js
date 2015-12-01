@@ -1,24 +1,13 @@
-'use strict';
+"use strict";
 
-/**
- * @ngdoc service
- * @name yeodjangoApp.Auth
- * @description
- * # Auth
- * Factory in the yeodjangoApp.
- * todo: auth信息必须进入页面前加载
- */
-angular.module('yeodjangoApp')
-  .factory('Auth', ['$rootScope',function ($rootScope) {
-    // Service logic
-    // ...
-    var user;
-    function User(auth,userId,userName,userType,userAvatar){
-      this._auth= (auth === 'true' || auth==='True');
-      this._userId=userId;
-      this._userName=userName;
-      this._userType=(userType === 'true' || userType==='True');
-      this._userAvatar=userAvatar;
+angular.module("xbertsApp")
+  .factory('AuthService', ['$rootScope', '$resource', '$location', function($rootScope, $resource, $location) {
+    function User(auth, userId, userName, userType, userAvatar) {
+      this._auth = auth;
+      this._userId = userId;
+      this._userName = userName;
+      this._userType = userType;
+      this._userAvatar = userAvatar;
       this.isAuth=function (){
         return this._auth;
       };
@@ -38,12 +27,30 @@ angular.module('yeodjangoApp')
         return this._userAvatar;
       };
     }
-    function setUser(auth,userId,userName,userType,userAvatar){
-      user=new User(auth,userId,userName,userType,userAvatar);
-      $rootScope.user=user;
+
+    function setUser(user){
+      $rootScope.user = new User(true, user.id, user.fullname, user.isStaff, user.avatar);
     }
-    // Public API here
+
+    function createAuthHeader(credentials) {
+      return 'Basic ' + btoa(credentials.username + ':' + credentials.password);
+    }
+
+    function login(credentials, params) {
+      return $resource('/accounts/auth/', {}, {
+        auth: {
+          method: 'POST',
+          params: params,
+          headers: {
+            Authorization: createAuthHeader(credentials)
+          }
+        }
+      });
+    }
+
     return {
-      setUser:setUser
+      login: login,
+      user: $resource('/accounts/user/', {}),
+      setUser: setUser
     };
   }]);

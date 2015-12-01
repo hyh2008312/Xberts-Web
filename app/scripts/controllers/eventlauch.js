@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:EventlauchCtrl
+ * @name xbertsApp.controller:EventlauchCtrl
  * @description
  * # EventlauchCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('EventLauchCtrl', ['$scope', '$state', 'UploadMultiForm', 'TempImage', 'event',
     function ($scope, $state, UploadMultiForm, TempImage, event) {
       var tagsParse = function (tagstring) {

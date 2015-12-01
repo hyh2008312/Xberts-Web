@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name yeodjangoApp
+ * @name xbertsApp
  * @description
- * # yeodjangoApp
+ * # xbertsApp
  *
  * Main module of the application.
  */
 angular
-  .module('yeodjangoApp', [
+  .module('xbertsApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -75,11 +75,20 @@ angular
     ipnConfig.nationalMode=false;
     ipnConfig.autoPlaceholder=false;
   }])
-
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
+
     $stateProvider
-      .state('main', {
+      .state('application', {
+        abstract: true,
+        templateUrl: '/views/navigation.html',
+        resolve: {
+          authCheck: ['UserResolver', function(UserResolver) {
+            return UserResolver.resolver();
+          }]
+        }
+      })
+      .state('application.main', {
         url: "/main",
         templateUrl: '/views/main.html',
         controller: 'MainCtrl',
@@ -114,11 +123,11 @@ angular
           }]
         }
       })
-      .state('about', {
+      .state('application.about', {
         url: "/about",
         templateUrl: '/views/about.html'
       })
-      .state('projects', {
+      .state('application.projects', {
         url: "/projects",
         templateUrl: "/views/projects.html",
         controller: "ProjectsCtrl",
@@ -135,7 +144,7 @@ angular
           }]
         }
       })
-      .state('launchProject', {
+      .state('application.launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
         templateUrl: '/views/launchproject.html',
         controller: 'LaunchprojectCtrl',
@@ -155,12 +164,12 @@ angular
           }]
         }
       })
-      .state('resources', {
+      .state('application.resources', {
         url: "/resources",
         templateUrl: "/views/resources.html",
         controller: "ResourcesCtrl"
       })
-      .state('events', {
+      .state('application.events', {
         url: "/events/",
         templateUrl: '/views/events.html',
         controller: 'EventsCtrl',
@@ -177,7 +186,7 @@ angular
           }]
         }
       })
-      .state('event', {
+      .state('application.event', {
         url: "/events/:eventId",
         templateUrl: '/views/event.html',
         controller: 'EventCtrl',
@@ -187,7 +196,7 @@ angular
           }]
         }
       })
-      .state('experts', {
+      .state('application.experts', {
         url: "/experts",
         templateUrl: '/views/experts.html',
         controller: 'ExpertsCtrl',
@@ -207,8 +216,7 @@ angular
           }]
         }
       })
-
-      .state('launch', {
+      .state('application.launch', {
         url: "/launch/:eventId",
         templateUrl: '/views/eventlauch.html',
         controller: 'EventLauchCtrl',
@@ -219,7 +227,7 @@ angular
           }]
         }
       })
-      .state('reviewApplicant', {
+      .state('application.reviewApplicant', {
         url: "/review/:reviewId/applicant",
         templateUrl: '/views/reviewapplication.html',
         controller: 'ReviewapplicationCtrl',
@@ -236,5 +244,10 @@ angular
           }]
 
         }
+      })
+      .state('application.login', {
+        url: "/login",
+        templateUrl: '/views/login.html',
+        controller: 'LoginCtrl'
       });
   }]);

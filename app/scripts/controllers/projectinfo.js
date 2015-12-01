@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ProjectinfoCtrl
+ * @name xbertsApp.controller:ProjectinfoCtrl
  * @description
  * # ProjectinfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ProjectinfoCtrl', ['$scope', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project',
     function ($scope, UploadMultiForm, TempImage, SystemData, Project) {
       $scope.projectTypes=SystemData.getProjectTypes();

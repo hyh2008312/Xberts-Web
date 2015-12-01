@@ -1,0 +1,42 @@
+<div class="signup-bg">
+  <div class="container marketing">
+    <div class="login-signin-caption">
+      <p class="login-title">Sign in to Xberts</p>
+      <form name="loginForm" novalidate ng-submit="login()">
+        <div class="error" ng-show="loginForm.$submitted">
+          <div ng-show="loginError.invalidCredentials">The email or password you entered is incorrect.</div>
+          <div ng-show="loginError.generic">Oops! Something went wrong.</div>
+        </div>
+        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched">
+          <p ng-show="loginForm.email.$error.required">Please enter your email.</p>
+          <p ng-show="loginForm.email.$error.email">The email you entered is invalid.</p>
+        </div>
+        <p align="left">
+          <input type="email" id="id_email" name="email" placeholder="Email" class="form-control login-form-control" ng-model="username" required ng-model-options="{ updateOn: 'blur' }">
+        </p>
+        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.password.$touched">
+          <p ng-show="loginForm.password.$error.required">Please enter your password.</p>
+        </div>
+        <p align="left">
+          <input type="password" id="id_password" name="password" placeholder="Password" class="form-control login-form-control" ng-model="password" required ng-model-options="{ updateOn: 'blur' }">
+        </p>
+        <p align="left">
+          <a href="/auth/resetpw_fg/">Forgot your password ?</a>
+        </p>
+        <input type="submit" value="Sign in" class="login-btn">
+        <div class="login-line-wrapper">
+          <div class="login-or-line">
+            <div class="login-line-content">or</div>
+          </div>
+        </div>
+        <button onclick="window.location.href = &quot;/auth/lnklogin/&quot;;return false;" class="login-linkedin-btn">
+          <i class="fa fa-linkedin"></i>
+          <span class="login-linkedin-btn-title">Sign in with LinkedIn</span>
+        </button>
+        <div class="login-tips">
+          Don't have an account?&nbsp;&nbsp;<a href="/auth/register/">Sign up now.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

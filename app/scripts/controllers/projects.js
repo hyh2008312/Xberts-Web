@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ProjectsCtrl
+ * @name xbertsApp.controller:ProjectsCtrl
  * @description
  * # ProjectsCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ProjectsCtrl', ['$scope', 'projectPaginator', function ($scope, projectPaginator) {
     $scope.projectPaginator = projectPaginator;
     $scope.projectPaginator.watch($scope,'projectPaginator.currentPage');

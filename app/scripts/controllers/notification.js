@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:NotificationCtrl
+ * @name xbertsApp.controller:NotificationCtrl
  * @description
  * # NotificationCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
 //todo: user info 应该在run里实现
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('NotificationCtrl', ['$scope', 'Auth', 'Paginator', 'Notification', function ($scope, Auth, Paginator, Notification) {
     this.awesomeThings = [
       'HTML5 Boilerplate',

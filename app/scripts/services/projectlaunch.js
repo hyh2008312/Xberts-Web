@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.projectLaunch
+ * @name xbertsApp.projectLaunch
  * @description
  * # projectLaunch
- * Service in the yeodjangoApp.
+ * Service in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProjectLaunch', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projectResource={};

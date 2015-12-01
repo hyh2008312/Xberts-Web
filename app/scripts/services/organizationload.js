@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.OrganizationLoad
+ * @name xbertsApp.OrganizationLoad
  * @description
  * # OrganizationLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('OrganizationLoad',['Organization','$stateParams','$q',function (Organization,$stateParams,$q) {
     return function(){
       var delay=$q.defer;

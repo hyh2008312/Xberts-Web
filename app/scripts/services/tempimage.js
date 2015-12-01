@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.TempImage
+ * @name xbertsApp.TempImage
  * @description
  * # TempImage
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('TempImage', ['$resource', function ($resource) {
     // Service logic
     // ...

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.SystemConstant
+ * @name xbertsApp.SystemConstant
  * @description
  * # SystemConstant
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('SystemConstant', function () {
     // Service logic
     // ...

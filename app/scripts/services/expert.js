@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Expert
+ * @name xbertsApp.Expert
  * @description
  * # Expert
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Expert',['$resource', function ($resource) {
     return $resource('/xberts/rest/experts/:id/', {id: '@id'});
   }]);

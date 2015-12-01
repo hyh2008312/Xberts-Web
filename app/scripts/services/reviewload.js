@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ReviewLoad
+ * @name xbertsApp.ReviewLoad
  * @description
  * # ReviewLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ReviewLoad', ['Review', '$q', function (Review, $q) {
     return function ($stateParams) {
       var delay = $q.defer();

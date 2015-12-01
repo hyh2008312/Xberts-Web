@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Paginator
+ * @name xbertsApp.Paginator
  * @description
  * # Paginator
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
 //todo: 优化，将watch(回调),load spin整合进来,加载出错信息
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Paginator', ['localStorageService','$q', function (localStorageService,$q) {
     // Service logic
     // ...

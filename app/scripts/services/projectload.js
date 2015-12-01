@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProjectLoad
+ * @name xbertsApp.ProjectLoad
  * @description
  * # ProjectLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProjectLoad', ['Project','$stateParams','$q',function (Project,$stateParams,$q) {
     return function(){
       var delay=$q.defer;

@@ -3,7 +3,7 @@
 describe('Controller: ReviewapplicantinfoCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('yeodjangoApp'));
+  beforeEach(module('xbertsApp'));
 
   var ReviewapplicantinfoCtrl,
     scope;

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.EventLoad
+ * @name xbertsApp.EventLoad
  * @description
  * # EventLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('EventLoad', ['Event', '$q', function (Event, $q) {
     return function ($stateParams) {
       var delay = $q.defer();

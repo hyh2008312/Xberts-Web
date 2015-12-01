@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:split
+ * @name xbertsApp.filter:split
  * @function
  * @description
  * # split
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('split', function () {
     return function (input) {
       return input.split(",");

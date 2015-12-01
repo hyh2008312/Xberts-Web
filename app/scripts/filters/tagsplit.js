@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:tagsplit
+ * @name xbertsApp.filter:tagsplit
  * @function
  * @description
  * # tagsplit
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('tagsplit', function () {
     var tagsSplit=function (tagstring) {
       if(tagstring===undefined || tagstring==="" || tagstring===[]){

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:EventsCtrl
+ * @name xbertsApp.controller:EventsCtrl
  * @description
  * # EventsCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('EventsCtrl',['$scope','EventNoDetail','eventPaginator', function ($scope,EventNoDetail,eventPaginator) {
     $scope.eventPaginator = eventPaginator;
     $scope.eventPaginator.watch($scope,'eventPaginator.currentPage');

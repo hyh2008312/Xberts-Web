@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:loadMore
+ * @name xbertsApp.directive:loadMore
  * @description
  * # loadMore
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('loadMore', function () {
     return {
       template: '<div>' +

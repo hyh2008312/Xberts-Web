@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.DistributionLoad
+ * @name xbertsApp.DistributionLoad
  * @description
  * # DistributionLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('DistributionLoad', ['Distribution','$stateParams','$q',function (Distribution,$stateParams,$q) {
     return function(){
       var delay=$q.defer;

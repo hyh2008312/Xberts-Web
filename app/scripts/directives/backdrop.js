@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:backdrop
+ * @name xbertsApp.directive:backdrop
  * @description
  * # backdrop
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('backdrop', ['$rootScope', function ($rootScope) {
     return {
       template: '<div class="backdrop">' +

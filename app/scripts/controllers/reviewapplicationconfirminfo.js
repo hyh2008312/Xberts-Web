@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:SurveyconfirminfoCtrl
+ * @name xbertsApp.controller:SurveyconfirminfoCtrl
  * @description
  * # SurveyconfirminfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ReviewapplicationconfirminfoCtrl',['$scope','ReviewApplicant','$rootScope', function ($scope,ReviewApplicant,$rootScope) {
     $scope.reviewApplicant=ReviewApplicant.getNewInstance();
     $scope.reviewApplicant.review=$scope.review.id;

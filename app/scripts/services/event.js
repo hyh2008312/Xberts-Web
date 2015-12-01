@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Event
+ * @name xbertsApp.Event
  * @description
  * # Event
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Event', ['$resource', function ($resource) {
     // Service logic
     // ...
