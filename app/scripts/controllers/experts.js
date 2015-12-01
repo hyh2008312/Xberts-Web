@@ -28,7 +28,7 @@ angular.module('yeodjangoApp')
       $scope.onSearch();
     };
     $scope.onKeyDown = function ($event) {
-      if ($event.keyCode == 13) {
+      if ($event.keyCode === 13) {
         $scope.onSearch();
       }
     };
@@ -39,5 +39,5 @@ angular.module('yeodjangoApp')
         $scope.experts.career_fields__id=career;
       }
       $scope.onSearch();
-    }
+    };
   });

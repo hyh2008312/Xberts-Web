@@ -223,6 +223,10 @@ a.block-link{
 
 .tab-content {
   padding-top: $defaultPadding * 4;
+  overflow: hidden;
+  img{
+    max-width: 100%;
+  }
 }
 .label{display: inline-block;}
 .label-default{

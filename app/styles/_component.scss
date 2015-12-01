@@ -161,6 +161,12 @@ $avatarTypes: (
   border: 1px solid $lightGrayColor;
   background-color: $whiteColor;
   margin-bottom: 20px;
+  &.card-bordless{
+    border: 0;
+  }
+  &.card-margin-bottomless{
+    margin-bottom: 0;
+  }
   > .card-header {
     position: relative;
     width: 100%;

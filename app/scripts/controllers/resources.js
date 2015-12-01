@@ -9,11 +9,6 @@
  */
 angular.module('yeodjangoApp')
   .controller('ResourcesCtrl', ['$scope', '$state', 'modalWrap', 'Event', 'Expert', function ($scope, $state, modalWrap, Event, Expert) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
     $scope.events = [];
     $scope.experts = [];
     Event.get(function (events) {
@@ -25,21 +20,16 @@ angular.module('yeodjangoApp')
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    var requestModal = new modalWrap('views/requestmodal.html', 'RequestModalCtrl');
-    $scope.openRequestModal = function () {
-      requestModal.open('lg',
-        {
-          //items: function () {
-          //  return $scope.items;
-          //}
-        },
-        function (submit) {
-          //console.log(submit);
-        },
-        function (cancle) {
-        }
-      );
-    };
+    //var requestModal = new modalWrap('views/requestmodal.html', 'RequestModalCtrl');
+    //$scope.openRequestModal = function () {
+    //  requestModal.open('lg',
+    //    {},
+    //    function (submit) {
+    //    },
+    //    function (cancle) {
+    //    }
+    //  );
+    //};
   }])
   .controller('RequestModalCtrl', ['$scope', '$modalInstance', 'Contact', function ($scope, $modalInstance, Contact) {
     $scope.contact = new Contact();

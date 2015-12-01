@@ -13,22 +13,6 @@ angular.module('yeodjangoApp')
       $scope.eventPaginator = eventPaginator;
       $scope.projectPaginator = projectPaginator;
       $scope.expertPaginator = expertPaginator;
-
-      var requestModal = new modalWrap('views/requestmodal.html', 'RequestModalCtrl');
-      $scope.openRequestModal = function () {
-        requestModal.open('lg',
-          {
-            //items: function () {
-            //  return $scope.items;
-            //}
-          },
-          function (submit) {
-            //console.log(submit);
-          },
-          function (cancle) {
-          }
-        );
-      };
     }])
   .controller('RequestModalCtrl', ['$scope', '$modalInstance', 'Contact', function ($scope, $modalInstance, Contact) {
     $scope.contact = new Contact();

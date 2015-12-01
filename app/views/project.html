@@ -1,0 +1,87 @@
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h2 ng-bind="project.title"></h2>
+      <h3 ng-bind="projectTypes | decode : project.project_category"></h3>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <uib-tabset>
+          <uib-tab heading="Description" active="tabs[0].active" disable="tabs[0].disable">
+            <div ng-bind-html=" project.details | trust"></div>
+          </uib-tab>
+          <uib-tab heading="Comments" active="tabs[1].active" disable="tabs[1].disable">
+          </uib-tab>
+          <uib-tab heading="Application" active="tabs[2].active" disable="tabs[2].disable" select="select(2)">
+          </uib-tab>
+        </uib-tabset>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-bordless card-margin-bottomless">
+          <div class="card-body">
+            <p class="card-body-title">DISTRIBUTION REQUEST</p>
+            <div class="card card-margin-bottomless" ng-repeat="distribution in distributions">
+              <div class="card-body">
+                <div class="card-body-detail">
+                  <p><i class="fa fa-circle"></i> Target Market:</p>
+                  <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">{{ item.name }}<span ng-if="!$last">, </span></span></p>
+                </div>
+                <div class="card-body-detail">
+                  <p><i class="fa fa-circle"></i> Suggested Retail Price</p>
+                  <p class="font-gray-light">$ {{ distribution.retail_price }}</p>
+                </div>
+                <div class="card-body-detail">
+                  <p><i class="fa fa-circle"></i> Transportation Mode:</p>
+                  <p class="font-gray-light">{{ transportationModels | decode: distribution.transportation_model }}</p>
+                </div>
+                <div class="card-body-detail">
+                  <p><i class="fa fa-circle"></i> Business Support:</p>
+                  <p class="font-gray-light"><span ng-repeat="item in supportTypes | narrow : distribution.supported">{{ item.name }}<span ng-if="!$last">, </span></span></p>
+                </div>
+                <div class="card-body-detail" ng-if="distribution.details">
+                  <p><i class="fa fa-circle"></i> Partner Requirements:</p>
+                  <p class="font-gray-light">{{ distribution.details }}</p>
+                </div>
+                <div class="card-body-detail">
+                  <button class="btn btn-primary btn-block">Become a distribution partner</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="card card-bordless card-margin-bottomless">
+          <div class="card-body">
+            <p class="card-body-title">INTEREST</p>
+            <save interact-id="{{ project.interact.id }}"></save>
+            <!--<button class="btn" ng-class="{ 'btn-primary':joiner.vote , 'btn-success':!joiner.vote }"><i class="fa fa-heart fa-lg"></i></button>-->
+            <!--<span ng-bind="project.interact.vote_amount"></span> Interest-->
+          </div>
+        </div>
+        <div class="card card-bordless card-margin-bottomless">
+          <div class="card-body">
+            <p class="card-body-title">CREATED BY</p>
+            <div class="card-body-header">
+              <div class="avatar-text-small-1">
+                <img ng-src="{{ project.account.avatar }}"/>
+
+                <p ng-bind="project.account.fullname"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-bordless card-margin-bottomless">
+          <div class="card-body">
+            <p class="card-body-title">COMMENT</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

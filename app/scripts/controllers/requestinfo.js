@@ -43,7 +43,7 @@ angular.module('yeodjangoApp')
           alert("Some error happened");
           console.log(error);
           $scope.$emit('backdropOff', 'query distributions error');
-        })
+        });
       }
     });
 
@@ -67,7 +67,7 @@ angular.module('yeodjangoApp')
 
     };
     $scope.removeDiscount = function (index) {
-      $scope.discounts.splice(index, 1)
+      $scope.discounts.splice(index, 1);
     };
 
     $scope.distributionFormSubmit = function () {

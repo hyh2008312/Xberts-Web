@@ -345,7 +345,7 @@ angular.module('yeodjangoApp')
     var SOCIAL_TYPE = [
       {code: '1', name: 'Facebook'},
       {code: '2', name: 'Twitter'},
-      {code: '3', name: 'Youtube'},
+      {code: '3', name: 'YouTube'},
       {code: '4', name: 'Other'},
       {code: '0', name: 'None'}
     ];
