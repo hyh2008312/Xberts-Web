@@ -1,53 +1,59 @@
 <uib-carousel interval="5000" no-wrap="false">
   <uib-slide ng-repeat="slide in slides" active="slide.active">
-    <img ng-src="{{slide.image}}" style="width:100%;height: 550px">
-
-    <div class="carousel-caption">
-      <h4>{{slide.text}}</h4>
-    </div>
+    <section class="section-fixed"
+             style="background-image: url({{ slide.image }});height: 550px;">
+      <div class="cover-layer">
+        <div class="section-title " style="margin-top:90px">
+          <h3>{{ slide.text}}</h3>
+        </div>
+      </div>
+    </section>
   </uib-slide>
 </uib-carousel>
 
-<section class="container header">
-  <div class="section-title">
-    <h2>Partner with Xberts</h2>
-    <h3></h3>
-  </div>
-  <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
-    <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
-      <div class="card cover">
-        <div class="card-header"
-             style="background-image:url({{ event.logo }});">
-        </div>
-        <div class="card-body">
-          <p class="card-body-header"><i
-            class="fa fa-calendar"></i> {{ event.when | amDateFormat:'dddd, MMM DD, YYYY' }}
-          </p>
+<section class="header background-whitem">
+  <div class="container">
+    <div class="section-title">
+      <h2>Strategic Partners</h2>
 
-          <p class="card-body-header"><i class="fa fa-map-marker"></i> {{ event.where }}</p>
-
-          <p class="card-body-title p-2">{{ event.title }}</p>
-
-          <p class="card-body-footer">{{ event.tags|tagsplit }}</p>
-        </div>
-        <div class="cover-layer cover-layer-top">
-          <div class="cover-header">
-            <p class="p-8">{{ event.brief }}</p>
+      <h3>Register through Xberts to get an exclusive discount for the exhibition</h3>
+    </div>
+    <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
+         infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
+      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
+        <div class="card cover">
+          <div class="card-header"
+               style="background-image:url({{ event.logo }});">
           </div>
-          <div class="cover-footer text-center">
-            <a ui-sref="event({ eventId: event.id })" class="btn btn-success">View & Register</a>
+          <div class="card-body">
+            <p class="card-body-header"><i
+              class="fa fa-calendar"></i> {{ event.when | amDateFormat:'dddd, MMM DD, YYYY' }}
+            </p>
+
+            <p class="card-body-header"><i class="fa fa-map-marker"></i> {{ event.where }}</p>
+
+            <p class="card-body-title p-2">{{ event.title }}</p>
+
+            <p class="card-body-footer">{{ event.tags|tagsplit }}</p>
+          </div>
+          <div class="cover-layer cover-layer-top">
+            <div class="cover-header">
+              <p class="p-8">{{ event.brief }}</p>
+            </div>
+            <div class="cover-footer text-center">
+              <a ui-sref="event({ eventId: event.id })" class="btn btn-success">View & Register</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <load-more class="row spin-large" ng-if="eventPaginator.loading"></load-more>
 </section>
 <section class="container header">
   <div class="section-title">
-    <h2>Recommended by Xberts</h2>
-    <h3></h3>
+    <h2>Recommended</h2>
+
+    <h3>Join our curated events to meet more innovators and influencers</h3>
   </div>
   <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">

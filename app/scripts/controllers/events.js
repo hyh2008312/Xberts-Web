@@ -14,11 +14,19 @@ angular.module('yeodjangoApp')
 
     $scope.slides = [
       {
-        image: '/images/hero-domain-story.jpg',
+        image: '/images/event-1.jpg',
         text: 'slide 1'
       },
       {
-        image: '/images/hero-rogervoice-story.jpg',
+        image: '/images/event-2.jpg',
+        text: 'slide 2'
+      },
+      {
+        image: '/images/event-3.jpg',
+        text: 'slide 1'
+      },
+      {
+        image: '/images/event-4.jpg',
         text: 'slide 2'
       }
     ];
