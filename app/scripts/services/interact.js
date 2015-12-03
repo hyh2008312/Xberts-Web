@@ -13,7 +13,7 @@ angular.module('yeodjangoApp')
       Join: function (otherParams) {
         var params = {joinId: '@id'};
         angular.extend(params, otherParams);
-        return $resource('/interact/joins/:joinId/', params)
+        return $resource('/interact/joins/:joinId/', params,{'vote': {method: 'PUT',params:{vote:true}}})
       },
       Feedback: function (otherParams) {
         var params = {feedbackId: '@id'};

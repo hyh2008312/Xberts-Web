@@ -18,10 +18,10 @@ angular.module('yeodjangoApp')
       $scope.transportationModels = SystemData.getTransportationModels();
       $scope.distributions = distributions;
       $scope.project=project;
-      console.log(project);
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
       });
+      //todo: 教信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
       $scope.feedbacks = Interact.Feedback({interact_id: $scope.project.interact.id});
       $scope.feedbacks.get(function(results){

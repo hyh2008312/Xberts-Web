@@ -9,7 +9,7 @@
 </section>
 <section>
   <div class="container">
-    <join interact="project.interact">
+    <join ng-init="init(project.interact)">
       <div class="row">
         <div class="col-md-9">
           <uib-tabset>
@@ -69,7 +69,7 @@
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
               <p class="card-body-title">INTEREST</p>
-              <save interact-id="{{ project.interact.id }}"></save>
+              <save></save>
               <!--<button class="btn" ng-class="{ 'btn-primary':joiner.vote , 'btn-success':!joiner.vote }"><i class="fa fa-heart fa-lg"></i></button>-->
               <!--<span ng-bind="project.interact.vote_amount"></span> Interest-->
             </div>
