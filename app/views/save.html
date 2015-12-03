@@ -3,12 +3,14 @@
           ng-disabled="loadingJoin || voting " ng-click="save()">
     <i class="fa fa-heart fa-lg"></i>
   </button>
-  <span >{{ interact.vote_amount }} </span> Interest
+  <span>{{ interact.vote_amount }} </span> Interest
 </div>
-<div class="row" ng-if='joins.length>0'>
-  <div class="col-xs-2 col-sm-1 col-md-2" ng-repeat="item in joins">
-    <a ng-href="/xberts/{{ item.joiner.id }}/">
-      <img ng-src="{{ item.joiner.avatar }}" />
+<div ng-if='joins.length>0' class="clearfix margin-top">
+  <div class="pull-left" ng-repeat="item in joins">
+    <a class="block-link" ng-href="/xberts/{{ item.joiner.id }}/">
+      <div class="avatar-text-small-1">
+        <img ng-src="{{ item.joiner.avatar }}" alt="{{ item.joiner.fullname }}"/>
+      </div>
     </a>
   </div>
 </div>

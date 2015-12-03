@@ -7,7 +7,7 @@
  * # join
  */
 angular.module('yeodjangoApp')
-  .directive('join', ['Interact', '$rootScope', function (Interact, $rootScope) {
+  .directive('join', ['Interact', '$rootScope', '$filter', function (Interact, $rootScope, $filter) {
     return {
       restrict: 'E',
       replace: true,
@@ -44,8 +44,16 @@ angular.module('yeodjangoApp')
             $scope.join.vote = vote;
             console.log("vote");
             $scope.join.$vote(function (result) {
-              console.log(result);
               $scope.voting = false;
+              if (result.vote) {
+                $scope.joins.push(result);
+              } else {
+                for (var i = 0; i < $scope.joins.length; i++) {
+                  if ($scope.joins[i].id === result.id) {
+                    $scope.joins.splice(i, 1);
+                  }
+                }
+              }
             })
           }
         };
@@ -65,11 +73,12 @@ angular.module('yeodjangoApp')
           } else {
             $scope.loadingJoin = false;
           }
-          var joinsResult = Interact.Join({interact_id: $scope.interact.id, vote: true});
+          var joinsResult = Interact.Join({interact_id: $scope.interact.id, vote: 'True'});
           joinsResult.get(function (data) {
             if (data.count !== undefined && data.count > 0) {
               $scope.joins = data.results;
             }
+            console.log(data);
           });
         }
       }

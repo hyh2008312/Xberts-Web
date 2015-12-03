@@ -17,6 +17,7 @@
               <div ng-bind-html=" project.details | trust"></div>
             </uib-tab>
             <uib-tab heading="Comments" active="tabs[1].active" disable="tabs[1].disable">
+              <div ng-include src="'/views/comments.html'"></div>
             </uib-tab>
             <uib-tab heading="Application" active="tabs[2].active" disable="tabs[2].disable" select="select(2)">
             </uib-tab>
@@ -70,8 +71,6 @@
             <div class="card-body">
               <p class="card-body-title">INTEREST</p>
               <save></save>
-              <!--<button class="btn" ng-class="{ 'btn-primary':joiner.vote , 'btn-success':!joiner.vote }"><i class="fa fa-heart fa-lg"></i></button>-->
-              <!--<span ng-bind="project.interact.vote_amount"></span> Interest-->
             </div>
           </div>
           <div class="card card-bordless card-margin-bottomless">
@@ -87,12 +86,6 @@
               </div>
             </div>
           </div>
-          <div class="card card-bordless card-margin-bottomless">
-            <div class="card-body">
-              <p class="card-body-title">COMMENT</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </join>
