@@ -21,18 +21,21 @@ angular.module('yeodjangoApp')
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
       });
-      //todo: 教信息可能发生变化,重读交互信息
+      //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
-      $scope.feedbacks = Interact.Feedback({interact_id: $scope.project.interact.id});
-      $scope.feedbacks.get(function(results){
-      });
-      $scope.tabs = [
-        {active: true, disable: false},
-        {active: false, disable: false},
-        {active: false, disable: false},
-        {active: false, disable: false}
-      ];
+      $scope.commentsTabActive=false;
+      $scope.applicationsTabActive=false;
       $scope.select = function (step) {
-        $scope.$broadcast('projectBroadcast', step);
+        $scope.commentsTabActive=false;
+        $scope.applicationsTabActive=false;
+        switch (step){
+          case 'comments':
+            $scope.commentsTabActive=true;
+                break;
+          case 'applications':
+            $scope.applicationsTabActive=true;
+            break;
+        }
+        $scope.$broadcast('project', step);
       };
     }]);

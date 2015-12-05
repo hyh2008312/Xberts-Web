@@ -9,5 +9,9 @@
  */
 angular.module('yeodjangoApp')
   .controller('CommentCtrl', function ($scope) {
-    $scope.title="hello everyone";
+    $scope.$on("project",function(e,d){
+      if(d==='comments'){
+        $scope.getFeedbackPaginator();
+      }
+    })
   });

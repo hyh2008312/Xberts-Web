@@ -1,4 +1,12 @@
 <div>
-  <textarea ng-model="details"></textarea>
-  <input type="checkbox">
+  <form name="feedbackForm" ng-submit="feedbackFormSubmit()">
+    <textarea name='detail' class="form-control" rows="5"
+              ng-model="feedback.details" ng-required="true">
+    </textarea>
+
+    <div class="margin-top">
+      <input type="checkbox" name="secret" ng-model="feedback.secret"> Private
+      <button type="submit" class="btn btn-primary pull-right">Comment</button>
+    </div>
+  </form>
 </div>

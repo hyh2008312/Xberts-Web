@@ -104,6 +104,13 @@ a {
     cursor: pointer;
   }
 }
+a.a-gray{
+  color: $lightGrayColor;
+  &:hover{
+    color: $grayColor;
+    cursor: pointer;
+  }
+}
 a.block-link{
   display: block;
   &:hover,&:active{

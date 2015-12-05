@@ -11,24 +11,24 @@
   <div class="container">
     <join ng-init="init(project.interact)">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
           <uib-tabset>
-            <uib-tab heading="Description" active="tabs[0].active" disable="tabs[0].disable">
+            <uib-tab heading="Description">
               <div ng-bind-html=" project.details | trust"></div>
             </uib-tab>
-            <uib-tab heading="Comments" active="tabs[1].active" disable="tabs[1].disable">
+            <uib-tab heading="Comments" select="select('comments')">
               <div ng-include src="'/views/comments.html'"></div>
             </uib-tab>
-            <uib-tab heading="Application" active="tabs[2].active" disable="tabs[2].disable" select="select(2)">
+            <uib-tab heading="Application" select="select('applications')">
             </uib-tab>
           </uib-tabset>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
               <p class="card-body-title">DISTRIBUTION REQUEST</p>
 
-              <div class="card card-margin-bottomless" ng-repeat="distribution in distributions">
+              <div class="card card-margin-bottomless"style="border-radius: 5px" ng-repeat="distribution in distributions">
                 <div class="card-body">
                   <div class="card-body-detail">
                     <p><i class="fa fa-circle"></i> Target Market:</p>
@@ -58,8 +58,8 @@
 
                     <p class="font-gray-light">{{ distribution.details }}</p>
                   </div>
-                  <div class="card-body-detail">
-                    <button class="btn btn-primary btn-block">Become a distribution partner</button>
+                  <div class="card-body-detail text-center">
+                    <button class="btn btn-primary">Become a distribution partner</button>
                   </div>
                 </div>
 
