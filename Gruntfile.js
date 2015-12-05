@@ -484,7 +484,7 @@ module.exports = function (grunt) {
         options: {
           saveUnchanged: false,
           replacements: [{
-            pattern: /(href|src)="([^ ]+\.(css|js))"/g,
+            pattern: /(href|src)="([^ ]+\.(css|js|png))"/g,
             replacement: '$1="/static/v2/$2"'
           }, {
             pattern: /src="([^ ]+\.(png|jpg))"/g,
