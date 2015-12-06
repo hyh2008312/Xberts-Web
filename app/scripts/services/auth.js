@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("xbertsApp")
-  .factory('AuthService', ['$rootScope', '$resource', '$location', function($rootScope, $resource, $location) {
+  .factory('AuthService', ['$rootScope', '$resource', function($rootScope, $resource) {
     function User(auth, userId, userName, userType, userAvatar) {
       this._auth = auth;
       this._userId = userId;
@@ -29,7 +29,7 @@ angular.module("xbertsApp")
     }
 
     function setUser(user){
-      $rootScope.user = new User(true, user.id, user.fullname, user.isStaff, user.avatar);
+      $rootScope.user = new User(true, user.id, user.fullName, user.isStaff, user.avatar);
     }
 
     function createAuthHeader(credentials) {

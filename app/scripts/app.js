@@ -249,5 +249,10 @@ angular
         url: "/login",
         templateUrl: '/views/login.html',
         controller: 'LoginCtrl'
+      })
+      .state('application.signup', {
+        url: "/signup",
+        templateUrl: '/views/signup.html',
+        controller: 'SignupCtrl'
       });
   }]);

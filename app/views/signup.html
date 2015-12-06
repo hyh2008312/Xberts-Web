@@ -1,0 +1,53 @@
+<div class="signup-bg">
+  <div class="container marketing">
+    <div class="register-signin-caption">
+      <p class="login-title">Create an Account</p>
+      <form name="signupForm" novalidate ng-submit="signup()">
+        <div class="error" ng-show="signupForm.$submitted">
+          <div ng-show="signupError.userExist">An account already exists with that email.</div>
+          <div ng-show="signupError.generic">Oops! Something went wrong.</div>
+        </div>
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.fullName.$touched">
+          <p ng-show="signupForm.fullName.$error.required">Please enter your name.</p>
+        </div>
+        <p align="left">
+          <input type="text" id="id_full_name" name="fullName" class="form-control login-form-control" placeholder="Full name" ng-model="fullName" required>
+        </p>
+
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.email.$touched">
+          <p ng-show="signupForm.email.$error.required">Please enter your email.</p>
+          <p ng-show="signupForm.email.$error.email">The email you entered is invalid.</p>
+        </div>
+        <p align="left">
+          <input type="email" id="id_email" name="email" class="form-control login-form-control" placeholder="Email" ng-model="email" required ng-model-options="{ updateOn: 'blur' }">
+        </p>
+
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.password.$touched">
+          <p ng-show="signupForm.password.$error.required">Please enter your password.</p>
+        </div>
+        <p align="left">
+          <input type="password" id="id_password" name="password" class="form-control login-form-control register-password-form-control" placeholder="Password" ng-model="password" required>
+        </p>
+
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.country.$touched">
+          <p ng-show="signupForm.country.$error.required">Please select your country.</p>
+        </div>
+        <p align="left">
+          <select id="id_country" name="country" class="form-control login-form-control"
+                  ng-options="option.name for option in countryOptions track by option.code"
+                  ng-model="country" required>
+            <option value="">Select your country</option>
+          </select>
+        </p>
+
+        <input type="submit" class="login-btn" value="Sign up">
+        <div class="login-line-wrapper">
+          <div class="login-or-line">
+          </div>
+        </div>
+        <div class="login-tips">Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

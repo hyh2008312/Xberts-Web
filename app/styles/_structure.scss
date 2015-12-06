@@ -319,7 +319,12 @@ $xy: (
   }
 }
 
-// Login Page
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+// Login page
 .signup-bg {
   height: auto;
   min-height: 100%;
@@ -442,7 +447,18 @@ form#sign_form input#id_email, input#id_password {
   padding-top: 10px;
 }
 
-.error {
-  color: red;
-  font-weight: bold;
+// Signup page
+.register-signin-caption {
+  text-align: center;
+  margin-top: 28px;
+  background-color: rgb(255, 255, 255);
+  border: solid 1px rgb(109, 109, 109);
+  max-width: 400px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  opacity: 0.9;
+  height: auto;
+  padding: 20px 30px 20px 30px;
 }

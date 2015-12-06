@@ -39,7 +39,7 @@
                 class="fa fa-plus-circle fa-lg"></i> Launch Product</a>
             </li>
             <li ng-if="!user.isAuth()">
-              <a href="/auth/register/" class="fade-in-line">Sign Up</a>
+              <a ui-sref="application.signup" class="fade-in-line">Sign Up</a>
             </li>
             <li ng-if="!user.isAuth()">
               <a ui-sref="application.login" class="fade-in-line">Sign In</a>
