@@ -34,7 +34,14 @@ $avatarTextTypes: (
     margin-bottom: 10px;
   }
 }
-
+.avatar-inline{
+  > img{
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+  }
+}
 @mixin topRightBadgeX($radius:10px,$paddingTop:10px,$paddingLeft:10px,$badgeHeight:16px,$badgeWidth:16px) {
   padding-top: $paddingTop;
   padding-left: $paddingLeft;
@@ -60,6 +67,13 @@ $numbers: (1 2 3 4 5 8 10);
       @include ellipsisText();
     } @else {
       @include ellipsisMultiText($number);
+    }
+  }
+  .p-#{$number}-max {
+    @if ($number==1) {
+      @include ellipsisText();
+    } @else {
+      @include ellipsisMultiTextMax($number);
     }
   }
 }

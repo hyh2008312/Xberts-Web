@@ -79,8 +79,9 @@ angular.module('yeodjangoApp')
             });
           };
           scope.commentsPaginator= Paginator('comments_'+scope.item.id, fetchFunction);
+          scope.commentsPaginator.clear();
           scope.commentsPaginator.loadNext();
-          scope.commentsPaginator.watch(scope,'commentsPaginator.items.length');
+          //scope.commentsPaginator.watch(scope,'commentsPaginator.items.length');
         };
       }
     };

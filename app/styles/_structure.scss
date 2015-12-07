@@ -24,7 +24,8 @@ section {
   padding-top: $sectionSpace;
   padding-bottom: $sectionSpace + 20px;
 }
-section.header{
+
+section.header {
   padding-top: 27px;
 }
 
@@ -91,12 +92,14 @@ section.header{
 h3.panel-title {
   font-size: 24px;
 }
-.landing-p{
+
+.landing-p {
   font-size: 20px;
-  p{
+  p {
     font-size: 20px;
   }
 }
+
 a {
   color: $primaryColor;
   &:hover {
@@ -104,19 +107,30 @@ a {
     cursor: pointer;
   }
 }
-a.a-gray{
+
+a.a-gray {
   color: $lightGrayColor;
-  &:hover{
+  &:hover {
     color: $grayColor;
     cursor: pointer;
   }
 }
-a.block-link{
+
+a.a-gray-primary {
+  color: $grayColor;
+  &:hover {
+    color: $primaryColor;
+    cursor: pointer;
+  }
+}
+
+a.block-link {
   display: block;
-  &:hover,&:active{
+  &:hover, &:active {
     text-decoration: none;
   }
 }
+
 .full-page {
   margin-top: 0;
 }
@@ -231,12 +245,16 @@ a.block-link{
 .tab-content {
   padding-top: $defaultPadding * 4;
   overflow: hidden;
-  img{
+  img {
     max-width: 100%;
   }
 }
-.label{display: inline-block;}
-.label-default{
+
+.label {
+  display: inline-block;
+}
+
+.label-default {
   margin-right: 2px;
   background-color: $lightGrayColor;
 }
@@ -244,8 +262,9 @@ a.block-link{
 .note-editor {
   border: 1px solid $lightGrayColor;
 }
-.border-clear{
-  border:none;
+
+.border-clear {
+  border: none;
 }
 
 .align-left {
@@ -255,9 +274,11 @@ a.block-link{
 .align-right {
   text-align: right;
 }
-.align-justify{
+
+.align-justify {
   text-align: justify;
 }
+
 .pr {
   position: relative;
 }
@@ -271,8 +292,8 @@ a.block-link{
 }
 
 $xy: (
-        a5-10: 5px 10px,
-        a10-10: 5px 10px,
+  a5-10: 5px 10px,
+  a10-10: 5px 10px,
 );
 @each $name, $top-left in $xy {
   .padding-#{$name} {
@@ -306,24 +327,36 @@ $xy: (
     float: right !important;
     margin-right: -8px;
   }
-  .landing-page{
+  .landing-page {
     height: 600px;
     margin-top: -50px;
-    .section-title{
-      margin-top:150px;
+    .section-title {
+      margin-top: 150px;
     }
   }
+  .expert-profile {
+    margin-top: 10px;
+  }
 }
-@media screen and (max-width: 767px){
-  .landing-page{
+
+.expert-profile {
+  > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .landing-page {
     margin-top: -50px;
     height: 500px;
-    .section-title{
+    .section-title {
       text-align: left;
-      h1{
+      h1 {
         font-size: 36px;
       }
-      margin-top:80px;
+      margin-top: 80px;
     }
   }
 }

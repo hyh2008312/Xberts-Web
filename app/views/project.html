@@ -1,9 +1,13 @@
 <section class="background-light-white">
   <div class="container">
     <div class="section-title">
-      <h2 ng-bind="project.title"></h2>
+      <h1 ng-bind="project.title"></h1>
+      <h3 class="avatar-inline">
+        <img ng-src="{{ project.account.avatar }}"/>
+        <a  class="a-gray-primary" ui-sref="expert({ expertId:project.account.id })">{{ project.account.fullname }}</a>
+        <span class="margin-left"><i class="fa fa-tag"></i> {{ projectTypes | decode : project.project_category }}</span>
 
-      <h3 ng-bind="projectTypes | decode : project.project_category"></h3>
+      </h3>
     </div>
   </div>
 </section>
@@ -20,6 +24,7 @@
               <div ng-include src="'/views/comments.html'"></div>
             </uib-tab>
             <uib-tab heading="Application" select="select('applications')">
+              <div ng-include src="'/views/applicationinfo.html'"></div>
             </uib-tab>
           </uib-tabset>
         </div>
@@ -28,7 +33,8 @@
             <div class="card-body">
               <p class="card-body-title">DISTRIBUTION REQUEST</p>
 
-              <div class="card card-margin-bottomless"style="border-radius: 5px" ng-repeat="distribution in distributions">
+              <div class="card card-margin-bottomless" style="border-radius: 5px"
+                   ng-repeat="distribution in distributions">
                 <div class="card-body">
                   <div class="card-body-detail">
                     <p><i class="fa fa-circle"></i> Target Market:</p>
@@ -69,21 +75,9 @@
           </div>
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
-              <p class="card-body-title">INTEREST</p>
+              <p class="card-body-title">INTEREST(<span>{{ interact.vote_amount }}</span>)</p>
               <save></save>
-            </div>
-          </div>
-          <div class="card card-bordless card-margin-bottomless">
-            <div class="card-body">
-              <p class="card-body-title">CREATED BY</p>
-
-              <div class="card-body-header">
-                <div class="avatar-text-small-1">
-                  <img ng-src="{{ project.account.avatar }}"/>
-
-                  <p ng-bind="project.account.fullname"></p>
-                </div>
-              </div>
+              <saver></saver>
             </div>
           </div>
         </div>

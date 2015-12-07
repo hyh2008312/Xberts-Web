@@ -52,13 +52,13 @@
           </div>
           <div class="item-body">
             <p class="item-body-header">
-              <span><a ng-href="/xberts/{{ expert.user_id }}/">{{ expert.short_name }}</a></span>
+              <span><a ui-sref="expert({ expertId:expert.user_id })">{{ expert.short_name }}</a></span>
               <span class="pull-right">{{ expert.country }}</span></p>
             <p class="item-body-title">{{ expert.company_title}}</p>
             <p>
               <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise }}</span>
             </p>
-            <p class="item-body-detail">{{ expert.biography }}</p>
+            <p class="item-body-detail p-3-max">{{ expert.biography }}</p>
           </div>
         </div>
 

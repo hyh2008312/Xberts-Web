@@ -123,10 +123,12 @@
                 </div>
               </a>
               <ul class="dropdown-menu navbar-inverse">
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=biography">My Profile</a></li>
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=project" id="xbert_product">My Projects</a>
+                <li>
+                  <a ui-sref="expert({ expertId: user.getUserId() })">My Profile</a>
                 </li>
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=questions" id="xbert_question">My Q&A</a></li>
+                <li>
+                  <a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=project" id="xbert_product">My Projects</a>
+                </li>
                 <li><a href="/auth/bscinfosetting/">Settings</a></li>
                 <li><a href="/adviceapp/logout/">Logout</a></li>
               </ul>
@@ -262,6 +264,11 @@
 <script src="scripts/directives/feedback.js"></script>
 <script src="scripts/directives/feedbackdetail.js"></script>
 <script src="scripts/directives/commentdetail.js"></script>
+<script src="scripts/controllers/expert.js"></script>
+<script src="scripts/services/expertload.js"></script>
+<script src="scripts/directives/saver.js"></script>
+<script src="scripts/directives/joins.js"></script>
+<script src="scripts/directives/followings.js"></script>
 <!-- endbuild -->
 </body>
 </html>

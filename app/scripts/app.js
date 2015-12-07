@@ -228,7 +228,16 @@ angular
           }]
         }
       })
-
+      .state('expert', {
+        url: "/experts/:expertId",
+        templateUrl: '/views/expert.html',
+        controller: 'ExpertCtrl',
+        resolve:{
+          expert:['ExpertLoad','$stateParams',function(ExpertLoad,$stateParams){
+            return ExpertLoad($stateParams);
+          }]
+        }
+      })
       .state('launch', {
         url: "/launch/:eventId",
         templateUrl: '/views/eventlauch.html',

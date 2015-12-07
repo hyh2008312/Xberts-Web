@@ -1,0 +1,60 @@
+<join ng-init="init(expert.interact)">
+  <section class="background-light-white">
+    <div class="container">
+      <div row>
+        <div class="col-sm-2 text-center expert-profile">
+          <img ng-src="{{ expert.avatar }}"/>
+        </div>
+        <div class="col-sm-8">
+          <div class="section-title">
+
+            <h1 ng-bind="expert.short_name"></h1>
+
+            <p>{{ expert.country }}</p>
+
+            <p>{{ expert.company_title}}</p>
+
+            <p>
+              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise }}</span>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-2 text-center expert-profile" style="padding-top: 10px">
+          <follow></follow>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <uib-tabset>
+            <uib-tab heading="Description">
+              <div ng-bind-html=" expert.biography | trust"></div>
+            </uib-tab>
+            <uib-tab heading="Products" select="select('products')">
+              <div ng-include src="'/views/projectstab.html'"></div>
+            </uib-tab>
+            <uib-tab heading="Followers" select="select('followers')">
+              <div ng-if="followersTabActive">
+                <joins joins-paginator="followersPaginator"></joins>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Followings" select="select('followings')">
+              <div ng-if="followingsTabActive">
+                <followings joins-paginator="followingsPaginator"></followings>
+              </div>
+            </uib-tab>
+
+            <uib-tab heading="Message" select="select('comments')">
+              <div ng-include src="'/views/comments.html'"></div>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+      </div>
+    </div>
+  </section>
+</join>
+
