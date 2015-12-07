@@ -11,7 +11,7 @@ angular.module('yeodjangoApp')
     return {
       template: '<button class="btn" ng-class="{\'btn-danger\':join.vote,\'btn-gray\':!join.vote}"' +
       'ng-disabled="loadingJoin || voting " ng-click="save()"> ' +
-      '<i class="fa fa-heart fa-lg"></i> ' +
+      '<i class="fa fa-heart fa-lg"></i> LIKE' +
       '</button>',
       require: '^join',
       restrict: 'E',
