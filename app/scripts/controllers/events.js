@@ -11,6 +11,7 @@ angular.module('xbertsApp')
   .controller('EventsCtrl', ['$scope', 'eventPartnerPaginator', 'eventPaginator',
     function ($scope, eventPartnerPaginator, eventPaginator) {
       $scope.eventPaginator = eventPaginator;
+      $scope.eventPartnerPaginator = eventPartnerPaginator;
       $scope.eventPaginator.watch($scope, 'eventPaginator.currentPage');
 
       $scope.slides = [

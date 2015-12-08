@@ -215,7 +215,7 @@ angular
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
-            var paginator = Paginator('event', fetchFunction);
+            var paginator = Paginator('event_r', fetchFunction);
             return paginator.load();
           }]
         }

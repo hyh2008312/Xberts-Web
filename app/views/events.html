@@ -1,8 +1,8 @@
-<uib-carousel interval="5000" no-wrap="false">
+<uib-carousel interval="5000" no-wrap="false" style="margin-top: -50px;">
   <uib-slide ng-repeat="slide in slides" active="slide.active">
     <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
       <div class="cover-layer">
-        <div class="carousel-caption" style="padding-bottom: 50px">
+        <div class="carousel-caption">
           <h3>{{slide.text}}</h3>
         </div>
       </div>

@@ -473,6 +473,9 @@ module.exports = function (grunt) {
           }, {
             pattern: /(src|ng-src)="(\/images\/[^ ]+\.(png|jpg))"/g,
             replacement: '$1="/static/v2$2"'
+          }, {
+            pattern: /(\{image:)"(\/images\/[^ ]+\.(png|jpg))"/g,
+            replacement: '$1"/static/v2$2"'
           }]
         }
       },
