@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.TargetGeo
+ * @name xbertsApp.TargetGeo
  * @description
  * # TargetGeo
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('SystemData', ['$resource', '$rootScope', '$q', function ($resource, $rootScope, $q) {
     // ...
     var targetGeoResource = $resource('/projects/rest/target_geos/', null);

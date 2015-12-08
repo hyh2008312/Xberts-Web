@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:join
+ * @name xbertsApp.directive:join
  * @description
  * # join
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('join', ['Interact', '$rootScope','Paginator','$q', function (Interact, $rootScope,Paginator,$q) {
     return {
       restrict: 'E',

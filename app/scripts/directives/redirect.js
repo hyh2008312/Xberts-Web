@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:Redirect
+ * @name xbertsApp.directive:Redirect
  * @description
  * # Redirect
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
     .directive('redirect', ['$window','$timeout','$interval',function ($window, $timeout, $interval) {
         return {
             template: '<span></span>',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ExpertCtrl
+ * @name xbertsApp.controller:ExpertCtrl
  * @description
  * # ExpertCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
     function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
       $rootScope.bodyBackground = 'background-whitem';

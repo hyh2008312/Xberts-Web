@@ -82,7 +82,8 @@ module.exports = function (grunt) {
       },
       proxies: [
         {
-          context: ['/adviceapp', '/projects', '/resources', '/media', '/v2', '/xberts', '/auth', '/logout', '/static', '/review','/interact'],
+          context: ['/adviceapp', '/projects', '/resources', '/media', '/v2', '/xberts', '/auth', '/logout', '/static',
+            '/review', '/accounts', '/notifications', '/interact', '/qa'],
           host: 'localhost',
           port: 8000,
           https: false
@@ -330,32 +331,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
     imagemin: {
       dist: {
         files: [{
@@ -398,7 +373,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'yeodjangoApp',
+          module: 'xbertsApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -509,13 +484,7 @@ module.exports = function (grunt) {
         options: {
           saveUnchanged: false,
           replacements: [{
-            pattern: /<!--\n<auth/,
-            replacement: '\n<auth'
-          }, {
-            pattern: /<\/auth>\n-->/,
-            replacement: '</auth>\n'
-          }, {
-            pattern: /(href|src)="([^ ]+\.(css|js))"/g,
+            pattern: /(href|src)="([^ ]+\.(css|js|png))"/g,
             replacement: '$1="/static/v2/$2"'
           }, {
             pattern: /src="([^ ]+\.(png|jpg))"/g,
@@ -531,12 +500,6 @@ module.exports = function (grunt) {
         options: {
           saveUnchanged: false,
           replacements: [{
-            pattern: /<!--\n<auth/,
-            replacement: '\n<auth'
-          }, {
-            pattern: /<\/auth>\n-->/,
-            replacement: '</auth>\n'
-          }, {
             pattern: /src="(scripts\/[^ ]+\.js)"/g,
             replacement: 'src="/$1"'
           }]

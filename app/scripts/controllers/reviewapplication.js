@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ReviewCtrl
+ * @name xbertsApp.controller:ReviewCtrl
  * @description
  * # ReviewCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ReviewapplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', function ($scope, $rootScope, review, reviewer) {
     // todo:每个人只能填写一份调查问卷
     $scope.review = review;

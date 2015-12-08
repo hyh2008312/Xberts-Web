@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:RequestinfoCtrl
+ * @name xbertsApp.controller:RequestinfoCtrl
  * @description
  * # RequestinfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution', function ($scope, SystemData, Distribution) {
 
     var parseDiscount = function (sDiscounts) {

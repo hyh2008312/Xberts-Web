@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:QuestionInput
+ * @name xbertsApp.directive:QuestionInput
  * @description
  * # QuestionInput
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('questionInput', function () {
     return {
       templateUrl:"/views/questiondirect.html",

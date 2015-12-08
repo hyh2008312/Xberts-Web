@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:EventCtrl
+ * @name xbertsApp.controller:EventCtrl
  * @description
  * # EventCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('EventCtrl', ['$scope', '$stateParams', 'event', function ($scope, $stateParams, event) {
     this.awesomeThings = [
       'HTML5 Boilerplate',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ReviewinfoCtrl
+ * @name xbertsApp.controller:ReviewinfoCtrl
  * @description
  * # ReviewinfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ReviewapplicationinfoCtrl', ['$scope', 'ReviewApplicant', '$filter',
     function ($scope, ReviewApplicant, $filter) {
       $scope.reviewFormSubmit = function () {

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProjectLoad
+ * @name xbertsApp.ProjectLoad
  * @description
  * # ProjectLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProjectLoad', ['ProjectsNoDetail', '$q', 'localStorageService',
     function (ProjectsNoDetail, $q, localStorageService) {
       return function ($stateParams) {

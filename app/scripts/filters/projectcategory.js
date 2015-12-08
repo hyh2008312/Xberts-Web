@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:projectCategory
+ * @name xbertsApp.filter:projectCategory
  * @function
  * @description
  * # projectCategory
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('projectCategory', ['SystemData', function (SystemData) {
     var projectTypes;
     SystemData.getProjectTypes().then(function (results) {

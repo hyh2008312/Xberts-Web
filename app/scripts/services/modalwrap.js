@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.modalWrap
+ * @name xbertsApp.modalWrap
  * @description
  * # modalWrap
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('modalWrap',['$uibModal', function ($uibModal) {
     // Service logic
     // Public API here

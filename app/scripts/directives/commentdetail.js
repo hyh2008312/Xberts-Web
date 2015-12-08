@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:commentDetail
+ * @name xbertsApp.directive:commentDetail
  * @description
  * # commentDetail
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('commentDetail', function () {
     return {
       templateUrl: '/views/commentdetail.html',

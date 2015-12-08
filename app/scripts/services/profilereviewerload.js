@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProfileReviewerLoad
+ * @name xbertsApp.ProfileReviewerLoad
  * @description
  * # ProfileReviewerLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProfileReviewerLoad',  ['ProfileReviewer', '$q','$rootScope', function (ProfileReviewer, $q,$rootScope) {
     return function () {
       var delay = $q.defer();

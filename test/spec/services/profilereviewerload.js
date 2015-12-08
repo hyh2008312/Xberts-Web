@@ -3,7 +3,7 @@
 describe('Service: ProfileReviewerLoad', function () {
 
   // load the service's module
-  beforeEach(module('yeodjangoApp'));
+  beforeEach(module('xbertsApp'));
 
   // instantiate service
   var ProfileReviewerLoad;

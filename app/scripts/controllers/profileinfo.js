@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ProfileinfoCtrl
+ * @name xbertsApp.controller:ProfileinfoCtrl
  * @description
  * # ProfileinfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ProfileinfoCtrl',['$scope','SystemConstant',function ($scope, SystemConstant) {
     $scope.COUNTRIES = SystemConstant.COUNTRIES;
     $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;

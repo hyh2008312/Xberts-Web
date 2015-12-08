@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProjectsNoDetail
+ * @name xbertsApp.ProjectsNoDetail
  * @description
  * # ProjectsNoDetail
- * Service in the yeodjangoApp.
+ * Service in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .service('ProjectsNoDetail', ['$resource', function ($resource) {
     // Service logic
     // ...

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ResourceCtrl
+ * @name xbertsApp.controller:ResourceCtrl
  * @description
  * # ResourceCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ResourcesCtrl', ['$scope', '$state', 'modalWrap', 'Event', 'Expert', function ($scope, $state, modalWrap, Event, Expert) {
     $scope.events = [];
     $scope.experts = [];

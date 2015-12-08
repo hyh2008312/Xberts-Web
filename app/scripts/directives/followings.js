@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:followings
+ * @name xbertsApp.directive:followings
  * @description
  * # followings
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('followings', function () {
     return {
       templateUrl: '/views/followingstab.html',

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:ProjectCtrl
+ * @name xbertsApp.controller:ProjectCtrl
  * @description
  * # ProjectCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('ProjectCtrl', ['$scope', '$rootScope','$location', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail','Distributor', 'Paginator','project', 'distributions',
     function ($scope, $rootScope,$location, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail,Distributor,Paginator, project, distributions) {
       $rootScope.bodyBackground = 'background-whitem';

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ExpertLoad
+ * @name xbertsApp.ExpertLoad
  * @description
  * # ExpertLoad
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ExpertLoad',  ['Expert', '$q', 'localStorageService',
     function (Expert, $q, localStorageService) {
       return function ($stateParams) {

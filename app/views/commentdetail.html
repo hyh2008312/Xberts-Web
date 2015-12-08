@@ -4,9 +4,9 @@
   </div>
   <div class="item-body">
     <p class="item-body-header">
-      <span><a ui-sref="expert({ expertId:item.post.joiner.id })">{{ item.post.joiner.fullname }}</a></span>
+      <span><a ui-sref="application.expert({ expertId:item.post.joiner.id })">{{ item.post.joiner.fullname }}</a></span>
       <span>to:</span>
-      <span><a ui-sref="expert({ expertId:item.post_to.joiner.id })">{{ item.post_to.joiner.fullname }}</a></span>
+      <span><a ui-sref="application.expert({ expertId:item.post_to.joiner.id })">{{ item.post_to.joiner.fullname }}</a></span>
       <span class="pull-right" am-time-ago='item.date_published'></span></p>
 
     <p class="item-body-title">{{ item.details}}</p>

@@ -3,7 +3,7 @@
 describe('Controller: ExpertCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('yeodjangoApp'));
+  beforeEach(module('xbertsApp'));
 
   var ExpertCtrl,
     scope;

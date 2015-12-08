@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:feedbackDetail
+ * @name xbertsApp.directive:feedbackDetail
  * @description
  * # feedbackDetail
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('feedbackDetail',['Paginator','Interact', function (Paginator,Interact) {
     return {
       templateUrl: '/views/feedbackdetail.html',

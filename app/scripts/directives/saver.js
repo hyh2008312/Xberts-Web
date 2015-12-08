@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:saver
+ * @name xbertsApp.directive:saver
  * @description
  * # saver
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('saver',  function () {
     return {
       templateUrl:'/views/saver.html',

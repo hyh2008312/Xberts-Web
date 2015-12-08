@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Interact
+ * @name xbertsApp.Interact
  * @description
  * # Interact
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Interact', ['$resource', function ($resource) {
     return {
       Join: function (otherParams) {

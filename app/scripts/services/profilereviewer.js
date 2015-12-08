@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProfileReviewer
+ * @name xbertsApp.ProfileReviewer
  * @description
  * # ProfileReviewer
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProfileReviewer', ['$resource', function ($resource) {
     // Service logic
     // ...

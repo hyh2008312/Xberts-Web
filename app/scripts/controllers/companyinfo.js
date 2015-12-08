@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:CompanyinfoCtrl
+ * @name xbertsApp.controller:CompanyinfoCtrl
  * @description
  * # CompanyinfoCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
     .controller('CompanyinfoCtrl', ['$scope', 'Organization', '$rootScope', function ($scope, Organization, $rootScope) {
         var company = new Organization({id: $rootScope.user.getUserId()});
         $scope.$emit('backdropOn', 'query company');

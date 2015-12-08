@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:narrow
+ * @name xbertsApp.filter:narrow
  * @function
  * @description
  * # narrow
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('narrow', function () {
     var innn = function (a, arr) {
       for (var i = 0; i < arr.length; i++) {

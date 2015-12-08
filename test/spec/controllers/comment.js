@@ -3,7 +3,7 @@
 describe('Controller: CommentCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('yeodjangoApp'));
+  beforeEach(module('xbertsApp'));
 
   var CommentCtrl,
     scope;

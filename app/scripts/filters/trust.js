@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:trust
+ * @name xbertsApp.filter:trust
  * @function
  * @description
  * # trust
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('trust', ['$sce', function ($sce) {
     return function (text) {
       return $sce.trustAsHtml(text);

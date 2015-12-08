@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:CommentCtrl
+ * @name xbertsApp.controller:CommentCtrl
  * @description
  * # CommentCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('CommentCtrl', function ($scope) {
     $scope.getFeedbackPaginator();
   });

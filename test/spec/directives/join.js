@@ -3,7 +3,7 @@
 describe('Directive: join', function () {
 
   // load the directive's module
-  beforeEach(module('yeodjangoApp'));
+  beforeEach(module('xbertsApp'));
 
   var element,
     scope;

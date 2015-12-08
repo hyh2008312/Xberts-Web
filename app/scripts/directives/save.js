@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:save
+ * @name xbertsApp.directive:save
  * @description
  * # save
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('save', ['Interact', '$rootScope', function (Interact, $rootScope) {
     return {
       template: '<button class="btn" ng-class="{\'btn-danger\':join.vote,\'btn-gray\':!join.vote}"' +

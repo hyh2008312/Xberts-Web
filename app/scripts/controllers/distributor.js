@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:DistributorCtrl
+ * @name xbertsApp.controller:DistributorCtrl
  * @description
  * # DistributorCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('DistributorCtrl', function ($scope, SystemData, Distributor, $uibModalInstance, distribution) {
     $scope.distribution = distribution;
     $scope.saleChannels = SystemData.getSaleChannels();

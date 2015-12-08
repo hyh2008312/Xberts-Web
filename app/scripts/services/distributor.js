@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.Distributor
+ * @name xbertsApp.Distributor
  * @description
  * # Distributor
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('Distributor', ['$resource', function ($resource) {
     // Service logic
     // ...

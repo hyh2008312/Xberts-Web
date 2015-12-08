@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:feedback
+ * @name xbertsApp.directive:feedback
  * @description
  * # feedback
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('feedback', function () {
     return {
       templateUrl: '/views/feedback.html',

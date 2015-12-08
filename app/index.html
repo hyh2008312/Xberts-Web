@@ -6,7 +6,7 @@
   <meta name="description"
         content="Xberts.com is a global platform to curate, promote and bring the next generation of smart devices to global market.">
   <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -20,135 +20,20 @@
   <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-app="yeodjangoApp" ng-class="bodyBackground">
+<body ng-app="xbertsApp" ng-class="bodyBackground">
 <backdrop></backdrop>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<!--
-<auth
-  user-auth='{{ request.user.is_authenticated }}'
-  {% if request.user.is_authenticated %}
-  user-id="{{ request.user.id }}"
-  user-name="{{ request.user.get_full_name }}"
-  user-type="{{ request.user.is_staff }}"
-  user-avatar="{{ request.user.userprofile.get_avatar }}"
-  {% endif %}
-  >
-</auth>
--->
 {% verbatim %}
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="navbar-header">
-
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                  data-target="#js-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <a class="navbar-brand" ui-sref="main"><img src="/images/logo-20140717.png" alt="Xberts"></a>
-        </div>
-      </div>
-      <div class="col-sm-9">
-        <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-          <ul class="nav navbar-nav">
-            <li ng-class="{active: $state.includes('projects')}"><a ui-sref="projects" class="fade-in-line">PRODUCTS</a>
-            </li>
-            <li ng-class="{active: $state.includes('events')}"><a ui-sref="events"
-                                                                     class="fade-in-line">EVENTS</a></li>
-            <li ng-class="{active: $state.includes('forum'),dropdown:true}"><a ui-sref="experts" class="fade-in-line">EXPERTS</a>
-              <ul class="dropdown-menu navbar-inverse">
-                <li><a ui-sref="experts">Expert Mentors</a></li>
-                <li><a href="/qa/home/">Expert Q&A</a></li>
-              </ul>
-            </li>
-            <li ng-class="{active: $state.includes('about')}"><a ui-sref="about"
-                                                                 class="fade-in-line">ABOUT</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li class="visible-lg-block">
-              <a href="/projects/launch/" class="fade-in-line"><i
-                class="fa fa-plus-circle fa-lg"></i> Launch Project</a>
-            </li>
-            <li ng-if="!user.isAuth()">
-              <a href="/auth/register/" class="fade-in-line">Sign Up</a>
-            </li>
-            <li ng-if="!user.isAuth()">
-              <a href="/auth/login/" class="fade-in-line">Sign In</a>
-            </li>
-            <!--<li role="presentation" class="dropdown dropdown-right" id="notification"-->
-            <!--ng-if="user.isAuth()">-->
-            <!--<a href="#" class="top-right-badge-x fade-in-line">-->
-            <!--<i class="fa fa-bell fa-lg"></i>-->
-            <!--<span class="top-right-badge striking-white" ng-if="notificationsCount > 0"-->
-            <!--ng-bind="notificationsCount"></span>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu navbar-inverse"style="overflow: scroll; height: 500px;"-->
-            <!--ng-if="notificationsCount>0"srph-infinite-scroll="myCallback()" container="true">-->
-            <!--<li class="item-avatar-middle-inverse cover" ng-repeat="notification in paginator.items">-->
-            <!--<div class="cover-layer cover-layer-right">-->
-            <!--<i class="fa fa-lg fa-times margin-right font-striking"></i><i-->
-            <!--class="fa fa-lg fa-chevron-right font-success"></i>-->
-            <!--</div>-->
-            <!--<img src="data/images/zhaoyudong_0129@126_com.jpg.200x200_q85_crop_upscale.jpg">-->
-
-            <!--<div class="item-body">-->
-            <!--<div class="item-body-header p-1">-->
-            <!--<div class="row">-->
-            <!--<div class="col-xs-6"><a ng-bind="notification.post_name"></a></div>-->
-            <!--<div class="col-xs-6 align-right"><span am-time-ago="notification.date_create"></span></div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="item-body-title" ng-bind="notification.message"></div>-->
-            <!--<div class="item-body-detail p-1"><a ng-bind="notification.post_on"></a></div>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</li>-->
-            <li role="presentation" class="dropdown" ng-if="user.isAuth()">
-              <a class="fade-in-line">
-                <div class="avatar-text-smaller-1">
-                  <img ng-src="{{ user.getUserAvatar() }}"/>
-
-                  <p ng-bind="user.getUserName()"></p>
-                </div>
-              </a>
-              <ul class="dropdown-menu navbar-inverse">
-                <li>
-                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'profile' })">My Profile</a>
-                </li>
-                <li>
-                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'products' })">My Projects</a>
-                </li>
-                <li><a href="/auth/bscinfosetting/">Settings</a></li>
-                <li><a href="/adviceapp/logout/">Logout</a></li>
-              </ul>
-
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div ui-view></div>
 {% endverbatim %}
 
-<div ui-view></div>
 <footer>
   <div class="container text-center">
-    <p><a ui-sref="about">About Us</a>&nbsp;|&nbsp;<a href="mailto:info@xberts.com" target="_blank">Contact Us</a></p>
+    <p><a ui-sref="application.about">About Us</a>&nbsp;|&nbsp;<a href="mailto:info@xberts.com" target="_blank">Contact Us</a></p>
 
     <p>2015 Xberts Inc. All rights reserved.</p>
 
@@ -206,16 +91,18 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/services/project.js"></script>
+<script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/resources.js"></script>
+<script src="scripts/controllers/signup.js"></script>
 <script src="scripts/controllers/projects.js"></script>
 <script src="scripts/services/projectload.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
 <script src="scripts/services/paginator.js"></script>
+<script src="scripts/services/project.js"></script>
 <script src="scripts/services/notification.js"></script>
 <script src="scripts/services/auth.js"></script>
+<script src="scripts/services/signup.js"></script>
 <script src="scripts/controllers/notification.js"></script>
-<script src="scripts/directives/auth.js"></script>
 <script src="scripts/controllers/event.js"></script>
 <script src="scripts/controllers/eventlauch.js"></script>
 <script src="scripts/services/event.js"></script>
@@ -273,6 +160,8 @@
 <script src="scripts/directives/followings.js"></script>
 <script src="scripts/controllers/distributor.js"></script>
 <script src="scripts/services/distributor.js"></script>
+<script src="scripts/resolvers/UserResolver.js"></script>
+<script src="scripts/utils/url.js"></script>
 <!-- endbuild -->
 </body>
 </html>

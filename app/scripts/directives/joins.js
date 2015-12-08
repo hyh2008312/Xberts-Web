@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name yeodjangoApp.directive:joins
+ * @name xbertsApp.directive:joins
  * @description
  * # joins
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .directive('joins', function () {
     return {
       templateUrl: '/views/joinstab.html',

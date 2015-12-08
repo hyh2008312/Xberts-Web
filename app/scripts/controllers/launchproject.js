@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:LaunchprojectCtrl
+ * @name xbertsApp.controller:LaunchprojectCtrl
  * @description
  * # LaunchprojectCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
     .controller('LaunchprojectCtrl', ['$scope', '$rootScope','$stateParams',
     function ($scope, $rootScope,$stateParams) {
         $scope.projectId=$stateParams.projectId || null;

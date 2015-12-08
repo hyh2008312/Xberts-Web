@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name yeodjangoApp.controller:MainCtrl
+ * @name xbertsApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the yeodjangoApp
+ * Controller of the xbertsApp
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator',
     function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator) {
       $scope.eventPaginator = eventPaginator;

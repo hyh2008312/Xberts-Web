@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name yeodjangoApp.ProjectOnlyDetail
+ * @name xbertsApp.ProjectOnlyDetail
  * @description
  * # ProjectOnlyDetail
- * Factory in the yeodjangoApp.
+ * Factory in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .factory('ProjectOnlyDetail', ['$resource', function ($resource) {
     // Service logic
     // ...

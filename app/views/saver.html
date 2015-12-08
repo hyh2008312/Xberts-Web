@@ -1,6 +1,6 @@
 <div ng-show='joins.length>0' class="clearfix margin-top">
   <div class="pull-left" ng-repeat="item in joins">
-    <a class="block-link" ui-sref="expert({ expertId:item.joiner.id })">
+    <a class="block-link" ui-sref="application.expert({ expertId:item.joiner.id })">
       <div class="avatar-text-small-1">
         <img ng-src="{{ item.joiner.avatar }}" alt="{{ item.joiner.fullname }}"/>
       </div>

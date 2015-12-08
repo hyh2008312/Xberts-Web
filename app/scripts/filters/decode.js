@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name yeodjangoApp.filter:decode
+ * @name xbertsApp.filter:decode
  * @function
  * @description
  * # decode
- * Filter in the yeodjangoApp.
+ * Filter in the xbertsApp.
  */
-angular.module('yeodjangoApp')
+angular.module('xbertsApp')
   .filter('decode', function () {
     return function (items, code) {
       var item = "";
