@@ -31,25 +31,27 @@
       <div class="row">
         <div class="col-md-12">
           <uib-tabset>
-            <uib-tab heading="Description">
+            <uib-tab heading="Description" active="tabs[0].active">
               <div ng-bind-html=" expert.biography | trust"></div>
             </uib-tab>
-            <uib-tab heading="Products" select="select('products')">
+            <uib-tab heading="Products" active="tabs[1].active" select="select('products')">
               <div ng-include src="'/views/projectstab.html'"></div>
             </uib-tab>
-            <uib-tab heading="Followers" select="select('followers')">
+            <uib-tab heading="Followers" active="tabs[2].active" select="select('followers')">
               <div ng-if="followersTabActive">
                 <joins joins-paginator="followersPaginator"></joins>
               </div>
             </uib-tab>
-            <uib-tab heading="Followings" select="select('followings')">
+            <uib-tab heading="Followings" active="tabs[3].active" select="select('followings')">
               <div ng-if="followingsTabActive">
                 <followings joins-paginator="followingsPaginator"></followings>
               </div>
             </uib-tab>
 
-            <uib-tab heading="Message" select="select('comments')">
-              <div ng-include src="'/views/comments.html'"></div>
+            <uib-tab heading="Message" active="tabs[4].active" select="select('comments')">
+              <div ng-if="commentsTabActive">
+                <div ng-include src="'/views/comments.html'"></div>
+              </div>
             </uib-tab>
           </uib-tabset>
         </div>

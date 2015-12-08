@@ -124,10 +124,10 @@
               </a>
               <ul class="dropdown-menu navbar-inverse">
                 <li>
-                  <a ui-sref="expert({ expertId: user.getUserId() })">My Profile</a>
+                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'profile' })">My Profile</a>
                 </li>
                 <li>
-                  <a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=project" id="xbert_product">My Projects</a>
+                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'products' })">My Projects</a>
                 </li>
                 <li><a href="/auth/bscinfosetting/">Settings</a></li>
                 <li><a href="/adviceapp/logout/">Logout</a></li>

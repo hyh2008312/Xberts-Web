@@ -19,13 +19,15 @@
       <div class="row">
         <div class="col-md-9">
           <uib-tabset>
-            <uib-tab heading="Description">
+            <uib-tab heading="Description" active="tabs[0].active">
               <div ng-bind-html=" project.details | trust"></div>
             </uib-tab>
-            <uib-tab heading="Comments" select="select('comments')">
-              <div ng-include src="'/views/comments.html'"></div>
+            <uib-tab heading="Comments" active="tabs[1].active" select="select('comments')">
+              <div ng-if="commentsTabActive">
+                <div ng-include src="'/views/comments.html'"></div>
+              </div>
             </uib-tab>
-            <uib-tab heading="Application" select="select('applications')">
+            <uib-tab heading="Application" active="tabs[2].active" select="select('applications')">
               <div ng-if="applicationsTabActive">
                 <div ng-include src="'/views/applicationlist.html'"></div>
               </div>
@@ -69,7 +71,8 @@
                     <p class="font-gray-light">{{ distribution.details }}</p>
                   </div>
                   <div class="card-body-detail text-center">
-                    <button class="btn btn-primary btn-block" ng-click="open('lg')">Become a distribution partner</button>
+                    <button class="btn btn-primary btn-block" ng-click="open('lg')">Become a distribution partner
+                    </button>
                   </div>
                 </div>
 

@@ -132,7 +132,7 @@ angular
         }
       })
       .state('project', {
-        url: "/projects/:projectId",
+        url: "/projects/:projectId?tab",
         templateUrl: '/views/project.html',
         controller: 'ProjectCtrl',
         resolve: {
@@ -229,7 +229,7 @@ angular
         }
       })
       .state('expert', {
-        url: "/experts/:expertId",
+        url: "/experts/:expertId?tab",
         templateUrl: '/views/expert.html',
         controller: 'ExpertCtrl',
         resolve:{

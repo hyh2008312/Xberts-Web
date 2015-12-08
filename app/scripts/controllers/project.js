@@ -8,8 +8,8 @@
  * Controller of the yeodjangoApp
  */
 angular.module('yeodjangoApp')
-  .controller('ProjectCtrl', ['$scope', '$rootScope', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail','Distributor', 'Paginator','project', 'distributions',
-    function ($scope, $rootScope, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail,Distributor,Paginator, project, distributions) {
+  .controller('ProjectCtrl', ['$scope', '$rootScope','$location', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail','Distributor', 'Paginator','project', 'distributions',
+    function ($scope, $rootScope,$location, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail,Distributor,Paginator, project, distributions) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -23,6 +23,13 @@ angular.module('yeodjangoApp')
       });
       //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
+
+      $scope.tabs = [
+        {title: 'detail', active: true},
+        {title: 'comments', active: false},
+        {title: 'application', active: false}
+      ];
+
       $scope.commentsTabActive = false;
       $scope.applicationsTabActive = false;
       $scope.select = function (step) {
@@ -31,7 +38,6 @@ angular.module('yeodjangoApp')
         switch (step) {
           case 'comments':
             $scope.commentsTabActive = true;
-            $scope.$broadcast('feedback', step);
             break;
           case 'applications':
             $scope.applicationsTabActive = true;
@@ -67,4 +73,12 @@ angular.module('yeodjangoApp')
           }
         });
       };
+      var search = $location.search();
+      console.log(search.tab);
+      var tab = search.tab || 'detail';
+      if (search.tab) {
+        for (var i = 0; i < $scope.tabs.length; i++) {
+          $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
+        }
+      }
     }]);
