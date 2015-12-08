@@ -24,13 +24,13 @@ angular.module('yeodjangoApp')
             $scope.tabs[step+1].disable=false;
             $scope.tabs[step+1].active=true;
             if(step==2){
-                $scope.redirect=true
+                $scope.redirect=true;
             }
         });
         $scope.$on('projectId', function (e, d) {
-            $scope.projectId=Number(d)
+            $scope.projectId=Number(d);
         });
         $scope.select=function(step){
             $scope.$broadcast('stepBroadcast',step);
-        }
+        };
     }]);

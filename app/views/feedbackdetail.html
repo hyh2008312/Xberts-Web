@@ -1,0 +1,38 @@
+<div class="item-avatar-middle-x padding-lr-clear">
+  <div class="item-image">
+    <img ng-src="{{ item.post.joiner.avatar }}">
+  </div>
+  <div class="item-body">
+    <p class="item-body-header">
+      <span><a ui-sref="expert({ expertId:item.post.joiner.id })">{{ item.post.joiner.fullname }}</a></span>
+      <span><i class="fa fa-map-marker"></i> {{ item.post.joiner.country }}</span>
+      <span class="pull-right" am-time-ago='item.date_published'></span></p>
+
+    <p class="item-body-title">{{ item.details}}</p>
+
+    <p class="item-body-header align-right">
+      <span>{{ item.comment_amount }}</span>
+      <a class="a-gray"><i class="fa fa-comment" ng-click="commentsToggle()"></i></a>
+    </p>
+
+    <div ng-show="commentsActive">
+      <form name="commentForm" ng-submit="commentFormSubmit()">
+    <textarea name='detail' class="form-control" rows="5"
+              ng-model="comment.details" ng-required="true">
+    </textarea>
+
+        <div class="margin-top align-right">
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </div>
+      </form>
+      <comment-detail ng-repeat="item in commentsPaginator.items" item="item"></comment-detail>
+      <load-more class="row spin-large" ng-if="commentsPaginator.loading"></load-more>
+    </div>
+    <div ng-show="commentsActive && !commentsPaginator.loading">
+      <p class="align-right">
+        <a class="a-gray"><i class="fa fa-angle-double-down" ng-click="commentsPaginator.loadNext()" ng-show="commentsPaginator.hasNext()"></i></a>
+        <a class="a-gray"><i class="fa fa-angle-double-up" ng-click="commentsToggle()" ng-show="commentsPaginator.items.length>0"></i></a>
+      </p>
+    </div>
+  </div>
+</div>

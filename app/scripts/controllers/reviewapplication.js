@@ -12,15 +12,15 @@ angular.module('yeodjangoApp')
     // todo:每个人只能填写一份调查问卷
     $scope.review = review;
     $scope.profile = reviewer;
-    if ($scope.profile.birth != null) {
-      $scope.profile.birth = new Date($scope.profile.birth)
+    if ($scope.profile.birth !== null) {
+      $scope.profile.birth = new Date($scope.profile.birth);
     }
     $scope.profile.linkedin = true;
     $scope.redirect = false;
     $rootScope.bodyBackground = 'background-whitem';
     $scope.tabs = [
       {active: true, disable: false},
-      {active: false, disable: false},
+      {active: false, disable: true},
       {active: false, disable: true},
       {active: false, disable: true}
     ];

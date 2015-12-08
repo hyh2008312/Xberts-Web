@@ -31,7 +31,7 @@ angular.module('yeodjangoApp')
                     }, function (resp) {
                         alert('Sorry,some error happened.');
                         $scope.$emit('backdropOff', 'error');
-                        console.log(resp)
+                        console.log(resp);
                     });
                 } else {
                     $scope.company.$save(function (resp) {
@@ -40,7 +40,7 @@ angular.module('yeodjangoApp')
                     }, function (resp) {
                         alert('Sorry,some error happened.');
                         $scope.$emit('backdropOff', 'error');
-                        console.log(resp)
+                        console.log(resp);
                     });
                 }
 

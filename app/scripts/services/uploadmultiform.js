@@ -20,22 +20,6 @@ angular.module('yeodjangoApp')
         data: data,
         successCallBack: successCallBack,
         errorCallback: errorCallback,
-        //upload: function () {
-        //  var delay=$q.defer();
-        //  var self = this;
-        //  Upload.upload({
-        //    url: self.url,
-        //    data: self.data
-        //  }).then(function(resp){
-        //    delay.resolve(resp);
-        //  }, function(resp){
-        //    delay.reject(resp);
-        //  }, function (evt) {
-        //    self.progress = parseInt(100.0 * evt.loaded / evt.total);
-        //    console.log(self.progress);
-        //  });
-        //  return delay.promise;
-        //}
         upload: function () {
           var self = this;
           Upload.upload({

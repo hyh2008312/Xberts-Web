@@ -34,7 +34,14 @@ $avatarTextTypes: (
     margin-bottom: 10px;
   }
 }
-
+.avatar-inline{
+  > img{
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+  }
+}
 @mixin topRightBadgeX($radius:10px,$paddingTop:10px,$paddingLeft:10px,$badgeHeight:16px,$badgeWidth:16px) {
   padding-top: $paddingTop;
   padding-left: $paddingLeft;
@@ -62,19 +69,37 @@ $numbers: (1 2 3 4 5 8 10);
       @include ellipsisMultiText($number);
     }
   }
+  .p-#{$number}-max {
+    @if ($number==1) {
+      @include ellipsisText();
+    } @else {
+      @include ellipsisMultiTextMax($number);
+    }
+  }
 }
 
 @mixin item($imageSize,$padding,$color) {
   min-height: $imageSize + 20px;
   position: relative;
   padding: 10px 16px 10px $imageSize + $padding + 16px;
+  &.padding-lr-clear{
+    padding: 10px 0 10px $imageSize + $padding;
+    > .item-image{
+      left: 0;
+    }
+  }
   border-bottom: 1px solid $lightColor;
+  &.item-bordless{
+    border-bottom: 0;
+  }
   @if $color == $whiteColor {
     //background-color: $whiteColor;
   } @else {
     background-color: $whiteColor;
-    &:hover{
-      background-color: $lightWhiteColor;
+    &.item-hover {
+      &:hover {
+        background-color: $lightWhiteColor;
+      }
     }
   }
   p{
@@ -146,11 +171,15 @@ $numbers: (1 2 3 4 5 8 10);
 $avatarTypes: (
   small: 24px 6px,
   middle: 44px 10px,
+  middle-x:60px 14px,
   large: 80px 16px
 );
 @each $name, $size in $avatarTypes {
   .item-avatar-#{$name} {
     @include item(nth($size, 1), nth($size, 2), $darkColor);
+    &:last-child{
+      border-bottom: 0;
+    }
   }
   .item-avatar-#{$name}-inverse {
     @include item(nth($size, 1), nth($size, 2), $whiteColor);
@@ -161,6 +190,12 @@ $avatarTypes: (
   border: 1px solid $lightGrayColor;
   background-color: $whiteColor;
   margin-bottom: 20px;
+  &.card-bordless{
+    border: 0;
+  }
+  &.card-margin-bottomless{
+    margin-bottom: 0;
+  }
   > .card-header {
     position: relative;
     width: 100%;

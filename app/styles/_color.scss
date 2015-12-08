@@ -86,6 +86,9 @@ $colors: (
     outline: 5px auto $successColor
   }
 }
+.btn-gray {
+  background-color: #dddddd;
+}
 
 .nav > li.disabled {
   > a:hover, > a:focus, > a {

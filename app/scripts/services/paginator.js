@@ -61,6 +61,11 @@ angular.module('yeodjangoApp')
             localStorageService.set(self.name + '_items', self.items);
             localStorageService.set(self.name + '_next', self.next);
           });
+        },
+        clear:function(){
+          this.currentPage=0;
+          this.next='true';
+          this.items=[];
         }
       };
       return paginator;

@@ -135,6 +135,31 @@ angular
           }]
         }
       })
+      .state('project', {
+        url: "/projects/:projectId?tab",
+        templateUrl: '/views/project.html',
+        controller: 'ProjectCtrl',
+        resolve: {
+          distributions: ['DistributionLoad', '$stateParams', function (DistributionLoad, $stateParams) {
+            return DistributionLoad($stateParams);
+          }],
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }],
+          targetGeos: ['SystemData', function (SystemData) {
+            return SystemData.getTargetGeosPromise();
+          }],
+          supportTypes: ['SystemData', function (SystemData) {
+            return SystemData.getSupportTypesPromise();
+          }],
+          transportationModels: ['SystemData', function (SystemData) {
+            return SystemData.getTransportationModelsPromise();
+          }],
+          project:['ProjectLoad','$stateParams',function(ProjectLoad,$stateParams){
+            return ProjectLoad($stateParams);
+          }]
+        }
+      })
       .state('launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
         templateUrl: '/views/launchproject.html',
@@ -207,7 +232,16 @@ angular
           }]
         }
       })
-
+      .state('expert', {
+        url: "/experts/:expertId?tab",
+        templateUrl: '/views/expert.html',
+        controller: 'ExpertCtrl',
+        resolve:{
+          expert:['ExpertLoad','$stateParams',function(ExpertLoad,$stateParams){
+            return ExpertLoad($stateParams);
+          }]
+        }
+      })
       .state('launch', {
         url: "/launch/:eventId",
         templateUrl: '/views/eventlauch.html',
@@ -215,7 +249,7 @@ angular
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
             var eventId = $stateParams.eventId || null;
-            return eventId === null ? {} : EventLoad($stateParams)
+            return eventId === null ? {} : EventLoad($stateParams);
           }]
         }
       })
@@ -224,17 +258,13 @@ angular
         templateUrl: '/views/reviewapplication.html',
         controller: 'ReviewapplicationCtrl',
         resolve: {
-          profile: function () {
-            return {};
-          },
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams)
+            return reviewId === null ? {} : ReviewLoad($stateParams);
           }],
           reviewer: ['ProfileReviewerLoad', function (ProfileReviewerLoad) {
             return ProfileReviewerLoad();
           }]
-
         }
       });
   }]);

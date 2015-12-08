@@ -8,13 +8,14 @@
  * Factory in the yeodjangoApp.
  */
 angular.module('yeodjangoApp')
-  .factory('DistributionLoad', ['Distribution','$stateParams','$q',function (Distribution,$stateParams,$q) {
-    return function(){
-      var delay=$q.defer;
+  .factory('DistributionLoad', ['Distribution','$q',function (Distribution,$q) {
+    return function($stateParams){
+      var delay=$q.defer();
       Distribution.query({project_id:$stateParams.projectId},function(distribuitons){
         delay.resolve(distribuitons);
       },function(){
-        delay.reject(('Unable to fetch project'));
+        console.log("'Unable to fetch distributions'");
+        delay.reject(('Unable to fetch distributions'));
       });
       return delay.promise;
     };

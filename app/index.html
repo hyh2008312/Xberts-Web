@@ -125,10 +125,12 @@
                 </div>
               </a>
               <ul class="dropdown-menu navbar-inverse">
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=biography">My Profile</a></li>
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=project" id="xbert_product">My Projects</a>
+                <li>
+                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'profile' })">My Profile</a>
                 </li>
-                <li><a ng-href="/xberts/{{ user.getUserId() }}/#?xbertTab=questions" id="xbert_question">My Q&A</a></li>
+                <li>
+                  <a ui-sref="expert({ expertId: user.getUserId(),tab:'products' })">My Projects</a>
+                </li>
                 <li><a href="/auth/bscinfosetting/">Settings</a></li>
                 <li><a href="/adviceapp/logout/">Logout</a></li>
               </ul>
@@ -207,6 +209,7 @@
 <script src="scripts/services/project.js"></script>
 <script src="scripts/controllers/resources.js"></script>
 <script src="scripts/controllers/projects.js"></script>
+<script src="scripts/services/projectload.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
 <script src="scripts/services/paginator.js"></script>
 <script src="scripts/services/notification.js"></script>
@@ -229,6 +232,7 @@
 <script src="scripts/controllers/requestinfo.js"></script>
 <script src="scripts/services/systemdata.js"></script>
 <script src="scripts/services/distribution.js"></script>
+<script src="scripts/services/distributionload.js"></script>
 <script src="scripts/services/organization.js"></script>
 <script src="scripts/directives/redirect.js"></script>
 <script src="scripts/filters/projectcategory.js"></script>
@@ -251,6 +255,24 @@
 <script src="scripts/services/reviewload.js"></script>
 <script src="scripts/services/profilereviewer.js"></script>
 <script src="scripts/services/profilereviewerload.js"></script>
+<script src="scripts/controllers/project.js"></script>
+<script src="scripts/filters/narrow.js"></script>
+<script src="scripts/filters/decode.js"></script>
+<script src="scripts/services/interact.js"></script>
+<script src="scripts/services/projectonlydetail.js"></script>
+<script src="scripts/directives/save.js"></script>
+<script src="scripts/directives/join.js"></script>
+<script src="scripts/controllers/comment.js"></script>
+<script src="scripts/directives/feedback.js"></script>
+<script src="scripts/directives/feedbackdetail.js"></script>
+<script src="scripts/directives/commentdetail.js"></script>
+<script src="scripts/controllers/expert.js"></script>
+<script src="scripts/services/expertload.js"></script>
+<script src="scripts/directives/saver.js"></script>
+<script src="scripts/directives/joins.js"></script>
+<script src="scripts/directives/followings.js"></script>
+<script src="scripts/controllers/distributor.js"></script>
+<script src="scripts/services/distributor.js"></script>
 <!-- endbuild -->
 </body>
 </html>

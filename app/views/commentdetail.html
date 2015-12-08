@@ -1,0 +1,32 @@
+<div class="item-avatar-middle-x padding-lr-clear">
+  <div class="item-image">
+    <img ng-src="{{ item.post.joiner.avatar }}">
+  </div>
+  <div class="item-body">
+    <p class="item-body-header">
+      <span><a ui-sref="expert({ expertId:item.post.joiner.id })">{{ item.post.joiner.fullname }}</a></span>
+      <span>to:</span>
+      <span><a ui-sref="expert({ expertId:item.post_to.joiner.id })">{{ item.post_to.joiner.fullname }}</a></span>
+      <span class="pull-right" am-time-ago='item.date_published'></span></p>
+
+    <p class="item-body-title">{{ item.details}}</p>
+
+    <p class="item-body-header align-right">
+      <span>{{ item.comment_amount }}</span>
+      <a class="a-gray"><i class="fa fa-comment" ng-click="commentsToggle()"></i></a>
+    </p>
+
+    <div ng-show="replyActive">
+
+      <form name="commentForm" ng-submit="commentFormSubmit()">
+    <textarea name='detail' class="form-control" rows="5"
+              ng-model="comment.details" ng-required="true">
+    </textarea>
+
+        <div class="margin-top align-right">
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
