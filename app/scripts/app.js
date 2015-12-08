@@ -193,7 +193,16 @@ angular
         resolve: {
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
+              var params = {page: nextPage,is_partner:'False'};
+              angular.extend(params, otherParams);
+              EventNoDetail.get(params, callback);
+            };
+            var paginator = Paginator('event', fetchFunction);
+            return paginator.load();
+          }],
+          eventPartnerPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage,is_partner:'True'};
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };

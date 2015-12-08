@@ -1,10 +1,9 @@
 <uib-carousel interval="5000" no-wrap="false">
   <uib-slide ng-repeat="slide in slides" active="slide.active">
-    <section class="section-fixed"
-             style="background-image: url({{ slide.image }});height: 550px;">
+    <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
       <div class="cover-layer">
-        <div class="section-title " style="margin-top:90px">
-          <h3>{{ slide.text}}</h3>
+        <div class="carousel-caption" style="padding-bottom: 50px">
+          <h3>{{slide.text}}</h3>
         </div>
       </div>
     </section>
@@ -18,9 +17,8 @@
 
       <h3>Register through Xberts to get an exclusive discount for the exhibition</h3>
     </div>
-    <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
-      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
+    <div class="row section-body">
+      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPartnerPaginator.items">
         <div class="card cover">
           <div class="card-header"
                style="background-image:url({{ event.logo }});">
