@@ -1,81 +1,78 @@
-<form name="distributorForm" ng-submit="distributorFormSubmit()" ng-controller="RequestinfoCtrl">
-  <div class="row">
-    <div class="col-md-9">
-      <div class="form-group">
-        <label>Select a partner type:</label><br/>
-        <label class="radio-inline" ng-repeat="transportationModel in transportationModels">
-          <input type="radio"
-                 name="transportation_model"
-                 ng-model="distributor.transportation_model"
-                 ng-value="transportationModel.id"
-                 ng-required="true"
-          /> {{ transportationModel.name }}
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Describe your specialties and distribution channels:</label>
-                <textarea rows="5" class="form-control" placeholder="Optional"
-                          name="details"
-                          ng-model="distributor.details">
+<div class="modal-header">
+  <h3 class="modal-title text-center">Apply to be a distribution partner!</h3>
+</div>
+<div class="modal-body">
+  <form name="distributorForm" ng-submit="distributorFormSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Select a partner type:</label><br/>
+          <label class="radio-inline">
+            <input type="radio" name='partner_type' value="1" ng-model="distributor.partner_type" ng-required="true"/>
+            Distributor
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name='partner_type' value="2" ng-model="distributor.partner_type" ng-required="true"/>Sales
+            Agent
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name='partner_type' value="3" ng-model="distributor.partner_type" ng-required="true"/>Retailer
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name='partner_type' value="4" ng-model="distributor.partner_type" ng-required="true"/>Sales
+            Consultant
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Describe your specialties and distribution channels:</label>
+                <textarea rows="5" class="form-control" placeholder="Please be specific"
+                          name="proposal"
+                          ng-model="distributor.proposal"
+                          ng-required="true">
                 </textarea>
-      </div>
-      <div class="form-group form-inline">
-        <label>Number of years in business?</label>
-        <input type="input" class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="form-group">
-        <label>Specify the location where you will be applying to become a distribution partner:</label>
-        <input class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="form-group form-inline">
-        <label>Do you provide customer service support?</label>
-        <input type="checkbox" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
+        </div>
+        <div class="form-group form-inline">
+          <label>Number of years in business?</label>
+          <input type="number" class="form-control" name="year_in_business"
+                 ng-model="distributor.year_in_business" ng-required="true"/>
+        </div>
+        <div class="form-group">
+          <label>Specify the location where you will be applying to become a distribution partner:</label>
+          <input class="form-control" name="location"
+                 ng-model="distributor.location" ng-required="true"/>
+        </div>
+        <div class="form-group">
+          <label>Which channels will you be selling our products?</label><br/>
+          <label class="checkbox-inline" ng-repeat="item in saleChannels">
+            <input type="checkbox" ng-model="item.selected"> {{ item.name }}
+          </label>
 
-      <div class="form-group">
-        <label>Which channels will you be selling our products?</label><br/>
-        <label class="checkbox-inline" ng-repeat="targetGeo in targetGeos">
-          <input type="checkbox" ng-model="targetGeo.selected"> {{ targetGeo.name }}
-        </label>
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.saleChannelsRequired">
+            *required</p>
+        </div>
+        <div class="form-group">
+          <label>Please provide your online web store links below (optional):</label>
+          <input class="form-control" name="web_store"
+                 ng-model="distributor.web_store"/>
+        </div>
+        <div class="form-group">
+          <label>Company website (optional):</label>
+          <input class="form-control" name="company_url" ng-model="distributor.company_url"/>
+        </div>
+        <div class="row">
+          <p class='message-error text-center' ng-show="distributorForm.submitted && distributorForm.$invalid">Please
+            check
+            your
+            input. </p>
 
-        <p class="message-error"
-           ng-show="distributorForm.submitted && distributorForm.targetGeosRequired">
-          *required</p>
-      </div>
-      <div class="form-group">
-        <label>Please provide your online web store links below (optional):</label>
-        <input class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="form-group form-inline">
-        <label>What’s the annual sales volume of your business? (optional):</label>
-        <input class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="form-group">
-        <label>Company website (optional):</label>
-        <input class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="form-group">
-        <label>Contact number (optional):</label>
-        <input class="form-control" name="details"
-               ng-model="distributor.details" ng-required="true"/>
-      </div>
-      <div class="row">
-        <p class='message-error text-center' ng-show="companyForm.submitted && companyForm.$invalid">Please check
-          your
-          input. </p>
+          <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+          </p>
+        </div>
 
-        <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </p>
       </div>
-
     </div>
-  </div>
-</form>
+  </form>
+</div>
 

@@ -156,6 +156,7 @@ angular.module('yeodjangoApp')
           };
           $scope.feedbackPaginator= Paginator('feedback_'+$scope.interact.id, fetchFunction);
           $scope.feedbackPaginator.clear();
+          $scope.feedbackPaginator.loadNext();
           //$scope.feedbackPaginator.watch($scope,'feedbackPaginator.items.length');
         };
       }

@@ -51,7 +51,7 @@ angular.module('yeodjangoApp')
                 joinController.leaveComment(commentScope.comment,callback).then(function(comment){
                   scope.commentsPaginator.items.unshift(comment);
                   scope.item.comment_amount+=1;
-                  alert('success')
+                  //alert('success')
                 },function(error){
                   alert(error)
                 });
@@ -62,7 +62,7 @@ angular.module('yeodjangoApp')
               joinController.leaveComment(commentScope.comment,callback).then(function(comment){
                 scope.commentsPaginator.items.unshift(comment);
                 scope.item.comment_amount+=1;
-                alert('success')
+                //alert('success')
               },function(error){
                 alert(error)
               });

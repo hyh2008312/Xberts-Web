@@ -16,11 +16,14 @@ angular.module('yeodjangoApp')
     var transportationModelResource = $resource('/projects/rest/transportation_models/', null);
     var stagesResource = $resource('/xberts/rest/stages/', null);
 
+    var saleChannelsResource = $resource('/projects/rest/sale_channels/', null);
+
     var targetGeos = null;
     var transportationModels = null;
     var supportTypes = null;
     var projectTypes = null;
     var stages = null;
+    var saleChannels = null;
 
     var systemData = {};
     systemData.stringParseToCheckboxes = function (string, checkboxes) {
@@ -116,6 +119,23 @@ angular.module('yeodjangoApp')
         });
       } else {
         delay.resolve(transportationModels);
+      }
+      return delay.promise;
+    };
+
+    systemData.getSaleChannels = function () {
+      return saleChannels;
+    };
+    systemData.getSaleChannelsPromise = function () {
+      var delay = $q.defer();
+      if (saleChannels === null) {
+        saleChannelsResource.query(function (results) {
+          saleChannels = results;
+          delay.resolve(saleChannels);
+        });
+      } else {
+        checkboxClear(supportTypes);
+        delay.resolve(saleChannels);
       }
       return delay.promise;
     };
