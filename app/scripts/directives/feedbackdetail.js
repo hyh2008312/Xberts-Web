@@ -7,7 +7,7 @@
  * # feedbackDetail
  */
 angular.module('xbertsApp')
-  .directive('feedbackDetail',['Paginator','Interact', function (Paginator,Interact) {
+  .directive('feedbackDetail',['Paginator','$rootScope','Interact', 'growl',function (Paginator,$rootScope,Interact,growl) {
     return {
       templateUrl: '/views/feedbackdetail.html',
       replace:true,
@@ -19,19 +19,16 @@ angular.module('xbertsApp')
       controller:function($scope){
         this.leaveComment=function(commentScope){
           $scope.commentSubmit(commentScope);
-        }
+        };
       },
       link: function postLink(scope, element, attrs,joinController) {
         scope.commentsActive=false;
+        scope.referenceId='feedback_'+scope.item.id;
         scope.commentsToggle=function(){
           scope.commentsActive=!scope.commentsActive;
-          console.log("loading comments...");
-          console.log(scope.commentsPaginator);
           if(scope.commentsPaginator===undefined){
-            console.log("start loading");
             getCommentsPaginator();
           }else {
-            console.log("not loading")
           }
         };
 
@@ -39,8 +36,11 @@ angular.module('xbertsApp')
           scope.commentSubmit(scope);
         };
         scope.commentSubmit=function(commentScope){
+          if(!$rootScope.user.authRequired()){
+            return
+          }
           var callback=function(){
-            commentScope.comment.details=''
+            commentScope.comment.details='';
           };
           if (commentScope.commentForm.$valid) {
             commentScope.comment.post_to_id=commentScope.item.post.id;
@@ -51,20 +51,20 @@ angular.module('xbertsApp')
                 joinController.leaveComment(commentScope.comment,callback).then(function(comment){
                   scope.commentsPaginator.items.unshift(comment);
                   scope.item.comment_amount+=1;
-                  //alert('success')
+                  growl.success('success',{referenceId:commentScope.referenceId});
                 },function(error){
-                  alert(error)
+                  growl.error(error,{referenceId:commentScope.referenceId});
                 });
               },function(error){
-                alert(error);
+                growl.error(error,{referenceId:commentScope.referenceId});
               });
             }else {
               joinController.leaveComment(commentScope.comment,callback).then(function(comment){
                 scope.commentsPaginator.items.unshift(comment);
                 scope.item.comment_amount+=1;
-                //alert('success')
+                growl.success('success',{referenceId:commentScope.referenceId});
               },function(error){
-                alert(error)
+                growl.error(error,{referenceId:commentScope.referenceId});
               });
             }
           }

@@ -16,7 +16,8 @@
     </p>
 
     <div ng-show="commentsActive">
-      <form name="commentForm" ng-submit="commentFormSubmit()">
+      <form name="commentForm" ng-submit="commentFormSubmit()" class="pr">
+        <div growl  reference="feedback_{{ item.id }}"></div>
     <textarea name='detail' class="form-control" rows="5"
               ng-model="comment.details" ng-required="true">
     </textarea>

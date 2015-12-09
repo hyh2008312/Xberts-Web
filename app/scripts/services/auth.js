@@ -1,35 +1,42 @@
 "use strict";
 
 angular.module("xbertsApp")
-  .factory('AuthService', ['$rootScope', '$resource', function($rootScope, $resource) {
-    function User(auth, userId, userName, userType, userAvatar) {
-      this._auth = auth;
-      this._userId = userId;
-      this._userName = userName;
-      this._userType = userType;
-      this._userAvatar = userAvatar;
-      this.isAuth=function (){
-        return this._auth;
+  .factory('AuthService', ['$rootScope', '$resource','$state', function ($rootScope, $resource, $state) {
+    function User(userId, userName, userType, userAvatar) {
+      this._userId = userId || '';
+      this._userName = userName || '';
+      this._userType = userType || false;
+      this._userAvatar = userAvatar || '';
+      this.isAuth = function () {
+        return this._userId ? true : false;
       };
-      this.isStaff=function(){
+      this.isStaff = function () {
         return this._userType;
       };
-      this.getUserId=function (){
+      this.getUserId = function () {
         return this._userId;
       };
-      this.getUserName=function (){
+      this.getUserName = function () {
         return this._userName;
       };
-      this.getUserType=function (){
+      this.getUserType = function () {
         return this._userType;
       };
-      this.getUserAvatar=function (){
+      this.getUserAvatar = function () {
         return this._userAvatar;
       };
+      this.authRequired = function () {
+        if (this.isAuth()) {
+          return true;
+        } else {
+          $state.go('application.login');
+          return false;
+        }
+      }
     }
 
-    function setUser(user){
-      $rootScope.user = new User(true, user.id, user.fullName, user.isStaff, user.avatar);
+    function setUser(user) {
+      $rootScope.user = new User(user.id, user.fullName, user.isStaff, user.avatar);
     }
 
     function createAuthHeader(credentials) {
@@ -47,6 +54,9 @@ angular.module("xbertsApp")
         }
       });
     }
+
+    $rootScope.user = new User();
+
 
     return {
       login: login,

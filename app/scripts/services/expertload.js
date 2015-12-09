@@ -22,7 +22,6 @@ angular.module('xbertsApp')
         if (expert === null) {
           var delay = $q.defer();
           Expert.get({id: expertId}, function (project) {
-            console.log(project);
             delay.resolve(project);
           }, function () {
             delay.reject(('Unable to fetch project'));

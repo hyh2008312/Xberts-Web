@@ -37,7 +37,11 @@ angular.module('xbertsApp')
       '</button>',
       require: '^join',
       restrict: 'E',
+      replace:true,
       link: function postLink(scope, element, attrs, joinController) {
+        if(attrs.width){
+          element.css("width",attrs.width);
+        }
         scope.save = function () {
           //todo:增加登录权限
           if (scope.join.id === undefined) {

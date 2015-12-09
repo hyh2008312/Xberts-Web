@@ -18,7 +18,8 @@
 
     <div ng-show="replyActive">
 
-      <form name="commentForm" ng-submit="commentFormSubmit()">
+      <form name="commentForm" ng-submit="commentFormSubmit()" class="pr">
+        <div growl reference="comment_{{ item.id }}"></div>
     <textarea name='detail' class="form-control" rows="5"
               ng-model="comment.details" ng-required="true">
     </textarea>

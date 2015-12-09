@@ -18,6 +18,7 @@ angular.module('xbertsApp')
       },
       link: function postLink(scope, element, attrs,feedbackDetailController) {
         scope.replyActive=false;
+        scope.referenceId="comment_"+scope.item.id;
         scope.commentsToggle=function(){
           scope.replyActive=!scope.replyActive;
         };

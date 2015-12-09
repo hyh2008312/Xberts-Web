@@ -72,7 +72,6 @@ angular.module('xbertsApp')
         $scope.$broadcast('expert', step);
       };
       var search = $location.search();
-      console.log(search.tab);
       var tab = search.tab || 'profile';
       if (search.tab) {
         for (var i = 0; i < $scope.tabs.length; i++) {

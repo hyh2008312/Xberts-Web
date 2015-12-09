@@ -58,7 +58,9 @@ angular.module('xbertsApp')
       //modal
 
       $scope.open = function (size) {
-
+        if(!$rootScope.user.authRequired()){
+          return
+        }
         var modalInstance = $uibModal.open({
           templateUrl: '/views/applicationinfo.html',
           controller: 'DistributorCtrl',
@@ -74,7 +76,6 @@ angular.module('xbertsApp')
         });
       };
       var search = $location.search();
-      console.log(search.tab);
       var tab = search.tab || 'detail';
       if (search.tab) {
         for (var i = 0; i < $scope.tabs.length; i++) {

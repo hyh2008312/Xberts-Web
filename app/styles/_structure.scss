@@ -264,6 +264,14 @@ a.block-link {
 .note-editor {
   border: 1px solid $lightGrayColor;
 }
+.growl-container.top-right{
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .border-clear {
   border: none;
@@ -338,6 +346,9 @@ $xy: (
   }
   .expert-profile {
     margin-top: 10px;
+  }
+  .expert-profile-btn{
+    margin-top: 45px;
   }
 }
 

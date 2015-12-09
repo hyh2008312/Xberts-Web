@@ -7,7 +7,7 @@
  * # join
  */
 angular.module('xbertsApp')
-  .directive('join', ['Interact', '$rootScope','Paginator','$q', function (Interact, $rootScope,Paginator,$q) {
+  .directive('join', ['Interact', '$rootScope','Paginator','$q','growl', function (Interact, $rootScope,Paginator,$q,growl) {
     return {
       restrict: 'E',
       replace: true,
@@ -24,6 +24,9 @@ angular.module('xbertsApp')
         };
         this.participate = function (vote) {
           //todo: 返还一个promise对象
+          if(!$rootScope.user.authRequired()){
+            return
+          }
           $scope.voting = true;
           if (vote) {
             $scope.interact.vote_amount += 1;
@@ -44,12 +47,11 @@ angular.module('xbertsApp')
               }
             }, function (error) {
               $scope.voting = false;
-              alert('Some error happened.');
+              growl.error('error');
             });
           } else {
             $scope.join = new Join($scope.join);
             $scope.join.vote = vote;
-            console.log("vote");
             $scope.join.$vote(function (result) {
               $scope.voting = false;
               if (result.vote) {
@@ -68,7 +70,6 @@ angular.module('xbertsApp')
           var delay = $q.defer();
           var Join = Interact.Join({});
           if ($scope.join.id === undefined) {
-            console.log("participate not vote");
             $scope.join = new Join();
             $scope.join.interact = $scope.interact.id;
             $scope.join.vote = false;
@@ -76,7 +77,7 @@ angular.module('xbertsApp')
               delay.resolve($scope.join);
             }, function (error) {
               delay.reject('Some error happened.');
-              alert('Some error happened.');
+              growl.error('error');
             });
             return delay.promise;
           }
@@ -92,13 +93,14 @@ angular.module('xbertsApp')
             delay.resolve(comment);
           },function(error){
             delay.reject('Some error happened.');
-            alert('Some error happened.');
+            growl.error('error');
           });
           return delay.promise;
         };
         $scope.init = function (interact) {
           //todo:join直接传递过来
           $scope.interact = interact;
+          $scope.referenceId='interact_'+$scope.interact.id;
           if ($rootScope.user.isAuth()) {
             var joinResult = Interact.Join({interact_id: $scope.interact.id, joiner_id: $rootScope.user.getUserId()});
             joinResult.get(function (data) {
@@ -118,6 +120,9 @@ angular.module('xbertsApp')
           });
         };
         this.leaveFeedback=function(content,callback) {
+          if(!$rootScope.user.authRequired()){
+            return
+          }
           var Feedback = Interact.Feedback({});
           var feedback = new Feedback(content);
           callback();
@@ -127,9 +132,9 @@ angular.module('xbertsApp')
             console.log(feedback);
             feedback.$save(function () {
               $scope.feedbackPaginator.items.unshift(feedback);
+              growl.success('success',{referenceId:$scope.referenceId});
             }, function (error) {
-              console.log("some error happened");
-              console.log(error);
+              growl.error('error',{referenceId:$scope.referenceId});
             });
           }else {
             this.participatePromise().then(function(){
@@ -137,13 +142,12 @@ angular.module('xbertsApp')
               console.log(feedback);
               feedback.$save(function () {
                 $scope.feedbackPaginator.items.unshift(feedback);
+                growl.success('success',{referenceId:$scope.referenceId});
               }, function (error) {
-                console.log("some error happened");
-                console.log(error);
+                growl.error('error',{referenceId:$scope.referenceId});
               });
             },function(error){
-              console.log("some error happened");
-              console.log(error);
+              growl.error('error',{referenceId:$scope.referenceId});
             })
           }
         };

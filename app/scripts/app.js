@@ -26,7 +26,8 @@ angular
     'ui.bootstrap',
     //'ngImgCrop',
     'ngFileUpload',
-    'internationalPhoneNumber'
+    'internationalPhoneNumber',
+    'angular-growl'
   ])
   .run(['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -71,9 +72,13 @@ angular
       .setStorageType('sessionStorage');
   }])
   .config(['ipnConfig', function (ipnConfig) {
-    ipnConfig.autoHideDialCode=false;
-    ipnConfig.nationalMode=false;
-    ipnConfig.autoPlaceholder=false;
+    ipnConfig.autoHideDialCode = false;
+    ipnConfig.nationalMode = false;
+    ipnConfig.autoPlaceholder = false;
+  }])
+  .config(['growlProvider', function (growlProvider) {
+    growlProvider.globalTimeToLive(2000);
+    growlProvider.onlyUniqueMessages(false);
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
@@ -83,7 +88,7 @@ angular
         abstract: true,
         templateUrl: '/views/navigation.html',
         resolve: {
-          authCheck: ['UserResolver', function(UserResolver) {
+          authCheck: ['UserResolver', function (UserResolver) {
             return UserResolver.resolver();
           }]
         }
@@ -184,7 +189,7 @@ angular
           transportationModels: ['SystemData', function (SystemData) {
             return SystemData.getTransportationModelsPromise();
           }],
-          project:['ProjectLoad','$stateParams',function(ProjectLoad,$stateParams){
+          project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
             return ProjectLoad($stateParams);
           }]
         }
@@ -202,7 +207,7 @@ angular
         resolve: {
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage,is_partner:'False'};
+              var params = {page: nextPage, is_partner: 'False'};
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
@@ -211,7 +216,7 @@ angular
           }],
           eventPartnerPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage,is_partner:'True'};
+              var params = {page: nextPage, is_partner: 'True'};
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
@@ -254,8 +259,8 @@ angular
         url: "/experts/:expertId?tab",
         templateUrl: '/views/expert.html',
         controller: 'ExpertCtrl',
-        resolve:{
-          expert:['ExpertLoad','$stateParams',function(ExpertLoad,$stateParams){
+        resolve: {
+          expert: ['ExpertLoad', '$stateParams', function (ExpertLoad, $stateParams) {
             return ExpertLoad($stateParams);
           }]
         }
