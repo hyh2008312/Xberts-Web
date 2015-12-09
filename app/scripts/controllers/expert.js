@@ -12,7 +12,7 @@ angular.module('xbertsApp')
     function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
-      $scope.btnText = 'send';
+      $scope.btnText = 'Send';
 
       $scope.tabs = [
         {title: 'profile', active: true},

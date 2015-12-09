@@ -22,7 +22,7 @@ angular.module('xbertsApp')
 
         {
           image: '/images/event_3.jpg',
-          text: 'GLXSS team presented their products to international buyers on Xberts booth '
+          text: 'GLXSS team presented their products to buyers on Xberts booth'
         },
         {
           image: '/images/event_2.jpg',
