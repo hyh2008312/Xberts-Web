@@ -17,6 +17,7 @@ angular.module('xbertsApp')
         var feedbackCallback=function(){
           scope.feedback={};
         };
+        scope.btnText=attrs.btnText || 'comment';
         scope.feedbackFormSubmit = function () {
           if (scope.feedbackForm.$valid) {
             joinController.leaveFeedback(scope.feedback,feedbackCallback);

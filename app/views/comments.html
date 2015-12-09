@@ -1,5 +1,5 @@
 <div ng-controller="CommentCtrl">
-  <feedback></feedback>
+  <feedback btn-text="{{ btnText }}"></feedback>
   <div style="margin-top: 30px;" infinite-scroll="feedbackPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="feedbackPaginator.loading || !feedbackPaginator.hasNext()">
     <feedback-detail ng-repeat="item in feedbackPaginator.items" item="item"></feedback-detail>
