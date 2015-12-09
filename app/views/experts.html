@@ -48,7 +48,7 @@
         <div class="item-avatar-large item-hover" style="min-height: 127px;" ng-repeat="expert in expertPaginator.items">
           <div class="item-image text-center">
             <img ng-src="{{ expert.avatar }}">
-            <a href="/xberts/{{ expert.user_id }}/#?xbertTab=feedback" class="btn btn-xs btn-primary">Contact</a>
+            <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })" class="btn btn-xs btn-primary">Contact</a>
           </div>
           <div class="item-body">
             <p class="item-body-header">
