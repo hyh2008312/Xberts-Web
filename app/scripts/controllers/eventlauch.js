@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('EventLauchCtrl', ['$scope', '$state', 'UploadMultiForm', 'TempImage', 'event',
-    function ($scope, $state, UploadMultiForm, TempImage, event) {
+  .controller('EventLauchCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'event',
+    function ($scope, $state, growl, UploadMultiForm, TempImage, event) {
       var tagsParse = function (tagstring) {
         var tags = [];
         if (tagstring === undefined || tagstring === null || tagstring === "") {
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
       };
       // model
       $scope.event = event;
-      $scope.event.$promise=undefined;
+      $scope.event.$promise = undefined;
       if ($scope.event.id) {
         $scope.event.when = new Date($scope.event.when);
       }
@@ -86,7 +86,7 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'success');
             $state.go('event', {eventId: resp.data.id});
           }, function (resp) {
-            alert('Sorry,some error happened.');
+            growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
             console.log(resp)
           });
@@ -127,7 +127,7 @@ angular.module('xbertsApp')
               });
               editor.insertNode($scope.editable, img[0]);
             }, function (resp) {
-              alert('Sorry,some error happened.');
+              growl.error('Sorry,some error happened.');
               console.log(resp);
               $scope.$emit('backdropOff', 'error');
             });

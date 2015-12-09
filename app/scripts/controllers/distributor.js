@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('DistributorCtrl', function ($scope, SystemData, Distributor, $uibModalInstance, distribution) {
+  .controller('DistributorCtrl', function ($scope, SystemData, Distributor, $uibModalInstance, distribution,growl) {
     $scope.distribution = distribution;
     $scope.saleChannels = SystemData.getSaleChannels();
 
@@ -30,9 +30,10 @@ angular.module('xbertsApp')
 
         $scope.distributor.$save(function (resp) {
           $scope.$emit('backdropOff', 'success');
+          growl.success('Thanks, your application has been submitted successfully!');
           $uibModalInstance.dismiss();
         }, function (resp) {
-          alert('Sorry,some error happened.');
+          growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
           console.log(resp);
         });

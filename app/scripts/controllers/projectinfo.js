@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ProjectinfoCtrl', ['$scope', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project',
-    function ($scope, UploadMultiForm, TempImage, SystemData, Project) {
+  .controller('ProjectinfoCtrl', ['$scope', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project','growl',
+    function ($scope, UploadMultiForm, TempImage, SystemData, Project,growl) {
       $scope.projectTypes=SystemData.getProjectTypes();
       $scope.projectTemp = {
         tempId: 0,
@@ -25,7 +25,7 @@ angular.module('xbertsApp')
           $scope.project = result;
           $scope.projectTemp.tempId = result.temp || 0;
         }, function (error) {
-          alert("some error happened");
+          growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'project get failed');
           console.log(error);
         });
@@ -56,7 +56,7 @@ angular.module('xbertsApp')
             $scope.$emit('projectId', resp.data.id);
             $scope.project = resp.data;
           }, function (resp) {
-            alert('Sorry,some error happened.');
+            growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
           });
           $scope.uploadMulti.upload();
@@ -97,7 +97,7 @@ angular.module('xbertsApp')
               });
               editor.insertNode($scope.editable, img[0]);
             }, function (resp) {
-              alert('Sorry,some error happened.');
+              growl.error('Sorry,some error happened.');
               console.log(resp);
               $scope.$emit('backdropOff', 'error');
             });

@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution', function ($scope, SystemData, Distribution) {
+  .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution','growl', function ($scope, SystemData, Distribution,growl) {
 
     var parseDiscount = function (sDiscounts) {
       var sItems = sDiscounts.split(",");
@@ -40,7 +40,7 @@ angular.module('xbertsApp')
           }
           $scope.$emit('backdropOff', 'query distributions finished');
         }, function (error) {
-          alert("Some error happened");
+          growl.error('Sorry,some error happened.');
           console.log(error);
           $scope.$emit('backdropOff', 'query distributions error');
         });
@@ -108,7 +108,7 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'success');
             $scope.$emit('projectStep', '2');
           }, function (resp) {
-            alert('Sorry,some error happened.');
+            growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
             console.log(resp);
           });
@@ -117,7 +117,7 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'success');
             $scope.$emit('projectStep', '2');
           }, function (resp) {
-            alert('Sorry,some error happened.');
+            growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
             console.log(resp);
           });

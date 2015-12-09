@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewapplicationconfirminfoCtrl',['$scope','ReviewApplicant','$rootScope', function ($scope,ReviewApplicant,$rootScope) {
+  .controller('ReviewapplicationconfirminfoCtrl',['$scope','ReviewApplicant','$rootScope','growl' ,function ($scope,ReviewApplicant,$rootScope,growl) {
     $scope.reviewApplicant=ReviewApplicant.getNewInstance();
     $scope.reviewApplicant.review=$scope.review.id;
     $scope.reviewApplicant.reviewer=$rootScope.user.getUserId();
@@ -19,7 +19,7 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'success');
           $scope.$emit('reviewStep', '2');
         }, function (resp) {
-          alert('Sorry,some error happened.');
+          growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
           console.log(resp);
         });
