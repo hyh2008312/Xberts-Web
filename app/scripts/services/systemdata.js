@@ -38,8 +38,10 @@ angular.module('xbertsApp')
       }
     };
     var checkboxClear = function (checkboxes) {
-      for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes.selected = false;
+      if(checkboxes){
+        for (var i = 0; i < checkboxes.length; i++) {
+          checkboxes.selected = false;
+        }
       }
     };
     systemData.getStages = function () {
@@ -124,6 +126,7 @@ angular.module('xbertsApp')
     };
 
     systemData.getSaleChannels = function () {
+      checkboxClear(saleChannels);
       return saleChannels;
     };
     systemData.getSaleChannelsPromise = function () {

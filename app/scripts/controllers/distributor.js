@@ -8,23 +8,27 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('DistributorCtrl', function ($scope, SystemData, Distributor, $uibModalInstance, distribution,growl) {
+  .controller('DistributorCtrl', function ($scope, SystemData, Distributor, $uibModalInstance, distribution, growl) {
     $scope.distribution = distribution;
     $scope.saleChannels = SystemData.getSaleChannels();
 
     $scope.distributor = new Distributor();
-    $scope.distributorFormSubmit = function () {
-      var saleChannels = [];
+    function salesRequired() {
+      $scope.saleChannelSelected = [];
       for (var i = 0; i < $scope.saleChannels.length; i++) {
         if ($scope.saleChannels[i].selected) {
-          saleChannels.push($scope.saleChannels[i].id);
+          $scope.saleChannelSelected.push($scope.saleChannels[i].id);
         }
       }
-      $scope.distributorForm.saleChannelsRequired = (saleChannels.length < 1);
+      return $scope.saleChannelSelected.length < 1;
+    }
+
+    $scope.distributorFormSubmit = function () {
+      $scope.distributorForm.saleChannelsRequired = salesRequired();
       if ($scope.distributorForm.$valid && !$scope.distributorForm.saleChannelsRequired) {
         $scope.$emit('backdropOn', 'post');
         //project pre process
-        $scope.distributor.sale_channels = saleChannels.join();
+        $scope.distributor.sale_channels = $scope.saleChannelSelected.join();
         $scope.distributor.request = $scope.distribution.id;
         console.log($scope.distributor);
 
@@ -43,4 +47,8 @@ angular.module('xbertsApp')
         $scope.distributorForm.$invalid = true;
       }
     };
+
+    $scope.$watch(salesRequired, function () {
+      $scope.distributorForm.saleChannelsRequired = salesRequired();
+    })
   });

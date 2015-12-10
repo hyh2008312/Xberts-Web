@@ -2,10 +2,13 @@
   <h3 class="modal-title text-center">Apply to be a distribution partner!</h3>
 </div>
 <div class="modal-body">
-  <form name="distributorForm" ng-submit="distributorFormSubmit()">
+  <form name="distributorForm" ng-submit="distributorFormSubmit()" novalidate>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.partner_type.$error.required">
+            *required</p>
           <label>Select a partner type:</label><br/>
           <label class="radio-inline">
             <input type="radio" name='partner_type' value="1" ng-model="distributor.partner_type" ng-required="true"/>
@@ -24,6 +27,9 @@
           </label>
         </div>
         <div class="form-group">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.proposal.$error.required">
+            *required</p>
           <label>Describe your specialties and distribution channels:</label>
                 <textarea rows="5" class="form-control" placeholder="Please be specific"
                           name="proposal"
@@ -32,24 +38,29 @@
                 </textarea>
         </div>
         <div class="form-group form-inline">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.year_in_business.$error.required">
+            *required</p>
           <label>Number of years in business?</label>
           <input type="number" class="form-control" name="year_in_business"
                  ng-model="distributor.year_in_business" ng-required="true"/>
         </div>
         <div class="form-group">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.location.$error.required">
+            *required</p>
           <label>Specify the location where you will be applying to become a distribution partner:</label>
           <input class="form-control" name="location"
                  ng-model="distributor.location" ng-required="true"/>
         </div>
         <div class="form-group">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.saleChannelsRequired">
+            *required</p>
           <label>Which channels will you be selling our products?</label><br/>
           <label class="checkbox-inline" ng-repeat="item in saleChannels">
             <input type="checkbox" ng-model="item.selected"> {{ item.name }}
           </label>
-
-          <p class="message-error"
-             ng-show="distributorForm.submitted && distributorForm.saleChannelsRequired">
-            *required</p>
         </div>
         <div class="form-group">
           <label>Please provide your online web store links below (optional):</label>
