@@ -6,7 +6,6 @@
 
       <h1>{{ event.title }}</h1>
 
-
       <h3>{{ event.where}}</h3>
     </div>
   </div>
@@ -14,80 +13,18 @@
 <section class="container">
   <div class="row">
     <div class="col-md-9">
-      <!--<div class="section-title ">-->
-      <!--<h2>Family Fun Opening Weekend</h2>-->
-
-      <!--<h3>Skylight Studios, Los Angeles, CA</h3>-->
-      <!--</div>-->
-      <!--<div class="panel panel-default" ng-show="register.status">-->
-        <!--<div class="panel-heading">-->
-          <!--<h3 class="panel-title">Contact Us</h3>-->
-        <!--</div>-->
-        <!--<div class="panel-body">-->
-          <!--<form class="form-horizontal">-->
-            <!--<div class="form-group row">-->
-              <!--<label class="col-md-3">Quality</label>-->
-
-              <!--<div class="col-md-9">-->
-                <!--<input type="number" class="form-control">-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="form-group row">-->
-              <!--<label class="col-md-3">Contact Person</label>-->
-
-              <!--<div class="col-md-9">-->
-                <!--<input type="text" class="form-control">-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="form-group row">-->
-              <!--<label class="col-md-3">Company Name</label>-->
-
-              <!--<div class="col-md-9">-->
-                <!--<input type="text" class="form-control">-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="form-group row">-->
-              <!--<label class="col-md-3">Business Title</label>-->
-
-              <!--<div class="col-md-9">-->
-                <!--<input type="text" class="form-control">-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="form-group row">-->
-              <!--<label class="col-md-3">Contact Number</label>-->
-
-              <!--<div class="col-md-9">-->
-                <!--<input type="number" class="form-control">-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="align-right">-->
-              <!--<button class="btn btn-success" type="submit">Submit</button>-->
-            <!--</div>-->
-          <!--</form>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <div class="panel panel-default">
-        <!--<div class="panel-heading">-->
-          <!-- -->
-        <!--</div>-->
-        <div class="panel-body">
-          <h3 class="margin-top-clear">Details</h3>
-          <p ng-bind-html="event.details | trust"></p>
-          <h3>When:</h3>
-          <p><span>{{event.when | amDateFormat:'YYYY-MM-DD, dddd'}}</span></p>
-          <h3>Where:</h3>
-          <p>{{ event.where }}</p>
-        </div>
-      </div>
+      <h3 class="margin-top-clear">Details</h3>
+      <hr>
+      <p ng-bind-html="event.details | trust"></p>
     </div>
     <div class="col-md-3">
       <h3 class="margin-top-clear">
         <a target="_blank" ng-href="{{ event.web }}" class="btn btn-lg btn-block btn-success">Register</a>
       </h3>
-      <!--<h3>-->
-      <!--<button class="btn btn-lg btn-block btn-primary" ng-click="onRegisterToggle()">Contact Us</button>-->
-      <!--</h3>-->
+      <h3 class="margin-top-clear">
+        <button target="_blank" ng-href="{{ event.web }}" ng-disabled="true" class="btn btn-lg btn-block btn-gray">Vote</button>
+      </h3>
+
       <h3>Organizer</h3>
 
       <div class="card background-dark-gray">
@@ -95,10 +32,34 @@
         </div>
         <div class="card-body">
           <p class="card-body-title">{{ event.organizer_name }}</p>
-
-          <!--<p class="card-body-detail" ng-bind-html="event.organizer_details | trust"></p>-->
         </div>
       </div>
     </div>
   </div>
+</section>
+<section class="container">
+  <h3>Products</h3>
+  <hr>
+  <div class="row section-body">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
+      <a class="block-link" ng-href="#/projects/{{ project.id }}">
+        <div class="card">
+          <div class="card-header" style="background-image: url({{ project.image }})">
+          </div>
+          <div class="card-body">
+            <div class="card-body-header">
+              <div class="avatar-text-small-1">
+                <img ng-src="{{ project.account.avatar }}"/>
+
+                <p ng-bind="project.account.fullname"></p>
+              </div>
+            </div>
+            <p class="card-body-title p-2" ng-bind="project.title">
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <load-more class="row spin-large" ng-if="projectPaginator.loading"></load-more>
 </section>
