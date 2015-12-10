@@ -12,6 +12,7 @@ angular
   .module('xbertsApp', [
     'ngAnimate',
     'ngCookies',
+    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
@@ -29,8 +30,8 @@ angular
     'internationalPhoneNumber',
     'angular-growl'
   ])
-  .run(['$rootScope', '$state', '$stateParams',
-    function ($rootScope, $state, $stateParams) {
+  .run(['$rootScope', '$state', '$stateParams', 'AuthService',
+    function ($rootScope, $state, $stateParams, AuthService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.bodyBackground = 'background-light-white';
@@ -291,13 +292,42 @@ angular
         }
       })
       .state('application.login', {
-        url: "/login",
+        url: '/login',
         templateUrl: '/views/login.html',
         controller: 'LoginCtrl'
       })
       .state('application.signup', {
-        url: "/signup",
+        url: '/signup',
         templateUrl: '/views/signup.html',
         controller: 'SignupCtrl'
+      })
+      .state('application.resetPassword', {
+        abstract: true,
+        template: '<div ui-view></div>',
+        controller: 'ResetPasswordCtrl'
+      })
+      .state('application.resetPassword.request', {
+        url: '/resetpw/request',
+        templateUrl: '/views/reset_password/reset_password_request.html',
+        controller: 'ResetPasswordRequestCtrl'
+      })
+      .state('application.resetPassword.sent', {
+        templateUrl: '/views/reset_password/reset_password_sent.html'
+      })
+      .state('application.resetPassword.confirm', {
+        url: '/resetpw/confirm/:uid/:token',
+        templateUrl: '/views/reset_password/reset_password_confirm.html',
+        resolve: {
+          tokenCheck: ['$stateParams', 'TokenCheckResolver', function($stateParams, TokenCheckResolver) {
+            return TokenCheckResolver.resolver($stateParams.uid, $stateParams.token);
+          }]
+        },
+        controller: 'ResetPasswordConfirmCtrl'
+      })
+      .state('application.resetPassword.success', {
+        templateUrl: '/views/reset_password/reset_password_success.html'
+      })
+      .state('application.resetPassword.error', {
+        templateUrl: '/views/reset_password/reset_password_error.html'
       });
   }]);
