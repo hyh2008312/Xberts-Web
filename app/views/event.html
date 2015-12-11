@@ -13,29 +13,46 @@
 <section class="container">
   <div class="row">
     <div class="col-md-9">
-      <h3 class="margin-top-clear">Details</h3>
+      <h3 class="margin-top-clear">Overview</h3>
       <hr>
-      <div class="tab-content"  ng-bind-html="event.details | trust"></div>
+      <div class="tab-content" ng-bind-html="event.details | trust"></div>
     </div>
     <div class="col-md-3">
-      <h3 class="margin-top-clear">
-        <a target="_blank" ng-href="{{ event.web }}" class="btn btn-lg btn-block btn-success">Register</a>
-      </h3>
+      <h3 class="margin-top-clear">Details</h3>
 
-      <h3>Organizer</h3>
+      <div class="card card-margin-bottomless" style="border-radius: 5px">
 
-      <div class="card background-dark-gray">
-        <div class="card-header" style="background-image: url({{ event.organizer_logo}})">
-        </div>
         <div class="card-body">
-          <p class="card-body-title">{{ event.organizer_name }}</p>
+          <div class="card-body-detail">
+            <h4> Organizer:</h4>
+
+            <p class="font-gray-light">{{ event.organizer_name}}</p>
+            <h4>Date: </h4>
+
+            <p class="font-gray-light">{{event.when | amDateFormat:'YYYY.MM.DD, dddd'}}</p>
+
+
+            <h4> Location:</h4>
+
+            <p class="font-gray-light">{{ event.where}}</p>
+
+            <h4> Official Website:</h4>
+
+            <a class="font-gray-light p-1">{{ event.web }}</a>
+          </div>
         </div>
       </div>
+      <h3 ng-if="!event.is_attending">
+        <a target="_blank" ng-href="event.web" class="btn btn-lg btn-block btn-primary">Register</a>
+      </h3>
+      <h3 ng-if="event.is_attending">
+        <a target="_blank" href="mailto:info@xberts.com" class="btn btn-lg btn-block btn-primary">Contact Us</a>
+      </h3>
     </div>
   </div>
 </section>
 <section class="container" ng-if="event.projects.length>0">
-  <h3>Products</h3>
+  <h3>Brands Featured By Xberts</h3>
   <hr>
   <div class="row section-body">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in event.projects">
@@ -51,8 +68,7 @@
                 <p ng-bind="project.account.fullname"></p>
               </div>
             </div>
-            <p class="card-body-title p-2" ng-bind="project.title">
-            </p>
+            <p class="card-body-title p-2" ng-bind="project.title"></p>
           </div>
         </div>
       </a>
