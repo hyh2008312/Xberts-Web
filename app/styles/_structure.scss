@@ -39,7 +39,9 @@ section.header {
     font-weight: normal;
   }
 }
-
+hr{
+  border-top:1px solid #C7C7C7;
+}
 .section-fixed {
   height: $sectionFixedHeight;
   background: rgba(0, 0, 0, 0.6) no-repeat center;

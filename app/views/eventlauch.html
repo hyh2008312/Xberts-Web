@@ -59,7 +59,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Register Link:</label>
-                <input type="url" class="form-control" name="web" placeholder="event official web"
+                <input type="text" class="form-control" name="web" placeholder="event official web"
                        ng-model="event.web">
 
                 <p class="message-error" ng-show="eventForm.web.$error.required">*required</p>
@@ -67,12 +67,12 @@
             </div>
             <div class="form-group">
               <label>Brief: </label>
-              <textarea class="form-control" name="brief" placeholder="Brief, no more than 200 words"
-                        ng-model="event.brief" rows="3" ng-maxlength="500">
+              <textarea class="form-control" name="brief" placeholder="Brief, no more than 300 words"
+                        ng-model="event.brief" rows="3" ng-maxlength="300">
                 </textarea>
 
               <p class="message-error" ng-show="eventForm.submitted && eventForm.brief.$error.maxlength">* no more than
-                200 chars</p>
+                300 chars</p>
             </div>
             <div class="form-group">
               <label>Details:</label>

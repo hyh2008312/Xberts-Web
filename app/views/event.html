@@ -15,17 +15,11 @@
     <div class="col-md-9">
       <h3 class="margin-top-clear">Details</h3>
       <hr>
-      <p ng-bind-html="event.details | trust"></p>
+      <div class="tab-content"  ng-bind-html="event.details | trust"></div>
     </div>
     <div class="col-md-3">
       <h3 class="margin-top-clear">
         <a target="_blank" ng-href="{{ event.web }}" class="btn btn-lg btn-block btn-success">Register</a>
-      </h3>
-
-      <h3 class="margin-top-clear">
-        <button target="_blank" ng-href="{{ event.web }}" ng-disabled="true" class="btn btn-lg btn-block btn-gray">
-          Vote
-        </button>
       </h3>
 
       <h3>Organizer</h3>
