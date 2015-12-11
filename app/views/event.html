@@ -21,8 +21,11 @@
       <h3 class="margin-top-clear">
         <a target="_blank" ng-href="{{ event.web }}" class="btn btn-lg btn-block btn-success">Register</a>
       </h3>
+
       <h3 class="margin-top-clear">
-        <button target="_blank" ng-href="{{ event.web }}" ng-disabled="true" class="btn btn-lg btn-block btn-gray">Vote</button>
+        <button target="_blank" ng-href="{{ event.web }}" ng-disabled="true" class="btn btn-lg btn-block btn-gray">
+          Vote
+        </button>
       </h3>
 
       <h3>Organizer</h3>
@@ -37,11 +40,11 @@
     </div>
   </div>
 </section>
-<section class="container">
+<section class="container" ng-if="event.projects.length>0">
   <h3>Products</h3>
   <hr>
   <div class="row section-body">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in event.projects">
       <a class="block-link" ng-href="#/projects/{{ project.id }}">
         <div class="card">
           <div class="card-header" style="background-image: url({{ project.image }})">
@@ -61,5 +64,4 @@
       </a>
     </div>
   </div>
-  <load-more class="row spin-large" ng-if="projectPaginator.loading"></load-more>
 </section>
