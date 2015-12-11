@@ -8,12 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('EventCtrl', ['$scope', '$stateParams', 'event', function ($scope, $stateParams, event) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('EventCtrl', ['$scope','$rootScope','Paginator','ProjectsNoDetail', '$stateParams', 'event', function ($scope,$rootScope,Paginator,ProjectsNoDetail, $stateParams, event) {
+    $rootScope.bodyBackground = 'background-whitem';
     $scope.register = {
       status: false
     };

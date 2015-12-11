@@ -84,7 +84,7 @@ angular.module('xbertsApp')
           console.log($scope.event);
           $scope.uploadMulti = UploadMultiForm(url, method, $scope.event, function (resp) {
             $scope.$emit('backdropOff', 'success');
-            $state.go('event', {eventId: resp.data.id});
+            $state.go('application.event', {eventId: resp.data.id});
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
@@ -111,6 +111,7 @@ angular.module('xbertsApp')
           };
           var uploadMultiImages = UploadMultiForm(
             '/upload/rest/temps/' + $scope.eventTemp.tempId + '/images/',
+            'POST',
             data,
             function (resp) {
               $scope.eventTemp.tempId = resp.data.temp;
