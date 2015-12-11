@@ -82,4 +82,5 @@ angular.module('xbertsApp')
           $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
         }
       }
+      SystemData.getSaleChannelsPromise();
     }]);
