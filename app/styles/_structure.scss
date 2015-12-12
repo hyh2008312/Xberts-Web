@@ -519,3 +519,20 @@ form#sign_form input#id_email, input#id_password {
   height: auto;
   padding: 20px 30px 20px 30px;
 }
+
+// Password reset
+[name=resetPasswordRequestForm] input[type=email] {
+  margin-bottom:10px;
+  margin-top:10px;
+  margin-right:10px;
+}
+
+[name=resetPasswordRequestForm] button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+[name=resetPasswordConfirmForm] [type=password] {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
