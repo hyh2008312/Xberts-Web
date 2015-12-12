@@ -13,24 +13,21 @@ angular.module('xbertsApp')
       $scope.eventPaginator = eventPaginator;
       $scope.projectPaginator = projectPaginator;
       $scope.expertPaginator = expertPaginator;
-    }])
-  .controller('RequestModalCtrl', ['$scope', '$modalInstance', 'Contact', function ($scope, $modalInstance, Contact) {
-    $scope.contact = new Contact();
-    $scope.contactSubmit = function () {
-      if ($scope.contactForm.$valid) {
-        $scope.$emit('backdropOn', 'aaa');
-        $scope.contact.$save(function (contact) {
-          $scope.$emit('backdropOff', 'bbb');
-          $modalInstance.close(contact);
-        });
-        return false;
+      $scope.slides = [
+        {
+          image: '/images/landing_1_1.jpg',
+          text: 'Connect smart hardware innovators with distributors,<br/>retailers and sales agent partners around the world',
+          buttonText:'Get Started',
+          buttonColor:'btn-primary',
+          url:'/#/signup'
+        },
 
-      } else {
-        $scope.contactForm.submitted = true;
-      }
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }]);
+        {
+          image: '/images/loading_2.jpg',
+          text: '&nbsp;<br/>&nbsp;',
+          buttonText:'Meet Us',
+          buttonColor:'btn-primary',
+          url:'/#/events/1'
+        }
+      ];
+    }]);
