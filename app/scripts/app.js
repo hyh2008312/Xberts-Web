@@ -286,7 +286,7 @@ angular
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ReviewLoad($stateParams);
           }],
-          reviewer: ['ProfileReviewerLoad', function (ProfileReviewerLoad) {
+          reviewer: ['ProfileReviewerLoad','authCheck', function (ProfileReviewerLoad,authCheck) {
             return ProfileReviewerLoad();
           }]
         }
