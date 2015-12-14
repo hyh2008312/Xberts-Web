@@ -20,10 +20,10 @@
           <div ng-include src="'/views/reviewapplicationconfirminfo.html'"></div>
         </uib-tab>
         <uib-tab heading="Step 4. Submit" active="tabs[3].active" disable="tabs[3].disable" select="select(3)">
-          <h1 class="text-center text-danger">
-            Your Application has been submitted for approval! We will review your application and get back to you as soon as possible.
-          </h1>
-          <h2 class="text-center"><a href="#">Check out your project now! (<redirect href="/projects/{{ review.project }}/" redirected="{{ redirect }}">2s</redirect>)</a></h2>
+          <h2 class="text-center font-primary">
+            Your application has been successfully submitted and will be under review soon!
+            <redirect href="/#/main" redirected="{{ redirect }}" class="hidden"></redirect>
+          </h2>
         </uib-tab>
       </uib-tabset>
     </div>
