@@ -11,20 +11,21 @@
   <div ng-switch-when="2">
 
     <textarea type="text" class="form-control" rows="5"
-           name="question_{{ question.id }}"
-           ng-model="question.answer"
-           ng-required="true"></textarea>
+              name="question_{{ question.id }}"
+              ng-model="question.answer"
+              ng-required="true"></textarea>
   </div>
   <div ng-switch-when="4">
-
-    <label class="radio-inline" ng-repeat="item in question.extra|split">
-      <input type="radio"
-             name="question_{{ question.id }}"
-             ng-model="question.answer"
-             ng-value=item
-             ng-required="true"
+    <div class="radio" ng-repeat="item in question.extra|split">
+      <label>
+        <input type="radio"
+               name="question_{{ question.id }}"
+               ng-model="question.answer"
+               ng-value=item
+               ng-required="true"
         /> {{ item }}
-    </label>
+      </label>
+    </div>
   </div>
   <div ng-switch-when="6">
 
@@ -32,10 +33,11 @@
             name="question_{{ question.id }}"
             ng-model="question.answer"
             ng-required="true">
-      <option value="">--chose a {{ question.default }}--</option>
+      <option value="">--choose a {{ question.default }}--</option>
       <option ng-repeat="item in question.extra|split"
               value="{{ item }}"
-              ng-selected="question.answer==item">{{ item }}</option>
+              ng-selected="question.answer==item">{{ item }}
+      </option>
     </select>
   </div>
 </div>
