@@ -8,10 +8,13 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'report',
-    function ($scope, $state, growl, UploadMultiForm, TempImage, report) {
+  .controller('ReviewreportCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage','review', 'report',
+    function ($scope, $state, growl, UploadMultiForm, TempImage,review, report) {
       // model
+      $scope.review = review;
       $scope.report = report;
+      console.log(review);
+      console.log(report);
       if ($scope.report.id) {
         $scope.report.when = new Date($scope.report.when);
       }

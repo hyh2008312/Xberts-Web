@@ -1,7 +1,7 @@
 <section class="background-light-white">
   <div class="container">
     <div class="section-title">
-      <h3>#Review Title#</h3>
+      <h3>{{ review.title }}</h3>
     </div>
   </div>
 </section>
@@ -17,7 +17,7 @@
             <div class="panel-body">
               <ul>
                 <li> Your review quality will become a major factor in future reviewer selection.</li>
-                <li> Please submit your review before the deadline #review deadline#</li>
+                <li> Please submit your review before the deadline {{ review.date_end | amDateFormat:'YYYY.MM.DD, dddd'}}</li>
                 <li> For video, please upload to YouTube then include the link in your content.</li>
               </ul>
             </div>

@@ -292,10 +292,18 @@ angular
         }
       })
       .state('application.reviewReport', {
-        url: "/review/report",
+        url: "/review/:reviewId/report/:reportId",
         templateUrl: '/views/reviewreport.html',
         controller: 'ReviewreportCtrl',
-        controllerAs: 'reviewReport'
+        resolve: {
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
+            return ReviewLoad($stateParams);
+          }],
+          report: ['ReviewReport','ReviewReportLoad', '$stateParams', function (ReviewReport,ReviewReportLoad, $stateParams) {
+            var reportId = $stateParams.reportId || null;
+            return reportId === null ? new ReviewReport() : ReviewReportLoad($stateParams);
+          }]
+        }
       })
       .state('application.login', {
         url: '/login',
