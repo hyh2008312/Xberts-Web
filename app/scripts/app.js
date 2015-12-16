@@ -291,6 +291,12 @@ angular
           }]
         }
       })
+      .state('application.reviewReport', {
+        url: "/review/report",
+        templateUrl: '/views/reviewreport.html',
+        controller: 'ReviewreportCtrl',
+        controllerAs: 'reviewReport'
+      })
       .state('application.login', {
         url: '/login',
         templateUrl: '/views/login.html',
