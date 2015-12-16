@@ -110,7 +110,13 @@ $colors: (
 .btn-gray {
   background-color: #dddddd;
 }
-
+a.btn-gray {
+  background-color: #dddddd;
+  color: #333;
+  &:hover{
+    color: $primaryColor;
+  }
+}
 .nav > li.disabled {
   > a:hover, > a:focus, > a {
     color: $grayLightColor;
