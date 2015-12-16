@@ -8,7 +8,7 @@
       <span><i class="fa fa-map-marker"></i> {{ item.post.joiner.country }}</span>
       <span class="pull-right" am-time-ago='item.date_published'></span></p>
 
-    <p class="item-body-title">{{ item.details}}</p>
+    <p class="item-body-title"><i class="fa fa-lock" ng-if="item.secret"></i> {{ item.details}}</p>
 
     <p class="item-body-header align-right">
       <span>{{ item.comment_amount }}</span>
