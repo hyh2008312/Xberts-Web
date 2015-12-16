@@ -1,0 +1,80 @@
+<div class="container">
+  <h3 class="text-center">Edit Profile</h3>
+
+  <form name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
+    <div class="row form-group">
+        <img class="img-circle avatar-thumb center-block" ngf-src="data.avatar || data.currentAvatar || '/images/empty-avater.gif'">
+    </div>
+    <div class="row form-group">
+      <button type="file" class="btn center-block" ngf-select ng-model="data.avatar" name="avatar"
+              accept="image/*"
+              ngf-resize="{width: 400, height: 400, centerCrop: true}">Choose Profile Picture</button>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-6 col-xs-6">
+        <label for="fullNameInput">
+          <span>Full Name:</span>
+          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.fullName.$touched"
+                                      ng-messages="editProfileForm.fullName.$error">
+            <span ng-message="required">Please enter your name.</span>
+          </span>
+        </label>
+        <input type="text" id="fullNameInput" name="fullName" class="form-control" placeholder="Full name"
+               ng-model="data.fullName" ng-model-options="{ updateOn: 'blur' }" required>
+      </div>
+      <div class="col-md-6 col-xs-6">
+        <label for="countryInput">
+          <span>Country:</span>
+          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.country.$touched"
+                ng-messages="editProfileForm.country.$error">
+            <span ng-message="required">Please select your country.</span>
+          </span>
+        </label>
+        <select id="countryInput" name="country" class="form-control"
+                ng-options="option.name for option in countryOptions track by option.code"
+                ng-model="data.country" required>
+          <option value="">Select your country</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-6 col-xs-6">
+        <label for="companyInput">
+          <span>Company Name <span class="optional-field">(optional)</span>:</span>
+        </label>
+        <p>
+          <input type="text" id="companyInput" name="company" class="form-control" placeholder="Company Name"
+                 ng-model="data.company">
+        </p>
+      </div>
+      <div class="col-md-6 col-xs-6">
+        <label for="positionInput">
+          <span>Business Title <span class="optional-field">(optional)</span>:</span>
+        </label>
+        <p>
+          <input type="text" id="positionInput" name="position" class="form-control" placeholder="Business Title"
+                 ng-model="data.position">
+        </p>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-12 col-xs-12">
+        <label for="bioInput">
+          <span>Biography <span class="optional-field">(optional)</span>:</span>
+        </label>
+        <p>
+          <textarea id="bioInput" name="bio" class="form-control" rows="10" cols="40"
+                    placeholder="Write a short biography about yourself" ng-model="data.biography"></textarea>
+        </p>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-6 col-xs-8 col-centered">
+        <div class="error text-center" ng-show="editProfileForm.$submitted" ng-messages="editProfileForm.serverError">
+          <div ng-messages-include="/views/message/form_error.html"></div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

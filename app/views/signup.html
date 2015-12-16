@@ -2,35 +2,41 @@
   <div class="container marketing">
     <div class="register-signin-caption">
       <p class="login-title">Create an Account</p>
-      <form name="signupForm" novalidate ng-submit="signup()">
-        <div class="error" ng-show="signupForm.$submitted">
-          <div ng-show="signupError.userExist">An account already exists with that email.</div>
-          <div ng-show="signupError.generic">Oops! Something went wrong.</div>
+      <form name="signupForm" ng-submit="signup()" novalidate clear-form-error>
+        <div class="error" ng-show="signupForm.$submitted"
+             ng-messages="signupForm.serverError">
+          <div ng-message="userExist">An account already exists with that email.</div>
+          <div ng-messages-include="/views/message/form_error.html"></div>
         </div>
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.fullName.$touched">
-          <p ng-show="signupForm.fullName.$error.required">Please enter your name.</p>
+
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.fullName.$touched"
+             ng-messages="signupForm.fullName.$error">
+          <p ng-message="required">Please enter your name.</p>
         </div>
         <p align="left">
           <input type="text" id="id_full_name" name="fullName" class="form-control login-form-control" placeholder="Full name" ng-model="fullName" required>
         </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.email.$touched">
-          <p ng-show="signupForm.email.$error.required">Please enter your email.</p>
-          <p ng-show="signupForm.email.$error.email">The email you entered is invalid.</p>
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.email.$touched"
+             ng-messages="signupForm.email.$error">
+          <p ng-message="required">Please enter your email.</p>
+          <p ng-message="email">The email you entered is invalid.</p>
         </div>
         <p align="left">
           <input type="email" id="id_email" name="email" class="form-control login-form-control" placeholder="Email" ng-model="email" required ng-model-options="{ updateOn: 'blur' }">
         </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.password.$touched">
-          <p ng-show="signupForm.password.$error.required">Please enter your password.</p>
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.password.$touched"
+             ng-messages="signupForm.password.$error">
+          <p ng-message="required">Please enter your password.</p>
         </div>
         <p align="left">
           <input type="password" id="id_password" name="password" class="form-control login-form-control register-password-form-control" placeholder="Password" ng-model="password" required>
         </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.country.$touched">
-          <p ng-show="signupForm.country.$error.required">Please select your country.</p>
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.country.$touched"
+             ng-messages="signupForm.country.$error">
+          <p ng-message="required">Please select your country.</p>
         </div>
         <p align="left">
           <select id="id_country" name="country" class="form-control login-form-control"

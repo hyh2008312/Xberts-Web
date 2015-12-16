@@ -8,10 +8,11 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
-    function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
+    function ($scope, $rootScope, $location, $state, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
+      $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
       $scope.btnText = 'Send';
 
       $scope.tabs = [
@@ -92,5 +93,9 @@ angular.module('xbertsApp')
           $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
         }
       }
+
+      $scope.editProfile = function() {
+        $state.go('application.editProfile');
+      };
 
     }]);

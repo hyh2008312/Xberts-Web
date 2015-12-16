@@ -12,6 +12,8 @@ angular.module('xbertsApp')
 
       $scope.$emit('backdropOn', 'post');
 
+      $scope.signupForm.serverError = {};
+
       SignupService.signup.save({
         fullName: $scope.fullName,
         email: $scope.email,
@@ -27,9 +29,9 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'error');
 
         if (httpResponse.status === 409) {
-          $scope.signupError = {userExist: true};
+          $scope.signupForm.serverError.userExist = true;
         } else {
-          $scope.signupError = {generic: true};
+          $scope.signupForm.serverError.generic = true;
         }
       });
     };

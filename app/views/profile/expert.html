@@ -20,7 +20,8 @@
           </div>
         </div>
         <div class="col-sm-2 text-center expert-profile-btn">
-          <follow width="120"></follow>
+          <follow width="120" ng-if="!isCurrentUser"></follow>
+          <button class="btn btn-primary btn-fixed-sm" ng-if="isCurrentUser" ng-click="editProfile()">Edit</button>
         </div>
       </div>
 

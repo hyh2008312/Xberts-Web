@@ -1,0 +1,26 @@
+<div class="auth-all-settings-bg">
+  <div class="auth-setting-container">
+    <div class="auth-setting-title">Account Settings</div>
+    <div class="auth-setting-inner">
+      <form name="settingForm" ng-submit="saveChange()" novalidate>
+        <div class="form-group">
+          <div class="form-group">
+            <div class="auth-setting-item01">
+              <span class="auth-setting-item-title">Password：</span>
+              <span data-toggle="modal" data-target="#resetModal" class="btn btn-link auth-button-wedth">Change Password</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="auth-setting-item02">
+              <span class="auth-setting-item-title">Deactivate Account:</span>
+              <span id="deactive_account" data-toggle="modal" data-target="#confirm_cancel_dialog_modal" data-title="Deactivate Your Account" data-info="Do you want to deactivate your Xberts account?" data-yes="Yes" data-no="No" data-yes_exe="window.location.href = &quot;/adviceapp/deactive/&quot;;" class="btn btn-link">Deactivate</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

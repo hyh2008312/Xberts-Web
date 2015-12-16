@@ -307,6 +307,19 @@ a.block-link {
   max-width: 100%;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.btn-fixed-sm {
+  width: 120px;
+}
+
+.optional-field {
+  color: $grayColor;
+}
+
 $xy: (
   a5-10: 5px 10px,
   a10-10: 5px 10px,
@@ -539,4 +552,10 @@ form#sign_form input#id_email, input#id_password {
 [name=resetPasswordConfirmForm] [type=password] {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+// Edit Profile
+.avatar-thumb {
+  width: 120px;
+  height: 120px;
 }

@@ -7,6 +7,7 @@ angular.module("xbertsApp")
       this._userName = userName || '';
       this._userType = userType || false;
       this._userAvatar = userAvatar || '';
+
       this.isAuth = function () {
         return this._userId ? true : false;
       };
@@ -25,6 +26,15 @@ angular.module("xbertsApp")
       this.getUserAvatar = function () {
         return this._userAvatar;
       };
+
+      this.setUserName = function(userName) {
+        this._userName = userName;
+      }
+
+      this.setUserAvatar = function(userAvatar) {
+        this._userAvatar = userAvatar;
+      }
+
       this.authRequired = function () {
         if (this.isAuth()) {
           return true;

@@ -25,7 +25,7 @@ angular
     'summernote',
     'ngTagsInput',
     'ui.bootstrap',
-    //'ngImgCrop',
+    'ngImgCrop',
     'ngFileUpload',
     'internationalPhoneNumber',
     'angular-growl'
@@ -258,11 +258,21 @@ angular
       })
       .state('application.expert', {
         url: "/experts/:expertId?tab",
-        templateUrl: '/views/expert.html',
+        templateUrl: '/views/profile/expert.html',
         controller: 'ExpertCtrl',
         resolve: {
           expert: ['ExpertLoad', '$stateParams', function (ExpertLoad, $stateParams) {
-            return ExpertLoad($stateParams);
+            return ExpertLoad.get($stateParams);
+          }]
+        }
+      })
+      .state('application.editProfile', {
+        url: '/editprofile',
+        templateUrl: '/views/profile/edit-profile.html',
+        controller: 'EditProfileCtrl',
+        resolve: {
+          userProfile: ['authCheck', 'UserProfileResolver', function(authCheck, UserProfileResolver) {
+            return UserProfileResolver.resolver();
           }]
         }
       })
@@ -339,5 +349,10 @@ angular
       })
       .state('application.resetPassword.error', {
         templateUrl: '/views/reset_password/reset_password_error.html'
+      })
+      .state('application.setting', {
+        url: '/setting',
+        templateUrl: '/views/profile/setting.html',
+        controller: 'SettingCtrl'
       });
   }]);
