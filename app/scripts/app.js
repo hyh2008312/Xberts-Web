@@ -78,7 +78,7 @@ angular
     ipnConfig.autoPlaceholder = false;
   }])
   .config(['growlProvider', function (growlProvider) {
-    growlProvider.globalTimeToLive(2000);
+    growlProvider.globalTimeToLive(2000000);
     growlProvider.onlyUniqueMessages(false);
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -292,12 +292,12 @@ angular
         }
       })
       .state('application.reviewReport', {
-        url: "/review/:reviewId/report/:reportId",
+        url: "/reviewapplicant/:reviewApplicantId/report/:reportId",
         templateUrl: '/views/reviewreport.html',
         controller: 'ReviewreportCtrl',
         resolve: {
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            return ReviewLoad($stateParams);
+          applicant: ['ApplicantsreviewLoad', '$stateParams', function (ApplicantsreviewLoad, $stateParams) {
+            return ApplicantsreviewLoad($stateParams);
           }],
           report: ['ReviewReport','ReviewReportLoad', '$stateParams', function (ReviewReport,ReviewReportLoad, $stateParams) {
             var reportId = $stateParams.reportId || null;

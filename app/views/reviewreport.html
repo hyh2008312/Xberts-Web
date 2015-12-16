@@ -1,7 +1,7 @@
 <section class="background-light-white">
   <div class="container">
     <div class="section-title">
-      <h3>{{ review.title }}</h3>
+      <h3>{{ applicant.review.title }}</h3>
     </div>
   </div>
 </section>
@@ -17,7 +17,7 @@
             <div class="panel-body">
               <ul>
                 <li> Your review quality will become a major factor in future reviewer selection.</li>
-                <li> Please submit your review before the deadline {{ review.date_end | amDateFormat:'YYYY.MM.DD, dddd'}}</li>
+                <li> Please submit your review before the deadline {{ applicant.review.date_end | amDateFormat:'YYYY.MM.DD, dddd'}}</li>
                 <li> For video, please upload to YouTube then include the link in your content.</li>
               </ul>
             </div>
@@ -25,6 +25,7 @@
         </div>
       </div>
       <form name="reportForm" ng-submit="reportFormSubmit()">
+        <div growl reference="reportapplicant_{{ applicant.id }}"></div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -53,7 +54,7 @@
             your
             input. </p>
 
-          <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <p class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
             <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
           </p>
         </div>

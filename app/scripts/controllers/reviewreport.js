@@ -8,16 +8,16 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage','review', 'report',
-    function ($scope, $state, growl, UploadMultiForm, TempImage,review, report) {
+  .controller('ReviewreportCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'applicant', 'report',
+    function ($scope, $state, growl, UploadMultiForm, TempImage, applicant, report) {
       // model
-      $scope.review = review;
+      $scope.applicant = applicant;
       $scope.report = report;
-      console.log(review);
+      $scope.report.applicant = $scope.applicant.id;
+      $scope.referenceId='applicant_'+ $scope.applicant.id;
+
       console.log(report);
-      if ($scope.report.id) {
-        $scope.report.when = new Date($scope.report.when);
-      }
+      console.log(applicant);
       $scope.reportTemp = {
         tempId: $scope.report.temp || 0
       };
@@ -29,10 +29,10 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOn', 'post');
           $scope.report.$save(function (resp) {
             $scope.$emit('backdropOff', 'success');
-            $state.go('application.report', {reportId: resp.data.id});
+            $state.go('application.main');
           }, function (resp) {
-            growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
+            growl.error('Sorry,some error happened.',{referenceId:$scope.referenceId});
             console.log(resp)
           });
           return false;
