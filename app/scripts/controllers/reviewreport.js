@@ -14,8 +14,8 @@ angular.module('xbertsApp')
       $scope.applicant = applicant;
       $scope.report = report;
       $scope.report.applicant = $scope.applicant.id;
-      $scope.referenceId='applicant_'+ $scope.applicant.id;
-
+      $scope.referenceId = 'reportapplicant_' + $scope.applicant.id;
+      console.log($scope.referenceId);
       console.log(report);
       console.log(applicant);
       $scope.reportTemp = {
@@ -26,21 +26,38 @@ angular.module('xbertsApp')
       $scope.reportFormSubmit = function () {
 
         if ($scope.reportForm.$valid) {
+          $scope.report.temp_id = $scope.reportTemp.tempId;
           $scope.$emit('backdropOn', 'post');
-          $scope.report.$save(function (resp) {
-            $scope.$emit('backdropOff', 'success');
-            $state.go('application.main');
-          }, function (resp) {
-            $scope.$emit('backdropOff', 'error');
-            growl.error('Sorry,some error happened.',{referenceId:$scope.referenceId});
-            console.log(resp)
-          });
+          if (!$scope.report.id) {
+            $scope.report.$save(function (resp) {
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Success.');
+              $state.go('application.main');
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              //growl.error('Sorry,some error happened.');
+              console.log(resp)
+            });
+          }else {
+            $scope.report.$put(function (resp) {
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Success.');
+              $state.go('application.main');
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              //growl.error('Sorry,some error happened.');
+              console.log(resp)
+            });
+          }
           return false;
 
         } else {
           $scope.reportForm.submitted = true;
           $scope.reportForm.$invalid = true;
         }
+
       };
 
       //summerNote Image Upload

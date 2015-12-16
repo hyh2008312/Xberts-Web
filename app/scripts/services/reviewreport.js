@@ -14,5 +14,5 @@ angular.module('xbertsApp')
 
 
     // Public API here
-    return $resource('/review/reports/:id/', {id: '@id'});
+    return $resource('/review/reports/:id/', {id: '@id'},{'put': {method: 'PUT'}});
   }]);
