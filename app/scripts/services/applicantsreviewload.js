@@ -8,12 +8,12 @@
  * Factory in the xbertsApp.
  */
 angular.module('xbertsApp')
-  .factory('ApplicantsreviewLoad', ['$rootscope', 'Applicantsreview', '$q', function ($rootscope, Applicantsreview, $q) {
+  .factory('ApplicantsreviewLoad', ['$rootScope', 'Applicantsreview', '$q', function ($rootScope, Applicantsreview, $q) {
     return function ($stateParams) {
       var delay = $q.defer();
       Applicantsreview.get({
         review_id: $stateParams.reviewId,
-        reviewer_id: $rootscope.user.getUserId()
+        reviewer_id: $rootScope.user.getUserId()
       }, function (data) {
         if (data.count !== undefined && data.count > 0) {
           delay.resolve(data.results[0]);

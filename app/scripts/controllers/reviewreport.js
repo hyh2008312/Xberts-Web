@@ -14,7 +14,7 @@ angular.module('xbertsApp')
       $scope.applicant = applicant;
       $scope.report = {};
       $scope.$emit('backdropOn', 'report get');
-      ReviewReport.get({applicant_id: $scope.applicant}, function (data) {
+      ReviewReport.get({applicant_id: $scope.applicant.id}, function (data) {
         $scope.$emit('backdropOff', 'report get completed');
         if (data.count !== undefined && data.count > 0) {
           $scope.report = data.results[0];
@@ -35,29 +35,28 @@ angular.module('xbertsApp')
           $scope.report.temp_id = $scope.reportTemp.tempId;
           $scope.$emit('backdropOn', 'post');
           $scope.report=new ReviewReport($scope.report);
-          console.log($scope.report);
-          //if (!$scope.report.id) {
-          //  newReport.$save(function (resp) {
-          //    $scope.$emit('backdropOff', 'success');
-          //    growl.success('Success.');
-          //    $state.go('application.main');
-          //  }, function (resp) {
-          //    $scope.$emit('backdropOff', 'error');
-          //    growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-          //    console.log(resp)
-          //  });
-          //} else {
-          //  $scope.report.$put(function (resp) {
-          //    $scope.$emit('backdropOff', 'success');
-          //    growl.success('Success.');
-          //    $state.go('application.main');
-          //  }, function (resp) {
-          //    $scope.$emit('backdropOff', 'error');
-          //    growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-          //    //growl.error('Sorry,some error happened.');
-          //    console.log(resp)
-          //  });
-          //}
+          if (!$scope.report.id) {
+            $scope.report.$save(function (resp) {
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Success.');
+              $state.go('application.main');
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              console.log(resp)
+            });
+          } else {
+            $scope.report.$put(function (resp) {
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Success.');
+              $state.go('application.main');
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              //growl.error('Sorry,some error happened.');
+              console.log(resp)
+            });
+          }
           return false;
 
         } else {
