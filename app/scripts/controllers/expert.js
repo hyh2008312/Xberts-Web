@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
-    function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail','Applicantsreview', 'Interact', 'expert',
+    function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail,Applicantsreview, Interact, expert) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
       $scope.btnText = 'Send';
@@ -19,7 +19,8 @@ angular.module('xbertsApp')
         {title: 'products', active: false},
         {title: 'followers', active: false},
         {title: 'followings', active: false},
-        {title: 'comments', active: false}
+        {title: 'comments', active: false},
+        {title: 'reviews', active: false}
       ];
       //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
@@ -27,11 +28,13 @@ angular.module('xbertsApp')
       $scope.followingsTabActive = false;
       $scope.commentsTabActive = false;
       $scope.followersTabActive = false;
+      $scope.reviewsTabActive = false;
       $scope.select = function (step) {
         $scope.projectsTabActive = false;
         $scope.followingsTabActive = false;
         $scope.commentsTabActive = false;
         $scope.followersTabActive = false;
+        $scope.reviewsTabActive = false;
         switch (step) {
           case 'products':
             $scope.projectsTabActive = true;
@@ -68,6 +71,16 @@ angular.module('xbertsApp')
           case 'comments':
             $scope.commentsTabActive = true;
             $scope.$broadcast('feedback', step);
+            break;
+          case 'reviews':
+            $scope.reviewsTabActive = true;
+            var fetchFunction3 = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage, review_id: $scope.expert.user_id};
+              angular.extend(params, otherParams);
+              Applicantsreview.get(params, callback);
+            };
+            $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
+            $scope.reviewApplicantPaginator.clear();
             break;
         }
         $scope.$broadcast('expert', step);

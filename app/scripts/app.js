@@ -291,6 +291,16 @@ angular
           }]
         }
       })
+      .state('application.reviewReport', {
+        url: "/review/:reviewId/report",
+        templateUrl: '/views/reviewreport.html',
+        controller: 'ReviewreportCtrl',
+        resolve: {
+          applicant: ['ApplicantsreviewLoad', '$stateParams', function (ApplicantsreviewLoad, $stateParams) {
+            return ApplicantsreviewLoad($stateParams);
+          }]
+        }
+      })
       .state('application.login', {
         url: '/login',
         templateUrl: '/views/login.html',

@@ -1,0 +1,65 @@
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h3>{{ applicant.review.title }}</h3>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Notes
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li> Your review quality will become a major factor in future reviewer selection.</li>
+                <li> Please submit your review before the deadline {{ applicant.review.date_end | amDateFormat:'YYYY.MM.DD, dddd'}}</li>
+                <li> For video, please upload to YouTube then include the link in your content.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form name="reportForm" ng-submit="reportFormSubmit()" class="pr">
+        <div growl reference="reportapplicant_{{ applicant.id }}"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Create a title for your review:</label>
+              <input type="text" class="form-control" name='title' ng-model="report.title"
+                     ng-required="true" ng-maxlength="200">
+
+              <p class="message-error" ng-show="reportForm.submitted && reportForm.title.$error.required">
+                *required</p>
+
+              <p class="message-error" ng-show="reportForm.submitted && reportForm.title.$error.maxlength">*
+                no more than 200 chars.</p>
+            </div>
+            <div class="form-group">
+              <label>Share your experience of using this product:</label>
+              <summernote config="summerNoteFull" ng-model="report.details" on-change="change(contents)"
+                          on-image-upload="imageUpload(files)" editable="editable"
+                          editor="editor"></summernote>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <p class='message-error text-center' ng-show="reportForm.submitted && reportForm.$invalid">Please check
+            your
+            input. </p>
+
+          <p class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
