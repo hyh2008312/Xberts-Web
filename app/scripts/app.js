@@ -292,17 +292,17 @@ angular
         }
       })
       .state('application.reviewReport', {
-        url: "/reviewapplicant/:reviewApplicantId/report/:reportId",
+        url: "/reviewapplicant/:reviewId/report/:reportId",
         templateUrl: '/views/reviewreport.html',
         controller: 'ReviewreportCtrl',
         resolve: {
           applicant: ['ApplicantsreviewLoad', '$stateParams', function (ApplicantsreviewLoad, $stateParams) {
             return ApplicantsreviewLoad($stateParams);
-          }],
-          report: ['ReviewReport','ReviewReportLoad', '$stateParams', function (ReviewReport,ReviewReportLoad, $stateParams) {
-            var reportId = $stateParams.reportId || null;
-            return reportId === null ? new ReviewReport() : ReviewReportLoad($stateParams);
           }]
+          //report: ['ReviewReport','ReviewReportLoad', '$stateParams', function (ReviewReport,ReviewReportLoad, $stateParams) {
+          //  var reportId = $stateParams.reportId || null;
+          //  return reportId === null ? new ReviewReport() : ReviewReportLoad($stateParams);
+          //}]
         }
       })
       .state('application.login', {
