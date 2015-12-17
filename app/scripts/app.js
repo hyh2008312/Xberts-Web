@@ -78,7 +78,7 @@ angular
     ipnConfig.autoPlaceholder = false;
   }])
   .config(['growlProvider', function (growlProvider) {
-    growlProvider.globalTimeToLive(2000);
+    growlProvider.globalTimeToLive(3000);
     growlProvider.onlyUniqueMessages(false);
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {

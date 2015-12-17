@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
-    function ($scope, $state, growl, UploadMultiForm, TempImage, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$timeout','$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
+    function ($timeout,$scope, $state, growl, UploadMultiForm, TempImage, ReviewReport, applicant) {
       // model
       $scope.applicant = applicant;
       $scope.report = {};
@@ -38,8 +38,10 @@ angular.module('xbertsApp')
           if (!$scope.report.id) {
             $scope.report.$save(function (resp) {
               $scope.$emit('backdropOff', 'success');
-              growl.success('Success.');
-              $state.go('application.main');
+              growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
+              $timeout(function(){
+                $state.go('application.main');
+              },3000);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
@@ -48,8 +50,10 @@ angular.module('xbertsApp')
           } else {
             $scope.report.$put(function (resp) {
               $scope.$emit('backdropOff', 'success');
-              growl.success('Success.');
-              $state.go('application.main');
+              growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
+              $timeout(function(){
+                $state.go('application.main');
+              },3000);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});

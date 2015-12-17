@@ -15,13 +15,6 @@ angular.module('xbertsApp')
       $scope.expertPaginator = expertPaginator;
       $scope.slides = [
         {
-          image: '/images/landing_3.jpg',
-          text: '&nbsp;<br/>&nbsp;',
-          buttonText:'Apply Now',
-          buttonColor:'btn-primary',
-          url:'/review/1/applicant/'
-        },
-        {
           image: '/images/landing_4.jpg',
           text: '&nbsp;<br/>&nbsp;',
           buttonText:'Apply Now',
