@@ -44,6 +44,12 @@ angular.module('xbertsApp')
             element.addClass('hide');
           }
         });
+        $rootScope.$on('$stateChangeError', function (e, d) {
+          $rootScope.backdropCount--;
+          if ($rootScope.backdropCount < 1) {
+            element.addClass('hide');
+          }
+        });
       }
     };
   }]);
