@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail','Applicantsreview', 'Interact', 'expert',
-    function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail,Applicantsreview, Interact, expert) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
+    function ($scope, $rootScope, $location, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
       $scope.btnText = 'Send';
@@ -72,16 +72,16 @@ angular.module('xbertsApp')
             $scope.commentsTabActive = true;
             $scope.$broadcast('feedback', step);
             break;
-          case 'reviews':
-            $scope.reviewsTabActive = true;
-            var fetchFunction3 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, review_id: $scope.expert.user_id};
-              angular.extend(params, otherParams);
-              Applicantsreview.get(params, callback);
-            };
-            $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
-            $scope.reviewApplicantPaginator.clear();
-            break;
+          //case 'reviews':
+          //  $scope.reviewsTabActive = true;
+          //  var fetchFunction3 = function (nextPage, otherParams, callback) {
+          //    var params = {page: nextPage, review_id: $scope.expert.user_id};
+          //    angular.extend(params, otherParams);
+          //    Applicantsreview.get(params, callback);
+          //  };
+          //  $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
+          //  $scope.reviewApplicantPaginator.clear();
+          //  break;
         }
         $scope.$broadcast('expert', step);
       };

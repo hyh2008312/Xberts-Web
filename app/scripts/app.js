@@ -286,7 +286,7 @@ angular
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ReviewLoad($stateParams);
           }],
-          reviewer: ['ProfileReviewerLoad','authCheck', function (ProfileReviewerLoad,authCheck) {
+          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
             return ProfileReviewerLoad();
           }]
         }
@@ -296,7 +296,7 @@ angular
         templateUrl: '/views/reviewreport.html',
         controller: 'ReviewreportCtrl',
         resolve: {
-          applicant: ['ApplicantsreviewLoad', '$stateParams', function (ApplicantsreviewLoad, $stateParams) {
+          applicant: ['ApplicantsreviewLoad', 'authCheck', '$stateParams', function (ApplicantsreviewLoad, authCheck, $stateParams) {
             return ApplicantsreviewLoad($stateParams);
           }]
         }
@@ -328,7 +328,7 @@ angular
         url: '/resetpw/confirm/:uid/:token',
         templateUrl: '/views/reset_password/reset_password_confirm.html',
         resolve: {
-          tokenCheck: ['$stateParams', 'TokenCheckResolver', function($stateParams, TokenCheckResolver) {
+          tokenCheck: ['$stateParams', 'TokenCheckResolver', function ($stateParams, TokenCheckResolver) {
             return TokenCheckResolver.resolver($stateParams.uid, $stateParams.token);
           }]
         },
