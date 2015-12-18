@@ -95,7 +95,7 @@ angular.module('xbertsApp')
       }
 
       $scope.editProfile = function() {
-        $state.go('application.editProfile');
+        $state.go('application.protected.editProfile');
       };
 
     }]);

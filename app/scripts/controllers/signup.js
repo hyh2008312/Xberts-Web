@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('SignupCtrl', ['$scope', '$location', 'SystemConstant', 'SignupService', 'AuthService',
-    function($scope, $location, SystemConstant, SignupService, AuthService) {
+  .controller('SignupCtrl', ['$scope', '$rootScope', '$location', '$state', 'SystemConstant', 'SignupService', 'AuthService',
+    function($scope, $rootScope, $location, $state, SystemConstant, SignupService, AuthService) {
     $scope.countryOptions = SystemConstant.COUNTRIES;
 
     $scope.signup = function() {
@@ -20,11 +20,7 @@ angular.module('xbertsApp')
         password: $scope.password,
         country: $scope.country.code
       }, function(value, responseHeader) {
-        AuthService.setUser(value);
-
-        $scope.$emit('backdropOff', 'success');
-
-        window.location.href = '/auth/home/';
+        AuthService.postLogin(value);
       }, function(httpResponse) {
         $scope.$emit('backdropOff', 'error');
 

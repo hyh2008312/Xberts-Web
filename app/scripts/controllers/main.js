@@ -19,7 +19,7 @@ angular.module('xbertsApp')
           text: '&nbsp;<br/>&nbsp;',
           buttonText:'Apply Now',
           buttonColor:'btn-primary',
-          url:'/review/2/applicant/'
+          url:'/#/review/2/applicant'
         },
         {
           image: '/images/landing_2_2.jpg',

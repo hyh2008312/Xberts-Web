@@ -35,7 +35,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li class="visible-lg-block">
-              <a href="/projects/launch/" class="fade-in-line"><i
+              <a ui-sref="application.protected.launchProject" class="fade-in-line"><i
                 class="fa fa-plus-circle fa-lg"></i> Launch Product</a>
             </li>
             <li ng-if="!user.isAuth()">
@@ -57,7 +57,7 @@
                 <li><a ui-sref="application.expert({ expertId: user.getUserId(),tab:'products' })">My Products</a>
                 </li>
                 <li><a href="/auth/bscinfosetting/">Settings</a></li>
-                <li><a href="/adviceapp/logout/">Logout</a></li>
+                <li><a ng-click="logout()">Logout</a></li>
               </ul>
 
             </li>

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-angular.module("xbertsApp")
+angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource','$state', function ($rootScope, $resource, $state) {
     function User(userId, userName, userType, userAvatar) {
       this._userId = userId || '';
@@ -8,41 +8,51 @@ angular.module("xbertsApp")
       this._userType = userType || false;
       this._userAvatar = userAvatar || '';
 
-      this.isAuth = function () {
+      this.isAuth = function() {
         return this._userId ? true : false;
       };
-      this.isStaff = function () {
+
+      this.isStaff = function() {
         return this._userType;
       };
-      this.getUserId = function () {
+
+      this.getUserId = function() {
         return this._userId;
       };
-      this.getUserName = function () {
+
+      this.getUserName = function() {
         return this._userName;
       };
-      this.getUserType = function () {
+
+      this.getUserType = function() {
         return this._userType;
       };
-      this.getUserAvatar = function () {
+
+      this.getUserAvatar = function() {
         return this._userAvatar;
       };
 
       this.setUserName = function(userName) {
         this._userName = userName;
-      }
+      };
 
       this.setUserAvatar = function(userAvatar) {
         this._userAvatar = userAvatar;
-      }
+      };
 
-      this.authRequired = function () {
+      this.authRequired = function() {
         if (this.isAuth()) {
           return true;
         } else {
+          $rootScope.next = {
+            state: $state.$current.name,
+            params: $state.params
+          };
+
           $state.go('application.login');
           return false;
         }
-      }
+      };
     }
 
     function setUser(user) {
@@ -65,12 +75,33 @@ angular.module("xbertsApp")
       });
     }
 
-    $rootScope.user = new User();
+    function postLogin(user) {
+      setUser(user);
 
+      $rootScope.$emit('backdropOff', 'success');
+
+      if ($rootScope.next) {
+        $state.go($rootScope.next.state, $rootScope.next.params);
+
+        $rootScope.next = null;
+      } else {
+        $state.go('application.main')
+      }
+    }
+
+    function logout() {
+      $rootScope.user = new User();
+
+      return $resource('/accounts/logout/').delete().$promise
+    }
+
+    $rootScope.user = new User();
 
     return {
       login: login,
       user: $resource('/accounts/user/', {}),
-      setUser: setUser
+      setUser: setUser,
+      postLogin: postLogin,
+      logout: logout
     };
   }]);

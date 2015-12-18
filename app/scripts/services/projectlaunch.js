@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.projectLaunch
- * @description
- * # projectLaunch
- * Service in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('ProjectLaunch', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function

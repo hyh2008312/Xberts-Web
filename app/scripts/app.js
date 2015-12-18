@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name xbertsApp
- * @description
- * # xbertsApp
- *
- * Main module of the application.
- */
 angular
   .module('xbertsApp', [
     'ngAnimate',
@@ -30,8 +22,8 @@ angular
     'internationalPhoneNumber',
     'angular-growl'
   ])
-  .run(['$rootScope', '$state', '$stateParams', 'AuthService',
-    function ($rootScope, $state, $stateParams, AuthService) {
+  .run(['$rootScope', '$state', '$stateParams',
+    function ($rootScope, $state, $stateParams) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.bodyBackground = 'background-light-white';
@@ -66,6 +58,7 @@ angular
     $resourceProvider.defaults.stripTrailingSlashes = false;
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.interceptors.push('AuthInterceptor');
   }])
   .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider
@@ -88,11 +81,16 @@ angular
       .state('application', {
         abstract: true,
         templateUrl: '/views/navigation.html',
+        controller: 'ApplicationCtrl',
         resolve: {
           authCheck: ['UserResolver', function (UserResolver) {
             return UserResolver.resolver();
           }]
         }
+      })
+      .state('application.protected', {
+        abstract: true,
+        template: '<div ui-view></div>'
       })
       .state('application.main', {
         url: "/main",
@@ -150,7 +148,7 @@ angular
           }]
         }
       })
-      .state('application.launchProject', {
+      .state('application.protected.launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
         templateUrl: '/views/launchproject.html',
         controller: 'LaunchprojectCtrl',
@@ -266,7 +264,7 @@ angular
           }]
         }
       })
-      .state('application.editProfile', {
+      .state('application.protected.editProfile', {
         url: '/editprofile',
         templateUrl: '/views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
@@ -276,7 +274,7 @@ angular
           }]
         }
       })
-      .state('application.launch', {
+      .state('application.protected.launch', {
         url: "/launch/:eventId",
         templateUrl: '/views/eventlauch.html',
         controller: 'EventLauchCtrl',
@@ -287,7 +285,7 @@ angular
           }]
         }
       })
-      .state('application.reviewApplicant', {
+      .state('application.protected.reviewApplicant', {
         url: "/review/:reviewId/applicant",
         templateUrl: '/views/reviewapplication.html',
         controller: 'ReviewapplicationCtrl',
@@ -301,7 +299,7 @@ angular
           }]
         }
       })
-      .state('application.reviewReport', {
+      .state('application.protected.reviewReport', {
         url: "/review/:reviewId/report",
         templateUrl: '/views/reviewreport.html',
         controller: 'ReviewreportCtrl',
@@ -350,7 +348,7 @@ angular
       .state('application.resetPassword.error', {
         templateUrl: '/views/reset_password/reset_password_error.html'
       })
-      .state('application.setting', {
+      .state('application.protected.setting', {
         url: '/setting',
         templateUrl: '/views/profile/setting.html',
         controller: 'SettingCtrl'

@@ -92,31 +92,43 @@
 <script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 <script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
 <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="/bower_components/string/dist/string.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/controllers/application.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/profile/edit-profile.js"></script>
-<script src="scripts/controllers/resources.js"></script>
+<script src="scripts/controllers/profile/setting.js"></script>
+<script src="scripts/controllers/projects.js"></script>
 <script src="scripts/controllers/resetpassword/resetpassword.js"></script>
 <script src="scripts/controllers/resetpassword/resetpasswordconfirm.js"></script>
 <script src="scripts/controllers/resetpassword/resetpasswordrequest.js"></script>
-<script src="scripts/controllers/profile/setting.js"></script>
+<script src="scripts/controllers/resources.js"></script>
 <script src="scripts/controllers/signup.js"></script>
-<script src="scripts/controllers/projects.js"></script>
-<script src="scripts/services/projectload.js"></script>
 <script src="scripts/directives/clearformerror.js"></script>
 <script src="scripts/directives/compareto.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
-<script src="scripts/services/paginator.js"></script>
-<script src="scripts/services/project.js"></script>
-<script src="scripts/services/notification.js"></script>
+<script src="scripts/interceptors/auth.js"></script>
+<script src="scripts/listeners/logout.js"></script>
+<script src="scripts/listeners/state-change-error.js"></script>
+<script src="scripts/listeners/state-change-start.js"></script>
+<script src="scripts/listeners/unauthorized.js"></script>
+<script src="scripts/resolvers/token-check-resolver.js"></script>
+<script src="scripts/resolvers/user-profile-resolver.js"></script>
+<script src="scripts/resolvers/user-resolver.js"></script>
 <script src="scripts/services/auth.js"></script>
+<script src="scripts/services/notification.js"></script>
+<script src="scripts/services/paginator.js"></script>
 <script src="scripts/services/password.js"></script>
+<script src="scripts/services/project.js"></script>
+<script src="scripts/services/projectload.js"></script>
 <script src="scripts/services/signup.js"></script>
 <script src="scripts/services/user-profile.js"></script>
+<script src="scripts/utils/string.js"></script>
+<script src="scripts/utils/url.js"></script>
 <script src="scripts/controllers/notification.js"></script>
 <script src="scripts/controllers/event.js"></script>
 <script src="scripts/controllers/eventlauch.js"></script>
@@ -175,10 +187,6 @@
 <script src="scripts/directives/followings.js"></script>
 <script src="scripts/controllers/distributor.js"></script>
 <script src="scripts/services/distributor.js"></script>
-<script src="scripts/resolvers/TokenCheckResolver.js"></script>
-<script src="scripts/resolvers/user-profile-resolver.js"></script>
-<script src="scripts/resolvers/UserResolver.js"></script>
-<script src="scripts/run/resetpassword.js"></script>
 <script src="scripts/utils/url.js"></script>
 <script src="scripts/controllers/reviewreport.js"></script>
 <script src="scripts/services/reviewreport.js"></script>

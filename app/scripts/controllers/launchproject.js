@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:LaunchprojectCtrl
- * @description
- * # LaunchprojectCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
     .controller('LaunchprojectCtrl', ['$scope', '$rootScope','$stateParams',
     function ($scope, $rootScope,$stateParams) {
