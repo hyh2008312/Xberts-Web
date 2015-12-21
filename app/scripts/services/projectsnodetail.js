@@ -17,3 +17,4 @@ angular.module('xbertsApp')
     // Public API here
     return $resource('/projects/rest/projectsnodetail/:id/', {id: '@id'});
   }]);
+

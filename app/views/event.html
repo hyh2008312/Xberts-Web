@@ -54,20 +54,14 @@
 <section class="container" ng-if="event.projects.length>0">
   <h3>Brands Featured By Xberts</h3>
   <hr>
+  <load-more class="row spin-large" ng-if="projectLoading"></load-more>
   <div class="row section-body">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in event.projects">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projects">
       <a class="block-link" ng-href="#/projects/{{ project.id }}">
         <div class="card">
           <div class="card-header" style="background-image: url({{ project.image }})">
           </div>
           <div class="card-body">
-            <div class="card-body-header">
-              <div class="avatar-text-small-1">
-                <img ng-src="{{ project.account.avatar }}"/>
-
-                <p ng-bind="project.account.fullname"></p>
-              </div>
-            </div>
             <p class="card-body-title p-2" ng-bind="project.title"></p>
           </div>
         </div>

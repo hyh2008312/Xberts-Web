@@ -15,4 +15,12 @@ angular.module('xbertsApp')
 
     // Public API here
     return $resource('/resources/events/:id/', {id: '@id'});
+  }])
+  .factory('EventProject', ['$resource', function ($resource) {
+    // Service logic
+    // ...
+
+
+    // Public API here
+    return $resource('/resources/events/projects/:id/', {id: '@id'});
   }]);
