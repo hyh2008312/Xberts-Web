@@ -193,6 +193,19 @@ angular
           }]
         }
       })
+      .state('application.projectnorequest', {
+        url: "/projectsnorequest/:projectId",
+        templateUrl: '/views/project_no_request.html',
+        controller: 'ProjectNoRequestCtrl',
+        resolve: {
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }],
+          project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
+            return ProjectLoad($stateParams);
+          }]
+        }
+      })
       .state('application.resources', {
         url: "/resources",
         templateUrl: "/views/resources.html",

@@ -1,0 +1,18 @@
+<div class="card cover">
+  <div class="card-header" style="background-image: url({{ eventProject.project.image }})">
+  </div>
+  <div class="card-body">
+    <p class="card-body-title p-2" ng-bind="eventProject.project.title"></p>
+  </div>
+  <div class="cover-layer cover-layer-top">
+    <div class="cover-header">
+      <p class="p-8">kkk</p>
+    </div>
+    <div class="cover-footer text-center">
+      <a ng-href="#/projectsnorequest/{{ eventProject.project.id }}" class="btn btn-success" style="width: 120px">View Detail</a>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <button class="btn btn-primary" ng-click="open()" style="width: 120px">Vote</button>
+</div>

@@ -45,27 +45,22 @@
       <h3 ng-if="!event.is_attending">
         <a target="_blank" ng-href="{{ event.web }}" class="btn btn-lg btn-block btn-primary">Register</a>
       </h3>
+
       <h3 ng-if="event.is_attending">
         <a target="_blank" href="mailto:info@xberts.com" class="btn btn-lg btn-block btn-primary">Contact Us</a>
       </h3>
     </div>
   </div>
 </section>
-<section class="container" ng-if="event.projects.length>0">
-  <h3>Brands Featured By Xberts</h3>
-  <hr>
-  <load-more class="row spin-large" ng-if="projectLoading"></load-more>
-  <div class="row section-body">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projects">
-      <a class="block-link" ng-href="#/projects/{{ project.id }}">
-        <div class="card">
-          <div class="card-header" style="background-image: url({{ project.image }})">
-          </div>
-          <div class="card-body">
-            <p class="card-body-title p-2" ng-bind="project.title"></p>
-          </div>
-        </div>
-      </a>
+<event-join>
+  <section class="container" ng-if="eventProjects.length>0">
+    <h3>Brands Featured By Xberts</h3>
+    <hr>
+    <load-more class="row spin-large" ng-if="eventProjectsLoading"></load-more>
+    <div class="row section-body">
+
+      <event-project-vote ng-repeat="eventProject in eventProjects" event-project="eventProject"
+                          class="col-xs-12 col-sm-6 col-md-4"></event-project-vote>
     </div>
-  </div>
-</section>
+  </section>
+</event-join>

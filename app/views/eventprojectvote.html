@@ -1,0 +1,48 @@
+<form name="distributorForm" ng-submit="distributorFormSubmit()" novalidate>
+
+  <div class="modal-header">
+    <h4 class="modal-title">Select the reasons why you love this product.</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <p class="message-error"
+             ng-show="distributorForm.submitted && distributorForm.partner_type.$error.required">
+            *required</p>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
+                     ng-required="true"/> Distributor
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
+                     ng-required="true"/> Distributor
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
+                     ng-required="true"/> Distributor
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
+                     ng-required="true"/> Distributor
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer align-center">
+    <button type="submit" class="btn btn-gray" style="width: 100px">Cancel</button>
+    <button type="submit" class="btn btn-primary" style="width: 100px">Vote</button>
+  </div>
+</form>
+
+

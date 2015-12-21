@@ -18,11 +18,19 @@ angular.module('xbertsApp')
         $scope.register.status = !$scope.register.status;
       };
       $scope.event = event;
-      $scope.projectLoading = false;
-      $scope.projects = EventProject.query(function () {
-        console.log($scope.projects);
-        $scope.projectLoading = false;
+      $scope.eventProjectsLoading = true;
+      $scope.eventProjects = EventProject.query(function () {
+        $scope.eventProjectsLoading = false;
       }, function () {
-        $scope.projectLoading = false;
+        $scope.eventProjectsLoading = false;
       })
-    }]);
+    }])
+  .controller('EventProjectVoteCtrl', function ($scope, $uibModalInstance, growl) {
+    $scope.eventProjectVoteFormSubmit = function () {
+      if ($scope.eventProjectVoteForm.$valid) {
+      } else {
+        $scope.eventProjectVoteForm.submitted = true;
+        $scope.eventProjectVoteForm.$invalid = true;
+      }
+    };
+  });

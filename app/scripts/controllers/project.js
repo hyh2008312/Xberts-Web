@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ProjectCtrl', ['$scope', '$rootScope','$location', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail','Distributor', 'Paginator','project', 'distributions',
-    function ($scope, $rootScope,$location, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail,Distributor,Paginator, project, distributions) {
+  .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions',
+    function ($scope, $rootScope, $location, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -41,13 +41,13 @@ angular.module('xbertsApp')
             break;
           case 'applications':
             $scope.applicationsTabActive = true;
-            $scope.followersTabActive=true;
+            $scope.followersTabActive = true;
             var fetchFunction1 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage,request__project_id:$scope.project.id};
+              var params = {page: nextPage, request__project_id: $scope.project.id};
               angular.extend(params, otherParams);
               Distributor.get(params, callback);
             };
-            $scope.distributorsPaginator = Paginator('distributor_'+$scope.project.id, fetchFunction1);
+            $scope.distributorsPaginator = Paginator('distributor_' + $scope.project.id, fetchFunction1);
             $scope.distributorsPaginator.clear();
             $scope.distributorsPaginator.loadNext();
             break;
@@ -58,7 +58,7 @@ angular.module('xbertsApp')
       //modal
 
       $scope.open = function (size) {
-        if(!$rootScope.user.authRequired()){
+        if (!$rootScope.user.authRequired()) {
           return
         }
         var modalInstance = $uibModal.open({
@@ -83,4 +83,34 @@ angular.module('xbertsApp')
         }
       }
       SystemData.getSaleChannelsPromise();
+    }])
+  .controller('ProjectNoRequestCtrl', ['$scope', '$rootScope', '$stateParams', 'SystemData', 'Interact', 'ProjectOnlyDetail', 'Paginator', 'project',
+    function ($scope, $rootScope, $stateParams, SystemData, Interact, ProjectOnlyDetail, Paginator, project) {
+      $rootScope.bodyBackground = 'background-whitem';
+
+      $scope.projectTypes = SystemData.getProjectTypes();
+      $scope.project = project;
+      ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
+        $scope.project.details = result.details;
+      });
+      //todo: 交互信息可能发生变化,重读交互信息
+      // before entering into detail page, should the project interact info
+
+      $scope.tabs = [
+        {title: 'detail', active: true},
+        {title: 'comments', active: false}
+      ];
+
+      $scope.commentsTabActive = false;
+      $scope.applicationsTabActive = false;
+      $scope.select = function (step) {
+        $scope.commentsTabActive = false;
+        $scope.applicationsTabActive = false;
+        switch (step) {
+          case 'comments':
+            $scope.commentsTabActive = true;
+            break;
+        }
+        $scope.$broadcast('project', step);
+      };
     }]);

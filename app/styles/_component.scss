@@ -34,14 +34,16 @@ $avatarTextTypes: (
     margin-bottom: 10px;
   }
 }
-.avatar-inline{
-  > img{
+
+.avatar-inline {
+  > img {
     position: relative;
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
   }
 }
+
 @mixin topRightBadgeX($radius:10px,$paddingTop:10px,$paddingLeft:10px,$badgeHeight:16px,$badgeWidth:16px) {
   padding-top: $paddingTop;
   padding-left: $paddingLeft;
@@ -82,14 +84,14 @@ $numbers: (1 2 3 4 5 8 10);
   min-height: $imageSize + 20px;
   position: relative;
   padding: 10px 16px 10px $imageSize + $padding + 16px;
-  &.padding-lr-clear{
+  &.padding-lr-clear {
     padding: 10px 0 10px $imageSize + $padding;
-    > .item-image{
+    > .item-image {
       left: 0;
     }
   }
   border-bottom: 1px solid $lightColor;
-  &.item-bordless{
+  &.item-bordless {
     border-bottom: 0;
   }
   @if $color == $whiteColor {
@@ -102,10 +104,10 @@ $numbers: (1 2 3 4 5 8 10);
       }
     }
   }
-  p{
+  p {
     margin-bottom: 5px;
   }
-  > .item-image{
+  > .item-image {
     position: absolute;
     top: 10px;
     left: 16px;
@@ -177,7 +179,7 @@ $avatarTypes: (
 @each $name, $size in $avatarTypes {
   .item-avatar-#{$name} {
     @include item(nth($size, 1), nth($size, 2), $darkColor);
-    &:last-child{
+    &:last-child {
       border-bottom: 0;
     }
   }
@@ -190,13 +192,13 @@ $avatarTypes: (
   border: 1px solid $lightGrayColor;
   background-color: $whiteColor;
   margin-bottom: 20px;
-  &.card-bordless{
+  &.card-bordless {
     border: 0;
   }
-  &.card-margin-bottomless{
+  &.card-margin-bottomless {
     margin-bottom: 0;
   }
-  > .card-header {
+  > .card-header, .card-header {
     position: relative;
     width: 100%;
     // image placeholder
@@ -205,7 +207,7 @@ $avatarTypes: (
     background-size: 100% 100%;
     border-bottom: 1px solid $lightGrayColor;
   }
-  > .card-body {
+  > .card-body, .card-body {
     padding: 10px 10px;
     > .card-body-header {
       color: $grayLightColor;
@@ -226,7 +228,7 @@ $avatarTypes: (
       }
     }
   }
-  > .card-footer {
+  > .card-footer, .card-footer {
     padding: 10px 10px;
     button {
       min-width: 50%;
@@ -368,13 +370,9 @@ $avatarTypes: (
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  //bottom: 0;
-  //right: 0;
+  bottom: 0;
+  right: 0;
   z-index: 10000;
-  overflow-x: hidden;
-  overflow-y: auto;
-  //overflow:hidden
-  display: block;
 }
 
 $spinTypes: (
@@ -443,25 +441,27 @@ $message-types: (
     padding: 10px 32px;
     border-bottom: 1px solid $lightColor;
     background: #fff;
-    &:hover{
+    &:hover {
       background-color: $lightWhiteColor;
     }
   }
-  .active{
+  .active {
     background-color: $lightWhiteColor;
   }
-  .ul-list-title{
+  .ul-list-title {
     background-color: $lightColor;
     padding: 16px;
     border-bottom: 1px solid $lightColor;
-    &:hover{
+    &:hover {
       background-color: $lightColor;
     }
   }
 }
-.list{
+
+.list {
   border: 1px solid $lightColor;
 }
+
 .list-title {
   background-color: $lightColor;
   padding: 16px;
