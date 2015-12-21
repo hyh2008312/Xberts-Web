@@ -90,7 +90,12 @@ angular
       })
       .state('application.protected', {
         abstract: true,
-        template: '<div ui-view></div>'
+        template: '<div ui-view></div>',
+        resolve: {
+          protectedAuthCheck: ['authCheck', function (authCheck) {
+            // no-opt
+          }]
+        }
       })
       .state('application.main', {
         url: "/main",
@@ -351,6 +356,11 @@ angular
       .state('application.protected.setting', {
         url: '/setting',
         templateUrl: '/views/profile/setting.html',
-        controller: 'SettingCtrl'
+        controller: 'SettingCtrl',
+        resolve: {
+          settingAuthCheck: ['protectedAuthCheck', function (protectedAuthCheck) {
+            // no-opt
+          }]
+        }
       });
   }]);

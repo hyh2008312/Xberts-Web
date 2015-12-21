@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AuthService', ['$rootScope', '$resource','$state', function ($rootScope, $resource, $state) {
-    function User(userId, userName, userType, userAvatar) {
+  .factory('AuthService', ['$rootScope', '$resource','$state', '$q', function ($rootScope, $resource, $state, $q) {
+    function User(userId, userName, userEmail, userType, userAvatar) {
       this._userId = userId || '';
       this._userName = userName || '';
+      this._userEmail = userEmail || '';
       this._userType = userType || false;
       this._userAvatar = userAvatar || '';
 
@@ -24,6 +25,10 @@ angular.module('xbertsApp')
         return this._userName;
       };
 
+      this.getUserEmail = function() {
+        return this._userEmail;
+      };
+
       this.getUserType = function() {
         return this._userType;
       };
@@ -34,6 +39,10 @@ angular.module('xbertsApp')
 
       this.setUserName = function(userName) {
         this._userName = userName;
+      };
+
+      this.setUserEmail = function(userEmail) {
+        this._userEmail = userEmail;
       };
 
       this.setUserAvatar = function(userAvatar) {
@@ -56,7 +65,7 @@ angular.module('xbertsApp')
     }
 
     function setUser(user) {
-      $rootScope.user = new User(user.id, user.fullName, user.isStaff, user.avatar);
+      $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar);
     }
 
     function createAuthHeader(credentials) {
@@ -89,10 +98,18 @@ angular.module('xbertsApp')
       }
     }
 
-    function logout() {
+    function logout(shouldMakeApiCall) {
       $rootScope.user = new User();
 
-      return $resource('/accounts/logout/').delete().$promise
+      if (!shouldMakeApiCall) {
+        var deferred = $q.defer();
+
+        deferred.resolve();
+
+        return deferred.promise;
+      } else {
+        return $resource('/accounts/logout/').delete().$promise
+      }
     }
 
     $rootScope.user = new User();

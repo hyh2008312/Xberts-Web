@@ -5,6 +5,7 @@ angular.module('xbertsApp')
     this.responseError = function(rejection) {
       // Ignore error when trying to test login status
       if (rejection.config.url !== '/accounts/user/' &&
+          rejection.config.url !== '/accounts/auth/' &&
           (rejection.status === 401 || rejection.status === 403)) {
         $rootScope.$broadcast('unauthorized');
       }

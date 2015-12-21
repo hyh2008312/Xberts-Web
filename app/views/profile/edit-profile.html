@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center">Edit Profile</h3>
+  <h2 class="text-center">Edit Profile</h2>
 
   <form name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
     <div class="row form-group">
@@ -73,7 +73,7 @@
         <div class="error text-center" ng-show="editProfileForm.$submitted" ng-messages="editProfileForm.serverError">
           <div ng-messages-include="/views/message/form_error.html"></div>
         </div>
-        <button type="submit" class="btn btn-lg btn-primary btn-block">Save</button>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
       </div>
     </div>
   </form>

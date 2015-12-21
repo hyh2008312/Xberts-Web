@@ -56,7 +56,7 @@
                 <li><a ui-sref="application.expert({ expertId: user.getUserId(),tab:'profile' })">My Profile</a></li>
                 <li><a ui-sref="application.expert({ expertId: user.getUserId(),tab:'products' })">My Products</a>
                 </li>
-                <li><a href="/auth/bscinfosetting/">Settings</a></li>
+                <li><a ui-sref="application.protected.setting">Settings</a></li>
                 <li><a ng-click="logout()">Logout</a></li>
               </ul>
 

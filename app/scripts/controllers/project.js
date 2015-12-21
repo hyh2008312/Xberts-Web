@@ -59,7 +59,7 @@ angular.module('xbertsApp')
 
       $scope.open = function (size) {
         if(!$rootScope.user.authRequired()){
-          return
+          return;
         }
         var modalInstance = $uibModal.open({
           templateUrl: '/views/applicationinfo.html',

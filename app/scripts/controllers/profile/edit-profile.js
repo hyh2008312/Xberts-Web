@@ -31,7 +31,7 @@ angular.module('xbertsApp')
           company: $scope.data.company,
           position: $scope.data.position,
           biography: $scope.data.biography
-        }
+        };
 
         UserProfileService.updateProfile(userProfile, function(response) {
           $rootScope.user.setUserName(response.data.fullName);
@@ -42,7 +42,7 @@ angular.module('xbertsApp')
 
           $scope.$emit('backdropOff', 'success');
 
-          $state.go('application.expert', {expertId: $rootScope.user.getUserId()})
+          $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
         }, function(response) {
           $scope.editProfileForm.serverError.generic = true;
 
