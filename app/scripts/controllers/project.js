@@ -41,13 +41,13 @@ angular.module('xbertsApp')
             break;
           case 'applications':
             $scope.applicationsTabActive = true;
-            $scope.followersTabActive = true;
+            $scope.followersTabActive=true;
             var fetchFunction1 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, request__project_id: $scope.project.id};
+              var params = {page: nextPage,request__project_id:$scope.project.id};
               angular.extend(params, otherParams);
               Distributor.get(params, callback);
             };
-            $scope.distributorsPaginator = Paginator('distributor_' + $scope.project.id, fetchFunction1);
+            $scope.distributorsPaginator = Paginator('distributor_'+$scope.project.id, fetchFunction1);
             $scope.distributorsPaginator.clear();
             $scope.distributorsPaginator.loadNext();
             break;
@@ -58,8 +58,8 @@ angular.module('xbertsApp')
       //modal
 
       $scope.open = function (size) {
-        if (!$rootScope.user.authRequired()) {
-          return
+        if(!$rootScope.user.authRequired()){
+          return;
         }
         var modalInstance = $uibModal.open({
           templateUrl: '/views/applicationinfo.html',

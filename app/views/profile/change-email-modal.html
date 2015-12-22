@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h3>Change Your Email</h3>
+</div>
+<form name="changeEmailForm" ng-submit="changeEmail()" novalidate clear-form-error>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="emailInput">
+            <span>Email:</span>
+            <span class="error" ng-show="changeEmailForm.$submitted || changeEmailForm.email.$touched"
+                  ng-messages="changeEmailForm.email.$error">
+              <span ng-message="required">Please enter your email.</span>
+              <span ng-message="email">The email you entered is invalid.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="row bottom-buffer-sm">
+        <div class="col-md-12">
+          <input type="email" id="emailInput" class="form-control" name="email"
+                 placeholder="Email" ng-model="data.email" ng-model-options="{ updateOn: 'blur' }"
+                 required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row text-left error bottom-buffer-sm" ng-show="changeEmailForm.$submitted"
+         ng-messages="changeEmailForm.serverError">
+      <div class="col-md-12">
+        <div ng-message="duplicate">An account already exists with that email.</div>
+        <div ng-messages-include="/views/message/form_error.html"></div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-default btn-fixed-sm" ng-click="$dismiss()">Cancel</button>
+    <button type="submit" class="btn btn-primary btn-fixed-sm">Save</button>
+  </div>
+</form>

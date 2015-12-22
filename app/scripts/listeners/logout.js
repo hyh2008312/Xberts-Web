@@ -2,10 +2,10 @@
 
 angular.module('xbertsApp')
   .run(['$rootScope', '$state', 'AuthService', function($rootScope, $state, AuthService) {
-    $rootScope.$on('logout', function() {
+    $rootScope.$on('logout', function(shouldMakeApiCall) {
       $rootScope.$emit('backdropOn', 'delete');
 
-      AuthService.logout()
+      AuthService.logout(shouldMakeApiCall)
         .then(function(response) {
           $rootScope.$emit('backdropOff', 'success');
 
