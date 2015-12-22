@@ -171,33 +171,46 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       replace: true,
-      scope: true,
+      scope: {
+        eventId:'='
+      },
       controller: function ($scope) {
-        $scope.join = {vote: false};
-        $scope.loadingJoin = true;
         this.getJoin = function () {
           return $scope.join;
         };
-
-        $scope.init = function (eventId) {
-          if ($rootScope.user.isAuth()) {
-            EventJoin.get({event_id: eventId, user_id: $rootScope.user.getUserId()}, function (data) {
-              if (data.count !== undefined && data.count > 0) {
-                $scope.join = data.results[0];
-              }
-              $scope.loadingJoin = false;
-            });
-          } else {
-            $scope.loadingJoin = false;
-          }
+        this.participatePromise = function () {
+          var delay = $q.defer();
+          $scope.join = new EventJoin({event_id: $scope.eventId, user_id: $rootScope.user.getUserId()});
+          $scope.join.$save(function () {
+            delay.resolve($scope.join);
+          }, function (error) {
+            delay.reject('Some error happened.');
+            growl.error('error');
+          });
+          return delay.promise;
         };
+      },
+      link: function postLink(scope, element, attrs, eventJoinCtrl) {
+        scope.join = {vote: false};
+        scope.loadingJoin = true;
+        if ($rootScope.user.isAuth()) {
+          EventJoin.get({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
+            if (data.count !== undefined && data.count > 0) {
+              scope.join = data.results[0];
+              console.log(scope.join);
+            }
+            scope.loadingJoin = false;
+          });
+        } else {
+          scope.loadingJoin = false;
+        }
       }
     };
   }])
   .directive('eventProjectVote', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', function ($rootScope, $q, growl, $uibModal, EventProjectVote) {
     return {
       restrict: 'E',
-      templateUrl:'/views/eventproject.html',
+      templateUrl: '/views/eventproject.html',
       replace: false,
       scope: {
         eventProject: '='
