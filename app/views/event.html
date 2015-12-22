@@ -56,7 +56,7 @@
   <section class="container" ng-if="eventProjects.length>0">
     <h3>Brands Featured By Xberts</h3>
     <hr>
-    <load-more class="row spin-large" ng-if="eventProjectsLoading"></load-more>
+    <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
     <div class="row section-body">
 
       <event-project-vote ng-repeat="eventProject in eventProjects" event-project="eventProject"

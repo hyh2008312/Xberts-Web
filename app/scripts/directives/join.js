@@ -172,15 +172,39 @@ angular.module('xbertsApp')
       restrict: 'E',
       replace: true,
       scope: {
-        eventId:'='
+        eventId: '='
       },
       controller: function ($scope) {
+        $scope.join = null;
         this.getJoin = function () {
           return $scope.join;
         };
+        $scope.projects = [];
+        this.addProject = function (project) {
+          $scope.projects.push(project);
+        };
+        this.initProjects = function () {
+          angular.forEach($scope.projects, function (project) {
+            if ($scope.join && $scope.join.event_projects) {
+              project.maxVote = $scope.join.vote_remain <= 0;
+              var i = 0;
+              for (i = 0; i < $scope.join.event_projects.length; i++) {
+                if ($scope.join.event_projects[i] === project.eventProject.id) {
+                  break;
+                }
+              }
+              if (i < $scope.join.event_projects.length) {
+                project.voted = true || $scope.loadingJoin;
+              } else {
+                project.voted = false;
+              }
+            }
+          });
+        };
         this.participatePromise = function () {
+          console.log("partiticpate");
           var delay = $q.defer();
-          $scope.join = new EventJoin({event_id: $scope.eventId, user_id: $rootScope.user.getUserId()});
+          $scope.join = new EventJoin({event: $scope.eventId, user: $rootScope.user.getUserId()});
           $scope.join.$save(function () {
             delay.resolve($scope.join);
           }, function (error) {
@@ -189,14 +213,16 @@ angular.module('xbertsApp')
           });
           return delay.promise;
         };
+        $scope.$watch('join', this.initProjects, true);
+        $scope.$watch('projects.length', this.initProjects);
+        $scope.$watch('loadingJoin', this.initProjects);
       },
       link: function postLink(scope, element, attrs, eventJoinCtrl) {
-        scope.join = {vote: false};
         scope.loadingJoin = true;
         if ($rootScope.user.isAuth()) {
-          EventJoin.get({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
-            if (data.count !== undefined && data.count > 0) {
-              scope.join = data.results[0];
+          EventJoin.query({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
+            if (data.length > 0) {
+              scope.join = data[0];
               console.log(scope.join);
             }
             scope.loadingJoin = false;
@@ -217,37 +243,69 @@ angular.module('xbertsApp')
       },
       require: '^eventJoin',
       link: function postLink(scope, element, attrs, eventJoinCtrl) {
-        //element.text('this is the QuestionInput directive');
         scope.voting = false;
+        scope.voted = false;
+        scope.maxVote = false;
+        scope.referenceId = "event_project_" + scope.eventProject.id;
+        eventJoinCtrl.addProject(scope);
         scope.open = function (size) {
-          //if (!$rootScope.user.authRequired()) {
-          //  return
-          //}
+          if (!$rootScope.user.authRequired()) {
+            return;
+          }
+          scope.voting = true;
           var modalInstance = $uibModal.open({
             templateUrl: '/views/eventprojectvote.html',
             controller: 'EventProjectVoteCtrl',
             size: size
           });
+          modalInstance.result.then(function (reason) {
+            console.log(reason);
+            scope.eventProjectVote = {
+              reason: reason,
+              event_project: scope.eventProject.id
+            };
+            scope.vote();
+          }, function () {
+            scope.voting = false;
+          });
         };
         scope.vote = function () {
-          //先判断是否是参与者,(如果不是则先创建参与者)
           if (eventJoinCtrl.getJoin()) {
-            scope.voteResource = new EventProjectVote();
-            scope.voteResource.save(function () {
-              //加入vote list
-              var join = eventJoinCtrl.getJoin();
+            var join = eventJoinCtrl.getJoin();
+            scope.eventProjectVote.event_joiner = join.id;
+            scope.voteResource = new EventProjectVote(scope.eventProjectVote);
+            scope.voteResource.$save(function () {
               join.vote_remain -= 1;
-              join.projects.append(scope.voteResource.event_project);
+              join.event_projects.push(scope.voteResource.event_project);
+              scope.voted = true;
               scope.voting = false;
-              //project的投票数+1
               scope.eventProject.vote_amount += 1;
-              growl.success('success', {referenceId: $scope.referenceId});
+              growl.success('success:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
             }, function () {
-              growl.error('error', {referenceId: $scope.referenceId});
+              growl.error('error', {referenceId: scope.referenceId});
               scope.voting = false;
             })
+          } else {
+            eventJoinCtrl.participatePromise().then(function () {
+              var join = eventJoinCtrl.getJoin();
+              scope.eventProjectVote.event_joiner = join.id;
+              scope.voteResource = new EventProjectVote(scope.eventProjectVote);
+              scope.voteResource.$save(function () {
+                join.vote_remain -= 1;
+                join.event_projects.push(scope.voteResource.event_project);
+                scope.voted = true;
+                scope.voting = false;
+                scope.eventProject.vote_amount += 1;
+                growl.success('success:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+              }, function () {
+                growl.error('error', {referenceId: scope.referenceId});
+                scope.voting = false;
+              })
+            }, function (error) {
+              growl.error('error', {referenceId: scope.referenceId});
+            })
           }
-        };
+        }
       }
-    };
+    }
   }]);

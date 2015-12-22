@@ -1,4 +1,4 @@
-<form name="distributorForm" ng-submit="distributorFormSubmit()" novalidate>
+<form name="eventProjectVoteForm" ng-submit="eventProjectVoteFormSubmit()" novalidate>
 
   <div class="modal-header">
     <h4 class="modal-title">Select the reasons why you love this product.</h4>
@@ -8,31 +8,12 @@
       <div class="col-md-12">
         <div class="form-group">
           <p class="message-error"
-             ng-show="distributorForm.submitted && distributorForm.partner_type.$error.required">
+             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.reasonsRequired">
             *required</p>
-
-          <div class="checkbox">
+          <label>Which channels will you be selling our products?</label><br/>
+          <div class="checkbox" ng-repeat="item in reasons">
             <label>
-              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
-                     ng-required="true"/> Distributor
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
-                     ng-required="true"/> Distributor
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
-                     ng-required="true"/> Distributor
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name='partner_type' value="1" ng-model="distributor.partner_type"
-                     ng-required="true"/> Distributor
+              <input type="checkbox" ng-model="item.selected"> {{ item.name }}
             </label>
           </div>
         </div>
@@ -40,7 +21,7 @@
     </div>
   </div>
   <div class="modal-footer align-center">
-    <button type="submit" class="btn btn-gray" style="width: 100px">Cancel</button>
+    <button type="reset" class="btn btn-gray" style="width: 100px" ng-click="cancel()">Cancel</button>
     <button type="submit" class="btn btn-primary" style="width: 100px">Vote</button>
   </div>
 </form>

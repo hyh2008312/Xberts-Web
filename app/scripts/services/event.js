@@ -18,5 +18,5 @@ angular.module('xbertsApp')
     return $resource('/resources/events/joiners/:id/', {id: '@id'});
   }])
   .factory('EventProjectVote', ['$resource', function ($resource) {
-    return $resource('/resources/events/projects/vote/');
+    return $resource('/resources/events/projects/votes/');
   }]);
