@@ -41,7 +41,6 @@ angular.module('xbertsApp')
             break;
           case 'applications':
             $scope.applicationsTabActive = true;
-            $scope.followersTabActive=true;
             var fetchFunction1 = function (nextPage, otherParams, callback) {
               var params = {page: nextPage,request__project_id:$scope.project.id};
               angular.extend(params, otherParams);
