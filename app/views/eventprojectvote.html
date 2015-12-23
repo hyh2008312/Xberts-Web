@@ -7,15 +7,17 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <p class="message-error"
-             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.reasonsRequired">
-            *required</p>
-          <label>Which channels will you be selling our products?</label><br/>
           <div class="checkbox" ng-repeat="item in reasons">
             <label>
               <input type="checkbox" ng-model="item.selected"> {{ item.name }}
             </label>
           </div>
+          <p class="message-error"
+             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.reasonsRequired">
+            *At least One</p>
+          <p class="message-error"
+             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.reasonsMax">
+            *At Most Three</p>
         </div>
       </div>
     </div>

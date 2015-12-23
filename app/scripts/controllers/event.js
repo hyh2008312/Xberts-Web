@@ -20,29 +20,33 @@ angular.module('xbertsApp')
       })
     }])
   .controller('EventProjectVoteCtrl', function ($scope, $uibModalInstance, growl) {
-    function reasonsRequired() {
-      $scope.reasonSelected = [];
+    $scope.reasonSelected = [];
+    function reasons() {
+      var reasonSelected = [];
       for (var i = 0; i < $scope.reasons.length; i++) {
         if ($scope.reasons[i].selected) {
-          $scope.reasonSelected.push($scope.reasons[i].name);
+          reasonSelected.push($scope.reasons[i].name);
         }
       }
-      return $scope.reasonSelected.length < 1;
+      $scope.reasonSelected = reasonSelected;
+      return reasonSelected.length;
     }
 
     $scope.reasons = [
-      {id: 1, name: 'like', selected: false},
-      {id: 2, name: 'like1', selected: false},
-      {id: 3, name: 'like2', selected: false},
-      {id: 4, name: 'like3', selected: false}
+      {id: 1, name: 'Innovative and unique', selected: false},
+      {id: 2, name: 'World-class design', selected: false},
+      {id: 3, name: 'Smart and technologically advanced', selected: false},
+      {id: 4, name: 'Makes my life easier and better', selected: false},
+      {id: 5, name: 'Takes care of my health', selected: false},
+      {id: 6, name: 'A great gift for my family and friends', selected: false}
     ];
     $scope.eventProjectVoteFormSubmit = function () {
-      $scope.eventProjectVoteForm.reasonsRequired = reasonsRequired();
-      console.log($scope.eventProjectVoteForm.reasonsRequired);
-      if ($scope.eventProjectVoteForm.$valid && !$scope.eventProjectVoteForm.reasonsRequired) {
+      reasons();
+      $scope.eventProjectVoteForm.reasonsRequired = $scope.reasonSelected.length < 1;
+      $scope.eventProjectVoteForm.reasonsMax = $scope.reasonSelected.length > 3;
+      if ($scope.eventProjectVoteForm.$valid && !$scope.eventProjectVoteForm.reasonsRequired && !$scope.eventProjectVoteForm.reasonsMax) {
         $uibModalInstance.close($scope.reasonSelected.join());
       } else {
-        console.log("invalid");
         $scope.eventProjectVoteForm.submitted = true;
         $scope.eventProjectVoteForm.$invalid = true;
       }
@@ -50,4 +54,8 @@ angular.module('xbertsApp')
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
+    $scope.$watch(reasons, function () {
+      $scope.eventProjectVoteForm.reasonsRequired = $scope.reasonSelected.length < 1;
+      $scope.eventProjectVoteForm.reasonsMax = $scope.reasonSelected.length > 3;
+    })
   });

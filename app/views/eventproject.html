@@ -7,7 +7,7 @@
   </div>
   <div class="cover-layer cover-layer-top">
     <div class="cover-header">
-      <p class="p-8">kkk</p>
+      <p class="p-8" ng-bind-html="eventProject.details| trust"></p>
     </div>
     <div class="cover-footer text-center">
       <a ng-href="#/projectsnorequest/{{ eventProject.project.id }}" class="btn btn-success" style="width: 120px">View
@@ -17,6 +17,8 @@
 </div>
 <div class="text-center" style="margin-bottom: 20px; ">
   <button class="btn" ng-class="{'btn-primary':!voted,'btn-success':voted}" ng-click="open()" style="width: 120px"
-          ng-disabled="voted || voting || maxVote">Vote
+          ng-disabled="voted || voting || maxVote" ng-switch="voted">
+    <span ng-switch-when="false">Vote</span>
+    <span ng-switch-when="true">Voted</span>
   </button>
 </div>

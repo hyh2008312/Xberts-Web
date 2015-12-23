@@ -73,6 +73,7 @@ angular
   .config(['growlProvider', function (growlProvider) {
     growlProvider.globalTimeToLive(3000);
     growlProvider.onlyUniqueMessages(false);
+    growlProvider.globalDisableCountDown(true);
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
