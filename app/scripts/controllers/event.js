@@ -38,7 +38,7 @@ angular.module('xbertsApp')
       {id: 3, name: 'Smart and technologically advanced', selected: false},
       {id: 4, name: 'Makes my life easier and better', selected: false},
       {id: 5, name: 'Takes care of my health', selected: false},
-      {id: 6, name: 'A great gift for my family and friends', selected: false}
+      {id: 6, name: 'A great gift for my family and friends', selected: false},
       {id: 7, name: 'Reasonably priced', selected: false}
     ];
     $scope.eventProjectVoteFormSubmit = function () {
