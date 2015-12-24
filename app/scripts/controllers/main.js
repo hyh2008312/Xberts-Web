@@ -15,11 +15,18 @@ angular.module('xbertsApp')
       $scope.expertPaginator = expertPaginator;
       $scope.slides = [
         {
-          image: '/images/landing_2_2.jpg',
+          image: '/images/landing_01.jpg',
           text: '&nbsp;<br/>&nbsp;',
           buttonText:'Meet Us',
           buttonColor:'btn-primary',
           url:'/#/events/1'
+        },
+        {
+          image: '/images/landing_02.jpg',
+          text: '&nbsp;<br/>&nbsp;',
+          buttonText:'Vote Now',
+          buttonColor:'btn-primary',
+          url:'/#/vote/1'
         },
         {
           image: '/images/landing_1_1.jpg',
