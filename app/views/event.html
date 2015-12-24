@@ -52,15 +52,23 @@
     </div>
   </div>
 </section>
-<event-join event-id="event.id">
-  <section class="container" ng-if="eventProjects.length>0">
-    <h3>Brands Featured By Xberts</h3>
-    <hr>
-    <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
-    <div class="row section-body">
-
-      <event-project-vote ng-repeat="eventProject in eventProjects" event-project="eventProject"
-                          class="col-xs-12 col-sm-6 col-md-4"></event-project-vote>
+<section class="container" ng-if="eventProjects.length>0">
+  <h3>Brands Featured By Xberts</h3>
+  <hr>
+  <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
+  <div class="row section-body">
+    <div ng-repeat="eventProject in eventProjects" event-project="eventProject"
+         class="col-xs-12 col-sm-6 col-md-4">
+      <a class="block-link" ng-href="/#/projects/{{ eventProject.project.id }}">
+        <div class="card">
+          <div growl reference="event_project_{{ eventProject.id }}"></div>
+          <div class="card-header" style="background-image: url({{ eventProject.project.image }})">
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-2" ng-bind="eventProject.project.title"></p>
+          </div>
+        </div>
+      </a>
     </div>
-  </section>
-</event-join>
+  </div>
+</section>

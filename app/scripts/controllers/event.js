@@ -17,7 +17,18 @@ angular.module('xbertsApp')
         $scope.eventProjectsLoading = false;
       }, function () {
         $scope.eventProjectsLoading = false;
-      })
+      });
+    }])
+  .controller('VoteCtrl', ['$scope', '$rootScope', 'EventProject', '$stateParams',
+    function ($scope, $rootScope, EventProject, $stateParams) {
+      $rootScope.bodyBackground = 'background-whitem';
+      $scope.eventId = $stateParams.eventId;
+      $scope.eventProjectsLoading = true;
+      $scope.eventProjects = EventProject.query({event_id: $scope.eventId}, function () {
+        $scope.eventProjectsLoading = false;
+      }, function () {
+        $scope.eventProjectsLoading = false;
+      });
     }])
   .controller('EventProjectVoteCtrl', function ($scope, $uibModalInstance, growl) {
     $scope.reasonSelected = [];

@@ -253,6 +253,11 @@ angular
           }]
         }
       })
+      .state('application.vote', {
+        url: "/vote/:eventId",
+        templateUrl: '/views/vote.html',
+        controller: 'VoteCtrl'
+      })
       .state('application.experts', {
         url: "/experts",
         templateUrl: '/views/experts.html',

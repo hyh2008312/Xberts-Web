@@ -1,0 +1,20 @@
+<section class="section-fixed"
+         style="background-image: url({{ event.banner }})">
+  <div class="cover-layer">
+    <div class="section-title " style="margin-top:90px">
+
+      <h1>Vote For Your Favorite Products</h1>
+
+    </div>
+  </div>
+</section>
+<event-join event-id="eventId">
+  <section class="container" ng-if="eventProjects.length>0">
+    <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
+    <div class="row section-body">
+
+      <event-project-vote ng-repeat="eventProject in eventProjects" event-project="eventProject"
+                          class="col-xs-12 col-sm-6 col-md-4"></event-project-vote>
+    </div>
+  </section>
+</event-join>
