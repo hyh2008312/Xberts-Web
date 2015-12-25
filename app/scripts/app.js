@@ -258,6 +258,11 @@ angular
         templateUrl: '/views/vote.html',
         controller: 'VoteCtrl'
       })
+      .state('application.voteoff', {
+        url: "/voteoff/:eventId",
+        templateUrl: '/views/voteoffline.html',
+        controller: 'VoteOffCtrl'
+      })
       .state('application.experts', {
         url: "/experts",
         templateUrl: '/views/experts.html',

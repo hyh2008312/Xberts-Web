@@ -1,0 +1,32 @@
+<section class="section-fixed"
+         style="background-image: url(/images/ces_vote.jpg)">
+  <div class="cover-layer">
+    <div class="section-title " style="margin-top:30px">
+
+      <h1>Vote For Your Favorite Products</h1>
+
+      <h2>December 25, 2015 ~ January 9, 2016</h2>
+
+      <div class="align-left col-sm-offset-4 col-sm-8 font-light" style="margin-top: 10px; padding: 20px;">
+
+        <p>It’s super easy!</p>
+
+        <p>1. Sign up and vote for your personal favorite products (up to three)</p>
+
+        <p>2. Tell us why you like them</p>
+
+        <p>3. Receive your voter reward in email by Jan 15, 2016</p>
+      </div>
+    </div>
+  </div>
+</section>
+<event-join-off event-id="eventId">
+  <section class="container" ng-if="eventProjects.length>0">
+    <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
+    <div class="row section-body">
+
+      <event-project-vote-off ng-repeat="eventProject in eventProjects" event-project="eventProject"
+                          class="col-xs-12 col-sm-6 col-md-4"></event-project-vote-off>
+    </div>
+  </section>
+</event-join-off>

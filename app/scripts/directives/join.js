@@ -308,4 +308,161 @@ angular.module('xbertsApp')
         }
       }
     }
+  }])
+  .directive('eventJoinOff', ['$rootScope', '$q', 'growl', 'EventJoin', function ($rootScope, $q, growl, EventJoin) {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        eventId: '='
+      },
+      controller: function ($scope) {
+        $scope.join = null;
+        this.getJoin = function () {
+          return $scope.join;
+        };
+        $scope.projects = [];
+        this.addProject = function (project) {
+          $scope.projects.push(project);
+        };
+        this.initProjects = function () {
+          angular.forEach($scope.projects, function (project) {
+            if ($scope.join && $scope.join.event_projects) {
+              project.maxVote = $scope.join.vote_remain <= 0;
+              var i = 0;
+              for (i = 0; i < $scope.join.event_projects.length; i++) {
+                if ($scope.join.event_projects[i] === project.eventProject.id) {
+                  break;
+                }
+              }
+              if (i < $scope.join.event_projects.length) {
+                project.voted = true || $scope.loadingJoin;
+              } else {
+                project.voted = false;
+              }
+            }
+          });
+        };
+        this.participatePromise = function () {
+          console.log("partiticpate");
+          var delay = $q.defer();
+          $scope.join = new EventJoin({event: $scope.eventId, user: $rootScope.user.getUserId()});
+          $scope.join.$save(function () {
+            delay.resolve($scope.join);
+          }, function (error) {
+            delay.reject('Some error happened.');
+            growl.error('error');
+          });
+          return delay.promise;
+        };
+        $scope.$watch('join', this.initProjects, true);
+        $scope.$watch('projects.length', this.initProjects);
+        $scope.$watch('loadingJoin', this.initProjects);
+      },
+      link: function postLink(scope, element, attrs, eventJoinCtrl) {
+        scope.loadingJoin = true;
+        if ($rootScope.user.isAuth()) {
+          EventJoin.query({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
+            if (data.length > 0) {
+              scope.join = data[0];
+              console.log(scope.join);
+            }
+            scope.loadingJoin = false;
+          });
+        } else {
+          scope.loadingJoin = false;
+        }
+      }
+    };
+  }])
+  .directive('eventProjectVoteOff', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', 'AuthService', 'SignupService', function ($rootScope, $q, growl, $uibModal, EventProjectVote, AuthService, SignupService) {
+    return {
+      restrict: 'E',
+      templateUrl: '/views/eventproject.html',
+      replace: false,
+      scope: {
+        eventProject: '='
+      },
+      require: '^eventJoinOff',
+      link: function postLink(scope, element, attrs, eventJoinCtrl) {
+        scope.voting = false;
+        scope.voted = false;
+        scope.maxVote = false;
+        scope.referenceId = "event_project_" + scope.eventProject.id;
+        eventJoinCtrl.addProject(scope);
+        scope.open = function (size) {
+          scope.voting = true;
+          var modalInstance = $uibModal.open({
+            templateUrl: '/views/eventprojectvoteoffline.html',
+            controller: 'EventProjectVoteOffCtrl',
+            size: size
+          });
+          modalInstance.result.then(function (voter) {
+            console.log(voter);
+            scope.eventProjectVote = {
+              reason: voter.reasons,
+              event_project: scope.eventProject.id
+            };
+            if ($rootScope.user.isAuth()) {
+              scope.vote();
+            } else {
+              SignupService.signup.save({
+                fullName: voter.fullName,
+                email: voter.email,
+                password: 'ces2016',
+                country: voter.country,
+                groupName: 'ces2016'
+              }).$promise.then(function (resp) {
+                console.log(resp);
+                AuthService.setUser(resp);
+                scope.vote();
+              }, function (resp) {
+                console.log(resp);
+                scope.voting = false;
+                growl.error('error', {referenceId: scope.referenceId});
+              })
+            }
+          }, function () {
+            scope.voting = false;
+          });
+        };
+        scope.vote = function () {
+          if (eventJoinCtrl.getJoin()) {
+            var join = eventJoinCtrl.getJoin();
+            scope.eventProjectVote.event_joiner = join.id;
+            scope.voteResource = new EventProjectVote(scope.eventProjectVote);
+            scope.voteResource.$save(function () {
+              join.vote_remain -= 1;
+              join.event_projects.push(scope.voteResource.event_project);
+              scope.voted = true;
+              scope.voting = false;
+              scope.eventProject.vote_amount += 1;
+              growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+            }, function () {
+              growl.error('error', {referenceId: scope.referenceId});
+              scope.voting = false;
+            })
+          } else {
+            eventJoinCtrl.participatePromise().then(function () {
+              var join = eventJoinCtrl.getJoin();
+              scope.eventProjectVote.event_joiner = join.id;
+              scope.voteResource = new EventProjectVote(scope.eventProjectVote);
+              scope.voteResource.$save(function () {
+                join.vote_remain -= 1;
+                join.event_projects.push(scope.voteResource.event_project);
+                scope.voted = true;
+                scope.voting = false;
+                scope.eventProject.vote_amount += 1;
+                growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+              }, function () {
+                growl.error('error', {referenceId: scope.referenceId});
+                scope.voting = false;
+              })
+            }, function (error) {
+              growl.error('error', {referenceId: scope.referenceId});
+            })
+          }
+        }
+      }
+    }
   }]);

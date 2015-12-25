@@ -63,6 +63,9 @@ angular.module('xbertsApp')
         }
       };
     }
+    function createUserWithDefaultPasswordPromise(user){
+
+    }
 
     function setUser(user) {
       $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar);
