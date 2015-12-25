@@ -280,7 +280,7 @@ angular.module('xbertsApp')
               scope.voted = true;
               scope.voting = false;
               scope.eventProject.vote_amount += 1;
-              growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+              growl.success('Thank you for your vote!', {referenceId: scope.referenceId});
             }, function () {
               growl.error('error', {referenceId: scope.referenceId});
               scope.voting = false;
@@ -296,7 +296,7 @@ angular.module('xbertsApp')
                 scope.voted = true;
                 scope.voting = false;
                 scope.eventProject.vote_amount += 1;
-                growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+                growl.success('Thank you for your vote!', {referenceId: scope.referenceId});
               }, function () {
                 growl.error('error', {referenceId: scope.referenceId});
                 scope.voting = false;
@@ -437,7 +437,7 @@ angular.module('xbertsApp')
               scope.voted = true;
               scope.voting = false;
               scope.eventProject.vote_amount += 1;
-              growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+              growl.success('Thank you for your vote!', {referenceId: scope.referenceId});
             }, function () {
               growl.error('error', {referenceId: scope.referenceId});
               scope.voting = false;
@@ -453,7 +453,7 @@ angular.module('xbertsApp')
                 scope.voted = true;
                 scope.voting = false;
                 scope.eventProject.vote_amount += 1;
-                growl.success('Thank you! Total vote count:' + scope.eventProject.vote_amount, {referenceId: scope.referenceId});
+                growl.success('Thank you for your vote!', {referenceId: scope.referenceId});
               }, function () {
                 growl.error('error', {referenceId: scope.referenceId});
                 scope.voting = false;
