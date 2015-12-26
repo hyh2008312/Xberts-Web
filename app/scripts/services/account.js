@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AccountService', ['$resource', function($resource) {
+  .factory('AccountService', ['$resource', 'Configuration', function($resource, Configuration) {
     function changeEmail(email) {
-      return $resource('/accounts/email/', null, {
+      return $resource(Configuration.apiBaseUrl + '/accounts/email/', null, {
         update: {
           method: 'PUT'
         }
@@ -11,7 +11,7 @@ angular.module('xbertsApp')
     }
 
     function deactivate() {
-      return $resource('/accounts/deactivate/').delete().$promise;
+      return $resource(Configuration.apiBaseUrl + '/accounts/deactivate/').delete().$promise;
     }
 
     return {

@@ -1,14 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.applicantsreviewLoad
- * @description
- * # applicantsreviewLoad
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
-  .factory('ApplicantsreviewLoad', ['$rootScope', 'Applicantsreview', '$q', function ($rootScope, Applicantsreview, $q) {
+  .factory('ApplicantsreviewLoad', ['$rootScope', 'Applicantsreview', '$q',
+    function ($rootScope, Applicantsreview, $q) {
     return function ($stateParams) {
       var delay = $q.defer();
       Applicantsreview.get({

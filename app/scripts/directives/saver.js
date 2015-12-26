@@ -9,7 +9,7 @@
 angular.module('xbertsApp')
   .directive('saver',  function () {
     return {
-      templateUrl:'/views/saver.html',
+      templateUrl:'views/saver.html',
       require: '^join',
       restrict: 'E'
     };

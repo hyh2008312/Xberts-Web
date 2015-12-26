@@ -30,9 +30,7 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-{% verbatim %}
 <div ui-view></div>
-{% endverbatim %}
 
 <footer>
   <div class="container text-center">
@@ -81,6 +79,8 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/configs/configuration.js"></script>
+<script src="scripts/configs/default-configuration.js"></script>
 <script src="scripts/controllers/application.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/profile/change-email.js"></script>
@@ -97,9 +97,10 @@
 <script src="scripts/directives/compareto.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
 <script src="scripts/interceptors/auth.js"></script>
+<script src="scripts/interceptors/request.js"></script>
 <script src="scripts/listeners/logout.js"></script>
 <script src="scripts/listeners/state-change-error.js"></script>
-<script src="scripts/listeners/state-change-success.js"></script>
+<script src="scripts/listeners/state-change-start.js"></script>
 <script src="scripts/listeners/unauthorized.js"></script>
 <script src="scripts/resolvers/token-check-resolver.js"></script>
 <script src="scripts/resolvers/user-profile-resolver.js"></script>
@@ -180,5 +181,9 @@
 <script src="scripts/services/applicantsreview.js"></script>
 <script src="scripts/services/applicantsreviewload.js"></script>
 <!-- endbuild -->
+
+<!-- Environment specific config override that's deployed and sourced separately, don't minify. -->
+<script src="scripts/override-configuration.js"></script>
+
 </body>
 </html>

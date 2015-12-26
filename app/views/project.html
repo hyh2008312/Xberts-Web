@@ -25,12 +25,12 @@
             </uib-tab>
             <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active" select="select('comments')">
               <div ng-if="commentsTabActive">
-                <div ng-include src="'/views/comments.html'"></div>
+                <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
             <uib-tab heading="Application" active="tabs[2].active" select="select('applications')" ng-if="user.isStaff() || user.getUserId()==project.account.id">
               <div ng-if="applicationsTabActive">
-                <div ng-include src="'/views/applicationlist.html'"></div>
+                <div ng-include src="'views/applicationlist.html'"></div>
               </div>
             </uib-tab>
           </uib-tabset>

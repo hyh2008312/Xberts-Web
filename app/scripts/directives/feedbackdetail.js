@@ -9,7 +9,7 @@
 angular.module('xbertsApp')
   .directive('feedbackDetail',['Paginator','$rootScope','Interact', 'growl',function (Paginator,$rootScope,Interact,growl) {
     return {
-      templateUrl: '/views/feedbackdetail.html',
+      templateUrl: 'views/feedbackdetail.html',
       replace:true,
       scope:{
         item:'='

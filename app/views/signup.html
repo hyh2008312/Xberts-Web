@@ -6,7 +6,7 @@
         <div class="error" ng-show="signupForm.$submitted"
              ng-messages="signupForm.serverError">
           <div ng-message="userExist">An account already exists with that email.</div>
-          <div ng-messages-include="/views/message/form_error.html"></div>
+          <div ng-messages-include="views/message/form_error.html"></div>
         </div>
 
         <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.fullName.$touched"

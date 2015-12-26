@@ -1,127 +1,164 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AuthService', ['$rootScope', '$resource','$state', '$q', function ($rootScope, $resource, $state, $q) {
-    function User(userId, userName, userEmail, userType, userAvatar) {
-      this._userId = userId || '';
-      this._userName = userName || '';
-      this._userEmail = userEmail || '';
-      this._userType = userType || false;
-      this._userAvatar = userAvatar || '';
+  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', 'Configuration',
+    function($rootScope, $resource, $state, $q, Configuration) {
+      function User(userId, userName, userEmail, userType, userAvatar, isResolved) {
+        this._userId = userId || '';
+        this._userName = userName || '';
+        this._userEmail = userEmail || '';
+        this._userType = userType || false;
+        this._userAvatar = userAvatar || '';
+        // Indicate whether login state has been fetched from backend
+        this._isResolved = isResolved || false;
 
-      this.isAuth = function() {
-        return this._userId ? true : false;
-      };
+        this.isAuth = function() {
+          return this._userId ? true : false;
+        };
 
-      this.isStaff = function() {
-        return this._userType;
-      };
+        this.isStaff = function() {
+          return this._userType;
+        };
 
-      this.getUserId = function() {
-        return this._userId;
-      };
+        this.getUserId = function() {
+          return this._userId;
+        };
 
-      this.getUserName = function() {
-        return this._userName;
-      };
+        this.getUserName = function() {
+          return this._userName;
+        };
 
-      this.getUserEmail = function() {
-        return this._userEmail;
-      };
+        this.getUserEmail = function() {
+          return this._userEmail;
+        };
 
-      this.getUserType = function() {
-        return this._userType;
-      };
+        this.getUserType = function() {
+          return this._userType;
+        };
 
-      this.getUserAvatar = function() {
-        return this._userAvatar;
-      };
+        this.getUserAvatar = function() {
+          return this._userAvatar;
+        };
 
-      this.setUserName = function(userName) {
-        this._userName = userName;
-      };
+        this.isResolved = function() {
+          return this._isResolved;
+        };
 
-      this.setUserEmail = function(userEmail) {
-        this._userEmail = userEmail;
-      };
+        this.setUserName = function(userName) {
+          this._userName = userName;
+        };
 
-      this.setUserAvatar = function(userAvatar) {
-        this._userAvatar = userAvatar;
-      };
+        this.setUserEmail = function(userEmail) {
+          this._userEmail = userEmail;
+        };
 
-      this.authRequired = function() {
-        if (this.isAuth()) {
-          return true;
-        } else {
-          $rootScope.next = {
-            state: $state.$current.name,
-            params: $state.params
-          };
+        this.setUserAvatar = function(userAvatar) {
+          this._userAvatar = userAvatar;
+        };
 
-          $state.go('application.login');
-          return false;
-        }
-      };
-    }
-    function createUserWithDefaultPasswordPromise(user){
+        this.setIsResolved = function(isResolved) {
+          this._isResolved = isResolved;
+        };
 
-    }
+        this.authRequired = function() {
+          if (this.isAuth()) {
+            return true;
+          } else {
+            $rootScope.postLoginState = $rootScope.next;
 
-    function setUser(user) {
-      $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar);
-    }
-
-    function createAuthHeader(credentials) {
-      return 'Basic ' + btoa(credentials.username + ':' + credentials.password);
-    }
-
-    function login(credentials, params) {
-      return $resource('/accounts/auth/', {}, {
-        auth: {
-          method: 'POST',
-          params: params,
-          headers: {
-            Authorization: createAuthHeader(credentials)
+            $state.go('application.login');
+            return false;
           }
-        }
-      });
-    }
-
-    function postLogin(user) {
-      setUser(user);
-
-      $rootScope.$emit('backdropOff', 'success');
-
-      if ($rootScope.next) {
-        $state.go($rootScope.next.state, $rootScope.next.params);
-
-        $rootScope.next = null;
-      } else {
-        $state.go('application.main')
+        };
       }
-    }
 
-    function logout(shouldMakeApiCall) {
-      $rootScope.user = new User();
+      function setUser(user) {
+        $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar, true);
+      }
 
-      if (!shouldMakeApiCall) {
+      function createAuthHeader(credentials) {
+        return 'Basic ' + btoa(credentials.username + ':' + credentials.password);
+      }
+
+      function login(credentials, params) {
+        return $resource(Configuration.apiBaseUrl + '/accounts/auth/', {}, {
+          auth: {
+            method: 'POST',
+            params: params,
+            headers: {
+              Authorization: createAuthHeader(credentials)
+            }
+          }
+        });
+      }
+
+      function createUserWithDefaultPasswordPromise(user){
+
+      }
+
+      function postLogin(user) {
+        setUser(user);
+
+        $rootScope.$emit('backdropOff', 'success');
+
+        if ($rootScope.postLoginState) {
+          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params);
+
+          $rootScope.postLoginState = null;
+        } else {
+          $state.go('application.main')
+        }
+      }
+
+      function logout(shouldMakeApiCall) {
+        $rootScope.user = new User();
+        $rootScope.user.setIsResolved(true);
+
+        if (!shouldMakeApiCall) {
+          var deferred = $q.defer();
+
+          deferred.resolve();
+
+          return deferred.promise;
+        } else {
+          return $resource(Configuration.apiBaseUrl + '/accounts/logout/').delete().$promise
+        }
+      }
+
+      function fetchUser() {
+        return $resource(Configuration.apiBaseUrl + '/accounts/user/').get().$promise;
+      }
+
+      function auth() {
         var deferred = $q.defer();
 
-        deferred.resolve();
+        if ($rootScope.user && $rootScope.user.isResolved()) {
+          deferred.resolve();
+        } else {
+          fetchUser()
+            .then(function(value, responseHeaders) {
+              setUser(value);
+
+              deferred.resolve();
+            })
+            .catch(function(httpResponse) {
+              // Fail to get user means user is not logged in
+              $rootScope.user.setIsResolved(true);
+
+              deferred.resolve();
+            });
+        }
 
         return deferred.promise;
-      } else {
-        return $resource('/accounts/logout/').delete().$promise
       }
-    }
 
-    $rootScope.user = new User();
+      $rootScope.user = new User();
 
-    return {
-      login: login,
-      user: $resource('/accounts/user/', {}),
-      setUser: setUser,
-      postLogin: postLogin,
-      logout: logout
-    };
-  }]);
+      return {
+        login: login,
+        auth: auth,
+        setUser: setUser,
+        postLogin: postLogin,
+        logout: logout
+      };
+    }]);

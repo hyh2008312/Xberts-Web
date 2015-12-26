@@ -1,19 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.Review
- * @description
- * # Review
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
-  .factory('Review', ['$resource', function ($resource) {
-    // Service logic
-    // ...
-
-    //var meaningOfLife = 42;
-
-    // Public API here
-    return $resource('/review/reviews/:id/', {id: '@id'});
+  .factory('Review', ['$resource', 'Configuration', function($resource, Configuration) {
+    return $resource(Configuration.apiBaseUrl + '/review/reviews/:id/', {id: '@id'});
   }]);

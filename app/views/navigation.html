@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" ui-sref="application.main"><img src="/images/logo-20140717.png" alt="Xberts"></a>
+          <a class="navbar-brand" ui-sref="application.main"><img src="/images/xberts.png" alt="xberts"></a>
         </div>
       </div>
       <div class="col-sm-9">
@@ -23,7 +23,8 @@
             </li>
             <li ng-class="{active: $state.includes('application.events')}"><a ui-sref="application.events"
                                                                               class="fade-in-line">EVENTS</a></li>
-            <li ng-class="{active: $state.includes('application.forum'),dropdown:true}"><a ui-sref="application.experts" class="fade-in-line">EXPERTS</a>
+            <li ng-class="{active: $state.includes('application.forum')}">
+              <a ui-sref="application.experts" class="fade-in-line">EXPERTS</a>
             </li>
             <li ng-class="{active: $state.includes('application.about')}"><a ui-sref="application.about"
                                                                              class="fade-in-line">ABOUT</a></li>

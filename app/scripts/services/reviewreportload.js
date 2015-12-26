@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.ReviewReportLoad
- * @description
- * # ReviewReportLoad
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('ReviewReportLoad',  ['ReviewReport', '$q', function (ReviewReport, $q) {
     return function ($stateParams) {

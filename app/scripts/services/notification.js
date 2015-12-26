@@ -1,27 +1,18 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.Notification
- * @description
- * # Notification
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
-  .factory('Notification', ['$resource', '$rootScope',function ($resource,$rootScope) {
-    // Service logic
-    // ...
-
-    //var meaningOfLife = 42 ;
+  .factory('Notification', ['$resource', '$rootScope', 'Configuration', function($resource, $rootScope, Configuration) {
     var user = $rootScope.user;
-    var resource={};
-    resource.notificationsResource=function(){
-      return $resource('http://127.0.0.1:8000/notifications/:userId/', {userId:user.getUserId()});
+    var resource = {};
+    resource.notificationsResource = function() {
+      return $resource(Configuration.apiBaseUrl + '/notifications/:userId/', {userId: user.getUserId()});
     };
-    resource.notificationsCountResource=function(){
-      return $resource('http://127.0.0.1:8000/notifications/:userId/count/', {userId:user.getUserId(),id: '@id'});
+    resource.notificationsCountResource = function() {
+      return $resource(Configuration.apiBaseUrl + '/notifications/:userId/count/', {
+        userId: user.getUserId(),
+        id: '@id'
+      });
     };
 
-    // Public API here
     return resource;
   }]);

@@ -9,7 +9,7 @@
 angular.module('xbertsApp')
   .directive('followings', function () {
     return {
-      templateUrl: '/views/followingstab.html',
+      templateUrl: 'views/followingstab.html',
       restrict: 'E',
       scope:{
         joinsPaginator:'='

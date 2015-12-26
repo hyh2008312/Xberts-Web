@@ -82,21 +82,17 @@ module.exports = function (grunt) {
       },
       proxies: [
         {
-          context: ['/adviceapp', '/projects', '/resources', '/media', '/v2', '/xberts', '/auth', '/logout', '/static',
-            '/review', '/accounts', '/notifications', '/interact', '/qa','/upload'],
+          context: ['/api', '/media'],
           host: 'localhost',
           port: 8000,
           https: false
-          //rewrite:{
-          //  '^/index.html':'/v2/'
-          //}
         }
       ],
       livereload: {
         options: {
           //open: true,
           open: {
-            target:'http://localhost:9000/v2'
+            target:'http://localhost:9000/'
           },
           //middleware: function (connect) {
           //  return [
@@ -148,7 +144,7 @@ module.exports = function (grunt) {
         options: {
           //open: true,
           open: {
-            target:'http://localhost:9000/v2'
+            target:'http://localhost:9000/'
           },
           base: '<%= yeoman.dist %>',
           middleware: function (connect) {
@@ -420,6 +416,11 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: ['scripts/override-configuration.js'],
+          dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
@@ -433,6 +434,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/font-awesome',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/intl-tel-input/build',
+          src: 'img/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -440,73 +446,6 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      },
-      server: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: 'index*.html',
-          dest: '../xberts_server/v2/templates/v2/'
-        }, {
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['fonts/*', 'images/*', 'scripts/*', 'styles/*'],
-          dest: '../xberts_server/v2/static/v2/'
-        }]
-      }
-    },
-
-    'string-replace': {
-      distJS: {
-        files: [{
-          src: '<%= yeoman.dist %>/scripts/scripts.*.js',
-          dest: '<%= yeoman.dist %>/scripts/'
-        }],
-        options: {
-          saveUnchanged: false,
-          replacements: [{
-            pattern: /\/views\//g,
-            replacement: 'views/'
-          }, {
-            pattern: /url\((\/images\/[^ ]+)\)/g,
-            replacement: 'url(/static/v2$1)'
-          }, {
-            pattern: /(src|ng-src)="(\/images\/[^ ]+\.(png|jpg))"/g,
-            replacement: '$1="/static/v2$2"'
-          }, {
-            pattern: /(\{image:)"(\/images\/[^ ]+\.(png|jpg))"/g,
-            replacement: '$1"/static/v2$2"'
-          }]
-        }
-      },
-      distHTML: {
-        files: [{
-          src: '<%= yeoman.dist %>/index.html',
-          dest: '<%= yeoman.dist %>/'
-        }],
-        options: {
-          saveUnchanged: false,
-          replacements: [{
-            pattern: /(href|src)="([^ ]+\.(css|js|png))"/g,
-            replacement: '$1="/static/v2/$2"'
-          }, {
-            pattern: /src="([^ ]+\.(png|jpg))"/g,
-            replacement: 'src="/static/v2$1"'
-          }]
-        }
-      },
-      debugIndex: {
-        files: [{
-          src: '<%= yeoman.app %>/index.html',
-          dest: '<%= yeoman.dist %>/index_debug.html'
-        }],
-        options: {
-          saveUnchanged: false,
-          replacements: [{
-            pattern: /src="(scripts\/[^ ]+\.js)"/g,
-            replacement: 'src="/$1"'
-          }]
-        }
       }
     },
 
@@ -534,7 +473,6 @@ module.exports = function (grunt) {
     }
   });
 
-
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -549,11 +487,6 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [
@@ -580,10 +513,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
-    'string-replace:distJS',
-    'string-replace:distHTML',
-    'string-replace:debugIndex'
+    'htmlmin'
   ]);
 
   grunt.registerTask('buildServe',[

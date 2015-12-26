@@ -9,7 +9,7 @@
 angular.module('xbertsApp')
   .directive('commentDetail', function () {
     return {
-      templateUrl: '/views/commentdetail.html',
+      templateUrl: 'views/commentdetail.html',
       restrict: 'E',
       replace:true,
       require:'^feedbackDetail',

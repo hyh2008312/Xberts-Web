@@ -1,15 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ProjectinfoCtrl
- * @description
- * # ProjectinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('ProjectinfoCtrl', ['$scope', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project','growl',
-    function ($scope, UploadMultiForm, TempImage, SystemData, Project,growl) {
+  .controller('ProjectinfoCtrl', ['$scope', 'Configuration', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project','growl',
+    function ($scope, Configuration, UploadMultiForm, TempImage, SystemData, Project,growl) {
       $scope.projectTypes=SystemData.getProjectTypes();
       $scope.projectTemp = {
         tempId: 0,
@@ -41,7 +34,7 @@ angular.module('xbertsApp')
         $scope.projectForm.logoRequired = ($scope.project.logo === null) || ($scope.project.logo === undefined);
 
         if ($scope.projectForm.$valid && !$scope.projectForm.logoRequired) {
-          var url = '/projects/rest/projects/';
+          var url = Configuration.apiBaseUrl + '/projects/rest/projects/';
           var method = 'POST';
           if ($scope.project.id) {
             url = url + $scope.project.id + '/';
@@ -79,7 +72,7 @@ angular.module('xbertsApp')
             type: 'project'
           };
           var uploadMultiImages = UploadMultiForm(
-            '/upload/rest/temps/' + $scope.projectTemp.tempId + '/images/',
+            Configuration.apiBaseUrl + '/upload/rest/temps/' + $scope.projectTemp.tempId + '/images/',
             'POST',
             data,
             function (resp) {

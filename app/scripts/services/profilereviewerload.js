@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.ProfileReviewerLoad
- * @description
- * # ProfileReviewerLoad
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('ProfileReviewerLoad',  ['ProfileReviewer', '$q','$rootScope', function (ProfileReviewer, $q,$rootScope) {
     return function () {

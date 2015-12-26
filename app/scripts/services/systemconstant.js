@@ -1,16 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.SystemConstant
- * @description
- * # SystemConstant
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('SystemConstant', function () {
-    // Service logic
-    // ...
 
     var COUNTRIES = [
       {code: 'AF', name: 'Afghanistan'},
@@ -375,6 +366,5 @@ angular.module('xbertsApp')
     systemConstant.LINKEDIN_CONNECTION = LINKEDIN_CONNECTION;
     systemConstant.OTHER_CONNECTION = OTHER_CONNECTION;
 
-    // Public API here
     return systemConstant;
   });

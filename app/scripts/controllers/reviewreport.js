@@ -1,15 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ReviewreportCtrl
- * @description
- * # ReviewreportCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$timeout','$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
-    function ($timeout,$scope, $state, growl, UploadMultiForm, TempImage, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$timeout','$scope', '$state', 'growl', 'Configuration', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
+    function ($timeout,$scope, $state, growl, Configuration, UploadMultiForm, TempImage, ReviewReport, applicant) {
       // model
       $scope.applicant = applicant;
       $scope.report = {};
@@ -80,7 +73,7 @@ angular.module('xbertsApp')
             type: 'report'
           };
           var uploadMultiImages = UploadMultiForm(
-            '/upload/rest/temps/' + $scope.reportTemp.tempId + '/images/',
+            Configuration.apiBaseUrl + '/upload/rest/temps/' + $scope.reportTemp.tempId + '/images/',
             'POST',
             data,
             function (resp) {

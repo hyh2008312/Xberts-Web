@@ -1,15 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:EventlauchCtrl
- * @description
- * # EventlauchCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('EventLauchCtrl', ['$scope', '$state', 'growl', 'UploadMultiForm', 'TempImage', 'event',
-    function ($scope, $state, growl, UploadMultiForm, TempImage, event) {
+  .controller('EventLauchCtrl', ['$scope', '$state', 'Configuration', 'growl', 'UploadMultiForm', 'TempImage', 'event',
+    function ($scope, $state, Configuration, growl, UploadMultiForm, TempImage, event) {
       var tagsParse = function (tagstring) {
         var tags = [];
         if (tagstring === undefined || tagstring === null || tagstring === "") {
@@ -74,7 +67,7 @@ angular.module('xbertsApp')
           $scope.event.temp_id = $scope.eventTemp.tempId;
 
           var method = 'POST';
-          var url = '/resources/events/';
+          var url = Configuration.apiBaseUrl + '/resources/events/';
           if ($scope.event.id) {
             url = url + $scope.event.id + '/';
             method = 'PUT';

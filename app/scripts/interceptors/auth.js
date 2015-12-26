@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('AuthInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
-    this.responseError = function(rejection) {
-      // Ignore error when trying to test login status
-      if (rejection.config.url !== '/accounts/user/' &&
-          rejection.config.url !== '/accounts/auth/' &&
-          (rejection.status === 401 || rejection.status === 403)) {
+  .service('AuthInterceptor', ['$q', '$rootScope', 'S', 'Configuration', function($q, $rootScope, S, Configuration) {
+    this.responseError = function(response) {
+      var shouldIgnore = false;
+
+      angular.forEach(Configuration.unauthorizedExceptionEndpoints, function(value) {
+        if (S(response.config.url).endsWith(value)) {
+          shouldIgnore = true;
+        }
+      });
+
+      if (!shouldIgnore && (response.status === 401 || response.status === 403)) {
         $rootScope.$broadcast('unauthorized');
       }
 
-      return $q.reject(rejection);
+      return $q.reject(response);
     };
   }]);

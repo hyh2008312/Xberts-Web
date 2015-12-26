@@ -1,16 +1,19 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('UserResolver', ['AuthService', function(AuthService) {
+  .factory('UserResolver', ['$rootScope', '$state', '$q', 'S', 'AuthService', function($rootScope, $state, $q, S, AuthService) {
     return {
       resolver: function() {
-        return AuthService.user.get().$promise
-          .then(function(value, responseHeaders) {
-            AuthService.setUser(value);
-          })
-          .catch(function(httpResponse) {
-            // Fail to get user means user is not logged in
-            // No-opt
+        return AuthService.auth()
+          .then(function() {
+            // Login state has been determined at this point
+            if (S($rootScope.next.state.name).startsWith('application.protected') && !$rootScope.user.isAuth()) {
+              $rootScope.$emit('backdropOff', 'login');
+
+              $rootScope.postLoginState = $rootScope.next;
+
+              $state.go('application.login');
+            }
           });
       }
     }

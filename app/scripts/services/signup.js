@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('SignupService', ['$resource', function($resource) {
+  .factory('SignupService', ['$resource', 'Configuration', function($resource, Configuration) {
     return {
-      signup: $resource('/accounts/signup/', {})
+      signup: $resource(Configuration.apiBaseUrl + '/accounts/signup/', {})
     };
   }]);

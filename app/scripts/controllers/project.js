@@ -61,7 +61,7 @@ angular.module('xbertsApp')
           return;
         }
         var modalInstance = $uibModal.open({
-          templateUrl: '/views/applicationinfo.html',
+          templateUrl: 'views/applicationinfo.html',
           controller: 'DistributorCtrl',
           size: size,
           resolve: {

@@ -1,13 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.Expert
- * @description
- * # Expert
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
-  .factory('Expert',['$resource', function ($resource) {
-    return $resource('/xberts/rest/experts/:id/', {id: '@id'});
+  .factory('Expert', ['$resource', 'Configuration', function($resource, Configuration) {
+    return $resource(Configuration.apiBaseUrl + '/xberts/rest/experts/:id/', {id: '@id'});
   }]);
