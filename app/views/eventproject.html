@@ -4,6 +4,7 @@
   </div>
   <div class="card-body">
     <p class="card-body-title p-2" ng-bind="eventProject.project.title"></p>
+    <p class="card-body-footer p-1">{{ eventProject.tags|tagsplit }}</p>
   </div>
   <div class="cover-layer cover-layer-top">
     <div class="cover-header">
