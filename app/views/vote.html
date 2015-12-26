@@ -19,8 +19,8 @@
     </div>
 </section>
 <event-join event-id="eventId">
+  <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
   <section class="container" ng-if="eventProjects.length>0">
-    <load-more class="row spin-large" ng-show="eventProjectsLoading"></load-more>
     <div class="row section-body">
 
       <event-project-vote ng-repeat="eventProject in eventProjects" event-project="eventProject"
