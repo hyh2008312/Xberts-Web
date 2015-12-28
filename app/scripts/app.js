@@ -142,6 +142,9 @@ angular
         templateUrl: "/views/projects.html",
         controller: "ProjectsCtrl",
         resolve: {
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }],
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
               var params = {page: nextPage};

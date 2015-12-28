@@ -1,5 +1,5 @@
-<section class="container header">
-  <div class="jumbotron section-title" style="background-image: url(/images/5.jpg)">
+<section class="container header padding-bottom-clear">
+  <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 15px;">
     <h2 class="font-whitem">Connect brand new smart devices with global distributors and retailers!</h2>
 
     <div class="row">
@@ -7,47 +7,82 @@
         <a class="btn btn-lg btn-success btn-block" ui-sref="application.protected.launchProject">Launch a Product</a>
       </h3>
     </div>
+  </div>
+</section>
+<section class="container padding-top-clear">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-3">
+      <div class="form-group">
+        <select class="form-control" ng-required="true" ng-model="projects.project_category_id"
+                ng-change="onSearch();">
+          <option value="">Filter by: All categories</option>
+          <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
+                  ng-selected="project.project_category==projectType.id">{{ projectType.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <select class="form-control" ng-required="true" ng-model="projects.ordering"
+                ng-change="onSearch();">
+          <option value="-date_published'"
+                  ng-selected="projects.ordering=='-date_published'">Sort by: Newest
+          </option>
+          <option value="-interact__vote_amount"
+                  ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
+          </option>
+        </select>
+      </div>
+    </div>
+    <!--<div class="col-md-3">-->
+      <!--<ul class="nav nav-pills pull-right">-->
+        <!--<li role="presentation" ng-class="{'active':projects.ordering=='-date_published'}"><a a ng-click="onOrdering('-date_published');">New</a></li>-->
+
+        <!--<li role="presentation" ng-class="{'active':projects.ordering=='-interact__vote_amount'}"><a ng-click="onOrdering('-interact__vote_amount');">Popular</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
 
   </div>
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
       <a class="block-link" ng-href="#/projects/{{ project.id }}">
-      <div class="card">
-        <div class="card-header" style="background-image: url({{ project.image }})">
-        </div>
-        <div class="card-body">
-          <div class="card-body-header">
-            <div class="avatar-text-small-1">
-              <img ng-src="{{ project.account.avatar }}"/>
-
-              <p ng-bind="project.account.fullname"></p>
-            </div>
+        <div class="card">
+          <div class="card-header" style="background-image: url({{ project.image }})">
           </div>
-          <p class="card-body-title p-3" ng-bind="project.title">
-          </p>
+          <div class="card-body">
+            <div class="card-body-header">
+              <div class="avatar-text-small-1">
+                <img ng-src="{{ project.account.avatar }}"/>
 
-          <div class="card-body-footer">
-            <div class="row">
-              <div class="col-xs-6 align-left">
-                <p class="p-1" ng-bind="project.project_category_name"></p>
+                <p ng-bind="project.account.fullname"></p>
               </div>
-              <div class="col-xs-6 align-right">
-                <p class="p-1">
-                  <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
-                  <i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>
-                  <!-- todo:user config-->
+            </div>
+            <p class="card-body-title p-3" ng-bind="project.title">
+            </p>
+
+            <div class="card-body-footer">
+              <div class="row">
+                <div class="col-xs-6 align-left">
+                  <p class="p-1" ng-bind="project.project_category_name"></p>
+                </div>
+                <div class="col-xs-6 align-right">
+                  <p class="p-1">
+                    <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
+                    <i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>
+                    <!-- todo:user config-->
                   <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
                   <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
                   <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
                   </span>
-                </p>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
       </a>
     </div>
   </div>
