@@ -207,7 +207,7 @@ angular
       })
       .state('application.projectnorequest', {
         url: "/projectsnorequest/:projectId",
-        templateUrl: '/views/project_no_request.html',
+        templateUrl: 'views/project_no_request.html',
         controller: 'ProjectNoRequestCtrl',
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
@@ -261,12 +261,12 @@ angular
       })
       .state('application.vote', {
         url: "/vote/:eventId",
-        templateUrl: '/views/vote.html',
+        templateUrl: 'views/vote.html',
         controller: 'VoteCtrl'
       })
       .state('application.voteoff', {
         url: "/voteoff/:eventId",
-        templateUrl: '/views/voteoffline.html',
+        templateUrl: 'views/voteoffline.html',
         controller: 'VoteOffCtrl'
       })
       .state('application.experts', {
