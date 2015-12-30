@@ -8,4 +8,4 @@
 *.iml
 
 # Override setting
-/app/scripts/override-configuration.js
+dist/scripts/override-configuration*.js
