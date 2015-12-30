@@ -6,3 +6,6 @@
 # Intellij
 /.idea
 *.iml
+
+# Override setting
+/app/scripts/override-configuration.js
