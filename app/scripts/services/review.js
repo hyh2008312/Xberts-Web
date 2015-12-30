@@ -16,4 +16,7 @@ angular.module('xbertsApp')
 
     // Public API here
     return $resource('/review/reviews/:id/', {id: '@id'});
+  }])
+  .factory('ProjectReview', ['$resource', function ($resource) {
+    return $resource('/review/projectreviews/:id/', {id: '@id'});
   }]);

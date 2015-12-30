@@ -1,0 +1,127 @@
+<div class="navbar navbar-default navbar-fixed-top-sub" role="navigation" ng-show="sub.subNavShow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9">
+        <ul class="nav navbar-nav">
+          <li id="sub_nav_show" du-smooth-scroll="section-1" du-scrollspy style="display: none;">
+            <a class="fade-in-line">Sub title</a>
+          </li>
+          <li du-smooth-scroll="section-2" du-scrollspy>
+            <a class="fade-in-line" ng-click="toSection2();">APPLICATION PROCESS</a>
+          </li>
+          <li du-smooth-scroll="section-3" du-scrollspy>
+            <a class="fade-in-line" ng-click="toSection3();">INSTRUCTION GUIDE</a>
+          </li>
+          <li du-smooth-scroll="section-4" du-scrollspy>
+            <a class="fade-in-line" ng-click="toSection4();">PRODUCT DETAILS</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-primary navbar-btn navbar-right" style="width: 120px">APPLY NOW</button>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section-fixed-sm"
+         style="background-image: url({{ event.banner }})" id="section-1">
+  <div class="cover-layer">
+    <div class="section-title " style="margin-top:90px">
+
+      <h1>{{ review.title }}</h1>
+
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <section class="padding-top-clear" id="section-2">
+        <h3 class="margin-top-clear">Application Process</h3>
+        <hr>
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">1. Submit Application</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">2. Application Selection</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">3. Product Shipment</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">4. Review Submission</p>
+          </div>
+        </div>
+      </section>
+      <section class="padding-top-clear" id="section-3">
+        <h3 class="margin-top-clear">Instruction Guide</h3>
+        <hr>
+        <!--<div class="tab-content" ng-bind-html="event.details | trust"></div>-->
+        <div class="tab-content">Bacon strip steak ground round, tongue pastrami short ribs pork chop venison turducken
+          sausage sirloin. Flank chicken pork chop capicola turkey turducken cow pork loin biltong meatball drumstick
+          pancetta filet mignon ground round fatback. Ham hock jerky short ribs brisket. Meatloaf shoulder pork chop
+          capicola, sirloin swine pig pork. Jerky ribeye hamburger pork loin
+          sirloin kevin bresaola boudin chuck flank. Ham hock pork belly chicken jerky rump bresaola.
+          Bacon strip steak ground round, tongue pastrami short ribs pork chop venison turducken sausage sirloin. Flank
+          chicken pork chop capicola turkey turducken cow pork loin biltong meatball drumstick pancetta filet mignon
+          ground round fatback. Ham hock jerky short ribs brisket. Meatloaf shoulder pork chop capicola, sirloin swine
+          pig
+          pork. Jerky ribeye hamburger pork loin sirloin kevin bresaola boudin chuck flank. Ham hock pork belly chicken
+          jerky rump bresaola.Bacon strip steak ground round, tongue pastrami short ribs pork chop venison turducken
+          sausage sirloin. Flank chicken pork chop capicola turkey turducken cow pork loin biltong meatball drumstick
+          pancetta filet mignon ground round fatback. Ham hock jerky short ribs brisket. Meatloaf shoulder pork chop
+          capicola, sirloin swine pig pork. Jerky ribeye hamburger pork loin sirloin kevin bresaola boudin chuck flank.
+          Ham hock pork belly chicken jerky rump bresaola.Bacon strip steak ground round, tongue pastrami short ribs
+          pork
+          chop venison turducken sausage sirloin. Flank chicken pork chop capicola turkey turducken cow pork loin
+          biltong
+          meatball drumstick pancetta filet mignon ground round fatback. Ham hock jerky short ribs brisket. Meatloaf
+          shoulder pork chop capicola, sirloin swine pig pork. Jerky ribeye hamburger pork loin sirloin kevin bresaola
+          boudin chuck flank. Ham hock pork belly chicken jerky rump bresaola.
+        </div>
+      </section>
+      <section id="section-4" class="padding-top-clear">
+        <h3 class="margin-top-clear">Product Details</h3>
+        <hr>
+        <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
+      </section>
+    </div>
+    <div class="col-md-3">
+      <h3 class="margin-top-clear">Details</h3>
+
+      <div class="card card-margin-bottomless" style="border-radius: 5px">
+
+        <div class="card-body">
+          <div class="card-body-detail">
+            <h4> Price:</h4>
+
+            <p class="font-gray-light">$ {{ review.price }}</p>
+            <h4> Free Samples: </h4>
+
+            <p class="font-gray-light">{{ review.quota }}</p>
+
+
+            <h4> Deadline:</h4>
+
+            <p class="font-gray-light">{{ review.date_end | amDateFormat:'YYYY.MM.DD'}}</p>
+
+          </div>
+        </div>
+      </div>
+
+      <h3>
+        <a target="_blank" href="mailto:info@xberts.com" class="btn btn-lg btn-block btn-primary">Apply Now</a>
+      </h3>
+    </div>
+  </div>
+</section>
+

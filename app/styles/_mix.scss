@@ -1,4 +1,5 @@
 $linkColor: #fff #3FA4F4 !default;
+$linkDefaultColor: #333 #3FA4F4 !default;
 $activeLinkColor: #3FA4F4 #3FA4F4 !default;
 @mixin childLink($linkColor:$linkColor) {
   > a {
@@ -15,6 +16,21 @@ $activeLinkColor: #3FA4F4 #3FA4F4 !default;
   }
 }
 
+@mixin childLinkW($linkColor:$linkColor) {
+  > a {
+    color: nth($linkColor, 1);
+    &:hover, &:focus, .active {
+      color: nth($linkColor, 2);
+      background-color: $lightGrayColor;
+    }
+  }
+  color: nth($linkColor, 1);
+  &:hover, &:focus, .active {
+    color: nth($linkColor, 2);
+    background-color: $lightGrayColor;
+  }
+}
+
 @mixin pFirstMargin() {
   > p:first-child {
     margin-top: 10px;
@@ -26,7 +42,7 @@ $activeLinkColor: #3FA4F4 #3FA4F4 !default;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 @mixin ellipsisMultiText($multi) {
@@ -34,6 +50,7 @@ $activeLinkColor: #3FA4F4 #3FA4F4 !default;
   height: $defaultLineHeight * $multi;
   overflow: hidden;
 }
+
 @mixin ellipsisMultiTextMax($multi) {
   position: relative;
   max-height: $defaultLineHeight * $multi;

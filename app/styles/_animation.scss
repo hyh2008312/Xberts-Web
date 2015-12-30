@@ -11,6 +11,9 @@
   &:hover:after {
     width: 100%;
   }
+  &.active:after {
+    width: 100%;
+  }
 }
 .background-move{
   -webkit-animation: backgroundMove 60s linear 0s infinite alternate;

@@ -2,7 +2,7 @@
          style="background-image: url({{ event.banner }})">
   <div class="cover-layer">
     <div class="section-title " style="margin-top:90px">
-      <h3>{{event.when | amDateFormat:'YYYY.MM.DD, dddd'}}</h3>
+      <h3>{{event.when | amDateFormat:'MMM DD, YYYY'}}</h3>
 
       <h1>{{ event.title }}</h1>
 
@@ -29,7 +29,7 @@
             <p class="font-gray-light">{{ event.organizer_name}}</p>
             <h4>Date: </h4>
 
-            <p class="font-gray-light">{{event.when | amDateFormat:'YYYY.MM.DD, dddd'}}</p>
+            <p class="font-gray-light">{{event.when | amDateFormat:'MMM DD, YYYY'}}</p>
 
 
             <h4> Location:</h4>

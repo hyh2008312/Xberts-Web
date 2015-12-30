@@ -20,8 +20,10 @@ angular
     'ngImgCrop',
     'ngFileUpload',
     'internationalPhoneNumber',
-    'angular-growl'
+    'angular-growl',
+    'duScroll'
   ])
+  .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
       $rootScope.state = $state;
@@ -301,7 +303,7 @@ angular
         templateUrl: '/views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
         resolve: {
-          userProfile: ['authCheck', 'UserProfileResolver', function(authCheck, UserProfileResolver) {
+          userProfile: ['authCheck', 'UserProfileResolver', function (authCheck, UserProfileResolver) {
             return UserProfileResolver.resolver();
           }]
         }
@@ -314,6 +316,34 @@ angular
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
             var eventId = $stateParams.eventId || null;
             return eventId === null ? {} : EventLoad($stateParams);
+          }]
+        }
+      })
+      .state('application.reviews', {
+        url: "/reviews",
+        templateUrl: '/views/reviewprojects.html',
+        controller: 'ReviewProjectsCtrl',
+        resolve:{
+          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
+              ProjectReview.get(params, callback);
+
+            };
+            var paginator = Paginator('projectReview', fetchFunction);
+            return paginator.load();
+          }]
+        }
+      })
+      .state('application.review', {
+        url: "/reviews/:reviewId",
+        templateUrl: '/views/reviewproject.html',
+        controller: 'ReviewprojectCtrl',
+        resolve: {
+          review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ProjectReviewLoad($stateParams);
           }]
         }
       })

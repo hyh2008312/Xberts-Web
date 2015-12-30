@@ -84,6 +84,61 @@ hr{
   }
 
 }
+.navbar-default {
+  background-color: $lightGrayBackground;
+  border-color: #e7e7e7;
+  border-radius: 0;
+}
+.navbar-fixed-top-sub {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  border-width: 0 0 1px;
+  z-index: 5;
+}
+.section-fixed-sm {
+  height: 350px;
+  background: rgba(0, 0, 0, 0.6) no-repeat center;
+  background-size: cover;
+  position: relative;
+  > .cover-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: inherit;
+    background: rgba(0, 0, 0, 0.4);
+    //background: transparent;
+    z-index: 3;
+    h1 {
+      color: $whiteColor;
+    }
+    h2 {
+      color: $whiteColor;
+    }
+    h3 {
+      color: #f8f8f8;
+    }
+    h4, p {
+      color: $whiteColor;
+      font-size: 1.2em;
+      margin-top: 5px;;
+      margin-bottom: 5px;;
+    }
+  }
+  .section-title {
+    text-align: center;
+    position: relative;
+
+    h3 {
+      color: $lightColor;
+      font-weight: normal;
+    }
+  }
+
+}
 
 .section-title + .section-body {
   margin-top: $sectionSpace;
@@ -174,6 +229,59 @@ a.block-link {
       @include childLink();
       &.active {
         @include childLink($activeLinkColor);
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          border-bottom: 3px solid rgb(63, 164, 244);
+        }
+      }
+    }
+  }
+  .navbar-right.nav {
+    position: relative;
+    > li {
+      > a {
+        padding: $navbarLinkPaddingTop 8px $navbarLinkPaddingBottom 8px;
+      }
+      > a.top-right-badge-x {
+        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
+      }
+      &.dropdown.dropdown-right {
+        position: static;
+        > .dropdown-menu {
+          //width: 100%;
+          position: fixed;
+          top: 50px;
+          right: 20px;
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+.navbar.navbar-default {
+  .navbar-brand {
+    padding: $navbarBrandPaddingTop 15px $navbarBrandPaddingBottom 0;
+    margin-left: 0;
+  }
+  .nav {
+    > li {
+      margin-right: 1px;
+      > a {
+        padding: $navbarLinkPaddingTop 10px $navbarLinkPaddingBottom 10px;
+        > .avatar-text-smaller-1 {
+          margin-top: -4px;
+        }
+      }
+      > a.top-right-badge-x {
+        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 10px)
+      }
+      @include childLinkW($linkDefaultColor);
+      &.active {
+        @include childLinkW($activeLinkColor);
         &:after {
           content: "";
           position: absolute;
