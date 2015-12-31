@@ -3,7 +3,7 @@
   <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="item in joinsPaginator.items">
     <div class="item-avatar-middle">
       <div class="item-image">
-        <img ng-src="{{ item.joiner.avatar }}">
+        <avatar-img src="item.joiner.avatar"></avatar-img>
       </div>
       <div class="item-body">
         <p class="item-body-title"><a ui-sref="application.expert({ expertId: item.joiner.id })">{{ item.joiner.fullname }}</a></p>

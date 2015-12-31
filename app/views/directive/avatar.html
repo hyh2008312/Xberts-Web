@@ -1,0 +1,4 @@
+<img ng-if="avatarSrc" ng-src="{{ avatarSrc }}" fallback-src="/images/empty-avater.gif" alt="{{ name }}"/>
+<img ng-if="!avatarSrc" ng-src="/images/empty-avater.gif" alt="{{ name }}"/>
+
+<p ng-if="showName" ng-bind="name"></p>

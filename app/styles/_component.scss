@@ -3,7 +3,7 @@
   height: $imageSize;
   padding: ( $imageSize - $lineHeight * $lineNumber ) / 2 0 ( $imageSize - $lineHeight * $lineNumber ) / 2 $imageSize + $padding;
   overflow: hidden;
-  > img {
+  img {
     width: $imageSize;
     height: $imageSize;
     position: absolute;
@@ -13,7 +13,7 @@
     -moz-border-radius: 50%;
     border-radius: 50%;
   }
-  > img + p {
+  img + p {
     margin-bottom: 0;
     @if ($lineNumber == 1) {
       @include ellipsisText();
@@ -36,7 +36,7 @@ $avatarTextTypes: (
 }
 
 .avatar-inline {
-  > img {
+  img {
     position: relative;
     width: 1.5em;
     height: 1.5em;
@@ -112,7 +112,7 @@ $numbers: (1 2 3 4 5 8 10);
     top: 10px;
     left: 16px;
     width: $imageSize;
-    > img {
+    img {
       width: $imageSize;
       height: $imageSize;
       -webkit-border-radius: 50%;
@@ -310,7 +310,7 @@ $avatarTypes: (
   border-bottom: 1px solid $lightColor;
   padding: 20px;
   //margin-bottom: 20px;
-  > img {
+  img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;

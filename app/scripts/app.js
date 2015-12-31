@@ -20,7 +20,8 @@ angular
     'ngFileUpload',
     'internationalPhoneNumber',
     'angular-growl',
-    'configuration.properties'
+    'configuration.properties',
+    'dcbImgFallback'
   ])
   .run(['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {

@@ -8,7 +8,7 @@ angular.module('xbertsApp')
         this._userName = userName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
-        this._userAvatar = userAvatar || '';
+        this._userAvatar = userAvatar || '/images/empty-avater.gif';
         // Indicate whether login state has been fetched from backend
         this._isResolved = isResolved || false;
 

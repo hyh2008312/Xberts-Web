@@ -44,9 +44,7 @@
             <li role="presentation" class="dropdown" ng-if="user.isAuth()">
               <a class="fade-in-line" ui-sref="application.expert({ expertId: user.getUserId(),tab:'profile' })">
                 <div class="avatar-text-smaller-1">
-                  <img ng-src="{{ user.getUserAvatar() }}"/>
-
-                  <p ng-bind="user.getUserName()"></p>
+                  <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true"></avatar-img>
                 </div>
               </a>
               <ul class="dropdown-menu navbar-inverse">

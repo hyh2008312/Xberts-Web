@@ -48,6 +48,7 @@ module.exports = function(config) {
       'bower_components/ng-img-crop/compile/minified/ng-img-crop.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/string/dist/string.min.js',
+      'bower_components/angular-img-fallback/angular.dcb-img-fallback.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

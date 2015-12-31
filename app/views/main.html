@@ -99,7 +99,7 @@
             <div class="card-body">
               <div class="card-body-header">
                 <div class="avatar-text-small-1">
-                  <img ng-src="{{ project.account.avatar }}"/>
+                  <avatar-img src="project.account.avatar"></avatar-img>
 
                   <p ng-bind="project.account.fullname"></p>
                 </div>
@@ -198,7 +198,7 @@
       <div class="col-md-3 col-sm-6" ng-repeat="expert in expertPaginator.items  | limitTo:4">
         <div class="card cover">
           <div class="profile">
-            <img ng-src="{{ expert.avatar }}">
+            <avatar-img src="expert.avatar"></avatar-img>
 
             <p class="profile-name p-1">{{ expert.short_name }}</p>
 

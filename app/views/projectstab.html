@@ -9,9 +9,7 @@
         <div class="card-body">
           <div class="card-body-header">
             <div class="avatar-text-small-1">
-              <img ng-src="{{ project.account.avatar }}"/>
-
-              <p ng-bind="project.account.fullname"></p>
+              <avatar-img src="project.account.avatar" name="project.account.fullname" show-name="true"></avatar-img>
             </div>
           </div>
           <p class="card-body-title p-3" ng-bind="project.title">
