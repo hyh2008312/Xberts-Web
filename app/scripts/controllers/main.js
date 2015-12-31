@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator',
     function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator) {
@@ -19,21 +12,21 @@ angular.module('xbertsApp')
           text: '&nbsp;<br/>&nbsp;',
           buttonText:'Meet Us',
           buttonColor:'btn-primary',
-          url:'/#/events/1'
+          url: 'application.event({eventId: 1})'
         },
         {
           image: '/images/landing_02.jpg',
           text: '&nbsp;<br/>&nbsp;',
           buttonText:'Vote Now',
           buttonColor:'btn-primary',
-          url:'/#/vote/1'
+          url: 'application.vote({eventId: 1})'
         },
         {
           image: '/images/landing_1_1.jpg',
           text: 'Connect smart hardware innovators with distributors,<br/>retailers and sales agent partners around the world',
           buttonText:'Get Started',
           buttonColor:'btn-primary',
-          url:'/#/signup'
+          url: 'application.signup'
         }
       ];
     }]);

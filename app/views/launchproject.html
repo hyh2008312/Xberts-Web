@@ -23,7 +23,7 @@
                     <h1 class="text-center text-danger">
                         Your product has been submitted for approval! We will review your product and get back to you as soon as possible.
                     </h1>
-                    <h2 class="text-center"><a href="#">Check out your product now! (<redirect href="/#/projects/{{ projectId }}/" redirected="{{ redirect }}">2s</redirect>)</a></h2>
+                    <h2 class="text-center"><a ui-sref="application.project({projectId: projectId})">Check out your product now! (<redirect ui-sref="application.project({projectId: projectId})" redirected="{{ redirect }}">2s</redirect>)</a></h2>
                 </uib-tab>
             </uib-tabset>
         </div>

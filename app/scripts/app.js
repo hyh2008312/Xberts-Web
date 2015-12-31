@@ -54,6 +54,9 @@ angular
         ]
       };
     }])
+  .config(['$locationProvider', function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  }])
   .config(['$httpProvider', '$resourceProvider', function ($httpProvider, $resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
     $httpProvider.defaults.withCredentials = true;
@@ -80,6 +83,11 @@ angular
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
+
+    // TODO: Remove after CES event ends
+    $urlRouterProvider.when('/ces2016', ['$state', function($state) {
+      $state.go('application.voteoff', {eventId: 1});
+    }]);
 
     $stateProvider
       .state('application', {

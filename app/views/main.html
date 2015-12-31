@@ -9,7 +9,7 @@
       <div class="carousel-caption" style="margin-bottom: 10px">
         <div class="row">
           <p class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-            <a ng-href="{{ slide.url}}" class="btn btn-lg {{ slide.buttonColor }} btn-block">{{ slide.buttonText }}</a>
+            <a ui-sref="{{ slide.url }}" class="btn btn-lg {{ slide.buttonColor }} btn-block">{{ slide.buttonText }}</a>
           </p>
         </div>
       </div>
@@ -92,7 +92,7 @@
 
     <div class="row section-body">
       <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items  | limitTo:3">
-        <a class="block-link" ng-href="/#/projects/{{ project.id }}">
+        <a class="block-link" ui-sref="application.project({projectId: project.id})">
           <div class="card">
             <div class="card-header" style="background-image: url({{ project.image }})">
             </div>
@@ -223,7 +223,7 @@
 
     <div class="row">
       <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-        <a href="/#/experts" class="btn btn-lg btn-primary btn-block">View More Experts</a>
+        <a ui-sref="application.experts" class="btn btn-lg btn-primary btn-block">View More Experts</a>
       </div>
     </div>
   </div>

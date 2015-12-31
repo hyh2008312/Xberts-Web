@@ -8,8 +8,6 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-  grunt.loadNpmTasks('grunt-connect-proxy');
-
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -19,6 +17,8 @@ module.exports = function (grunt) {
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn'
   });
+
+  var modRewrite = require('connect-modrewrite');
 
   // Configurable paths for the application
   var appConfig = {
@@ -80,47 +80,26 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
-      proxies: [
-        {
-          context: ['/api', '/media'],
-          host: 'localhost',
-          port: 8000,
-          https: false
-        }
-      ],
       livereload: {
         options: {
           //open: true,
           open: {
             target:'http://localhost:9000/'
           },
-          //middleware: function (connect) {
-          //  return [
-          //    connect.static('.tmp'),
-          //    connect().use(
-          //      '/bower_components',
-          //      connect.static('./bower_components')
-          //    ),
-          //    connect().use(
-          //      '/app/styles',
-          //      connect.static('./app/styles')
-          //    ),
-          //    connect.static(appConfig.app)
-          //  ];
-          //},
           middleware: function (connect) {
-            // Setup the proxy
-            var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
-            middlewares.push(connect.static('.tmp'));
-            middlewares.push(connect().use('/bower_components',
-              connect.static('./bower_components')
-            ));
-            middlewares.push(connect().use(
-              '/app/styles',
-              connect.static('./app/styles')
-            ));
-            middlewares.push(connect.static(appConfig.app));
-            return middlewares;
+            return [
+              modRewrite(['!^(/bower_components/|/styles/|/scripts/|/images/|/views/) /index.html [L]']),
+              connect.static('.tmp'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ),
+              connect().use(
+                '/app/styles',
+                connect.static('./app/styles')
+              ),
+              connect.static(appConfig.app)
+            ];
           }
         }
       },
@@ -148,14 +127,11 @@ module.exports = function (grunt) {
           },
           base: '<%= yeoman.dist %>',
           middleware: function (connect) {
-            // Setup the proxy
-            var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
-            middlewares.push(connect().use(
+            connect().use(
               '/dist/styles',
               connect.static('./dist/styles')
-            ));
-            middlewares.push(connect.static(appConfig.dist));
-            return middlewares;
+            );
+            connect.static(appConfig.dist);
           }
         }
       }
@@ -409,7 +385,8 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
-            '.htaccess',
+            // TODO: Figure out whether this is needed
+            //'.htaccess',
             '*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
@@ -483,7 +460,6 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
-      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
@@ -517,7 +493,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('buildServe',[
-    'configureProxies:server',
     'connect:dist:keepalive'
   ]);
 
