@@ -6,12 +6,14 @@
 
         <h3 class="avatar-inline">
           <img ng-src="{{ project.account.avatar }}"/>
-          <a class="a-gray-primary" ui-sref="application.expert({ expertId:project.account.id })">{{ project.account.fullname }}</a>
+          <a class="a-gray-primary" ui-sref="application.expert({ expertId:project.account.id })">{{
+            project.account.fullname }}</a>
           <span class="margin-left"><i
             class="fa fa-tag"></i> {{ projectTypes | decode : project.project_category }}</span>
         </h3>
         <save></save>
-        <a class="btn btn-gray" ng-if="project.account.id==user.getUserId()" ui-sref="application.protected.launchProject({projectId:project.id})"><i class="fa fa-edit"></i> EDIT</a>
+        <a class="btn btn-gray" ng-if="project.account.id==user.getUserId()"
+           ui-sref="application.protected.launchProject({projectId:project.id})"><i class="fa fa-edit"></i> EDIT</a>
       </div>
     </div>
   </section>
@@ -23,12 +25,14 @@
             <uib-tab heading="Description" active="tabs[0].active">
               <div ng-bind-html=" project.details | trust"></div>
             </uib-tab>
-            <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active" select="select('comments')">
+            <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active"
+                     select="select('comments')">
               <div ng-if="commentsTabActive">
                 <div ng-include src="'/views/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Application" active="tabs[2].active" select="select('applications')" ng-if="user.isStaff() || user.getUserId()==project.account.id">
+            <uib-tab heading="Application" active="tabs[2].active" select="select('applications')"
+                     ng-if="user.isStaff() || user.getUserId()==project.account.id">
               <div ng-if="applicationsTabActive">
                 <div ng-include src="'/views/applicationlist.html'"></div>
               </div>
@@ -36,10 +40,11 @@
           </uib-tabset>
         </div>
         <div class="col-md-3">
-
           <div class="card card-bordless card-margin-bottomless">
+
             <div class="card-body">
-              <h4 class="card-body-title">DISTRIBUTION REQUEST</h4>
+              <h4 class="card-body-title">Distribution Request</h4>
+
               <div class="card card-margin-bottomless" style="border-radius: 5px"
                    ng-repeat="distribution in distributions">
                 <div class="card-body">
@@ -75,7 +80,7 @@
 
               </div>
               <h3 class="card-body-detail text-center">
-                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')">Become a channel
+                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')">Become a Channel Partner
                 </button>
               </h3>
 
@@ -83,7 +88,7 @@
           </div>
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
-              <p class="card-body-title">INTEREST(<span>{{ interact.vote_amount }}</span>)</p>
+              <h4 class="card-body-title">Interests (<span>{{ interact.vote_amount }}</span>)</h4>
               <saver></saver>
             </div>
           </div>
