@@ -1,15 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.UploadMutiForm
- * @description
- * # UploadMutiForm
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('UploadMultiForm', ['Upload','$q', function (Upload,$q) {
-    // Public API here
     //Upload Wrapper,exposed method:upload;exposed property:progress
     return function (url, method, data, successCallBack, errorCallback) {
       var uploadMulti = {

@@ -47,16 +47,14 @@
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
-      <a class="block-link" ng-href="#/projects/{{ project.id }}">
+      <a class="block-link" ui-sref="application.project({projectId: project.id})">
         <div class="card">
           <div class="card-header" style="background-image: url({{ project.image }})">
           </div>
           <div class="card-body">
             <div class="card-body-header">
               <div class="avatar-text-small-1">
-                <img ng-src="{{ project.account.avatar }}"/>
-
-                <p ng-bind="project.account.fullname"></p>
+                <avatar-img src="project.account.avatar" name="project.account.fullname" show-name="true"></avatar-img>
               </div>
             </div>
             <p class="card-body-title p-3" ng-bind="project.title">

@@ -24,19 +24,19 @@
           <a ui-sref="application.resetPassword.request">Forgot your password?</a>
         </p>
         <input type="submit" value="Sign in" class="login-btn">
-        <div class="login-line-wrapper">
-          <div class="login-or-line">
-            <div class="login-line-content">or</div>
-          </div>
-        </div>
-        <button onclick="window.location.href = &quot;/auth/lnklogin/&quot;;return false;" class="login-linkedin-btn">
-          <i class="fa fa-linkedin"></i>
-          <span class="login-linkedin-btn-title">Sign in with LinkedIn</span>
-        </button>
-        <div class="login-tips">
-          Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a>
-        </div>
       </form>
+      <div class="login-line-wrapper">
+        <div class="login-or-line">
+          <div class="login-line-content">or</div>
+        </div>
+      </div>
+      <button class="login-linkedin-btn" ng-click="linkedinLogin()">
+        <i class="fa fa-linkedin"></i>
+        <span class="login-linkedin-btn-title">Sign in with LinkedIn</span>
+      </button>
+      <div class="login-tips">
+        Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a>
+      </div>
     </div>
   </div>
 </div>

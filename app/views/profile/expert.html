@@ -3,7 +3,7 @@
     <div class="container">
       <div row>
         <div class="col-sm-2 text-center expert-profile">
-          <img ng-src="{{ expert.avatar }}"/>
+          <avatar-img src="expert.avatar" name="expert.fullname"></avatar-img>
         </div>
         <div class="col-sm-8">
           <div class="section-title">
@@ -36,10 +36,10 @@
               <div ng-bind-html=" expert.biography | trust"></div>
             </uib-tab>
             <uib-tab heading="Products" active="tabs[1].active" select="select('products')">
-              <div ng-include src="'/views/projectstab.html'"></div>
+              <div ng-include src="'views/projectstab.html'"></div>
             </uib-tab>
             <!--<uib-tab heading="Reviews" active="tabs[5].active" select="select('reviews')">-->
-              <!--<div ng-include src="'/views/reviewstab.html'"></div>-->
+              <!--<div ng-include src="'views/reviewstab.html'"></div>-->
             <!--</uib-tab>-->
             <uib-tab heading="Followers" active="tabs[2].active" select="select('followers')">
               <div ng-if="followersTabActive">
@@ -54,7 +54,7 @@
 
             <uib-tab heading="Message" active="tabs[4].active" select="select('comments')">
               <div ng-if="commentsTabActive">
-                <div ng-include src="'/views/comments.html'"></div>
+                <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
 

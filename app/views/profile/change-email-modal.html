@@ -30,7 +30,7 @@
          ng-messages="changeEmailForm.serverError">
       <div class="col-md-12">
         <div ng-message="duplicate">An account already exists with that email.</div>
-        <div ng-messages-include="/views/message/form_error.html"></div>
+        <div ng-messages-include="views/message/form_error.html"></div>
       </div>
     </div>
     <button type="button" class="btn btn-default btn-fixed-sm" ng-click="$dismiss()">Cancel</button>

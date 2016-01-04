@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.ProjectLoad
- * @description
- * # ProjectLoad
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
   .factory('ProjectLoad', ['ProjectsNoDetail', '$q', 'localStorageService',
     function (ProjectsNoDetail, $q, localStorageService) {

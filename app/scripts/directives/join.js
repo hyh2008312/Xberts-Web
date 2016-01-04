@@ -236,7 +236,7 @@ angular.module('xbertsApp')
   .directive('eventProjectVote', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', function ($rootScope, $q, growl, $uibModal, EventProjectVote) {
     return {
       restrict: 'E',
-      templateUrl: '/views/eventproject.html',
+      templateUrl: 'views/eventproject.html',
       replace: false,
       scope: {
         eventProject: '='
@@ -254,7 +254,7 @@ angular.module('xbertsApp')
           }
           scope.voting = true;
           var modalInstance = $uibModal.open({
-            templateUrl: '/views/eventprojectvote.html',
+            templateUrl: 'views/eventprojectvote.html',
             controller: 'EventProjectVoteCtrl',
             size: size
           });
@@ -378,7 +378,7 @@ angular.module('xbertsApp')
   .directive('eventProjectVoteOff', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', 'AuthService', 'SignupService', function ($rootScope, $q, growl, $uibModal, EventProjectVote, AuthService, SignupService) {
     return {
       restrict: 'E',
-      templateUrl: '/views/eventproject.html',
+      templateUrl: 'views/eventproject.html',
       replace: false,
       scope: {
         eventProject: '='
@@ -393,7 +393,7 @@ angular.module('xbertsApp')
         scope.open = function (size) {
           scope.voting = true;
           var modalInstance = $uibModal.open({
-            templateUrl: '/views/eventprojectvoteoffline.html',
+            templateUrl: 'views/eventprojectvoteoffline.html',
             controller: 'EventProjectVoteOffCtrl',
             size: size
           });

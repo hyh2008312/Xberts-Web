@@ -5,21 +5,21 @@ angular.module('xbertsApp')
     function($scope, $rootScope, $state, $uibModal, AccountService) {
       $scope.changeEmailModal = function() {
         var modal = $uibModal.open({
-          templateUrl: '/views/profile/change-email-modal.html',
+          templateUrl: 'views/profile/change-email-modal.html',
           controller: 'ChangeEmailCtrl'
         });
       };
 
       $scope.changePasswordModal = function() {
         var modal = $uibModal.open({
-          templateUrl: '/views/profile/change-password-modal.html',
+          templateUrl: 'views/profile/change-password-modal.html',
           controller: 'ChangePasswordCtrl'
         });
       };
 
       $scope.cancelAccountModal = function() {
         var modal = $uibModal.open({
-          templateUrl: '/views/profile/cancel-account-modal.html',
+          templateUrl: 'views/profile/cancel-account-modal.html',
           scope: $scope
         });
 

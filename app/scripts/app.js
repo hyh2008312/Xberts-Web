@@ -11,7 +11,6 @@ angular
     'ngTouch',
     'ui.router',
     'infinite-scroll',
-    //'srph.infinite-scroll',
     'LocalStorageModule',
     'angularMoment',
     'summernote',
@@ -20,8 +19,10 @@ angular
     'ngImgCrop',
     'ngFileUpload',
     'internationalPhoneNumber',
+    'duScroll',
     'angular-growl',
-    'duScroll'
+    'configuration.properties',
+    'dcbImgFallback'
   ])
   .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams',
@@ -56,10 +57,16 @@ angular
         ]
       };
     }])
+  .config(['$locationProvider', function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  }])
   .config(['$httpProvider', '$resourceProvider', function ($httpProvider, $resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
+    $httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+    $httpProvider.interceptors.push('RequestInterceptor');
     $httpProvider.interceptors.push('AuthInterceptor');
   }])
   .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
@@ -80,10 +87,15 @@ angular
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
 
+    // TODO: Remove after CES event ends
+    $urlRouterProvider.when('/ces2016', ['$state', function($state) {
+      $state.go('application.voteoff', {eventId: 1});
+    }]);
+
     $stateProvider
       .state('application', {
         abstract: true,
-        templateUrl: '/views/navigation.html',
+        templateUrl: 'views/navigation.html',
         controller: 'ApplicationCtrl',
         resolve: {
           authCheck: ['UserResolver', function (UserResolver) {
@@ -102,7 +114,7 @@ angular
       })
       .state('application.main', {
         url: "/main",
-        templateUrl: '/views/main.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
         resolve: {
@@ -137,12 +149,12 @@ angular
       })
       .state('application.about', {
         url: "/about",
-        templateUrl: '/views/about.html'
+        templateUrl: 'views/about.html'
       })
       .state('application.projects', {
-        url: "/projects",
-        templateUrl: "/views/projects.html",
-        controller: "ProjectsCtrl",
+        url: '/projects',
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl',
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
@@ -161,7 +173,7 @@ angular
       })
       .state('application.protected.launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: '/views/launchproject.html',
+        templateUrl: 'views/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
@@ -181,7 +193,7 @@ angular
       })
       .state('application.project', {
         url: "/projects/:projectId?tab",
-        templateUrl: '/views/project.html',
+        templateUrl: 'views/project.html',
         controller: 'ProjectCtrl',
         resolve: {
           distributions: ['DistributionLoad', '$stateParams', function (DistributionLoad, $stateParams) {
@@ -206,7 +218,7 @@ angular
       })
       .state('application.projectnorequest', {
         url: "/projectsnorequest/:projectId",
-        templateUrl: '/views/project_no_request.html',
+        templateUrl: 'views/project_no_request.html',
         controller: 'ProjectNoRequestCtrl',
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
@@ -218,13 +230,13 @@ angular
         }
       })
       .state('application.resources', {
-        url: "/resources",
-        templateUrl: "/views/resources.html",
-        controller: "ResourcesCtrl"
+        url: '/resources',
+        templateUrl: 'views/resources.html',
+        controller: 'ResourcesCtrl'
       })
       .state('application.events', {
-        url: "/events/",
-        templateUrl: '/views/events.html',
+        url: '/events/',
+        templateUrl: 'views/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events',
         resolve: {
@@ -249,8 +261,8 @@ angular
         }
       })
       .state('application.event', {
-        url: "/events/:eventId",
-        templateUrl: '/views/event.html',
+        url: '/events/:eventId',
+        templateUrl: 'views/event.html',
         controller: 'EventCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -260,17 +272,17 @@ angular
       })
       .state('application.vote', {
         url: "/vote/:eventId",
-        templateUrl: '/views/vote.html',
+        templateUrl: 'views/vote.html',
         controller: 'VoteCtrl'
       })
       .state('application.voteoff', {
         url: "/voteoff/:eventId",
-        templateUrl: '/views/voteoffline.html',
+        templateUrl: 'views/voteoffline.html',
         controller: 'VoteOffCtrl'
       })
       .state('application.experts', {
-        url: "/experts",
-        templateUrl: '/views/experts.html',
+        url: '/experts',
+        templateUrl: 'views/experts.html',
         controller: 'ExpertsCtrl',
         controllerAs: 'experts',
         resolve: {
@@ -289,8 +301,8 @@ angular
         }
       })
       .state('application.expert', {
-        url: "/experts/:expertId?tab",
-        templateUrl: '/views/profile/expert.html',
+        url: '/experts/:expertId?tab',
+        templateUrl: 'views/profile/expert.html',
         controller: 'ExpertCtrl',
         resolve: {
           expert: ['ExpertLoad', '$stateParams', function (ExpertLoad, $stateParams) {
@@ -300,7 +312,7 @@ angular
       })
       .state('application.protected.editProfile', {
         url: '/editprofile',
-        templateUrl: '/views/profile/edit-profile.html',
+        templateUrl: 'views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
         resolve: {
           userProfile: ['authCheck', 'UserProfileResolver', function (authCheck, UserProfileResolver) {
@@ -309,8 +321,8 @@ angular
         }
       })
       .state('application.protected.launch', {
-        url: "/launch/:eventId",
-        templateUrl: '/views/eventlauch.html',
+        url: '/launch/:eventId',
+        templateUrl: 'views/eventlauch.html',
         controller: 'EventLauchCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -348,8 +360,8 @@ angular
         }
       })
       .state('application.protected.reviewApplicant', {
-        url: "/review/:reviewId/applicant",
-        templateUrl: '/views/reviewapplication.html',
+        url: '/review/:reviewId/applicant',
+        templateUrl: 'views/reviewapplication.html',
         controller: 'ReviewapplicationCtrl',
         resolve: {
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
@@ -362,8 +374,8 @@ angular
         }
       })
       .state('application.protected.reviewReport', {
-        url: "/review/:reviewId/report",
-        templateUrl: '/views/reviewreport.html',
+        url: '/review/:reviewId/report',
+        templateUrl: 'views/reviewreport.html',
         controller: 'ReviewreportCtrl',
         resolve: {
           applicant: ['ApplicantsreviewLoad', 'authCheck', '$stateParams', function (ApplicantsreviewLoad, authCheck, $stateParams) {
@@ -373,12 +385,12 @@ angular
       })
       .state('application.login', {
         url: '/login',
-        templateUrl: '/views/login.html',
+        templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
       .state('application.signup', {
         url: '/signup',
-        templateUrl: '/views/signup.html',
+        templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
       .state('application.resetPassword', {
@@ -388,15 +400,15 @@ angular
       })
       .state('application.resetPassword.request', {
         url: '/resetpw/request',
-        templateUrl: '/views/reset_password/reset_password_request.html',
+        templateUrl: 'views/reset_password/reset_password_request.html',
         controller: 'ResetPasswordRequestCtrl'
       })
       .state('application.resetPassword.sent', {
-        templateUrl: '/views/reset_password/reset_password_sent.html'
+        templateUrl: 'views/reset_password/reset_password_sent.html'
       })
       .state('application.resetPassword.confirm', {
         url: '/resetpw/confirm/:uid/:token',
-        templateUrl: '/views/reset_password/reset_password_confirm.html',
+        templateUrl: 'views/reset_password/reset_password_confirm.html',
         resolve: {
           tokenCheck: ['$stateParams', 'TokenCheckResolver', function ($stateParams, TokenCheckResolver) {
             return TokenCheckResolver.resolver($stateParams.uid, $stateParams.token);
@@ -405,14 +417,14 @@ angular
         controller: 'ResetPasswordConfirmCtrl'
       })
       .state('application.resetPassword.success', {
-        templateUrl: '/views/reset_password/reset_password_success.html'
+        templateUrl: 'views/reset_password/reset_password_success.html'
       })
       .state('application.resetPassword.error', {
-        templateUrl: '/views/reset_password/reset_password_error.html'
+        templateUrl: 'views/reset_password/reset_password_error.html'
       })
       .state('application.protected.setting', {
         url: '/setting',
-        templateUrl: '/views/profile/setting.html',
+        templateUrl: 'views/profile/setting.html',
         controller: 'SettingCtrl',
         resolve: {
           settingAuthCheck: ['protectedAuthCheck', function (protectedAuthCheck) {

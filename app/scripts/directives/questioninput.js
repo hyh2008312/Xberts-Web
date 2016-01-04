@@ -9,7 +9,7 @@
 angular.module('xbertsApp')
   .directive('questionInput', function () {
     return {
-      templateUrl:"/views/questiondirect.html",
+      templateUrl:"views/questiondirect.html",
       replace:true,
       scope:{
         question:"="

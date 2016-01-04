@@ -1,34 +1,29 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name xbertsApp.Interact
- * @description
- * # Interact
- * Factory in the xbertsApp.
- */
 angular.module('xbertsApp')
-  .factory('Interact', ['$resource', function ($resource) {
+  .factory('Interact', ['$resource', 'Configuration', function($resource, Configuration) {
     return {
-      Join: function (otherParams) {
+      Join: function(otherParams) {
         var params = {joinId: '@id'};
         angular.extend(params, otherParams);
-        return $resource('/interact/joins/:joinId/', params, {'vote': {method: 'PUT', params: {vote: true}}})
+        return $resource(Configuration.apiBaseUrl + '/interact/joins/:joinId/',
+          params,
+          {'vote': {method: 'PUT', params: {vote: true}}})
       },
-      Following: function (otherParams) {
+      Following: function(otherParams) {
         var params = {};
         angular.extend(params, otherParams);
-        return $resource('/interact/followings/', params)
+        return $resource(Configuration.apiBaseUrl + '/interact/followings/', params)
       },
-      Feedback: function (otherParams) {
+      Feedback: function(otherParams) {
         var params = {feedbackId: '@id'};
         angular.extend(params, otherParams);
-        return $resource('/interact/feedbacks/:feedbackId/', params)
+        return $resource(Configuration.apiBaseUrl + '/interact/feedbacks/:feedbackId/', params)
       },
-      Comment: function (otherParams) {
+      Comment: function(otherParams) {
         var params = {commentId: '@id'};
         angular.extend(params, otherParams);
-        return $resource('/interact/comments/:commentId/', params)
+        return $resource(Configuration.apiBaseUrl + '/interact/comments/:commentId/', params)
       }
     };
   }]);

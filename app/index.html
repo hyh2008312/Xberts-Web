@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <base href="/">
   <meta charset="utf-8">
   <title>Xberts - Innovations worth spreading</title>
   <meta name="description"
@@ -30,9 +31,7 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-{% verbatim %}
 <div ui-view></div>
-{% endverbatim %}
 
 <footer>
   <div class="container text-center">
@@ -76,12 +75,15 @@
 <script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
 <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
 <script src="/bower_components/string/dist/string.min.js"></script>
+<script src="/bower_components/angular-img-fallback/angular.dcb-img-fallback.js"></script>
 <script src="/bower_components/angular-scroll/angular-scroll.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/configs/configuration.js"></script>
+<script src="scripts/configs/default-configuration.js"></script>
 <script src="scripts/controllers/application.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/profile/change-email.js"></script>
@@ -94,13 +96,15 @@
 <script src="scripts/controllers/resetpassword/resetpasswordrequest.js"></script>
 <script src="scripts/controllers/resources.js"></script>
 <script src="scripts/controllers/signup.js"></script>
+<script src="scripts/directives/avatar-img.js"></script>
 <script src="scripts/directives/clearformerror.js"></script>
 <script src="scripts/directives/compareto.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
 <script src="scripts/interceptors/auth.js"></script>
+<script src="scripts/interceptors/request.js"></script>
 <script src="scripts/listeners/logout.js"></script>
 <script src="scripts/listeners/state-change-error.js"></script>
-<script src="scripts/listeners/state-change-success.js"></script>
+<script src="scripts/listeners/state-change-start.js"></script>
 <script src="scripts/listeners/unauthorized.js"></script>
 <script src="scripts/resolvers/token-check-resolver.js"></script>
 <script src="scripts/resolvers/user-profile-resolver.js"></script>
@@ -182,5 +186,9 @@
 <script src="scripts/services/applicantsreviewload.js"></script>
 <script src="scripts/controllers/reviewproject.js"></script>
 <!-- endbuild -->
+
+<!-- Environment specific config override that's deployed and sourced separately, don't minify. -->
+<script src="scripts/override-configuration.js"></script>
+
 </body>
 </html>

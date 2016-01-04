@@ -2,7 +2,6 @@
 
 angular.module('xbertsApp')
   .factory('ProjectLaunch', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
     var projectResource={};
     var organizationResource={};
     var distributionsResources={};

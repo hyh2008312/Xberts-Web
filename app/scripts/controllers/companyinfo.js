@@ -1,14 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:CompanyinfoCtrl
- * @description
- * # CompanyinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('CompanyinfoCtrl', ['$scope', 'Organization', '$rootScope', 'growl', function ($scope, Organization, $rootScope, growl) {
+  .controller('CompanyinfoCtrl', ['$scope', 'Organization', '$rootScope', 'growl',
+    function ($scope, Organization, $rootScope, growl) {
     var company = new Organization({id: $rootScope.user.getUserId()});
     $scope.$emit('backdropOn', 'query company');
     company.$get(function (result) {

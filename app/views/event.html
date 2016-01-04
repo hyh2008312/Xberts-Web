@@ -59,7 +59,7 @@
   <div class="row section-body">
     <div ng-repeat="eventProject in eventProjects" event-project="eventProject"
          class="col-xs-12 col-sm-6 col-md-4">
-      <a class="block-link" ng-href="/#/projects/{{ eventProject.project.id }}">
+      <a class="block-link" ui-sref="application.project({projectId: eventProject.project.id})">
         <div class="card">
           <div growl reference="event_project_{{ eventProject.id }}"></div>
           <div class="card-header" style="background-image: url({{ eventProject.project.image }})">

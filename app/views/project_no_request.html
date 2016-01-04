@@ -5,7 +5,7 @@
         <h2 ng-bind="project.title"></h2>
 
         <h3 class="avatar-inline">
-          <img ng-src="{{ project.account.avatar }}"/>
+          <avatar-img src="project.account.avatar"></avatar-img>
           <a class="a-gray-primary" ui-sref="application.expert({ expertId:project.account.id })">{{ project.account.fullname }}</a>
           <span class="margin-left"><i
             class="fa fa-tag"></i> {{ projectTypes | decode : project.project_category }}</span>
@@ -25,7 +25,7 @@
             </uib-tab>
             <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active" select="select('comments')">
               <div ng-if="commentsTabActive">
-                <div ng-include src="'/views/comments.html'"></div>
+                <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
           </uib-tabset>
