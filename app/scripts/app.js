@@ -333,7 +333,7 @@ angular
       })
       .state('application.reviews', {
         url: "/reviews",
-        templateUrl: '/views/reviewprojects.html',
+        templateUrl: 'views/reviewprojects.html',
         controller: 'ReviewProjectsCtrl',
         resolve:{
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
@@ -350,7 +350,7 @@ angular
       })
       .state('application.review', {
         url: "/reviews/:reviewId",
-        templateUrl: '/views/reviewproject.html',
+        templateUrl: 'views/reviewproject.html',
         controller: 'ReviewprojectCtrl',
         resolve: {
           review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
