@@ -23,6 +23,21 @@
           <uib-tabset>
             <uib-tab heading="Description" active="tabs[0].active">
               <div ng-bind-html=" project.details | trust"></div>
+              <div class="text-center" ng-if="user.isStaff()">
+                <div growl></div>
+                <a ng-click="approve(true)">
+                  <span class="fa-stack fa-lg">
+                      <i class="fa fa-check fa-stack-1x text-success"></i>
+                      <i class="fa fa-circle-thin fa-stack-2x text-success"></i>
+                  </span>
+                </a>
+                <a ng-click="approve(false)">
+                  <span class="fa-stack fa-lg">
+                      <i class="fa fa-times fa-stack-1x text-danger"></i>
+                      <i class="fa fa-circle-thin fa-stack-2x text-danger"></i>
+                  </span>
+                </a>
+              </div>
             </uib-tab>
             <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active"
                      select="select('comments')">

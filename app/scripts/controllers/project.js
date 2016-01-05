@@ -1,15 +1,10 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ProjectCtrl
- * @description
- * # ProjectCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'SystemData', 'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions',
-    function ($scope, $rootScope, $location, $stateParams, $uibModal, SystemData, Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions) {
+  .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'growl', 'SystemData',
+    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project',
+    function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
+              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -81,6 +76,37 @@ angular.module('xbertsApp')
           $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
         }
       }
+
+      $scope.approve = function(isApproved) {
+        $scope.$emit('backdropOn', 'approve project');
+
+        if (isApproved) {
+          Project.approve.save({id: project.id},
+            function() {
+              project.interact.is_verified = '1';
+
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Project is approved.');
+            },
+            function() {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Oops! Something went wrong.');
+            });
+        } else {
+          Project.approve.delete({id: project.id},
+            function() {
+              project.interact.is_verified = '2';
+
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Project is rejected.');
+            },
+            function() {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Oops! Something went wrong.');
+            });
+        }
+      };
+
       SystemData.getSaleChannelsPromise();
     }])
   .controller('ProjectNoRequestCtrl', ['$scope', '$rootScope', '$stateParams', 'SystemData', 'Interact', 'ProjectOnlyDetail', 'Paginator', 'project',

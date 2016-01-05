@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('UploadMultiForm', ['Upload','$q', function (Upload,$q) {
+  .factory('UploadMultiForm', ['Upload', function (Upload) {
     //Upload Wrapper,exposed method:upload;exposed property:progress
     return function (url, method, data, successCallBack, errorCallback) {
       var uploadMulti = {

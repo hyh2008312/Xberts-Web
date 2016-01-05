@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProjectinfoCtrl', ['$scope', 'Configuration', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project','growl',
-    function ($scope, Configuration, UploadMultiForm, TempImage, SystemData, Project,growl) {
+  .controller('ProjectinfoCtrl', ['$scope', 'Configuration', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project', 'growl',
+    function ($scope, Configuration, UploadMultiForm, TempImage, SystemData, Project, growl) {
       $scope.projectTypes=SystemData.getProjectTypes();
       $scope.projectTemp = {
         tempId: 0,
@@ -12,10 +12,11 @@ angular.module('xbertsApp')
 
       if ($scope.projectId !== null) {
         $scope.$emit('backdropOn', 'project get');
-        var project = new Project({id: $scope.projectId});
-        project.$get(function (result) {
+        Project.fetch.get({id: $scope.projectId}, function (result) {
           $scope.$emit('backdropOff', 'project get completed');
           $scope.project = result;
+          // Wipe out promise from resource wrapper so form upload, which doesn't support inner promise, works correctly
+          $scope.project.$promise = undefined;
           $scope.projectTemp.tempId = result.temp || 0;
         }, function (error) {
           growl.error('Sorry,some error happened.');

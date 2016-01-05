@@ -103,7 +103,7 @@ angular.module('xbertsApp')
             type: 'event'
           };
           var uploadMultiImages = UploadMultiForm(
-            '/upload/rest/temps/' + $scope.eventTemp.tempId + '/images/',
+            Configuration.apiBaseUrl + '/upload/rest/temps/' + $scope.eventTemp.tempId + '/images/',
             'POST',
             data,
             function (resp) {
