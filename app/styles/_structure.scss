@@ -380,7 +380,7 @@ a.block-link {
   border: 1px solid $lightGrayColor;
 }
 .growl-container.top-right{
-  position: absolute;
+  position: fixed;
   top:0;
   right: 0;
   left: 0;
@@ -389,7 +389,7 @@ a.block-link {
 }
 
 .growl-container.growl-fixed.top-right {
-  top: 20px;
+  top: 50px;
 }
 
 .border-clear {
