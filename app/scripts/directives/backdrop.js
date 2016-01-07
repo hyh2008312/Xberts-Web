@@ -32,6 +32,10 @@ angular.module('xbertsApp')
             element.addClass('hide');
           }
         });
+        $rootScope.$on('backdropInit', function (e, d) {
+          $rootScope.backdropCount=0;
+          element.addClass('hide');
+        });
         $rootScope.$on('$stateChangeStart', function (e, d) {
           $rootScope.backdropCount++;
           if ($rootScope.backdropCount > 0) {
