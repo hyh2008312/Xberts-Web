@@ -25,6 +25,6 @@ angular.module('xbertsApp')
       };
 
       $scope.linkedinLogin = function() {
-        window.location.href = Configuration.apiBaseUrl + '/auth/lnklogin/';
+        window.location.href = Configuration.apiBaseUrl + '/accounts/lnklogin/';
       };
     }]);
