@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('Notification', ['$resource', '$rootScope', 'Configuration', function ($resource, $rootScope, Configuration) {
-    var user = $rootScope.user;
+  .factory('Notification', ['$resource', 'Configuration', function ($resource, Configuration) {
     var resource = {};
-    resource.notificationsResource = function () {
+    resource.notificationsResource = function (userId) {
       return $resource(Configuration.apiBaseUrl + '/notifications/:userId/:notificationId/', {
-          userId: user.getUserId(),
+          userId: userId,
           notificationId: '@id'
         },
         {'removeAll': {method: 'PUT', params: {removeAll: true}}});
@@ -15,9 +14,9 @@ angular.module('xbertsApp')
       return $resource(Configuration.apiBaseUrl + '/notifications/delete_all/', {},
         {'deleteAll': {method: 'PUT'}});
     };
-    resource.notificationsCountResource = function () {
+    resource.notificationsCountResource = function (userId) {
       return $resource(Configuration.apiBaseUrl + '/notifications/:userId/count/', {
-        userId: user.getUserId()
+        userId: userId
       });
     };
 

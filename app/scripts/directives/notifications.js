@@ -7,20 +7,21 @@
  * # notifications
  */
 angular.module('xbertsApp')
-  .directive('notifications', function (Notification, Paginator) {
+  .directive('notifications', function ($rootScope, Notification, Paginator) {
     return {
       templateUrl: 'views/notification.html',
       replace: true,
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
+        if (!$rootScope.user.isAuth()) return;
         scope.notificationsCount = 0;
-        Notification.notificationsCountResource().get(function (results) {
+        Notification.notificationsCountResource($rootScope.user.getUserId()).get(function (results) {
           scope.notificationsCount = results.sum;
         });
         //$scope.$watch('notificationsCount',function(){
         //
         //});
-        var Notifications = Notification.notificationsResource();
+        var Notifications = Notification.notificationsResource($rootScope.user.getUserId());
         var fetchFunction = function (nextPage, otherParams, callback) {
           var params = {page: nextPage};
           angular.extend(params, otherParams);
