@@ -1,3 +1,38 @@
-<div class="item-avatar-small">
-  <img src="">
-</div>
+<li role="presentation" class="dropdown dropdown-right" id="notification"
+    ng-if="user.isAuth()">
+  <a href="#" class="top-right-badge-x fade-in-line" ng-mousemove="loadingNotifications();">
+    <i class="fa fa-bell fa-lg"></i>
+<span class="top-right-badge striking-white" ng-if="notificationsCount > 0"
+      ng-bind="notificationsCount"></span>
+  </a>
+  <ul class="dropdown-menu navbar-inverse" style="overflow: scroll; max-height: 500px;">
+    <div class="text-center" ng-show="notificationsCount==0">No Notifications</div>
+    <li class="item-avatar-middle-inverse cover" ng-repeat="notification in paginator.items">
+      <div class="item-image">
+        <img ng-src="{{ notification.post_avatar }}">
+      </div>
+      <div class="item-body">
+        <div class="item-body-header p-1">
+          <div class="row">
+            <div class="col-xs-6"><a ng-href="{{ notification.post_url }}" ng-bind="notification.post_name"></a></div>
+            <div class="col-xs-6 align-right"><span am-time-ago="notification.date_create"></span></div>
+          </div>
+        </div>
+        <div class="item-body-title"><a class="default" ng-href="{{ notification.content_url }}"
+                                        ng-bind="notification.message"></a></div>
+        <div class="item-body-detail p-1" ng-bind="notification.post_on"></div>
+      </div>
+      <div class="right-enter font-striking">
+        <a class="fa fa-times icon-click default" ng-click="remove($index)"></a>
+      </div>
+    </li>
+    <div ng-show="!paginator.loading" class="padding-a5-10">
+      <p class="align-right margin-bottom-clear">
+        <a ng-click="paginator.loadNext()" ng-show="paginator.hasNext()" class="fa fa-angle-double-down"> more</a>
+        <span class="font-striking"><a class="default fa fa-times" ng-click="removeAll();"
+                                       ng-show="paginator.items.length>0"> clear</a></span>
+      </p>
+    </div>
+    <load-more class="row spin-small" ng-if="paginator.loading"></load-more>
+  </ul>
+</li>

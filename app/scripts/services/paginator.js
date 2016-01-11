@@ -42,6 +42,7 @@ angular.module('xbertsApp')
             self.next = resource.next !== null ? 'true' : 'false';
             self.items = self.items.concat(resource.results);
             self.loading = false;
+            console.log(resource);
           });
         },
         watch: function($scope, name) {
