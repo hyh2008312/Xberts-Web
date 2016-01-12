@@ -12,29 +12,26 @@
     </div>
     <div class="row form-group">
       <div class="col-md-6 col-xs-6">
-        <label for="fullNameInput">
-          <span>Full Name:</span>
-          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.fullName.$touched"
-                                      ng-messages="editProfileForm.fullName.$error">
-            <span ng-message="required">Please enter your name.</span>
+        <label for="firstNameInput">
+          <span>First Name:</span>
+          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.firstName.$touched"
+                                      ng-messages="editProfileForm.firstName.$error">
+            <span ng-message="required">Please enter your first name.</span>
           </span>
         </label>
-        <input type="text" id="fullNameInput" name="fullName" class="form-control" placeholder="Full name"
-               ng-model="data.fullName" ng-model-options="{ updateOn: 'blur' }" required>
+        <input type="text" id="firstNameInput" name="firstName" class="form-control" placeholder="First name"
+               ng-model="data.firstName" ng-model-options="{ updateOn: 'blur' }" required>
       </div>
       <div class="col-md-6 col-xs-6">
-        <label for="countryInput">
-          <span>Country:</span>
-          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.country.$touched"
-                ng-messages="editProfileForm.country.$error">
-            <span ng-message="required">Please select your country.</span>
+        <label for="lastNameInput">
+          <span>Last Name:</span>
+          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.lastName.$touched"
+                ng-messages="editProfileForm.lastName.$error">
+            <span ng-message="required">Please enter your last name.</span>
           </span>
         </label>
-        <select id="countryInput" name="country" class="form-control"
-                ng-options="option.name for option in countryOptions track by option.code"
-                ng-model="data.country" required>
-          <option value="">Select your country</option>
-        </select>
+        <input type="text" id="lastNameInput" name="lastName" class="form-control" placeholder="Last name"
+               ng-model="data.lastName" ng-model-options="{ updateOn: 'blur' }" required>
       </div>
     </div>
     <div class="row form-group">
@@ -55,6 +52,22 @@
           <input type="text" id="positionInput" name="position" class="form-control" placeholder="Business Title"
                  ng-model="data.position">
         </p>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-6 col-xs-6">
+        <label for="countryInput">
+          <span>Country:</span>
+          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.country.$touched"
+                ng-messages="editProfileForm.country.$error">
+            <span ng-message="required">Please select your country.</span>
+          </span>
+        </label>
+        <select id="countryInput" name="country" class="form-control"
+                ng-options="option.name for option in countryOptions track by option.code"
+                ng-model="data.country" required>
+          <option value="">Select your country</option>
+        </select>
       </div>
     </div>
     <div class="row form-group">

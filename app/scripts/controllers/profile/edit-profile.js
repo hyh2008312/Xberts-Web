@@ -9,7 +9,8 @@ angular.module('xbertsApp')
       $scope.data = {};
 
       $scope.data.currentAvatar = $rootScope.user.getUserAvatar();
-      $scope.data.fullName = $rootScope.user.getUserName();
+      $scope.data.firstName = userProfile.firstName;
+      $scope.data.lastName = userProfile.lastName;
       $scope.data.country = {code: userProfile.country};
       $scope.data.company = userProfile.company;
       $scope.data.position = userProfile.position;
@@ -26,7 +27,8 @@ angular.module('xbertsApp')
 
         var userProfile = {
           avatar: $scope.data.avatar,
-          full_name: $scope.data.fullName,
+          first_name: $scope.data.firstName,
+          last_name: $scope.data.lastName,
           country: $scope.data.country.code,
           company: $scope.data.company,
           position: $scope.data.position,
@@ -34,7 +36,8 @@ angular.module('xbertsApp')
         };
 
         UserProfileService.updateProfile(userProfile, function(response) {
-          $rootScope.user.setUserName(response.data.fullName);
+          // TDOD: Update user model to derive full name from first name and last name
+          $rootScope.user.setUserName(getFullName(response.data.firstName, response.data.lastName));
           $rootScope.user.setUserAvatar(response.data.avatar);
 
           // Remove cached user profile
@@ -49,4 +52,18 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'error');
         });
       };
+
+      function getFullName(firstName, lastName) {
+        var fullName = '';
+
+        if (firstName) {
+          fullName = firstName;
+
+          if (lastName) {
+            fullName = fullName + ' ' + lastName;
+          }
+        }
+
+        return fullName;
+      }
   }]);
