@@ -15,7 +15,8 @@ angular.module('xbertsApp')
       $scope.signupForm.serverError = {};
 
       SignupService.signup.save({
-        fullName: $scope.fullName,
+        firstName: $scope.firstName,
+        lastName: $scope.lastName,
         email: $scope.email,
         password: $scope.password,
         country: $scope.country.code

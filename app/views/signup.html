@@ -9,12 +9,20 @@
           <div ng-messages-include="views/message/form_error.html"></div>
         </div>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.fullName.$touched"
-             ng-messages="signupForm.fullName.$error">
-          <p ng-message="required">Please enter your name.</p>
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.firstName.$touched"
+             ng-messages="signupForm.firstName.$error">
+          <p ng-message="required">Please enter your first name.</p>
         </div>
         <p align="left">
-          <input type="text" id="id_full_name" name="fullName" class="form-control login-form-control" placeholder="Full name" ng-model="fullName" required>
+          <input type="text" name="firstName" class="form-control login-form-control" placeholder="First name" ng-model="firstName" required>
+        </p>
+
+        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.lastName.$touched"
+             ng-messages="signupForm.lastName.$error">
+          <p ng-message="required">Please enter your last name.</p>
+        </div>
+        <p align="left">
+          <input type="text" name="lastName" class="form-control login-form-control" placeholder="Last name" ng-model="lastName" required>
         </p>
 
         <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.email.$touched"

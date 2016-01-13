@@ -24,14 +24,24 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label>Full name</label>
-            <input type="text" class="form-control" name="fullname" ng-model="voter.fullName" ng-required="true">
+            <label>First name</label>
+            <input type="text" class="form-control" name="firstName" ng-model="voter.firstName" ng-required="true">
           </div>
           <p class="message-error"
-             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.fullname.$error.required">
-            Please enter your name.</p>
+             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.firstName.$error.required">
+            Please enter your first name.</p>
         </div>
-
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" class="form-control" name="lastName" ng-model="voter.lastName" ng-required="true">
+          </div>
+          <p class="message-error"
+             ng-show="eventProjectVoteForm.submitted && eventProjectVoteForm.lastName.$error.required">
+            Please enter your last name.</p>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12">

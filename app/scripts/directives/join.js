@@ -407,7 +407,8 @@ angular.module('xbertsApp')
               scope.vote();
             } else {
               SignupService.signup.save({
-                fullName: voter.fullName,
+                firstName: voter.firstName,
+                lastName: voter.lastName,
                 email: voter.email,
                 password: 'ces2016',
                 country: voter.country,
