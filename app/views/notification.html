@@ -12,9 +12,9 @@
         <img ng-src="{{ notification.post_avatar }}">
       </div>
       <div class="item-body">
-        <div class="item-body-header p-1">
+        <div class="item-body-header">
           <div class="row">
-            <div class="col-xs-6"><a ng-href="{{ notification.post_url }}" ng-bind="notification.post_name"></a></div>
+            <div class="col-xs-6 p-1"><a ng-href="{{ notification.post_url }}" ng-bind="notification.post_name"></a></div>
             <div class="col-xs-6 align-right"><span am-time-ago="notification.date_create"></span></div>
           </div>
         </div>

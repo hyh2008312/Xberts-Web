@@ -44,7 +44,7 @@
             </li>
             <li role="presentation" class="dropdown" ng-if="user.isAuth()">
               <a class="fade-in-line" ui-sref="application.expert({ expertId: user.getUserId(),tab:'profile' })">
-                <div class="avatar-text-smaller-1">
+                <div class="avatar-text-smaller-1" style="max-width: 130px">
                   <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true"></avatar-img>
                 </div>
               </a>
