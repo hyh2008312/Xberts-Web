@@ -5,7 +5,7 @@
 <span class="top-right-badge striking-white" ng-if="notificationsCount > 0"
       ng-bind="notificationsCount"></span>
   </a>
-  <ul class="dropdown-menu navbar-inverse" style="overflow: scroll; max-height: 500px;">
+  <ul class="dropdown-menu navbar-inverse" style="overflow: auto; max-height: 500px;">
     <div class="text-center" ng-show="notificationsCount==0">No Notifications</div>
     <li class="item-avatar-middle-inverse cover" ng-repeat="notification in paginator.items">
       <div class="item-image">
