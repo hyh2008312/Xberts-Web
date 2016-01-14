@@ -3,6 +3,8 @@
 angular.module('xbertsApp')
   .controller('SettingCtrl', ['$scope', '$rootScope', '$state', '$uibModal', 'AccountService',
     function($scope, $rootScope, $state, $uibModal, AccountService) {
+      $scope.showEditPassword = !$rootScope.user.isLinkedinSignup();
+
       $scope.changeEmailModal = function() {
         var modal = $uibModal.open({
           templateUrl: 'views/profile/change-email-modal.html',

@@ -9,12 +9,12 @@ angular.module('xbertsApp')
         .then(function(response) {
           $rootScope.$emit('backdropOff', 'success');
 
-          $state.go('application.main');
+          $state.go('application.login');
         })
         .catch(function(response) {
           $rootScope.$emit('backdropOff', 'error');
 
-          $state.go('application.main');
+          $state.go('application.login');
         });
     });
   }]);

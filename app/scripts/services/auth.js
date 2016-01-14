@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', 'Configuration',
-    function($rootScope, $resource, $state, $q, Configuration) {
-      function User(userId, userName, userEmail, userType, userAvatar, isResolved) {
+  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', 'Configuration', 'OAuthToken',
+    function($rootScope, $resource, $state, $q, Configuration, OAuthToken) {
+      function User(userId, userName, userEmail, userType, userAvatar, isLinkedinSignup, isResolved) {
         this._userId = userId || '';
         this._userName = userName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
         this._userAvatar = userAvatar || '/images/empty-avater.gif';
+        this._isLinkedinSignup = isLinkedinSignup || false;
         // Indicate whether login state has been fetched from backend
         this._isResolved = isResolved || false;
 
@@ -38,6 +39,10 @@ angular.module('xbertsApp')
 
         this.getUserAvatar = function() {
           return this._userAvatar;
+        };
+
+        this.isLinkedinSignup = function() {
+          return this._isLinkedinSignup;
         };
 
         this.isResolved = function() {
@@ -73,32 +78,68 @@ angular.module('xbertsApp')
       }
 
       function setUser(user) {
-        $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar, true);
+        $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar,
+          user.isLinkedinSignup, true);
       }
 
-      function createAuthHeader(credentials) {
-        return 'Basic ' + btoa(credentials.username + ':' + credentials.password);
-      }
-
-      function login(credentials, params) {
-        return $resource(Configuration.apiBaseUrl + '/accounts/auth/', {}, {
-          auth: {
+      function login(credentials) {
+        return $resource(Configuration.apiBaseUrl + '/oauth2/token/', {}, {
+          getToken: {
             method: 'POST',
-            params: params,
-            headers: {
-              Authorization: createAuthHeader(credentials)
+            params: {
+              grant_type: 'password',
+              client_id: Configuration.oauthClientId,
+              username: credentials.username,
+              password: credentials.password
             }
           }
+        }).getToken().$promise.then(function(value) {
+          return postLogin(value);
         });
+      }
+
+      function exchangeLinkedinToken(accessToken) {
+        return $resource(Configuration.apiBaseUrl + '/oauth2/convert-token/', {}, {
+          exchangeToken: {
+            method: 'POST',
+            params: {
+              grant_type: 'convert_token',
+              client_id: Configuration.oauthClientId,
+              backend: 'linkedin-oauth2',
+              token: accessToken
+            }
+          }
+        }).exchangeToken().$promise
+          .then(function(value) {
+            return postLogin(value);
+          });
       }
 
       function createUserWithDefaultPasswordPromise(user){
 
       }
 
-      function postLogin(user) {
-        setUser(user);
+      function loginComplete() {
+        return $resource(Configuration.apiBaseUrl + '/accounts/login/complete/', {}, {
+          loginComplete: {
+            method: 'PUT'
+          }
+        }).loginComplete().$promise;
+      }
 
+      function postLogin(token) {
+        OAuthToken.setToken(token);
+
+        return loginComplete()
+          .then(function() {
+            return fetchUser();
+          })
+          .then(function(value) {
+            setUser(value);
+          });
+      }
+
+      function loginRedirect() {
         $rootScope.$emit('backdropOff', 'success');
 
         if ($rootScope.postLoginState) {
@@ -114,6 +155,9 @@ angular.module('xbertsApp')
         $rootScope.user = new User();
         $rootScope.user.setIsResolved(true);
 
+        var token = OAuthToken.getAccessToken();
+        OAuthToken.removeToken();
+
         if (!shouldMakeApiCall) {
           var deferred = $q.defer();
 
@@ -121,7 +165,15 @@ angular.module('xbertsApp')
 
           return deferred.promise;
         } else {
-          return $resource(Configuration.apiBaseUrl + '/accounts/logout/').delete().$promise
+          return $resource(Configuration.apiBaseUrl + '/oauth2/revoke-token/', {}, {
+            revokeToken: {
+              method: 'POST',
+              params: {
+                client_id: Configuration.oauthClientId,
+                token: token
+              }
+            }
+          }).revokeToken().$promise
         }
       }
 
@@ -136,7 +188,7 @@ angular.module('xbertsApp')
           deferred.resolve();
         } else {
           fetchUser()
-            .then(function(value, responseHeaders) {
+            .then(function(value) {
               setUser(value);
 
               deferred.resolve();
@@ -156,9 +208,10 @@ angular.module('xbertsApp')
 
       return {
         login: login,
+        exchangeLinkedinToken: exchangeLinkedinToken,
         auth: auth,
         setUser: setUser,
-        postLogin: postLogin,
+        loginRedirect: loginRedirect,
         logout: logout
       };
     }]);

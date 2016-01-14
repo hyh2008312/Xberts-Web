@@ -20,16 +20,24 @@ angular.module('xbertsApp')
         email: $scope.email,
         password: $scope.password,
         country: $scope.country.code
-      }, function(value, responseHeader) {
-        AuthService.postLogin(value);
-      }, function(httpResponse) {
-        $scope.$emit('backdropOff', 'error');
+      }).$promise
+        .then(function(value) {
+          return AuthService.login({
+            username: value.email,
+            password: $scope.password
+          });
+        })
+        .then(function(value) {
+          AuthService.loginRedirect();
+        })
+        .catch(function(httpResponse) {
+          $scope.$emit('backdropOff', 'error');
 
-        if (httpResponse.status === 409) {
-          $scope.signupForm.serverError.userExist = true;
-        } else {
-          $scope.signupForm.serverError.generic = true;
-        }
-      });
+          if (httpResponse.status === 409) {
+            $scope.signupForm.serverError.userExist = true;
+          } else {
+            $scope.signupForm.serverError.generic = true;
+          }
+        });
     };
   }]);

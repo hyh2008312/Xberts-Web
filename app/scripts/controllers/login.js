@@ -1,30 +1,29 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', 'Configuration', 'AuthService',
-    function($scope, $rootScope, $location, $state, Configuration, AuthService) {
-      $scope.login = function() {
+  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$auth', 'Configuration', 'AuthService',
+    function($scope, $rootScope, $location, $state, $auth, Configuration, AuthService) {
+      $scope.login = function(form) {
         if (!$scope.loginForm.$valid) {
           return;
         }
         $scope.$emit('backdropOn', 'post');
 
-        AuthService.login({username: $scope.username, password: $scope.password}, {}).auth(
-          function(value, responseHeaders) {
-            AuthService.postLogin(value);
-          },
-          function(httpResponse) {
-            $scope.$emit('backdropOff', 'error');
+        form.serverError = {};
 
-            if (httpResponse.status === 401 || httpResponse.status === 403) {
-              $scope.loginError = {invalidCredentials: true};
-            } else {
-              $scope.loginError = {generic: true};
-            }
-          });
-      };
+        AuthService.login({username: $scope.username, password: $scope.password})
+          .then(function(value) {
+            AuthService.loginRedirect();
+          })
+          .catch(
+            function(httpResponse) {
+              $scope.$emit('backdropOff', 'error');
 
-      $scope.linkedinLogin = function() {
-        window.location.href = Configuration.apiBaseUrl + '/accounts/lnklogin/';
+              if (httpResponse.status === 401 || httpResponse.status === 403) {
+                form.serverError = {invalidCredentials: true};
+              } else {
+                form.serverError = {generic: true};
+              }
+            });
       };
     }]);
