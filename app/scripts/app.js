@@ -25,8 +25,8 @@ angular
     'dcbImgFallback'
   ])
   .value('duScrollOffset', 50)
-  .run(['$rootScope', '$state', '$stateParams',
-    function ($rootScope, $state, $stateParams) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService',
+    function ($rootScope, $state, $stateParams, $window, localStorageService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.bodyBackground = 'background-light-white';
@@ -56,8 +56,11 @@ angular
           ['view', ['fullscreen']]
         ]
       };
+      $window.onload = function () {
+        localStorageService.clearAll();
+      };
     }])
-  .config(['$locationProvider', function($locationProvider) {
+  .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.html5Mode(true);
   }])
   .config(['$httpProvider', '$resourceProvider', function ($httpProvider, $resourceProvider) {
@@ -88,7 +91,7 @@ angular
     $urlRouterProvider.otherwise("/main");
 
     // TODO: Remove after CES event ends
-    $urlRouterProvider.when('/ces2016', ['$state', function($state) {
+    $urlRouterProvider.when('/ces2016', ['$state', function ($state) {
       $state.go('application.voteoff', {eventId: 1});
     }]);
 
@@ -335,7 +338,7 @@ angular
         url: "/reviews",
         templateUrl: 'views/reviewprojects.html',
         controller: 'ReviewProjectsCtrl',
-        resolve:{
+        resolve: {
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
             var fetchFunction = function (nextPage, otherParams, callback) {
               var params = {page: nextPage};

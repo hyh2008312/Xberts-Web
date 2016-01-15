@@ -88,7 +88,6 @@ angular.module('xbertsApp')
           var comment = new Comment(content);
           callback();
           comment.post_id = $scope.join.id;
-          console.log(comment);
           comment.$save(function () {
             delay.resolve(comment);
           }, function (error) {
@@ -129,7 +128,6 @@ angular.module('xbertsApp')
           feedback.interact = $scope.interact.id;
           if ($scope.join.id !== undefined) {
             feedback.post = $scope.join.id;
-            console.log(feedback);
             feedback.$save(function () {
               $scope.feedbackPaginator.items.unshift(feedback);
               growl.success('success', {referenceId: $scope.referenceId});
@@ -139,7 +137,6 @@ angular.module('xbertsApp')
           } else {
             this.participatePromise().then(function () {
               feedback.post = $scope.join.id;
-              console.log(feedback);
               feedback.$save(function () {
                 $scope.feedbackPaginator.items.unshift(feedback);
                 growl.success('success', {referenceId: $scope.referenceId});
@@ -202,7 +199,6 @@ angular.module('xbertsApp')
           });
         };
         this.participatePromise = function () {
-          console.log("partiticpate");
           var delay = $q.defer();
           $scope.join = new EventJoin({event: $scope.eventId, user: $rootScope.user.getUserId()});
           $scope.join.$save(function () {
@@ -223,7 +219,6 @@ angular.module('xbertsApp')
           EventJoin.query({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
             if (data.length > 0) {
               scope.join = data[0];
-              console.log(scope.join);
             }
             scope.loadingJoin = false;
           });
@@ -259,7 +254,6 @@ angular.module('xbertsApp')
             size: size
           });
           modalInstance.result.then(function (reason) {
-            console.log(reason);
             scope.eventProjectVote = {
               reason: reason,
               event_project: scope.eventProject.id
@@ -344,7 +338,6 @@ angular.module('xbertsApp')
           });
         };
         this.participatePromise = function () {
-          console.log("partiticpate");
           var delay = $q.defer();
           $scope.join = new EventJoin({event: $scope.eventId, user: $rootScope.user.getUserId()});
           $scope.join.$save(function () {
@@ -365,7 +358,6 @@ angular.module('xbertsApp')
           EventJoin.query({event_id: scope.eventId, user_id: $rootScope.user.getUserId()}, function (data) {
             if (data.length > 0) {
               scope.join = data[0];
-              console.log(scope.join);
             }
             scope.loadingJoin = false;
           });
@@ -398,7 +390,6 @@ angular.module('xbertsApp')
             size: size
           });
           modalInstance.result.then(function (voter) {
-            console.log(voter);
             scope.eventProjectVote = {
               reason: voter.reasons,
               event_project: scope.eventProject.id
@@ -414,11 +405,9 @@ angular.module('xbertsApp')
                 country: voter.country,
                 groupName: 'ces2016'
               }).$promise.then(function (resp) {
-                console.log(resp);
                 AuthService.setUser(resp);
                 scope.vote();
               }, function (resp) {
-                console.log(resp);
                 scope.voting = false;
                 growl.error('error', {referenceId: scope.referenceId});
               })

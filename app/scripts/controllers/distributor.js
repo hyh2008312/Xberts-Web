@@ -30,7 +30,7 @@ angular.module('xbertsApp')
         //project pre process
         $scope.distributor.sale_channels = $scope.saleChannelSelected.join();
         $scope.distributor.request = $scope.distribution.id;
-        console.log($scope.distributor);
+        //console.log($scope.distributor);
 
         $scope.distributor.$save(function (resp) {
           $scope.$emit('backdropOff', 'success');
@@ -39,7 +39,7 @@ angular.module('xbertsApp')
         }, function (resp) {
           growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
-          console.log(resp);
+          //console.log(resp);
         });
 
       } else {

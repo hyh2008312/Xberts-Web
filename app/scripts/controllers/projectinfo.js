@@ -21,7 +21,7 @@ angular.module('xbertsApp')
         }, function (error) {
           growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'project get failed');
-          console.log(error);
+          //console.log(error);
         });
       }
 
@@ -92,7 +92,7 @@ angular.module('xbertsApp')
               editor.insertNode($scope.editable, img[0]);
             }, function (resp) {
               growl.error('Sorry,some error happened.');
-              console.log(resp);
+              //console.log(resp);
               $scope.$emit('backdropOff', 'error');
             });
           $scope.$emit('backdropOn', 'post');

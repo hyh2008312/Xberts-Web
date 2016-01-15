@@ -32,7 +32,6 @@ angular.module('xbertsApp')
           var notification = new Notifications(scope.paginator.items[index]);
           scope.notificationsCount -= 1;
           scope.paginator.items.splice(index, 1);
-          console.log(notification);
           notification.$delete();
         };
         scope.removeAll = function (index) {
@@ -40,7 +39,6 @@ angular.module('xbertsApp')
           scope.notificationsCount = 0;
           Notification.notificationsDeleteResource().deleteAll();
         };
-        console.log(scope.paginator);
         scope.loadingNotifications = function () {
           if (scope.paginator.items.length < 1) {
             scope.paginator.loadNext();

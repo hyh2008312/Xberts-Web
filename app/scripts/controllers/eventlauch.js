@@ -74,14 +74,14 @@ angular.module('xbertsApp')
           }
 
           //upload multiform-data
-          console.log($scope.event);
+          //console.log($scope.event);
           $scope.uploadMulti = UploadMultiForm(url, method, $scope.event, function (resp) {
             $scope.$emit('backdropOff', 'success');
             $state.go('application.event', {eventId: resp.data.id});
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
-            console.log(resp)
+            //console.log(resp)
           });
           $scope.uploadMulti.upload();
 
@@ -122,7 +122,7 @@ angular.module('xbertsApp')
               editor.insertNode($scope.editable, img[0]);
             }, function (resp) {
               growl.error('Sorry,some error happened.');
-              console.log(resp);
+              //console.log(resp);
               $scope.$emit('backdropOff', 'error');
             });
           $scope.$emit('backdropOn', 'post');

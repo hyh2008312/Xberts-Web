@@ -15,7 +15,6 @@ angular.module('xbertsApp')
         if (project === null) {
           var delay = $q.defer();
           ProjectsNoDetail.get({id: projectId}, function (project) {
-            console.log(project);
             delay.resolve(project);
           }, function () {
             delay.reject(('Unable to fetch project'));

@@ -37,7 +37,6 @@ angular.module('xbertsApp')
       e.stopPropagation();
     });
     $scope.select = function (step) {
-      console.log(step);
       $scope.$broadcast('stepBroadcast', step);
     };
   }]);

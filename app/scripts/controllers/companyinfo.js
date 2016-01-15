@@ -25,7 +25,7 @@ angular.module('xbertsApp')
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
-            console.log(resp);
+            //console.log(resp);
           });
         } else {
           $scope.company.$save(function (resp) {
@@ -34,7 +34,7 @@ angular.module('xbertsApp')
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
-            console.log(resp);
+            //console.log(resp);
           });
         }
 

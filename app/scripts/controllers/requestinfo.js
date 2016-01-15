@@ -41,7 +41,6 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'query distributions finished');
         }, function (error) {
           growl.error('Sorry,some error happened.');
-          console.log(error);
           $scope.$emit('backdropOff', 'query distributions error');
         });
       }
@@ -110,7 +109,6 @@ angular.module('xbertsApp')
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
-            console.log(resp);
           });
         } else {
           $scope.distribution.$save(function (resp) {
@@ -119,7 +117,6 @@ angular.module('xbertsApp')
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
-            console.log(resp);
           });
         }
         return false;

@@ -16,7 +16,6 @@ angular.module('xbertsApp')
       });
       $scope.report.applicant = $scope.applicant.id;
       $scope.referenceId = 'reportapplicant_' + $scope.applicant.id;
-      console.log($scope.referenceId);
       $scope.reportTemp = {
         tempId: $scope.report.temp || 0
       };
@@ -38,7 +37,6 @@ angular.module('xbertsApp')
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-              console.log(resp)
             });
           } else {
             $scope.report.$put(function (resp) {
@@ -51,7 +49,6 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
               //growl.error('Sorry,some error happened.');
-              console.log(resp)
             });
           }
           return false;

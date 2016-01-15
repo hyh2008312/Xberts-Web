@@ -16,7 +16,7 @@ angular.module('xbertsApp')
     $scope.expertPaginator.watch($scope,'expertPaginator.currentPage');
 
     $scope.onSearch = function () {
-      console.log($scope.experts);
+      //console.log($scope.experts);
       $scope.expertPaginator.params=$scope.experts;
       $scope.expertPaginator.items=[];
       $scope.expertPaginator.currentPage=0;

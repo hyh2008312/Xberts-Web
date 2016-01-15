@@ -22,7 +22,6 @@ angular.module('xbertsApp')
           if (scope.feedbackForm.$valid) {
             joinController.leaveFeedback(scope.feedback,feedbackCallback);
           }else {
-            console.log("invalid form data")
           }
         }
       }
