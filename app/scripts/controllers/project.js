@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'growl', 'SystemData',
-    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project',
+    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project','localStorageService',
     function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
-              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project) {
+              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project,localStorageService) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -87,6 +87,7 @@ angular.module('xbertsApp')
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is approved.');
+              localStorageService.clearAll();
             },
             function() {
               $scope.$emit('backdropOff', 'error');
@@ -99,6 +100,7 @@ angular.module('xbertsApp')
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is rejected.');
+              localStorageService.clearAll();
             },
             function() {
               $scope.$emit('backdropOff', 'error');
