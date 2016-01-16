@@ -62,7 +62,7 @@
                    ng-repeat="distribution in distributions">
                 <div class="card-body">
                   <div class="card-body-detail">
-                    <h4>Target Market:</h4>
+                    <h4>Available Market:</h4>
 
                     <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">{{ item.name }}<span
                       ng-if="!$last">, </span></span></p>
