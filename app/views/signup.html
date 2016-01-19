@@ -2,6 +2,7 @@
   <div class="container marketing">
     <div class="register-signin-caption">
       <p class="login-title">Create an Account</p>
+      <div class="error" ng-show="linkedinError.generic">Oops! Something went wrong.</div>
       <form name="signupForm" ng-submit="signup()" novalidate clear-form-error>
         <div class="error" ng-show="signupForm.$submitted"
              ng-messages="signupForm.serverError">
@@ -55,13 +56,18 @@
         </p>
 
         <input type="submit" class="login-btn" value="Sign up">
-        <div class="login-line-wrapper">
-          <div class="login-or-line">
-          </div>
-        </div>
-        <div class="login-tips">Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a>
-        </div>
       </form>
+      <div class="login-line-wrapper">
+        <div class="login-or-line">
+          <div class="login-line-content">or</div>
+        </div>
+      </div>
+      <a type="button" class="btn login-linkedin-btn" ng-click="linkedinLogin()">
+        <i class="fa fa-linkedin"></i>
+        <span class="login-linkedin-btn-title">Sign in with LinkedIn</span>
+      </a>
+      <div class="login-tips">Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a>
+      </div>
     </div>
   </div>
 </div>

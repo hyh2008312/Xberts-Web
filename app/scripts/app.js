@@ -9,20 +9,21 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngImgCrop',
+    'ngFileUpload',
+    'ngTagsInput',
+    'angularMoment',
+    'angular-growl',
     'ui.router',
     'infinite-scroll',
     'LocalStorageModule',
-    'angularMoment',
     'summernote',
-    'ngTagsInput',
     'ui.bootstrap',
-    'ngImgCrop',
-    'ngFileUpload',
     'internationalPhoneNumber',
     'duScroll',
-    'angular-growl',
+    'dcbImgFallback',
     'configuration.properties',
-    'dcbImgFallback'
+    'satellizer'
   ])
   .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService',
@@ -86,6 +87,12 @@ angular
     growlProvider.globalTimeToLive(3000);
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalDisableCountDown(true);
+  }])
+  .config(['$authProvider', 'ConfigurationProvider', function($authProvider, ConfigurationProvider) {
+    $authProvider.linkedin({
+      clientId: ConfigurationProvider.linkedinClientId,
+      url: ConfigurationProvider.apiBaseUrl + '/accounts/linkedin/token/'
+    });
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");

@@ -2,10 +2,11 @@
   <div class="container marketing">
     <div class="login-signin-caption">
       <p class="login-title">Sign in to Xberts</p>
-      <form name="loginForm" novalidate ng-submit="login()">
+      <div class="error" ng-show="linkedinError.generic">Oops! Something went wrong.</div>
+      <form name="loginForm" novalidate ng-submit="login(loginForm)">
         <div class="error" ng-show="loginForm.$submitted">
-          <div ng-show="loginError.invalidCredentials">The email or password you entered is incorrect.</div>
-          <div ng-show="loginError.generic">Oops! Something went wrong.</div>
+          <div ng-show="loginForm.serverError.invalidCredentials">The email or password you entered is incorrect.</div>
+          <div ng-show="loginForm.serverError.generic">Oops! Something went wrong.</div>
         </div>
         <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched">
           <p ng-show="loginForm.email.$error.required">Please enter your email.</p>
@@ -30,10 +31,10 @@
           <div class="login-line-content">or</div>
         </div>
       </div>
-      <button class="login-linkedin-btn" ng-click="linkedinLogin()">
+      <a type="button" class="btn login-linkedin-btn" ng-click="linkedinLogin()">
         <i class="fa fa-linkedin"></i>
         <span class="login-linkedin-btn-title">Sign in with LinkedIn</span>
-      </button>
+      </a>
       <div class="login-tips">
         Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a>
       </div>

@@ -404,13 +404,20 @@ angular.module('xbertsApp')
                 password: 'ces2016',
                 country: voter.country,
                 groupName: 'ces2016'
-              }).$promise.then(function (resp) {
-                AuthService.setUser(resp);
-                scope.vote();
-              }, function (resp) {
-                scope.voting = false;
-                growl.error('error', {referenceId: scope.referenceId});
-              })
+              }).$promise
+                .then(function (value) {
+                  return AuthService.login({
+                    username: value.email,
+                    password: 'ces2016'
+                  });
+                })
+                .then(function(value) {
+                  scope.vote();
+                })
+                .catch(function (resp) {
+                  scope.voting = false;
+                  growl.error('error', {referenceId: scope.referenceId});
+                });
             }
           }, function () {
             scope.voting = false;
