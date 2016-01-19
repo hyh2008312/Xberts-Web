@@ -373,6 +373,9 @@ angular
           }],
           reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
             return ProfileReviewerLoad();
+          }],
+          application: ['ReviewApplicant','$stateParams', 'authCheck', function (ReviewApplicant, $stateParams,authCheck) {
+            return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
       })

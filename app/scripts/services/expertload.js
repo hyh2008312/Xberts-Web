@@ -1,28 +1,18 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ExpertLoad',  ['Expert', '$q', 'localStorageService',
+  .factory('ExpertLoad', ['Expert', '$q', 'localStorageService',
     function (Expert, $q, localStorageService) {
       function getExpert($stateParams) {
         var expertId = Number($stateParams.expertId);
-        var experts = localStorageService.get('expert_items') || [];
-        var expert = null;
-        for (var i = 0; i < experts.length; i++) {
-          if (expertId === experts[i].user_id) {
-            expert = experts[i];
-          }
-        }
-        if (expert === null) {
-          var delay = $q.defer();
-          Expert.get({id: expertId}, function (project) {
-            delay.resolve(project);
-          }, function () {
-            delay.reject(('Unable to fetch project'));
-          });
-          return delay.promise;
-        } else {
-          return expert;
-        }
+        var delay = $q.defer();
+        Expert.get({id: expertId}, function (project) {
+          delay.resolve(project);
+        }, function () {
+          delay.reject(('Unable to fetch expert'));
+        });
+        return delay.promise;
+
       }
 
       function deleteExpert(id) {

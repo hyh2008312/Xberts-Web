@@ -8,20 +8,32 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewapplicationconfirminfoCtrl',['$scope','ReviewApplicant','$rootScope','growl' ,function ($scope,ReviewApplicant,$rootScope,growl) {
-    $scope.reviewApplicant=ReviewApplicant.getNewInstance();
-    $scope.reviewApplicant.review=$scope.review.id;
-    $scope.reviewApplicant.reviewer=$rootScope.user.getUserId();
+  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', 'ReviewApplicant', '$rootScope', 'growl', function ($scope, ReviewApplicant, $rootScope, growl) {
+    $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
+    console.log($scope.reviewApplicant);
+    $scope.reviewApplicant.review = $scope.review.id;
+    $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();
     $scope.reviewApplicantConfirmFormSubmit = function () {
       if ($scope.reviewApplicantForm.$valid) {
         $scope.$emit('backdropOn', 'post');
-        $scope.reviewApplicant.$save(function (resp) {
-          $scope.$emit('backdropOff', 'success');
-          $scope.$emit('reviewStep', '2');
-        }, function (resp) {
-          growl.error('Sorry,some error happened.');
-          $scope.$emit('backdropOff', 'error');
-        });
+        if( $scope.reviewApplicant.id){
+          $scope.reviewApplicant.$put(function (resp) {
+            $scope.$emit('backdropOff', 'success');
+            $scope.$emit('reviewStep', '2');
+          }, function (resp) {
+            growl.error('Sorry,some error happened.');
+            $scope.$emit('backdropOff', 'error');
+          });
+        }else{
+          $scope.reviewApplicant.$save(function (resp) {
+            $scope.$emit('backdropOff', 'success');
+            $scope.$emit('reviewStep', '2');
+          }, function (resp) {
+            growl.error('Sorry,some error happened.');
+            $scope.$emit('backdropOff', 'error');
+          });
+        }
+
         return false;
 
       } else {

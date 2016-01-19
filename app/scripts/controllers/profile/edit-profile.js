@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditProfileCtrl', ['$scope', '$rootScope', '$state', 'SystemConstant', 'userProfile',
-    'UserProfileService', 'ExpertLoad',
-    function($scope, $rootScope, $state, SystemConstant, userProfile, UserProfileService, ExpertLoad) {
+    'UserProfileService', 'ExpertLoad', 'localStorageService',
+    function ($scope, $rootScope, $state, SystemConstant, userProfile, UserProfileService, ExpertLoad, localStorageService) {
       $scope.countryOptions = SystemConstant.COUNTRIES;
 
       $scope.data = {};
@@ -16,7 +16,7 @@ angular.module('xbertsApp')
       $scope.data.position = userProfile.position;
       $scope.data.biography = userProfile.biography;
 
-      $scope.saveChange = function() {
+      $scope.saveChange = function () {
         if (!$scope.editProfileForm.$valid) {
           return;
         }
@@ -35,18 +35,18 @@ angular.module('xbertsApp')
           biography: $scope.data.biography
         };
 
-        UserProfileService.updateProfile(userProfile, function(response) {
+        UserProfileService.updateProfile(userProfile, function (response) {
           // TDOD: Update user model to derive full name from first name and last name
           $rootScope.user.setUserName(getFullName(response.data.firstName, response.data.lastName));
           $rootScope.user.setUserAvatar(response.data.avatar);
 
           // Remove cached user profile
-          ExpertLoad.delete($rootScope.user.getUserId());
+          localStorageService.clearAll();
 
           $scope.$emit('backdropOff', 'success');
 
           $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
-        }, function(response) {
+        }, function (response) {
           $scope.editProfileForm.serverError.generic = true;
 
           $scope.$emit('backdropOff', 'error');
@@ -66,4 +66,4 @@ angular.module('xbertsApp')
 
         return fullName;
       }
-  }]);
+    }]);

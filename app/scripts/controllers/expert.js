@@ -8,13 +8,15 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert',
-    function ($scope, $rootScope, $location, $state, $stateParams, Paginator, ProjectsNoDetail, Interact, expert) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert', 'Applicantsreview',
+    function ($scope, $rootScope, $location, $state, $stateParams, Paginator, ProjectsNoDetail, Interact, expert, Applicantsreview) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
       $scope.btnText = 'Send';
-
+      $scope.isOutDated = function (time) {
+        return Date.now()-new Date(time)> 0;
+      };
       $scope.tabs = [
         {title: 'profile', active: true},
         {title: 'products', active: false},
@@ -73,16 +75,16 @@ angular.module('xbertsApp')
             $scope.commentsTabActive = true;
             $scope.$broadcast('feedback', step);
             break;
-          //case 'reviews':
-          //  $scope.reviewsTabActive = true;
-          //  var fetchFunction3 = function (nextPage, otherParams, callback) {
-          //    var params = {page: nextPage, review_id: $scope.expert.user_id};
-          //    angular.extend(params, otherParams);
-          //    Applicantsreview.get(params, callback);
-          //  };
-          //  $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
-          //  $scope.reviewApplicantPaginator.clear();
-          //  break;
+          case 'reviews':
+            $scope.reviewsTabActive = true;
+            var fetchFunction3 = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage, review_id: $scope.expert.user_id};
+              angular.extend(params, otherParams);
+              Applicantsreview.get(params, callback);
+            };
+            $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
+            $scope.reviewApplicantPaginator.clear();
+            break;
         }
         $scope.$broadcast('expert', step);
       };
@@ -94,7 +96,7 @@ angular.module('xbertsApp')
         }
       }
 
-      $scope.editProfile = function() {
+      $scope.editProfile = function () {
         $state.go('application.protected.editProfile');
       };
 

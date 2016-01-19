@@ -18,7 +18,8 @@ angular.module('xbertsApp')
               answer['question_' + $scope.review.surveys[x].questions[y].id] = $scope.review.surveys[x].questions[y].answer;
             }
           }
-          ReviewApplicant.getInstance().answer = $filter('json')(answer);
+          ReviewApplicant.getApplication().answer = $filter('json')(answer);
+
           $scope.$emit('reviewStep', '1');
 
           return false;

@@ -1,6 +1,8 @@
 <section class="container header padding-bottom-clear">
-  <div class="jumbotron section-title" style="background-image: url(/images/banner-qa.jpg);min-height: 220px;">
-    <h2 class="font-whitem" style="margin-top: 30px;">Receive free samples of new products to test and review!</h2>
+  <div class="jumbotron section-title pr" style="background-image: url(/images/vacature.jpg);min-height: 220px;">
+    <div class="mask" style="background-color: rgba(0,0,0,0.4);padding-top: 40px;">
+      <h2 class="font-whitem" style="margin-top: 30px;">Receive free samples of new products to test and review!</h2>
+    </div>
   </div>
 </section>
 <section class="container padding-top-clear">
@@ -11,17 +13,33 @@
         <div class="card">
           <div class="card-header" style="background-image: url({{ review.project.image }})">
           </div>
-          <div class="card-body">
-            <p class="card-body-title p-2">{{ review.title }}</p>
+          <div class="card-body" >
+            <p class="card-body-title p-1">{{ review.title }}</p>
 
-            <p class="card-body-title p-1">Price: ${{ review.price}}</p>
+            <p class="card-body-detail">
+              Available Units: {{ review.quota }}
+            </p>
 
-            <p class="card-body-title p-1">Free samples:{{ review.quota }}</p>
+            <p class="card-body-detail" ng-switch="isOutDated(review.application_end_date)">
+              <span ng-switch-when="true">
+                Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+              <span ng-switch-when="false">
+                Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+            </p>
 
-            <p class="card-body-title p-1">Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</p>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-primary">Apply Now</button>
+
+            <div class="card-body-footer align-right" ng-switch="isOutDated(review.application_end_date)">
+              <div ng-switch-when="true">
+                <div ng-switch="isOutDated(review.date_end)">
+                  <span ng-switch-when="false">Review in Progress</span>
+                  <span ng-switch-when="true">Review Ended</span>
+                </div>
+              </div>
+              <span ng-switch-when="false">Accepting Applications</span>
+            </div>
+
           </div>
         </div>
       </a>

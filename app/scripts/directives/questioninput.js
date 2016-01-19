@@ -9,10 +9,10 @@
 angular.module('xbertsApp')
   .directive('questionInput', function () {
     return {
-      templateUrl:"views/questiondirect.html",
-      replace:true,
-      scope:{
-        question:"="
+      templateUrl: "views/questiondirect.html",
+      replace: true,
+      scope: {
+        question: "="
       },
       restrict: 'E',
       link: function postLink(scope, element, attrs) {

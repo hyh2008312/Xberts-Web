@@ -14,12 +14,55 @@
           </li>
           <li du-smooth-scroll="section-4" du-scrollspy>
             <a class="fade-in-line" ng-click="toSection4();">DETAILS</a></li>
-          <li du-smooth-scroll="section-5" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection5();">REVIEWS</a></li>
         </ul>
       </div>
-      <div class="col-md-3" ng-if="isOutDated(review.date_end)">
-        <a  ui-sref="application.protected.reviewApplicant({reviewId:review.id})" class="btn btn-primary navbar-btn navbar-right" style="width: 120px">APPLY NOW</a>
+      <!--<div class="col-md-3" ng-if="isOutDated(review.date_end)">-->
+      <!--<a ui-sref="application.protected.reviewApplicant({reviewId:review.id})"-->
+      <!--class="btn btn-primary navbar-btn navbar-right" style="width: 120px">APPLY NOW</a>-->
+      <!--</div>-->
+      <div ng-switch="applicant.exist" class="col-md-3 align-right">
+        <div ng-switch-when="false">
+          <div ng-switch="isOutDated(review.application_end_date)">
+            <a ng-switch-when="false" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+               class="btn btn-primary navbar-btn navbar-right">Apply Now</a>
+
+            <div ng-switch-when="true">
+              <div ng-switch="isOutDated(review.date_end)">
+                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                   class="btn btn-gray navbar-btn navbar-right">Submit Review</a>
+                <a ng-switch-when="true"
+                   class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-switch-when="true">
+          <div ng-switch="applicant.is_selected">
+            <div ng-switch-when="true">
+              <div ng-switch="applicant.is_submit_report">
+                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                   class="btn btn-primary navbar-btn navbar-right">Submit Review</a>
+
+                <div ng-switch-when="true">
+                  <div ng-switch="isOutDated(review.date_end)">
+                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                       class="btn btn-primary navbar-btn navbar-right">Edit Review</a>
+                    <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-switch-when="false">
+              <div ng-switch="isOutDated(review.date_end)">
+                <a ng-switch-when="false" class="btn btn-gray navbar-btn navbar-right">Not Selected</a>
+                <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
+              </div>
+            </div>
+            <a ng-switch-when="null" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+               class="btn btn-primary navbar-btn navbar-right">Edit Application</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -94,17 +137,6 @@
         <hr>
         <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
       </section>
-      <section id="section-5" class="padding-top-clear">
-        <h3 class="margin-top-clear">Reviews</h3>
-        <hr>
-        <p class="text-center">If you're successfully selected to be a reviewer of this product, please submit your review report on this
-          page before the deadline.</p>
-
-        <div class="text-center padding-a10-10">
-          <a class="btn btn-primary btn-lg" ui-sref="application.protected.reviewReport({reviewId:review.id})">Submit a
-            Review</a>
-        </div>
-      </section>
     </div>
     <div class="col-md-3">
       <h3 class="margin-top-clear">Details</h3>
@@ -121,20 +153,61 @@
             <p class="font-gray-light">{{ review.quota }}</p>
 
 
-            <h4> Deadline:</h4>
+            <h4> Application Deadline:</h4>
+
+            <p class="font-gray-light">{{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</p>
+
+            <h4> Review Deadline:</h4>
 
             <p class="font-gray-light">{{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</p>
 
           </div>
         </div>
       </div>
+      <div ng-switch="applicant.exist" class="margin-top">
+        <div ng-switch-when="false">
+          <div ng-switch="isOutDated(review.application_end_date)">
+            <a ng-switch-when="false" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+               class="btn btn-lg btn-block btn-primary">Apply Now</a>
 
-      <h3 ng-switch="isOutDated(review.date_end)">
-        <a ng-switch-when="true" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
-           class="btn btn-lg btn-block btn-primary">Apply Now</a>
-        <a ng-switch-when="false" disabled="true"
-           class="btn btn-lg btn-block btn-gray">Application Ended</a>
-      </h3>
+            <div ng-switch-when="true">
+              <div ng-switch="isOutDated(review.date_end)">
+                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                   class="btn btn-lg btn-block btn-gray">Submit Review</a>
+                <a ng-switch-when="true"
+                   class="btn btn-lg btn-block btn-gray">Review Ended</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-switch-when="true">
+          <div ng-switch="applicant.is_selected">
+            <div ng-switch-when="true">
+              <div ng-switch="applicant.is_submit_report">
+                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                   class="btn btn-lg btn-block btn-primary">Submit Review</a>
+
+                <div ng-switch-when="true">
+                  <div ng-switch="isOutDated(review.date_end)">
+                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                       class="btn btn-lg btn-block btn-primary">Edit Review</a>
+                    <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Review Ended</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div ng-switch-when="false">
+              <div ng-switch="isOutDated(review.date_end)">
+                <a ng-switch-when="false" class="btn btn-lg btn-block btn-gray">Not Selected</a>
+                <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Review Ended</a>
+              </div>
+            </div>
+            <a ng-switch-when="null" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+               class="btn btn-lg btn-block btn-primary">Edit Application</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

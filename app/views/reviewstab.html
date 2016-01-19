@@ -1,23 +1,40 @@
 <div ng-if="reviewsTabActive">
-  <div class="section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
+  <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.hasNext()">
-    <div class="row" ng-repeat="applicant in reviewApplicantPaginator.items">
-      <div class="col-md-2">{{ applicant.review.title }}</div>
-      <div class="col-md-2">{{ applicant.review.date_started | amDateFormat:'YYYY.MM.DD, dddd' }}</div>
-      <div class="col-md-2">{{ applicant.review.date_end | amDateFormat:'YYYY.MM.DD, dddd' }}</div>
-      <div class="col-md-2" ng-switch="applicant.is_selected">
-        <span ng-switch-when="false">Not Selected</span>
-        <span ng-switch-when="true">Selected</span>
-      </div>
-      <div class="col-md-2" ng-switch="applicant.is_submit_report">
-        <span ng-switch-when="false">No</span>
-        <span ng-switch-when="true">Yes</span>
-      </div>
-      <div class="col-md-2" ng-switch="applicant.is_submit_report">
-        <span ng-switch-when="false">Upload</span>
-        <span ng-switch-when="true">Edit</span>
-      </div>
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
+      <a class="block-link" ui-sref="application.review({ reviewId:applicant.review.id })">
+        <div class="card">
+          <div class="card-header" style="background-image: url({{ applicant.review.project.image }})">
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-1">{{ applicant.review.title }}</p>
+            <p class="card-body-detail">
+              Available Units: {{ applicant.review.quota }}
+            </p>
+
+            <p class="card-body-detail" ng-switch="isOutDated(applicant.review.application_end_date)">
+              <span ng-switch-when="true">
+                Review Deadline: {{ applicant.review.date_end | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+              <span ng-switch-when="false">
+                Application Deadline: {{ applicant.review.application_end_date | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+            </p>
+
+            <div class="card-body-footer align-right" ng-switch="applicant.is_selected">
+              <div ng-switch-when="true">
+                <div ng-switch="applicant.is_submit_report">
+                  <span ng-switch-when="false">Pending Review</span>
+                  <span ng-switch-when="true">Review Submitted</span>
+                </div>
+              </div>
+            <span ng-switch-when="false">Not Selected</span>
+            <span ng-switch-when="null">Pending Selection</span>
+          </div>
+        </div>
     </div>
+    </a>
   </div>
-  <load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
+</div>
+<load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
 </div>
