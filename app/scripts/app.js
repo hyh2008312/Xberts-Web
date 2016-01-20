@@ -57,9 +57,7 @@ angular
           ['view', ['fullscreen']]
         ]
       };
-      $window.onload = function () {
-        localStorageService.clearAll();
-      };
+      localStorageService.clearAll();
     }])
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.html5Mode(true);
@@ -88,7 +86,7 @@ angular
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalDisableCountDown(true);
   }])
-  .config(['$authProvider', 'ConfigurationProvider', function($authProvider, ConfigurationProvider) {
+  .config(['$authProvider', 'ConfigurationProvider', function ($authProvider, ConfigurationProvider) {
     $authProvider.linkedin({
       clientId: ConfigurationProvider.linkedinClientId,
       url: ConfigurationProvider.apiBaseUrl + '/accounts/linkedin/token/'
@@ -391,7 +389,7 @@ angular
           reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
             return ProfileReviewerLoad();
           }],
-          application: ['ReviewApplicant','$stateParams', 'authCheck', function (ReviewApplicant, $stateParams,authCheck) {
+          application: ['ReviewApplicant', '$stateParams', 'authCheck', function (ReviewApplicant, $stateParams, authCheck) {
             return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
