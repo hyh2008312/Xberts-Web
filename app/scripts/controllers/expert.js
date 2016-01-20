@@ -78,7 +78,7 @@ angular.module('xbertsApp')
           case 'reviews':
             $scope.reviewsTabActive = true;
             var fetchFunction3 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, review_id: $scope.expert.user_id};
+              var params = {page: nextPage, reviewer_id: $scope.expert.user_id};
               angular.extend(params, otherParams);
               Applicantsreview.get(params, callback);
             };
