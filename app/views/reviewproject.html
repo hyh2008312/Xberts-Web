@@ -29,7 +29,7 @@
             <div ng-switch-when="true">
               <div ng-switch="isOutDated(review.date_end)">
                 <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                   class="btn btn-gray navbar-btn navbar-right">Submit Review</a>
+                   class="btn navbar-btn navbar-right btn-primary">Submit Review</a>
                 <a ng-switch-when="true"
                    class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
               </div>
@@ -117,14 +117,16 @@
             <br/>
 
             <li>
-              Step 2: Xberts team will contact successful applicants via Email to confirm his/her shipping information. If the
+              Step 2: Xberts team will contact successful applicants via Email to confirm his/her shipping information.
+              If the
               successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up
               his/her candidacy.
             </li>
             <br/>
 
             <li>
-              Step 3: After your shipping address is confirmed, product will be directly shipped to you from campaign owner. Xberts will
+              Step 3: After your shipping address is confirmed, product will be directly shipped to you from campaign
+              owner. Xberts will
               provide
               reviewers with tracking numbers and further instructions on review and submission.
             </li>
@@ -180,7 +182,7 @@
             <div ng-switch-when="true">
               <div ng-switch="isOutDated(review.date_end)">
                 <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                   class="btn btn-lg btn-block btn-gray">Submit Review</a>
+                   class="btn btn-lg btn-block btn-primary">Submit Review</a>
                 <a ng-switch-when="true"
                    class="btn btn-lg btn-block btn-gray">Review Ended</a>
               </div>
