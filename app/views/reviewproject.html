@@ -28,8 +28,13 @@
 
             <div ng-switch-when="true">
               <div ng-switch="isOutDated(review.date_end)">
-                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                   class="btn navbar-btn navbar-right btn-primary">Submit Review</a>
+                <div ng-switch-when="false">
+                  <div ng-switch="user.isAuth()">
+                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                       class="btn btn-lg btn-block btn-primary">Submit Review</a>
+                    <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Submit Review</a>
+                  </div>
+                </div>
                 <a ng-switch-when="true"
                    class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
               </div>
@@ -181,8 +186,13 @@
 
             <div ng-switch-when="true">
               <div ng-switch="isOutDated(review.date_end)">
-                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                   class="btn btn-lg btn-block btn-primary">Submit Review</a>
+                <div ng-switch-when="false">
+                  <div ng-switch="user.isAuth()">
+                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                       class="btn btn-lg btn-block btn-primary">Submit Review</a>
+                    <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Submit Review</a>
+                  </div>
+                </div>
                 <a ng-switch-when="true"
                    class="btn btn-lg btn-block btn-gray">Review Ended</a>
               </div>
