@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator',
-    function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator) {
+  .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator','projectReviewPaginator',
+    function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator,projectReviewPaginator) {
       $scope.eventPaginator = eventPaginator;
       $scope.projectPaginator = projectPaginator;
       $scope.expertPaginator = expertPaginator;
+      $scope.projectReviewPaginator = projectReviewPaginator;
+      $scope.isOutDated = function (time) {
+        return Date.now()-new Date(time)> 0;
+      };
       $scope.slides = [
         {
           image: '/images/landing_1_1.jpg',
-          text: 'Connect smart hardware innovators with distributors,<br/>retailers and sales agent partners around the world',
+          title: 'Bring Innovations to Global Market',
+          subtitle: 'An online ecosystem that connects smart technology innovators with distribution partners, product reviewers, industry experts and solution providers',
           buttonText:'Get Started',
           buttonColor:'btn-primary',
           url: 'application.signup'

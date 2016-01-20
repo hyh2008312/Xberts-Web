@@ -154,6 +154,16 @@ angular
             };
             var paginator = Paginator('expertRec', fetchFunction);
             return paginator.load();
+          }],
+          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
+              ProjectReview.get(params, callback);
+
+            };
+            var paginator = Paginator('projectReviewREc', fetchFunction);
+            return paginator.load();
           }]
         }
       })

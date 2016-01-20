@@ -2,9 +2,12 @@
   <uib-slide ng-repeat="slide in slides" active="slide.active">
     <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
       <!--<div class="cover-layer">-->
-      <div class="section-title">
+      <div class="container">
+        <div class="section-title">
 
-        <h1 class="font-whitem" ng-bind-html=" slide.text | trust"></h1>&nbsp;
+          <h1 class="font-whitem" ng-bind-html=" slide.title | trust"></h1>&nbsp;
+          <h3 class="font-whitem hidden-xs" ng-bind-html=" slide.subtitle | trust"></h3>&nbsp;
+        </div>
       </div>
       <div class="carousel-caption" style="margin-bottom: 10px">
         <div class="row">
@@ -53,7 +56,9 @@
           <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-1.png">
 
-            <p class="landing-p font-graym">Submit your smart hardware project and distribution request</p>
+            <p class="landing-p font-graym">Get introduced to global distribution partners by showcasing products on our
+              marketplace
+            </p>
 
           </div>
         </div>
@@ -63,7 +68,9 @@
           <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-2.png">
 
-            <p class="landing-p font-graym">Get matched with distribution partners from around the world</p>
+            <p class="landing-p font-graym">Identify suitable market segments for products through unbiased and
+              diversified crowd testing
+            </p>
 
           </div>
         </div>
@@ -73,7 +80,8 @@
           <div class="profile-square border-clear">
             <img ng-src="/images/new-howitworks-3.png">
 
-            <p class="landing-p font-graym">Build your distribution network and sell your product globally</p>
+            <p class="landing-p font-graym">Find all solutions you need for global expansion such as certification,
+              logistic and marketing </p>
 
           </div>
         </div>
@@ -85,9 +93,9 @@
 <section class="background-light-white">
   <div class="container">
     <div class="section-title">
-      <h2>Featured Smart Hardware Projects</h2>
+      <h2>Featured Innovative Products</h2>
 
-      <h3>Seeking distribution partners and product reviewers</h3>
+      <h3>Seeking distributors, retailers and buyers</h3>
     </div>
 
     <div class="row section-body">
@@ -143,9 +151,64 @@
 <section class="background-whitem">
   <div class="container">
     <div class="section-title">
-      <h2>Expo Events & Trade Show</h2>
+      <h2>Crowd Testing Campaigns</h2>
 
-      <h3>Present the best innovative products to global audiences</h3>
+      <h3>Call for product testers and reviewers</h3>
+    </div>
+
+    <div class="row section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items | limitTo:3">
+        <a class="block-link" ui-sref="application.review({ reviewId:review.id })">
+          <div class="card">
+            <div class="card-header" style="background-image: url({{ review.project.image }})">
+            </div>
+            <div class="card-body" >
+              <p class="card-body-title p-1">{{ review.title }}</p>
+
+              <p class="card-body-detail">
+                Available Units: {{ review.quota }}
+              </p>
+
+              <p class="card-body-detail" ng-switch="isOutDated(review.application_end_date)">
+              <span ng-switch-when="true">
+                Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+              <span ng-switch-when="false">
+                Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}
+              </span>
+              </p>
+
+
+              <div class="card-body-footer align-right" ng-switch="isOutDated(review.application_end_date)">
+                <div ng-switch-when="true">
+                  <div ng-switch="isOutDated(review.date_end)">
+                    <span ng-switch-when="false">Review in Progress</span>
+                    <span ng-switch-when="true">Review Ended</span>
+                  </div>
+                </div>
+                <span ng-switch-when="false">Accepting Applications</span>
+              </div>
+
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <p></p>
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+        <a ui-sref="application.reviews" class="btn btn-lg btn-primary btn-block">View More Reviews</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h2>Upcoming Expo Events</h2>
+
+      <h3>Present latest innovations to global audience </h3>
     </div>
 
     <div class="row section-body">
@@ -185,12 +248,12 @@
     </div>
   </div>
 </section>
-<section class="background-light-white">
+<section class="background-whitem">
   <div class="container">
     <div class="section-title">
-      <h2>Expert Mentors & Industry Leaders</h2>
+      <h2>Top Industry Experts</h2>
 
-      <h3>Conduct market research and develop market entry strategy</h3>
+      <h3>Solve your challenges with expert help</h3>
     </div>
 
 
@@ -226,99 +289,6 @@
         <a ui-sref="application.experts" class="btn btn-lg btn-primary btn-block">View More Experts</a>
       </div>
     </div>
-  </div>
-</section>
-<section class="background-whitem">
-  <div class="container">
-    <div class="section-title">
-      <h2>Why You Should Use Xberts</h2>
-
-      <h3></h3>
-    </div>
-
-
-    <div class="row section-body">
-      <div class="col-md-6">
-        <h3>For Makers:</h3>
-
-        <div class="landing-p" style="margin-top: 15px">
-          <p class="align-justify font-graym">Find trusted distribution channels to partner with</p>
-
-          <p class="align-justify font-graym">Showcase your hardware innovation to the world</p>
-
-          <p class="align-justify font-graym">Get product feedback from our global community</p>
-        </div>
-        <div class="row" style="margin-top:30px;">
-          <div class="col-xs-8 col-xs-offset-1">
-            <a ui-sref="application.protected.launchProject" class="btn  btn-primary btn-block">Launch a Smart Product</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3>For Distributors:</h3>
-
-        <div class="landing-p" style="margin-top: 15px">
-          <p class="align-justify font-graym">Find the next generation of smart products to sell</p>
-
-          <p class="align-justify font-graym">Increase your revenue with the best-rated projects</p>
-
-          <p class="align-justify font-graym">Discover the latest smart hardware industry trend</p>
-        </div>
-        <div class="row" style="margin-top:30px;">
-          <div class="col-xs-8 col-xs-offset-1">
-            <a ui-sref="application.signup" class="btn btn-success btn-block">Become a Distribution Partner</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="background-light-white">
-  <div class="container">
-    <div class="section-title">
-      <h2>What Our Users Say</h2>
-
-      <h3>TESTIMONIALS</h3>
-    </div>
-
-
-    <div class="section-body">
-      <ul class="media-list">
-        <li class="media" style="padding-right: 90px">
-          <div class="media-left">
-            <a href="#">
-              <img class="media-object img-circle" src="/images/mentee_alex.jpg" width="80" height="80">
-            </a>
-          </div>
-          <div class="media-body background-whitem padding-a5-10 ">
-            <p class="font-gray-light">"I had an incredibly positive experience on Xberts.
-              The team was able to connect me to an amazing and relevant partner,
-              and the entire process took just a few days.
-              Everyone was incredibly responsive to my inquiries and always responded immediately.
-              I strongly recommend Xberts to any hardware entrepreneur and will be continuously using this service going
-              forward."</p>
-
-            <p>Alex Klokus, <span class="font-gray-light">CEO of Habet, NYU Alum</span></p>
-          </div>
-        </li>
-        <li class="media" style="padding-left: 90px">
-          <div class="media-body background-whitem padding-a5-10 ">
-            <p class="font-gray-light">
-              "Through Xberts, I was able to connect with amazing partners, to whom I other wise would not have access.
-              The platform was easy to use, and I was connected within days. I highly recommend Xberts to any hardware
-              entrepreneur that is looking to catalyze the growth of their start-up!"</p>
-
-            <p>Aaron Goldstein, <span class="font-gray-light">Co-Founder, FeverSmart</span></p>
-          </div>
-          <div class="media-right">
-            <a href="#">
-              <img class="media-object img-circle" src="/images/mentee_aaron.png" width="80" height="80">
-            </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <p></p>
   </div>
 </section>
 
