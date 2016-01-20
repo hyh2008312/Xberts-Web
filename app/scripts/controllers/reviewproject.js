@@ -20,7 +20,7 @@ angular.module('xbertsApp')
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     if ($rootScope.user.isAuth()) {
       Applicantsreview.get({
-        review_id: $scope.review.reviewId,
+        review_id: $scope.review.id,
         reviewer_id: $rootScope.user.getUserId()
       }, function (data) {
         if (data.count !== undefined && data.count > 0) {
