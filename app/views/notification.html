@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="item-body-title p-1"><a class="default" ng-href="{{ notification.content_url }}"
-                                        ng-bind="notification.message"></a></div>
+                                        ng-bind="notification.message" ng-click="remove($index)"></a></div>
         <div class="item-body-detail p-1" ng-bind="notification.post_on"></div>
       </div>
       <div class="right-enter font-striking">
