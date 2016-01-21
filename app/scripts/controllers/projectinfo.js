@@ -3,7 +3,8 @@
 angular.module('xbertsApp')
   .controller('ProjectinfoCtrl', ['$scope', 'Configuration', 'UploadMultiForm', 'TempImage', 'SystemData', 'Project', 'growl',
     function ($scope, Configuration, UploadMultiForm, TempImage, SystemData, Project, growl) {
-      $scope.projectTypes=SystemData.getProjectTypes();
+      $scope.projectTypes = SystemData.getProjectTypes();
+
       $scope.projectTemp = {
         tempId: 0,
         //status:
@@ -15,6 +16,7 @@ angular.module('xbertsApp')
         Project.fetch.get({id: $scope.projectId}, function (result) {
           $scope.$emit('backdropOff', 'project get completed');
           $scope.project = result;
+
           // Wipe out promise from resource wrapper so form upload, which doesn't support inner promise, works correctly
           $scope.project.$promise = undefined;
           $scope.projectTemp.tempId = result.temp || 0;
@@ -35,6 +37,7 @@ angular.module('xbertsApp')
         $scope.projectForm.logoRequired = ($scope.project.logo === null) || ($scope.project.logo === undefined);
 
         if ($scope.projectForm.$valid && !$scope.projectForm.logoRequired) {
+
           var url = Configuration.apiBaseUrl + '/projects/rest/projects/';
           var method = 'POST';
           if ($scope.project.id) {

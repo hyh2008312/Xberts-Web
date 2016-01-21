@@ -22,6 +22,22 @@ angular.module('xbertsApp')
       }
       return items;
     };
+    var tagsParse = function (tagstring) {
+      var tags = [];
+      if (tagstring === undefined || tagstring === null || tagstring === "") {
+        return tags;
+      } else {
+        var tagsTemp = tagstring.split(',');
+        for (var i = 0; i < tagsTemp.length; i++) {
+          var tag = {};
+          tag.text = tagsTemp[i];
+          tags.push(tag);
+        }
+        return tags;
+      }
+    };
+    $scope.distributionTemp={};
+
 
     $scope.$on('stepBroadcast', function (e, d) {
       d=Number(d);
@@ -37,6 +53,8 @@ angular.module('xbertsApp')
             SystemData.stringParseToCheckboxes($scope.distribution.target_geo, $scope.targetGeos);
             SystemData.stringParseToCheckboxes($scope.distribution.supported, $scope.supportTypes);
             $scope.discounts = parseDiscount($scope.distribution.discount);
+            $scope.distributionTemp.tags = tagsParse($scope.distribution.tags);
+
           }
           $scope.$emit('backdropOff', 'query distributions finished');
         }, function (error) {
@@ -45,7 +63,6 @@ angular.module('xbertsApp')
         });
       }
     });
-
     $scope.targetGeos = SystemData.getTargetGeos();
     $scope.supportTypes = SystemData.getSupportTypes();
     $scope.transportationModels = SystemData.getTransportationModels();
@@ -93,6 +110,12 @@ angular.module('xbertsApp')
       $scope.distributionForm.targetGeosRequired = (targetGeos.length < 1);
       $scope.distributionForm.discountRequired = ($scope.discounts.length < 1);
       if ($scope.distributionForm.$valid && !$scope.distributionForm.targetGeosRequired && !$scope.distributionForm.discountRequired) {
+
+        var tags = [];
+        for (var i = 0; i < $scope.distributionTemp.tags.length; i++) {
+          tags.push($scope.distributionTemp.tags[i].text);
+        }
+        $scope.distribution.tags = tags.join(',');
 
         $scope.$emit('backdropOn', 'post');
 

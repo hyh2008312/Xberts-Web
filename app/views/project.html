@@ -64,7 +64,7 @@
                   <div class="card-body-detail">
                     <h4>Available Markets:</h4>
 
-                    <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">{{ item.name }}<span
+                    <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">#{{ item.name }}<span
                       ng-if="!$last">, </span></span></p>
                   </div>
                   <div class="card-body-detail" ng-if="distribution.retail_price > 0">
@@ -72,6 +72,12 @@
 
                     <p class="font-gray-light">$ {{ distribution.retail_price }}</p>
                   </div>
+                  <div class="card-body-detail" ng-if="distribution.tags">
+                    <h4>Certifications:</h4>
+
+                    <p class="font-gray-light">{{ distribution.tags|tagsplit }}</p>
+                  </div>
+
                   <div class="card-body-detail" ng-if="distribution.transportationModels">
                     <h4>Transportation Mode:</h4>
 
