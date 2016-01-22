@@ -92,6 +92,11 @@ angular
       url: ConfigurationProvider.apiBaseUrl + '/accounts/linkedin/token/'
     });
   }])
+  .config(['tagsInputConfigProvider', function(tagsInputConfigProvider) {
+    tagsInputConfigProvider.setDefaults('tagsInput', {
+      minLength: 1
+    });
+  }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
 
