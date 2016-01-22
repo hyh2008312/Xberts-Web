@@ -355,6 +355,10 @@ angular.module('xbertsApp')
       {code:'5',name:'1000+'}
     ];
 
+    var ROLES = {
+      DOMAIN_EXPERT: 'domain_expert'
+    };
+
     var systemConstant = {};
     systemConstant.COUNTRIES = COUNTRIES;
     systemConstant.GENDER_TYPE = GENDER_TYPE;
@@ -365,6 +369,7 @@ angular.module('xbertsApp')
     systemConstant.SOCIAL_TYPE = SOCIAL_TYPE;
     systemConstant.LINKEDIN_CONNECTION = LINKEDIN_CONNECTION;
     systemConstant.OTHER_CONNECTION = OTHER_CONNECTION;
+    systemConstant.ROLES = ROLES;
 
     return systemConstant;
   });

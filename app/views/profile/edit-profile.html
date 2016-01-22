@@ -81,6 +81,32 @@
         </p>
       </div>
     </div>
+    <div class="row form-group" ng-if="userProfile.careerList.length > 0">
+      <div class="col-md-12 col-xs-12">
+        <label>
+          <span>Select your expertise:
+              <span ng-class="{'optional-field': !editProfileForm.expertiseError.exceedLimit, error: editProfileForm.expertiseError.exceedLimit}">
+                Up to five
+              </span>
+          </span>
+        </label>
+        <div class="error" ng-messages="editProfileForm.expertiseError">
+          <p ng-message="required">You need to select at least one expertise.</p>
+        </div>
+        <div class="panel panel-default" ng-repeat="stage in stages">
+          <div class="panel-heading">
+            <label class="panel-title">{{ stage.stage }}</label>
+          </div>
+          <div class="panel-body">
+            <label class="checkbox-inline" ng-repeat="expertise in stage.careers">
+              <input type="checkbox" checklist-model="data.expertiseList" checklist-value="expertise.id"
+                     checklist-change="checkExpertise(editProfileForm)"
+                     ng-disabled="editProfileForm.expertiseError.exceedLimit && !checked"> {{ expertise.career_field }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row form-group">
       <div class="col-md-6 col-xs-8 col-centered">
         <div class="error text-center" ng-show="editProfileForm.$submitted" ng-messages="editProfileForm.serverError">

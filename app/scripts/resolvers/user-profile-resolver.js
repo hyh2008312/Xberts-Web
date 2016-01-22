@@ -4,7 +4,7 @@ angular.module('xbertsApp')
   .factory('UserProfileResolver', ['UserProfileService', function(UserProfileService) {
     return {
       resolver: function() {
-        return UserProfileService.userProfile.get().$promise
+        return UserProfileService.getUserProfile()
           .then(function(value, responseHeaders) {
             return value;
           })

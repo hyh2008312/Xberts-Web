@@ -13,5 +13,8 @@ angular.module('configuration.properties', [])
       '/accounts/user/',
       '/oauth2/token/',
       '/oauth2/revoke_token/'
-    ]
+    ],
+
+    // Maximum number of expertise an user can select
+    userExpertiseMax: 5
   });

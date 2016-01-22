@@ -1,15 +1,21 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', 'Configuration', 'OAuthToken',
-    function($rootScope, $resource, $state, $q, Configuration, OAuthToken) {
-      function User(userId, userName, userEmail, userType, userAvatar, isLinkedinSignup, isResolved) {
+  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '_', 'Configuration', 'OAuthToken',
+    'SystemConstant',
+    function($rootScope, $resource, $state, $q, _, Configuration, OAuthToken,
+             SystemConstant) {
+      function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
+                    roles, isResolved) {
         this._userId = userId || '';
-        this._userName = userName || '';
+        this._firstName = firstName || '';
+        this._lastName = lastName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
         this._userAvatar = userAvatar || '/images/empty-avater.gif';
         this._isLinkedinSignup = isLinkedinSignup || false;
+        this._isLinkedinConnected = isLinkedinConnected || false;
+        this._roles = roles || [];
         // Indicate whether login state has been fetched from backend
         this._isResolved = isResolved || false;
 
@@ -26,7 +32,7 @@ angular.module('xbertsApp')
         };
 
         this.getUserName = function() {
-          return this._userName;
+          return this._firstName + ' ' + this._lastName;
         };
 
         this.getUserEmail = function() {
@@ -45,12 +51,32 @@ angular.module('xbertsApp')
           return this._isLinkedinSignup;
         };
 
+        this.isLinkedinConnected = function() {
+          return this._isLinkedinConnected;
+        };
+
+        this.getRoles = function() {
+          return this._roles;
+        };
+
+        this.hasRole = function(role) {
+          return _(this.getRoles()).contains(role);
+        };
+
+        this.isExpert = function() {
+          return this.hasRole(SystemConstant.ROLES.DOMAIN_EXPERT);
+        };
+
         this.isResolved = function() {
           return this._isResolved;
         };
 
-        this.setUserName = function(userName) {
-          this._userName = userName;
+        this.setFirstName = function(firstName) {
+          this._firstName = firstName;
+        };
+
+        this.setLastName = function(lastName) {
+          this._lastName = lastName;
         };
 
         this.setUserEmail = function(userEmail) {
@@ -59,6 +85,10 @@ angular.module('xbertsApp')
 
         this.setUserAvatar = function(userAvatar) {
           this._userAvatar = userAvatar;
+        };
+
+        this.setLinkedinConnected = function(linkedinConnected) {
+          this._isLinkedinConnected = linkedinConnected;
         };
 
         this.setIsResolved = function(isResolved) {
@@ -78,8 +108,8 @@ angular.module('xbertsApp')
       }
 
       function setUser(user) {
-        $rootScope.user = new User(user.id, user.fullName, user.email, user.isStaff, user.avatar,
-          user.isLinkedinSignup, true);
+        $rootScope.user = new User(user.id, user.firstName, user.lastName, user.email, user.isStaff, user.avatar,
+          user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true);
       }
 
       function login(credentials) {
