@@ -16,6 +16,14 @@ angular.module('xbertsApp')
 
       $scope.slides = [
         {
+          image: '/images/event_5.jpg',
+          text: 'Xberts introduced Nut to global distribution partners at CES&nbsp;2016'
+        },
+        {
+          image: '/images/event_4.jpg',
+          text: 'Buyers stopped by Xberts booth to check out OneAdaptrStack at CES&nbsp;2016'
+        },
+        {
           image: '/images/event_1.jpg',
           text: 'Xberts partnered with 360Fashion Network to present an epic smart fashion expo in San Francisco'
         },
@@ -26,7 +34,7 @@ angular.module('xbertsApp')
         },
         {
           image: '/images/event_2.jpg',
-          text: 'Xberts team co-hosted the largest innovation and entrepreneurship forum - SVIEF 2015'
+          text: 'Xberts team co-hosted the largest innovation and entrepreneurship forum - SVIEF&nbsp;2015'
         }
       ];
     }]);
