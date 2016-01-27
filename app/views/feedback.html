@@ -1,12 +1,14 @@
 <div>
   <form name="feedbackForm" ng-submit="feedbackFormSubmit()" class="pr">
-    <div growl  reference="interact_{{ interact.id }}"></div>
+    <div growl reference="interact_{{ interact.id }}"></div>
     <textarea name='detail' class="form-control" rows="5"
               ng-model="feedback.details" ng-required="true">
     </textarea>
 
     <div class="margin-top">
-      <input type="checkbox" name="secret" ng-model="feedback.secret"> Private
+      <div ng-show="!btnSecret">
+        <input type="checkbox" name="secret" ng-model="feedback.secret"> Private
+      </div>
       <button type="submit" class="btn btn-primary pull-right">{{ btnText }}</button>
     </div>
   </form>

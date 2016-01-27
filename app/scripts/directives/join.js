@@ -99,6 +99,7 @@ angular.module('xbertsApp')
         $scope.init = function (interact) {
           //todo:join直接传递过来
           $scope.interact = interact;
+          console.log(interact);
           $scope.referenceId = 'interact_' + $scope.interact.id;
           if ($rootScope.user.isAuth()) {
             var joinResult = Interact.Join({interact_id: $scope.interact.id, joiner_id: $rootScope.user.getUserId()});
@@ -151,6 +152,9 @@ angular.module('xbertsApp')
         $scope.getFeedbackPaginator = function () {
           var fetchFunction = function (nextPage, otherParams, callback) {
             var feedbacksResult = Interact.Feedback({interact_id: $scope.interact.id});
+            if ($scope.interact.type === '0') {
+              feedbacksResult = Interact.Feedback({interact_id: $scope.interact.id});
+            }
             var params = {page: nextPage};
             angular.extend(params, otherParams);
             feedbacksResult.get(params, callback);
@@ -411,7 +415,7 @@ angular.module('xbertsApp')
                     password: 'ces2016'
                   });
                 })
-                .then(function(value) {
+                .then(function (value) {
                   scope.vote();
                 })
                 .catch(function (resp) {

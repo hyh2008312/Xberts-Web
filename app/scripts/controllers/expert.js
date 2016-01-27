@@ -14,6 +14,7 @@ angular.module('xbertsApp')
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
       $scope.btnText = 'Send';
+      $scope.btnSecret = true;
       $scope.isOutDated = function (time) {
         return Date.now()-new Date(time)> 0;
       };

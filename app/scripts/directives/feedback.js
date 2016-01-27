@@ -14,14 +14,16 @@ angular.module('xbertsApp')
       require: '^join',
       link: function postLink(scope, element, attrs, joinController) {
         //element.text('this is the feedback directive');
-        var feedbackCallback=function(){
-          scope.feedback={};
+        var feedbackCallback = function () {
+          scope.feedback = {};
         };
-        scope.btnText=attrs.btnText || 'Comment';
+        scope.btnText = attrs.btnText || 'Comment';
+        scope.btnSecret = attrs.btnSecret ? true : false;
+        console.log(scope.btnSecret);
         scope.feedbackFormSubmit = function () {
           if (scope.feedbackForm.$valid) {
-            joinController.leaveFeedback(scope.feedback,feedbackCallback);
-          }else {
+            joinController.leaveFeedback(scope.feedback, feedbackCallback);
+          } else {
           }
         }
       }
