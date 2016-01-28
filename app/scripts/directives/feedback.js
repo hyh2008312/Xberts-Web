@@ -15,11 +15,13 @@ angular.module('xbertsApp')
       link: function postLink(scope, element, attrs, joinController) {
         //element.text('this is the feedback directive');
         var feedbackCallback = function () {
-          scope.feedback = {};
+          scope.feedback = {secret: scope.btnSecret};
         };
         scope.btnText = attrs.btnText || 'Comment';
         scope.btnSecret = attrs.btnSecret ? true : false;
-        console.log(scope.btnSecret);
+        scope.feedback = {
+          secret: scope.btnSecret
+        };
         scope.feedbackFormSubmit = function () {
           if (scope.feedbackForm.$valid) {
             joinController.leaveFeedback(scope.feedback, feedbackCallback);

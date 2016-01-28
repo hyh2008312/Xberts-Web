@@ -142,7 +142,7 @@ angular
           }],
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
+              var params = {page: nextPage,is_recommended: 'True'};
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
