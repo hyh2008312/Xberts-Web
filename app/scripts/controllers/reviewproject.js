@@ -10,12 +10,14 @@
 angular.module('xbertsApp')
   .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, review, Applicantsreview) {
     $scope.review = review;
+    console.log(review);
+    $scope.applicantsSearch = {is_selected: true};
     $rootScope.bodyBackground = 'background-whitem';
     $scope.sub = {
       subNavShow: false
     };
     $scope.isOutDated = function (time) {
-      return Date.now()-new Date(time)> 0;
+      return Date.now() - new Date(time) > 0;
     };
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     if ($rootScope.user.isAuth()) {
@@ -66,6 +68,6 @@ angular.module('xbertsApp')
       $scope.projectReviewPaginator = projectReviewPaginator;
       $scope.projectReviewPaginator.watch($scope, 'projectReviewPaginator.currentPage');
       $scope.isOutDated = function (time) {
-        return Date.now()-new Date(time)> 0;
+        return Date.now() - new Date(time) > 0;
       };
     }]);
