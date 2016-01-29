@@ -69,7 +69,6 @@ angular.module('xbertsApp')
       //summerNote Image Upload
 
       $scope.imageUpload = function (files) {
-        var editor = $.summernote.eventHandler.getModule();
         for (var i = 0; i < files.length; i++) {
           var data = {
             image: files[i],
@@ -92,7 +91,7 @@ angular.module('xbertsApp')
                 var resource = TempImage($scope.projectTemp.tempId, tempImageId);
                 resource.delete();
               });
-              editor.insertNode($scope.editable, img[0]);
+              $scope.editor.summernote('insertNode', img[0]);
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               //console.log(resp);
