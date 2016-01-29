@@ -236,17 +236,21 @@
               <avatar-img src="item.reviewer.avatar" name="item.reviewer.fullname"></avatar-img>
             </div>
           </a>
-          <a class="default p-1" ui-sref="application.expert({ expertId:item.reviewer.id })">{{ item.reviewer.fullname}}</a>
+
+          <p class="p-1"><a class="default" ui-sref="application.expert({ expertId:item.reviewer.id })">{{
+            item.reviewer.fullname}}</a></p>
 
           <div ng-switch="item.is_submit_report">
-            <p ng-switch-when="true" style="font-size: 8px"><span style="padding: 2px;border-radius: 2px;background-color:#00cc52;color: #fff">Submitted</span></p>
+            <p ng-switch-when="true" style="font-size: 8px"><span
+              style="padding: 2px;border-radius: 2px;background-color:#00cc52;color: #fff">Submitted</span></p>
 
-            <p ng-switch-when="false" style="font-size: 8px"><span style="padding: 2px;border-radius: 2px;background-color:#C7C7C7;color: #fff">selected</span></p>
+            <p ng-switch-when="false" style="font-size: 8px"><span
+              style="padding: 2px;border-radius: 2px;background-color:#C7C7C7;color: #fff">selected</span></p>
           </div>
         </div>
 
 
+      </div>
     </div>
-  </div>
 </section>
 
