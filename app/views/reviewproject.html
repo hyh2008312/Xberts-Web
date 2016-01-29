@@ -227,20 +227,20 @@
           </div>
         </div>
       </div>
-      <h4 style="margin-top: 20px;margin-bottom: 15px;">Applicants</h4>
+      <h4 style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
 
-      <div ng-show='review.applicants.length>0'>
-        <div class="pull-left" ng-repeat="item in review.applicants | filter:applicantsSearch">
+      <div class="row" ng-show='review.applicants.length>0'>
+        <div class="col-xs-3" ng-repeat="item in review.applicants | filter:applicantsSearch">
           <a class="block-link default" ui-sref="application.expert({ expertId:item.reviewer.id })">
             <div class="avatar-text-small-1">
-              <img ng-if="item.reviewer.avatar" ng-src="{{ item.reviewer.avatar}}" alt="{{ item.reviewer.fullname }}">
-              <img ng-if="!item.reviewer.avatar" ng-src="/images/empty-avater.gif"
-                   alt="{{ item.reviewer.fullname }}"/>
+              <avatar-img src="item.reviewer.avatar" name="item.reviewer.fullname"></avatar-img>
             </div>
-            <div ng-switch="item.is_submit_report">
-              <p ng-switch-when="true" style="font-size: 13px">Submitted</p>
 
-              <p ng-switch-when="false" style="font-size: 13px">Selected</p>
+
+            <div ng-switch="item.is_submit_report">
+              <p ng-switch-when="true" style="font-size: 8px">Submitted</p>
+
+              <p ng-switch-when="false" style="font-size: 8px">Selected</p>
             </div>
           </a>
         </div>

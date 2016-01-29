@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution','growl', function ($scope, SystemData, Distribution,growl) {
+  .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution', 'growl', function ($scope, SystemData, Distribution, growl) {
 
     var parseDiscount = function (sDiscounts) {
       var sItems = sDiscounts.split(",");
@@ -36,11 +36,11 @@ angular.module('xbertsApp')
         return tags;
       }
     };
-    $scope.distributionTemp={};
+    $scope.distributionTemp = {tags: []};
 
 
     $scope.$on('stepBroadcast', function (e, d) {
-      d=Number(d);
+      d = Number(d);
       if (d === 2) {
         $scope.$emit('backdropOn', 'query distributions');
         Distribution.query({project_id: $scope.projectId}, function (results) {
