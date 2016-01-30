@@ -99,7 +99,6 @@ angular.module('xbertsApp')
         $scope.init = function (interact) {
           //todo:join直接传递过来
           $scope.interact = interact;
-          console.log(interact);
           $scope.referenceId = 'interact_' + $scope.interact.id;
           if ($rootScope.user.isAuth()) {
             var joinResult = Interact.Join({interact_id: $scope.interact.id, joiner_id: $rootScope.user.getUserId()});
@@ -235,7 +234,7 @@ angular.module('xbertsApp')
   .directive('eventProjectVote', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', function ($rootScope, $q, growl, $uibModal, EventProjectVote) {
     return {
       restrict: 'E',
-      templateUrl: 'views/eventproject.html',
+      templateUrl: 'views/event/eventproject.html',
       replace: false,
       scope: {
         eventProject: '='
@@ -253,7 +252,7 @@ angular.module('xbertsApp')
           }
           scope.voting = true;
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/eventprojectvote.html',
+            templateUrl: 'views/event/eventprojectvote.html',
             controller: 'EventProjectVoteCtrl',
             size: size
           });
@@ -374,7 +373,7 @@ angular.module('xbertsApp')
   .directive('eventProjectVoteOff', ['$rootScope', '$q', 'growl', '$uibModal', 'EventProjectVote', 'AuthService', 'SignupService', function ($rootScope, $q, growl, $uibModal, EventProjectVote, AuthService, SignupService) {
     return {
       restrict: 'E',
-      templateUrl: 'views/eventproject.html',
+      templateUrl: 'views/event/eventproject.html',
       replace: false,
       scope: {
         eventProject: '='
@@ -389,7 +388,7 @@ angular.module('xbertsApp')
         scope.open = function (size) {
           scope.voting = true;
           var modalInstance = $uibModal.open({
-            templateUrl: 'views/eventprojectvoteoffline.html',
+            templateUrl: 'views/event/eventprojectvoteoffline.html',
             controller: 'EventProjectVoteOffCtrl',
             size: size
           });

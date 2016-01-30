@@ -36,10 +36,10 @@
               <div ng-bind-html=" expert.biography | trust"></div>
             </uib-tab>
             <uib-tab heading="Products" active="tabs[1].active" select="select('products')" ng-if="expert.product_amount>0">
-              <div ng-include src="'views/projectstab.html'"></div>
+              <div ng-include src="'views/profile/projectstab.html'"></div>
             </uib-tab>
             <uib-tab heading="Crowd Testing" active="tabs[5].active" select="select('reviews')" ng-if="expert.applicant_amount>0">
-              <div ng-include src="'views/reviewstab.html'"></div>
+              <div ng-include src="'views/profile/reviewstab.html'"></div>
             </uib-tab>
             <uib-tab heading="Followers" active="tabs[2].active" select="select('followers')">
               <div ng-if="followersTabActive">

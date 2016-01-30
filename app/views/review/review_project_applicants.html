@@ -1,0 +1,23 @@
+<div class="col-sm-4 col-md-9">
+  <div class="list" infinite-scroll="applicantPaginator.loadNext()" infinite-scroll-distance='0'
+       infinite-scroll-disabled="applicantPaginator.loading || !applicantPaginator.hasNext()">
+    <div class="item-avatar-large item-hover" style="min-height: 127px;" ng-repeat="applicant in applicantPaginator.items">
+      <div class="item-image text-center">
+        <avatar-img src="applicant.avatar"></avatar-img>
+        <a ui-sref="application.applicant({ applicantId:applicant.user_id , tab:'comments' })" class="btn btn-xs btn-primary">Contact</a>
+      </div>
+      <div class="item-body">
+        <p class="item-body-header">
+          <span><a ui-sref="application.applicant({ applicantId:applicant.user_id })">{{ applicant.short_name }}</a></span>
+          <span class="pull-right">{{ applicant.country }}</span></p>
+        <p class="item-body-title">{{ applicant.company_title}}</p>
+        <p>
+          <span class="label label-default" ng-repeat="applicantise in applicant.career_list">{{ applicantise }}</span>
+        </p>
+        <p class="item-body-detail p-3-max">{{ applicant.biography }}</p>
+      </div>
+    </div>
+
+  </div>
+  <load-more class="row spin-large" ng-if="applicantPaginator.loading"></load-more>
+</div>
