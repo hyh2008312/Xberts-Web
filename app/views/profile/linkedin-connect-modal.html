@@ -5,6 +5,11 @@
   <p>Xberts will use your LinkedIn profile for the approval process.</p>
 </div>
 <div class="modal-footer">
+  <div class="row text-left error bottom-buffer-sm" ng-messages="linkedinError">
+    <div class="col-md-12">
+      <div ng-messages-include="views/message/form_error.html"></div>
+    </div>
+  </div>
   <a type="button" href="#" class="btn linkedin-btn" ng-click="linkedinConnect()">
     <i class="fa fa-linkedin"></i>
     <span class="linkedin-btn-title">Connect with LinkedIn</span>
