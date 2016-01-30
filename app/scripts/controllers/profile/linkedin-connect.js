@@ -3,7 +3,11 @@
 angular.module('xbertsApp')
   .controller('LinkedinConnectCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$auth', 'AuthService', 'AccountService',
     function($scope, $rootScope, $state, $stateParams, $auth, AuthService, AccountService) {
+      $scope.linkedinError = {};
+
       $scope.linkedinConnect = function() {
+        $scope.linkedinError = {};
+
         $auth.authenticate('linkedin')
           .then(function(response) {
             $scope.$emit('backdropOn', 'post');
