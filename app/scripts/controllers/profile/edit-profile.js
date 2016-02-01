@@ -35,7 +35,8 @@ angular.module('xbertsApp')
           return;
         }
 
-        if ($scope.data.expertiseList.length === 0) {
+        if ($scope.userProfile.careerList && $scope.userProfile.careerList.length > 0 &&
+            $scope.data.expertiseList.length === 0) {
           $scope.editProfileForm.expertiseError = {required: true};
 
           return;
