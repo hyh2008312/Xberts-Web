@@ -21,6 +21,8 @@ angular.module('xbertsApp')
 
               if (httpResponse.status === 401 || httpResponse.status === 403) {
                 form.serverError = {invalidCredentials: true};
+              } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
+                form.serverError = {linkedinSignup: true};
               } else {
                 form.serverError = {generic: true};
               }

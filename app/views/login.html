@@ -4,19 +4,22 @@
       <p class="login-title">Sign in to Xberts</p>
       <div class="error" ng-show="linkedinError.generic">Oops! Something went wrong.</div>
       <form name="loginForm" novalidate ng-submit="login(loginForm)">
-        <div class="error" ng-show="loginForm.$submitted">
-          <div ng-show="loginForm.serverError.invalidCredentials">The email or password you entered is incorrect.</div>
-          <div ng-show="loginForm.serverError.generic">Oops! Something went wrong.</div>
+        <div class="error" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
+          <div ng-message="invalidCredentials">The email or password you entered is incorrect.</div>
+          <div ng-message="linkedinSignup">Try sign in with LinkedIn instead.</div>
+          <div ng-messages-include="views/message/form_error.html"></div>
         </div>
-        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched">
-          <p ng-show="loginForm.email.$error.required">Please enter your email.</p>
-          <p ng-show="loginForm.email.$error.email">The email you entered is invalid.</p>
+        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched"
+             ng-messages="loginForm.email.$error">
+          <p ng-message="required">Please enter your email.</p>
+          <p ng-message="email">The email you entered is invalid.</p>
         </div>
         <p align="left">
           <input type="email" id="id_email" name="email" placeholder="Email" class="form-control login-form-control" ng-model="username" required ng-model-options="{ updateOn: 'blur' }">
         </p>
-        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.password.$touched">
-          <p ng-show="loginForm.password.$error.required">Please enter your password.</p>
+        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.password.$touched"
+             ng-messages="loginForm.email.$error">
+          <p ng-message="required">Please enter your password.</p>
         </div>
         <p align="left">
           <input type="password" id="id_password" name="password" placeholder="Password" class="form-control login-form-control" ng-model="password" required ng-model-options="{ updateOn: 'blur' }">
