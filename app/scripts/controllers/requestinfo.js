@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:RequestinfoCtrl
- * @description
- * # RequestinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('RequestinfoCtrl', ['$scope', 'SystemData', 'Distribution', 'growl', function ($scope, SystemData, Distribution, growl) {
 

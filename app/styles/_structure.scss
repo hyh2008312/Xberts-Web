@@ -527,6 +527,25 @@ $xy: (
   margin-bottom: 20px;
 }
 
+// Linkedin button
+.linkedin-btn {
+  color: #FFF;
+  background: #0077B5 none repeat scroll 0% 0%;
+  border-color: #fff;
+}
+
+.linkedin-btn:hover {
+  color: #FFF;
+}
+
+.linkedin-btn:focus {
+  color: #FFF;
+}
+
+.linkedin-btn-title {
+  padding-left: 20px;
+}
+
 // Login page
 .signup-bg {
   height: auto;
@@ -632,20 +651,9 @@ form#sign_form input#id_email, input#id_password {
 .login-linkedin-btn {
   margin-top: 30px;
   font-size: 16px;
-  color: #FFF;
   height: 39px;
   width: 100%;
   max-width: 100%;
-  background: #0077B5 none repeat scroll 0% 0%;
-  border-color: #fff;
-}
-
-.login-linkedin-btn:hover {
-  color: #FFF;
-}
-
-.login-linkedin-btn-title {
-  padding-left: 20px;
 }
 
 .login-tips {

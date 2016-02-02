@@ -1,18 +1,15 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ExpertCtrl
- * @description
- * # ExpertCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Paginator', 'ProjectsNoDetail', 'Interact', 'expert', 'Applicantsreview',
-    function ($scope, $rootScope, $location, $state, $stateParams, Paginator, ProjectsNoDetail, Interact, expert, Applicantsreview) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
+    'ProjectsNoDetail', 'Interact', 'expert', 'roleRequests', 'Applicantsreview', 'SystemConstant',
+    function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
+              ProjectsNoDetail, Interact, expert, roleRequests, Applicantsreview, SystemConstant) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
+      $scope.pendingExpert = $scope.isCurrentUser && roleRequests.length > 0;
+      $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
       $scope.btnText = 'Send';
       $scope.btnSecret = true;
       $scope.isOutDated = function (time) {
@@ -74,7 +71,8 @@ angular.module('xbertsApp')
             break;
           case 'comments':
             $scope.commentsTabActive = true;
-            $scope.$broadcast('feedback', step);
+            // TODO: Doesn't seem be used, remove if no issue is seen
+            //$scope.$broadcast('feedback', step);
             break;
           case 'reviews':
             $scope.reviewsTabActive = true;
@@ -87,7 +85,12 @@ angular.module('xbertsApp')
             $scope.reviewApplicantPaginator.clear();
             break;
         }
-        $scope.$broadcast('expert', step);
+
+        // Update query param in URL
+        $location.search('tab', step);
+
+        // TODO: Doesn't seem be used, remove if no issue is seen
+        //$scope.$broadcast('expert', step);
       };
       var search = $location.search();
       var tab = search.tab || 'profile';
@@ -97,7 +100,39 @@ angular.module('xbertsApp')
         }
       }
 
-      $scope.editProfile = function () {
+      if ($stateParams.action === 'applyExpert' && $rootScope.user.authRequired() && $scope.isCurrentUser &&
+          !$scope.isExpert && !$scope.pendingExpert) {
+        console.log('expert application process triggered');
+
+        if (!$rootScope.user.isLinkedinConnected()) {
+          $uibModal.open({
+            templateUrl: 'views/profile/linkedin-connect-modal.html',
+            controller: 'LinkedinConnectCtrl',
+            scope: $scope
+          });
+        } else {
+          var applyExpertModal = $uibModal.open({
+            templateUrl: 'views/profile/apply-expert-modal.html',
+            controller: 'ApplyExpertCtrl',
+            scope: $scope,
+            resolve: {
+              stages: ['SystemData', function(SystemData) {
+                return SystemData.getStagesPromise();
+              }]
+            }
+          });
+
+          applyExpertModal.result
+            .then(function() {
+              $state.go('application.protected.profile', {}, {location: "replace"});
+            })
+            .catch(function() {
+              $location.search('action', null);
+            });
+        }
+      }
+
+      $scope.editProfile = function() {
         $state.go('application.protected.editProfile');
       };
 

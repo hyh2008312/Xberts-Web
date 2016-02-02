@@ -9,7 +9,7 @@ angular.module('xbertsApp')
         $rootScope.$emit('logout', true);
       };
 
-      $scope.linkedinLogin = function(form) {
+      $scope.linkedinLogin = function() {
         $scope.linkedinError = {};
 
         $auth.authenticate('linkedin')

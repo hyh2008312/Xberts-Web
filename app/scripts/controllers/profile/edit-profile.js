@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditProfileCtrl', ['$scope', '$rootScope', '$state', 'SystemConstant', 'userProfile',
-    'UserProfileService', 'ExpertLoad', 'localStorageService',
-    function ($scope, $rootScope, $state, SystemConstant, userProfile, UserProfileService, ExpertLoad, localStorageService) {
+  .controller('EditProfileCtrl', ['$scope', '$rootScope', '$state', '$q', 'SystemConstant', 'userProfile',
+    'UserProfileService', 'ExpertLoad', 'localStorageService', 'stages', 'Configuration',
+    function ($scope, $rootScope, $state, $q, SystemConstant, userProfile,
+              UserProfileService, ExpertLoad, localStorageService, stages, Configuration) {
       $scope.countryOptions = SystemConstant.COUNTRIES;
+      $scope.stages = stages;
+      $scope.userProfile = userProfile;
 
       $scope.data = {};
 
@@ -15,9 +18,27 @@ angular.module('xbertsApp')
       $scope.data.company = userProfile.company;
       $scope.data.position = userProfile.position;
       $scope.data.biography = userProfile.biography;
+      $scope.data.expertiseList = _(userProfile.careerList).map(function(expertise) {
+        return expertise.id;
+      });
+
+      $scope.checkExpertise = function(form) {
+        if ($scope.data.expertiseList.length >= Configuration.userExpertiseMax) {
+          form.expertiseError = {exceedLimit: true};
+        } else {
+          form.expertiseError = {};
+        }
+      };
 
       $scope.saveChange = function () {
         if (!$scope.editProfileForm.$valid) {
+          return;
+        }
+
+        if ($scope.userProfile.careerList && $scope.userProfile.careerList.length > 0 &&
+            $scope.data.expertiseList.length === 0) {
+          $scope.editProfileForm.expertiseError = {required: true};
+
           return;
         }
 
@@ -25,32 +46,47 @@ angular.module('xbertsApp')
 
         $scope.editProfileForm.serverError = {};
 
+        var promises = [];
+
+        if ($scope.data.avatar && $scope.data.avatar !== $rootScope.user.getUserAvatar()) {
+          promises.push(UserProfileService.updateAvatar({
+            avatar: $scope.data.avatar
+          })
+            .then(function(response) {
+              $rootScope.user.setUserAvatar(response.data.avatar);
+            }));
+        }
+
         var userProfile = {
-          avatar: $scope.data.avatar,
-          first_name: $scope.data.firstName,
-          last_name: $scope.data.lastName,
+          firstName: $scope.data.firstName,
+          lastName: $scope.data.lastName,
           country: $scope.data.country.code,
           company: $scope.data.company,
           position: $scope.data.position,
-          biography: $scope.data.biography
+          biography: $scope.data.biography,
+          careerList: $scope.data.expertiseList
         };
 
-        UserProfileService.updateProfile(userProfile, function (response) {
-          // TDOD: Update user model to derive full name from first name and last name
-          $rootScope.user.setUserName(getFullName(response.data.firstName, response.data.lastName));
-          $rootScope.user.setUserAvatar(response.data.avatar);
+        promises.push(UserProfileService.updateProfile(userProfile)
+          .then(function(value) {
+            $rootScope.user.setFirstName(value.firstName);
+            $rootScope.user.setLastName(value.lastName);
+          }));
 
-          // Remove cached user profile
-          localStorageService.clearAll();
+        $q.all(promises)
+          .then(function(responses) {
+            // Remove cached user profile
+            localStorageService.clearAll();
 
-          $scope.$emit('backdropOff', 'success');
+            $scope.$emit('backdropOff', 'success');
 
-          $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
-        }, function (response) {
-          $scope.editProfileForm.serverError.generic = true;
+            $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
+          })
+          .catch(function(response) {
+            $scope.editProfileForm.serverError.generic = true;
 
-          $scope.$emit('backdropOff', 'error');
-        });
+            $scope.$emit('backdropOff', 'error');
+          });
       };
 
       function getFullName(firstName, lastName) {

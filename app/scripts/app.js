@@ -23,7 +23,8 @@ angular
     'duScroll',
     'dcbImgFallback',
     'configuration.properties',
-    'satellizer'
+    'satellizer',
+    'checklist-model'
   ])
   .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService',
@@ -99,11 +100,6 @@ angular
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
-
-    // TODO: Remove after CES event ends
-    $urlRouterProvider.when('/ces2016', ['$state', function ($state) {
-      $state.go('application.voteoff', {eventId: 1});
-    }]);
 
     $stateProvider
       .state('application', {
@@ -319,22 +315,34 @@ angular
         }
       })
       .state('application.expert', {
-        url: '/experts/:expertId?tab',
+        url: '/experts/:expertId?tab&action',
         templateUrl: 'views/profile/expert.html',
         controller: 'ExpertCtrl',
+        reloadOnSearch: false,
         resolve: {
           expert: ['ExpertLoad', '$stateParams', function (ExpertLoad, $stateParams) {
             return ExpertLoad.get($stateParams);
+          }],
+          roleRequests: ['authCheck', 'SystemConstant', 'RoleRequestsResolver',
+            function(authCheck, SystemConstant, RoleRequestsResolver) {
+            return RoleRequestsResolver.resolver(SystemConstant.ROLES.DOMAIN_EXPERT);
           }]
         }
+      })
+      .state('application.protected.profile', {
+        url: '/profile?action',
+        controller: 'UserProfileCtrl'
       })
       .state('application.protected.editProfile', {
         url: '/editprofile',
         templateUrl: 'views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
         resolve: {
-          userProfile: ['authCheck', 'UserProfileResolver', function (authCheck, UserProfileResolver) {
+          userProfile: ['authCheck', 'UserProfileResolver', function(authCheck, UserProfileResolver) {
             return UserProfileResolver.resolver();
+          }],
+          stages: ['SystemData', function(SystemData) {
+            return SystemData.getStagesPromise();
           }]
         }
       })

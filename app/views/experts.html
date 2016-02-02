@@ -4,7 +4,7 @@
 
     <div class="row">
       <h3 class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-        <a class="btn btn-lg btn-primary btn-block" ui-sref="application.signup">Become an Expert</a>
+        <a class="btn btn-lg btn-primary btn-block" ui-sref="application.protected.profile({action:'applyExpert'})">Become an Expert</a>
       </h3>
     </div>
   </div>
@@ -56,7 +56,7 @@
               <span class="pull-right">{{ expert.country }}</span></p>
             <p class="item-body-title">{{ expert.company_title}}</p>
             <p>
-              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise }}</span>
+              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
             </p>
             <p class="item-body-detail p-3-max">{{ expert.biography }}</p>
           </div>

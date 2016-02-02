@@ -16,8 +16,8 @@ angular.module('xbertsApp')
         $scope.changeEmailForm.serverError = {};
 
         AccountService.changeEmail($scope.data.email)
-          .then(function() {
-            $rootScope.user.setUserEmail($scope.data.email);
+          .then(function(value) {
+            $rootScope.user.setUserEmail(value.email);
 
             $scope.$emit('backdropOff', 'success');
 

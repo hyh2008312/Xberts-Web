@@ -51,4 +51,13 @@ angular.module('xbertsApp')
     $scope.open = function () {
       $scope.datePickerStatus = true;
     };
+    $scope.social_type='';
+    $scope.OnSocialTypeChange=function(){
+      var i;
+      for(i=0;i<$scope.SOCIAL_TYPE.length;i++){
+        if($scope.SOCIAL_TYPE[i].code==$scope.profile.other_social_type){
+          $scope.social_type=$scope.SOCIAL_TYPE[i].name;
+        }
+      }
+    }
   }]);

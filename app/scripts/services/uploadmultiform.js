@@ -14,13 +14,12 @@ angular.module('xbertsApp')
         errorCallback: errorCallback,
         upload: function () {
           var self = this;
-          Upload.upload({
+          return Upload.upload({
             url: self.url,
             data: self.data,
             method: self.method
           }).then(self.successCallBack, self.errorCallback, function (evt) {
             self.progress = parseInt(100.0 * evt.loaded / evt.total);
-            console.log(self.progress);
           });
         }
       };
