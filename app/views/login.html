@@ -2,12 +2,13 @@
   <div class="container marketing">
     <div class="login-signin-caption">
       <p class="login-title">Sign in to Xberts</p>
-      <div class="error" ng-show="linkedinError.generic">Oops! Something went wrong.</div>
-      <form name="loginForm" novalidate ng-submit="login(loginForm)">
+      <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
         <div class="error" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
           <div ng-message="invalidCredentials">The email or password you entered is incorrect.</div>
-          <div ng-message="linkedinSignup">Try sign in with LinkedIn instead.</div>
           <div ng-messages-include="views/message/form_error.html"></div>
+        </div>
+        <div class="error" ng-messages="loginForm.serverError">
+          <div ng-messages-include="views/message/linkedin_error.html"></div>
         </div>
         <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched"
              ng-messages="loginForm.email.$error">
@@ -28,16 +29,16 @@
           <a ui-sref="application.resetPassword.request">Forgot your password?</a>
         </p>
         <input type="submit" value="Sign in" class="login-btn">
-      </form>
-      <div class="login-line-wrapper">
-        <div class="login-or-line">
-          <div class="login-line-content">or</div>
+        <div class="login-line-wrapper">
+          <div class="login-or-line">
+            <div class="login-line-content">or</div>
+          </div>
         </div>
-      </div>
-      <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin()">
-        <i class="fa fa-linkedin"></i>
-        <span class="linkedin-btn-title">Sign in with LinkedIn</span>
-      </a>
+        <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin(loginForm)">
+          <i class="fa fa-linkedin"></i>
+          <span class="linkedin-btn-title">Sign in with LinkedIn</span>
+        </a>
+      </form>
       <div class="login-tips">
         Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a>
       </div>
