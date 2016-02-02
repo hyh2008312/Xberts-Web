@@ -252,14 +252,9 @@ angular
           }]
         }
       })
-      .state('application.resources', {
-        url: '/resources',
-        templateUrl: 'views/resources.html',
-        controller: 'ResourcesCtrl'
-      })
       .state('application.events', {
-        url: '/events/',
-        templateUrl: 'views/events.html',
+        url: '/events',
+        templateUrl: 'views/event/events.html',
         controller: 'EventsCtrl',
         controllerAs: 'events',
         resolve: {
@@ -285,7 +280,7 @@ angular
       })
       .state('application.event', {
         url: '/events/:eventId',
-        templateUrl: 'views/event.html',
+        templateUrl: 'views/event/event.html',
         controller: 'EventCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -295,12 +290,12 @@ angular
       })
       .state('application.vote', {
         url: "/vote/:eventId",
-        templateUrl: 'views/vote.html',
+        templateUrl: 'views/event/vote.html',
         controller: 'VoteCtrl'
       })
       .state('application.voteoff', {
         url: "/voteoff/:eventId",
-        templateUrl: 'views/voteoffline.html',
+        templateUrl: 'views/event/voteoffline.html',
         controller: 'VoteOffCtrl'
       })
       .state('application.experts', {
@@ -345,7 +340,7 @@ angular
       })
       .state('application.protected.launch', {
         url: '/launch/:eventId',
-        templateUrl: 'views/eventlauch.html',
+        templateUrl: 'views/event/eventlauch.html',
         controller: 'EventLauchCtrl',
         resolve: {
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
@@ -356,7 +351,7 @@ angular
       })
       .state('application.reviews', {
         url: "/reviews",
-        templateUrl: 'views/reviewprojects.html',
+        templateUrl: 'views/review/review_projects.html',
         controller: 'ReviewProjectsCtrl',
         resolve: {
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
@@ -373,7 +368,7 @@ angular
       })
       .state('application.review', {
         url: "/reviews/:reviewId",
-        templateUrl: 'views/reviewproject.html',
+        templateUrl: 'views/review/review_project.html',
         controller: 'ReviewprojectCtrl',
         resolve: {
           review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
@@ -382,9 +377,20 @@ angular
           }]
         }
       })
+      .state('application.reviewApplicants', {
+        url: "/reviews/:reviewId/applicants",
+        templateUrl: 'views/review/review_applicants.html',
+        controller: 'ReviewApplicantsCtrl',
+        resolve: {
+          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
+          }]
+        }
+      })
       .state('application.protected.reviewApplicant', {
         url: '/review/:reviewId/applicant',
-        templateUrl: 'views/reviewapplication.html',
+        templateUrl: 'views/review/review_application.html',
         controller: 'ReviewapplicationCtrl',
         resolve: {
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
@@ -401,7 +407,7 @@ angular
       })
       .state('application.protected.reviewReport', {
         url: '/review/:reviewId/report',
-        templateUrl: 'views/reviewreport.html',
+        templateUrl: 'views/review/review_report.html',
         controller: 'ReviewreportCtrl',
         resolve: {
           applicant: ['ApplicantsreviewLoad', 'authCheck', '$stateParams', function (ApplicantsreviewLoad, authCheck, $stateParams) {

@@ -6,4 +6,7 @@ angular.module('xbertsApp')
   }])
   .factory('ProjectReview', ['$resource','Configuration', function ($resource,Configuration) {
     return $resource(Configuration.apiBaseUrl+'/review/projectreviews/:id/', {id: '@id'});
+  }])
+  .factory('ReviewApplicants', ['$resource','Configuration', function ($resource,Configuration) {
+    return $resource(Configuration.apiBaseUrl+'/review/reviews/:id/applicants/', {id: '@id'});
   }]);

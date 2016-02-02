@@ -14,7 +14,7 @@
                        ng-model="profile.gender"
                        ng-value=item.code
                        ng-required="true"
-                  /> {{ item.name }}
+                /> {{ item.name }}
               </label>
             </div>
           </div>
@@ -33,32 +33,10 @@
 
             <div class="col-md-5">
               <select class="form-control" name="industry" ng-model="profile.industry" ng-required="true"
-                ng-options="item.code as item.name for item in INDUSTRY">
-                <option value="">--choose an industry--</option>
+                      ng-options="item.code as item.name for item in INDUSTRY">
+                <option value="">choose an industry</option>
               </select>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label">Company Size: </label>
-
-            <div class="col-md-5">
-              <select class="form-control" name="company_size" ng-model="profile.company_size" ng-required="true"
-                      ng-options="item.code as item.name for item in COMPANY_SIZE">
-                <option value="">--choose a company size--</option>
-              </select>
-            </div>
-
-          </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label">Career Status: </label>
-
-            <div class="col-md-5">
-              <select class="form-control" name="career_status" ng-model="profile.career_status" ng-required="true"
-                      ng-options="item.code as item.name for item in CAREER_STATUS">
-                <option value="">--choose a status--</option>
-              </select>
-            </div>
-
           </div>
           <div class="form-group">
             <label class="col-md-4 control-label">Job Function: </label>
@@ -66,15 +44,25 @@
             <div class="col-md-5">
               <select class="form-control" name="job_function" ng-model="profile.job_function" ng-required="true"
                       ng-options="item.code as item.name for item in JOB_FUNCTION">
-                <option value="">--choose a job function--</option>
+                <option value="">choose a job function</option>
               </select>
             </div>
 
           </div>
 
+          <div class="form-group">
+            <label class="col-md-4 control-label">Career Status: </label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="career_status" ng-model="profile.career_status" ng-required="true"
+                      ng-options="item.code as item.name for item in CAREER_STATUS">
+                <option value="">choose a status</option>
+              </select>
+            </div>
+          </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Job Title: </label>
+            <label class="col-md-4 control-label">Business Title: </label>
 
             <div class="col-md-5">
               <input type="text" class="form-control"
@@ -84,53 +72,64 @@
                      ng-required="true"/>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Company Size: </label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="company_size" ng-model="profile.company_size" ng-required="true"
+                      ng-options="item.code as item.name for item in COMPANY_SIZE">
+                <option value="">choose a company size</option>
+              </select>
+            </div>
+
+          </div>
         </div>
       </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">Contact Information</div>
         <div class="panel-body">
-          <div class="form-group">
-            <label class="col-md-4 control-label">Address line 1: </label>
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-4 control-label">Address line 1: </label>-->
 
-            <div class="col-md-5">
-              <input type="text" class="form-control"
-                     name="address1"
-                     ng-model="profile.address_line1"
-                     ng-maxlength="200"
-                     ng-required="true"/>
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" class="form-control"-->
+                     <!--name="address1"-->
+                     <!--ng-model="profile.address_line1"-->
+                     <!--ng-maxlength="200"-->
+                     <!--ng-required="true"/>-->
 
-              <p class="message-error" ng-show="profileForm.address1.$error.maxlength">* no more
-                than 200 chars.</p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label">Address line 2: </label>
+              <!--<p class="message-error" ng-show="profileForm.address1.$error.maxlength">* no more-->
+                <!--than 200 chars.</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-4 control-label">Address line 2: </label>-->
 
-            <div class="col-md-5">
-              <input type="text" class="form-control"
-                     name="address2"
-                     ng-model="profile.address_line2"
-                     ng-maxlength="200">
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" class="form-control"-->
+                     <!--name="address2"-->
+                     <!--ng-model="profile.address_line2"-->
+                     <!--ng-maxlength="200">-->
 
-              <p class="message-error" ng-show="profileForm.address2.$error.maxlength">* no more
-                than 200 chars.</p>
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-md-4 control-label">City: </label>
+              <!--<p class="message-error" ng-show="profileForm.address2.$error.maxlength">* no more-->
+                <!--than 200 chars.</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group ">-->
+            <!--<label class="col-md-4 control-label">City: </label>-->
 
-            <div class="col-md-5">
-              <input type="text" class="form-control"
-                     name="city"
-                     ng-model="profile.city"
-                     ng-maxlength="200"
-                     ng-required="true"/>
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" class="form-control"-->
+                     <!--name="city"-->
+                     <!--ng-model="profile.city"-->
+                     <!--ng-maxlength="200"-->
+                     <!--ng-required="true"/>-->
 
-              <p class="message-error" ng-show="profileForm.city.$error.maxlength">* no more
-                than 200 chars.</p>
-            </div>
-          </div>
+              <!--<p class="message-error" ng-show="profileForm.city.$error.maxlength">* no more-->
+                <!--than 200 chars.</p>-->
+            <!--</div>-->
+          <!--</div>-->
           <div class="form-group">
             <label class="col-md-4 control-label">State/Province/Region: </label>
 
@@ -155,6 +154,7 @@
                      ng-model="profile.zip"
                      ng-maxlength="20"
                      ng-required="true">
+
               <p class="message-error" ng-show="profileForm.zip.$error.maxlength">* no more
                 than 20 chars.</p>
             </div>
@@ -166,7 +166,7 @@
             <div class="col-md-5">
               <select class="form-control" name="mail_country" ng-model="profile.mail_country" ng-required="true"
                       ng-options="item.code as item.name for item in COUNTRIES">
-                <option value="">--choose a country--</option>
+                <option value="">choose a country</option>
               </select>
             </div>
           </div>
@@ -176,6 +176,7 @@
             <div class="col-md-5">
               <input type="text" name="phone_number" class="form-control" international-phone-number
                      ng-model="profile.phone_number">
+
               <p class="message-error" ng-show="profileForm.phoneError">
                 please input correct number</p>
             </div>
@@ -209,14 +210,14 @@
                        ng-model="profile.linkedin"
                        ng-value="true"
                        ng-required="true"
-                  /> YES</label>
+                /> YES</label>
               <label class="radio-inline">
                 <input type="radio"
                        name="linkedin"
                        ng-model="profile.linkedin"
                        ng-value="false"
                        ng-required="true"
-                  /> NO
+                /> NO
               </label>
             </div>
           </div>
@@ -230,16 +231,16 @@
                      ng-required="true"/>
             </div>
           </div>
-          <div class="form-group" ng-if="profile.linkedin">
-            <label class="col-md-4 control-label">How many connections do you have on LinkedIn?</label>
+          <!--<div class="form-group" ng-if="profile.linkedin">-->
+            <!--<label class="col-md-4 control-label">How many connections do you have on LinkedIn?</label>-->
 
-            <div class="col-md-5">
-              <select class="form-control" name="country" ng-model="profile.linkedin_connections" ng-required="true"
-                      ng-options="item.code as item.name for item in LINKEDIN_CONNECTION">
-                <option value="">--choose a range--</option>
-              </select>
-            </div>
-          </div>
+            <!--<div class="col-md-5">-->
+              <!--<select class="form-control" name="country" ng-model="profile.linkedin_connections" ng-required="true"-->
+                      <!--ng-options="item.code as item.name for item in LINKEDIN_CONNECTION">-->
+                <!--<option value="">choose a range</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
 
           <div class="form-group">
             <label class="col-md-4 control-label">What's your most used social media?</label>
@@ -247,12 +248,12 @@
             <div class="col-md-5">
               <select class="form-control" name="country" ng-model="profile.other_social_type" ng-required="true"
                       ng-options="item.code as item.name for item in SOCIAL_TYPE">
-                <option value="">--choose a social media type--</option>
+                <option value="">choose a social media type</option>
               </select>
             </div>
           </div>
           <div class="form-group" ng-if="profile.other_social_type!=0">
-            <label class="col-md-4 control-label">Please provide your Social Media Direct Link:</label>
+            <label class="col-md-4 control-label">Please provide a profile link to your most used social media:</label>
 
             <div class="col-md-5">
               <input type="input" class="form-control"
@@ -260,17 +261,17 @@
                      ng-model="profile.other_social_url"
                      ng-required="true"/></div>
           </div>
-          <div class="form-group" ng-if="profile.other_social!='none'">
-            <label class="col-md-4 control-label">How many connections do you have on your social media
-              count?</label>
+          <!--<div class="form-group" ng-if="profile.other_social!='none'">-->
+            <!--<label class="col-md-4 control-label">How many connections do you have on your social media-->
+              <!--count?</label>-->
 
-            <div class="col-md-5">
-              <select class="form-control" name="country" ng-model="profile.other_social_connections"
-                      ng-required="true" ng-options="item.code as item.name for item in OTHER_CONNECTION">
-                <option value="">--choose a range--</option>
-              </select>
-            </div>
-          </div>
+            <!--<div class="col-md-5">-->
+              <!--<select class="form-control" name="country" ng-model="profile.other_social_connections"-->
+                      <!--ng-required="true" ng-options="item.code as item.name for item in OTHER_CONNECTION">-->
+                <!--<option value="">choose a range</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
 
         </div>
       </div>

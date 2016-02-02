@@ -52,4 +52,7 @@ angular.module('xbertsApp')
       $scope.select = function (step) {
         $scope.$broadcast('stepBroadcast', step);
       };
-    }]);
+    }])
+  .controller('ReviewApplicantsCtrl', ['$scope', 'review', function ($scope, review) {
+    $scope.review = review;
+  }]);

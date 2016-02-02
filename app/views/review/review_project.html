@@ -227,6 +227,10 @@
           </div>
         </div>
       </div>
+      <div class="margin-top" ng-if="user.getUserId() == review.project.account">
+        <a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewApplicants({reviewId:review.id})">Select
+          Applicant</a>
+      </div>
       <h4 style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
 
       <div class="row" ng-show='review.applicants.length>0'>
