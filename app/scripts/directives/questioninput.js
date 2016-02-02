@@ -51,6 +51,9 @@ angular.module('xbertsApp')
           console.log(scope.items);
           scope.$watch(checkBoxRequired, function () {
             console.log("trigger");
+            if (scope.question.answer == undefined) {
+              scope.question.answer = {};
+            }
             scope.question.answer.answer_main = scope.itemsSelected.join(',');
             if (scope.question.answer.answer_main.indexOf('Other') == -1) {
               scope.question.answer.answer_other = undefined;
