@@ -377,14 +377,14 @@ angular
           }]
         }
       })
-      .state('application.review.applicant', {
-        url: "/reviews/:reviewId",
-        templateUrl: 'views/review/review_project.html',
-        controller: 'ReviewprojectCtrl',
+      .state('application.reviewApplicants', {
+        url: "/reviews/:reviewId/applicants",
+        templateUrl: 'views/review/review_applicants.html',
+        controller: 'ReviewApplicantsCtrl',
         resolve: {
-          review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
+          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ProjectReviewLoad($stateParams);
+            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
           }]
         }
       })
