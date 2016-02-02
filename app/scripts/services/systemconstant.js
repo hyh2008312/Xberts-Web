@@ -262,6 +262,7 @@ angular.module('xbertsApp')
       {code: '4', name: '51-200'},
       {code: '5', name: '201-500'},
       {code: '6', name: '501-1000'},
+      {code: '9', name: '1001-5000'},
       {code: '7', name: '5001-10,000'},
       {code: '8', name: '10,000+'}
     ];
