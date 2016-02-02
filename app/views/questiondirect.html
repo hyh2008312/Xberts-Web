@@ -5,14 +5,14 @@
 
     <input type="text" class="form-control"
            name="question_{{ question.id }}"
-           ng-model="question.answer"
+           ng-model="question.answer.answer_main"
            ng-required="true"/>
   </div>
   <div ng-switch-when="2">
 
     <textarea type="text" class="form-control" rows="5"
               name="question_{{ question.id }}"
-              ng-model="question.answer"
+              ng-model="question.answer.answer_main"
               ng-required="true"></textarea>
   </div>
   <div ng-switch-when="4">
@@ -20,23 +20,27 @@
       <label>
         <input type="radio"
                name="question_{{ question.id }}"
-               ng-model="question.answer"
+               ng-model="question.answer.answer_main"
                ng-value=item
                ng-required="true"
         /> {{ item }}
       </label>
+    </div>
+    <div class="form-inline">
+      <input type="text" class="form-control" ng-model="question.answer.answer_other" ng-required="true"
+             ng-if="question.answer.answer_main=='other'"/>
     </div>
   </div>
   <div ng-switch-when="6">
 
     <select class="form-control" name="country"
             name="question_{{ question.id }}"
-            ng-model="question.answer"
+            ng-model="question.answer.answer_main"
             ng-required="true">
       <option value="">--choose a {{ question.default }}--</option>
       <option ng-repeat="item in question.extra|split"
               value="{{ item }}"
-              ng-selected="question.answer==item">{{ item }}
+              ng-selected="question.answer.answer_main==item">{{ item }}
       </option>
     </select>
   </div>

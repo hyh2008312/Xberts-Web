@@ -21,7 +21,7 @@ angular.module('xbertsApp')
         for (var i = 0; i < $scope.review.surveys.length; i++) {
           for (var j = 0; j < $scope.review.surveys[i].questions.length; j++) {
             var questionId = $scope.review.surveys[i].questions[j].id;
-            $scope.review.surveys[i].questions[j]['answer'] = answer['question_' + questionId];
+            $scope.review.surveys[i].questions[j]['answer'] = answer['question_' + questionId] || {};
           }
         }
       }
