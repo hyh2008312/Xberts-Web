@@ -10,7 +10,6 @@
 angular.module('xbertsApp')
   .controller('ReviewapplicationconfirminfoCtrl', ['$scope', 'ReviewApplicant', '$rootScope', 'growl', function ($scope, ReviewApplicant, $rootScope, growl) {
     $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
-    console.log($scope.reviewApplicant);
     $scope.reviewApplicant.review = $scope.review.id;
     $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();
     $scope.reviewApplicantConfirmFormSubmit = function () {

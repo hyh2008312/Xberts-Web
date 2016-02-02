@@ -10,11 +10,19 @@
 angular.module('xbertsApp')
   .controller('ReviewapplicationinfoCtrl', ['$scope', 'ReviewApplicant', '$filter',
     function ($scope, ReviewApplicant, $filter) {
+
       $scope.reviewFormSubmit = function () {
-        if ($scope.reviewForm.$valid) {
+        $scope.error = false;
+        var x, y;
+        for (x = 0; x < $scope.review.surveys.length; x++) {
+          for (y = 0; y < $scope.review.surveys[x].questions.length; y++) {
+            $scope.error = $scope.error || $scope.review.surveys[x].questions[y].error;
+          }
+        }
+        if ($scope.reviewForm.$valid && !$scope.error) {
           var answer = {};
-          for (var x = 0; x < $scope.review.surveys.length; x++) {
-            for (var y = 0; y < $scope.review.surveys[x].questions.length; y++) {
+          for (x = 0; x < $scope.review.surveys.length; x++) {
+            for (y = 0; y < $scope.review.surveys[x].questions.length; y++) {
               answer['question_' + $scope.review.surveys[x].questions[y].id] = $scope.review.surveys[x].questions[y].answer;
             }
           }
