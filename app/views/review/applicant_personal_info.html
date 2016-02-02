@@ -67,22 +67,32 @@
             <div class="col-md-5">
               <input type="text" class="form-control"
                      name="job_title"
-                     ng-model="profile.job_title"
+                     ng-model="profile.position"
                      ng-maxlength="200"
                      ng-required="true"/>
             </div>
           </div>
-          <!--<div class="form-group">-->
-            <!--<label class="col-md-4 control-label">Company Size: </label>-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Company Name: </label>
 
-            <!--<div class="col-md-5">-->
-              <!--<select class="form-control" name="company_size" ng-model="profile.company_size" ng-required="true"-->
-                      <!--ng-options="item.code as item.name for item in COMPANY_SIZE">-->
-                <!--<option value="">choose a company size</option>-->
-              <!--</select>-->
-            <!--</div>-->
+            <div class="col-md-5">
+              <input type="text" class="form-control"
+                     name="company"
+                     ng-model="profile.company"
+                     ng-maxlength="200"
+                     ng-required="true"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Company Size: </label>
 
-          <!--</div>-->
+            <div class="col-md-5">
+              <select class="form-control" name="company_size" ng-model="profile.company_size" ng-required="true"
+                      ng-options="item.code as item.name for item in COMPANY_SIZE">
+                <option value="">choose a company size</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 
