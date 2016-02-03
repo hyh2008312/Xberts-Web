@@ -18,22 +18,29 @@ angular.module('xbertsApp')
           buttonText:'Get Started',
           buttonColor:'btn-primary',
           url: 'application.signup'
+        },
+        {
+          image: '/images/review_4.jpg',
+          title: '',
+          subtitle: '',
+          buttonText:'Apply Now',
+          buttonColor:'btn-primary',
+          url: 'application.review({reviewId:4})'
+        },{
+          image: '/images/review_5.jpg',
+          title: '',
+          subtitle: '',
+          buttonText:'Apply Now',
+          buttonColor:'btn-primary',
+          url: 'application.review({reviewId:5})'
+        },
+        {
+          image: '/images/review_6.jpg',
+          title: '',
+          subtitle: '',
+          buttonText:'Apply Now',
+          buttonColor:'btn-primary',
+          url: 'application.review({reviewId:6})'
         }
-        //{
-        //  image: '/images/review_4.jpg',
-        //  title: '',
-        //  subtitle: '',
-        //  buttonText:'Apply Now',
-        //  buttonColor:'btn-primary',
-        //  url: 'application.review({reviewId:4})'
-        //},
-        //{
-        //  image: '/images/review_6.jpg',
-        //  title: '',
-        //  subtitle: '',
-        //  buttonText:'Apply Now',
-        //  buttonColor:'btn-primary',
-        //  url: 'application.review({reviewId:6})'
-        //}
       ];
     }]);
