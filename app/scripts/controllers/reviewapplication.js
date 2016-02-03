@@ -14,7 +14,6 @@ angular.module('xbertsApp')
       // todo:每个人只能填写一份调查问卷
       $scope.review = review;
       $scope.profile = reviewer;
-      console.log(reviewer);
 
       //padding answer to review.survey
       if (application.id) {

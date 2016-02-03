@@ -64,10 +64,12 @@ angular.module('xbertsApp')
           })
         }
         if (scope.question.type === '4') {
-          scope.$watch(scope.question.answer.question_main, function () {
+          console.log(scope.question.type);
+          scope.$watch('question.answer.answer_main', function () {
             if (scope.question.answer == undefined) {
               scope.question.answer = {};
             }
+            console.log("triggered");
             if (scope.question.answer.answer_main.indexOf('Other') == -1) {
               scope.question.answer.answer_other = undefined;
             }

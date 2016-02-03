@@ -10,7 +10,6 @@
 angular.module('xbertsApp')
   .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, review, Applicantsreview) {
     $scope.review = review;
-    console.log(review);
     $scope.applicantsSearch = {is_selected: true};
     $rootScope.bodyBackground = 'background-whitem';
     $scope.sub = {
@@ -29,7 +28,6 @@ angular.module('xbertsApp')
           angular.extend($scope.applicant, data.results[0]);
           $scope.applicant.exist = true;
         }
-        console.log($scope.applicant);
       }, function () {
 
       })
