@@ -493,6 +493,12 @@ $xy: (
     margin-top: 45px;
   }
 }
+.label-primary {
+  background-color: $primaryColor;
+}
+.label-success{
+  background-color: $successColor ;
+}
 
 .expert-profile img {
   width: 120px;
