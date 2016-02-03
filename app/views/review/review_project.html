@@ -13,7 +13,7 @@
             <a class="fade-in-line" ng-click="toSection3();">INSTRUCTIONS</a>
           </li>
           <li du-smooth-scroll="section-4" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection4();">DETAILS</a></li>
+            <a class="fade-in-line" ng-click="toSection4();">DESCRIPTION</a></li>
         </ul>
       </div>
       <!--<div class="col-md-3" ng-if="isOutDated(review.date_end)">-->
@@ -117,12 +117,12 @@
         <div class="tab-content">
           <ul>
             <li>
-              Step 1: Apply for this product review campaign online.
+              Step 1:<br/>Apply for this product review campaign online.
             </li>
             <br/>
 
             <li>
-              Step 2: Xberts team will contact successful applicants via Email to confirm his/her shipping information.
+              Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping information.
               If the
               successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up
               his/her candidacy.
@@ -130,7 +130,7 @@
             <br/>
 
             <li>
-              Step 3: After your shipping address is confirmed, product will be directly shipped to you from campaign
+              Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from campaign
               owner. Xberts will
               provide each
               reviewer with a tracking number and further instructions on review and submission.
@@ -138,8 +138,9 @@
             <br/>
 
             <li>
-              Step 4: After product testing, applicants should submit their review contents by {{ review.date_end |
-              amDateFormat:'MMM DD, YYYY'}}.
+              Step 4: <br/>After receiving the product, selected applicants will be required to try out the sample,
+              and submit their product reviews by {{ review.date_end |amDateFormat:'MMM DD, YYYY'}}.
+              The review report should include multiple photos or a video.
             </li>
           </ul>
 
@@ -147,7 +148,7 @@
         </div>
       </section>
       <section id="section-4" class="padding-top-clear">
-        <h4 class="margin-top-clear">Details</h4>
+        <h4 class="margin-top-clear">Description</h4>
         <hr>
         <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
       </section>

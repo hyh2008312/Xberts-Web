@@ -17,6 +17,9 @@ angular.module('xbertsApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         //element.text('this is the QuestionInput directive');
+        if (scope.question.answer == undefined) {
+          scope.question.answer = {};
+        }
         function checkBoxRequired() {
           scope.itemsSelected = [];
           for (var i = 0; i < scope.items.length; i++) {
@@ -26,6 +29,7 @@ angular.module('xbertsApp')
           }
           return scope.itemsSelected.length;
         }
+
         if (scope.question.type === '5') {
           scope.question.error = true;
           scope.items = [];
@@ -49,7 +53,6 @@ angular.module('xbertsApp')
           }
           console.log(scope.items);
           scope.$watch(checkBoxRequired, function () {
-            console.log("trigger");
             if (scope.question.answer == undefined) {
               scope.question.answer = {};
             }
@@ -58,7 +61,16 @@ angular.module('xbertsApp')
               scope.question.answer.answer_other = undefined;
             }
             scope.question.error = scope.itemsSelected.length < 1;
-            console.log(scope.question.error);
+          })
+        }
+        if (scope.question.type === '4') {
+          scope.$watch(scope.question.answer.question_main, function () {
+            if (scope.question.answer == undefined) {
+              scope.question.answer = {};
+            }
+            if (scope.question.answer.answer_main.indexOf('Other') == -1) {
+              scope.question.answer.answer_other = undefined;
+            }
           })
         }
       }
