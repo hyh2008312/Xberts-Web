@@ -35,7 +35,7 @@ angular.module('xbertsApp')
           scope.items = [];
           var items = scope.question.extra.split(',');
           var itemsSelected = [];
-          if (scope.question.answer) {
+          if (scope.question.answer.answer_main) {
             itemsSelected = scope.question.answer.answer_main.split(',');
           }
           scope.question.error = !itemsSelected.length > 0;
@@ -64,13 +64,11 @@ angular.module('xbertsApp')
           })
         }
         if (scope.question.type === '4') {
-          console.log(scope.question.type);
           scope.$watch('question.answer.answer_main', function () {
             if (scope.question.answer == undefined) {
               scope.question.answer = {};
             }
-            console.log("triggered");
-            if (scope.question.answer.answer_main.indexOf('Other') == -1) {
+            if (scope.question.answer.answer_main!=undefined && scope.question.answer.answer_main.indexOf('Other') == -1) {
               scope.question.answer.answer_other = undefined;
             }
           })
