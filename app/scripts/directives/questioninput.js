@@ -26,9 +26,8 @@ angular.module('xbertsApp')
           }
           return scope.itemsSelected.length;
         }
-
-        scope.question.error = true;
         if (scope.question.type === '5') {
+          scope.question.error = true;
           scope.items = [];
           var items = scope.question.extra.split(',');
           var itemsSelected = [];
