@@ -359,6 +359,12 @@ angular.module('xbertsApp')
     var ROLES = {
       DOMAIN_EXPERT: 'domain_expert'
     };
+    var PRODUCT_STAGE = [
+      {code: '1', name: 'Market-ready'},
+      {code: '2', name: 'Mass production'},
+      {code: '3', name: 'Small-scale production'},
+      {code: '4', name: 'Prototype'}
+    ];
 
     var systemConstant = {};
     systemConstant.COUNTRIES = COUNTRIES;
@@ -371,6 +377,7 @@ angular.module('xbertsApp')
     systemConstant.LINKEDIN_CONNECTION = LINKEDIN_CONNECTION;
     systemConstant.OTHER_CONNECTION = OTHER_CONNECTION;
     systemConstant.ROLES = ROLES;
+    systemConstant.PRODUCT_STAGE = PRODUCT_STAGE;
 
     return systemConstant;
   });

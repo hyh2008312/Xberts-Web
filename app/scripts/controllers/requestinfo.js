@@ -142,4 +142,63 @@ angular.module('xbertsApp')
         $scope.distributionForm.$invalid = true;
       }
     };
-  }]);
+  }])
+  .controller('ReviewRequestCtrl', ['$rootScope', '$scope', 'SystemData', 'SystemConstant', 'Configuration', '$resource',
+    'uibDateParser', 'growl', '$timeout', '$state',
+    function ($rootScope, $scope, SystemData, SystemConstant, Configuration, $resource, uibDateParser, growl, $timeout, $state) {
+
+      $rootScope.bodyBackground = 'background-whitem';
+      $scope.targetGeos = SystemData.getTargetGeos();
+      $scope.format = 'yyyy/MM/dd';
+      $scope.PRODUCT_STAGE = SystemConstant.PRODUCT_STAGE;
+      $scope.datePickerStatus = false;
+      $scope.open = function () {
+        $scope.datePickerStatus = true;
+      };
+      var ReviewRequest = $resource(Configuration.apiBaseUrl + '/review/review_request/');
+      $scope.review = new ReviewRequest();
+      if ($scope.review.date_estimated) {
+        $scope.review.date_estimated = new Date($scope.review.date_estimated);
+      }
+      var referenceId = 'review_request';
+      $scope.reviewFormSubmit = function () {
+        $scope.reviewForm.phoneError = !$scope.review.contact_number;
+        console.log($scope.review);
+        if ($scope.reviewForm.$valid && !$scope.reviewForm.targetGeosRequired && !$scope.reviewForm.phoneError) {
+
+          $scope.$emit('backdropOn', 'post');
+
+          //project pre process
+          $scope.review.target_geo = $scope.targetsSelected.join();
+          $scope.review.$save(function (resp) {
+            $scope.$emit('backdropOff', 'success');
+            $scope.review.date_estimated = new Date($scope.review.date_estimated);
+            growl.success('Your Request has been successfully submitted.', {referenceId: referenceId});
+            $timeout(function () {
+              $state.go('application.main');
+            }, 2000);
+          }, function (resp) {
+            growl.error('Sorry,some error happened.', {referenceId: referenceId});
+            $scope.$emit('backdropOff', 'error');
+          });
+          return false;
+
+        } else {
+          $scope.reviewForm.submitted = true;
+          $scope.reviewForm.$invalid = true;
+        }
+      };
+      function targetRequired() {
+        $scope.targetsSelected = [];
+        for (var i = 0; i < $scope.targetGeos.length; i++) {
+          if ($scope.targetGeos[i].selected) {
+            $scope.targetsSelected.push($scope.targetGeos[i].name);
+          }
+        }
+        return $scope.targetsSelected.length;
+      }
+
+      $scope.$watch(targetRequired, function () {
+        $scope.reviewForm.targetGeosRequired = $scope.targetsSelected.length < 1;
+      })
+    }]);

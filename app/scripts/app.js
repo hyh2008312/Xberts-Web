@@ -93,7 +93,7 @@ angular
       url: ConfigurationProvider.apiBaseUrl + '/accounts/linkedin/token/'
     });
   }])
-  .config(['tagsInputConfigProvider', function(tagsInputConfigProvider) {
+  .config(['tagsInputConfigProvider', function (tagsInputConfigProvider) {
     tagsInputConfigProvider.setDefaults('tagsInput', {
       minLength: 1
     });
@@ -138,7 +138,7 @@ angular
           }],
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
             var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage,is_recommended: 'True'};
+              var params = {page: nextPage, is_recommended: 'True'};
               angular.extend(params, otherParams);
               EventNoDetail.get(params, callback);
             };
@@ -324,9 +324,9 @@ angular
             return ExpertLoad.get($stateParams);
           }],
           roleRequests: ['authCheck', 'SystemConstant', 'RoleRequestsResolver',
-            function(authCheck, SystemConstant, RoleRequestsResolver) {
-            return RoleRequestsResolver.resolver(SystemConstant.ROLES.DOMAIN_EXPERT);
-          }]
+            function (authCheck, SystemConstant, RoleRequestsResolver) {
+              return RoleRequestsResolver.resolver(SystemConstant.ROLES.DOMAIN_EXPERT);
+            }]
         }
       })
       .state('application.protected.profile', {
@@ -338,10 +338,10 @@ angular
         templateUrl: 'views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
         resolve: {
-          userProfile: ['authCheck', 'UserProfileResolver', function(authCheck, UserProfileResolver) {
+          userProfile: ['authCheck', 'UserProfileResolver', function (authCheck, UserProfileResolver) {
             return UserProfileResolver.resolver();
           }],
-          stages: ['SystemData', function(SystemData) {
+          stages: ['SystemData', function (SystemData) {
             return SystemData.getStagesPromise();
           }]
         }
@@ -354,6 +354,16 @@ angular
           event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
             var eventId = $stateParams.eventId || null;
             return eventId === null ? {} : EventLoad($stateParams);
+          }]
+        }
+      })
+      .state('application.reviewRequest', {
+        url: "/review/request",
+        templateUrl: 'views/review/review_request.html',
+        controller: 'ReviewRequestCtrl',
+        resolve: {
+          targetGeos: ['SystemData', function (SystemData) {
+            return SystemData.getTargetGeosPromise();
           }]
         }
       })

@@ -1,0 +1,92 @@
+<section class="background-light-white">
+  <div class="container">
+    <div class="section-title">
+      <h3>Launch a crowdtesting campaign for your product</h3>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <form name="reviewForm" ng-submit="reviewFormSubmit()">
+      <div growl reference="review_request"></div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="form-group">
+            <label>Product Name:</label>
+            <input type="text" class="form-control" name='title' ng-model="review.product_name"
+                   ng-required="true" ng-maxlength="200">
+
+            <p class="message-error" ng-show="reviewForm.submitted && reviewForm.title.$error.required">
+              *required</p>
+
+            <p class="message-error" ng-show="reviewForm.submitted && reviewForm.title.$error.maxlength">*
+              no more than 200 chars.</p>
+          </div>
+          <div class="form-group">
+            <label>Current Stage of Product:</label>
+            <select class="form-control" ng-required="true" ng-model="review.product_stage">
+              <option value="">Choose a stage</option>
+              <option value="{{ stage.code }}" ng-repeat="stage in PRODUCT_STAGE">{{ stage.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Estimated launch date of your campaign:</label>
+
+            <input type="text" class="form-control" name="date_estimated" uib-datepicker-popup="{{format}}"
+                   ng-model="review.date_estimated" is-open="datePickerStatus"
+                   show-button-bar="false" ng-click="open()" ng-required="true"/>
+          </div>
+          <div class="form-group">
+            <label>Number of reviewers you're looking for:</label><br>
+            <input type="number" ng-model="review.quota" class="form-control" name="quota" ng-required="true">
+          </div>
+          <div class="form-group">
+            <label>Geographic target markets of your crowdtesting:</label><br/>
+            <label class="checkbox-inline" ng-repeat="targetGeo in targetGeos">
+              <input type="checkbox" ng-model="targetGeo.selected"> {{ targetGeo.name }}
+            </label>
+
+            <p class="message-error"
+               ng-show="reviewForm.submitted && reviewForm.targetGeosRequired">
+              *required</p>
+          </div>
+
+          <div class="form-group">
+            <label>Contact Person:</label><br>
+            <input type="text" ng-model="review.contact_person" class="form-control" name="name" ng-required="true">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Company Name: </label>
+
+            <input type="text" class="form-control"
+                   name="company"
+                   ng-model="review.company_name"
+                   ng-maxlength="200"
+                   ng-required="true"/>
+          </div>
+          <div class="form-group">
+            <label>Contact Email:</label><br>
+            <input type="email" ng-model="review.contact_email" class="form-control" name="email" ng-required="true">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Contact Number: </label><br/>
+
+            <input type="text" name="contact_number" class="form-control" international-phone-number
+                   ng-model="review.contact_number">
+
+            <p class="message-error" ng-show="reviewForm.phoneError">
+              please input correct number</p>
+          </div>
+          <div class="row">
+            <p class='message-error text-center' ng-show="reviewForm.submitted && reviewForm.$invalid">
+              Please check your input. </p>
+
+            <p class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 margin-top">
+              <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

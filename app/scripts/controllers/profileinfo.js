@@ -33,6 +33,7 @@ angular.module('xbertsApp')
           $scope.profile.linkedin_connections='';
         }
         $scope.profile.$put(function (resp) {
+          $scope.profile.birth = new Date($scope.profile.birth);
           $scope.$emit('backdropOff', 'success');
           $scope.$emit('reviewStep', '0');
         }, function (resp) {
