@@ -1,8 +1,16 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$auth', 'Configuration', 'AuthService',
-    function($scope, $rootScope, $location, $state, $auth, Configuration, AuthService) {
+  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Configuration',
+    'AuthService',
+    function($scope, $rootScope, $location, $state, $stateParams, Configuration,
+             AuthService) {
+      if ($stateParams.error === 'linkedin_login') {
+        $scope.loginError = {linkedinError: true};
+
+        $location.search('error', null);
+      }
+
       $scope.login = function(form) {
         if (!$scope.loginForm.$valid) {
           return;

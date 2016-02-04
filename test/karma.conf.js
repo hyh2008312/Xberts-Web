@@ -50,9 +50,10 @@ module.exports = function(config) {
       'bower_components/string/dist/string.min.js',
       'bower_components/angular-img-fallback/angular.dcb-img-fallback.js',
       'bower_components/angular-scroll/angular-scroll.js',
-      'bower_components/satellizer/satellizer.js',
       'bower_components/checklist-model/checklist-model.js',
       'bower_components/underscore/underscore.js',
+      'bower_components/angular-random-string/src/angular-random-string.js',
+      'bower_components/satellizer/satellizer.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
