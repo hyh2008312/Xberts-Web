@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '_', 'Configuration', 'OAuthToken',
-    'SystemConstant',
-    function($rootScope, $resource, $state, $q, _, Configuration, OAuthToken,
-             SystemConstant) {
+  .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
+    '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService',
+    function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
+             _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved) {
         this._userId = userId || '';
@@ -128,6 +128,36 @@ angular.module('xbertsApp')
         });
       }
 
+      function linkedinLogin() {
+        var oauth2Url = 'https://www.linkedin.com/uas/oauth2/authorization';
+        var state = Configuration.linkedinDefaultState;
+
+        if (localStorageService.cookie.isSupported) {
+          state = randomString(32);
+          // Save state so it can be verified upon redirect to prevent CSRF
+          localStorageService.cookie.set(Configuration.linkedinStateStorageKey, state, 1);
+        }
+
+        var params = {
+          response_type: 'code',
+          client_id: Configuration.linkedinClientId,
+          redirect_uri: $state.href('application.linkedinLogin', {}, {absolute: true}),
+          state: state
+        };
+
+        var linkedinAuthUrl = oauth2Url + '?' + $httpParamSerializer(params);
+
+        window.location.href = linkedinAuthUrl;
+      }
+
+      function getLinkedinToken(code) {
+        return $resource(Configuration.apiBaseUrl + '/accounts/linkedin/token/')
+          .save({
+            code: code,
+            redirectUri: $state.href('application.linkedinLogin', {}, {absolute: true})
+          }).$promise;
+      }
+
       function exchangeLinkedinToken(accessToken) {
         return $resource(Configuration.apiBaseUrl + '/oauth2/convert-token/', {}, {
           exchangeToken: {
@@ -173,11 +203,11 @@ angular.module('xbertsApp')
         $rootScope.$emit('backdropOff', 'success');
 
         if ($rootScope.postLoginState) {
-          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params);
+          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {location: 'replace'});
 
           $rootScope.postLoginState = null;
         } else {
-          $state.go('application.main')
+          $state.go('application.main', {}, {location: 'replace'})
         }
       }
 
@@ -238,6 +268,8 @@ angular.module('xbertsApp')
 
       return {
         login: login,
+        linkedinLogin: linkedinLogin,
+        getLinkedinToken: getLinkedinToken,
         exchangeLinkedinToken: exchangeLinkedinToken,
         auth: auth,
         setUser: setUser,

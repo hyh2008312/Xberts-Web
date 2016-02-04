@@ -8,9 +8,6 @@
           <div ng-message="userExist">An account already exists with that email.</div>
           <div ng-messages-include="views/message/form_error.html"></div>
         </div>
-        <div class="error" ng-messages="signupForm.serverError">
-          <div ng-messages-include="views/message/linkedin_error.html"></div>
-        </div>
 
         <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.firstName.$touched"
              ng-messages="signupForm.firstName.$error">
@@ -58,16 +55,16 @@
         </p>
 
         <input type="submit" class="login-btn" value="Sign up">
-        <div class="login-line-wrapper">
-          <div class="login-or-line">
-            <div class="login-line-content">or</div>
-          </div>
-        </div>
-        <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin(signupForm)">
-          <i class="fa fa-linkedin"></i>
-          <span class="linkedin-btn-title">Sign in with LinkedIn</span>
-        </a>
       </form>
+      <div class="login-line-wrapper">
+        <div class="login-or-line">
+          <div class="login-line-content">or</div>
+        </div>
+      </div>
+      <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin()">
+        <i class="fa fa-linkedin"></i>
+        <span class="linkedin-btn-title">Sign in with LinkedIn</span>
+      </a>
       <div class="login-tips">Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a>
       </div>
     </div>

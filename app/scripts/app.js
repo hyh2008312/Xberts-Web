@@ -24,7 +24,8 @@ angular
     'dcbImgFallback',
     'configuration.properties',
     'satellizer',
-    'checklist-model'
+    'checklist-model',
+    'angularRandomString'
   ])
   .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService',
@@ -434,9 +435,15 @@ angular
         }
       })
       .state('application.login', {
-        url: '/login',
+        url: '/login?error',
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        reloadOnSearch: false
+      })
+      .state('application.linkedinLogin', {
+        url: '/linkedinlogin',
+        templateUrl: 'views/login.html',
+        controller: 'LinkedinLoginCtrl'
       })
       .state('application.signup', {
         url: '/signup',

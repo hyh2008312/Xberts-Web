@@ -7,6 +7,8 @@ angular.module('configuration.properties', [])
     oauthClientId: 'CwWuk2YE1v2LZIyKy2mvwyuhliYKHkKSxfhb0835',
 
     linkedinClientId: '75tq3jze54fv0u',
+    linkedinStateStorageKey: 'linkedin_state',
+    linkedinDefaultState: 'linkedin_csrf_state',
 
     // API endpoints to ignore when server returns unauthorized response status
     unauthorizedExceptionEndpoints: [
