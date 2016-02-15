@@ -434,6 +434,16 @@ angular
           }]
         }
       })
+      .state('application.report', {
+        url: '/reports/:reportId',
+        templateUrl: 'views/review/review_report_visual.html',
+        controller: 'ReviewReportVisualCtrl',
+        resolve: {
+          report: ['ReviewReportLoad', '$stateParams', function (ReviewReportLoad, $stateParams) {
+            return ReviewReportLoad($stateParams);
+          }]
+        }
+      })
       .state('application.login', {
         url: '/login?error',
         templateUrl: 'views/login.html',

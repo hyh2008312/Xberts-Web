@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$timeout','$scope', '$state', 'growl', 'Configuration', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
-    function ($timeout,$scope, $state, growl, Configuration, UploadMultiForm, TempImage, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$timeout', '$scope', '$state', 'growl', 'Configuration', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
+    function ($timeout, $scope, $state, growl, Configuration, UploadMultiForm, TempImage, ReviewReport, applicant) {
       // model
       $scope.applicant = applicant;
       $scope.report = {};
@@ -26,14 +26,14 @@ angular.module('xbertsApp')
         if ($scope.reportForm.$valid) {
           $scope.report.temp_id = $scope.reportTemp.tempId;
           $scope.$emit('backdropOn', 'post');
-          $scope.report=new ReviewReport($scope.report);
+          $scope.report = new ReviewReport($scope.report);
           if (!$scope.report.id) {
             $scope.report.$save(function (resp) {
               $scope.$emit('backdropOff', 'success');
               growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
-              $timeout(function(){
+              $timeout(function () {
                 $state.go('application.main');
-              },3000);
+              }, 3000);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
@@ -42,9 +42,9 @@ angular.module('xbertsApp')
             $scope.report.$put(function (resp) {
               $scope.$emit('backdropOff', 'success');
               growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
-              $timeout(function(){
+              $timeout(function () {
                 $state.go('application.main');
-              },3000);
+              }, 3000);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
@@ -95,4 +95,7 @@ angular.module('xbertsApp')
           uploadMultiImages.upload();
         }
       };
-    }]);
+    }])
+  .controller('ReviewReportVisualCtrl', function ($scope, report) {
+    $scope.report = report;
+  });
