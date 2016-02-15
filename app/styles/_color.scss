@@ -108,13 +108,15 @@ $colors: (
   }
 }
 .btn-gray {
-  background-color: #dddddd;
+  background-color: #CCCCCC;
+  color: #ffffff;
 }
 a.btn-gray {
-  background-color: #dddddd;
-  color: #333;
+  background-color: #CCCCCC;
+  color: #ffffff;
   &:hover{
-    color: $primaryColor;
+    color: #ffffff;
+    background-color: #c0c0c0;
   }
 }
 .nav > li.disabled {
