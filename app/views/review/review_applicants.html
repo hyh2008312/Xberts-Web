@@ -11,11 +11,17 @@
           </div>
           <div class="item-body">
             <p class="item-body-header">
+              <span ng-switch="applicant.reviewer.userprofile.gender">
+              <span ng-switch-when="M"><i class="fa fa-male"></i></span>
+              <span ng-switch-when="F"><i class="fa fa-female"></i></span>
+            </span>
           <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })">{{ applicant.reviewer.fullname
             }}</a></span>
+
               <span class="pull-right">{{ applicant.reviewer.country }}</span></p>
 
-            <!--<p class="item-body-title">{{ applicant.company_title}}</p>-->
+            <p class="item-body-title">{{ applicant.reviewer.userprofile.position}} @ {{
+              applicant.reviewer.userprofile.company }}({{ applicant.reviewer.userprofile.company_size }} employee)</p>
 
             <!--<p class="item-body-detail p-3-max">{{ applicant.biography }}</p>-->
           </div>
