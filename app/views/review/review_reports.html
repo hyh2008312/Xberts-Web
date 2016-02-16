@@ -5,12 +5,10 @@
 
       <h3>
         <i>
+          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true} | length }}</span> reviewer
           <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length }}</span>
           review
-          submitted,
-          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:false }| length }}</span>
-          pending
-          review
+          submitted
         </i>
       </h3>
     </div>
