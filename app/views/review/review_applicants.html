@@ -3,7 +3,11 @@
     <div class="section-title">
       <h2>{{ review.title }}</h2>
 
-      <h3><i class="font-striking">{{ review.applicants | length }} </i>applicants,
+      <h3><i class="font-striking">{{ review.applicants | length }}</i>
+        <span ng-switch="(review.applicants | length)> 1">
+          <span ng-switch-when="true">applicants</span>
+          <span ng-switch-when="false">applicant</span>
+        </span>,
         <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true }| length }}</i> selected
       </h3>
     </div>
