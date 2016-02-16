@@ -53,11 +53,58 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope','$rootScope', 'review', function ($scope, $rootScope,review) {
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'review', function ($scope, $rootScope, $filter, $uibModal, review) {
     $rootScope.bodyBackground = 'background-whitem';
     $scope.review = review;
+    $scope.applicants = $filter('orderBy')(review.applicants, '-is_selected');
+    $scope.open = function (size, index) {
+      if (!$rootScope.user.authRequired()) {
+        return;
+      }
+      var modalInstance = $uibModal.open({
+        templateUrl: 'views/review/review_applicant_approval.html',
+        controller: 'ReviewApprovalCtrl',
+        size: size,
+        resolve: {
+          applicant: function () {
+            return $scope.applicants[index];
+          },
+          review: function () {
+            return $scope.review;
+          }
+        }
+      });
+    };
   }])
-  .controller('ReviewReportsCtrl', ['$scope','$rootScope', 'review', function ($scope, $rootScope,review) {
+  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ReviewApplicant',
+    function ($scope, $uibModalInstance, applicant, review, ReviewApplicant) {
+      $scope.review = review;
+      $scope.applicant = applicant;
+      $scope.select = function (isSelected) {
+        $scope.$emit('backdropOn', 'post');
+        var applicant;
+        if (isSelected) {
+          applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: true});
+          applicant.$patch(function () {
+            $scope.applicant.is_selected = true;
+            $scope.$emit('backdropOff', 'success');
+            $uibModalInstance.dismiss();
+          }, function () {
+            $scope.$emit('backdropOff', 'success');
+          })
+        } else {
+          applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: false});
+          applicant.$patch(function () {
+            $scope.applicant.is_selected = false;
+            $scope.$emit('backdropOff', 'success');
+            $uibModalInstance.dismiss();
+          }, function () {
+            $scope.$emit('backdropOff', 'success');
+          })
+        }
+      }
+    }])
+  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', function ($scope, $rootScope, review) {
     $rootScope.bodyBackground = 'background-whitem';
     $scope.review = review;
   }]);

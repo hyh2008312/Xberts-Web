@@ -2,7 +2,7 @@ $primaryColor: #3FA4F4;
 $dangerColor: #a94442;
 $strikingColor: #ff2f00;
 $successColor: #00cc52;
-$orangeColor:#ff9900;
+$orangeColor: #ff9900;
 
 $darkColor: #333;
 //dark
@@ -26,18 +26,18 @@ $whiteBackground: $whiteColor;
 $lightGrayBackground: $lightGrayColor;
 
 $colors: (
-        primary: $primaryColor,
-        success: $successColor,
-        danger: $dangerColor,
-        striking: $strikingColor,
-        whitem:$whiteColor,
-        light-white:$lightWhiteColor,
-        light:$lightColor,
-        light-gray:$lightGrayColor,
-        gray-light:$grayLightColor,
-        graym:$grayColor,
-        dark-gray: $darkGrayColor,
-        dark: $darkColor,
+  primary: $primaryColor,
+  success: $successColor,
+  danger: $dangerColor,
+  striking: $strikingColor,
+  whitem:$whiteColor,
+  light-white:$lightWhiteColor,
+  light:$lightColor,
+  light-gray:$lightGrayColor,
+  gray-light:$grayLightColor,
+  graym:$grayColor,
+  dark-gray: $darkGrayColor,
+  dark: $darkColor,
 );
 @each $name, $color in $colors {
   .background-#{$name} {
@@ -74,6 +74,7 @@ $colors: (
     border-color: darken($primaryColor, 8%);
   }
 }
+
 .btn-striking {
   background-color: $strikingColor;
   border-color: darken($strikingColor, 8%);
@@ -84,6 +85,7 @@ $colors: (
     color: $whiteColor;
   }
 }
+
 .btn-orange {
   background-color: $orangeColor;
   border-color: darken($orangeColor, 8%);
@@ -107,18 +109,21 @@ $colors: (
     outline: 5px auto $successColor
   }
 }
+
 .btn-gray {
   background-color: #CCCCCC;
   color: #ffffff;
 }
-a.btn-gray {
+
+a.btn-gray, .btn-gray {
   background-color: #CCCCCC;
   color: #ffffff;
-  &:hover{
+  &:hover {
     color: #ffffff;
     background-color: #c0c0c0;
   }
 }
+
 .nav > li.disabled {
   > a:hover, > a:focus, > a {
     color: $grayLightColor;

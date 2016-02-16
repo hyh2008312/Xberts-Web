@@ -1,0 +1,39 @@
+<div class="modal-header text-center">
+  <h3 class="modal-title">Submit a Request</h3>
+</div>
+<div class="modal-body">
+  <div class="item-avatar-large" style="min-height: 127px;">
+    <div class="item-image text-center">
+      <avatar-img src="applicant.reviewer.avatar"></avatar-img>
+    </div>
+    <div class="item-body">
+      <p class="item-body-header">
+              <span ng-switch="applicant.reviewer.userprofile.gender">
+              <span ng-switch-when="M"><i class="fa fa-male"></i></span>
+              <span ng-switch-when="F"><i class="fa fa-female"></i></span>
+            </span>
+
+          <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })">{{ applicant.reviewer.fullname
+            }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
+                <span ng-switch="applicant.is_selected" class="pull-right">
+                        <i ng-switch-when="true">Selected</i>
+                        <i ng-switch-when="false">Unselected</i>
+                        <i ng-switch-when="null">Pending Selection</i>
+                </span>
+      </p>
+
+      <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">{{
+        applicant.reviewer.userprofile.position}} @ {{
+        applicant.reviewer.userprofile.company }}</p>
+
+      <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">{{
+        applicant.reviewer.userprofile.job_title}}</p>
+
+      <!--<p class="item-body-detail p-3-max">{{ applicant.biography }}</p>-->
+    </div>
+  </div>
+  <div class="text-center margin-top">
+    <button class="btn btn-gray" ng-click="select(false)">Unselected</button>
+    <button class="btn btn-primary" ng-click="select(true)">Selected</button>
+  </div>
+</div>

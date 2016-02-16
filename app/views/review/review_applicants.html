@@ -19,10 +19,10 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="list">
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
-               ng-repeat="applicant in review.applicants | orderBy:'-is_selected'">
+               ng-repeat="applicant in applicants">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a class="btn btn-xs btn-primary">View More</a>
+              <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View More</a>
             </div>
             <div class="item-body">
               <p class="item-body-header">

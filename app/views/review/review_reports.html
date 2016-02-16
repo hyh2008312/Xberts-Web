@@ -4,19 +4,19 @@
       <h2>{{ review.title }}</h2>
 
       <h3>
-        <i>
-          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true} | length }}</span>
+        <span>
+          <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true} | length }}</i>
           <span ng-switch="(review.applicants | filter:{ is_selected:true} | length)> 1">
             <span ng-switch-when="true">reviewers</span>
             <span ng-switch-when="false">reviewer</span>
           </span>,
-          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length }}</span>
+          <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length }}</i>
           <span ng-switch="(review.applicants | filter:{ is_selected:true,is_submit_report:true} | length)> 1">
             <span ng-switch-when="true">reviews</span>
             <span ng-switch-when="false">review</span>
           </span>
           submitted
-        </i>
+        </span>
       </h3>
     </div>
   </div>

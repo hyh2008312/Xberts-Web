@@ -2,12 +2,15 @@
 
 angular.module('xbertsApp')
   .factory('ReviewApplicant', ['$resource', 'Configuration', '$rootScope', '$q', function ($resource, Configuration, $rootScope, $q) {
-    var Applicant = $resource(Configuration.apiBaseUrl + '/review/applicants/:id/', {id: '@id'},{'put': {method: 'PUT'}});
+    var Applicant = $resource(Configuration.apiBaseUrl + '/review/applicants/:id/', {id: '@id'}, {
+      'put': {method: 'PUT'},
+      'patch': {method: 'PATCH'}
+    });
     var applicant = {};
 
     return {
       getApplicationResource: function (data) {
-        applicant=new Applicant(data);
+        applicant = new Applicant(data);
         return applicant;
       },
       getApplication: function () {
