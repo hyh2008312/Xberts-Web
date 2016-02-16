@@ -3,10 +3,14 @@
     <div class="section-title">
       <h2>{{ review.title }}</h2>
 
-      <h3><i class="font-striking">{{ review.applicants | length }} </i>applicants,
-        <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true }| length }}</i> selected,
-        <i class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</i> report
-        submitted</h3>
+      <h3>
+        <i>
+          <span class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</span> review
+          submitted,
+          <span class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</span> pending
+          review
+        </i>
+      </h3>
     </div>
   </div>
 </section>
@@ -33,15 +37,8 @@
           <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })">{{ applicant.reviewer.fullname
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
                 <span ng-switch="applicant.is_submit_report" class="pull-right">
-                   <i ng-switch-when="true">Report Submitted</i>
-                   <span ng-switch-when="false">
-                      <span ng-switch="applicant.is_selected">
-                        <i ng-switch-when="true">Selected</i>
-                        <i ng-switch-when="false">Unselected</i>
-                        <i ng-switch-when="null">Pending Selection</i>
-                      </span>
-                   </span>
-
+                   <i ng-switch-when="true">Review Submitted</i>
+                   <i ng-switch-when="false">Pending Review</i>
                 </span>
               </p>
 

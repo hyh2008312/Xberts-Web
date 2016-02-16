@@ -407,6 +407,17 @@ angular
           }]
         }
       })
+      .state('application.reviewReports', {
+        url: "/reviews/:reviewId/reports",
+        templateUrl: 'views/review/review_reports.html',
+        controller: 'ReviewReportsCtrl',
+        resolve: {
+          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
+          }]
+        }
+      })
       .state('application.protected.reviewApplicant', {
         url: '/review/:reviewId/applicant',
         templateUrl: 'views/review/review_application.html',

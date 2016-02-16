@@ -13,4 +13,9 @@ angular.module('xbertsApp')
     return function (text) {
       return $sce.trustAsHtml(text);
     };
-  }]);
+  }])
+  .filter('length', function () {
+    return function (array) {
+      return array.length;
+    };
+  });

@@ -53,6 +53,11 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', 'review', function ($scope, review) {
+  .controller('ReviewApplicantsCtrl', ['$scope','$rootScope', 'review', function ($scope, $rootScope,review) {
+    $rootScope.bodyBackground = 'background-whitem';
+    $scope.review = review;
+  }])
+  .controller('ReviewReportsCtrl', ['$scope','$rootScope', 'review', function ($scope, $rootScope,review) {
+    $rootScope.bodyBackground = 'background-whitem';
     $scope.review = review;
   }]);
