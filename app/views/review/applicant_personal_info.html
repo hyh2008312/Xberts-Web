@@ -70,6 +70,8 @@
                      ng-model="profile.position"
                      ng-maxlength="200"
                      ng-required="true"/>
+              <p class="message-error" ng-show="profileForm.position.$error.maxlength">* no more
+                than 200 chars.</p>
             </div>
           </div>
           <div class="form-group">
@@ -81,6 +83,8 @@
                      ng-model="profile.company"
                      ng-maxlength="200"
                      ng-required="true"/>
+              <p class="message-error" ng-show="profileForm.company.$error.maxlength">* no more
+                than 200 chars.</p>
             </div>
           </div>
           <div class="form-group">
@@ -225,8 +229,12 @@
               <input type="text" class="form-control"
                      name="linkedin_url"
                      ng-model="profile.linkedin_url"
+                     ng-maxlength="200"
                      ng-required="true"/>
+              <p class="message-error" ng-show="profileForm.linkedin_url.$error.maxlength">* no more
+                than 200 chars.</p>
             </div>
+
           </div>
           <div class="form-group" ng-if="profile.linkedin">
             <label class="col-md-4 control-label">Number of connections on LinkedIn:</label>
@@ -256,7 +264,11 @@
               <input type="input" class="form-control"
                      name="other_social_url"
                      ng-model="profile.other_social_url"
-                     ng-required="true"/></div>
+                     ng-maxlength="200"
+                     ng-required="true"/>
+              <p class="message-error" ng-show="profileForm.other_social_url.$error.maxlength">* no more
+                than 200 chars.</p></div>
+
           </div>
           <div class="form-group" ng-if="profile.other_social_type!=undefined && profile.other_social_type!='' && profile.other_social_type!=5 && profile.other_social_type!=0 ">
             <label class="col-md-4 control-label">Number of connections on {{ social_type }}:</label>
