@@ -4,9 +4,8 @@
       <h2>{{ review.title }}</h2>
 
       <h3><i class="font-striking">{{ review.applicants | length }} </i>applicants,
-        <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true }| length }}</i> selected,
-        <i class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</i> report
-        submitted</h3>
+        <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true }| length }}</i> selected
+      </h3>
     </div>
   </div>
 </section>
@@ -16,12 +15,10 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="list">
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
-               ng-repeat="applicant in review.applicants">
+               ng-repeat="applicant in review.applicants | orderBy:'-is_selected'">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a ui-sref="application.report({ reportId:applicant.report})"
-                 class="btn btn-xs btn-primary" ng-show="applicant.report">View Report</a>
-              <a class="btn btn-xs btn-gray" ng-show="!applicant.report">View Report</a>
+              <a class="btn btn-xs btn-primary">View More</a>
             </div>
             <div class="item-body">
               <p class="item-body-header">
@@ -32,16 +29,10 @@
 
           <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })">{{ applicant.reviewer.fullname
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
-                <span ng-switch="applicant.is_submit_report" class="pull-right">
-                   <i ng-switch-when="true">Report Submitted</i>
-                   <span ng-switch-when="false">
-                      <span ng-switch="applicant.is_selected">
+                <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true">Selected</i>
                         <i ng-switch-when="false">Unselected</i>
                         <i ng-switch-when="null">Pending Selection</i>
-                      </span>
-                   </span>
-
                 </span>
               </p>
 

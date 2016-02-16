@@ -5,9 +5,11 @@
 
       <h3>
         <i>
-          <span class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</span> review
+          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length }}</span>
+          review
           submitted,
-          <span class="font-striking"> {{ review.applicants | filter:{ is_submit_report:true }| length }}</span> pending
+          <span class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:false }| length }}</span>
+          pending
           review
         </i>
       </h3>
@@ -20,7 +22,7 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="list">
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
-               ng-repeat="applicant in review.applicants">
+               ng-repeat="applicant in review.applicants | filter:{ is_selected:true }">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
               <a ui-sref="application.report({ reportId:applicant.report})"
