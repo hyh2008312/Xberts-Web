@@ -1,8 +1,5 @@
-<div class="modal-header text-center">
-  <h3 class="modal-title">Submit a Request</h3>
-</div>
 <div class="modal-body">
-  <div class="item-avatar-large" style="min-height: 127px;">
+  <div class="item-avatar-large item-hover" style="min-height: 127px;border-bottom: 0">
     <div class="item-image text-center">
       <avatar-img src="applicant.reviewer.avatar"></avatar-img>
     </div>
@@ -21,19 +18,47 @@
                         <i ng-switch-when="null">Pending Selection</i>
                 </span>
       </p>
-
-      <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">{{
-        applicant.reviewer.userprofile.position}} @ {{
-        applicant.reviewer.userprofile.company }}</p>
-
-      <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">{{
-        applicant.reviewer.userprofile.job_title}}</p>
-
-      <!--<p class="item-body-detail p-3-max">{{ applicant.biography }}</p>-->
+      <br/>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.position }}</span></p>
+          <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.job_title }}</span></p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span></p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
+            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections }}: :<span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span></p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="text-center margin-top">
-    <button class="btn btn-gray" ng-click="select(false)">Unselected</button>
-    <button class="btn btn-primary" ng-click="select(true)">Selected</button>
+
+  <p class="item-body-detail">Job Function: {{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</p>
+  <p class="item-body-detail">Company Size: {{ COMPANY_SIZE|decode_ : applicant.reviewer.userprofile.company_size }}</p>
+  <p class="item-body-detail">Industry: {{ INDUSTRY|decode_:applicant.reviewer.userprofile.industry }}</p>
+  <p class="item-body-detail">Date of Birth: {{ applicant.reviewer.userprofile.birth | amDateFormat:'MMM DD, YYYY'}}</p>
+
+  <div class="panel panel-default" ng-repeat="survey in review.surveys">
+    <div class="panel-heading">{{ survey.name }}</div>
+    <div class="panel-body">
+      <div ng-repeat="question in survey.questions">
+        <p>{{ question.title }} </p>
+
+        <p>{{ answer["question_"+question.id].answer_main }} <span ng-show="answer['question_'+question.id].answer_other">,{{ answer["question_"+question.id].answer_other }}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center margin-top" ng-switch="applicant.is_selected">
+    <button class="btn btn-default" ng-click="close()">Close</button>
+    <button ng-switch-when="true" class="btn btn-danger" ng-click="select(false)">Unselect</button>
+    <button ng-switch-when="false" class="btn btn-primary" ng-click="select(true)">Select</button>
+    <button ng-switch-when="null" class="btn btn-primary" ng-click="select(true)">Select</button>
   </div>
 </div>

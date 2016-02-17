@@ -53,8 +53,12 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'review', function ($scope, $rootScope, $filter, $uibModal, review) {
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal','SystemConstant', 'review',
+    function ($scope, $rootScope, $filter, $uibModal,SystemConstant, review) {
     $rootScope.bodyBackground = 'background-whitem';
+    $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
+    $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
+    $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
     $scope.review = review;
     $scope.applicants = $filter('orderBy')(review.applicants, '-is_selected');
     $scope.open = function (size, index) {
@@ -76,8 +80,17 @@ angular.module('xbertsApp')
       });
     };
   }])
-  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ReviewApplicant',
-    function ($scope, $uibModalInstance, applicant, review, ReviewApplicant) {
+  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant',
+    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant) {
+      $scope.COUNTRIES = SystemConstant.COUNTRIES;
+      $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
+      $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
+      $scope.COMPANY_SIZE = SystemConstant.COMPANY_SIZE;
+      $scope.JOB_FUNCTION = SystemConstant.JOB_FUNCTION;
+      $scope.INDUSTRY = SystemConstant.INDUSTRY;
+      $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
+      $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
+      $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
       $scope.review = review;
       $scope.applicant = applicant;
       $scope.select = function (isSelected) {
@@ -102,7 +115,11 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'success');
           })
         }
-      }
+      };
+      $scope.close = function () {
+        $uibModalInstance.dismiss();
+      };
+      $scope.answer = JSON.parse(applicant.answer);
     }])
   .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', function ($scope, $rootScope, review) {
     $rootScope.bodyBackground = 'background-whitem';

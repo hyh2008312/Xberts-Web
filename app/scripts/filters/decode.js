@@ -15,7 +15,21 @@ angular.module('xbertsApp')
       if (code) {
         code = Number(code);
         for (var i = 0; i < items.length; i++) {
-          if (items[i].id === code) {
+          if (Number(items[i].id) === code) {
+            item = items[i].name;
+          }
+        }
+      }
+      return item
+    };
+  })
+  .filter('decode_', function () {
+    return function (items, code) {
+      var item = "N/A";
+      if (code) {
+        code = Number(code);
+        for (var i = 0; i < items.length; i++) {
+          if (Number(items[i].code) === code) {
             item = items[i].name;
           }
         }
