@@ -10,11 +10,11 @@
               <span ng-switch-when="F"><i class="fa fa-female"></i></span>
             </span>
 
-          <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })">{{ applicant.reviewer.fullname
+          <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })" ng-click="close()">{{ applicant.reviewer.fullname
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
                 <span ng-switch="applicant.is_selected" class="pull-right">
-                        <i ng-switch-when="true">Selected</i>
-                        <i ng-switch-when="false">Unselected</i>
+                        <i ng-switch-when="true" class="text-primary">Selected</i>
+                        <i ng-switch-when="false" class="text-danger">Unselected</i>
                         <i ng-switch-when="null">Pending Selection</i>
                 </span>
       </p>

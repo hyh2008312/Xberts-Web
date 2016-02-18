@@ -53,33 +53,36 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal','SystemConstant', 'review',
-    function ($scope, $rootScope, $filter, $uibModal,SystemConstant, review) {
-    $rootScope.bodyBackground = 'background-whitem';
-    $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
-    $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
-    $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
-    $scope.review = review;
-    $scope.applicants = $filter('orderBy')(review.applicants, '-is_selected');
-    $scope.open = function (size, index) {
-      if (!$rootScope.user.authRequired()) {
-        return;
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'review',
+    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, review) {
+      $rootScope.bodyBackground = 'background-whitem';
+      $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
+      $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
+      $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
+      $scope.review = review;
+      $scope.applicants = $filter('orderBy')(review.applicants, '-is_selected');
+      if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
+        $state.go('application.main')
       }
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/review/review_applicant_approval.html',
-        controller: 'ReviewApprovalCtrl',
-        size: size,
-        resolve: {
-          applicant: function () {
-            return $scope.applicants[index];
-          },
-          review: function () {
-            return $scope.review;
-          }
+      $scope.open = function (size, index) {
+        if (!$rootScope.user.authRequired()) {
+          return;
         }
-      });
-    };
-  }])
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/review/review_applicant_approval.html',
+          controller: 'ReviewApprovalCtrl',
+          size: size,
+          resolve: {
+            applicant: function () {
+              return $scope.applicants[index];
+            },
+            review: function () {
+              return $scope.review;
+            }
+          }
+        });
+      };
+    }])
   .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant',
     function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant) {
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
