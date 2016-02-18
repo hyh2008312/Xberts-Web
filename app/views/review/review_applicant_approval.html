@@ -24,25 +24,25 @@
       </p>
 
       <div class="row">
-        <div class="col-md-6">
-          <p class="item-body-title">
-            LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"
-                         target="_blank">{{
-            applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>
-          </p>
-        </div>
+        <!--<div class="col-md-6">-->
+          <!--<p class="item-body-title">-->
+            <!--LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"-->
+                         <!--target="_blank">{{-->
+            <!--applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>-->
+          <!--</p>-->
+        <!--</div>-->
         <div class="col-md-6">
           <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
           </p>
         </div>
       </div>
       <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
-        <div class="col-md-6">
-          <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
-            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{
-              applicant.reviewer.userprofile.other_social_url }}</a>
-          </p>
-        </div>
+        <!--<div class="col-md-6">-->
+          <!--<p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:-->
+            <!--<a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{-->
+              <!--applicant.reviewer.userprofile.other_social_url }}</a>-->
+          <!--</p>-->
+        <!--</div>-->
         <div class="col-md-6">
           <p class="item-body-title">
             Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
@@ -102,13 +102,20 @@
       </div>
     </div>
   </div>
-  <div class="text-center margin-top" ng-switch="applicant.is_selected" ng-show="review.is_publish_applicants">
+  <div class="text-center margin-top" ng-show="review.is_publish_applicants">
     <button class="btn btn-default" ng-click="close()">Close</button>
   </div>
-  <div class="text-center margin-top" ng-switch="applicant.is_selected" ng-show="!review.is_publish_applicants">
-    <button class="btn btn-default" ng-click="close()">Close</button>
-    <button ng-switch-when="true" class="btn btn-danger" ng-click="select(false)">Unselect</button>
-    <button ng-switch-when="false" class="btn btn-primary" ng-click="select(true)">Select</button>
-    <button ng-switch-when="null" class="btn btn-primary" ng-click="select(true)">Select</button>
+  <div class="text-center margin-top" ng-show="!review.is_publish_applicants">
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-default pull-left" ng-click="close()">Close</button>
+      </div>
+      <div class="col-md-6 align-right">
+        <button class="btn btn-danger" ng-click="select(false)">Unselect</button>
+        <button class="btn btn-primary" ng-click="select(true)">Select</button>
+      </div>
+    </div>
+
+
   </div>
 </div>
