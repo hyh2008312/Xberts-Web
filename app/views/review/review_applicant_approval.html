@@ -10,7 +10,8 @@
               <span ng-switch-when="F"><i class="fa fa-female"></i></span>
             </span>
 
-          <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })" ng-click="close()">{{ applicant.reviewer.fullname
+          <span><a ui-sref="application.expert({ expertId:applicant.reviewer.id })" ng-click="close()">{{
+            applicant.reviewer.fullname
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
                 <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true" class="text-primary">Selected</i>
@@ -18,12 +19,16 @@
                         <i ng-switch-when="null">Pending Selection</i>
                 </span>
       </p>
+
       <p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>
       </p>
+
       <div class="row">
         <div class="col-md-6">
           <p class="item-body-title">
-            LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url }}" target="_blank">{{ applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>
+            LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"
+                         target="_blank">{{
+            applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>
           </p>
         </div>
         <div class="col-md-6">
@@ -34,12 +39,13 @@
       <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
         <div class="col-md-6">
           <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
-            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url }}" target="_blank">{{ applicant.reviewer.userprofile.other_social_url }}</a>
+            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url }}" target="_blank">{{
+              applicant.reviewer.userprofile.other_social_url | url }}</a>
           </p>
         </div>
         <div class="col-md-6">
           <p class="item-body-title">
-            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections}}:
+            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
             <span ng-switch="applicant.reviewer.userprofile.other_social_connections!=0">
               <span class="font-gray-light" ng-switch-when="true">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>
               <span class="font-gray-light" ng-switch-when="false">N/A</span>
@@ -96,7 +102,10 @@
       </div>
     </div>
   </div>
-  <div class="text-center margin-top" ng-switch="applicant.is_selected">
+  <div class="text-center margin-top" ng-switch="applicant.is_selected" ng-show="review.is_publish_applicants">
+    <button class="btn btn-default" ng-click="close()">Close</button>
+  </div>
+  <div class="text-center margin-top" ng-switch="applicant.is_selected" ng-show="!review.is_publish_applicants">
     <button class="btn btn-default" ng-click="close()">Close</button>
     <button ng-switch-when="true" class="btn btn-danger" ng-click="select(false)">Unselect</button>
     <button ng-switch-when="false" class="btn btn-primary" ng-click="select(true)">Select</button>

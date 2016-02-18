@@ -36,4 +36,22 @@ angular.module('xbertsApp')
       }
       return item
     };
+  })
+  .filter('url', function () {
+    var n_link;
+    return function (link) {
+      if (link) {
+        var r = new RegExp("^http");
+
+        if (r.test(link)) {
+          n_link = link;
+        } else {
+          n_link = "https://" + link;
+        }
+      } else {
+        n_link = link;
+      }
+
+      return n_link
+    };
   });

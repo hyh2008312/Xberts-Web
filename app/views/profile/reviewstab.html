@@ -8,6 +8,7 @@
           </div>
           <div class="card-body">
             <p class="card-body-title p-1">{{ applicant.review.title }}</p>
+
             <p class="card-body-detail">
               Available Units: {{ applicant.review.quota }}
             </p>
@@ -21,20 +22,28 @@
               </span>
             </p>
 
-            <div class="card-body-footer align-right" ng-switch="applicant.is_selected">
+            <div class="card-body-footer align-right" ng-switch="applicant.review.is_publish_applicants">
+              <div ng-switch-when="false">
+                <span>Pending Selection</span>
+              </div>
               <div ng-switch-when="true">
-                <div ng-switch="applicant.is_submit_report">
-                  <span ng-switch-when="false">Pending Review</span>
-                  <span ng-switch-when="true">Review Submitted</span>
+                <div ng-switch="applicant.is_selected">
+                  <div ng-switch-when="true">
+                    <div ng-switch="applicant.is_submit_report">
+                      <span ng-switch-when="false">Pending Review</span>
+                      <span ng-switch-when="true">Review Submitted</span>
+                    </div>
+                  </div>
+                  <span ng-switch-when="false">Not Selected</span>
+                  <span ng-switch-when="null">Pending Selection</span>
                 </div>
               </div>
-            <span ng-switch-when="false">Not Selected</span>
-            <span ng-switch-when="null">Pending Selection</span>
+
+            </div>
           </div>
         </div>
+      </a>
     </div>
-    </a>
   </div>
-</div>
-<load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
+  <load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
 </div>

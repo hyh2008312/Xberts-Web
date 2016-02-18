@@ -53,8 +53,8 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'review',
-    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, review) {
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review',
+    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review) {
       $rootScope.bodyBackground = 'background-whitem';
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
@@ -64,6 +64,16 @@ angular.module('xbertsApp')
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
         $state.go('application.main')
       }
+      $scope.publish = function () {
+        $scope.$emit('backdropOn', 'post');
+        var r = new Review({id: review.id, is_publish_applicants: true});
+        r.$patch(function () {
+          $scope.review.is_publish_applicants = true;
+          $scope.$emit('backdropOff', 'success');
+        }, function () {
+          $scope.$emit('backdropOff', 'success');
+        })
+      };
       $scope.open = function (size, index) {
         if (!$rootScope.user.authRequired()) {
           return;

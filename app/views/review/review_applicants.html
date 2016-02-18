@@ -15,14 +15,21 @@
 </section>
 <section>
   <div class="container">
+
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
+        <div class="align-right margin-bottom" ng-switch="review.is_publish_applicants">
+          <button ng-switch-when="false" class="btn btn-primary clearfix" ng-click="publish();">Publish Selection
+            Result
+          </button>
+          <label ng-switch-when="true" class="label label-info">Selection result has been published</label>
+        </div>
         <div class="list">
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
                ng-repeat="applicant in applicants">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View More</a>
+              <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View Detail</a>
             </div>
             <div class="item-body">
               <p class="item-body-header">
@@ -40,22 +47,30 @@
                 </span>
               </p>
               <br/>
+
               <div class="row">
                 <div class="col-md-6">
-                  <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.position }}</span></p>
-                  <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.job_title }}</span></p>
+                  <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">Business Title: <span
+                    class="font-gray-light"> {{ applicant.reviewer.userprofile.position }}</span></p>
+
+                  <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">Business Title: <span
+                    class="font-gray-light"> {{ applicant.reviewer.userprofile.job_title }}</span></p>
                 </div>
                 <div class="col-md-6">
-                  <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
+                  <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span
+                    class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span></p>
+                  <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+                  </p>
                 </div>
                 <div class="col-md-6">
                   <p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
-                    Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type }}:<span class="font-gray-light"> {{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span></p>
+                    Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type
+                    }}:<span class="font-gray-light"> {{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>
+                  </p>
                 </div>
               </div>
             </div>
