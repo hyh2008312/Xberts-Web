@@ -33,14 +33,18 @@
       </div>
       <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
         <div class="col-md-6">
-          <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections}}:
-            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url }}" target="_blank">{{ applicant.reviewer.userprofile.linkedin_url }}</a>
+          <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
+            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url }}" target="_blank">{{ applicant.reviewer.userprofile.other_social_url }}</a>
           </p>
         </div>
         <div class="col-md-6">
           <p class="item-body-title">
-            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections
-            }}: <span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections}}:
+            <span ng-switch="applicant.reviewer.userprofile.other_social_connections!=0">
+              <span class="font-gray-light" ng-switch-when="true">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>
+              <span class="font-gray-light" ng-switch-when="false">N/A</span>
+            </span>
+
           </p>
         </div>
       </div>
@@ -86,7 +90,7 @@
       <div ng-repeat="question in survey.questions">
         <p>{{ question.title }} </p>
 
-        <p>{{ answer["question_"+question.id].answer_main }} <span
+        <p class="font-gray-light">{{ answer["question_"+question.id].answer_main }} <span
           ng-show="answer['question_'+question.id].answer_other">,{{ answer["question_"+question.id].answer_other }}</span>
         </p>
       </div>
