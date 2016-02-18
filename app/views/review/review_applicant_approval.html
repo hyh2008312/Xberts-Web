@@ -18,32 +18,56 @@
                         <i ng-switch-when="null">Pending Selection</i>
                 </span>
       </p>
+      <p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>
+      </p>
       <br/>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Personal Information</div>
+    <div class="panel-body">
       <div class="row">
-        <div class="col-md-6">
-          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.position }}</span></p>
-          <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">Business Title: <span class="font-gray-light"> {{ applicant.reviewer.userprofile.job_title }}</span></p>
+        <div class="col-md-4">
+          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.position">Business Title: <span
+            class="font-gray-light"> {{ applicant.reviewer.userprofile.position }}</span></p>
+
+          <p class="item-body-title" ng-show="!applicant.reviewer.userprofile.position">Business Title: <span
+            class="font-gray-light"> {{ applicant.reviewer.userprofile.job_title }}</span></p>
         </div>
-        <div class="col-md-6">
-          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
+        <div class="col-md-4">
+          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span
+            class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
+        </div>
+        <div class="col-md-4">
+          <p class="item-body-title">Company Size: <span class="font-gray-light">{{ COMPANY_SIZE|decode_ : applicant.reviewer.userprofile.company_size }}</span>
+          </p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span></p>
+          <p class="item-body-title">Industry: <span class="font-gray-light">{{ INDUSTRY|decode_:applicant.reviewer.userprofile.industry }}</span>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">Job Function: <span class="font-gray-light">{{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+          </p>
         </div>
         <div class="col-md-6">
           <p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
-            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections }}: :<span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span></p>
+            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections
+            }}: :<span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <p class="item-body-detail">Job Function: {{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</p>
-  <p class="item-body-detail">Company Size: {{ COMPANY_SIZE|decode_ : applicant.reviewer.userprofile.company_size }}</p>
-  <p class="item-body-detail">Industry: {{ INDUSTRY|decode_:applicant.reviewer.userprofile.industry }}</p>
-  <p class="item-body-detail">Date of Birth: {{ applicant.reviewer.userprofile.birth | amDateFormat:'MMM DD, YYYY'}}</p>
 
   <div class="panel panel-default" ng-repeat="survey in review.surveys">
     <div class="panel-heading">{{ survey.name }}</div>
@@ -51,7 +75,9 @@
       <div ng-repeat="question in survey.questions">
         <p>{{ question.title }} </p>
 
-        <p>{{ answer["question_"+question.id].answer_main }} <span ng-show="answer['question_'+question.id].answer_other">,{{ answer["question_"+question.id].answer_other }}</span></p>
+        <p>{{ answer["question_"+question.id].answer_main }} <span
+          ng-show="answer['question_'+question.id].answer_other">,{{ answer["question_"+question.id].answer_other }}</span>
+        </p>
       </div>
     </div>
   </div>
