@@ -39,8 +39,8 @@
       <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
         <div class="col-md-6">
           <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
-            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url }}" target="_blank">{{
-              applicant.reviewer.userprofile.other_social_url | url }}</a>
+            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{
+              applicant.reviewer.userprofile.other_social_url }}</a>
           </p>
         </div>
         <div class="col-md-6">
