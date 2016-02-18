@@ -20,7 +20,30 @@
       </p>
       <p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>
       </p>
-      <br/>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">
+            LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url }}" target="_blank">{{ applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
+        <div class="col-md-6">
+          <p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections}}:
+            <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url }}" target="_blank">{{ applicant.reviewer.userprofile.linkedin_url }}</a>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">
+            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections
+            }}: <span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="panel panel-default">
@@ -50,18 +73,6 @@
         </div>
         <div class="col-md-6">
           <p class="item-body-title">Job Function: <span class="font-gray-light">{{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</span>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
-          </p>
-        </div>
-        <div class="col-md-6">
-          <p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
-            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_connections
-            }}: :<span class="font-gray-light">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
           </p>
         </div>
       </div>
