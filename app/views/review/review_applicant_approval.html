@@ -25,11 +25,11 @@
 
       <div class="row">
         <!--<div class="col-md-6">-->
-          <!--<p class="item-body-title">-->
-            <!--LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"-->
-                         <!--target="_blank">{{-->
-            <!--applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>-->
-          <!--</p>-->
+        <!--<p class="item-body-title">-->
+        <!--LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"-->
+        <!--target="_blank">{{-->
+        <!--applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>-->
+        <!--</p>-->
         <!--</div>-->
         <div class="col-md-6">
           <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
@@ -38,10 +38,10 @@
       </div>
       <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
         <!--<div class="col-md-6">-->
-          <!--<p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:-->
-            <!--<a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{-->
-              <!--applicant.reviewer.userprofile.other_social_url }}</a>-->
-          <!--</p>-->
+        <!--<p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:-->
+        <!--<a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{-->
+        <!--applicant.reviewer.userprofile.other_social_url }}</a>-->
+        <!--</p>-->
         <!--</div>-->
         <div class="col-md-6">
           <p class="item-body-title">
@@ -106,13 +106,14 @@
     <button class="btn btn-default" ng-click="close()">Close</button>
   </div>
   <div class="text-center margin-top" ng-show="!review.is_publish_applicants">
+    <p class="font-striking align-right" ng-show="applicantLeft ==0">Applicant limit reached, please unselect an applicant first</p>
     <div class="row">
       <div class="col-md-6">
         <button class="btn btn-default pull-left" ng-click="close()">Close</button>
       </div>
       <div class="col-md-6 align-right">
-        <button class="btn btn-danger" ng-click="select(false)">Unselect</button>
-        <button class="btn btn-primary" ng-click="select(true)">Select</button>
+        <button class="btn btn-danger" ng-click="select(false)" ng-show="applicant.is_selected==null || applicant.is_selected">Unselect</button>
+        <button class="btn btn-primary" ng-click="select(true)" ng-show="applicant.is_selected==null || !applicant.is_selected" ng-disabled="applicantLeft==0">Select</button>
       </div>
     </div>
 

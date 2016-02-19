@@ -64,6 +64,7 @@ angular.module('xbertsApp')
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
         $state.go('application.main')
       }
+      $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
       $scope.publish = function () {
         $scope.$emit('backdropOn', 'post');
         var r = new Review({id: review.id, is_publish_applicants: true});
@@ -88,13 +89,21 @@ angular.module('xbertsApp')
             },
             review: function () {
               return $scope.review;
+            },
+            applicantLeft:function(){
+              return $scope.applicantLeft;
             }
           }
         });
+        modalInstance.result.then(function () {
+          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
       };
     }])
-  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant',
-    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant) {
+  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant','applicantLeft',
+    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant,applicantLeft) {
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
       $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -106,6 +115,7 @@ angular.module('xbertsApp')
       $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
       $scope.review = review;
       $scope.applicant = applicant;
+      $scope.applicantLeft = applicantLeft;
       $scope.select = function (isSelected) {
         $scope.$emit('backdropOn', 'post');
         var applicant;
@@ -114,7 +124,7 @@ angular.module('xbertsApp')
           applicant.$patch(function () {
             $scope.applicant.is_selected = true;
             $scope.$emit('backdropOff', 'success');
-            $uibModalInstance.dismiss();
+            $uibModalInstance.close();
           }, function () {
             $scope.$emit('backdropOff', 'success');
           })
@@ -123,7 +133,7 @@ angular.module('xbertsApp')
           applicant.$patch(function () {
             $scope.applicant.is_selected = false;
             $scope.$emit('backdropOff', 'success');
-            $uibModalInstance.dismiss();
+            $uibModalInstance.close();
           }, function () {
             $scope.$emit('backdropOff', 'success');
           })
