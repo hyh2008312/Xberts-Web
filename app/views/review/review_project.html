@@ -236,6 +236,12 @@
             Applicants</a>
         </div>
       </div>
+      <div ng-show="review.is_publish_applicants">
+        <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+          <a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewApplicants({reviewId:review.id})">View
+            Applicants</a>
+        </div>
+      </div>
       <div ng-show="isReportsReviewButtonActive">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
           <a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewReports({reviewId:review.id})">View
