@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, review, Applicantsreview) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, $filter, review, Applicantsreview) {
     $scope.review = review;
     $scope.applicantsSearch = {is_selected: true};
     $rootScope.bodyBackground = 'background-whitem';
@@ -18,6 +18,9 @@ angular.module('xbertsApp')
     $scope.isOutDated = function (time) {
       return Date.now() - new Date(time) > 0;
     };
+    $scope.isApplicantsSelectionButtonActive = Math.abs($filter('amDifference')($scope.review.application_end_date, null, 'days')) < 3;
+    $scope.isReportsReviewButtonActive = $filter('amDifference')($scope.review.date_end, null, 'days') < 3;
+    console.log($scope.isApplicantsSelectionButtonActive);
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     if ($rootScope.user.isAuth()) {
       Applicantsreview.get({

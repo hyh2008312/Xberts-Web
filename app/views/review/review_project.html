@@ -122,7 +122,8 @@
             <br/>
 
             <li>
-              Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping information.
+              Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping
+              information.
               If the
               successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up
               his/her candidacy.
@@ -130,7 +131,8 @@
             <br/>
 
             <li>
-              Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from campaign
+              Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from
+              campaign
               owner. Xberts will
               provide each
               reviewer with a tracking number and further instructions on review and submission.
@@ -228,11 +230,21 @@
           </div>
         </div>
       </div>
-      <!--<div class="margin-top" ng-if="user.getUserId() == review.project.account">-->
-        <!--<a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewApplicants({reviewId:review.id})">Select-->
-          <!--Applicant</a>-->
-      <!--</div>-->
-      <h4  ng-show="review.is_publish_applicants" style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
+      <div ng-show="isApplicantsSelectionButtonActive">
+        <div class="margin-top" ng-if="user.getUserId() == review.owner_id || user.isStaff()">
+          <a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewApplicants({reviewId:review.id})">Select
+            Applicants</a>
+        </div>
+      </div>
+      <div ng-show="isReportsReviewButtonActive">
+        <div class="margin-top" ng-if="user.getUserId() == review.owner_id || user.isStaff()">
+          <a class="btn btn-lg btn-block btn-primary" ui-sref="application.reviewReports({reviewId:review.id})">View
+            Reports</a>
+        </div>
+      </div>
+
+      <h4 ng-show="review.is_publish_applicants" style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
+
       <div class="row" ng-show='review.is_publish_applicants'>
         <div class="col-xs-3 text-center" ng-repeat="item in review.applicants | filter:applicantsSearch">
           <a class="block-link default" ui-sref="application.expert({ expertId:item.reviewer.id })">
