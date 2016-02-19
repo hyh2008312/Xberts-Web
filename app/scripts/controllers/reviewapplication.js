@@ -142,7 +142,9 @@ angular.module('xbertsApp')
       $scope.close = function () {
         $uibModalInstance.dismiss();
       };
-      $scope.answer = JSON.parse(applicant.answer);
+      if(applicant.answer){
+        $scope.answer = JSON.parse(applicant.answer);
+      }
     }])
   .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', function ($scope, $rootScope, review) {
     $rootScope.bodyBackground = 'background-whitem';
