@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
-    '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService',
+    '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
-             _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService) {
+             _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved) {
         this._userId = userId || '';
@@ -196,6 +196,8 @@ angular.module('xbertsApp')
           })
           .then(function(value) {
             setUser(value);
+
+            Idle.watch();
           });
       }
 
@@ -211,12 +213,39 @@ angular.module('xbertsApp')
         }
       }
 
+      function refreshToken() {
+        var deferred = $q.defer();
+
+        var refreshToken = OAuthToken.getRefreshToken();
+
+        if (!refreshToken) {
+          deferred.reject();
+
+          return deferred.promise;
+        }
+
+        return $resource(Configuration.apiBaseUrl + '/oauth2/token/', {}, {
+          refresh: {
+            method: 'POST',
+            params: {
+              grant_type: 'refresh_token',
+              client_id: Configuration.oauthClientId,
+              refresh_token: refreshToken
+            }
+          }
+        }).refresh().$promise.then(function(value) {
+          OAuthToken.setToken(value);
+        });
+      }
+
       function logout(shouldMakeApiCall) {
         $rootScope.user = new User();
         $rootScope.user.setIsResolved(true);
 
         var token = OAuthToken.getAccessToken();
         OAuthToken.removeToken();
+
+        Idle.unwatch();
 
         if (!shouldMakeApiCall) {
           var deferred = $q.defer();
@@ -251,6 +280,8 @@ angular.module('xbertsApp')
             .then(function(value) {
               setUser(value);
 
+              Idle.watch();
+
               deferred.resolve();
             })
             .catch(function(httpResponse) {
@@ -274,6 +305,7 @@ angular.module('xbertsApp')
         auth: auth,
         setUser: setUser,
         loginRedirect: loginRedirect,
-        logout: logout
+        logout: logout,
+        refreshToken: refreshToken
       };
     }]);

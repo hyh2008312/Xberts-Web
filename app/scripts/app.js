@@ -12,6 +12,7 @@ angular
     'ngImgCrop',
     'ngFileUpload',
     'ngTagsInput',
+    'ngIdle',
     'angularMoment',
     'angular-growl',
     'ui.router',
@@ -98,6 +99,13 @@ angular
     tagsInputConfigProvider.setDefaults('tagsInput', {
       minLength: 1
     });
+  }])
+  .config(['IdleProvider', 'KeepaliveProvider', 'ConfigurationProvider',
+    function(IdleProvider, KeepaliveProvider, ConfigurationProvider) {
+      IdleProvider.idle(ConfigurationProvider.idleTimeout); // seconds
+      // Disable timeout feature since automatic logout is not desired for now
+      IdleProvider.timeout(0);
+      KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
   }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");

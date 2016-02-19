@@ -5,6 +5,12 @@ angular.module('configuration.properties', [])
     apiBaseUrl: 'http://localhost:8000/api',
 
     oauthClientId: 'CwWuk2YE1v2LZIyKy2mvwyuhliYKHkKSxfhb0835',
+    // Threshold for triggering oauth token refresh prior to current token expiration date
+    tokenRefreshThreshold: 600, // seconds
+    tokenRefreshCheckInterval: 60, // seconds
+
+    // Inactivity time until user is considered idle
+    idleTimeout: 1800, // seconds
 
     linkedinClientId: '75tq3jze54fv0u',
     linkedinStateStorageKey: 'linkedin_state',
