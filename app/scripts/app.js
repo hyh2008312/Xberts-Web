@@ -458,8 +458,8 @@ angular
         templateUrl: 'views/review/review_report_visual.html',
         controller: 'ReviewReportVisualCtrl',
         resolve: {
-          report: ['ReviewReportLoad', '$stateParams', function (ReviewReportLoad, $stateParams) {
-            return ReviewReportLoad($stateParams);
+          report: ['ReviewReportMoreLoad', '$stateParams', function (ReviewReportMoreLoad, $stateParams) {
+            return ReviewReportMoreLoad($stateParams);
           }]
         }
       })

@@ -1,8 +1,18 @@
 <section class="background-light-white">
   <div class="container">
     <div class="section-title">
-      <h3>{{ report.title }}</h3>
+      <h2>{{ report.title }}</h2>
+
+      <h3 class="avatar-inline">
+        <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
+        <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
+          report.applicant.reviewer.fullname }}</a>
+      </h3>
     </div>
+  </div>
+</section>
+<section>
+  <div class="container">
     <div class="section-body" ng-bind-html="report.details | trust">
     </div>
   </div>
