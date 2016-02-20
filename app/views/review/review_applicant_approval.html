@@ -15,8 +15,8 @@
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
                 <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true" class="text-primary">Selected</i>
-                        <i ng-switch-when="false" class="text-danger">Unselected</i>
-                        <i ng-switch-when="null">Pending Selection</i>
+                        <i ng-switch-when="false" class="text-danger">Dismissed</i>
+                        <i ng-switch-when="null">Pending</i>
                 </span>
       </p>
 
@@ -112,8 +112,10 @@
         <button class="btn btn-default pull-left" ng-click="close()">Close</button>
       </div>
       <div class="col-md-6 align-right">
-        <button class="btn btn-danger" ng-click="select(false)" ng-show="applicant.is_selected==null || applicant.is_selected">Unselect</button>
-        <button class="btn btn-primary" ng-click="select(true)" ng-show="applicant.is_selected==null || !applicant.is_selected" ng-disabled="applicantLeft==0">Select</button>
+        <button class="btn btn-danger" ng-click="select(null)" ng-show="applicant.is_selected==false">Reconsider</button>
+        <button class="btn btn-danger" ng-click="select(false)" ng-show="applicant.is_selected==null">Dismiss</button>
+        <button class="btn btn-danger" ng-click="select(null)" ng-show="applicant.is_selected">Unselect</button>
+        <button class="btn btn-primary" ng-click="select(true)" ng-show="applicant.is_selected==null" ng-disabled="applicantLeft==0">Select</button>
       </div>
     </div>
 

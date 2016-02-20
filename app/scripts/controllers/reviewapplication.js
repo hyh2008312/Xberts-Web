@@ -75,6 +75,26 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'success');
         })
       };
+      $scope.condition = 'Pending';
+      $scope.applicantsFilter = function () {
+        switch ($scope.condition) {
+          case "Dismissed":
+            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: false});
+            break;
+          case "Selected":
+            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: true});
+            break;
+          case "Pending":
+            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: null});
+            break;
+        }
+      };
+      $scope.applicantsFilter();
+      $scope.ChangeCondition = function (condition) {
+        $scope.condition = condition;
+        $scope.applicantsFilter();
+      };
+
       $scope.open = function (size, index) {
         if (!$rootScope.user.authRequired()) {
           return;
@@ -85,25 +105,26 @@ angular.module('xbertsApp')
           size: size,
           resolve: {
             applicant: function () {
-              return $scope.applicants[index];
+              return $scope.filterApplicants[index];
             },
             review: function () {
               return $scope.review;
             },
-            applicantLeft:function(){
+            applicantLeft: function () {
               return $scope.applicantLeft;
             }
           }
         });
         modalInstance.result.then(function () {
           $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
+          $scope.applicantsFilter();
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
       };
     }])
-  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant','applicantLeft',
-    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant,applicantLeft) {
+  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant', 'applicantLeft',
+    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant, applicantLeft) {
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
       $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -119,34 +140,23 @@ angular.module('xbertsApp')
       $scope.select = function (isSelected) {
         $scope.$emit('backdropOn', 'post');
         var applicant;
-        if (isSelected) {
-          applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: true});
-          applicant.$patch(function () {
-            $scope.applicant.is_selected = true;
-            $scope.$emit('backdropOff', 'success');
-            $uibModalInstance.close();
-          }, function () {
-            $scope.$emit('backdropOff', 'success');
-          })
-        } else {
-          applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: false});
-          applicant.$patch(function () {
-            $scope.applicant.is_selected = false;
-            $scope.$emit('backdropOff', 'success');
-            $uibModalInstance.close();
-          }, function () {
-            $scope.$emit('backdropOff', 'success');
-          })
-        }
+        applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: isSelected});
+        applicant.$patch(function () {
+          $scope.applicant.is_selected = isSelected;
+          $scope.$emit('backdropOff', 'success');
+          $uibModalInstance.close();
+        }, function () {
+          $scope.$emit('backdropOff', 'success');
+        })
       };
       $scope.close = function () {
         $uibModalInstance.dismiss();
       };
-      if(applicant.answer){
+      if (applicant.answer) {
         $scope.answer = JSON.parse(applicant.answer);
       }
     }])
-  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review','$state', function ($scope, $rootScope, review,$state) {
+  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', function ($scope, $rootScope, review, $state) {
     $rootScope.bodyBackground = 'background-whitem';
     $scope.review = review;
     if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {

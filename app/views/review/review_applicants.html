@@ -19,17 +19,35 @@
 
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <div class="align-right margin-bottom" ng-switch="review.is_publish_applicants">
-          <p class="font-striking" ng-show="applicantLeft !=0">You should select {{ review.quota }} applicants</p>
-          <button ng-switch-when="false" class="btn btn-primary clearfix" ng-click="publish();"
-                  ng-disabled="applicantLeft != 0">Publish Selection
-            Result
-          </button>
-          <label ng-switch-when="true" class="label label-info">Selection result has been published</label>
+        <div class="row margin-bottom">
+          <div class="col-md-6">
+            <ul class="nav nav-pills">
+              <li role="presentation" ng-class="{active: condition=='Pending'}">
+                <a href="#" ng-click="ChangeCondition('Pending')">Pending</a>
+              </li>
+              <li role="presentation" ng-class="{active: condition=='Selected'}">
+                <a href="#" ng-click="ChangeCondition('Selected')">Selected</a>
+              </li>
+              <li role="presentation" ng-class="{active: condition=='Dismissed'}">
+                <a href="#" ng-click="ChangeCondition('Dismissed')">Dismissed</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 align-right" ng-switch="review.is_publish_applicants">
+            <button ng-switch-when="false" class="btn btn-primary clearfix" ng-click="publish();"
+                    ng-disabled="applicantLeft != 0">Publish Selection
+              Result
+            </button>
+            <label ng-switch-when="true" class="label label-info padding">Selection result has been published</label>
+
+            <p class="font-striking" ng-show="applicantLeft !=0">You should select {{ review.quota }} applicants</p>
+          </div>
         </div>
+
         <div class="list">
+          <p  class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
-               ng-repeat="applicant in applicants">
+               ng-repeat="applicant in filterApplicants">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
               <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View Detail</a>
@@ -45,8 +63,8 @@
             }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
                 <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true" class="text-primary">Selected</i>
-                        <i ng-switch-when="false" class="text-danger">Not Selected</i>
-                        <i ng-switch-when="null">Pending Selection</i>
+                        <i ng-switch-when="false" class="text-danger">Dismissed</i>
+                        <i ng-switch-when="null">Pending</i>
                 </span>
               </p>
               <br/>
@@ -71,14 +89,16 @@
                 </div>
                 <div class="col-md-6">
                   <p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
-                    Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type
-                    }}:<span class="font-gray-light"> {{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>
+                    Number of connections on {{ SOCIAL_TYPE |
+                    decode_:applicant.reviewer.userprofile.other_social_type}}:
+                    <span class="font-gray-light">
+                      {{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
