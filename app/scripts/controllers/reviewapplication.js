@@ -146,7 +146,10 @@ angular.module('xbertsApp')
         $scope.answer = JSON.parse(applicant.answer);
       }
     }])
-  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', function ($scope, $rootScope, review) {
+  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review','$state', function ($scope, $rootScope, review,$state) {
     $rootScope.bodyBackground = 'background-whitem';
     $scope.review = review;
+    if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
+      $state.go('application.main')
+    }
   }]);
