@@ -75,6 +75,16 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'success');
         })
       };
+      $scope.ConfirmSelectionResult = function () {
+        $scope.$emit('backdropOn', 'post');
+        var r = new Review({id: review.id, is_publish_applicants_confirmed: true});
+        r.$patch(function () {
+          $scope.review.is_publish_applicants_confirmed = true;
+          $scope.$emit('backdropOff', 'success');
+        }, function () {
+          $scope.$emit('backdropOff', 'success');
+        })
+      };
       $scope.condition = 'Pending';
       $scope.applicantsFilter = function () {
         switch ($scope.condition) {

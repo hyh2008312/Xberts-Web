@@ -41,11 +41,14 @@
             <label ng-switch-when="true" class="label label-info padding">Selection result has been published</label>
 
             <p class="font-striking" ng-show="applicantLeft !=0">You should select {{ review.quota }} applicants</p>
+
+
           </div>
         </div>
 
         <div class="list">
-          <p  class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
+          <p class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
+
           <div class="item-avatar-large item-hover" style="min-height: 127px;"
                ng-repeat="applicant in filterApplicants">
             <div class="item-image text-center">
@@ -99,6 +102,13 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="margin-top text-center" ng-show="user.isStaff()" ng-switch="review.is_publish_applicants_confirmed">
+          <button class="btn btn-primary" ng-switch-when="false" ng-click="ConfirmSelectionResult()"
+                  ng-disabled="!review.is_publish_applicants">Confirm Selection
+            Result
+          </button>
+          <label ng-switch-when="true" class="label label-info padding">Confirmed</label>
         </div>
       </div>
     </div>

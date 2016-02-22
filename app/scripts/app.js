@@ -101,12 +101,12 @@ angular
     });
   }])
   .config(['IdleProvider', 'KeepaliveProvider', 'ConfigurationProvider',
-    function(IdleProvider, KeepaliveProvider, ConfigurationProvider) {
+    function (IdleProvider, KeepaliveProvider, ConfigurationProvider) {
       IdleProvider.idle(ConfigurationProvider.idleTimeout); // seconds
       // Disable timeout feature since automatic logout is not desired for now
       IdleProvider.timeout(0);
       KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
-  }])
+    }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/main");
 
@@ -352,6 +352,16 @@ angular
           }],
           stages: ['SystemData', function (SystemData) {
             return SystemData.getStagesPromise();
+          }]
+        }
+      })
+      .state('application.protected.reviewerShipAddress', {
+        url: '/shipaddress',
+        templateUrl: 'views/review/review_applicant_shipping_address.html',
+        controller: 'ShipAddressCtrl',
+        resolve: {
+          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+            return ProfileReviewerLoad();
           }]
         }
       })
