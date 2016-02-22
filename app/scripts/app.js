@@ -356,7 +356,7 @@ angular
         }
       })
       .state('application.protected.reviewerShipAddress', {
-        url: '/shipaddress',
+        url: '/reviews/:reviewId/confirmaddress',
         templateUrl: 'views/review/review_applicant_shipping_address.html',
         controller: 'ShipAddressCtrl',
         resolve: {

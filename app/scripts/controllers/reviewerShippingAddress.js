@@ -8,15 +8,16 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ShipAddressCtrl', ['$scope', 'SystemConstant', 'growl','$rootScope', function ($scope, SystemConstant, growl,$rootScope) {
+  .controller('ShipAddressCtrl', ['$scope', 'SystemConstant', 'growl','$rootScope','reviewer', function ($scope, SystemConstant, growl,$rootScope,reviewer) {
     //submit
     $rootScope.bodyBackground = 'background-whitem';
+    $scope.profile = reviewer;
     $scope.COUNTRIES = SystemConstant.COUNTRIES;
     $scope.profileFormSubmit = function () {
       //project pre process
       $scope.profileForm.phoneError = !$scope.profile.phone_number;
 
-      if ($scope.profileForm.$valid) {
+      if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
         $scope.$emit('backdropOn', 'post');
         $scope.profile.$put(function (resp) {
           $scope.$emit('backdropOff', 'success');
