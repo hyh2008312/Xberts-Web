@@ -362,6 +362,10 @@ angular
         resolve: {
           reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
             return ProfileReviewerLoad();
+          }],
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewLoad($stateParams);
           }]
         }
       })
