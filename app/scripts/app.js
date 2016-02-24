@@ -59,6 +59,10 @@ angular
           ['insert', ['link', 'picture', 'video', 'hr']],
           ['view', ['fullscreen']]
         ]
+        //popover: {
+        //  image: [['remove', ['removeMedia']] ],
+        //  air: [['insert', ['picture']]]
+        //}
       };
       localStorageService.clearAll();
     }])

@@ -87,7 +87,7 @@ angular.module('xbertsApp')
                 'data-temp-image': resp.data.id
               });
               img.bind('DOMNodeRemovedFromDocument', function () {
-                var tempImageId = $(this).attr('data-id');
+                var tempImageId = $(this).attr('data-temp-image');
                 var resource = TempImage($scope.projectTemp.tempId, tempImageId);
                 resource.delete();
               });
