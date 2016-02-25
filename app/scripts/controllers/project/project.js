@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'growl', 'SystemData',
-    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project','localStorageService',
+    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project', 'localStorageService',
     function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
-              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project,localStorageService) {
+              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project, localStorageService) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -37,11 +37,11 @@ angular.module('xbertsApp')
           case 'applications':
             $scope.applicationsTabActive = true;
             var fetchFunction1 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage,request__project_id:$scope.project.id};
+              var params = {page: nextPage, request__project_id: $scope.project.id};
               angular.extend(params, otherParams);
               Distributor.get(params, callback);
             };
-            $scope.distributorsPaginator = Paginator('distributor_'+$scope.project.id, fetchFunction1);
+            $scope.distributorsPaginator = Paginator('distributor_' + $scope.project.id, fetchFunction1);
             $scope.distributorsPaginator.clear();
             $scope.distributorsPaginator.loadNext();
             break;
@@ -52,20 +52,17 @@ angular.module('xbertsApp')
       //modal
 
       $scope.open = function (size) {
-        if(!$rootScope.user.authRequired()){
+        if (!$rootScope.user.authRequired()) {
           return;
         }
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/applicationinfo.html',
-          controller: 'DistributorCtrl',
+          templateUrl: 'views/project/quotainquiryform.html',
+          controller: 'QuoteInquiryCtrl',
           size: size,
           resolve: {
             distribution: function () {
               return $scope.distributions[0];
-            },
-            salesChannels: ['SystemData', function (SystemData) {
-              return SystemData.getSaleChannels() === null ? SystemData.getSaleChannelsPromise() : SystemData.getSaleChannels();
-            }]
+            }
           }
         });
       };
@@ -77,32 +74,32 @@ angular.module('xbertsApp')
         }
       }
 
-      $scope.approve = function(isApproved) {
+      $scope.approve = function (isApproved) {
         $scope.$emit('backdropOn', 'approve project');
 
         if (isApproved) {
           Project.approve.save({id: project.id},
-            function() {
+            function () {
               project.interact.is_verified = '1';
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is approved.');
               localStorageService.clearAll();
             },
-            function() {
+            function () {
               $scope.$emit('backdropOff', 'error');
               growl.error('Oops! Something went wrong.');
             });
         } else {
           Project.approve.delete({id: project.id},
-            function() {
+            function () {
               project.interact.is_verified = '2';
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is rejected.');
               localStorageService.clearAll();
             },
-            function() {
+            function () {
               $scope.$emit('backdropOff', 'error');
               growl.error('Oops! Something went wrong.');
             });
@@ -140,4 +137,9 @@ angular.module('xbertsApp')
         }
         $scope.$broadcast('project', step);
       };
-    }]);
+    }])
+  .controller('QuoteInquiryCtrl', function ($scope, distribution) {
+    $scope.quoteInquiryFormSubmit = function () {
+
+    };
+  });

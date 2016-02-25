@@ -45,15 +45,15 @@
                 <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Application" active="tabs[2].active" select="select('applications')"
+            <uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"
                      ng-if="user.isStaff() || user.getUserId()==project.account.id">
               <div ng-if="applicationsTabActive">
-                <div ng-include src="'views/applicationlist.html'"></div>
+                <div ng-include src="'views/project/applicationlist.html'"></div>
               </div>
             </uib-tab>
           </uib-tabset>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 padding-clear">
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
               <h4 class="card-body-title">Distribution Info</h4>
@@ -78,29 +78,28 @@
                     <p class="font-gray-light">{{ distribution.tags|tagsplit }}</p>
                   </div>
 
-                  <div class="card-body-detail" ng-if="distribution.transportationModels">
-                    <h4>Transportation Mode:</h4>
+                  <!--<div class="card-body-detail" ng-if="distribution.transportationModels">-->
+                    <!--<h4>Transportation Mode:</h4>-->
 
-                    <p class="font-gray-light">{{ transportationModels | decode: distribution.transportation_model
-                      }}</p>
-                  </div>
-                  <div class="card-body-detail" ng-if="distribution.supported">
-                    <h4>Business Support:</h4>
+                    <!--<p class="font-gray-light">{{ transportationModels | decode: distribution.transportation_model-->
+                      <!--}}</p>-->
+                  <!--</div>-->
+                  <!--<div class="card-body-detail" ng-if="distribution.supported">-->
+                    <!--<h4>Business Support:</h4>-->
 
-                    <p class="font-gray-light"><span ng-repeat="item in supportTypes | narrow : distribution.supported">{{ item.name }}<span
-                      ng-if="!$last">, </span></span></p>
-                  </div>
-                  <div class="card-body-detail" ng-if="distribution.details">
-                    <h4>Partner Requirements:</h4>
+                    <!--<p class="font-gray-light"><span ng-repeat="item in supportTypes | narrow : distribution.supported">{{ item.name }}<span-->
+                      <!--ng-if="!$last">, </span></span></p>-->
+                  <!--</div>-->
+                  <!--<div class="card-body-detail" ng-if="distribution.details">-->
+                    <!--<h4>Partner Requirements:</h4>-->
 
-                    <p class="font-gray-light">{{ distribution.details }}</p>
-                  </div>
-                </div>
+                    <!--<p class="font-gray-light">{{ distribution.details }}</p>-->
+                  <!--</div>-->
+                <!--</div>-->
 
               </div>
-              <h3 class="card-body-detail text-center">
-                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')">Become a Channel Partner
-                </button>
+              <h3 class="card-body-detail text-center padding-a5-10 margin-top-clear">
+                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')">Get Quote</button>
               </h3>
 
             </div>

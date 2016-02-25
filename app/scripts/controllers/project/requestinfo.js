@@ -44,7 +44,7 @@ angular.module('xbertsApp')
             //todo:one project can create multiple distribution
             $scope.distribution = results[0];
             SystemData.stringParseToCheckboxes($scope.distribution.target_geo, $scope.targetGeos);
-            SystemData.stringParseToCheckboxes($scope.distribution.supported, $scope.supportTypes);
+            //SystemData.stringParseToCheckboxes($scope.distribution.supported, $scope.supportTypes);
             $scope.discounts = parseDiscount($scope.distribution.discount);
             $scope.distributionTemp.tags = tagsParse($scope.distribution.tags);
 
@@ -57,7 +57,7 @@ angular.module('xbertsApp')
       }
     });
     $scope.targetGeos = SystemData.getTargetGeos();
-    $scope.supportTypes = SystemData.getSupportTypes();
+    //$scope.supportTypes = SystemData.getSupportTypes();
     $scope.transportationModels = SystemData.getTransportationModels();
     $scope.discounts = [];
     $scope.discount = {};
@@ -86,11 +86,11 @@ angular.module('xbertsApp')
           targetGeos.push($scope.targetGeos[i].id);
         }
       }
-      for (var j = 0; j < $scope.supportTypes.length; j++) {
-        if ($scope.supportTypes[j].selected) {
-          supportTypes.push($scope.supportTypes[j].id);
-        }
-      }
+      //for (var j = 0; j < $scope.supportTypes.length; j++) {
+      //  if ($scope.supportTypes[j].selected) {
+      //    supportTypes.push($scope.supportTypes[j].id);
+      //  }
+      //}
       if ($scope.discount.price_discount && $scope.discount.order_quantity) {
         $scope.discounts.push($scope.discount);
         $scope.discount = {};
@@ -114,7 +114,7 @@ angular.module('xbertsApp')
 
         //project pre process
         $scope.distribution.target_geo = targetGeos.join();
-        $scope.distribution.supported = supportTypes.join();
+        //$scope.distribution.supported = supportTypes.join();
         $scope.distribution.discount = discounts.join();
 
 

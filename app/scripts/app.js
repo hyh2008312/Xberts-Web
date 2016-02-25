@@ -185,7 +185,7 @@ angular
       })
       .state('application.projects', {
         url: '/projects',
-        templateUrl: 'views/projects.html',
+        templateUrl: 'views/project/projects.html',
         controller: 'ProjectsCtrl',
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
@@ -205,7 +205,7 @@ angular
       })
       .state('application.protected.launchProject', {
         url: "/launch/project/{projectId:[0-9]*}",
-        templateUrl: 'views/launchproject.html',
+        templateUrl: 'views/project/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
         resolve: {
@@ -215,9 +215,9 @@ angular
           targetGeos: ['SystemData', function (SystemData) {
             return SystemData.getTargetGeosPromise();
           }],
-          supportTypes: ['SystemData', function (SystemData) {
-            return SystemData.getSupportTypesPromise();
-          }],
+          //supportTypes: ['SystemData', function (SystemData) {
+          //  return SystemData.getSupportTypesPromise();
+          //}],
           transportationModels: ['SystemData', function (SystemData) {
             return SystemData.getTransportationModelsPromise();
           }]
@@ -225,7 +225,7 @@ angular
       })
       .state('application.project', {
         url: "/projects/:projectId?tab",
-        templateUrl: 'views/project.html',
+        templateUrl: 'views/project/project.html',
         controller: 'ProjectCtrl',
         resolve: {
           distributions: ['DistributionLoad', '$stateParams', function (DistributionLoad, $stateParams) {
@@ -237,12 +237,12 @@ angular
           targetGeos: ['SystemData', function (SystemData) {
             return SystemData.getTargetGeosPromise();
           }],
-          supportTypes: ['SystemData', function (SystemData) {
-            return SystemData.getSupportTypesPromise();
-          }],
-          transportationModels: ['SystemData', function (SystemData) {
-            return SystemData.getTransportationModelsPromise();
-          }],
+          //supportTypes: ['SystemData', function (SystemData) {
+          //  return SystemData.getSupportTypesPromise();
+          //}],
+          //transportationModels: ['SystemData', function (SystemData) {
+          //  return SystemData.getTransportationModelsPromise();
+          //}],
           project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
             return ProjectLoad($stateParams);
           }]
@@ -345,6 +345,11 @@ angular
       .state('application.protected.profile', {
         url: '/profile?action',
         controller: 'UserProfileCtrl'
+      })
+      .state('application.protected.companyInfo', {
+        url: '/profile/company',
+        templateUrl: 'views/profile/companyform.html',
+        controller: 'CompanyFormCtrl'
       })
       .state('application.protected.editProfile', {
         url: '/editprofile',

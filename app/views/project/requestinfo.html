@@ -103,20 +103,20 @@
         </label>
       </div>
 
-      <div class="form-group">
-        <label>Select the business support offered to your distribution partners:</label><br/>
-        <label class="checkbox-inline" ng-repeat="supportType in supportTypes">
-          <input type="checkbox"
-                 ng-model="supportType.selected"/> {{ supportType.name }}
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Describe your distribution partner requirements:</label>
-                <textarea rows="5" class="form-control" placeholder="Optional"
-                          name="details"
-                          ng-model="distribution.details">
-                </textarea>
-      </div>
+      <!--<div class="form-group">-->
+        <!--<label>Select the business support offered to your distribution partners:</label><br/>-->
+        <!--<label class="checkbox-inline" ng-repeat="supportType in supportTypes">-->
+          <!--<input type="checkbox"-->
+                 <!--ng-model="supportType.selected"/> {{ supportType.name }}-->
+        <!--</label>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label>Describe your distribution partner requirements:</label>-->
+                <!--<textarea rows="5" class="form-control" placeholder="Optional"-->
+                          <!--name="details"-->
+                          <!--ng-model="distribution.details">-->
+                <!--</textarea>-->
+      <!--</div>-->
       <div class="row">
         <p class='message-error text-center' ng-show="distributionForm.submitted && distributionForm.$invalid">
           Please check your
