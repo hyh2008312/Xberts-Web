@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProjectCtrl', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'growl', 'SystemData',
-    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project', 'localStorageService',
+    'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project', 'localStorageService', 'QuoteInquiry',
     function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
-              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project, localStorageService) {
+              Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project, localStorageService, QuoteInquiry) {
       $rootScope.bodyBackground = 'background-whitem';
 
       $scope.projectTypes = SystemData.getProjectTypes();
@@ -22,11 +22,12 @@ angular.module('xbertsApp')
       $scope.tabs = [
         {title: 'detail', active: true},
         {title: 'comments', active: false},
-        {title: 'application', active: false}
+        {title: 'inquiries', active: false}
       ];
 
       $scope.commentsTabActive = false;
       $scope.applicationsTabActive = false;
+      $scope.inquiresTabActive = false;
       $scope.select = function (step) {
         $scope.commentsTabActive = false;
         $scope.applicationsTabActive = false;
@@ -45,11 +46,37 @@ angular.module('xbertsApp')
             $scope.distributorsPaginator.clear();
             $scope.distributorsPaginator.loadNext();
             break;
+          case 'inquiries':
+            $scope.inquiresTabActive = true;
+            var fetchFunction2 = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage, request__project_id: $scope.project.id};
+              angular.extend(params, otherParams);
+              QuoteInquiry.get(params, callback);
+            };
+            $scope.inquiriesPaginator = Paginator('inquiry_' + $scope.project.id, fetchFunction2);
+            $scope.inquiriesPaginator.clear();
+            $scope.inquiriesPaginator.loadNext();
+            break;
         }
         $scope.$broadcast('project', step);
       };
 
       //modal
+
+      $scope.inquiry = {exist: false};
+      if ($rootScope.user.isAuth()) {
+        QuoteInquiry.get({
+          request_id: $scope.distributions[0].id,
+          inquirer_id: $rootScope.user.getUserId()
+        }, function (data) {
+          if (data.count !== undefined && data.count > 0) {
+            angular.extend($scope.inquiry, data.results[0]);
+            $scope.inquiry.exist = true;
+          }
+        }, function () {
+
+        })
+      }
 
       $scope.open = function (size) {
         if (!$rootScope.user.authRequired()) {
@@ -64,6 +91,12 @@ angular.module('xbertsApp')
               return $scope.distributions[0];
             }
           }
+        });
+        modalInstance.result.then(function (inquiry) {
+          angular.extend($scope.inquiry, inquiry);
+          $scope.inquiry.exist = true;
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
         });
       };
       var search = $location.search();
@@ -138,8 +171,26 @@ angular.module('xbertsApp')
         $scope.$broadcast('project', step);
       };
     }])
-  .controller('QuoteInquiryCtrl', function ($scope, distribution) {
+  .controller('QuoteInquiryCtrl', function ($scope, $rootScope, distribution, QuoteInquiry, $uibModalInstance, growl) {
+    $scope.quoteInquiry = new QuoteInquiry();
+    $scope.quoteInquiry.request = distribution.id;
+    $scope.quoteInquiry.inquirer = $rootScope.user.getUserId();
     $scope.quoteInquiryFormSubmit = function () {
+      if ($scope.quoteInquiryForm.$valid) {
+        $scope.$emit('backdropOn', 'post');
 
+        $scope.quoteInquiry.$save(function (resp) {
+          $scope.$emit('backdropOff', 'success');
+          growl.success('Thanks, your request has been submitted successfully!');
+          $uibModalInstance.close($scope.quoteInquiry);
+        }, function (resp) {
+          growl.error('Sorry,some error happened.');
+          $scope.$emit('backdropOff', 'error');
+        });
+
+      } else {
+        $scope.quoteInquiryForm.submitted = true;
+        $scope.quoteInquiryForm.$invalid = true;
+      }
     };
   });

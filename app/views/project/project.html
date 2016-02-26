@@ -45,10 +45,16 @@
                 <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"
-                     ng-if="user.isStaff() || user.getUserId()==project.account.id">
-              <div ng-if="applicationsTabActive">
-                <div ng-include src="'views/project/applicationlist.html'"></div>
+            <!--<uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"-->
+                     <!--ng-if="user.isStaff() || user.getUserId()==project.account.id">-->
+              <!--<div ng-if="applicationsTabActive">-->
+                <!--<div ng-include src="'views/project/applicationlist.html'"></div>-->
+              <!--</div>-->
+            <!--</uib-tab>-->
+            <uib-tab heading="Inquiries" active="tabs[2].active" select="select('inquiries')"
+                     ng-if="user.isStaff()">
+              <div ng-if="inquiresTabActive">
+                <div ng-include src="'views/project/inquirieslist.html'"></div>
               </div>
             </uib-tab>
           </uib-tabset>
@@ -64,7 +70,7 @@
                   <div class="card-body-detail">
                     <h4>Available Markets:</h4>
 
-                    <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">#{{ item.name }}<span
+                    <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">{{ item.name }}<span
                       ng-if="!$last">, </span></span></p>
                   </div>
                   <div class="card-body-detail" ng-if="distribution.retail_price > 0">
@@ -98,8 +104,15 @@
                 <!--</div>-->
 
               </div>
-              <h3 class="card-body-detail text-center padding-a5-10 margin-top-clear">
-                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')">Get Quote</button>
+              <h3 class="card-body-detail text-center padding-a5-10 margin-top-clear" ng-switch="inquiry.exist">
+                <button class="btn btn-lg btn-primary btn-block" ng-click="open('lg')" ng-switch-when="false">Get Quote</button>
+                <button class="btn btn-lg btn-gray btn-block" disabled ng-switch-when="true">
+                  <span ng-switch="inquiry.status">
+                    <span ng-switch-when="REQUESTED">Pending Quote</span>
+                    <span ng-switch-when="RESOLVED">Resolved</span>
+                    <span ng-switch-when="UNRESOLVED">Unresolved</span>
+                  </span>
+                </button>
               </h3>
 
             </div>

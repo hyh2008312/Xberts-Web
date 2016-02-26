@@ -10,19 +10,21 @@
  */
 angular.module('xbertsApp')
   .filter('tagsplit', function () {
-    var tagsSplit=function (tagstring) {
-      if(tagstring===undefined || tagstring==="" || tagstring===[]){
+    var tagsSplit = function (tagstring) {
+      if (tagstring === undefined || tagstring === "" || tagstring === []) {
         return "";
       }
       var newTagsString;
-      if(typeof (tagstring)==="string"){
-        var tags=tagstring.split(',');
-        newTagsString=tags.join("  #");
+      var prefix = '#';
+      var delimiter = " " + prefix;
+      if (typeof (tagstring) === "string") {
+        var tags = tagstring.split(',');
+        newTagsString = tags.join(delimiter);
       }
-      if(tagstring instanceof Array){
-        newTagsString=tagstring.join("  #");
+      if (tagstring instanceof Array) {
+        newTagsString = tagstring.join(delimiter);
       }
-      return "#"+newTagsString;
+      return prefix + newTagsString;
 
     };
     return tagsSplit;

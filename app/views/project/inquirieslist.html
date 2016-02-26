@@ -1,0 +1,38 @@
+<div class="list" infinite-scroll="inquiriesPaginator.loadNext()" infinite-scroll-distance='0'
+     infinite-scroll-disabled="inquiriesPaginator.loading || !inquiriesPaginator.hasNext()">
+  <p class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
+
+  <div class="item-avatar-large item-hover" style="min-height: 127px;"
+       ng-repeat="inquiry in inquiriesPaginator.items">
+    <div class="item-image text-center">
+      <avatar-img src="applicant.reviewer.avatar"></avatar-img>
+      <!--<a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View Detail</a>-->
+    </div>
+    <div class="item-body">
+      <p class="item-body-header">
+
+          <span><a ui-sref="application.expert({ expertId:inquiry.inquirer.id })">{{ inquiry.inquirer.fullname
+            }}</a> <i class="fa fa-map-marker"></i> {{ inquiry.inquirer.country }}</span>
+                <span ng-switch="inquiry.status" class="pull-right">
+                        <i ng-switch-when="RESOLVED" class="text-primary">Resolved</i>
+                        <i ng-switch-when="UNRESOLVED" class="text-danger">Unresolved</i>
+                        <i ng-switch-when="REQUESTED">Pending</i>
+                </span>
+      </p>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">Quantity: <span
+            class="font-gray-light"> {{ inquiry.quantity }}</span></p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">Request Time:<span
+            class="font-gray-light"> {{ inquiry.created | amDateFormat:'MMM DD, YYYY'}}</span></p>
+        </div>
+      </div>
+      <p class="item-body-title">Message: <span class="font-gray-light">{{ inquiry.message }}</span></p>
+    </div>
+  </div>
+</div>
+<load-more class="row spin-large" ng-if="inquiriesPaginator.loading"></load-more>
