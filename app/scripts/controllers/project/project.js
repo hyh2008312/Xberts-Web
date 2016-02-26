@@ -15,6 +15,8 @@ angular.module('xbertsApp')
       $scope.project = project;
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
+        $scope.project.inquiry_amount = result.inquiry_amount;
+        console.log(result);
       });
       //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
@@ -64,7 +66,7 @@ angular.module('xbertsApp')
       //modal
 
       $scope.inquiry = {exist: false};
-      if ($rootScope.user.isAuth()) {
+      if ($rootScope.user.isAuth() && $scope.distributions.length > 0) {
         QuoteInquiry.get({
           request_id: $scope.distributions[0].id,
           inquirer_id: $rootScope.user.getUserId()

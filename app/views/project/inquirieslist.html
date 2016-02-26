@@ -1,6 +1,6 @@
 <div class="list" infinite-scroll="inquiriesPaginator.loadNext()" infinite-scroll-distance='0'
      infinite-scroll-disabled="inquiriesPaginator.loading || !inquiriesPaginator.hasNext()">
-  <p class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
+  <p class="padding" ng-show="inquiriesPaginator.items.length<1">No Inquiry</p>
 
   <div class="item-avatar-large item-hover" style="min-height: 127px;"
        ng-repeat="inquiry in inquiriesPaginator.items">

@@ -51,7 +51,7 @@
                 <!--<div ng-include src="'views/project/applicationlist.html'"></div>-->
               <!--</div>-->
             <!--</uib-tab>-->
-            <uib-tab heading="Inquiries" active="tabs[2].active" select="select('inquiries')"
+            <uib-tab heading="Inquiries({{ project.inquiry_amount }})" active="tabs[2].active" select="select('inquiries')"
                      ng-if="user.isStaff()">
               <div ng-if="inquiresTabActive">
                 <div ng-include src="'views/project/inquirieslist.html'"></div>
