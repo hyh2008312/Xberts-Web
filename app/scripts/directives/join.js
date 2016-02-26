@@ -130,6 +130,7 @@ angular.module('xbertsApp')
             feedback.post = $scope.join.id;
             feedback.$save(function () {
               $scope.feedbackPaginator.items.unshift(feedback);
+              $scope.interact.feedback_amount += 1;
               growl.success('success', {referenceId: $scope.referenceId});
             }, function (error) {
               growl.error('error', {referenceId: $scope.referenceId});
