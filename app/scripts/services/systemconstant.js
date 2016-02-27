@@ -357,7 +357,8 @@ angular.module('xbertsApp')
     ];
 
     var ROLES = {
-      DOMAIN_EXPERT: 'domain_expert'
+      DOMAIN_EXPERT: 'domain_expert',
+      BUYER: 'buyer'
     };
     var PRODUCT_STAGE = [
       {code: '1', name: 'Market-ready'},

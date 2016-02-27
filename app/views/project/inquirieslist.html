@@ -31,7 +31,31 @@
             class="font-gray-light"> {{ inquiry.created | amDateFormat:'MMM DD, YYYY'}}</span></p>
         </div>
       </div>
-      <p class="item-body-title">Message: <span class="font-gray-light">{{ inquiry.message }}</span></p>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">Company: <span
+            class="font-gray-light"> {{ inquiry.inquirer.buyer.company }}</span></p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">Position:<span
+            class="font-gray-light"> {{ inquiry.inquirer.buyer.position}}</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="item-body-title">Contact: <span
+            class="font-gray-light"> {{ inquiry.inquirer.buyer.company_phone }}</span></p>
+        </div>
+        <div class="col-md-6">
+          <p class="item-body-title">Request Time:<span
+            class="font-gray-light"> {{ inquiry.inquirer.buyer.company_web}}</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="item-body-title">Message: <span class="font-gray-light">{{ inquiry.message }}</span></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

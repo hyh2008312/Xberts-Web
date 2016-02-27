@@ -16,7 +16,6 @@ angular.module('xbertsApp')
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
         $scope.project.inquiry_amount = result.inquiry_amount;
-        console.log(result);
       });
       //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
@@ -91,12 +90,17 @@ angular.module('xbertsApp')
           resolve: {
             distribution: function () {
               return $scope.distributions[0];
-            }
+            },
+            roleRequests: ['SystemConstant', 'RoleRequestsResolver',
+              function (SystemConstant, RoleRequestsResolver) {
+                return RoleRequestsResolver.resolver(SystemConstant.ROLES.BUYER);
+              }]
           }
         });
         modalInstance.result.then(function (inquiry) {
           angular.extend($scope.inquiry, inquiry);
           $scope.inquiry.exist = true;
+          $scope.project.inquiry_amount += 1;
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
@@ -173,10 +177,13 @@ angular.module('xbertsApp')
         $scope.$broadcast('project', step);
       };
     }])
-  .controller('QuoteInquiryCtrl', function ($scope, $rootScope, distribution, QuoteInquiry, $uibModalInstance, growl) {
+  .controller('QuoteInquiryCtrl', function ($scope, $rootScope, distribution, QuoteInquiry, $uibModalInstance, growl, roleRequests, SystemConstant) {
+    $scope.isBuyerOrPendingBuyer = roleRequests.length > 0 || $rootScope.user.hasRole(SystemConstant.ROLES.BUYER);
     $scope.quoteInquiry = new QuoteInquiry();
     $scope.quoteInquiry.request = distribution.id;
     $scope.quoteInquiry.inquirer = $rootScope.user.getUserId();
+    $scope.quoteInquiry.apply_buyer = !$scope.isBuyerOrPendingBuyer;
+    $scope.quoteInquiry.user = $rootScope.user.getUserId();
     $scope.quoteInquiryFormSubmit = function () {
       if ($scope.quoteInquiryForm.$valid) {
         $scope.$emit('backdropOn', 'post');
@@ -184,6 +191,7 @@ angular.module('xbertsApp')
         $scope.quoteInquiry.$save(function (resp) {
           $scope.$emit('backdropOff', 'success');
           growl.success('Thanks, your request has been submitted successfully!');
+          //console.log($scope.quoteInquiry);
           $uibModalInstance.close($scope.quoteInquiry);
         }, function (resp) {
           growl.error('Sorry,some error happened.');
@@ -194,5 +202,8 @@ angular.module('xbertsApp')
         $scope.quoteInquiryForm.submitted = true;
         $scope.quoteInquiryForm.$invalid = true;
       }
+    };
+    $scope.close = function () {
+      $uibModalInstance.dismiss();
     };
   });
