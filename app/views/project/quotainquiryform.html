@@ -1,8 +1,9 @@
 <form name="quoteInquiryForm" ng-submit="quoteInquiryFormSubmit()">
   <div class="modal-header">
-    <h3 class="modal-title text-center">Request a Quote!</h3>
+    <h3 class="modal-title text-center">Request a Quote</h3>
   </div>
   <div class="modal-body">
+    <p><i class="fa fa-circle"></i> <b>Fill In Your Inquiry</b></p>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group form-inline">
@@ -22,17 +23,8 @@
         </div>
       </div>
     </div>
+    <p ng-if="!isBuyerOrPendingBuyer"><i class="fa fa-circle"></i> <b>Update Your Buyer Profile</b></p>
     <div class="row" ng-if="!isBuyerOrPendingBuyer">
-      <div class="col-md-6">
-        <div class="form-group">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.position.$error.required">
-            *required</p>
-          <label>Company Title: </label>
-          <input type="text" class="form-control" name="position"
-                 ng-model="quoteInquiry.position" ng-required="true"/>
-        </div>
-      </div>
       <div class="col-md-6">
         <div class="form-group">
           <p class="message-error"
@@ -43,6 +35,17 @@
                  ng-model="quoteInquiry.company" ng-required="true"/>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <p class="message-error"
+             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.position.$error.required">
+            *required</p>
+          <label>Business Title: </label>
+          <input type="text" class="form-control" name="position"
+                 ng-model="quoteInquiry.position" ng-required="true"/>
+        </div>
+      </div>
+
 
     </div>
     <div class="row" ng-if="!isBuyerOrPendingBuyer">
