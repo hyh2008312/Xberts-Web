@@ -93,9 +93,9 @@ angular.module('xbertsApp')
             distribution: function () {
               return $scope.distributions[0];
             },
-            careerExperiences: function (BuyerProfileLoad) {
+            careerExperiences: ['BuyerProfileLoad',function (BuyerProfileLoad) {
               return BuyerProfileLoad();
-            },
+            }],
             roleRequests: ['SystemConstant', 'RoleRequestsResolver',
               function (SystemConstant, RoleRequestsResolver) {
                 return RoleRequestsResolver.resolver(SystemConstant.ROLES.BUYER);
