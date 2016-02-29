@@ -18,6 +18,9 @@ angular.module('xbertsApp')
       $scope.data.company = userProfile.company;
       $scope.data.position = userProfile.position;
       $scope.data.biography = userProfile.biography;
+      $scope.data.companyPhone = userProfile.companyPhone;
+      $scope.data.companyWeb = userProfile.companyWeb;
+      $scope.data.companyDetail = userProfile.companyDetail;
       $scope.data.expertiseList = _(userProfile.careerList).map(function(expertise) {
         return expertise.id;
       });
@@ -64,6 +67,9 @@ angular.module('xbertsApp')
           company: $scope.data.company,
           position: $scope.data.position,
           biography: $scope.data.biography,
+          companyPhone: $scope.data.companyPhone,
+          companyWeb: $scope.data.companyWeb,
+          companyDetail: $scope.data.companyDetail,
           careerList: $scope.data.expertiseList
         };
 

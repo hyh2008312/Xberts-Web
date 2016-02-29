@@ -36,26 +36,6 @@
     </div>
     <div class="row form-group">
       <div class="col-md-6 col-xs-6">
-        <label for="companyInput">
-          <span>Company Name <span class="optional-field">(optional)</span>:</span>
-        </label>
-        <p>
-          <input type="text" id="companyInput" name="company" class="form-control" placeholder="Company Name"
-                 ng-model="data.company">
-        </p>
-      </div>
-      <div class="col-md-6 col-xs-6">
-        <label for="positionInput">
-          <span>Business Title <span class="optional-field">(optional)</span>:</span>
-        </label>
-        <p>
-          <input type="text" id="positionInput" name="position" class="form-control" placeholder="Business Title"
-                 ng-model="data.position">
-        </p>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-6 col-xs-6">
         <label for="countryInput">
           <span>Country:</span>
           <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.country.$touched"
@@ -69,16 +49,70 @@
           <option value="">Select your country</option>
         </select>
       </div>
+      <div class="col-md-6 col-xs-6">
+        <label for="positionInput">
+          <span>Business Title:</span>
+        </label>
+        <p>
+          <input type="text" id="positionInput" name="position" class="form-control" placeholder="Business Title"
+                 ng-model="data.position">
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-6">
+        <label for="companyInput">
+          <span>Company Name:</span>
+        </label>
+        <p>
+          <input type="text" id="companyInput" name="company" class="form-control" placeholder="Company Name"
+                 ng-model="data.company">
+        </p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <p class="message-error"
+             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.required">
+            *required</p>
+
+          <p class="message-error"
+             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.internationalPhoneNumber">
+            *please input correct number</p>
+          <label>Business Contact Number: </label>
+          <input type="text" class="form-control" name="companyPhone" international-phone-number
+                 ng-model="data.companyPhone"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Company Website URL: </label>
+          <input type="text" class="form-control" name="companyWeb" placeholder="http://"
+                 ng-model="data.companyWeb"/>
+        </div>
+      </div>
+
     </div>
     <div class="row form-group">
-      <div class="col-md-12 col-xs-12">
+      <div class="col-md-6 col-xs-12">
         <label for="bioInput">
-          <span>Biography <span class="optional-field">(optional)</span>:</span>
+          <span>Biography:</span>
         </label>
         <p>
           <textarea id="bioInput" name="bio" class="form-control" rows="10" cols="40"
                     placeholder="Write a short biography about yourself" ng-model="data.biography"></textarea>
         </p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Describe Your Company:</label>
+                <textarea rows="10" class="form-control" placeholder="Optional"
+                          name="companyDetail"
+                          ng-model="data.companyDetail">
+                </textarea>
+        </div>
       </div>
     </div>
     <div class="row form-group" ng-if="userProfile.careerList.length > 0">

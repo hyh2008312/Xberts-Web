@@ -83,6 +83,8 @@ angular.module('xbertsApp')
         if (!$rootScope.user.authRequired()) {
           return;
         }
+        $scope.$emit('backdropOn', 'loading buyer info');
+
         var modalInstance = $uibModal.open({
           templateUrl: 'views/project/quotainquiryform.html',
           controller: 'QuoteInquiryCtrl',
@@ -91,11 +93,19 @@ angular.module('xbertsApp')
             distribution: function () {
               return $scope.distributions[0];
             },
+            careerExperiences: function (BuyerProfileLoad) {
+              return BuyerProfileLoad();
+            },
             roleRequests: ['SystemConstant', 'RoleRequestsResolver',
               function (SystemConstant, RoleRequestsResolver) {
                 return RoleRequestsResolver.resolver(SystemConstant.ROLES.BUYER);
               }]
           }
+        });
+        modalInstance.opened.then(function () {
+          $scope.$emit('backdropOff', 'success');
+        }, function () {
+          $scope.$emit('backdropOff', 'failure');
         });
         modalInstance.result.then(function (inquiry) {
           angular.extend($scope.inquiry, inquiry);
@@ -177,13 +187,17 @@ angular.module('xbertsApp')
         $scope.$broadcast('project', step);
       };
     }])
-  .controller('QuoteInquiryCtrl', function ($scope, $rootScope, distribution, QuoteInquiry, $uibModalInstance, growl, roleRequests, SystemConstant) {
+  .controller('QuoteInquiryCtrl', function ($scope, $rootScope, distribution, QuoteInquiry, $uibModalInstance, growl, roleRequests, SystemConstant, careerExperiences) {
     $scope.isBuyerOrPendingBuyer = roleRequests.length > 0 || $rootScope.user.hasRole(SystemConstant.ROLES.BUYER);
     $scope.quoteInquiry = new QuoteInquiry();
     $scope.quoteInquiry.request = distribution.id;
     $scope.quoteInquiry.inquirer = $rootScope.user.getUserId();
     $scope.quoteInquiry.apply_buyer = !$scope.isBuyerOrPendingBuyer;
     $scope.quoteInquiry.user = $rootScope.user.getUserId();
+    if (careerExperiences.length > 0) {
+      angular.extend($scope.quoteInquiry, careerExperiences[0]);
+      $scope.quoteInquiry.id = undefined;
+    }
     $scope.quoteInquiryFormSubmit = function () {
       if ($scope.quoteInquiryForm.$valid) {
         $scope.$emit('backdropOn', 'post');
