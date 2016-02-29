@@ -3,85 +3,93 @@
     <h3 class="modal-title text-center">Request a Quote</h3>
   </div>
   <div class="modal-body">
-    <p><i class="fa fa-circle"></i> <b>Fill In Your Inquiry</b></p>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group form-inline">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.year_in_business.$error.required">
-            *required</p>
-          <label>Expected Order Quantity: </label>
-          <input type="number" class="form-control" name="quantity"
-                 ng-model="quoteInquiry.quantity" ng-required="true"/>
-        </div>
-        <div class="form-group">
-          <label>Message:</label>
+    <div class="panel panel-default">
+      <div class="panel-heading"><b>Fill In Your Inquiry</b></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group form-inline">
+              <p class="message-error"
+                 ng-show="quoteInquiryForm.submitted && quoteInquiryForm.year_in_business.$error.required">
+                *required</p>
+              <label>Expected Order Quantity: </label>
+              <input type="number" class="form-control" name="quantity"
+                     ng-model="quoteInquiry.quantity" ng-required="true"/>
+            </div>
+            <div class="form-group">
+              <label>Message:</label>
                 <textarea rows="5" class="form-control" placeholder="Optional"
                           name="message"
                           ng-model="quoteInquiry.message">
                 </textarea>
+            </div>
+          </div>
         </div>
+        <a ui-sref="application.protected.editProfile" ng-if="isBuyerOrPendingBuyer" ng-click="close();">Update Your
+          Company Information</a>
       </div>
     </div>
-    <p ng-if="!isBuyerOrPendingBuyer"><i class="fa fa-circle"></i> <b>Update Your Buyer Profile</b></p>
+    <div class="panel panel-default" ng-if="!isBuyerOrPendingBuyer">
+      <div class="panel-heading"><b>Provide Your Company Information</b></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <p class="message-error"
+                 ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company.$error.required">
+                *required</p>
+              <label>Company Name: </label>
+              <input type="text" class="form-control" name="company"
+                     ng-model="quoteInquiry.company" ng-required="true"/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <p class="message-error"
+                 ng-show="quoteInquiryForm.submitted && quoteInquiryForm.position.$error.required">
+                *required</p>
+              <label>Business Title: </label>
+              <input type="text" class="form-control" name="position"
+                     ng-model="quoteInquiry.position" ng-required="true"/>
+            </div>
+          </div>
 
-    <div class="row" ng-if="!isBuyerOrPendingBuyer">
-      <div class="col-md-6">
-        <div class="form-group">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company.$error.required">
-            *required</p>
-          <label>Company Name: </label>
-          <input type="text" class="form-control" name="company"
-                 ng-model="quoteInquiry.company" ng-required="true"/>
+
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.position.$error.required">
-            *required</p>
-          <label>Business Title: </label>
-          <input type="text" class="form-control" name="position"
-                 ng-model="quoteInquiry.position" ng-required="true"/>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <p class="message-error"
+                 ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.required">
+                *required</p>
+
+              <p class="message-error"
+                 ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.internationalPhoneNumber">
+                *please input correct number</p>
+              <label>Business Contact Number: </label>
+              <input type="text" class="form-control" name="company_phone" international-phone-number
+                     ng-model="quoteInquiry.company_phone" ng-required="true"/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Company Website URL: </label>
+              <input type="text" class="form-control" name="company_web" placeholder="Optional"
+                     ng-model="quoteInquiry.company_web"/>
+            </div>
+          </div>
+
         </div>
-      </div>
-
-
-    </div>
-    <div class="row" ng-if="!isBuyerOrPendingBuyer">
-      <div class="col-md-6">
-        <div class="form-group">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.required">
-            *required</p>
-
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.internationalPhoneNumber">
-            *please input correct number</p>
-          <label>Business Contact Number: </label>
-          <input type="text" class="form-control" name="company_phone" international-phone-number
-                 ng-model="quoteInquiry.company_phone" ng-required="true"/>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Company Website URL: </label>
-          <input type="text" class="form-control" name="company_web" placeholder="Optional"
-                 ng-model="quoteInquiry.company_web"/>
-        </div>
-      </div>
-
-    </div>
-    <div class="row" ng-if="!isBuyerOrPendingBuyer">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label>Describe Your Company:</label>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Describe Your Company:</label>
                 <textarea rows="5" class="form-control" placeholder="Optional"
                           name="company_detail"
                           ng-model="quoteInquiry.company_detail">
                 </textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>
