@@ -56,6 +56,7 @@ angular.module('xbertsApp')
   .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review',
     function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review) {
       $rootScope.bodyBackground = 'background-whitem';
+      $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
       $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
@@ -85,7 +86,7 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'success');
         })
       };
-      $scope.condition = 'Pending';
+      $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
       $scope.applicantsFilter = function () {
         switch ($scope.condition) {
           case "Dismissed":

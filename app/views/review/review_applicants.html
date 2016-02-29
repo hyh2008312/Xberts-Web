@@ -100,6 +100,27 @@
                   </p>
                 </div>
               </div>
+              <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="item-body-title">Shipping Address Line 1: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+                    <p class="item-body-title">Shipping Address Line 2: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+                    <p class="item-body-title">City: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.city }}</span></p>
+                    <p class="item-body-title">State/Province/Region: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.state }}</span></p>
+                    <p class="item-body-title">Country: <span
+                      class="font-gray-light"> {{ COUNTRIES | decode_:applicant.reviewer.userprofile.mail_country }}</span>
+                    <p class="item-body-title">ZIP/Postal code: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.zip }}</span></p>
+                    <p class="item-body-title">Phone Number: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.phone_number }}</span></p>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>

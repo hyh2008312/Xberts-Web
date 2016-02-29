@@ -27,9 +27,8 @@ angular.module('xbertsApp')
     return function (items, code) {
       var item = "N/A";
       if (code) {
-        code = Number(code);
         for (var i = 0; i < items.length; i++) {
-          if (Number(items[i].code) === code) {
+          if (items[i].code === code) {
             item = items[i].name;
           }
         }
