@@ -10,7 +10,7 @@
             <a class="fade-in-line" ng-click="toSection2();">PROCESS</a>
           </li>
           <li du-smooth-scroll="section-3" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection3();">INSTRUCTIONS</a>
+            <a class="fade-in-line" ng-click="toSection3();">DETAILS</a>
           </li>
           <li du-smooth-scroll="section-4" du-scrollspy>
             <a class="fade-in-line" ng-click="toSection4();">DESCRIPTION</a></li>
@@ -87,33 +87,6 @@
       <section class="padding-top-clear" id="section-2">
         <h4 class="margin-top-clear">Process</h4>
         <hr>
-        <div class="row">
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">1. Submit Application</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">2. Applicant Selection</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">3. Product Shipment</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">4. Review Submission</p>
-          </div>
-        </div>
-      </section>
-      <section class="padding-top-clear" id="section-3">
-        <h4 class="margin-top-clear">Instructions</h4>
-        <hr>
-        <!--<div class="tab-content" ng-bind-html="event.details | trust"></div>-->
         <div class="tab-content">
           <ul>
             <li>
@@ -149,6 +122,55 @@
 
         </div>
       </section>
+      <section class="padding-top-clear" id="section-3">
+        <h4 class="margin-top-clear">Details</h4>
+        <hr>
+        <!--<div class="tab-content" ng-bind-html="event.details | trust"></div>-->
+        <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
+          Selected applicants will receive a free product for review purpose. To participate in this program,
+          please click on the “Apply Now” button
+          and fill out a brief application form.</p>
+
+        <p class="margin-top"><b>Timeline:</b></p>
+        <ul>
+          <li>
+            Application Date: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }} – {{ review.date_end
+            |amDateFormat:'MMM DD, YYYY' }}
+          </li>
+          <li>
+            Announce Selected Reviewers: within a week after application ended
+
+          </li>
+          <li>
+            Testing Period: 2~3 weeks after receiving a product sample
+          </li>
+          <li>
+            Review Submission Deadline: {{ review.date_end }}
+
+          </li>
+        </ul>
+        <p class="margin-top"><b>Benefits:</b></p>
+        <ul>
+          <li>
+            Reviewer can keep the product sample for FREE after submitting are view report
+
+          </li>
+          <li>
+            Be the first to test the most innovative products and share your opinions to make an impact
+
+          </li>
+        </ul>
+        <p class="margin-top"><b>Requirements:</b></p>
+        All the selected applicants need to submit their review reports before the deadline
+        Review reports should be UNBIASED and match the following criteria:
+        <ul style="list-style-type: lower-alpha">
+          <li>Minimum 500 words</li>
+          <li>5 photos minimum</li>
+          <li>Video is preferable but not required, unless stated otherwise</li>
+        </ul>
+
+
+      </section>
       <section id="section-4" class="padding-top-clear">
         <h4 class="margin-top-clear">Description</h4>
         <hr>
@@ -162,12 +184,12 @@
 
         <div class="card-body">
           <div class="card-body-detail">
-            <h4> Price:</h4>
+            <h4> Product Value:</h4>
 
             <p class="font-gray-light">$ {{ review.price }}</p>
             <h4> Available Units: </h4>
 
-            <p class="font-gray-light">{{ review.quota }}</p>
+            <p class="font-gray-light">{{ review.quota }} Free Samples</p>
 
 
             <h4> Application Deadline:</h4>
