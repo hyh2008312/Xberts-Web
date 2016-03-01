@@ -1,0 +1,39 @@
+<form name="shippingForm" ng-submit="save()">
+  <div class="modal-header">
+    <h4 class="modal-title text-center" ng-switch="backApplicant.is_shipped">
+      <span ng-switch-when="true">Edit Tracking Number</span>
+      <span ng-switch-when="false">Marked as Shipped</span>
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="control-label">Carrier: </label>
+
+      <input type="text" class="form-control"
+             name="carrier"
+             ng-model="applicant.carrier"
+             ng-maxlength="100"
+             ng-required="true"/>
+
+      <p class="message-error" ng-show="shippingForm.carrier.$error.maxlength">* no more
+        than 100 chars.</p>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Tracking number: </label>
+
+      <input type="text" class="form-control"
+             name="shipping_code"
+             ng-model="applicant.shipping_code"
+             ng-required="true"
+             ng-maxlength="50">
+
+      <p class="message-error" ng-show="shippingForm.shipping_code.$error.maxlength">* no more
+        than 50 chars.</p>
+    </div>
+  </div>
+
+  <div class="modal-footer align-center">
+    <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>

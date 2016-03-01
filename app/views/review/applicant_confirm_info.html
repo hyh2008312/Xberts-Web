@@ -3,29 +3,50 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Candidate Disclaim</div>
-        <div class="panel-body" ng-show="!review.nda">
-          <p><i>If you apply to be a Product Reviewer, you perform the following operations:</i></p>
+        <div class="panel-heading text-center">Candidate Disclaim I</div>
+        <div class="panel-body">
+          <div>
+            <p><i>If you apply to be a Product Reviewer, you perform the following operations:</i></p>
 
-          <p>• Install and use the product for an extended period of time<br/>
-            • Update us regularly about your progress<br/>
-            • After you receive the sample product, write and submit a honest product review BY THE DESIGNATED DEADLINE
-            {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}<br/>
-            • Post your review on your social networks with the authorization from the Sponsor<br/>
-            • Suggest new ideas and features that you would like to have in a future release of the product
-          </p>
+            <p>• Install and use the product for an extended period of time<br/>
+              • Update us regularly about your progress<br/>
+              • After you receive the sample product, write and submit a honest product review BY THE DESIGNATED
+              DEADLINE
+              {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}<br/>
+              • Post your review on your social networks with the authorization from the Sponsor<br/>
+              • Suggest new ideas and features that you would like to have in a future release of the product
+            </p>
 
-          <p>I understand and agree to perform the above operations as a "Snap" Product Reviewer</p>
+            <p>I understand and agree to perform the above operations as a "Snap" Product Reviewer</p>
 
-          <p>I grant Xberts.com and Sponsor the right to translate, quote and distribute my review in multiple languages
-            for marketing purpose</p>
+            <p>I grant Xberts.com and Sponsor the right to translate, quote and distribute my review in multiple
+              languages
+              for marketing purpose</p>
 
-          <p>Xberts.com assumes no responsibility for any Product/Service provided by our sponsor or partner in any way.
-            You expressly understand and agree that your use of the Product/Service provided by Xberts.com is at your
-            sole responsibility of risk. </p>
-          <br/>
+            <p>Xberts.com assumes no responsibility for any Product/Service provided by our sponsor or partner in any
+              way.
+              You expressly understand and agree that your use of the Product/Service provided by Xberts.com is at your
+              sole responsibility of risk. </p>
+            <br/>
 
-          <p>I accept all the terms and conditions as outlined above. I am of legal age and I have necessary capacity to
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="panel panel-default" ng-show="review.nda_title">
+        <div class="panel-heading text-center">{{ review.nda_title }}</div>
+        <div class="panel-body">
+          <div ng-bind-html="review.nda | trust">
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p class="margin-top">I accept all the terms and conditions as outlined above. I am of legal age and I have
+            necessary capacity
+            to
             execute this agreement. </p>
 
           <div class="form-inline">
@@ -52,7 +73,6 @@
                    ng-model="reviewApplicant.signature" ng-required="true">
           </div>
         </div>
-        <div class="panel-body" ng-show="review.nda" ng-bind-html="review.nda | trust"></div>
       </div>
       <div class="row">
         <p class='message-error text-center' ng-show="reviewForm.submitted && reviewForm.$invalid">Please check

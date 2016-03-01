@@ -18,8 +18,8 @@ angular.module('xbertsApp')
     $scope.isOutDated = function (time) {
       return Date.now() - new Date(time) > 0;
     };
-    $scope.isApplicantsSelectionButtonActive = $filter('amDifference')($scope.review.application_end_date, null, 'days')< 0 && !$scope.review.is_publish_applicants;
-    $scope.isReportsReviewButtonActive = $filter('amDifference')($scope.review.date_end, null, 'days') < 0;
+    $scope.isApplicantsSelectionButtonActive = $scope.isOutDated($scope.review.application_end_date) && !$scope.review.is_publish_applicants;
+    $scope.isReportsReviewButtonActive = $scope.isOutDated($scope.review.date_end);
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     if ($rootScope.user.isAuth()) {
       Applicantsreview.get({

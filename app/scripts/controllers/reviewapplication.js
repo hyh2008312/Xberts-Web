@@ -106,6 +106,34 @@ angular.module('xbertsApp')
         $scope.applicantsFilter();
       };
 
+      $scope.markShipped = function (size, index) {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/review/review_applicant_mark_shipped.html',
+          controller: 'ReviewMarkShippedCtrl',
+          size: size,
+          resolve: {
+            applicant: function () {
+              return $scope.filterApplicants[index];
+            },
+            review: function () {
+              return $scope.review;
+            },
+            applicantLeft: function () {
+              return $scope.applicantLeft;
+            }
+          }
+        });
+        modalInstance.result.then(function () {
+          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
+          $scope.applicantsFilter();
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
+      };
+
       $scope.open = function (size, index) {
         if (!$rootScope.user.authRequired()) {
           return;
@@ -166,6 +194,43 @@ angular.module('xbertsApp')
       if (applicant.answer) {
         $scope.answer = JSON.parse(applicant.answer);
       }
+    }])
+  .controller('ReviewMarkShippedCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ReviewApplicant',
+    function ($scope, $uibModalInstance, applicant, review, ReviewApplicant) {
+      $scope.review = review;
+      $scope.backApplicant=applicant;
+      $scope.applicant = ReviewApplicant.getApplicationResource(
+        {
+          id: applicant.id,
+          is_shipped: true,
+          shipping_code: applicant.shipping_code,
+          carrier: applicant.carrier
+        });
+      $scope.save = function () {
+        if ($scope.shippingForm.$valid) {
+          $scope.$emit('backdropOn', 'post');
+
+          $scope.applicant.$patch(function (data) {
+            applicant.is_shipped = true;
+            applicant.shipping_code = $scope.applicant.shipping_code;
+            applicant.carrier = $scope.applicant.carrier;
+            $scope.$emit('backdropOff', 'success');
+            $uibModalInstance.close();
+          }, function () {
+            $scope.$emit('backdropOff', 'success');
+          })
+
+        } else {
+          $scope.shippingForm.submitted = true;
+          $scope.shippingForm.$invalid = true;
+        }
+
+
+      };
+
+      $scope.close = function () {
+        $uibModalInstance.dismiss();
+      };
     }])
   .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', function ($scope, $rootScope, review, $state) {
     $rootScope.bodyBackground = 'background-whitem';

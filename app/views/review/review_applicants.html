@@ -103,28 +103,64 @@
               <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
                 <div class="row">
                   <div class="col-md-6">
+                    <p class="font-gray-light margin-top"><i>Shipping Address</i></p>
+
                     <p class="item-body-title">Shipping Address Line 1: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+
                     <p class="item-body-title">Shipping Address Line 2: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+
                     <p class="item-body-title">City: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.city }}</span></p>
+
                     <p class="item-body-title">State/Province/Region: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.state }}</span></p>
+
                     <p class="item-body-title">Country: <span
                       class="font-gray-light"> {{ COUNTRIES | decode_:applicant.reviewer.userprofile.mail_country }}</span>
+
                     <p class="item-body-title">ZIP/Postal code: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.zip }}</span></p>
+
                     <p class="item-body-title">Phone Number: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.phone_number }}</span></p>
                   </div>
 
+
+                </div>
+
+                <div ng-show="applicant.is_shipped">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="font-gray-light margin-top"><i>Shipping Info</i></p>
+
+                      <p class="item-body-title">Carrier: <span
+                        class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+
+                      <p class="item-body-title">Tracking number: <span
+                        class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+                    </div>
+
+
+                  </div>
+
+                  <div class="align-right" ng-switch="applicant.is_shipped">
+                    <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="false">Mark as
+                      Shipped
+                    </button>
+                    <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="true">Edit
+                      Tracking Number
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
-        <div class="margin-top text-center" ng-show="user.isStaff()" ng-switch="review.is_publish_applicants_confirmed">
+        <div class="margin-top text-center" ng-show="user.isStaff()"
+             ng-switch="review.is_publish_applicants_confirmed">
           <button class="btn btn-primary" ng-switch-when="false" ng-click="ConfirmSelectionResult()"
                   ng-disabled="!review.is_publish_applicants">Confirm Selection
             Result
