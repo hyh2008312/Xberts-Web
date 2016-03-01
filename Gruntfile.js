@@ -360,6 +360,23 @@ module.exports = function (grunt) {
       }
     },
 
+    compress: {
+      options: {
+        mode: 'gzip'
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: ['**/*'],
+          dest: '<%= yeoman.dist %>/',
+          rename: function(dest, src) {
+            return dest + src + '.gz';
+          }
+        }]
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -473,7 +490,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'compress:dist'
   ]);
 
   grunt.registerTask('buildServe',[
