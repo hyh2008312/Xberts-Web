@@ -14,8 +14,7 @@ module.exports = function (grunt) {
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    ngtemplates: 'grunt-angular-templates'
   });
 
   var modRewrite = require('connect-modrewrite');
@@ -125,14 +124,7 @@ module.exports = function (grunt) {
           open: {
             target:'http://localhost:9000/'
           },
-          base: '<%= yeoman.dist %>',
-          middleware: function (connect) {
-            connect().use(
-              '/dist/styles',
-              connect.static('./dist/styles')
-            );
-            connect.static(appConfig.dist);
-          }
+          base: '<%= yeoman.dist %>'
         }
       }
     },
@@ -368,13 +360,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.html']
-      }
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -484,7 +469,6 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'filerev',
