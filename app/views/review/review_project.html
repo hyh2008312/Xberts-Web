@@ -4,16 +4,16 @@
       <div class="col-sm-9">
         <ul class="nav navbar-nav">
           <li id="sub_nav_show" du-smooth-scroll="section-1" du-scrollspy style="display: none;">
-            <a class="fade-in-line">Sub title</a>
+            <a class="fade-in-line hidden-xs">Sub title</a>
           </li>
           <li du-smooth-scroll="section-2" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection2();">PROCESS</a>
+            <a class="fade-in-line hidden-xs" ng-click="toSection2();">PROCESS</a>
           </li>
           <li du-smooth-scroll="section-3" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection3();">DETAILS</a>
+            <a class="fade-in-line hidden-xs" ng-click="toSection3();">DETAILS</a>
           </li>
           <li du-smooth-scroll="section-4" du-scrollspy>
-            <a class="fade-in-line" ng-click="toSection4();">DESCRIPTION</a></li>
+            <a class="fade-in-line hidden-xs" ng-click="toSection4();">DESCRIPTION</a></li>
         </ul>
       </div>
       <!--<div class="col-md-3" ng-if="isOutDated(review.date_end)">-->
@@ -30,9 +30,9 @@
               <div ng-switch="isOutDated(review.date_end)">
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
-                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                       class="btn btn-primary navbar-btn navbar-right">Application Ended</a>
-                    <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Submit Review</a>
+                    <a ng-switch-when="false" class="btn btn-primary navbar-btn navbar-right"
+                       ui-sref="application.protected.reviewReport({reviewId:review.id})">Submit Review</a>
+                    <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Application Ended</a>
                   </div>
                 </div>
                 <a ng-switch-when="true"
@@ -134,7 +134,7 @@
         <p class="margin-top"><b>Timeline:</b></p>
         <ul>
           <li>
-            Application Date Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
+            Application Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
           </li>
           <li>
             Announce Selected Reviewers: within a week after application ended
@@ -177,7 +177,7 @@
       </section>
     </div>
     <div class="col-md-3">
-      <h4 class="margin-top-clear">Details</h4>
+      <!--<h4 class="margin-top-clear">Details</h4>-->
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
@@ -212,9 +212,9 @@
               <div ng-switch="isOutDated(review.date_end)">
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
-                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                       class="btn btn-lg btn-block btn-primary">Application Ended</a>
-                    <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Submit Review</a>
+                    <a ng-switch-when="false" class="btn btn-lg btn-block btn-primary"
+                       ui-sref="application.protected.reviewReport({reviewId:review.id})">Submit Review</a>
+                    <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Application Ended</a>
                   </div>
                 </div>
                 <a ng-switch-when="true"
