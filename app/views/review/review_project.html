@@ -134,8 +134,7 @@
         <p class="margin-top"><b>Timeline:</b></p>
         <ul>
           <li>
-            Application Date: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }} – {{ review.date_end
-            |amDateFormat:'MMM DD, YYYY' }}
+            Application Date Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
           </li>
           <li>
             Announce Selected Reviewers: within a week after application ended
@@ -145,14 +144,14 @@
             Testing Period: 2~3 weeks after receiving a product sample
           </li>
           <li>
-            Review Submission Deadline: {{ review.date_end }}
+            Review Submission Deadline: {{ review.date_end |amDateFormat:'MMM DD, YYYY' }}
 
           </li>
         </ul>
         <p class="margin-top"><b>Benefits:</b></p>
         <ul>
           <li>
-            Reviewer can keep the product sample for FREE after submitting are view report
+            Reviewer can keep the product sample for FREE after submitting a review report
 
           </li>
           <li>
@@ -161,7 +160,7 @@
           </li>
         </ul>
         <p class="margin-top"><b>Requirements:</b></p>
-        All the selected applicants need to submit their review reports before the deadline
+        All the selected applicants need to submit their review reports, before the deadline
         Review reports should be UNBIASED and match the following criteria:
         <ul style="list-style-type: lower-alpha">
           <li>Minimum 500 words</li>
