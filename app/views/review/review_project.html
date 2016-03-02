@@ -31,7 +31,7 @@
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
                     <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                       class="btn btn-primary navbar-btn navbar-right">Submit Review</a>
+                       class="btn btn-primary navbar-btn navbar-right">Application Ended</a>
                     <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Submit Review</a>
                   </div>
                 </div>
@@ -213,7 +213,7 @@
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
                     <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
-                       class="btn btn-lg btn-block btn-primary">Submit Review</a>
+                       class="btn btn-lg btn-block btn-primary">Application Ended</a>
                     <a ng-switch-when="true" class="btn btn-lg btn-block btn-gray">Submit Review</a>
                   </div>
                 </div>
