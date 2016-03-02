@@ -368,7 +368,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['**/*'],
+          src: ['**/*', '!scripts/override-configuration.*.js'],
           dest: '<%= yeoman.dist %>/',
           rename: function(dest, src) {
             return dest + src + '.gz';
