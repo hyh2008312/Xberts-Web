@@ -74,4 +74,14 @@ angular.module('xbertsApp')
       $scope.isOutDated = function (time) {
         return Date.now() - new Date(time) > 0;
       };
+      $scope.slides = [
+        {
+          image: '/images/mo_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'btn-primary',
+          url: 'application.review({reviewId:9})'
+        }
+      ];
     }]);

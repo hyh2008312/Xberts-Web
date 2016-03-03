@@ -61,7 +61,8 @@ angular.module('xbertsApp')
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
       $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
       $scope.review = review;
-      $scope.applicants = $filter('orderBy')(review.applicants, '-is_selected');
+      var applicants_order = $filter('orderBy')(review.applicants, '-is_selected');
+      $scope.applicants = $filter('filter')(applicants_order, {reviewer: {is_bad_reviewer: false}});
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
         $state.go('application.main')
       }
@@ -198,7 +199,7 @@ angular.module('xbertsApp')
   .controller('ReviewMarkShippedCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ReviewApplicant',
     function ($scope, $uibModalInstance, applicant, review, ReviewApplicant) {
       $scope.review = review;
-      $scope.backApplicant=applicant;
+      $scope.backApplicant = applicant;
       $scope.applicant = ReviewApplicant.getApplicationResource(
         {
           id: applicant.id,

@@ -261,7 +261,7 @@ $avatarTypes: (
         padding: 10%;
       }
     }
-    >.right-enter{
+    > .right-enter {
       position: absolute;
       -webkit-transition: right 1s;
       -moz-transition: right 1s;
@@ -295,7 +295,7 @@ $avatarTypes: (
       }
     }
   }
-  >.right-enter{
+  > .right-enter {
     position: absolute;
     right: -50px;
     bottom: 10px;
@@ -500,3 +500,25 @@ $message-types: (
   right: 22px;
   color: #bcbec0;;
 }
+
+@media screen and (min-width: 768px) {
+  .carousel-caption {
+    bottom: 12%;
+  }
+  .carousel-left {
+    left: 0;
+    text-align: left;
+  }
+
+  .carousel-right {
+    right: 12%;
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-caption {
+    bottom: 25%;
+  }
+}
+

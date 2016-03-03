@@ -7,7 +7,9 @@
 </section>
 <section>
   <div class="container">
-    <p class="font-gray-light">Please answer all the following questions. If the answer is not applicable, enter 'N/A'.</p>
+    <p class="font-gray-light">Please answer the following questions to apply. All the information must be real and
+      accurate. The more details you provide, the higher chance you can be selected.</p>
+
     <div class="section-body">
       <uib-tabset>
         <uib-tab heading="Step 1. Tell us about yourself" active="tabs[0].active" disable="tabs[0].disable">
@@ -16,10 +18,12 @@
         <uib-tab heading="Step 2. Fill in a brief survey" active="tabs[1].active" disable="tabs[1].disable">
           <div ng-include src="'views/review/applicant_survey_info.html'"></div>
         </uib-tab>
-        <uib-tab heading="Step 3. Confirm your application" active="tabs[2].active"  disable="tabs[2].disable" select="select(2)">
+        <uib-tab heading="Step 3. Confirm your application" active="tabs[2].active" disable="tabs[2].disable"
+                 select="select(2)">
           <div ng-include src="'views/review/applicant_confirm_info.html'"></div>
         </uib-tab>
-        <uib-tab heading="Step 4. Submit for selection" active="tabs[3].active" disable="tabs[3].disable" select="select(3)">
+        <uib-tab heading="Step 4. Submit for selection" active="tabs[3].active" disable="tabs[3].disable"
+                 select="select(3)">
           <h2 class="text-center font-primary">
             Your application has been successfully submitted and will be under review soon!
             <redirect ui-sref="application.main" redirected="{{ redirect }}" class="hidden"></redirect>
