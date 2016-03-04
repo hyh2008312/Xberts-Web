@@ -111,17 +111,19 @@
               </div>
             </div>
           </div>
-          <h3 class="padding-a5-10 margin-top-clear margin-bottom-clear" ng-switch="inquiry.exist">
-            <button ng-switch-when="false" class="btn btn-lg btn-primary btn-block" ng-click="open('lg')" >
-              Get
-              Quote
-            </button>
-            <button ng-switch-when="true" class="btn btn-lg btn-gray btn-block" disabled >
+          <h3 class="padding-a5-10 margin-top-clear margin-bottom-clear">
+            <button class="button button-full" ng-class="{'button-primary':!inquiry.exist}" ng-click="open('lg')" ng-disabled="inquiry.exist">
+              <span ng-switch="inquiry.exist">
+                <span ng-switch-when="false">Get Quote</span>
+                <span ng-switch-when="true">
                   <span ng-switch="inquiry.status">
                     <span ng-switch-when="REQUESTED">Pending Quote</span>
                     <span ng-switch-when="RESOLVED">Resolved</span>
                     <span ng-switch-when="UNRESOLVED">Unresolved</span>
                   </span>
+                </span>
+              </span>
+
             </button>
           </h3>
           <div class="card card-bordless card-margin-bottomless">
