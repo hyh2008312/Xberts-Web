@@ -51,7 +51,6 @@ angular.module('xbertsApp')
             }
             scope.items.push(item);
           }
-          console.log(scope.items);
           scope.$watch(checkBoxRequired, function () {
             if (scope.question.answer == undefined) {
               scope.question.answer = {};
