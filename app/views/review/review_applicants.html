@@ -130,29 +130,27 @@
 
                 </div>
 
-                <div ng-show="applicant.is_shipped">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p class="font-gray-light margin-top"><i>Shipping Info</i></p>
+                <div class="row" ng-show="applicant.is_shipped">
+                  <div class="col-md-6">
+                    <p class="font-gray-light margin-top"><i>Shipping Info</i></p>
 
-                      <p class="item-body-title">Carrier: <span
-                        class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
+                    <p class="item-body-title">Carrier: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
 
-                      <p class="item-body-title">Tracking number: <span
-                        class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
-                    </div>
-
-
+                    <p class="item-body-title">Tracking number: <span
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
                   </div>
 
-                  <div class="align-right" ng-switch="applicant.is_shipped">
-                    <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="false">Mark as
-                      Shipped
-                    </button>
-                    <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="true">Edit
-                      Tracking Number
-                    </button>
-                  </div>
+
+                </div>
+
+                <div class="align-right" ng-switch="applicant.is_shipped">
+                  <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="false">Mark as
+                    Shipped
+                  </button>
+                  <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="true">Edit
+                    Tracking Number
+                  </button>
                 </div>
               </div>
             </div>
