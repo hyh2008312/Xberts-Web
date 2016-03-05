@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ProfileinfoCtrl',['$scope','SystemConstant','growl',function ($scope, SystemConstant, growl) {
+  .controller('ProfileinfoCtrl', ['$scope', 'SystemConstant', 'growl', function ($scope, SystemConstant, growl) {
     $scope.COUNTRIES = SystemConstant.COUNTRIES;
     $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
     $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -24,14 +24,15 @@ angular.module('xbertsApp')
       //project pre process
 
 
-      $scope.profileForm.phoneError=!$scope.profile.phone_number;
+      $scope.profileForm.phoneError = !$scope.profile.phone_number;
 
       if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
         $scope.$emit('backdropOn', 'post');
-        if(!$scope.profile.linkedin){
-          $scope.profile.linkedin_url='';
-          $scope.profile.linkedin_connections='';
+        if (!$scope.profile.linkedin) {
+          $scope.profile.linkedin_url = '';
+          $scope.profile.linkedin_connections = '';
         }
+        $scope.profile.recipient_name = $scope.profile.first_name + " " + $scope.profile.last_name;
         $scope.profile.$put(function (resp) {
           $scope.profile.birth = new Date($scope.profile.birth);
           $scope.$emit('backdropOff', 'success');
@@ -52,12 +53,12 @@ angular.module('xbertsApp')
     $scope.open = function () {
       $scope.datePickerStatus = true;
     };
-    $scope.social_type='';
-    $scope.OnSocialTypeChange=function(){
+    $scope.social_type = '';
+    $scope.OnSocialTypeChange = function () {
       var i;
-      for(i=0;i<$scope.SOCIAL_TYPE.length;i++){
-        if($scope.SOCIAL_TYPE[i].code==$scope.profile.other_social_type){
-          $scope.social_type=$scope.SOCIAL_TYPE[i].name;
+      for (i = 0; i < $scope.SOCIAL_TYPE.length; i++) {
+        if ($scope.SOCIAL_TYPE[i].code == $scope.profile.other_social_type) {
+          $scope.social_type = $scope.SOCIAL_TYPE[i].name;
         }
       }
     }

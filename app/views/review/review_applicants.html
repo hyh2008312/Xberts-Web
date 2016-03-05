@@ -105,6 +105,11 @@
                   <div class="col-md-6">
                     <p class="font-gray-light margin-top"><i>Shipping Address</i></p>
 
+                    <p class="item-body-title">Recipient Name:
+                      <span class="font-gray-light" ng-show="applicant.reviewer.userprofile.recipient_name"> {{ applicant.reviewer.userprofile.recipient_name }}</span>
+                      <span class="font-gray-light" ng-show="!applicant.reviewer.userprofile.recipient_name"> {{ applicant.reviewer.userprofile.first_name + ' ' + applicant.reviewer.userprofile.last_name }}</span>
+                    </p>
+
                     <p class="item-body-title">Shipping Address Line 1: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.address_line1 }}</span></p>
 
