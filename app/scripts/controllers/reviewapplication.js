@@ -79,7 +79,7 @@ angular.module('xbertsApp')
       };
       $scope.ConfirmSelectionResult = function () {
         $scope.$emit('backdropOn', 'post');
-        var r = new Review({id: review.id, is_publish_applicants_confirmed: true});
+        var r = new Review({id: review.id, is_publish_applicants_confirmed: true, confirm: true});
         r.$patch(function () {
           $scope.review.is_publish_applicants_confirmed = true;
           $scope.$emit('backdropOff', 'success');
@@ -204,6 +204,7 @@ angular.module('xbertsApp')
         {
           id: applicant.id,
           is_shipped: true,
+          ship: true,
           shipping_code: applicant.shipping_code,
           carrier: applicant.carrier
         });
