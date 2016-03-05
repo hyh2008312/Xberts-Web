@@ -2,9 +2,9 @@
   <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 15px;">
     <h2 class="font-whitem">Connect innovative products with buyers, distributors and retailers!</h2>
 
-      <h3 class="text-center">
-        <a class="button button-primary button-glow" ui-sref="application.protected.launchProject">Launch a Product</a>
-      </h3>
+    <h3 class="text-center">
+      <a class="button button-primary button-glow" ui-sref="application.protected.launchProject">Launch a Product</a>
+    </h3>
   </div>
 </section>
 <section class="container padding-top-clear">
@@ -59,12 +59,18 @@
                 <div class="col-xs-6 align-right">
                   <p class="p-1">
                     <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
-                    <!--<i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>-->
+
                     <!-- todo:user config-->
+                    <span ng-if='user.isAuth() && user.isStaff()'>
+                      <i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>
+                      <i class="fa fa-hashtag"></i> <span ng-bind="project.inquiry_amount"></span>
+                    </span>
                   <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
                   <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
                   <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
                   </span>
+
+
                   </p>
                 </div>
               </div>
