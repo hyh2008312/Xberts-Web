@@ -16,7 +16,7 @@ angular.module('xbertsApp')
           title: 'Bring Innovations to Global Market',
           subtitle: 'An online ecosystem that connects smart technology innovators with distribution partners, product reviewers, industry experts and solution providers',
           buttonText: 'Get Started',
-          buttonColor: 'btn-primary',
+          buttonColor: 'button-primary',
           captionLocation: '',
           url: 'application.signup'
         },
@@ -25,9 +25,19 @@ angular.module('xbertsApp')
           title: '',
           subtitle: '',
           buttonText: 'Apply Now',
-          buttonColor: 'btn-primary',
+          buttonColor: 'button-primary',
           captionLocation: 'carousel-right',
           url: 'application.review({reviewId:9})'
+          //buttonBorder:'button-border'
+        },
+        {
+          image: '/images/whome_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-left',
+          url: 'application.review({reviewId:10})'
           //buttonBorder:'button-border'
         }
       ];
