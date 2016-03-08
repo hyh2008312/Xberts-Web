@@ -61,12 +61,12 @@ angular.module('xbertsApp')
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
       $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
       $scope.review = review;
-      var applicants_order = $filter('orderBy')(review.applicants, '-is_selected');
-      $scope.applicants = $filter('filter')(applicants_order, {reviewer: {is_bad_reviewer: false}});
+      var applicants_old = $filter('orderBy')(review.applicants, '-is_selected');
+      $scope.applicants = $filter('filter')(applicants_old, {reviewer: {is_bad_reviewer: false}});
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
         $state.go('application.main')
       }
-      $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
+      $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.applicants, {is_selected: true}).length;
       $scope.publish = function () {
         $scope.$emit('backdropOn', 'post');
         var r = new Review({id: review.id, is_publish_applicants: true});
@@ -128,7 +128,7 @@ angular.module('xbertsApp')
           }
         });
         modalInstance.result.then(function () {
-          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
+          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.applicants, {is_selected: true}).length;
           $scope.applicantsFilter();
         }, function () {
           console.log('Modal dismissed at: ' + new Date());

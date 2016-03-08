@@ -8,7 +8,7 @@
           <span ng-switch-when="true">applicants</span>
           <span ng-switch-when="false">applicant</span>
         </span>,
-        <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true }| length }}</i> selected ,
+        <i class="font-striking"> {{ applicants | filter:{ is_selected:true }| length }}</i> selected ,
         <i class="font-striking"> {{ applicantLeft }}</i> left
       </h3>
     </div>
