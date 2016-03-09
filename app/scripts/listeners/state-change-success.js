@@ -10,8 +10,7 @@ angular.module('xbertsApp')
 
         dataLayer.push({
           'event': 'initialPageLoad',
-          'initialLoadTime': initialLoadTime,
-          'initialPage': toState.name
+          'initialLoadTime': initialLoadTime
         });
       }
     });

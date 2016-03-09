@@ -198,6 +198,11 @@ angular.module('xbertsApp')
             setUser(value);
 
             Idle.watch();
+
+            // Send user id to GTM after login
+            dataLayer.push({
+              userId: value.id
+            });
           });
       }
 
@@ -247,6 +252,11 @@ angular.module('xbertsApp')
 
         Idle.unwatch();
 
+        // Clear user id from GTM upon logout
+        dataLayer.push({
+          userId: undefined
+        });
+
         if (!shouldMakeApiCall) {
           var deferred = $q.defer();
 
@@ -281,6 +291,11 @@ angular.module('xbertsApp')
               setUser(value);
 
               Idle.watch();
+
+              // Send user id to GTM if user is already logged in
+              dataLayer.push({
+                userId: value.id
+              });
 
               deferred.resolve();
             })
