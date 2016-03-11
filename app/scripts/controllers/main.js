@@ -40,5 +40,16 @@ angular.module('xbertsApp')
           url: 'application.review({reviewId:10})'
           //buttonBorder:'button-border'
         }
+        ,
+        {
+          image: '/images/dreammaker_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-left',
+          url: 'application.review({reviewId:12})'
+          //buttonBorder:'button-border'
+        }
       ];
     }]);
