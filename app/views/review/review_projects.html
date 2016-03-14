@@ -37,7 +37,7 @@
        infinite-scroll-disabled="projectReviewPaginator.loading || !projectReviewPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items">
       <a class="block-link" ui-sref="application.review({ reviewId:review.id })">
-        <div class="card">
+        <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ review.project.image }})">
           </div>
           <div class="card-body">

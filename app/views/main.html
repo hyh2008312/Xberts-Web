@@ -88,7 +88,7 @@
     <div class="row section-body">
       <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items  | limitTo:3">
         <a class="block-link" ui-sref="application.project({projectId: project.id})">
-          <div class="card">
+          <div class="card card-bordless">
             <div class="card-header" style="background-image: url({{ project.image }})">
             </div>
             <div class="card-body">
@@ -196,7 +196,7 @@
 
     <div class="row section-body">
       <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items | limitTo:3">
-        <div class="card cover">
+        <div class="card card-bordless cover">
           <div class="card-header"
                style="background-image:url({{ event.logo }});">
           </div>

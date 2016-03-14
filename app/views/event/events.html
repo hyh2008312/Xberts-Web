@@ -54,7 +54,7 @@
   <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
     <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
-      <div class="card cover">
+      <div class="card card-bordless cover">
         <div class="card-header"
              style="background-image:url({{ event.logo }});">
         </div>
