@@ -8,8 +8,9 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('EventsCtrl', ['$scope', 'eventPartnerPaginator', 'eventPaginator',
-    function ($scope, eventPartnerPaginator, eventPaginator) {
+  .controller('EventsCtrl', ['$scope','$rootScope', 'eventPartnerPaginator', 'eventPaginator',
+    function ($scope,$rootScope, eventPartnerPaginator, eventPaginator) {
+      $rootScope.bodyBackground = '';
       $scope.eventPaginator = eventPaginator;
       $scope.eventPartnerPaginator = eventPartnerPaginator;
       $scope.eventPaginator.watch($scope, 'eventPaginator.currentPage');

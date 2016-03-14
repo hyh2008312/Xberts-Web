@@ -8,7 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ExpertsCtrl', function ($scope,SystemData,SystemConstant,expertPaginator) {
+  .controller('ExpertsCtrl', function ($scope,$rootScope,SystemData,SystemConstant,expertPaginator) {
+    $rootScope.bodyBackground = '';
     $scope.experts={};
     $scope.stages=SystemData.getStages();
     $scope.countries=SystemConstant.COUNTRIES;

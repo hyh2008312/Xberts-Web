@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MainCtrl', ['$scope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator', 'projectReviewPaginator',
-    function ($scope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator, projectReviewPaginator) {
+  .controller('MainCtrl', ['$scope','$rootScope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator', 'projectReviewPaginator',
+    function ($scope,$rootScope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator, projectReviewPaginator) {
+      $rootScope.bodyBackground = '';
       $scope.eventPaginator = eventPaginator;
       $scope.projectPaginator = projectPaginator;
       $scope.expertPaginator = expertPaginator;
       $scope.projectReviewPaginator = projectReviewPaginator;
+
       $scope.isOutDated = function (time) {
         return Date.now() - new Date(time) > 0;
       };

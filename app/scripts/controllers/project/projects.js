@@ -8,7 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ProjectsCtrl', ['$scope', 'projectPaginator', 'SystemData','localStorageService', function ($scope, projectPaginator, SystemData,localStorageService) {
+  .controller('ProjectsCtrl', ['$scope', 'projectPaginator','$rootScope', 'SystemData','localStorageService', function ($scope, projectPaginator,$rootScope, SystemData,localStorageService) {
+    $rootScope.bodyBackground = '';
     $scope.projectTypes = SystemData.getProjectTypes();
     $scope.projectPaginator = projectPaginator;
     $scope.projectPaginator.watch($scope, 'projectPaginator.currentPage');

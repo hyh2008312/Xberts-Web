@@ -67,8 +67,9 @@ angular.module('xbertsApp')
       }
     });
   })
-  .controller('ReviewProjectsCtrl', ['$scope', 'SystemData', 'projectReviewPaginator',
-    function ($scope, SystemData, projectReviewPaginator) {
+  .controller('ReviewProjectsCtrl', ['$scope','$rootScope', 'SystemData', 'projectReviewPaginator',
+    function ($scope,$rootScope, SystemData, projectReviewPaginator) {
+      $rootScope.bodyBackground = '';
       $scope.projectReviewPaginator = projectReviewPaginator;
       $scope.projectReviewPaginator.watch($scope, 'projectReviewPaginator.currentPage');
       $scope.isOutDated = function (time) {
