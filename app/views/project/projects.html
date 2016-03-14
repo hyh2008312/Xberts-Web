@@ -37,7 +37,7 @@
   </div>
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.hasNext()">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
+    <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="project in projectPaginator.items">
       <a class="block-link" ui-sref="application.project({projectId: project.id})">
         <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ project.image }})">
