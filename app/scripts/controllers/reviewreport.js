@@ -97,6 +97,6 @@ angular.module('xbertsApp')
       };
     }])
   .controller('ReviewReportVisualCtrl', function ($scope,$rootScope, report) {
-    $rootScope.bodyBackground = 'background-whitem';
+    $rootScope.pageSettings.setBackgroundColor('background-whitem');
     $scope.report = report;
   });

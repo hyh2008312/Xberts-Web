@@ -29,11 +29,10 @@ angular
     'angularRandomString'
   ])
   .value('duScrollOffset', 50)
-  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService',
-    function ($rootScope, $state, $stateParams, $window, localStorageService) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService',
+    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
-      $rootScope.bodyBackground = 'background-light-white';
       $rootScope.summerNoteSimple = {
         height: 200,
         toolbar: [
@@ -44,6 +43,7 @@ angular
           ['insert', ['link']]
         ]
       };
+      $rootScope.pageSettings = PageService.pageSetting;
       $rootScope.summerNoteFull = {
         height: 300,
         toolbar: [
@@ -393,6 +393,7 @@ angular
         url: "/review/request",
         templateUrl: 'views/review/review_request.html',
         controller: 'ReviewRequestCtrl',
+        controllerAs: 'reviewRequest',
         resolve: {
           targetGeos: ['SystemData', function (SystemData) {
             return SystemData.getTargetGeosPromise();

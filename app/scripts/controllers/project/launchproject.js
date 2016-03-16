@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     function ($scope, $rootScope, $stateParams, localStorageService) {
       $scope.projectId = $stateParams.projectId || null;
       $scope.redirect = false;
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.tabs = [
         {active: true, disable: false},
         {active: false, disable: true},

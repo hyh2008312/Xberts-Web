@@ -10,6 +10,8 @@
 angular.module('xbertsApp')
   .controller('ReviewapplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', 'application',
     function ($scope, $rootScope, review, reviewer, application) {
+
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.application = application;
       // todo:每个人只能填写一份调查问卷
       $scope.review = review;
@@ -33,7 +35,6 @@ angular.module('xbertsApp')
       }
       $scope.profile.linkedin = true;
       $scope.redirect = false;
-      $rootScope.bodyBackground = 'background-whitem';
       $scope.tabs = [
         {active: true, disable: false},
         {active: false, disable: true},
@@ -58,7 +59,7 @@ angular.module('xbertsApp')
     }])
   .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review',
     function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review) {
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
@@ -238,7 +239,7 @@ angular.module('xbertsApp')
       };
     }])
   .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', function ($scope, $rootScope, review, $state) {
-    $rootScope.bodyBackground = 'background-whitem';
+    $rootScope.pageSettings.setBackgroundColor('background-whitem');;
     $scope.review = review;
     if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
       $state.go('application.main')

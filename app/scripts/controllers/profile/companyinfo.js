@@ -47,7 +47,7 @@ angular.module('xbertsApp')
     }])
   .controller('CompanyFormCtrl', ['$scope', 'Organization', '$location', '$rootScope', 'growl',
     function ($scope, Organization, $location, $rootScope, growl) {
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       var company = new Organization({id: $rootScope.user.getUserId()});
       var search = $location.search();
       var next = search.next || '/main';

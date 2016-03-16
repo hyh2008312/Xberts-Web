@@ -3,7 +3,9 @@
 angular.module('xbertsApp')
   .controller('MainCtrl', ['$scope','$rootScope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator', 'projectReviewPaginator',
     function ($scope,$rootScope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator, projectReviewPaginator) {
-      $rootScope.bodyBackground = '';
+      $rootScope.pageSettings.setBackgroundColor('');
+      $rootScope.pageSettings.setShareImage('https://xberts.com/images/landing_1_1.d836e5d1.jpg');
+
       $scope.eventPaginator = eventPaginator;
       $scope.projectPaginator = projectPaginator;
       $scope.expertPaginator = expertPaginator;

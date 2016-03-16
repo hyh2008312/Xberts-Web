@@ -11,7 +11,13 @@ angular.module('xbertsApp')
   .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, $filter, review, Applicantsreview) {
     $scope.review = review;
     $scope.applicantsSearch = {is_selected: true};
-    $rootScope.bodyBackground = 'background-whitem';
+
+    var title = review.title;
+    var description = review.title;
+    var backgroundColor = 'background-whitem';
+    var shareImage = review.banner;
+    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+
     $scope.sub = {
       subNavShow: false
     };
@@ -67,9 +73,14 @@ angular.module('xbertsApp')
       }
     });
   })
-  .controller('ReviewProjectsCtrl', ['$scope','$rootScope', 'SystemData', 'projectReviewPaginator',
-    function ($scope,$rootScope, SystemData, projectReviewPaginator) {
-      $rootScope.bodyBackground = '';
+  .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',
+    function ($scope, $rootScope, SystemData, projectReviewPaginator) {
+
+      var title = 'Xberts - Crowdtesting';
+      var description = 'Receive free samples of new products to test and review!Launch a Campaign';
+      var backgroundColor = '';
+      var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
       $scope.projectReviewPaginator = projectReviewPaginator;
       $scope.projectReviewPaginator.watch($scope, 'projectReviewPaginator.currentPage');
       $scope.isOutDated = function (time) {

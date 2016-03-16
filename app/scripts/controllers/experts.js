@@ -9,7 +9,8 @@
  */
 angular.module('xbertsApp')
   .controller('ExpertsCtrl', function ($scope,$rootScope,SystemData,SystemConstant,expertPaginator) {
-    $rootScope.bodyBackground = '';
+    $rootScope.pageSettings.setBackgroundColor('');
+
     $scope.experts={};
     $scope.stages=SystemData.getStages();
     $scope.countries=SystemConstant.COUNTRIES;

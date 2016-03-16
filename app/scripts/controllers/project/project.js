@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project', 'localStorageService', 'QuoteInquiry',
     function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
               Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project, localStorageService, QuoteInquiry) {
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
       $scope.projectTypes = SystemData.getProjectTypes();
       $scope.targetGeos = SystemData.getTargetGeos();
@@ -159,7 +159,7 @@ angular.module('xbertsApp')
     }])
   .controller('ProjectNoRequestCtrl', ['$scope', '$rootScope', '$stateParams', 'SystemData', 'Interact', 'ProjectOnlyDetail', 'Paginator', 'project',
     function ($scope, $rootScope, $stateParams, SystemData, Interact, ProjectOnlyDetail, Paginator, project) {
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
       $scope.projectTypes = SystemData.getProjectTypes();
       $scope.project = project;

@@ -10,7 +10,13 @@
 angular.module('xbertsApp')
   .controller('EventCtrl', ['$scope', '$rootScope', 'EventProject', 'event',
     function ($scope, $rootScope, EventProject, event) {
-      $rootScope.bodyBackground = 'background-whitem';
+      var title = event.title;
+      var description = '';
+      var backgroundColor = 'background-whitem';
+      var shareImage = '';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+
+
       $scope.event = event;
       $scope.eventProjectsLoading = true;
       $scope.eventProjects = EventProject.query({event_id: event.id}, function () {
@@ -84,7 +90,7 @@ angular.module('xbertsApp')
     }])
   .controller('EventProjectVoteOffCtrl', function ($scope, $uibModalInstance, growl, SystemConstant) {
     $scope.countries = SystemConstant.COUNTRIES;
-    $scope.voter={};
+    $scope.voter = {};
     $scope.reasonSelected = [];
     function reasons() {
       var reasonSelected = [];
@@ -111,7 +117,7 @@ angular.module('xbertsApp')
       $scope.eventProjectVoteForm.reasonsRequired = $scope.reasonSelected.length < 1;
       $scope.eventProjectVoteForm.reasonsMax = $scope.reasonSelected.length > 3;
       if ($scope.eventProjectVoteForm.$valid && !$scope.eventProjectVoteForm.reasonsRequired && !$scope.eventProjectVoteForm.reasonsMax) {
-        $scope.voter.reasons=$scope.reasonSelected.join();
+        $scope.voter.reasons = $scope.reasonSelected.join();
         $uibModalInstance.close($scope.voter);
       } else {
         $scope.eventProjectVoteForm.submitted = true;

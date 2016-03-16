@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     'ProjectsNoDetail', 'Interact', 'expert', 'roleRequests', 'Applicantsreview', 'SystemConstant',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
               ProjectsNoDetail, Interact, expert, roleRequests, Applicantsreview, SystemConstant) {
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
       $scope.pendingExpert = $scope.isCurrentUser && roleRequests.length > 0;

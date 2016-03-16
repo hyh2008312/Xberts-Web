@@ -147,7 +147,7 @@ angular.module('xbertsApp')
     'uibDateParser', 'growl', '$timeout', '$state',
     function ($rootScope, $scope, SystemData, SystemConstant, Configuration, $resource, uibDateParser, growl, $timeout, $state) {
 
-      $rootScope.bodyBackground = 'background-whitem';
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.targetGeos = SystemData.getTargetGeos();
       $scope.format = 'yyyy/MM/dd';
       $scope.PRODUCT_STAGE = SystemConstant.PRODUCT_STAGE;
