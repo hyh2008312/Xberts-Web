@@ -19,7 +19,7 @@ angular.module('xbertsApp')
           $scope.reviewApplicant.$put(function (resp) {
             $scope.$emit('backdropOff', 'success');
             //$scope.$emit('reviewStep', '2');
-            $state.go('application.crowdtesting');
+            $state.go('application.crowdtestings');
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
@@ -29,7 +29,7 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'success');
             //$scope.$emit('reviewStep', '2');
             $scope.$emit('backdropOff', 'success');
-            $state.go('application.crowdtesting');
+            $state.go('application.crowdtestings');
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
