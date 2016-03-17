@@ -24,17 +24,18 @@ angular.module('xbertsApp')
       //project pre process
 
 
-      $scope.profileForm.phoneError = !$scope.profile.phone_number;
+      //$scope.profileForm.phoneError = !$scope.profile.phone_number;
 
-      if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
+      //if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
+      if ($scope.profileForm.$valid) {
         $scope.$emit('backdropOn', 'post');
-        if (!$scope.profile.linkedin) {
-          $scope.profile.linkedin_url = '';
-          $scope.profile.linkedin_connections = '';
-        }
+        //if (!$scope.profile.linkedin) {
+        //  $scope.profile.linkedin_url = '';
+        //  $scope.profile.linkedin_connections = '';
+        //}
         $scope.profile.recipient_name = $scope.profile.first_name + " " + $scope.profile.last_name;
         $scope.profile.$put(function (resp) {
-          $scope.profile.birth = new Date($scope.profile.birth);
+          //$scope.profile.birth = new Date($scope.profile.birth);
           $scope.$emit('backdropOff', 'success');
           $scope.$emit('reviewStep', '0');
         }, function (resp) {
@@ -49,10 +50,10 @@ angular.module('xbertsApp')
         $scope.profileForm.$invalid = true;
       }
     };
-    $scope.datePickerStatus = false;
-    $scope.open = function () {
-      $scope.datePickerStatus = true;
-    };
+    //$scope.datePickerStatus = false;
+    //$scope.open = function () {
+    //  $scope.datePickerStatus = true;
+    //};
     $scope.social_type = '';
     $scope.OnSocialTypeChange = function () {
       var i;

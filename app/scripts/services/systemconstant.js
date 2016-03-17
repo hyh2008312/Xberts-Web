@@ -335,11 +335,13 @@ angular.module('xbertsApp')
       {code: '38', name: 'Other'}
     ];
     var SOCIAL_TYPE = [
+      {code: '6', name: 'LinkedIn'},
       {code: '1', name: 'Facebook'},
       {code: '2', name: 'Twitter'},
       {code: '3', name: 'YouTube'},
-      {code: '4', name: 'Other'},
-      {code: '0', name: 'None'}
+      {code: '7', name: 'Blog'}
+      //{code: '4', name: 'Other'},
+      //{code: '5', name: 'None'}
     ];
     var LINKEDIN_CONNECTION=[
       {code:'1',name:'1-10'},

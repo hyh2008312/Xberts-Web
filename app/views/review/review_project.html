@@ -23,7 +23,7 @@
       <div ng-switch="applicant.exist" class="col-md-3 align-right">
         <div ng-switch-when="false">
           <div ng-switch="isOutDated(review.application_end_date)">
-            <a ng-switch-when="false" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+            <a ng-switch-when="false" ui-sref="application.protected.apply({reviewId:review.id})"
                class="btn btn-primary navbar-btn navbar-right">Apply Now</a>
 
             <div ng-switch-when="true">
@@ -64,7 +64,7 @@
                 <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
               </div>
             </div>
-            <a ng-switch-when="null" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+            <a ng-switch-when="null" ui-sref="application.protected.apply({reviewId:review.id})"
                class="btn btn-primary navbar-btn navbar-right">Edit Application</a>
           </div>
         </div>
@@ -241,7 +241,7 @@
       <div ng-switch="applicant.exist" class="margin-top">
         <div ng-switch-when="false">
           <div ng-switch="isOutDated(review.application_end_date)">
-            <a ng-switch-when="false" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+            <a ng-switch-when="false" ui-sref="application.protected.apply({reviewId:review.id})"
                class="button button-primary button-rounded button-full">Apply Now</a>
 
             <div ng-switch-when="true">
@@ -282,7 +282,7 @@
                 <a ng-switch-when="true" class="button button-rounded button-full">Review Ended</a>
               </div>
             </div>
-            <a ng-switch-when="null" ui-sref="application.protected.reviewApplicant({reviewId:review.id})"
+            <a ng-switch-when="null" ui-sref="application.protected.apply({reviewId:review.id})"
                class="button button-primary button-rounded button-full">Edit Application</a>
           </div>
         </div>

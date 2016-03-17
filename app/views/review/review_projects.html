@@ -15,12 +15,12 @@
 <!--</uib-slide>-->
 <!--</uib-carousel>-->
 <section class="container header padding-bottom-clear">
-  <div class="jumbotron section-title" style="background-image: url(/images/vacature.jpg);margin-bottom: 15px;">
-    <h2 class="font-whitem">Receive free samples of new products to test and review!</h2><br/>
+  <div class="jumbotron section-title" style="background-image: url(/images/vacature.jpg);margin-bottom: 15px;min-height: 200px;">
+    <h2 class="font-whitem" style="margin-top: 30px">Receive free samples of new products to test and review!</h2><br/>
 
-    <h3 class="text-center">
-      <a class="button button-primary button-glow" ui-sref="application.reviewRequest">Launch a Campaign</a>
-    </h3>
+    <!--<h3 class="text-center">-->
+      <!--<a class="button button-primary button-glow" ui-sref="application.reviewRequest">Launch a Campaign</a>-->
+    <!--</h3>-->
   </div>
 </section>
 <!--<section style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
@@ -36,7 +36,7 @@
   <div class="row section-body" infinite-scroll="projectReviewPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectReviewPaginator.loading || !projectReviewPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items">
-      <a class="block-link" ui-sref="application.review({ reviewId:review.id })">
+      <a class="block-link" ui-sref="application.crowdtesting({ reviewId:review.id })">
         <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ review.project.image }})">
           </div>

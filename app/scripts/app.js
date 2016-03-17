@@ -417,6 +417,34 @@ angular
           }]
         }
       })
+      .state('application.crowdtestings', {
+        url: "/crowdtesting",
+        templateUrl: 'views/review/review_projects.html',
+        controller: 'ReviewProjectsCtrl',
+        resolve: {
+          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+            var fetchFunction = function (nextPage, otherParams, callback) {
+              var params = {page: nextPage};
+              angular.extend(params, otherParams);
+              ProjectReview.get(params, callback);
+
+            };
+            var paginator = Paginator('projectReview', fetchFunction);
+            return paginator.load();
+          }]
+        }
+      })
+      .state('application.crowdtesting', {
+        url: "/crowdtesting/:reviewId",
+        templateUrl: 'views/review/review_project.html',
+        controller: 'ReviewprojectCtrl',
+        resolve: {
+          review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ProjectReviewLoad($stateParams);
+          }]
+        }
+      })
       .state('application.review', {
         url: "/reviews/:reviewId",
         templateUrl: 'views/review/review_project.html',
@@ -452,6 +480,23 @@ angular
       })
       .state('application.protected.reviewApplicant', {
         url: '/review/:reviewId/applicant',
+        templateUrl: 'views/review/review_application.html',
+        controller: 'ReviewapplicationCtrl',
+        resolve: {
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewLoad($stateParams);
+          }],
+          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+            return ProfileReviewerLoad();
+          }],
+          application: ['ReviewApplicant', '$stateParams', 'authCheck', function (ReviewApplicant, $stateParams, authCheck) {
+            return ReviewApplicant.getApplicationPromise($stateParams);
+          }]
+        }
+      })
+      .state('application.protected.apply', {
+        url: '/crowdtesting/:reviewId/apply',
         templateUrl: 'views/review/review_application.html',
         controller: 'ReviewapplicationCtrl',
         resolve: {
