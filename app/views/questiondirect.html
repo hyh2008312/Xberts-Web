@@ -2,18 +2,24 @@
   <label>{{ question.title }}</label>
 
   <div ng-switch-when="1">
-
-    <input type="text" class="form-control"
-           name="question_{{ question.id }}"
-           ng-model="question.answer.answer_main"
-           ng-required="true"/>
+    <div class="row">
+      <div class="col-md-8">
+        <input type="text" class="form-control"
+               name="question_{{ question.id }}"
+               ng-model="question.answer.answer_main"
+               ng-required="true"/>
+      </div>
+    </div>
   </div>
   <div ng-switch-when="2">
-
-    <textarea type="text" class="form-control" rows="5"
-              name="question_{{ question.id }}"
-              ng-model="question.answer.answer_main"
-              ng-required="true"></textarea>
+    <div class="row">
+      <div class="col-md-8">
+         <textarea type="text" class="form-control" rows="5"
+                   name="question_{{ question.id }}"
+                   ng-model="question.answer.answer_main"
+                   ng-required="true"></textarea>
+      </div>
+    </div>
   </div>
   <div ng-switch-when="4">
     <div class="radio" ng-repeat="item in question.extra|split">
