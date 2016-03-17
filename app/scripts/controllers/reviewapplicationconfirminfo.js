@@ -28,8 +28,8 @@ angular.module('xbertsApp')
           $scope.reviewApplicant.$save(function (resp) {
             $scope.$emit('backdropOff', 'success');
             //$scope.$emit('reviewStep', '2');
+            $scope.$emit('backdropOff', 'success');
             $state.go('application.crowdtesting');
-            $state.go('application.main')
           }, function (resp) {
             growl.error('Sorry,some error happened.');
             $scope.$emit('backdropOff', 'error');
