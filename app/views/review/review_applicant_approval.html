@@ -20,40 +20,40 @@
                 </span>
       </p>
 
-      <p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>
-      </p>
+      <!--<p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>-->
+      <!--</p>-->
 
-      <div class="row">
+      <!--<div class="row">-->
+        <!--&lt;!&ndash;<div class="col-md-6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<p class="item-body-title">&ndash;&gt;-->
+        <!--&lt;!&ndash;LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"&ndash;&gt;-->
+        <!--&lt;!&ndash;target="_blank">{{&ndash;&gt;-->
+        <!--&lt;!&ndash;applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
         <!--<div class="col-md-6">-->
-        <!--<p class="item-body-title">-->
-        <!--LinkedIn: <a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.linkedin_url | url }}"-->
-        <!--target="_blank">{{-->
-        <!--applicant.reviewer.userprofile.linkedin_url || 'N/A' }}</a>-->
-        <!--</p>-->
+          <!--<p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>-->
+          <!--</p>-->
         <!--</div>-->
-        <div class="col-md-6">
-          <p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>
-          </p>
-        </div>
-      </div>
-      <div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">
+      <!--</div>-->
+      <!--<div class="row" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">-->
+        <!--&lt;!&ndash;<div class="col-md-6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:&ndash;&gt;-->
+        <!--&lt;!&ndash;<a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{&ndash;&gt;-->
+        <!--&lt;!&ndash;applicant.reviewer.userprofile.other_social_url }}</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
         <!--<div class="col-md-6">-->
-        <!--<p class="item-body-title">{{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:-->
-        <!--<a class="a-gray" ng-href="{{ applicant.reviewer.userprofile.other_social_url | url }}" target="_blank">{{-->
-        <!--applicant.reviewer.userprofile.other_social_url }}</a>-->
-        <!--</p>-->
-        <!--</div>-->
-        <div class="col-md-6">
-          <p class="item-body-title">
-            Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:
-            <span ng-switch="applicant.reviewer.userprofile.other_social_connections!=0">
-              <span class="font-gray-light" ng-switch-when="true">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>
-              <span class="font-gray-light" ng-switch-when="false">N/A</span>
-            </span>
+          <!--<p class="item-body-title">-->
+            <!--Number of connections on {{ SOCIAL_TYPE | decode_:applicant.reviewer.userprofile.other_social_type}}:-->
+            <!--<span ng-switch="applicant.reviewer.userprofile.other_social_connections!=0">-->
+              <!--<span class="font-gray-light" ng-switch-when="true">{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}</span>-->
+              <!--<span class="font-gray-light" ng-switch-when="false">N/A</span>-->
+            <!--</span>-->
 
-          </p>
-        </div>
-      </div>
+          <!--</p>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
   <div class="panel panel-default">
@@ -71,17 +71,17 @@
           <p class="item-body-title" ng-show="applicant.reviewer.userprofile.company">Company Name:<span
             class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
         </div>
-        <div class="col-md-4">
-          <p class="item-body-title">Company Size: <span class="font-gray-light">{{ COMPANY_SIZE|decode_ : applicant.reviewer.userprofile.company_size }}</span>
-          </p>
-        </div>
+        <!--<div class="col-md-4">-->
+          <!--<p class="item-body-title">Company Size: <span class="font-gray-light">{{ COMPANY_SIZE|decode_ : applicant.reviewer.userprofile.company_size }}</span>-->
+          <!--</p>-->
+        <!--</div>-->
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <p class="item-body-title">Industry: <span class="font-gray-light">{{ INDUSTRY|decode_:applicant.reviewer.userprofile.industry }}</span>
           </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <p class="item-body-title">Job Function: <span class="font-gray-light">{{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</span>
           </p>
         </div>

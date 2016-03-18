@@ -64,6 +64,8 @@ angular.module('xbertsApp')
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
       $scope.LINKEDIN_CONNECTION = SystemConstant.LINKEDIN_CONNECTION;
       $scope.OTHER_CONNECTION = SystemConstant.OTHER_CONNECTION;
+      $scope.JOB_FUNCTION = SystemConstant.JOB_FUNCTION;
+      $scope.INDUSTRY = SystemConstant.INDUSTRY;
       $scope.review = review;
       var applicants_old = $filter('orderBy')(review.applicants, '-is_selected');
       $scope.applicants = $filter('filter')(applicants_old, {reviewer: {is_bad_reviewer: false}});
