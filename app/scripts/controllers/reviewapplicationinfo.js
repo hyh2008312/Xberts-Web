@@ -8,8 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewapplicationinfoCtrl', ['$scope', 'ReviewApplicant', '$filter',
-    function ($scope, ReviewApplicant, $filter) {
+  .controller('ReviewapplicationinfoCtrl', ['$scope', '$location', 'ReviewApplicant', '$filter', 'AnalyticsService',
+    function ($scope, $location, ReviewApplicant, $filter, AnalyticsService) {
 
       $scope.reviewFormSubmit = function () {
         $scope.error = false;
@@ -29,6 +29,8 @@ angular.module('xbertsApp')
           ReviewApplicant.getApplication().answer = $filter('json')(answer);
 
           $scope.$emit('reviewStep', '1');
+
+          AnalyticsService.sendPageView($location.path() + '/confirm');
 
           return false;
 

@@ -8,7 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', 'ReviewApplicant', '$rootScope', 'growl','$state', function ($scope, ReviewApplicant, $rootScope, growl,$state) {
+  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$state', 'ReviewApplicant', '$rootScope', 'growl',
+    function ($scope, $state, ReviewApplicant, $rootScope, growl) {
     $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
     $scope.reviewApplicant.review = $scope.review.id;
     $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();

@@ -8,7 +8,8 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ProfileinfoCtrl', ['$scope', 'SystemConstant', 'growl', function ($scope, SystemConstant, growl) {
+  .controller('ProfileinfoCtrl', ['$scope', '$location', 'SystemConstant', 'growl', 'AnalyticsService',
+    function ($scope, $location, SystemConstant, growl, AnalyticsService) {
     $scope.COUNTRIES = SystemConstant.COUNTRIES;
     $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
     $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -38,6 +39,8 @@ angular.module('xbertsApp')
           //$scope.profile.birth = new Date($scope.profile.birth);
           $scope.$emit('backdropOff', 'success');
           $scope.$emit('reviewStep', '0');
+
+          AnalyticsService.sendPageView($location.path() + '/survey');
         }, function (resp) {
           growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
