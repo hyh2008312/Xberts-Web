@@ -5,7 +5,11 @@ angular.module('xbertsApp')
     'Interact', 'ProjectOnlyDetail', 'Distributor', 'Paginator', 'project', 'distributions', 'Project', 'localStorageService', 'QuoteInquiry',
     function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
               Interact, ProjectOnlyDetail, Distributor, Paginator, project, distributions, Project, localStorageService, QuoteInquiry) {
-      $rootScope.pageSettings.setBackgroundColor('background-whitem');
+      var title = project.title;
+      var description = project.description;
+      var backgroundColor = 'background-whitem';
+      var shareImage = project.image;
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
 
       $scope.projectTypes = SystemData.getProjectTypes();
       $scope.targetGeos = SystemData.getTargetGeos();
