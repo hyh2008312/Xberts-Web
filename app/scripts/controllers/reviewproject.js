@@ -13,7 +13,7 @@ angular.module('xbertsApp')
     $scope.applicantsSearch = {is_selected: true};
 
     var title = review.title;
-    var description = review.title;
+    var description = review.project.image;
     var backgroundColor = 'background-whitem';
     var shareImage = review.banner;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);

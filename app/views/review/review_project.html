@@ -31,7 +31,7 @@
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
                     <a ng-switch-when="false" class="btn btn-primary navbar-btn navbar-right"
-                       ui-sref="application.protected.reviewReport({reviewId:review.id})">Submit Review</a>
+                       ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Review</a>
                     <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Application Ended</a>
                   </div>
                 </div>
@@ -46,12 +46,12 @@
           <div ng-switch="applicant.is_selected">
             <div ng-switch-when="true">
               <div ng-switch="applicant.is_submit_report">
-                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                <a ng-switch-when="false" ui-sref="application.protected.crowdtestingReport({reviewId:review.id})"
                    class="btn btn-primary navbar-btn navbar-right">Submit Review</a>
 
                 <div ng-switch-when="true">
                   <div ng-switch="isOutDated(review.date_end)">
-                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                    <a ng-switch-when="false" ui-sref="application.protected.crowdtestingReport({reviewId:review.id})"
                        class="btn btn-primary navbar-btn navbar-right">Edit Review</a>
                     <a ng-switch-when="true" class="btn btn-gray navbar-btn navbar-right">Review Ended</a>
                   </div>
@@ -249,7 +249,7 @@
                 <div ng-switch-when="false">
                   <div ng-switch="user.isAuth()">
                     <a ng-switch-when="false" class="button button-primary button-glow button-full"
-                       ui-sref="application.protected.reviewReport({reviewId:review.id})">Submit Review</a>
+                       ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Review</a>
                     <a ng-switch-when="true" class="button  button-glow button-full">Application Ended</a>
                   </div>
                 </div>
@@ -264,12 +264,12 @@
           <div ng-switch="applicant.is_selected">
             <div ng-switch-when="true">
               <div ng-switch="applicant.is_submit_report">
-                <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                <a ng-switch-when="false" ui-sref="application.protected.crowdtestingReport({reviewId:review.id})"
                    class="button button-primary button-glow button-full">Submit Review</a>
 
                 <div ng-switch-when="true">
                   <div ng-switch="isOutDated(review.date_end)">
-                    <a ng-switch-when="false" ui-sref="application.protected.reviewReport({reviewId:review.id})"
+                    <a ng-switch-when="false" ui-sref="application.protected.crowdtestingReport({reviewId:review.id})"
                        class="button button-primary button-glow button-full">Edit Review</a>
                     <a ng-switch-when="true" class="button button-glow button-full">Review Ended</a>
                   </div>
@@ -289,19 +289,19 @@
       </div>
       <div ng-show="isApplicantsSelectionButtonActive">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.reviewApplicants({reviewId:review.id})">Select
+          <a class="button button-primary button-glow button-full" ui-sref="application.selectApplicants({reviewId:review.id})">Select
             Applicants</a>
         </div>
       </div>
       <div ng-show="review.is_publish_applicants">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.reviewApplicants({reviewId:review.id})">View
+          <a class="button button-primary button-glow button-full" ui-sref="application.selectApplicants({reviewId:review.id})">View
             Applicants</a>
         </div>
       </div>
       <div ng-show="isReportsReviewButtonActive && review.is_publish_applicants">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.reviewReports({reviewId:review.id})">View
+          <a class="button button-primary button-glow button-full" ui-sref="application.crowdtestingReports({reviewId:review.id})">View
             Reports</a>
         </div>
       </div>
