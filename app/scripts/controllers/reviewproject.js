@@ -15,7 +15,7 @@ angular.module('xbertsApp')
     var title = review.title;
     var description = review.project.description;
     var backgroundColor = 'background-whitem';
-    var shareImage = review.image;
+    var shareImage = review.project.image;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
 
     $scope.sub = {
