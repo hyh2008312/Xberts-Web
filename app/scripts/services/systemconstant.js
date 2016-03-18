@@ -341,7 +341,7 @@ angular.module('xbertsApp')
       {code: '3', name: 'YouTube'},
       {code: '7', name: 'Blog'}
       //{code: '4', name: 'Other'},
-      //{code: '5', name: 'None'}
+      //{code: '0', name: 'None'}
     ];
     var LINKEDIN_CONNECTION=[
       {code:'1',name:'1-10'},
