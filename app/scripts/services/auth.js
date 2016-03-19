@@ -136,6 +136,10 @@ angular.module('xbertsApp')
           state = randomString(32);
           // Save state so it can be verified upon redirect to prevent CSRF
           localStorageService.cookie.set(Configuration.linkedinStateStorageKey, state, 1);
+
+          if ($rootScope.postLoginState) {
+            localStorageService.cookie.set(Configuration.postLoginStateStorageKey, $rootScope.postLoginState, 1);
+          }
         }
 
         var params = {

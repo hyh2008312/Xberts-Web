@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('LinkedinLoginCtrl', ['$scope', '$location', '$state', 'localStorageService', 'Configuration', 'AuthService',
-    function($scope, $location, $state, localStorageService, Configuration, AuthService) {
+  .controller('LinkedinLoginCtrl', ['$scope', '$rootScope', '$location', '$state', 'localStorageService', 'Configuration', 'AuthService',
+    function($scope, $rootScope, $location, $state, localStorageService, Configuration, AuthService) {
       $scope.$emit('backdropOn', 'post');
 
       var params = $location.search();
@@ -27,6 +27,10 @@ angular.module('xbertsApp')
             return AuthService.exchangeLinkedinToken(value.access_token);
           })
           .then(function(value) {
+            if (localStorageService.cookie.get(Configuration.postLoginStateStorageKey)) {
+              $rootScope.postLoginState = localStorageService.cookie.get(Configuration.postLoginStateStorageKey);
+              localStorageService.cookie.remove(Configuration.postLoginStateStorageKey);
+            }
             AuthService.loginRedirect();
           })
           .catch(function(response) {

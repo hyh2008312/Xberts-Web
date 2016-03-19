@@ -7,7 +7,7 @@ angular.module('xbertsApp')
         return AuthService.auth()
           .then(function() {
             // Login state has been determined at this point
-            if (S($rootScope.next.state.name).startsWith('application.protected') && !$rootScope.user.isAuth()) {
+            if (S($rootScope.next.state).startsWith('application.protected') && !$rootScope.user.isAuth()) {
               $rootScope.$emit('backdropOff', 'login');
 
               $rootScope.postLoginState = $rootScope.next;

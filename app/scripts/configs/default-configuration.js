@@ -12,6 +12,8 @@ angular.module('configuration.properties', [])
     // Inactivity time until user is considered idle
     idleTimeout: 1800, // seconds
 
+    postLoginStateStorageKey: 'post_login_state',
+
     linkedinClientId: '75tq3jze54fv0u',
     linkedinStateStorageKey: 'linkedin_state',
     linkedinDefaultState: 'linkedin_csrf_state',
