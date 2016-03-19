@@ -12,12 +12,8 @@
 </section>
 <section class="container">
   <div class="row">
-    <div class="col-md-9">
-      <h3 class="margin-top-clear">Overview</h3>
-      <hr>
-      <div class="tab-content" ng-bind-html="event.details | trust"></div>
-    </div>
-    <div class="col-md-3">
+
+    <div class="col-md-3 col-md-push-9">
       <h3 class="margin-top-clear">Details</h3>
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
@@ -49,6 +45,11 @@
       <h3 ng-if="event.is_attending">
         <a target="_blank" href="mailto:info@xberts.com" class="button button-primary button-full">Contact Us</a>
       </h3>
+    </div>
+    <div class="col-md-9 col-md-pull-3">
+      <h3 class="margin-top-clear">Overview</h3>
+      <hr>
+      <div class="tab-content" ng-bind-html="event.details | trust"></div>
     </div>
   </div>
 </section>

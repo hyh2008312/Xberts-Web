@@ -82,172 +82,11 @@
 </section>
 
 <section class="container">
+
   <div class="row">
-    <div class="col-md-9">
-      <section class="padding-top-clear" id="section-2">
-        <h4 class="margin-top-clear">Process</h4>
-        <hr>
-        <!--<div style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
-        <!--<div style="width: 100%; margin: auto;" class="full-image">-->
-        <!--<img src="/images/review_process.png" style="width: 100%;">-->
-        <!--</div>-->
-        <!--</div>-->
-        <div class="row">
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">1. Submit Application</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">2. Candidate Selection</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">3. Product Shipment</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
-
-            <p class="margin-top">4. Review Submission</p>
-          </div>
-        </div>
-        <!--<div class="tab-content">-->
-        <!--<ul>-->
-        <!--<li>-->
-        <!--Step 1:<br/>Apply for this product review campaign online.-->
-        <!--</li>-->
-        <!--<br/>-->
-
-        <!--<li>-->
-        <!--Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping-->
-        <!--information.-->
-        <!--If the-->
-        <!--successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up-->
-        <!--his/her candidacy.-->
-        <!--</li>-->
-        <!--<br/>-->
-
-        <!--<li>-->
-        <!--Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from-->
-        <!--campaign-->
-        <!--owner. Xberts will-->
-        <!--provide each-->
-        <!--reviewer with a tracking number and further instructions on review and submission.-->
-        <!--</li>-->
-        <!--<br/>-->
-
-        <!--<li>-->
-        <!--Step 4: <br/>After receiving the product, selected applicants will be required to try out the sample,-->
-        <!--and submit their product reviews by {{ review.date_end |amDateFormat:'MMM DD, YYYY'}}.-->
-        <!--The review report should include multiple photos or a video.-->
-        <!--</li>-->
-        <!--</ul>-->
-
-
-        <!--</div>-->
-      </section>
-      <section class="padding-top-clear" id="section-3">
-        <h4 class="margin-top-clear">Details</h4>
-        <hr>
-        <!--<div class="tab-content" ng-bind-html="event.details | trust"></div>-->
-        <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
-          Selected applicants will receive a free product for review purpose. To participate in this program,
-          please click on the “Apply Now” button
-          and fill out a brief application form.</p>
-
-        <p class="margin-top"><b>Timeline:</b></p>
-        <ul>
-          <li>
-            Application Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
-          </li>
-          <li>
-            Announce Selected Reviewers: within a week after application ended
-
-          </li>
-          <li>
-            Testing Period: 2~3 weeks after receiving a product sample
-          </li>
-          <li>
-            Review Submission Deadline: {{ review.date_end |amDateFormat:'MMM DD, YYYY' }}
-
-          </li>
-        </ul>
-        <p class="margin-top"><b>Benefits:</b></p>
-        <ul>
-          <li>
-            Reviewer can keep the product sample for FREE after submitting a review report
-
-          </li>
-          <li>
-            Be the first to test the most innovative products and share your opinions to make an impact
-
-          </li>
-        </ul>
-        <p class="margin-top"><b>Requirements:</b></p>
-        <ul>
-          <li>
-            All selected applicants must submit their review reports before deadline, otherwise they will have to return
-            the product to Xberts
-
-          </li>
-          <li>
-            A review report should be UNBIASED and match the following criteria:
-            <ul style="list-style-type: lower-alpha">
-              <li>Minimum 500 words</li>
-              <li>5 photos minimum</li>
-              <li>Video is preferable but not required, unless stated otherwise</li>
-            </ul>
-          </li>
-        </ul>
-
-
-      </section>
-      <section id="section-4" class="padding-top-clear">
-        <h4 class="margin-top-clear">Description</h4>
-        <hr>
-        <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
-      </section>
-    </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-md-push-9">
       <!--<h4 class="margin-top-clear">Details</h4>-->
-      <div class="margin-bottom" ng-show="user.isStaff()">
-        <button class="button button-primary button-glow button-circle button-jumbo" socialshare
-                socialshare-provider="linkedin"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.title }}"
-                socialshare-source="{{ review.project.image }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-linkedin"></i>
-        </button>
-        <button class="button button-royal button-glow button-circle button-jumbo" socialshare
-                socialshare-provider="facebook"
-                socialshare-media="{{ review.project.image }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.title }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-facebook"></i>
-        </button>
-        <button class="button button-caution button-glow button-circle button-jumbo" socialshare
-                socialshare-provider="twitter"
-                socialshare-media="{{ review.project.image }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.title }}"
-                socialshare-source="{{ review.project.image }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-twitter"></i>
-        </button>
-        <button class="button button-highlight button-glow button-circle button-jumbo " socialshare
-                socialshare-provider="reddit"
-                socialshare-media="{{ review.project.image }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.title }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-reddit"></i>
-        </button>
-      </div>
+
 
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
@@ -344,6 +183,43 @@
         </div>
       </div>
 
+      <div>
+        <h4 style="margin-top: 20px;margin-bottom: 15px;">Invite Friends</h4>
+        <button class="button button-primary button-glow button-circle button-large" socialshare
+                socialshare-provider="linkedin"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-source="{{ review.project.image }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-linkedin"></i>
+        </button>
+        <button class="button button-royal button-glow button-circle button-large" socialshare
+                socialshare-provider="facebook"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-facebook"></i>
+        </button>
+        <button class="button button-caution button-glow button-circle button-large" socialshare
+                socialshare-provider="twitter"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-source="{{ review.project.image }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-twitter"></i>
+        </button>
+        <button class="button button-highlight button-glow button-circle button-large " socialshare
+                socialshare-provider="reddit"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-reddit"></i>
+        </button>
+      </div>
+
       <h4 ng-show="review.is_publish_applicants" style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
 
       <div class="row" ng-show='review.is_publish_applicants'>
@@ -366,6 +242,138 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-md-9 col-md-pull-3">
+
+      <section class="padding-top-clear" id="section-2">
+
+        <h4 class="margin-top-clear">Process</h4>
+        <hr>
+        <!--<div style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
+        <!--<div style="width: 100%; margin: auto;" class="full-image">-->
+        <!--<img src="/images/review_process.png" style="width: 100%;">-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">1. Submit Application</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">2. Candidate Selection</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">3. Product Shipment</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
+
+            <p class="margin-top">4. Review Submission</p>
+          </div>
+        </div>
+        <!--<div class="tab-content">-->
+        <!--<ul>-->
+        <!--<li>-->
+        <!--Step 1:<br/>Apply for this product review campaign online.-->
+        <!--</li>-->
+        <!--<br/>-->
+
+        <!--<li>-->
+        <!--Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping-->
+        <!--information.-->
+        <!--If the-->
+        <!--successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up-->
+        <!--his/her candidacy.-->
+        <!--</li>-->
+        <!--<br/>-->
+
+        <!--<li>-->
+        <!--Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from-->
+        <!--campaign-->
+        <!--owner. Xberts will-->
+        <!--provide each-->
+        <!--reviewer with a tracking number and further instructions on review and submission.-->
+        <!--</li>-->
+        <!--<br/>-->
+
+        <!--<li>-->
+        <!--Step 4: <br/>After receiving the product, selected applicants will be required to try out the sample,-->
+        <!--and submit their product reviews by {{ review.date_end |amDateFormat:'MMM DD, YYYY'}}.-->
+        <!--The review report should include multiple photos or a video.-->
+        <!--</li>-->
+        <!--</ul>-->
+
+
+        <!--</div>-->
+      </section>
+      <section class="padding-top-clear" id="section-3">
+        <h4 class="margin-top-clear">Details</h4>
+
+        <hr>
+        <!--<div class="tab-content" ng-bind-html="event.details | trust"></div>-->
+        <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
+          Selected applicants will receive a free product for review purpose. To participate in this program,
+          please click on the “Apply Now” button
+          and fill out a brief application form.</p>
+
+        <p class="margin-top"><b>Timeline:</b></p>
+        <ul>
+          <li>
+            Application Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
+          </li>
+          <li>
+            Announce Selected Reviewers: within a week after application ended
+
+          </li>
+          <li>
+            Testing Period: 2~3 weeks after receiving a product sample
+          </li>
+          <li>
+            Review Submission Deadline: {{ review.date_end |amDateFormat:'MMM DD, YYYY' }}
+
+          </li>
+        </ul>
+        <p class="margin-top"><b>Benefits:</b></p>
+        <ul>
+          <li>
+            Reviewer can keep the product sample for FREE after submitting a review report
+
+          </li>
+          <li>
+            Be the first to test the most innovative products and share your opinions to make an impact
+
+          </li>
+        </ul>
+        <p class="margin-top"><b>Requirements:</b></p>
+        <ul>
+          <li>
+            All selected applicants must submit their review reports before deadline, otherwise they will have to return
+            the product to Xberts
+
+          </li>
+          <li>
+            A review report should be UNBIASED and match the following criteria:
+            <ul style="list-style-type: lower-alpha">
+              <li>Minimum 500 words</li>
+              <li>5 photos minimum</li>
+              <li>Video is preferable but not required, unless stated otherwise</li>
+            </ul>
+          </li>
+        </ul>
+
+
+      </section>
+      <section id="section-4" class="padding-top-clear">
+        <h4 class="margin-top-clear">Description</h4>
+        <hr>
+        <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
+      </section>
     </div>
   </div>
 </section>

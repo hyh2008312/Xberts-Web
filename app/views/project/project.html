@@ -20,48 +20,7 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
-          <uib-tabset>
-            <uib-tab heading="Description" active="tabs[0].active">
-              <div ng-bind-html=" project.details | trust"></div>
-              <div class="text-center" ng-if="user.isStaff()">
-                <div growl></div>
-                <a ng-click="approve(true)">
-                  <span class="fa-stack fa-lg">
-                      <i class="fa fa-check fa-stack-1x text-success"></i>
-                      <i class="fa fa-circle-thin fa-stack-2x text-success"></i>
-                  </span>
-                </a>
-                <a ng-click="approve(false)">
-                  <span class="fa-stack fa-lg">
-                      <i class="fa fa-times fa-stack-1x text-danger"></i>
-                      <i class="fa fa-circle-thin fa-stack-2x text-danger"></i>
-                  </span>
-                </a>
-              </div>
-            </uib-tab>
-            <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active"
-                     select="select('comments')">
-              <div ng-if="commentsTabActive">
-                <div ng-include src="'views/comments.html'"></div>
-              </div>
-            </uib-tab>
-            <!--<uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"-->
-            <!--ng-if="user.isStaff() || user.getUserId()==project.account.id">-->
-            <!--<div ng-if="applicationsTabActive">-->
-            <!--<div ng-include src="'views/project/applicationlist.html'"></div>-->
-            <!--</div>-->
-            <!--</uib-tab>-->
-            <uib-tab heading="Inquiries({{ project.inquiry_amount }})" active="tabs[2].active"
-                     select="select('inquiries')"
-                     ng-if="user.isStaff()">
-              <div ng-if="inquiresTabActive">
-                <div ng-include src="'views/project/inquirieslist.html'"></div>
-              </div>
-            </uib-tab>
-          </uib-tabset>
-        </div>
-        <div class="col-md-3 padding-clear">
+        <div class="col-md-3  col-md-push-9 padding-clear">
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
               <h4 class="card-body-title">Distribution Info</h4>
@@ -126,6 +85,45 @@
 
             </button>
           </h3>
+          <div  class="card card-bordless card-margin-bottomless">
+            <div class="card-body">
+              <h4>Share</h4>
+              <button class="button button-primary button-glow button-circle button-large" socialshare
+                      socialshare-provider="linkedin"
+                      socialshare-description="{{ project.description }}"
+                      socialshare-text="{{ project.title }}"
+                      socialshare-source="{{ project.image }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-linkedin"></i>
+              </button>
+              <button class="button button-royal button-glow button-circle button-large" socialshare
+                      socialshare-provider="facebook"
+                      socialshare-media="{{ project.image }}"
+                      socialshare-description="{{ project.description }}"
+                      socialshare-text="{{ project.title }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-facebook"></i>
+              </button>
+              <button class="button button-caution button-glow button-circle button-large" socialshare
+                      socialshare-provider="twitter"
+                      socialshare-media="{{ project.image }}"
+                      socialshare-description="{{ project.description }}"
+                      socialshare-text="{{ project.title }}"
+                      socialshare-source="{{ project.image }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-twitter"></i>
+              </button>
+              <button class="button button-highlight button-glow button-circle button-large " socialshare
+                      socialshare-provider="reddit"
+                      socialshare-media="{{ project.image }}"
+                      socialshare-description="{{ project.description }}"
+                      socialshare-text="{{ project.title }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-reddit"></i>
+              </button>
+            </div>
+
+          </div>
           <div class="card card-bordless card-margin-bottomless">
             <div class="card-body">
               <h4 class="card-body-title">Interests (<span>{{ interact.vote_amount }}</span>)</h4>
@@ -133,6 +131,48 @@
             </div>
           </div>
         </div>
+        <div class="col-md-9 col-md-pull-3">
+          <uib-tabset>
+            <uib-tab heading="Description" active="tabs[0].active">
+              <div ng-bind-html=" project.details | trust"></div>
+              <div class="text-center" ng-if="user.isStaff()">
+                <div growl></div>
+                <a ng-click="approve(true)">
+                  <span class="fa-stack fa-lg">
+                      <i class="fa fa-check fa-stack-1x text-success"></i>
+                      <i class="fa fa-circle-thin fa-stack-2x text-success"></i>
+                  </span>
+                </a>
+                <a ng-click="approve(false)">
+                  <span class="fa-stack fa-lg">
+                      <i class="fa fa-times fa-stack-1x text-danger"></i>
+                      <i class="fa fa-circle-thin fa-stack-2x text-danger"></i>
+                  </span>
+                </a>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Comments({{ project.interact.feedback_amount }})" active="tabs[1].active"
+                     select="select('comments')">
+              <div ng-if="commentsTabActive">
+                <div ng-include src="'views/comments.html'"></div>
+              </div>
+            </uib-tab>
+            <!--<uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"-->
+            <!--ng-if="user.isStaff() || user.getUserId()==project.account.id">-->
+            <!--<div ng-if="applicationsTabActive">-->
+            <!--<div ng-include src="'views/project/applicationlist.html'"></div>-->
+            <!--</div>-->
+            <!--</uib-tab>-->
+            <uib-tab heading="Inquiries({{ project.inquiry_amount }})" active="tabs[2].active"
+                     select="select('inquiries')"
+                     ng-if="user.isStaff()">
+              <div ng-if="inquiresTabActive">
+                <div ng-include src="'views/project/inquirieslist.html'"></div>
+              </div>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+
       </div>
     </div>
   </section>
