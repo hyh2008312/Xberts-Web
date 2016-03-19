@@ -55,6 +55,7 @@ module.exports = function(config) {
       'bower_components/angular-random-string/src/angular-random-string.js',
       'bower_components/satellizer/satellizer.js',
       'bower_components/ng-idle/angular-idle.js',
+      'bower_components/angular-socialshare/dist/angular-socialshare.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

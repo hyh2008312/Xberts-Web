@@ -88,9 +88,9 @@
         <h4 class="margin-top-clear">Process</h4>
         <hr>
         <!--<div style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
-            <!--<div style="width: 100%; margin: auto;" class="full-image">-->
-              <!--<img src="/images/review_process.png" style="width: 100%;">-->
-            <!--</div>-->
+        <!--<div style="width: 100%; margin: auto;" class="full-image">-->
+        <!--<img src="/images/review_process.png" style="width: 100%;">-->
+        <!--</div>-->
         <!--</div>-->
         <div class="row">
           <div class="col-md-3 text-center">
@@ -115,36 +115,36 @@
           </div>
         </div>
         <!--<div class="tab-content">-->
-          <!--<ul>-->
-            <!--<li>-->
-              <!--Step 1:<br/>Apply for this product review campaign online.-->
-            <!--</li>-->
-            <!--<br/>-->
+        <!--<ul>-->
+        <!--<li>-->
+        <!--Step 1:<br/>Apply for this product review campaign online.-->
+        <!--</li>-->
+        <!--<br/>-->
 
-            <!--<li>-->
-              <!--Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping-->
-              <!--information.-->
-              <!--If the-->
-              <!--successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up-->
-              <!--his/her candidacy.-->
-            <!--</li>-->
-            <!--<br/>-->
+        <!--<li>-->
+        <!--Step 2:<br/> Xberts team will contact successful applicants via Email to confirm his/her shipping-->
+        <!--information.-->
+        <!--If the-->
+        <!--successful applicant does not respond to Email before deadline, Xberts will assume this applicant give up-->
+        <!--his/her candidacy.-->
+        <!--</li>-->
+        <!--<br/>-->
 
-            <!--<li>-->
-              <!--Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from-->
-              <!--campaign-->
-              <!--owner. Xberts will-->
-              <!--provide each-->
-              <!--reviewer with a tracking number and further instructions on review and submission.-->
-            <!--</li>-->
-            <!--<br/>-->
+        <!--<li>-->
+        <!--Step 3: <br/>After your shipping address is confirmed, product will be directly shipped to you from-->
+        <!--campaign-->
+        <!--owner. Xberts will-->
+        <!--provide each-->
+        <!--reviewer with a tracking number and further instructions on review and submission.-->
+        <!--</li>-->
+        <!--<br/>-->
 
-            <!--<li>-->
-              <!--Step 4: <br/>After receiving the product, selected applicants will be required to try out the sample,-->
-              <!--and submit their product reviews by {{ review.date_end |amDateFormat:'MMM DD, YYYY'}}.-->
-              <!--The review report should include multiple photos or a video.-->
-            <!--</li>-->
-          <!--</ul>-->
+        <!--<li>-->
+        <!--Step 4: <br/>After receiving the product, selected applicants will be required to try out the sample,-->
+        <!--and submit their product reviews by {{ review.date_end |amDateFormat:'MMM DD, YYYY'}}.-->
+        <!--The review report should include multiple photos or a video.-->
+        <!--</li>-->
+        <!--</ul>-->
 
 
         <!--</div>-->
@@ -189,7 +189,8 @@
         <p class="margin-top"><b>Requirements:</b></p>
         <ul>
           <li>
-            All selected applicants must submit their review reports before deadline, otherwise they will have to return the product to Xberts
+            All selected applicants must submit their review reports before deadline, otherwise they will have to return
+            the product to Xberts
 
           </li>
           <li>
@@ -203,8 +204,6 @@
         </ul>
 
 
-
-
       </section>
       <section id="section-4" class="padding-top-clear">
         <h4 class="margin-top-clear">Description</h4>
@@ -214,6 +213,42 @@
     </div>
     <div class="col-md-3">
       <!--<h4 class="margin-top-clear">Details</h4>-->
+      <div class="margin-bottom">
+        <button class="button button-primary button-glow button-circle button-jumbo" socialshare
+                socialshare-provider="linkedin"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-source="{{ review.project.image }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-linkedin"></i>
+        </button>
+        <button class="button button-royal button-glow button-circle button-jumbo" socialshare
+                socialshare-provider="facebook"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-facebook"></i>
+        </button>
+        <button class="button button-caution button-glow button-circle button-jumbo" socialshare
+                socialshare-provider="twitter"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-source="{{ review.project.image }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-twitter"></i>
+        </button>
+        <button class="button button-highlight button-glow button-circle button-jumbo " socialshare
+                socialshare-provider="reddit"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-reddit"></i>
+        </button>
+      </div>
+
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
@@ -289,19 +324,22 @@
       </div>
       <div ng-show="isApplicantsSelectionButtonActive">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.selectApplicants({reviewId:review.id})">Select
+          <a class="button button-primary button-glow button-full"
+             ui-sref="application.selectApplicants({reviewId:review.id})">Select
             Applicants</a>
         </div>
       </div>
       <div ng-show="review.is_publish_applicants">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.selectApplicants({reviewId:review.id})">View
+          <a class="button button-primary button-glow button-full"
+             ui-sref="application.selectApplicants({reviewId:review.id})">View
             Applicants</a>
         </div>
       </div>
       <div ng-show="isReportsReviewButtonActive && review.is_publish_applicants">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
-          <a class="button button-primary button-glow button-full" ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+          <a class="button button-primary button-glow button-full"
+             ui-sref="application.crowdtestingReports({reviewId:review.id})">View
             Reports</a>
         </div>
       </div>

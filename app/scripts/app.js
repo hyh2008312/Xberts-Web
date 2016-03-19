@@ -26,7 +26,8 @@ angular
     'configuration.properties',
     'satellizer',
     'checklist-model',
-    'angularRandomString'
+    'angularRandomString',
+    '720kb.socialshare'
   ])
   .value('duScrollOffset', 50)
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService',

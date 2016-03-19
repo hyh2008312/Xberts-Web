@@ -10,6 +10,7 @@ angular.module('xbertsApp')
       var backgroundColor = 'background-whitem';
       var shareImage = project.image;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+      console.log($rootScope.state.href());
 
       $scope.projectTypes = SystemData.getProjectTypes();
       $scope.targetGeos = SystemData.getTargetGeos();
