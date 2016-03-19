@@ -201,7 +201,16 @@
                 socialshare-url="{{ pageSettings.getUrl() }}">
           <i class="fa fa-facebook"></i>
         </button>
-        <button class="button button-caution button-glow button-circle button-large" socialshare
+
+        <button class="button button-caution button-glow button-circle button-large " socialshare
+                socialshare-provider="reddit"
+                socialshare-media="{{ review.project.image }}"
+                socialshare-description="{{ review.project.description }}"
+                socialshare-text="{{ review.title }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-reddit"></i>
+        </button>
+        <button class="button button-action button-glow button-circle button-large" socialshare
                 socialshare-provider="twitter"
                 socialshare-media="{{ review.project.image }}"
                 socialshare-description="{{ review.project.description }}"
@@ -209,14 +218,6 @@
                 socialshare-source="{{ review.project.image }}"
                 socialshare-url="{{ pageSettings.getUrl() }}">
           <i class="fa fa-twitter"></i>
-        </button>
-        <button class="button button-highlight button-glow button-circle button-large " socialshare
-                socialshare-provider="reddit"
-                socialshare-media="{{ review.project.image }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.title }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-reddit"></i>
         </button>
       </div>
 

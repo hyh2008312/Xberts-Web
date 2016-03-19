@@ -87,7 +87,7 @@
           </h3>
           <div  class="card card-bordless card-margin-bottomless">
             <div class="card-body">
-              <h4>Share</h4>
+              <h4>Recommend to Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
                       socialshare-provider="linkedin"
                       socialshare-description="{{ project.description }}"
@@ -104,7 +104,17 @@
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-facebook"></i>
               </button>
-              <button class="button button-caution button-glow button-circle button-large" socialshare
+
+              <button class="button button-caution button-glow button-circle button-large " socialshare
+                      socialshare-provider="reddit"
+                      socialshare-media="{{ project.image }}"
+                      socialshare-description="{{ project.description }}"
+                      socialshare-text="{{ project.title }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-reddit"></i>
+              </button>
+
+              <button class="button button-action button-glow button-circle button-large" socialshare
                       socialshare-provider="twitter"
                       socialshare-media="{{ project.image }}"
                       socialshare-description="{{ project.description }}"
@@ -112,14 +122,6 @@
                       socialshare-source="{{ project.image }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-twitter"></i>
-              </button>
-              <button class="button button-highlight button-glow button-circle button-large " socialshare
-                      socialshare-provider="reddit"
-                      socialshare-media="{{ project.image }}"
-                      socialshare-description="{{ project.description }}"
-                      socialshare-text="{{ project.title }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-reddit"></i>
               </button>
             </div>
 

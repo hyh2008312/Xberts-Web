@@ -12,7 +12,7 @@ angular.module('xbertsApp')
     $scope.review = review;
     $scope.applicantsSearch = {is_selected: true};
 
-    var title = review.title;
+    var title = "We're now calling for reviewers to test-drive our new product:"+review.project.name;
     var description = review.project.description;
     var backgroundColor = 'background-whitem';
     var shareImage = review.project.image;
