@@ -1,5 +1,5 @@
 <section class="container header padding-bottom-clear">
-  <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 15px;">
+  <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
     <h2 class="font-whitem">Connect innovative products with buyers, distributors and retailers!</h2>
 
     <h3 class="text-center">
@@ -8,10 +8,10 @@
   </div>
 </section>
 <section class="container padding-top-clear">
-  <div class="row">
-    <div class="col-md-offset-3 col-md-3">
-      <div class="form-group">
-        <select class="form-control" ng-required="true" ng-model="projects.project_category_id"
+  <div class="list-title list-search margin-bottom" >
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3" style="padding-right: 30px">
+        <select class="form-control input-sm" ng-required="true" ng-model="projects.project_category_id"
                 ng-change="onSearch();">
           <option value="">Filter by: All categories</option>
           <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
@@ -19,21 +19,27 @@
           </option>
         </select>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <select class="form-control" ng-required="true" ng-model="projects.ordering"
-                ng-change="onSearch();">
-          <option value="-date_published'"
-                  ng-selected="projects.ordering=='-date_published'">Sort by: Newest
-          </option>
-          <option value="-interact__vote_amount"
-                  ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
-          </option>
-        </select>
+      <div class="col-sm-3" style="padding-right: 30px">
+          <select class="form-control input-sm " ng-required="true" ng-model="projects.ordering"
+                  ng-change="onSearch();">
+            <option value="-date_published'"
+                    ng-selected="projects.ordering=='-date_published'">Sort by: Newest
+            </option>
+            <option value="-interact__vote_amount"
+                    ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
+            </option>
+          </select>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+        <div class="search">
+          <input type="text" name='search' class="form-control input-sm" placeholder="Search for..."
+                 ng-model="projects.search"
+                 ng-keydown="onKeyDown($event);">
+          <a class="fa fa-search" ng-click="onSearch();"></a>
+          <a class="fa fa-times" ng-click="onClearSearch();"></a>
+        </div>
       </div>
     </div>
-
   </div>
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.hasNext()">

@@ -24,6 +24,15 @@ angular.module('xbertsApp')
       $scope.projectPaginator.next = 'true';
       $scope.projectPaginator.loadNext();
     };
+    $scope.onClearSearch = function () {
+      $scope.projects.search = '';
+      $scope.onSearch();
+    };
+    $scope.onKeyDown = function ($event) {
+      if ($event.keyCode === 13) {
+        $scope.onSearch();
+      }
+    };
     $scope.$watch('projects.project_category_id + projects.ordering', function () {
       localStorageService.set('project_search_type', $scope.projects.project_category_id);
       localStorageService.set('project_search_order', $scope.projects.ordering);
