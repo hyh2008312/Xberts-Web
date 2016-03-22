@@ -31,11 +31,12 @@
 // fixed-size avatar, align center
 
 .xb-profile {
-
   text-align: center;
   margin-bottom: 8px;
 }
-.xb-profile-small{
+
+// small variant
+.xb-profile-small {
   max-width: 62px;
   min-width: 62px;
 }
