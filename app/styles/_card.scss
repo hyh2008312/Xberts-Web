@@ -1,0 +1,64 @@
+//component structure
+//box properties: padding, margin, relative size, position border shadow
+//typography properties: font align
+//skin properties: background, color
+
+//component variants
+
+.xb-card {
+  position: relative;
+}
+
+.xb-card.xb-card-profile {
+
+}
+
+// component skin
+
+// component element
+.xb-card-title {
+
+}
+
+.xb-card-detail {
+
+}
+
+.xb-image {
+
+}
+
+// fixed-size avatar, align center
+
+.xb-profile {
+
+  text-align: center;
+  margin-bottom: 8px;
+}
+.xb-profile-small{
+  max-width: 62px;
+  min-width: 62px;
+}
+
+.xb-profile-avatar {
+  width: 44px;
+  height: 44px;
+  // mixin
+  border-radius: 50%;
+}
+
+.xb-profile-name {
+  //font-size: ;
+  @include ellipsisMultiText(1);
+  margin-bottom: 2px;
+}
+
+.xb-profile + .xb-profile {
+  margin-left: 2px;
+}
+
+.xb-profile-label {
+  font-size: 8px;
+  padding: 3px;
+}
+

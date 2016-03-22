@@ -88,7 +88,6 @@
       <!--<h4 class="margin-top-clear">Details</h4>-->
 
 
-
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
         <div class="card-body">
@@ -224,24 +223,24 @@
       <h4 ng-show="review.is_publish_applicants" style="margin-top: 20px;margin-bottom: 15px;">Reviewers</h4>
 
       <div class="row" ng-show='review.is_publish_applicants'>
-        <div class="col-xs-3 text-center" ng-repeat="item in review.applicants | filter:applicantsSearch">
-          <a class="block-link default" ui-sref="application.expert({ expertId:item.reviewer.id })">
-            <div class="avatar-text-small-1">
-              <avatar-img src="item.reviewer.avatar" name="item.reviewer.fullname"></avatar-img>
+        <div class="col-xs-12">
+          <div class=" xb-profile xb-profile-small pull-left"
+               ng-repeat="item in review.applicants | filter:applicantsSearch">
+            <profile-avatar class="xb-profile-avatar" src="item.reviewer.avatar"
+                            name="item.reviewer.fullname"></profile-avatar>
+
+            <p class="xb-profile-name">
+              <a ui-sref="application.expert({ expertId:item.reviewer.id })"> {{ item.reviewer.fullname }}</a>
+            </p>
+
+            <div ng-switch="item.is_submit_report">
+              <span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>
+
+              <span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>
             </div>
-          </a>
-
-          <p class="p-1"><a class="default" ui-sref="application.expert({ expertId:item.reviewer.id })">{{
-            item.reviewer.fullname}}</a></p>
-
-          <div ng-switch="item.is_submit_report">
-            <p ng-switch-when="true" style="font-size: 8px"><span
-              style="padding: 2px;border-radius: 2px;background-color:#00cc52;color: #fff">Submitted</span></p>
-
-            <p ng-switch-when="false" style="font-size: 8px"><span
-              style="padding: 2px;border-radius: 2px;background-color:#C7C7C7;color: #fff">Selected</span></p>
           </div>
         </div>
+        <!--</div>-->
       </div>
     </div>
 

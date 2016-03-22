@@ -396,6 +396,9 @@ a.block-link {
 .label-default {
   margin-right: 2px;
   background-color: $lightGrayColor;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .note-editor {
