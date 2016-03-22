@@ -163,15 +163,22 @@ angular.module('xbertsApp')
       }
 
       function exchangeLinkedinToken(accessToken) {
+        var params = {
+          grant_type: 'convert_token',
+          client_id: Configuration.oauthClientId,
+          backend: 'linkedin-oauth2',
+          token: accessToken
+        };
+
+        if (localStorageService.cookie.isSupported &&
+            localStorageService.cookie.get(Configuration.signupSourceStorageKey)) {
+          params['source'] = localStorageService.cookie.get(Configuration.signupSourceStorageKey);
+        }
+
         return $resource(Configuration.apiBaseUrl + '/oauth2/convert-token/', {}, {
           exchangeToken: {
             method: 'POST',
-            params: {
-              grant_type: 'convert_token',
-              client_id: Configuration.oauthClientId,
-              backend: 'linkedin-oauth2',
-              token: accessToken
-            }
+            params: params
           }
         }).exchangeToken().$promise
           .then(function(value) {

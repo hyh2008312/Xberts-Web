@@ -401,14 +401,7 @@ angular.module('xbertsApp')
             if ($rootScope.user.isAuth()) {
               scope.vote();
             } else {
-              SignupService.signup.save({
-                firstName: voter.firstName,
-                lastName: voter.lastName,
-                email: voter.email,
-                password: 'ces2016',
-                country: voter.country,
-                groupName: 'ces2016'
-              }).$promise
+              SignupService.signup(voter.firstName, voter.lastName, voter.email, 'ces2016', voter.country, 'ces2016')
                 .then(function (value) {
                   return AuthService.login({
                     username: value.email,

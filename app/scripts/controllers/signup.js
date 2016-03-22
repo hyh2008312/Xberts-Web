@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('SignupCtrl', ['$scope', '$rootScope', '$location', '$state', 'SystemConstant', 'SignupService', 'AuthService',
-    function($scope, $rootScope, $location, $state, SystemConstant, SignupService, AuthService) {
+  .controller('SignupCtrl', ['$scope', '$rootScope', '$location', '$state', 'SystemConstant', 'SignupService',
+    'AuthService', 'AnalyticsService',
+    function($scope, $rootScope, $location, $state, SystemConstant, SignupService, AuthService, AnalyticsService) {
     $scope.countryOptions = SystemConstant.COUNTRIES;
 
     $scope.signup = function() {
@@ -12,15 +13,11 @@ angular.module('xbertsApp')
 
       $scope.$emit('backdropOn', 'post');
 
+      AnalyticsService.sendPageView($location.path() + '/confirm');
+
       $scope.signupForm.serverError = {};
 
-      SignupService.signup.save({
-        firstName: $scope.firstName,
-        lastName: $scope.lastName,
-        email: $scope.email,
-        password: $scope.password,
-        country: $scope.country.code
-      }).$promise
+      SignupService.signup($scope.firstName, $scope.lastName, $scope.email, $scope.password, $scope.country.code)
         .then(function(value) {
           return AuthService.login({
             username: value.email,
