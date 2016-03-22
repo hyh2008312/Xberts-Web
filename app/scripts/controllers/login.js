@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Configuration',
-    'AuthService',
+    'AuthService', 'AnalyticsService',
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
-             AuthService) {
+             AuthService, AnalyticsService) {
       if ($stateParams.error === 'linkedin_login') {
         $scope.loginError = {linkedinError: true};
 
@@ -16,6 +16,8 @@ angular.module('xbertsApp')
           return;
         }
         $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView($location.path() + '/confirm');
 
         form.serverError = {};
 

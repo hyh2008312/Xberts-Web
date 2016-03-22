@@ -30,8 +30,8 @@ angular
     '720kb.socialshare'
   ])
   .value('duScrollOffset', 50)
-  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService',
-    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
+    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.summerNoteSimple = {
@@ -66,6 +66,9 @@ angular
         //}
       };
       localStorageService.clearAll();
+
+      // Capture potential campaign/source query param
+      SignupService.saveSourceParam();
     }])
   .config(['$locationProvider', function ($locationProvider) {
     $locationProvider.html5Mode(true);
