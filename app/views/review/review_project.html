@@ -123,11 +123,11 @@
                   <div ng-switch="user.isAuth()">
                     <a ng-switch-when="false" class="button button-primary button-glow button-full"
                        ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Review</a>
-                    <a ng-switch-when="true" class="button  button-glow button-full">Application Ended</a>
+                    <a ng-switch-when="true" class="button button-plain  button-glow button-full">Application Ended</a>
                   </div>
                 </div>
                 <a ng-switch-when="true"
-                   class="button button-glow button-full">Review Ended</a>
+                   class="button button-plain button-glow button-full">Review Ended</a>
               </div>
             </div>
           </div>
@@ -144,15 +144,15 @@
                   <div ng-switch="isOutDated(review.date_end)">
                     <a ng-switch-when="false" ui-sref="application.protected.crowdtestingReport({reviewId:review.id})"
                        class="button button-primary button-glow button-full">Edit Review</a>
-                    <a ng-switch-when="true" class="button button-glow button-full">Review Ended</a>
+                    <a ng-switch-when="true" class="button button-plain button-glow button-full">Review Ended</a>
                   </div>
                 </div>
               </div>
             </div>
             <div ng-switch-when="false">
               <div ng-switch="isOutDated(review.date_end)">
-                <a ng-switch-when="false" class="button button-glow button-full">Not Selected</a>
-                <a ng-switch-when="true" class="button button-glow button-full">Review Ended</a>
+                <a ng-switch-when="false" class="button button-plain button-glow button-full">Not Selected</a>
+                <a ng-switch-when="true" class="button button-plain button-glow button-full">Review Ended</a>
               </div>
             </div>
             <a ng-switch-when="null" ui-sref="application.protected.apply({reviewId:review.id})"
