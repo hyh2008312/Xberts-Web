@@ -1,0 +1,134 @@
+// basic layout
+
+.margin-top-l {
+  margin-top: 20px;
+}
+
+.margin-top-xl {
+  margin-top: 30px;
+}
+
+.margin-top-xxl {
+  margin-top: 40px;
+}
+
+.xb-align-left {
+  text-align: left;
+}
+
+.xb-align-right {
+  text-align: right;
+}
+
+.xb-align-center {
+  text-align: center;
+}
+
+.xb-wrap {
+  position: relative;
+  width: 100%;
+}
+
+//must know the height of parent
+.xb-vertical-align-center {
+  @include vertical-align;
+}
+
+// inline-block layout  we must firstly specify their width
+// and take care of the white space may be a character,some tricky:font-size:0 letter-space:negative value
+$verticalAlign: top middle bottom;
+
+@for $x from 1 to 13 {
+  @each $align in $verticalAlign {
+    .xb-grid-#{$x}-#{$align} {
+      @include xbGrid($x);
+      vertical-align: $align;
+      @media screen and (max-width: 400px) {
+        @include xbGrid(4 * $x);
+      }
+      @media screen and (min-width: 401px) and (max-width: 800px) {
+        @include xbGrid(2 * $x);
+      }
+      @media screen and (min-width: 801px) and (max-width: 1200px) {
+        @include xbGrid(1 * $x);
+      }
+    }
+    .xb-grid-#{$x}-#{$align}-fixed {
+      @include xbGrid($x);
+      vertical-align: $align;
+    }
+  }
+  .xb-grid-#{$x} {
+    @include xbGrid($x);
+    @media screen and (max-width: 400px) {
+      @include xbGrid(4 * $x);
+    }
+    @media screen and (min-width: 401px) and (max-width: 800px) {
+      @include xbGrid(2 * $x);
+    }
+    @media screen and (min-width: 801px) and (max-width: 1200px) {
+      @include xbGrid(1 * $x);
+    }
+  }
+  .xb-grid-#{$x}-fixed {
+    @include xbGrid($x);
+  }
+}
+
+// img layout
+.xb-flex-fixed {
+  max-width: 100%;
+}
+
+// background layout
+
+.xb-brand-background-center {
+  background-size: cover;
+  background-position: center;
+}
+
+.xb-brand-background-right {
+  background-size: cover;
+  background-position: right;
+}
+
+.xb-brand-background-left {
+  background-size: cover;
+  background-position: left;
+}
+
+// fix aspect ratio block: aspect-ratio-wrap > aspect-ratio-content
+
+$widthHeight: (3 2) (1 1);
+
+@each $var in $widthHeight {
+  .aspect-ratio-wrap-#{nth($var, 1)}-#{nth($var, 2)} {
+    @include aspect-ratio(nth($var, 1), nth($var, 2));
+  }
+}
+
+section, .xb-section {
+  padding-top: $sectionBasePadding;
+  padding-bottom: $sectionBasePadding;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section-banner {
+  //height: 400px;
+}
+
+.xb-section-title {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.xb-section-details {
+
+}
+
+.xb-logo-wall {
+  img {
+    max-width: 200px;
+  }
+}

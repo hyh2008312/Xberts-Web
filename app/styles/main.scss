@@ -1,9 +1,12 @@
 // bower:scss
 // endbower
+@import "variables";
+@import "mix";
 @import "font";
 @import "color";
-@import "mix";
+@import "mixins";
 @import "animation";
+@import "layout";
 @import "component";
 @import "structure";
 @import "card";

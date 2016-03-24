@@ -4,7 +4,7 @@ $defaultMargin:10px;
 $defaultPadding:5px;
 $bodyPaddingTop: 50px;
 $bodyPaddingBottom: 110px;
-$sectionSpace: 30px;
+$sectionSpace: 50px;
 $cardSpace: 20px;
 
 $navbarHeight: 50px !default;
@@ -64,3 +64,10 @@ $spaces: (
 //    }
 //  }
 //}
+
+.xb-font-larger{
+  font-size: 1.4em;
+  @media screen and (max-width: 800px){
+    font-size: 1.2em;
+  }
+}

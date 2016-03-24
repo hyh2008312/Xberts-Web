@@ -24,8 +24,8 @@
 
 }
 
-.xb-image {
-
+.xb-card-image-wrap {
+  @include aspect-ratio(3, 2);
 }
 
 // fixed-size avatar, align center
@@ -63,3 +63,12 @@
   padding: 3px;
 }
 
+.xb-statistic-broad{
+  margin-bottom: 20px;
+}
+.xb-statistic-broad-title{
+  font-size: 3em;
+}
+.xb-statistic-broad-subtitle{
+  font-size: 1em;
+}
