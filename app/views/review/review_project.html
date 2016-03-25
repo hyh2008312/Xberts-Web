@@ -189,6 +189,13 @@
             Applicants</a>
         </div>
       </div>
+      <div ng-show="review.state == 4">
+        <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+          <a class="button button-primary button-glow button-full"
+             ui-sref="application.selectApplicants({reviewId:review.id})">View
+            Shipping Address</a>
+        </div>
+      </div>
       <div ng-show="review.state == 5">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
           <a class="button button-primary button-glow button-full"
