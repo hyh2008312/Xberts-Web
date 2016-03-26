@@ -18,7 +18,7 @@ angular.module('xbertsApp')
         {
           image: '/images/landing_1_1.jpg',
           title: 'Bring Innovations to Global Market',
-          subtitle: 'A global community where smart hardware brands meet product reviewers, tech influencers, buyers and partners',
+          subtitle: 'A global community where smart hardware brands <br> meet product reviewers, tech influencers, buyers and partners',
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',

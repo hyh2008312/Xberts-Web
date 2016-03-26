@@ -22,7 +22,7 @@
         <div class="col-md-3  col-md-push-9 padding-clear">
           <div class="card" ng-show="distribution">
             <div class="card-body xb-statistic-broad xb-align-center">
-              <p class="xb-statistic-broad-subtitle">MSRP</p>
+              <p class="xb-statistic-broad-subtitle">Retail Price</p>
               <p class="xb-statistic-broad-title">${{ distribution.retail_price }} USD</p>
             </div>
           </div>
@@ -30,7 +30,7 @@
             <div class="card-body">
               <h4 class="card-body-title xb-align-center">CrowdTesting Poll</h4>
 
-              <p class="card-body-detail">Interested in test-driving this product? Vote for it! We will launch
+              <p class="card-body-detail">Interested in reviewing this product? Vote for it! We will launch
                 Crowdtesting campaigns for top voted products regularly</p>
               <div class="pr">
                 <save class="align-center"></save>
@@ -68,7 +68,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h4>Recommend to Friends</h4>
+              <h4 class="xb-align-center">Recommend to Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
                       socialshare-provider="linkedin"
                       socialshare-description="{{ project.description }}"
@@ -107,9 +107,9 @@
             </div>
 
           </div>
-          <div class="card">
+          <div class="card card-bordless">
             <div class="card-body">
-              <h4 class="card-body-title">Interests (<span>{{ interact.vote_amount }}</span>)</h4>
+              <h4 class="card-body-title xb-align-center">Votes (<span>{{ interact.vote_amount }}</span>)</h4>
               <saver></saver>
             </div>
           </div>
