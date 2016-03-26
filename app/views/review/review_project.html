@@ -96,9 +96,9 @@
             <p class="font-gray-light">{{ review.quota }} Free Samples</p>
 
 
-            <h4> Start Day:</h4>
+            <h4 ng-show="review.status==0"> Start Date:</h4>
 
-            <p class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</p>
+            <p ng-show="review.status==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</p>
 
             <h4> Application Deadline:</h4>
 
@@ -114,13 +114,13 @@
       <div ng-switch="applicant.exist" class="margin-top">
         <div ng-switch-when="false">
           <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming Soon</button>
+            <button ng-switch-when="0" class="button button-full button-glow button-action">Coming Soon</button>
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
             </button>
-            <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Closed
+            <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Ended
             </button>
-            <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Closed
+            <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Ended
             </button>
 
             <button ng-switch-when="4" class="button button-full button-glow button-primary"
@@ -132,7 +132,7 @@
         </div>
         <div ng-switch-when="true">
           <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming Soon</button>
+            <button ng-switch-when="0" class="button button-full button-glow button-action">Coming Soon</button>
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
             </button>
