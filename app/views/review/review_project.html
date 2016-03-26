@@ -96,9 +96,9 @@
             <p class="font-gray-light">{{ review.quota }} Free Samples</p>
 
 
-            <h4 ng-show="review.status==0"> Start Date:</h4>
+            <h4 ng-show="review.state==0"> Start Date:</h4>
 
-            <p ng-show="review.status==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</p>
+            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</p>
 
             <h4> Application Deadline:</h4>
 
