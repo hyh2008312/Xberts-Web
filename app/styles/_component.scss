@@ -525,5 +525,8 @@ $message-types: (
 .button-full {
   width: 100%;
 }
+.button.button-success-disabled:disabled{
+    @extend .btn-success;
+}
 
 

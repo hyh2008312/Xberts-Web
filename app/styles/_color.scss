@@ -98,12 +98,13 @@ $colors: (
 }
 
 .btn-success {
-  background-color: lighten($successColor, 3%);
-  border-color: $successColor;
+  background-color: lighten($successColor, 3%) !important;
+  border-color: $successColor !important;
+  color: #ffffff !important;
   //border: 0;
   &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
-    background-color: $successColor;
-    border-color: $successColor;
+    background-color: $successColor !important;
+    border-color: $successColor !important;
   }
   &:focus, &:active:focus {
     outline: 5px auto $successColor
