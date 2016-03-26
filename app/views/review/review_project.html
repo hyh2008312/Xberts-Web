@@ -96,6 +96,10 @@
             <p class="font-gray-light">{{ review.quota }} Free Samples</p>
 
 
+            <h4> Start Day:</h4>
+
+            <p class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</p>
+
             <h4> Application Deadline:</h4>
 
             <p class="font-gray-light">{{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</p>
@@ -110,7 +114,7 @@
       <div ng-switch="applicant.exist" class="margin-top">
         <div ng-switch-when="false">
           <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming</button>
+            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming Soon</button>
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
             </button>
@@ -128,7 +132,7 @@
         </div>
         <div ng-switch-when="true">
           <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming</button>
+            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming Soon</button>
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
             </button>
