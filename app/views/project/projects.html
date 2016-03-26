@@ -1,14 +1,15 @@
 <section class="container header padding-bottom-clear">
   <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
-    <h2 class="font-whitem">Connect innovative products with buyers, distributors and retailers!</h2>
+    <h2 style="color: #ffffff">Discover and vote for your favorite smart products to
+      get a chance to test-drive them for free!</h2>
 
     <h3 class="text-center">
-      <a class="button button-primary button-glow" ui-sref="application.protected.launchProject">Launch a Product</a>
+      <a class="button button-primary button-glow" ui-sref="application.protected.launchProject">Submit a Product</a>
     </h3>
   </div>
 </section>
 <section class="container padding-top-clear">
-  <div class="list-title list-search margin-bottom" >
+  <div class="list-title list-search margin-bottom">
     <div class="row">
       <div class="col-xs-12 col-sm-3 col-md-3" style="padding-right: 30px">
         <select class="form-control input-sm" ng-required="true" ng-model="projects.project_category_id"
@@ -20,15 +21,15 @@
         </select>
       </div>
       <div class="col-sm-3" style="padding-right: 30px">
-          <select class="form-control input-sm " ng-required="true" ng-model="projects.ordering"
-                  ng-change="onSearch();">
-            <option value="-date_published'"
-                    ng-selected="projects.ordering=='-date_published'">Sort by: Newest
-            </option>
-            <option value="-interact__vote_amount"
-                    ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
-            </option>
-          </select>
+        <select class="form-control input-sm " ng-required="true" ng-model="projects.ordering"
+                ng-change="onSearch();">
+          <option value="-date_published'"
+                  ng-selected="projects.ordering=='-date_published'">Sort by: Newest
+          </option>
+          <option value="-interact__vote_amount"
+                  ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
+          </option>
+        </select>
       </div>
       <div class="col-xs-12 col-sm-3 col-sm-offset-3">
         <div class="search">
@@ -64,7 +65,7 @@
                 </div>
                 <div class="col-xs-6 align-right">
                   <p class="p-1">
-                    <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
+                    <i class="fa fa-thumbs-up"></i> <span ng-bind="project.interact.vote_amount"></span>
 
                     <!-- todo:user config-->
                     <span ng-if='user.isAuth() && user.isStaff()'>

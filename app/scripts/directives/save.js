@@ -9,12 +9,15 @@
 angular.module('xbertsApp')
   .directive('save', ['Interact', '$rootScope', function (Interact, $rootScope) {
     return {
-      template: '<button class="btn" ng-class="{\'btn-danger\':join.vote,\'btn-gray\':!join.vote}"' +
+      template: '<div>' +
+      '<button class="button button-glow button-full" ng-class="{\'button-caution\':join.vote,\'button-primary\':!join.vote}"' +
       'ng-disabled="loadingJoin || voting " ng-click="save()"> ' +
-      '<i class="fa fa-heart fa-lg"></i> LIKE' +
-      '</button>',
+      '<i class="fa fa-thumbs-up fa-lg"></i> Vote {{ interact.vote_amount }}' +
+      '</button>' +
+      '</div>',
       require: '^join',
       restrict: 'E',
+      replace:true,
       link: function postLink(scope, element, attrs, joinController) {
         scope.save = function () {
           //todo:增加登录权限

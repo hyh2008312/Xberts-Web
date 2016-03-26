@@ -10,13 +10,12 @@ angular.module('xbertsApp')
       var backgroundColor = 'background-whitem';
       var shareImage = project.image;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
-      console.log($rootScope.state.href());
 
       $scope.projectTypes = SystemData.getProjectTypes();
       $scope.targetGeos = SystemData.getTargetGeos();
       $scope.supportTypes = SystemData.getSupportTypes();
       $scope.transportationModels = SystemData.getTransportationModels();
-      $scope.distributions = distributions;
+      $scope.distribution = distributions[0] || null;
       $scope.project = project;
       ProjectOnlyDetail.get({id: $stateParams.projectId}, function (result) {
         $scope.project.details = result.details;
@@ -70,9 +69,9 @@ angular.module('xbertsApp')
       //modal
 
       $scope.inquiry = {exist: false};
-      if ($rootScope.user.isAuth() && $scope.distributions.length > 0) {
+      if ($rootScope.user.isAuth() && $scope.distribution) {
         QuoteInquiry.get({
-          request_id: $scope.distributions[0].id,
+          request_id: $scope.distribution.id,
           inquirer_id: $rootScope.user.getUserId()
         }, function (data) {
           if (data.count !== undefined && data.count > 0) {
@@ -96,7 +95,7 @@ angular.module('xbertsApp')
           size: size,
           resolve: {
             distribution: function () {
-              return $scope.distributions[0];
+              return $scope.distribution;
             },
             careerExperiences: ['BuyerProfileLoad',function (BuyerProfileLoad) {
               return BuyerProfileLoad();

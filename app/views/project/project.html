@@ -11,7 +11,6 @@
           <span class="margin-left"><i
             class="fa fa-tag"></i> {{ projectTypes | decode : project.project_category }}</span>
         </h3>
-        <save></save>
         <a class="btn btn-gray" ng-if="project.account.id==user.getUserId()"
            ui-sref="application.protected.launchProject({projectId:project.id})"><i class="fa fa-edit"></i> EDIT</a>
       </div>
@@ -21,71 +20,53 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3  col-md-push-9 padding-clear">
-          <div class="card card-bordless card-margin-bottomless">
-            <div class="card-body">
-              <h4 class="card-body-title">Distribution Info</h4>
-
-              <div class="card card-margin-bottomless" style="border-radius: 5px"
-                   ng-repeat="distribution in distributions">
-                <div class="card-body">
-                  <div class="card-body-detail">
-                    <h4>Available Markets:</h4>
-
-                    <p class="font-gray-light"><span ng-repeat="item in targetGeos | narrow : distribution.target_geo">{{ item.name }}<span
-                      ng-if="!$last">, </span></span></p>
-                  </div>
-                  <div class="card-body-detail" ng-if="distribution.retail_price > 0">
-                    <h4>Suggested Retail Price:</h4>
-
-                    <p class="font-gray-light">${{ distribution.retail_price }} USD</p>
-                  </div>
-                  <div class="card-body-detail" ng-if="distribution.tags">
-                    <h4>Certifications:</h4>
-
-                    <p class="font-gray-light">{{ distribution.tags|tagsplit }}</p>
-                  </div>
-
-                  <!--<div class="card-body-detail" ng-if="distribution.transportationModels">-->
-                  <!--<h4>Transportation Mode:</h4>-->
-
-                  <!--<p class="font-gray-light">{{ transportationModels | decode: distribution.transportation_model-->
-                  <!--}}</p>-->
-                  <!--</div>-->
-                  <!--<div class="card-body-detail" ng-if="distribution.supported">-->
-                  <!--<h4>Business Support:</h4>-->
-
-                  <!--<p class="font-gray-light"><span ng-repeat="item in supportTypes | narrow : distribution.supported">{{ item.name }}<span-->
-                  <!--ng-if="!$last">, </span></span></p>-->
-                  <!--</div>-->
-                  <!--<div class="card-body-detail" ng-if="distribution.details">-->
-                  <!--<h4>Partner Requirements:</h4>-->
-
-                  <!--<p class="font-gray-light">{{ distribution.details }}</p>-->
-                  <!--</div>-->
-                  <!--</div>-->
-
-                </div>
-
-
-              </div>
+          <div class="card" ng-show="distribution">
+            <div class="card-body xb-statistic-broad xb-align-center">
+              <p class="xb-statistic-broad-subtitle">MSRP</p>
+              <p class="xb-statistic-broad-title">${{ distribution.retail_price }} USD</p>
             </div>
           </div>
-          <h3 class="padding-a5-10 margin-top-clear margin-bottom-clear">
-            <button class="button button-full button-glow" ng-class="{'button-primary':!inquiry.exist,'button-plain':inquiry.exist}" ng-click="open('lg')" ng-disabled="inquiry.exist">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-body-title xb-align-center">CrowdTesting Poll</h4>
+
+              <p class="card-body-detail">Interested in test-driving this product? Vote for it! We will launch
+                Crowdtesting campaigns for top voted products regularly</p>
+              <div class="pr">
+                <save class="align-center"></save>
+              </div>
+
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-body-title xb-align-center">Business Partnership</h4>
+
+              <p class="card-body-detail">If you’re a retailer or solution provider wishing to partner with this brand
+                owner,please submit
+                your inquiry here </p>
+
+              <div>
+                <button class="button button-full button-glow"
+                        ng-class="{'button-primary':!inquiry.exist,'button-plain':inquiry.exist}" ng-click="open('lg')"
+                        ng-disabled="inquiry.exist">
               <span ng-switch="inquiry.exist">
-                <span ng-switch-when="false">Get Quote</span>
+                <span ng-switch-when="false">Inquire</span>
                 <span ng-switch-when="true">
                   <span ng-switch="inquiry.status">
-                    <span ng-switch-when="REQUESTED">Pending Quote</span>
+                    <span ng-switch-when="REQUESTED">Pending</span>
                     <span ng-switch-when="RESOLVED">Resolved</span>
                     <span ng-switch-when="UNRESOLVED">Unresolved</span>
                   </span>
                 </span>
               </span>
 
-            </button>
-          </h3>
-          <div  class="card card-bordless card-margin-bottomless">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
             <div class="card-body">
               <h4>Recommend to Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
@@ -126,7 +107,7 @@
             </div>
 
           </div>
-          <div class="card card-bordless card-margin-bottomless">
+          <div class="card">
             <div class="card-body">
               <h4 class="card-body-title">Interests (<span>{{ interact.vote_amount }}</span>)</h4>
               <saver></saver>

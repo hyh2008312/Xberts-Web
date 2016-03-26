@@ -18,7 +18,7 @@ angular.module('xbertsApp')
         {
           image: '/images/landing_1_1.jpg',
           title: 'Bring Innovations to Global Market',
-          subtitle: 'An online ecosystem that connects smart technology innovators with distribution partners, product reviewers, industry experts and solution providers',
+          subtitle: 'A global community where smart hardware brands meet product reviewers, tech influencers, buyers and partners',
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',
