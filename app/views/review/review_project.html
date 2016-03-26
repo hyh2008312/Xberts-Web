@@ -123,9 +123,13 @@
             <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Ended
             </button>
 
-            <button ng-switch-when="4" class="button button-full button-glow button-primary"
-                    ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
-            </button>
+            <div ng-switch-when="4">
+              <div ng-switch-when="user.isAuth()">
+                <button ng-switch-when="true" class="button button-full button-glow button-plain" disabled>In Progress</button>
+                <button ng-switch-when="false" class="button button-full button-glow button-primary"
+                        ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report</button>
+                </div>
+            </div>
             <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Competed
             </button>
           </div>
