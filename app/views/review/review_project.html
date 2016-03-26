@@ -114,31 +114,33 @@
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
             </button>
-            <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Ended
+            <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Closed
             </button>
-            <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Ended
+            <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Closed
             </button>
 
             <button ng-switch-when="4" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
             </button>
-            <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Review Ended
+            <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Competed
             </button>
           </div>
         </div>
         <div ng-switch-when="true">
           <div ng-switch="review.state">
+            <button ng-switch-when="0" class="button button-full button-glow button-action">Upcoming</button>
             <button ng-switch-when="1" class="button button-full button-glow button-primary"
                     ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
             </button>
-            <button ng-switch-when="2" class="button button-full button-glow button-action">Applicants Selecting
+            <button ng-switch-when="2" class="button button-full button-glow button-action">Screening
             </button>
             <div ng-switch-when="3">
               <div ng-switch="applicant.is_selected">
                 <button ng-switch-when="false" class="button button-full button-glow button-action" disabled>Not
                   Selected
                 </button>
-                <button ng-switch-when="true" class="button button-full button-glow button-primary" ui-sref="application.protected.reviewerShipAddress({reviewId:review.id})">Confirm Address
+                <button ng-switch-when="true" class="button button-full button-glow button-primary"
+                        ui-sref="application.protected.reviewerShipAddress({reviewId:review.id})">Confirm Shipping Info
                 </button>
               </div>
             </div>
@@ -159,7 +161,7 @@
             </div>
             <div ng-switch-when="5">
               <div ng-switch="applicant.is_selected">
-                <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Review Ended
+                <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Competed
                 </button>
                 <div ng-switch="applicant.is_submit_report">
                   <div ng-switch="applicant.is_submit_report">
