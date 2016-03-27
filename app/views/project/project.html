@@ -68,7 +68,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h4 class="xb-align-center">Recommend to Friends</h4>
+              <h4>Recommend to Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
                       socialshare-provider="linkedin"
                       socialshare-description="{{ project.description }}"
@@ -107,9 +107,9 @@
             </div>
 
           </div>
-          <div class="card card-bordless">
+          <div class="card" ng-show="interact.vote_amount>0">
             <div class="card-body">
-              <h4 class="card-body-title xb-align-center">Votes (<span>{{ interact.vote_amount }}</span>)</h4>
+              <h4 class="card-body-title xb-align-center">Votes</h4>
               <saver></saver>
             </div>
           </div>

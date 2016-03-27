@@ -244,6 +244,9 @@ $avatarTypes: (
     }
   }
 }
+.card-shadowless{
+  box-shadow: none;
+}
 
 //cover-layer animation for card with fixed-radio card-header
 .cover {
