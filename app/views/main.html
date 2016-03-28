@@ -9,7 +9,8 @@
         </div>
       </div>
       <div class="carousel-caption {{ slide.captionLocation}}">
-        <a ui-sref="{{ slide.url }}" class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{ slide.buttonText }}</a>
+        <a ui-sref="{{ slide.url }}" class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
+          slide.buttonText }}</a>
       </div>
     </section>
   </uib-slide>
@@ -36,7 +37,8 @@
 
             <p class="landing-p">Discover Innovation</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Explore new inventions created by our community of tech enthusiasts
+            <p class="landing-p font-graym" style="font-size: 18px">Explore new inventions created by our community of
+              tech enthusiasts
             </p>
 
           </div>
@@ -49,7 +51,8 @@
 
             <p class="landing-p">Review Products</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Test-drive the latest smart products and share your reviews
+            <p class="landing-p font-graym" style="font-size: 18px">Test-drive the latest smart products and share your
+              reviews
             </p>
 
           </div>
@@ -60,9 +63,10 @@
           <div class="profile-square border-clear">
             <img ng-src="/images/howitworks-marketplace.png">
 
-            <p class="landing-p">Establish Partnership</p>
+            <p class="landing-p">Affiliate Partnership</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Become a partner of the next tech star to influence the market </p>
+            <p class="landing-p font-graym" style="font-size: 18px">Become a partner of the next tech star to influence
+              the market </p>
 
           </div>
         </div>
@@ -107,7 +111,7 @@
                       <!--<i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>-->
                       <!-- todo:user config-->
                   <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
-                  <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
+                  <i class="fa fa-thumbs-up fa-lg text-danger" ng-switch-when="1"></i>
                   <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
                   </span>
                     </p>
@@ -123,7 +127,7 @@
     <p></p>
 
     <div class="align-center">
-        <a ui-sref="application.projects" class="button button-primary button-glow">View More Products</a>
+      <a ui-sref="application.projects" class="button button-primary button-glow">View More Products</a>
     </div>
   </div>
 </section>
@@ -148,24 +152,23 @@
                 Available Units: {{ review.quota }} free samples
               </p>
 
-              <p class="card-body-detail" ng-switch="isOutDated(review.application_end_date)">
-              <span ng-switch-when="true">
-                Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}
-              </span>
-              <span ng-switch-when="false">
-                Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}
-              </span>
+              <p class="card-body-detail" ng-switch="review.state">
+                <span ng-switch-when="0">Start Date: {{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="1">Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="2">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="3">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="4">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="5">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
               </p>
 
 
-              <div class="card-body-footer align-right" ng-switch="isOutDated(review.application_end_date)">
-                <div ng-switch-when="true">
-                  <div ng-switch="isOutDated(review.date_end)">
-                    <span ng-switch-when="false">Review in Progress</span>
-                    <span ng-switch-when="true">Review Ended</span>
-                  </div>
-                </div>
-                <span ng-switch-when="false">Accepting Applications</span>
+              <div class="card-body-footer align-right" ng-switch="review.state">
+                <span ng-switch-when="0" class="label label-success" style="font-size: 16px">Coming Soon</span>
+                <span ng-switch-when="1" class="label label-primary" style="font-size: 16px">Apply Now</span>
+                <span ng-switch-when="2" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="3" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="4" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="5" class="label label-default" style="font-size: 16px">Completed</span>
               </div>
 
             </div>
@@ -176,7 +179,7 @@
     <p></p>
 
     <div class="align-center">
-        <a ui-sref="application.reviews" class="button button-primary button-glow">View More Campaigns</a>
+      <a ui-sref="application.reviews" class="button button-primary button-glow">View More Campaigns</a>
     </div>
   </div>
 </section>
@@ -210,7 +213,8 @@
               <p class="p-8">{{ event.brief }}</p>
             </div>
             <div class="cover-footer text-center">
-              <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View & Register</a>
+              <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View &
+                Register</a>
             </div>
           </div>
         </div>
@@ -219,7 +223,7 @@
     <p></p>
 
     <div class="align-center">
-        <a ui-sref="application.events" class="button button-primary button-glow">View More Events</a>
+      <a ui-sref="application.events" class="button button-primary button-glow">View More Events</a>
     </div>
   </div>
 </section>
@@ -250,7 +254,8 @@
               <p class="p-10">{{ expert.biography }}</p>
 
               <p class="text-center">
-                <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })" class="button button-primary button-glow">Contact</a>
+                <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })"
+                   class="button button-primary button-glow">Contact</a>
               </p>
             </div>
           </div>
@@ -260,7 +265,7 @@
     <p></p>
 
     <div class="align-center">
-        <a ui-sref="application.experts" class="button button-primary button-glow">View More Experts</a>
+      <a ui-sref="application.experts" class="button button-primary button-glow">View More Experts</a>
     </div>
   </div>
 </section>

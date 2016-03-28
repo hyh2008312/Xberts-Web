@@ -109,85 +109,87 @@
 
             <p class="font-gray-light">{{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</p>
 
-          </div>
-        </div>
-      </div>
-      <div ng-switch="applicant.exist" class="margin-top">
-        <div ng-switch-when="false">
-          <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-glow button-success-disabled" disabled>Coming Soon</button>
-            <button ng-switch-when="1" class="button button-full button-glow button-primary"
-                    ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
-            </button>
-            <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Ended
-            </button>
-            <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Ended
-            </button>
+            <div ng-switch="applicant.exist" class="margin-top">
+              <div ng-switch-when="false">
+                <div ng-switch="review.state">
+                  <button ng-switch-when="0" class="button button-full button-glow button-success-disabled" disabled>Coming Soon</button>
+                  <button ng-switch-when="1" class="button button-full button-glow button-primary"
+                          ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
+                  </button>
+                  <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application Ended
+                  </button>
+                  <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application Ended
+                  </button>
 
-            <div ng-switch-when="4">
-              <div ng-switch="user.isAuth()">
-                <button ng-switch-when="true" class="button button-full button-glow button-plain" disabled>In Progress
-                </button>
-                <button ng-switch-when="false" class="button button-full button-glow button-primary"
-                        ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
-                </button>
+                  <div ng-switch-when="4">
+                    <div ng-switch="user.isAuth()">
+                      <button ng-switch-when="true" class="button button-full button-glow button-plain" disabled>In Progress
+                      </button>
+                      <button ng-switch-when="false" class="button button-full button-glow button-primary"
+                              ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
+                      </button>
+                    </div>
+                  </div>
+                  <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Completed
+                  </button>
+                </div>
               </div>
-            </div>
-            <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Completed
-            </button>
-          </div>
-        </div>
-        <div ng-switch-when="true">
-          <div ng-switch="review.state">
-            <button ng-switch-when="0" class="button button-full button-action button-success-disabled" disabled>Coming Soon</button>
-            <button ng-switch-when="1" class="button button-full button-glow button-primary"
-                    ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
-            </button>
-            <button ng-switch-when="2" class="button button-full button-glow button-action">Screening
-            </button>
-            <div ng-switch-when="3">
-              <div ng-switch="applicant.is_selected">
-                <button ng-switch-when="false" class="button button-full button-glow button-action" disabled>Not
-                  Selected
-                </button>
-                <button ng-switch-when="true" class="button button-full button-glow button-primary"
-                        ui-sref="application.protected.reviewerShipAddress({reviewId:review.id})">Confirm Shipping Info
-                </button>
-              </div>
-            </div>
-            <div ng-switch-when="4">
-              <div ng-switch="applicant.is_selected">
-                <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Not Selected
-                </button>
-                <div ng-switch="applicant.is_submit_report">
-                  <div ng-switch="applicant.is_submit_report">
-                    <button ng-switch-when="false" class="button button-full button-glow button-primary">Submit Report
-                    </button>
-                    <button ng-switch-when="true" class="button button-full button-glow button-primary"
-                            ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Edit Report
-                    </button>
+              <div ng-switch-when="true">
+                <div ng-switch="review.state">
+                  <button ng-switch-when="0" class="button button-full button-action button-success-disabled" disabled>Coming Soon</button>
+                  <button ng-switch-when="1" class="button button-full button-glow button-primary"
+                          ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
+                  </button>
+                  <button ng-switch-when="2" class="button button-full button-glow button-action">Screening
+                  </button>
+                  <div ng-switch-when="3">
+                    <div ng-switch="applicant.is_selected">
+                      <button ng-switch-when="false" class="button button-full button-glow button-action" disabled>Not
+                        Selected
+                      </button>
+                      <button ng-switch-when="true" class="button button-full button-glow button-primary"
+                              ui-sref="application.protected.reviewerShipAddress({reviewId:review.id})">Confirm Shipping Info
+                      </button>
+                    </div>
+                  </div>
+                  <div ng-switch-when="4">
+                    <div ng-switch="applicant.is_selected">
+                      <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Not Selected
+                      </button>
+                      <div ng-switch="applicant.is_submit_report">
+                        <div ng-switch="applicant.is_submit_report">
+                          <button ng-switch-when="false" class="button button-full button-glow button-primary">Submit Report
+                          </button>
+                          <button ng-switch-when="true" class="button button-full button-glow button-primary"
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Edit Report
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ng-switch-when="5">
+                    <div ng-switch="applicant.is_selected">
+                      <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Completed
+                      </button>
+                      <div ng-switch="applicant.is_submit_report">
+                        <div ng-switch="applicant.is_submit_report">
+                          <button ng-switch-when="false" class="button button-full button-glow button-primary">Submit Report
+                          </button>
+                          <button ng-switch-when="true" class="button button-full button-glow button-action"
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">View Report
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div ng-switch-when="5">
-              <div ng-switch="applicant.is_selected">
-                <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Completed
-                </button>
-                <div ng-switch="applicant.is_submit_report">
-                  <div ng-switch="applicant.is_submit_report">
-                    <button ng-switch-when="false" class="button button-full button-glow button-primary">Submit Report
-                    </button>
-                    <button ng-switch-when="true" class="button button-full button-glow button-action"
-                            ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">View Report
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
+
       <div ng-show="review.state == 2">
         <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
           <a class="button button-primary button-glow button-full"
@@ -265,7 +267,7 @@
                             name="item.reviewer.fullname"></profile-avatar>
 
             <p class="xb-profile-name">
-              <a ui-sref="application.expert({ expertId:item.reviewer.id })"> {{ item.reviewer.fullname }}</a>
+              {{ item.reviewer.fullname }}
             </p>
 
             <div ng-switch="item.is_submit_report">

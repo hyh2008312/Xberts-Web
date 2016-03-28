@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MainCtrl', ['$scope','$rootScope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator', 'projectReviewPaginator',
-    function ($scope,$rootScope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator, projectReviewPaginator) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$state', 'modalWrap', 'projectPaginator', 'eventPaginator', 'expertPaginator', 'projectReviewPaginator',
+    function ($scope, $rootScope, $state, modalWrap, projectPaginator, eventPaginator, expertPaginator, projectReviewPaginator) {
       $rootScope.pageSettings.setBackgroundColor('');
       $rootScope.pageSettings.setShareImage('https://xberts.com/images/landing_1_1.d836e5d1.jpg');
 
@@ -17,8 +17,8 @@ angular.module('xbertsApp')
       $scope.slides = [
         {
           image: '/images/landing_1_1.jpg',
-          title: 'Bring Innovations to Global Market',
-          subtitle: 'A global community where smart hardware brands <br> meet product reviewers, tech influencers, buyers and partners',
+          title: 'Bring Asian Innovations to The World',
+          subtitle: "A cross-border community where Asia’s smart hardware brands meet <br/>product reviewers, tech influencers, buyers and partners from around the world",
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',

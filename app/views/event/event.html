@@ -14,8 +14,6 @@
   <div class="row">
 
     <div class="col-md-3 col-md-push-9">
-      <h3 class="margin-top-clear">Details</h3>
-
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
         <div class="card-body">
@@ -32,19 +30,18 @@
 
             <p class="font-gray-light">{{ event.where}}</p>
 
-            <!--<h4> Official Website:</h4>-->
+            <h3 ng-if="!event.is_attending">
+              <a target="_blank" ng-href="{{ event.web }}" class="button button-primary button-glow button-full">Register</a>
+            </h3>
 
-            <!--<p class="p-1"><a class="font-gray-light" target="_blank" ng-href="{{ event.web }}">{{ event.web }}</a></p>-->
+            <h3 ng-if="event.is_attending">
+              <a target="_blank" href="mailto:info@xberts.com" class="button button-primary button-glow button-full">Contact Us</a>
+            </h3>
+
           </div>
         </div>
       </div>
-      <h3 ng-if="!event.is_attending">
-        <a target="_blank" ng-href="{{ event.web }}" class="button button-primary button-full">Register</a>
-      </h3>
 
-      <h3 ng-if="event.is_attending">
-        <a target="_blank" href="mailto:info@xberts.com" class="button button-primary button-full">Contact Us</a>
-      </h3>
     </div>
     <div class="col-md-9 col-md-pull-3">
       <h3 class="margin-top-clear">Overview</h3>

@@ -1,5 +1,5 @@
 @mixin xbGrid($width) {
-  width: percentage($width/13);
+  width: percentage($width/12 - 0.01);
   max-width: 100%;
   display: inline-block;
 }
