@@ -237,7 +237,7 @@
 
 
     <div class="row section-body">
-      <div class="col-md-3 col-sm-6" ng-repeat="expert in expertPaginator.items  | limitTo:4">
+      <div class="col-md-3 col-sm-6" ng-repeat="expert in expertPaginator.items">
         <div class="card cover">
           <div class="profile">
             <avatar-img src="expert.avatar"></avatar-img>
@@ -255,7 +255,7 @@
 
               <p class="text-center">
                 <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })"
-                   class="button button-primary button-glow">Contact</a>
+                   class="button button-primary button-glow">View</a>
               </p>
             </div>
           </div>
@@ -265,7 +265,7 @@
     <p></p>
 
     <div class="align-center">
-      <a ui-sref="application.experts" class="button button-primary button-glow">View More Experts</a>
+      <a ui-sref="application.experts" class="button button-primary button-glow">View More Influencers</a>
     </div>
   </div>
 </section>

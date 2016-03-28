@@ -162,13 +162,13 @@ angular
             var paginator = Paginator('eventRec', fetchFunction);
             return paginator.load();
           }],
-          expertPaginator: ['Paginator', 'Expert', function (Paginator, Expert) {
+          expertPaginator: ['Paginator', 'Influencer', function (Paginator, Influencer) {
             var fetchFunction = function (nextPage, otherParams, callback) {
               var params = {page: nextPage, recommended: 'True'};
               angular.extend(params, otherParams);
-              Expert.get(params, callback);
+              Influencer.get(params, callback);
             };
-            var paginator = Paginator('expertRec', fetchFunction);
+            var paginator = Paginator('influencerRec', fetchFunction);
             return paginator.load();
           }],
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
