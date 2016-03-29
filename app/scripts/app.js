@@ -312,7 +312,7 @@ angular
         controller: 'VoteOffCtrl'
       })
       .state('application.experts', {
-        url: '/experts',
+        url: '/influencers',
         templateUrl: 'views/experts.html',
         controller: 'ExpertsCtrl',
         controllerAs: 'experts',
@@ -332,7 +332,7 @@ angular
         }
       })
       .state('application.expert', {
-        url: '/experts/:expertId?tab&action',
+        url: '/influencers/:expertId?tab&action',
         templateUrl: 'views/profile/expert.html',
         controller: 'ExpertCtrl',
         reloadOnSearch: false,
