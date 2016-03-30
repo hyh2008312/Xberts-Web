@@ -19,13 +19,21 @@ angular.module('configuration.properties', [])
     linkedinStateStorageKey: 'linkedin_state',
     linkedinDefaultState: 'linkedin_csrf_state',
 
+    // API endpoints to ignore when trying to insert request header
+    requestExceptionEndpoints: [
+      'cloudfront.net'
+    ],
+
     // API endpoints to ignore when server returns unauthorized response status
     unauthorizedExceptionEndpoints: [
+      'cloudfront.net',
       '/accounts/user/',
       '/oauth2/token/',
       '/oauth2/revoke_token/'
     ],
 
     // Maximum number of expertise an user can select
-    userExpertiseMax: 5
+    userExpertiseMax: 5,
+
+    awsCloudFrontUrl: 'http://d1fn1iewii1xto.cloudfront.net'
   });
