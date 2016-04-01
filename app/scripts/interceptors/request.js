@@ -4,11 +4,17 @@ angular.module('xbertsApp')
   .service('RequestInterceptor', ['$cookies', 'S', 'OAuthToken', 'Configuration',
     function($cookies, S, OAuthToken, Configuration) {
       this.request = function(config) {
+        var shouldIgnore = false;
+
         angular.forEach(Configuration.requestExceptionEndpoints, function(value) {
           if (S(config.url).endsWith(value)) {
-            return config;
+            shouldIgnore = true;
           }
         });
+
+        if (shouldIgnore) {
+          return config;
+        }
 
         if (config.method !== 'GET' && config.method !== 'OPTIONS' &&
             !('X-CSRFToken' in config.headers)) {

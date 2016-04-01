@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('EditProfileCtrl', ['$scope', '$rootScope', '$state', '$q', 'SystemConstant', 'userProfile',
-    'UserProfileService', 'ExpertLoad', 'localStorageService', 'stages', 'Configuration',
+    'UserProfileService', 'ExpertLoad', 'localStorageService', 'stages', 'Configuration', 'UploadAws',
     function ($scope, $rootScope, $state, $q, SystemConstant, userProfile,
-              UserProfileService, ExpertLoad, localStorageService, stages, Configuration) {
+              UserProfileService, ExpertLoad, localStorageService, stages, Configuration, UploadAws) {
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.stages = stages;
       $scope.userProfile = userProfile;
@@ -51,10 +51,15 @@ angular.module('xbertsApp')
 
         var promises = [];
 
-        if ($scope.data.avatar && $scope.data.avatar !== $rootScope.user.getUserAvatar()) {
-          promises.push(UserProfileService.updateAvatar({
-            avatar: $scope.data.avatar
-          })
+        if ($scope.data.avatar) {
+          promises.push(UploadAws.uploadImage($scope.data.avatar)
+            .then(function(response) {
+              console.log('upload success: ' + decodeURIComponent(response.headers('Location')));
+
+              return UserProfileService.updateAvatar({
+                avatar: decodeURIComponent(response.headers('Location'))
+              });
+            })
             .then(function(response) {
               $rootScope.user.setUserAvatar(response.data.avatar);
             }));
