@@ -41,9 +41,9 @@ angular.module('xbertsApp')
       });
     };
 
-    this.uploadImage = function(file) {
+    this.uploadImage = function(file, type) {
       var self = this;
-      return this.generatePolicy('IMAGE', file)
+      return this.generatePolicy(type, file)
         .then(function(value) {
           value.$promise = undefined;
           return self.upload(file, value);

@@ -52,7 +52,7 @@ angular.module('xbertsApp')
         var promises = [];
 
         if ($scope.data.avatar) {
-          promises.push(UploadAws.uploadImage($scope.data.avatar)
+          promises.push(UploadAws.uploadImage($scope.data.avatar, 'IMAGE_USER_AVATAR')
             .then(function(response) {
               console.log('upload success: ' + decodeURIComponent(response.headers('Location')));
 
