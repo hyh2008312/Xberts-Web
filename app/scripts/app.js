@@ -417,6 +417,7 @@ angular
 
             };
             var paginator = Paginator('projectReview', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }
