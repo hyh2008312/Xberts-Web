@@ -432,9 +432,9 @@ angular
               var params = {page: nextPage};
               angular.extend(params, otherParams);
               ProjectReview.get(params, callback);
-
             };
             var paginator = Paginator('projectReview', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }
