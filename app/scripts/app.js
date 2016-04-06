@@ -179,6 +179,7 @@ angular
 
             };
             var paginator = Paginator('projectReviewREc', fetchFunction);
+
             return paginator.load();
           }]
         }
@@ -289,6 +290,7 @@ angular
               EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('event_r', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }
@@ -419,6 +421,7 @@ angular
 
             };
             var paginator = Paginator('projectReview', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }
@@ -433,9 +436,9 @@ angular
               var params = {page: nextPage};
               angular.extend(params, otherParams);
               ProjectReview.get(params, callback);
-
             };
             var paginator = Paginator('projectReview', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }

@@ -11,8 +11,6 @@
 
   <div class="row">
     <div class="col-md-3 col-md-push-9">
-      <!--<h4 class="margin-top-clear">Details</h4>-->
-
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
@@ -28,8 +26,7 @@
 
             <h4 ng-show="review.state==0"> Start Date:</h4>
 
-            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD,
-              YYYY'}}</p>
+            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD,YYYY'}}</p>
 
             <h4> Application Deadline:</h4>
 
@@ -119,7 +116,8 @@
                             Report
                           </button>
                           <button ng-switch-when="true" class="button button-full button-glow button-action"
-                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">View My Report
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">View My
+                            Report
                           </button>
                         </div>
                       </div>
