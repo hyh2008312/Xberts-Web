@@ -179,6 +179,7 @@ angular
 
             };
             var paginator = Paginator('projectReviewREc', fetchFunction);
+
             return paginator.load();
           }]
         }
@@ -287,6 +288,7 @@ angular
               EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('event_r', fetchFunction);
+            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }

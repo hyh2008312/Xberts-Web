@@ -98,8 +98,7 @@
 
             <h4 ng-show="review.state==0"> Start Date:</h4>
 
-            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD,
-              YYYY'}}</p>
+            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD,YYYY'}}</p>
 
             <h4> Application Deadline:</h4>
 
@@ -168,7 +167,7 @@
                       <div ng-switch="applicant.is_submit_report">
                         <div ng-switch="applicant.is_submit_report">
                           <button ng-switch-when="false" class="button button-full button-glow button-primary"
-                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">>Submit
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
                             Report
                           </button>
                           <button ng-switch-when="true" class="button button-full button-glow button-primary"
@@ -186,7 +185,7 @@
                       <div ng-switch="applicant.is_submit_report">
                         <div ng-switch="applicant.is_submit_report">
                           <button ng-switch-when="false" class="button button-full button-glow button-primary"
-                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">>Submit
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
                             Report
                           </button>
                           <button ng-switch-when="true" class="button button-full button-glow button-action"
