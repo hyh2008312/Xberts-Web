@@ -2,11 +2,11 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="form-group">
       <label>Product Title:</label>
+      <p class="font-gray-light">e.g Apple iPhone 6s Plus - Reinvent your communication experience</p>
       <input type="text" class="form-control" name='title' ng-model="projectData.title"
              placeholder="Include your brand and product name"
              required
              ng-required="true" ng-maxlength="200">
-
       <div class="" ng-show="projectForm.$submitted || projectForm.title.$touched"
            ng-messages="projectForm.title.$error">
         <p class="message-error" ng-message="required">* required.</p>
