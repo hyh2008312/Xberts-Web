@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UploadAws', ['$resource', 'Upload', 'Configuration', function($resource, Upload, Configuration) {
+  .service('UploadAws', ['$resource', 'Upload', 'Configuration', function ($resource, Upload, Configuration) {
     function getContentType(file) {
       return file.type != '' ? file.type : 'binary/octet-stream';
     }
 
-    this.generatePolicy = function(type, file) {
+    this.generatePolicy = function (type, file) {
       var fileExtension = file.name.split('.').pop();
 
       return $resource(Configuration.apiBaseUrl + '/aws/s3policy/', null, {
@@ -20,7 +20,7 @@ angular.module('xbertsApp')
       }).$promise;
     };
 
-    this.upload = function(file, postParams) {
+    this.upload = function (file, postParams) {
       postParams.file = file;
 
       return Upload.upload({
@@ -41,12 +41,15 @@ angular.module('xbertsApp')
       });
     };
 
-    this.uploadImage = function(file, type) {
+    this.uploadImage = function (file, type) {
       var self = this;
       return this.generatePolicy(type, file)
-        .then(function(value) {
+        .then(function (value) {
           value.$promise = undefined;
           return self.upload(file, value);
         });
     };
+  }])
+  .factory('UploadImageAsset', ['$resource', 'Configuration', function ($resource, Configuration) {
+    return $resource(Configuration.apiBaseUrl + '/upload/rest/imageassets/:id/', {id: '@id'});
   }]);

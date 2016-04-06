@@ -203,6 +203,7 @@ angular
 
             };
             var paginator = Paginator('project', fetchFunction);
+            paginator.setOrder('interact.comment_amount',true);
             return paginator.load();
           }]
         }
@@ -212,20 +213,21 @@ angular
         templateUrl: 'views/project/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
+        abstract: true,
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
-          }],
-          targetGeos: ['SystemData', function (SystemData) {
-            return SystemData.getTargetGeosPromise();
-          }],
-          //supportTypes: ['SystemData', function (SystemData) {
-          //  return SystemData.getSupportTypesPromise();
-          //}],
-          transportationModels: ['SystemData', function (SystemData) {
-            return SystemData.getTransportationModelsPromise();
           }]
         }
+      })
+      .state('application.protected.launchProject.basic', {
+        url: "/basic",
+        templateUrl: 'views/project/project_basic.html'
+      })
+      .state('application.protected.launchProject.detail', {
+        url: "/detail",
+        templateUrl: 'views/project/project_detail.html',
+        controller: 'LaunchProjectBasicCtrl'
       })
       .state('application.project', {
         url: "/projects/:projectId?tab",

@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+      <label>Product Title:</label>
+      <input type="text" class="form-control" name='title' ng-model="projectData.title"
+             placeholder="Include your brand and product name"
+             required
+             ng-required="true" ng-maxlength="200">
+
+      <div class="" ng-show="projectForm.$submitted || projectForm.title.$touched"
+           ng-messages="projectForm.title.$error">
+        <p class="message-error" ng-message="required">* required.</p>
+
+        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+
+          <label>Select a category for your product:</label>
+          <select class="form-control" ng-required="true" name="project_category"
+                  ng-model="projectData.project_category">
+            <option value="">-- Select a category --</option>
+            <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
+                    ng-selected="projectData.project_category==projectType.id">{{ projectType.name }}
+            </option>
+          </select>
+
+          <div class="" ng-show="projectForm.$submitted || projectForm.project_category.$touched"
+               ng-messages="projectForm.project_category.$error">
+            <p class="message-error" ng-message="required">* required.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Retail Price(USD):</label>
+          <input type="text" class="form-control" name='retail_price' ng-model="projectData.retail_price"
+                 required
+                 ng-required="true" ng-maxlength="200" ng-pattern="/^[0-9]*\.?[0-9]*$/">
+
+          <div class="" ng-show="projectForm.$submitted || projectForm.retail_price.$touched"
+               ng-messages="projectForm.retail_price.$error">
+            <p class="message-error" ng-message="required">* required.</p>
+
+            <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+
+            <p class="message-error" ng-message="pattern">* please input correct numbers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Company Name:</label>
+          <input type="text" class="form-control" name='company_name' ng-model="projectData.company_name"
+                 required
+                 ng-required="true" ng-maxlength="50">
+
+          <div class="" ng-show="projectForm.$submitted || projectForm.company_name.$touched"
+               ng-messages="projectForm.company_name.$error">
+            <p class="message-error" ng-message="required">* required.</p>
+
+            <p class="message-error" ng-message="maxlength">* no more than 50 chars..</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Company Website:</label>
+          <input type="text" class="form-control" name='official_url' ng-model="projectData.official_url"
+                 required placeholder="http://"
+                 ng-required="true" ng-maxlength="200">
+
+          <div class="" ng-show="projectForm.$submitted || projectForm.official_url.$touched"
+               ng-messages="projectForm.official_url.$error">
+            <p class="message-error" ng-message="required">* required.</p>
+
+            <p class="message-error" ng-message="maxlength">* no more than 200 chars.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="xb-align-center margin-top-xl">
+      <button type="submit" class="button button-primary button-rounded button-mid-width">Next</button>
+    </div>
+  </div>
+</div>

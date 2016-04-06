@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-3 col-md-push-9">
+    <label>Product Image:</label>
+    <p class="font-gray-light">Recommended size: 600x400</p>
+
+    <div class="card margin-bottom">
+      <div class="card-header" style="background-image: url({{ projectData.logo }})">
+        <div class="mask" ngf-background="projectTemp.logo"></div>
+      </div>
+    </div>
+    <div class="xb-align-center">
+      <button class="button button-primary button-rounded button-tiny" type="file" name="logo"
+              ngf-select="coverUpload($file)"
+              ng-model="projectTemp.logo"
+              accept="image/*"
+              ngf-max-size="'1MB'" ng-switch="projectTemp.logo != null ">
+        <span ng-switch-when="true">Change</span>
+        <span ng-switch-when="false">Upload</span>
+
+      </button>
+    </div>
+    <p class='message-error' ng-show="projectForm.logo.$error.maxSize">Your image is too large: max 1MB</p>
+
+    <p class="message-error" ng-show="projectForm.submitted && projectForm.logoRequired">*
+      required</p>
+  </div>
+
+  <div class="col-md-9 col-md-pull-3">
+    <div class="form-group">
+      <label>Type in the certifications your product has successfully passed:</label>
+      <tags-input ng-model="projectTemp.tags" placeholder="e.g. CE, FCC, RoHS"></tags-input>
+    </div>
+    <div class="form-group">
+      <label>Describe your Product:</label>
+      <summernote config="summerNoteFull" ng-model="projectData.details"
+                  on-image-upload="imageUpload(files)" editable="editable"
+                  editor="editor"></summernote>
+
+
+    </div>
+  </div>
+</div>
+<div class="margin-top-xl xb-align-center">
+  <button type="submit" class="button button-primary button-rounded button-mid-width">Save & Submit</button>
+</div>
+
+
