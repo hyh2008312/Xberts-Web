@@ -179,7 +179,7 @@ angular
 
             };
             var paginator = Paginator('projectReviewREc', fetchFunction);
-
+            paginator.setFilter({state: 2});
             return paginator.load();
           }]
         }
@@ -204,7 +204,6 @@ angular
 
             };
             var paginator = Paginator('project', fetchFunction);
-            paginator.setOrder('interact.comment_amount',true);
             return paginator.load();
           }]
         }
@@ -241,15 +240,6 @@ angular
           projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
           }],
-          targetGeos: ['SystemData', function (SystemData) {
-            return SystemData.getTargetGeosPromise();
-          }],
-          //supportTypes: ['SystemData', function (SystemData) {
-          //  return SystemData.getSupportTypesPromise();
-          //}],
-          //transportationModels: ['SystemData', function (SystemData) {
-          //  return SystemData.getTransportationModelsPromise();
-          //}],
           project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
             return ProjectLoad($stateParams);
           }]
@@ -290,7 +280,6 @@ angular
               EventNoDetail.get(params, callback);
             };
             var paginator = Paginator('event_r', fetchFunction);
-            paginator.setOrder('state',false);
             return paginator.load();
           }]
         }
@@ -418,10 +407,9 @@ angular
               var params = {page: nextPage};
               angular.extend(params, otherParams);
               ProjectReview.get(params, callback);
-
             };
             var paginator = Paginator('projectReview', fetchFunction);
-            paginator.setOrder('state',false);
+            paginator.setOrder('state');
             return paginator.load();
           }]
         }
@@ -438,7 +426,7 @@ angular
               ProjectReview.get(params, callback);
             };
             var paginator = Paginator('projectReview', fetchFunction);
-            paginator.setOrder('state',false);
+            paginator.setOrder('state');
             return paginator.load();
           }]
         }

@@ -102,6 +102,7 @@
 
 
 .xb-steps-container{
+  display: -webkit-flex;
   display: flex;
   justify-content: center;
   border-bottom: 2px solid #e1e1e1;

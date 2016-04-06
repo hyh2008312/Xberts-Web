@@ -12,15 +12,20 @@ angular.module('xbertsApp')
         items: localStorageService.get(name + '_items') || [],
         loading: false,
         predicate: null,
-        reverse: false,
-        setOrder: function (predicate, reverse) {
+        filter: null,
+        setOrder: function (predicate) {
           this.predicate = predicate;
-          this.reverse = reverse;
-
+        },
+        setFilter: function (filter) {
+          this.filter = filter;
         },
         orderBy: function (items) {
           var self = this;
-          return $filter('orderBy')(items, self.predicate, self.reverse);
+          return self.predicate ? $filter('orderBy')(items, self.predicate) : items;
+        },
+        filterBy: function (items) {
+          var self = this;
+          return self.filter ? $filter('filter')(items, self.filter) : items;
         },
         hasNext: function () {
           return this.next === 'true';
@@ -35,7 +40,7 @@ angular.module('xbertsApp')
           fetchFunction(self.currentPage + 1, self.params, function (resource) {
             self.currentPage++;
             self.next = resource.next !== null ? 'true' : 'false';
-            self.items = self.orderBy(self.items.concat(resource.results));
+            self.items = self.items.concat(self.filterBy(self.orderBy(resource.results)));
             self.loading = false;
             localStorageService.set(self.name + '_currentPage', self.currentPage);
             localStorageService.set(self.name + '_items', self.items);
@@ -51,7 +56,7 @@ angular.module('xbertsApp')
           fetchFunction(self.currentPage + 1, self.params, function (resource) {
             self.currentPage++;
             self.next = resource.next !== null ? 'true' : 'false';
-            self.items = self.orderBy(self.items.concat(resource.results));
+            self.items = self.items.concat(self.filterBy(self.orderBy(resource.results)));
             self.loading = false;
           });
         },
