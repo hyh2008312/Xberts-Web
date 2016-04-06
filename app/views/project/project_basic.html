@@ -2,11 +2,13 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="form-group">
       <label>Product Title:</label>
+
       <p class="font-gray-light">e.g Apple iPhone 6s Plus - Reinvent your communication experience</p>
       <input type="text" class="form-control" name='title' ng-model="projectData.title"
              placeholder="Include your brand and product name"
              required
              ng-required="true" ng-maxlength="200">
+
       <div class="" ng-show="projectForm.$submitted || projectForm.title.$touched"
            ng-messages="projectForm.title.$error">
         <p class="message-error" ng-message="required">* required.</p>
@@ -17,14 +19,10 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-
           <label>Select a category for your product:</label>
           <select class="form-control" ng-required="true" name="project_category"
-                  ng-model="projectData.project_category">
+                  ng-model="projectData.project_category" ng-options="item.id as item.name for item in projectTypes">
             <option value="">-- Select a category --</option>
-            <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
-                    ng-selected="projectData.project_category==projectType.id">{{ projectType.name }}
-            </option>
           </select>
 
           <div class="" ng-show="projectForm.$submitted || projectForm.project_category.$touched"

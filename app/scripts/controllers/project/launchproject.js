@@ -63,10 +63,11 @@ angular.module('xbertsApp')
               })
             } else {
               $scope.projectData.$save(function (data) {
+                console.log(data);
                 $scope.$emit('backdropOff', 'success');
                 if ($state.is('^.basic')) {
                   $scope.tags[1].disabled = false;
-                  $state.go('^.detail');
+                  $state.go('application.protected.projectEdit.detail', {projectId: $scope.projectData.id});
                 } else {
                   $state.go('application.project', {projectId: $scope.projectData.id})
                 }
