@@ -2,7 +2,7 @@
   <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
-      <a class="block-link" ui-sref="application.review({ reviewId:applicant.review.id })">
+      <a class="block-link" ui-sref="application.crowdtesting({ reviewId:applicant.review.id })">
         <div class="card">
           <div class="card-header" style="background-image: url({{ applicant.review.project.image }})">
           </div>

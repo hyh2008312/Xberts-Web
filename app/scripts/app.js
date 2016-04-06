@@ -189,7 +189,7 @@ angular
         templateUrl: 'views/about.html'
       })
       .state('application.projects', {
-        url: '/projects',
+        url: '/products',
         templateUrl: 'views/project/projects.html',
         controller: 'ProjectsCtrl',
         resolve: {
@@ -208,8 +208,8 @@ angular
           }]
         }
       })
-      .state('application.protected.launchProject', {
-        url: "/launch/project/{projectId:[0-9]*}",
+      .state('application.protected.projectEdit', {
+        url: "/products/{projectId:[0-9]*}/edit",
         templateUrl: 'views/project/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
@@ -220,17 +220,38 @@ angular
           }]
         }
       })
-      .state('application.protected.launchProject.basic', {
-        url: "/basic",
+      .state('application.protected.projectLaunch', {
+        url: "/products/launch",
+        templateUrl: 'views/project/launchproject.html',
+        controller: 'LaunchprojectCtrl',
+        controllerAs: 'launchProject',
+        abstract: true,
+        resolve: {
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }]
+        }
+      })
+      .state('application.protected.projectLaunch.basic', {
+        url: "/BasicInfo",
         templateUrl: 'views/project/project_basic.html'
       })
-      .state('application.protected.launchProject.detail', {
-        url: "/detail",
+      .state('application.protected.projectLaunch.detail', {
+        url: "/ProductDetail",
+        templateUrl: 'views/project/project_detail.html',
+        controller: 'LaunchProjectBasicCtrl'
+      })
+      .state('application.protected.projectEdit.basic', {
+        url: "/BasicInfo",
+        templateUrl: 'views/project/project_basic.html'
+      })
+      .state('application.protected.projectEdit.detail', {
+        url: "/ProductDetail",
         templateUrl: 'views/project/project_detail.html',
         controller: 'LaunchProjectBasicCtrl'
       })
       .state('application.project', {
-        url: "/projects/:projectId?tab",
+        url: "/products/:projectId?tab",
         templateUrl: 'views/project/project.html',
         controller: 'ProjectCtrl',
         resolve: {

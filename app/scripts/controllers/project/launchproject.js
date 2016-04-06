@@ -63,7 +63,6 @@ angular.module('xbertsApp')
               })
             } else {
               $scope.projectData.$save(function (data) {
-                console.log(data);
                 $scope.$emit('backdropOff', 'success');
                 if ($state.is('^.basic')) {
                   $scope.tags[1].disabled = false;
@@ -104,7 +103,6 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'error');
           });
         }, function (data) {
-          console.log(data);
           growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
         }, function (evt) {
