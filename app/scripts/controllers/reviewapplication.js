@@ -241,7 +241,7 @@ angular.module('xbertsApp')
       };
     }])
   .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', function ($scope, $rootScope, review, $state) {
-    $rootScope.pageSettings.setBackgroundColor('background-whitem');;
+    $rootScope.pageSettings.setBackgroundColor('background-whitem');
     $scope.review = review;
     if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
       $state.go('application.main')

@@ -14,13 +14,6 @@ angular.module('xbertsApp')
         $scope.projectData.id = $stateParams.projectId || null;
         $scope.projectTypes = SystemData.getProjectTypes();
 
-        $scope.UiSref = function (state, index) {
-          if (!$scope.tags[index].disabled) {
-            $state.go(state);
-            //$scope.tags[index].active = true;
-          }
-        };
-
         $scope.tags = [
           {active: true, disabled: false},
           {active: false, disabled: true}
@@ -28,6 +21,13 @@ angular.module('xbertsApp')
         $scope.$watch('projectData', function () {
           $scope.tags[1].disabled = !$scope.projectData.id;
         });
+
+        $scope.UiSref = function (state, index) {
+          if (!$scope.tags[index].disabled) {
+            $state.go(state);
+            //$scope.tags[index].active = true;
+          }
+        };
 
         if ($scope.projectData.id !== null) {
           $scope.$emit('backdropOn', 'fetch project');
@@ -113,7 +113,6 @@ angular.module('xbertsApp')
       }
     };
     $scope.coverUpload = function ($file) {
-      console.log($file);
       if ($file) {
         $scope.$emit('backdropOn', 'post');
         UploadAws.uploadImage($file, 'IMAGE_PROJECT_COVER').then(function (response) {
