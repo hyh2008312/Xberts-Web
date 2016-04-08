@@ -80,7 +80,9 @@
 <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbuild -->
 <!-- build:js(.) scripts/summernote.js -->
-<script src="/bower_components/summernote/dist/summernote.js"></script>
+<!-- Temporary fix for summernote bug related to video insert, switch back to official dist once it's fixed -->
+<!-- Already filed bug against summernote: https://github.com/summernote/summernote/issues/1819 -->
+<script src="scripts/libs/summernote.js"></script>
 <script src="/bower_components/angular-summernote/dist/angular-summernote.js"></script>
 <!-- endbuild -->
 <!-- build:js(.) scripts/international-phone-number.js -->
@@ -98,6 +100,7 @@
 <script src="/bower_components/angular-resource/angular-resource.js"></script>
 <script src="/bower_components/angular-route/angular-route.js"></script>
 <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="/bower_components/summernote/dist/summernote.js"></script>
 <script src="/bower_components/angular-touch/angular-touch.js"></script>
 <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="/bower_components/ng-tags-input/ng-tags-input.min.js"></script>
@@ -116,12 +119,16 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/plugins/summernote-video-upload.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/configs/configuration.js"></script>
 <script src="scripts/configs/default-configuration.js"></script>
 <script src="scripts/controllers/application.js"></script>
+<script src="scripts/controllers/event.js"></script>
+<script src="scripts/controllers/eventlauch.js"></script>
 <script src="scripts/controllers/login/linkedin-login.js"></script>
 <script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/notification.js"></script>
 <script src="scripts/controllers/profile/apply-expert.js"></script>
 <script src="scripts/controllers/profile/change-email.js"></script>
 <script src="scripts/controllers/profile/change-password.js"></script>
@@ -137,9 +144,27 @@
 <script src="scripts/controllers/resources.js"></script>
 <script src="scripts/controllers/signup.js"></script>
 <script src="scripts/directives/avatar-img.js"></script>
+<script src="scripts/directives/backdrop.js"></script>
 <script src="scripts/directives/clearformerror.js"></script>
+<script src="scripts/directives/commentdetail.js"></script>
 <script src="scripts/directives/compareto.js"></script>
+<script src="scripts/directives/feedback.js"></script>
+<script src="scripts/directives/feedbackdetail.js"></script>
+<script src="scripts/directives/followings.js"></script>
+<script src="scripts/directives/join.js"></script>
+<script src="scripts/directives/joins.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
+<script src="scripts/directives/notifications.js"></script>
+<script src="scripts/directives/questioninput.js"></script>
+<script src="scripts/directives/redirect.js"></script>
+<script src="scripts/directives/save.js"></script>
+<script src="scripts/directives/saver.js"></script>
+<script src="scripts/filters/decode.js"></script>
+<script src="scripts/filters/narrow.js"></script>
+<script src="scripts/filters/projectcategory.js"></script>
+<script src="scripts/filters/split.js"></script>
+<script src="scripts/filters/tagsplit.js"></script>
+<script src="scripts/filters/trust.js"></script>
 <script src="scripts/interceptors/auth.js"></script>
 <script src="scripts/interceptors/request.js"></script>
 <script src="scripts/listeners/keepalive.js"></script>
@@ -154,6 +179,7 @@
 <script src="scripts/resolvers/user-resolver.js"></script>
 <script src="scripts/services/account.js"></script>
 <script src="scripts/services/analytics.js"></script>
+<script src="scripts/services/asset.js"></script>
 <script src="scripts/services/auth.js"></script>
 <script src="scripts/services/notification.js"></script>
 <script src="scripts/services/oauth-token.js"></script>
@@ -164,20 +190,16 @@
 <script src="scripts/services/signup.js"></script>
 <script src="scripts/services/upload-aws.js"></script>
 <script src="scripts/services/user-profile.js"></script>
+<script src="scripts/utils/file.js"></script>
 <script src="scripts/utils/string.js"></script>
 <script src="scripts/utils/underscore.js"></script>
 <script src="scripts/utils/url.js"></script>
-<script src="scripts/controllers/notification.js"></script>
-<script src="scripts/controllers/event.js"></script>
-<script src="scripts/controllers/eventlauch.js"></script>
 <script src="scripts/services/event.js"></script>
 <script src="scripts/services/uploadmultiform.js"></script>
-<script src="scripts/directives/backdrop.js"></script>
 <script src="scripts/services/expert.js"></script>
 <script src="scripts/services/modalwrap.js"></script>
 <script src="scripts/services/contact.js"></script>
 <script src="scripts/services/tempimage.js"></script>
-<script src="scripts/filters/trust.js"></script>
 <script src="scripts/controllers/project/launchproject.js"></script>
 <script src="scripts/controllers/project/projectinfo.js"></script>
 <script src="scripts/controllers/profile/companyinfo.js"></script>
@@ -186,13 +208,10 @@
 <script src="scripts/services/distribution.js"></script>
 <script src="scripts/services/distributionload.js"></script>
 <script src="scripts/services/organization.js"></script>
-<script src="scripts/directives/redirect.js"></script>
-<script src="scripts/filters/projectcategory.js"></script>
 <script src="scripts/services/projectsnodetail.js"></script>
 <script src="scripts/controllers/events.js"></script>
 <script src="scripts/services/eventload.js"></script>
 <script src="scripts/services/eventnodetail.js"></script>
-<script src="scripts/filters/tagsplit.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/experts.js"></script>
 <script src="scripts/services/systemconstant.js"></script>
@@ -200,38 +219,24 @@
 <script src="scripts/controllers/profileinfo.js"></script>
 <script src="scripts/controllers/reviewapplicationinfo.js"></script>
 <script src="scripts/services/review.js"></script>
-<script src="scripts/directives/questioninput.js"></script>
-<script src="scripts/filters/split.js"></script>
 <script src="scripts/controllers/reviewapplicationconfirminfo.js"></script>
 <script src="scripts/services/reviewapplicant.js"></script>
 <script src="scripts/services/reviewload.js"></script>
 <script src="scripts/services/profilereviewer.js"></script>
 <script src="scripts/services/profilereviewerload.js"></script>
 <script src="scripts/controllers/project/project.js"></script>
-<script src="scripts/filters/narrow.js"></script>
-<script src="scripts/filters/decode.js"></script>
 <script src="scripts/services/interact.js"></script>
 <script src="scripts/services/projectonlydetail.js"></script>
-<script src="scripts/directives/save.js"></script>
-<script src="scripts/directives/join.js"></script>
 <script src="scripts/controllers/comment.js"></script>
-<script src="scripts/directives/feedback.js"></script>
-<script src="scripts/directives/feedbackdetail.js"></script>
-<script src="scripts/directives/commentdetail.js"></script>
 <script src="scripts/services/expertload.js"></script>
-<script src="scripts/directives/saver.js"></script>
-<script src="scripts/directives/joins.js"></script>
-<script src="scripts/directives/followings.js"></script>
 <script src="scripts/controllers/project/distributor.js"></script>
 <script src="scripts/services/distributor.js"></script>
-<script src="scripts/utils/url.js"></script>
 <script src="scripts/controllers/reviewreport.js"></script>
 <script src="scripts/services/reviewreport.js"></script>
 <script src="scripts/services/reviewreportload.js"></script>
 <script src="scripts/services/applicantsreview.js"></script>
 <script src="scripts/services/applicantsreviewload.js"></script>
 <script src="scripts/controllers/reviewproject.js"></script>
-<script src="scripts/directives/notifications.js"></script>
 <script src="scripts/controllers/reviewerShippingAddress.js"></script>
 <script src="scripts/services/pagesetting.js"></script>
 <!-- endbuild -->

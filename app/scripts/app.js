@@ -47,6 +47,7 @@ angular
       $rootScope.pageSettings = PageService.pageSetting;
       $rootScope.summerNoteFull = {
         height: 300,
+        shortcuts: false,
         toolbar: [
           ['edit', ['undo', 'redo']],
           ['headline', ['style']],
@@ -57,13 +58,9 @@ angular
           ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
           ['height', ['height']],
           ['table', ['table']],
-          ['insert', ['link', 'picture', 'video', 'hr']],
-          ['view', ['fullscreen']]
+          ['insert', ['link', 'picture', 'videoUpload', 'hr']],
+          ['view', ['fullscreen', 'codeview']]
         ]
-        //popover: {
-        //  image: [['remove', ['removeMedia']] ],
-        //  air: [['insert', ['picture']]]
-        //}
       };
       localStorageService.clearAll();
 

@@ -2,8 +2,10 @@
 
 angular.module('xbertsApp')
   .controller('LaunchprojectCtrl',
-    ['$scope', '$rootScope', '$state', '$stateParams', 'Utils', 'localStorageService', 'growl', 'SystemData', 'UploadImageAsset', 'UploadAws', 'Project',
-      function ($scope, $rootScope, $state, $stateParams, Utils, localStorageService, growl, SystemData, UploadImageAsset, UploadAws, Project) {
+    ['$scope', '$rootScope', '$state', '$stateParams', 'Utils', 'localStorageService', 'growl', 'SystemData',
+      'Project',
+      function ($scope, $rootScope, $state, $stateParams, Utils, localStorageService, growl, SystemData,
+                Project) {
 
         $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
@@ -86,48 +88,79 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectBasicCtrl', ['$scope', 'growl', 'UploadAws', 'UploadImageAsset', function ($scope, growl, UploadAws, UploadImageAsset) {
-    $scope.imageUpload = function (files) {
-      $scope.$emit('backdropOn', 'post');
-      for (var i = 0; i < files.length; i++) {
-        UploadAws.uploadImage(files[i], 'IMAGE_PROJECT_DETAILS').then(function (response) {
-          //UploadImageAsset
-          var url = decodeURIComponent(response.headers('Location'));
-          var asset = new UploadImageAsset({url: url, type: 'PROJECT_DETAILS'});
-          asset.$save(function (data) {
-            $scope.editor.summernote('insertImage', data.image_url);
-            $scope.projectData.images = $scope.projectData.images || [];
-            $scope.projectData.images.push(data.id);
-            $scope.$emit('backdropOff', 'success');
-          }, function () {
-            growl.error('Sorry,some error happened.');
-            $scope.$emit('backdropOff', 'error');
-          });
-        }, function (data) {
-          growl.error('Sorry,some error happened.');
-          $scope.$emit('backdropOff', 'error');
-        }, function (evt) {
-          var progress = parseInt(100.0 * evt.loaded / evt.total);
-          console.log(progress);
-        });
-      }
+  .controller('LaunchProjectBasicCtrl', ['$scope', 'growl', 'UploadAws', 'Asset', 'FileUtil',
+    function ($scope, growl, UploadAws, Asset, FileUtil) {
+      $scope.imageUpload = function (files) {
+        $scope.$emit('backdropOn', 'post');
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+
+          if (FileUtil.isVideo(file)) {
+            UploadAws.uploadMedia(file, 'VIDEO_PROJECT_DETAILS')
+              .then(function(response) {
+                var url = decodeURIComponent(response.headers('Location'));
+
+                Asset.createVideoAsset(url, 'PROJECT_DETAILS')
+                  .then(function(data) {
+                    var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
+                    $scope.editor.summernote('insertNode', videoNode);
+
+                    $scope.projectData.video_assets = $scope.projectData.video_assets || [];
+                    $scope.projectData.video_assets.push(data.id);
+
+                    $scope.$emit('backdropOff', 'success');
+                  })
+                  .catch(function(err) {
+                    growl.error('Failed to upload video');
+                    $scope.$emit('backdropOff', 'error');
+                  });
+              }, function(response) {
+                growl.error('Failed to upload video');
+                $scope.$emit('backdropOff', 'error');
+              }, function(evt) {
+                var progress = parseInt(100.0 * evt.loaded / evt.total);
+                console.log(progress);
+              });
+          } else {
+            UploadAws.uploadMedia(files[i], 'IMAGE_PROJECT_DETAILS').then(function(response) {
+              var url = decodeURIComponent(response.headers('Location'));
+
+              Asset.createImageAsset(url, 'PROJECT_DETAILS')
+                .then(function(data) {
+                  $scope.editor.summernote('insertImage', data.imageUrl);
+                  $scope.projectData.images = $scope.projectData.images || [];
+                  $scope.projectData.images.push(data.id);
+                  $scope.$emit('backdropOff', 'success');
+                }, function() {
+                  growl.error('Failed to upload image');
+                  $scope.$emit('backdropOff', 'error');
+                });
+            }, function(data) {
+              growl.error('Failed to upload image');
+              $scope.$emit('backdropOff', 'error');
+            }, function(evt) {
+              var progress = parseInt(100.0 * evt.loaded / evt.total);
+              console.log(progress);
+            });
+          }
+        }
     };
     $scope.coverUpload = function ($file) {
       if ($file) {
         $scope.$emit('backdropOn', 'post');
-        UploadAws.uploadImage($file, 'IMAGE_PROJECT_COVER').then(function (response) {
-          //UploadImageAsset
+        UploadAws.uploadMedia($file, 'IMAGE_PROJECT_COVER').then(function (response) {
           var url = decodeURIComponent(response.headers('Location'));
-          var asset = new UploadImageAsset({url: url, type: 'PROJECT_COVER'});
-          asset.$save(function (data) {
-            $scope.projectData.cover = data.id;
-            $scope.$emit('backdropOff', 'success');
-          }, function () {
-            growl.error('Sorry,some error happened.');
-            $scope.$emit('backdropOff', 'error');
-          });
+
+          Asset.createImageAsset(url, 'PROJECT_COVER')
+            .then(function (data) {
+              $scope.projectData.cover = data.id;
+              $scope.$emit('backdropOff', 'success');
+            }, function () {
+              growl.error('Failed to upload image');
+              $scope.$emit('backdropOff', 'error');
+            });
         }, function (data) {
-          growl.error('Sorry,some error happened.');
+          growl.error('Failed to upload image');
           $scope.$emit('backdropOff', 'error');
         }, function (evt) {
           var progress = parseInt(100.0 * evt.loaded / evt.total);
