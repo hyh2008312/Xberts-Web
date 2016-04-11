@@ -56,19 +56,22 @@
               <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View Detail</a>
             </div>
             <div class="item-body">
-              <p class="item-body-header">
-              <span ng-switch="applicant.reviewer.userprofile.gender">
-              <span ng-switch-when="M" class="font-primary"><i class="fa fa-male"></i></span>
-              <span ng-switch-when="F" class="font-striking"><i class="fa fa-female"></i></span>
-            </span>
-
-          <span><a ng-click="open('lg',$index)">{{ applicant.reviewer.fullname
-            }}</a> <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
-                <span ng-switch="applicant.is_selected" class="pull-right">
+              <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true" class="text-primary">Selected</i>
                         <i ng-switch-when="false" class="text-danger">Dismissed</i>
                         <i ng-switch-when="null">Pending</i>
                 </span>
+
+              <p class="item-body-header">
+                ID: <a ng-click="open('lg',$index)">#{{ applicant.sequence_number}}</a>
+                <br/>
+              <span ng-switch="applicant.reviewer.userprofile.gender">
+              <span ng-switch-when="I"><i class="fa fa-question-circle font-primary"></i> Undisclosed</span>
+              <span ng-switch-when="M"><i class="fa fa-male font-primary"></i> Male</span>
+              <span ng-switch-when="F"><i class="fa fa-female font-striking"></i> Female</span>
+            </span>
+
+                <span><i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
               </p>
               <br/>
 
@@ -86,19 +89,19 @@
                 </div>
               </div>
               <!--<div class="row">-->
-                <!--<div class="col-md-6">-->
-                  <!--<p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>-->
-                  <!--</p>-->
-                <!--</div>-->
-                <!--<div class="col-md-6">-->
-                  <!--<p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">-->
-                    <!--Number of connections on {{ SOCIAL_TYPE |-->
-                    <!--decode_:applicant.reviewer.userprofile.other_social_type}}:-->
-                    <!--<span class="font-gray-light">-->
-                      <!--{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}-->
-                    <!--</span>-->
-                  <!--</p>-->
-                <!--</div>-->
+              <!--<div class="col-md-6">-->
+              <!--<p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>-->
+              <!--</p>-->
+              <!--</div>-->
+              <!--<div class="col-md-6">-->
+              <!--<p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">-->
+              <!--Number of connections on {{ SOCIAL_TYPE |-->
+              <!--decode_:applicant.reviewer.userprofile.other_social_type}}:-->
+              <!--<span class="font-gray-light">-->
+              <!--{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}-->
+              <!--</span>-->
+              <!--</p>-->
+              <!--</div>-->
               <!--</div>-->
               <div class="row">
                 <div class="col-md-6">
@@ -173,7 +176,7 @@
 
         </div>
         <iframe name="download" style="display: none"></iframe>
-        <div class="margin-top align-right" ng-show="review.is_applicants_exported">
+        <div class="margin-top align-right" ng-show="review.is_applicants_exported && user.isStaff()">
           <a class="btn btn-primary" target="download"
              ng-href="/media/applicants/applicant{{ review.id }}.csv">Download
           </a>
