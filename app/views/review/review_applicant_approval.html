@@ -5,19 +5,22 @@
     </div>
     <div class="item-body">
       <p class="item-body-header">
-              <span ng-switch="applicant.reviewer.userprofile.gender">
-              <span ng-switch-when="M"><i class="fa fa-male"></i></span>
-              <span ng-switch-when="F"><i class="fa fa-female"></i></span>
-            </span>
-
-          <span>{{
-            applicant.reviewer.fullname
-            }} <i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
-                <span ng-switch="applicant.is_selected" class="pull-right">
+              <span ng-switch="applicant.is_selected" class="pull-right">
                         <i ng-switch-when="true" class="text-primary">Selected</i>
                         <i ng-switch-when="false" class="text-danger">Dismissed</i>
                         <i ng-switch-when="null">Pending</i>
                 </span>
+
+      <p class="item-body-header">
+        ID: #{{ applicant.sequence_number}}
+        <br/>
+              <span ng-switch="applicant.reviewer.userprofile.gender">
+              <span ng-switch-when="I"><i class="fa fa-question-circle font-primary"></i> Undisclosed</span>
+              <span ng-switch-when="M"><i class="fa fa-male font-primary"></i> Male</span>
+              <span ng-switch-when="F"><i class="fa fa-female font-striking"></i> Female</span>
+            </span>
+
+        <span><i class="fa fa-map-marker"></i> {{ applicant.reviewer.country }}</span>
       </p>
 
       <!--<p class="item-body-title">Age: <span class="font-gray-light">{{ -(applicant.reviewer.userprofile.birth | amDifference : null : 'years')}}</span>-->
