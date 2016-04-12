@@ -236,7 +236,7 @@ angular
       .state('application.protected.projectLaunch.detail', {
         url: "/ProductDetail",
         templateUrl: 'views/project/project_detail.html',
-        controller: 'LaunchProjectBasicCtrl'
+        controller: 'LaunchProjectDetailCtrl'
       })
       .state('application.protected.projectEdit.basic', {
         url: "/BasicInfo",
@@ -245,7 +245,7 @@ angular
       .state('application.protected.projectEdit.detail', {
         url: "/ProductDetail",
         templateUrl: 'views/project/project_detail.html',
-        controller: 'LaunchProjectBasicCtrl'
+        controller: 'LaunchProjectDetailCtrl'
       })
       .state('application.project', {
         url: "/products/:projectId?tab",

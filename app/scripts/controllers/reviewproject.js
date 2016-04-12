@@ -12,24 +12,12 @@ angular.module('xbertsApp')
     $scope.review = review;
     $scope.applicantsSearch = {is_selected: true};
 
-    var title = "We're now calling for reviewers to test-drive our new product:"+review.project.name;
+    var title = "We're now calling for reviewers to test-drive our new product:" + review.project.name;
     var description = review.project.description;
     var backgroundColor = 'background-whitem';
     var shareImage = review.project.image;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
 
-    $scope.sub = {
-      subNavShow: false
-    };
-    $scope.isOutDated = function (time) {
-      return Date.now() - new Date(time) > 0;
-    };
-    //console.log(Date.now());
-    //console.log(new Date($scope.review.application_end_date));
-    //console.log($scope.isOutDated($scope.review.application_end_date));
-    //console.log($scope.review.is_publish_applicants);
-    $scope.isApplicantsSelectionButtonActive = $scope.isOutDated($scope.review.application_end_date) && !$scope.review.is_publish_applicants;
-    $scope.isReportsReviewButtonActive = $scope.isOutDated($scope.review.date_end);
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     if ($rootScope.user.isAuth()) {
       Applicantsreview.get({
@@ -44,34 +32,6 @@ angular.module('xbertsApp')
 
       })
     }
-    var section2 = angular.element(document.getElementById('section-2'));
-    var section3 = angular.element(document.getElementById('section-3'));
-    var section4 = angular.element(document.getElementById('section-4'));
-    var section5 = angular.element(document.getElementById('section-5'));
-    $scope.toSection4 = function () {
-      $document.scrollToElementAnimated(section4);
-    };
-    $scope.toSection5 = function () {
-      $document.scrollToElementAnimated(section5);
-    };
-    $scope.toSection3 = function () {
-      $document.scrollToElementAnimated(section3);
-    };
-    $scope.toSection2 = function () {
-      $document.scrollToElementAnimated(section2);
-    };
-
-    $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
-      if ($target.context.id === 'section-1') {
-        $scope.$apply(function () {
-          $scope.sub.subNavShow = false;
-        });
-      } else {
-        $scope.$apply(function () {
-          $scope.sub.subNavShow = true;
-        });
-      }
-    });
   })
   .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',
     function ($scope, $rootScope, SystemData, projectReviewPaginator) {
@@ -83,17 +43,4 @@ angular.module('xbertsApp')
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
       $scope.projectReviewPaginator = projectReviewPaginator;
       $scope.projectReviewPaginator.watch($scope, 'projectReviewPaginator.currentPage');
-      $scope.isOutDated = function (time) {
-        return Date.now() - new Date(time) > 0;
-      };
-      $scope.slides = [
-        {
-          image: '/images/mo_review.jpg',
-          title: '',
-          subtitle: '',
-          buttonText: 'Apply Now',
-          buttonColor: 'btn-primary',
-          url: 'application.review({reviewId:9})'
-        }
-      ];
     }]);

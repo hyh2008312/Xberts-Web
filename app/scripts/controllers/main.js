@@ -17,8 +17,8 @@ angular.module('xbertsApp')
       $scope.slides = [
         {
           image: '/images/landing_1_1.jpg',
-          title: 'Bring Asian Innovations to The World',
-          subtitle: "A cross-border community where Asia’s smart hardware brands meet <br/>product reviewers, tech influencers, buyers and partners from around the world",
+          title: 'Bring Tech Innovations to The World',
+          subtitle: "A cross-border community where new smart hardware brands meet<br/> product reviewers, tech influencers, buyers and partners from around the world",
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',

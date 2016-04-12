@@ -88,84 +88,49 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectBasicCtrl', ['$scope', 'growl', 'UploadAws', 'Asset', 'FileUtil',
-    function ($scope, growl, UploadAws, Asset, FileUtil) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'FileUtil', 'UploadService',
+    function ($scope, growl, FileUtil, UploadService) {
+      var videoSuccessCallback = function (data) {
+        var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
+        $scope.editor.summernote('insertNode', videoNode);
+
+        $scope.projectData.video_assets = $scope.projectData.video_assets || [];
+        $scope.projectData.video_assets.push(data.id);
+
+        $scope.$emit('backdropOff', 'success');
+      };
+      var imageSuccessCallback = function (data) {
+        $scope.editor.summernote('insertImage', data.imageUrl);
+        $scope.projectData.images = $scope.projectData.images || [];
+        $scope.projectData.images.push(data.id);
+        $scope.$emit('backdropOff', 'success');
+      };
+
+      var errorCallback = function (response) {
+        growl.error('Failed to upload');
+        $scope.$emit('backdropOff', 'error');
+      };
+      var processCallback = function (evt) {
+        var progress = parseInt(100.0 * evt.loaded / evt.total);
+        console.log(progress);
+      };
+      var successCallbacks = {
+        VIDEO: videoSuccessCallback,
+        IMAGE: imageSuccessCallback
+      };
       $scope.imageUpload = function (files) {
+        UploadService.uploadFiles(files, 'PROJECT_DETAILS', successCallbacks, errorCallback, processCallback);
         $scope.$emit('backdropOn', 'post');
-        for (var i = 0; i < files.length; i++) {
-          var file = files[i];
+      };
 
-          if (FileUtil.isVideo(file)) {
-            UploadAws.uploadMedia(file, 'VIDEO_PROJECT_DETAILS')
-              .then(function(response) {
-                var url = decodeURIComponent(response.headers('Location'));
-
-                Asset.createVideoAsset(url, 'PROJECT_DETAILS')
-                  .then(function(data) {
-                    var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
-                    $scope.editor.summernote('insertNode', videoNode);
-
-                    $scope.projectData.video_assets = $scope.projectData.video_assets || [];
-                    $scope.projectData.video_assets.push(data.id);
-
-                    $scope.$emit('backdropOff', 'success');
-                  })
-                  .catch(function(err) {
-                    growl.error('Failed to upload video');
-                    $scope.$emit('backdropOff', 'error');
-                  });
-              }, function(response) {
-                growl.error('Failed to upload video');
-                $scope.$emit('backdropOff', 'error');
-              }, function(evt) {
-                var progress = parseInt(100.0 * evt.loaded / evt.total);
-                console.log(progress);
-              });
-          } else {
-            UploadAws.uploadMedia(files[i], 'IMAGE_PROJECT_DETAILS').then(function(response) {
-              var url = decodeURIComponent(response.headers('Location'));
-
-              Asset.createImageAsset(url, 'PROJECT_DETAILS')
-                .then(function(data) {
-                  $scope.editor.summernote('insertImage', data.imageUrl);
-                  $scope.projectData.images = $scope.projectData.images || [];
-                  $scope.projectData.images.push(data.id);
-                  $scope.$emit('backdropOff', 'success');
-                }, function() {
-                  growl.error('Failed to upload image');
-                  $scope.$emit('backdropOff', 'error');
-                });
-            }, function(data) {
-              growl.error('Failed to upload image');
-              $scope.$emit('backdropOff', 'error');
-            }, function(evt) {
-              var progress = parseInt(100.0 * evt.loaded / evt.total);
-              console.log(progress);
-            });
-          }
+      var coverSuccessCallback = function (data) {
+        $scope.projectData.cover = data.id;
+        $scope.$emit('backdropOff', 'success');
+      };
+      $scope.coverUpload = function ($file) {
+        if ($file) {
+          $scope.$emit('backdropOn', 'post');
+          UploadService.uploadFile($file, 'PROJECT_COVER', coverSuccessCallback, errorCallback, processCallback)
         }
-    };
-    $scope.coverUpload = function ($file) {
-      if ($file) {
-        $scope.$emit('backdropOn', 'post');
-        UploadAws.uploadMedia($file, 'IMAGE_PROJECT_COVER').then(function (response) {
-          var url = decodeURIComponent(response.headers('Location'));
-
-          Asset.createImageAsset(url, 'PROJECT_COVER')
-            .then(function (data) {
-              $scope.projectData.cover = data.id;
-              $scope.$emit('backdropOff', 'success');
-            }, function () {
-              growl.error('Failed to upload image');
-              $scope.$emit('backdropOff', 'error');
-            });
-        }, function (data) {
-          growl.error('Failed to upload image');
-          $scope.$emit('backdropOff', 'error');
-        }, function (evt) {
-          var progress = parseInt(100.0 * evt.loaded / evt.total);
-          console.log(progress);
-        });
       }
-    }
-  }]);
+    }]);

@@ -17,8 +17,12 @@
             <div class="panel-body">
               <ul>
                 <li> You are encouraged to be creative and write in your personal style.</li>
-                <li> Please include pictures and videos to demonstrate your opinions visually. If you would like to provide videos, upload the video to YouTube and paste the url in the content page.</li>
-                <li> The review report should be uploaded before {{ applicant.review.date_end | amDateFormat:'MMM DD, YYYY'}}.</li>
+                <li> Please include pictures and videos to demonstrate your opinions visually. If you would like to
+                  provide videos, upload the video to YouTube and paste the url in the content page.
+                </li>
+                <li> The review report should be uploaded before {{ applicant.review.date_end | amDateFormat:'MMM DD,
+                  YYYY'}}.
+                </li>
                 <li> Please feel free to contact us at info@xberts.com if you have any questions or concerns.</li>
               </ul>
             </div>
@@ -49,17 +53,10 @@
 
             </div>
           </div>
+          <div class="xb-align-center margin-top-xl">
+            <button type="submit" class="button button-primary button-rounded button-mid-width">Submit</button>
+          </div>
         </div>
-        <div class="row">
-          <p class='message-error text-center' ng-show="reportForm.submitted && reportForm.$invalid">Please check
-            your
-            input. </p>
-
-          <p class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
-          </p>
-        </div>
-
       </form>
     </div>
   </div>
