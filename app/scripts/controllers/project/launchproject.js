@@ -9,7 +9,7 @@ angular.module('xbertsApp')
 
         $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
-        $scope.projectData = {images: []};
+        $scope.projectData = {image_assets: []};
         $scope.projectTemp = {
           tags: []
         };
@@ -88,8 +88,8 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'FileUtil', 'UploadService',
-    function ($scope, growl, FileUtil, UploadService) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService',
+    function ($scope, growl, UploadService) {
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
         $scope.editor.summernote('insertNode', videoNode);
@@ -101,8 +101,8 @@ angular.module('xbertsApp')
       };
       var imageSuccessCallback = function (data) {
         $scope.editor.summernote('insertImage', data.imageUrl);
-        $scope.projectData.images = $scope.projectData.images || [];
-        $scope.projectData.images.push(data.id);
+        $scope.projectData.image_assets = $scope.projectData.image_assets || [];
+        $scope.projectData.image_assets.push(data.id);
         $scope.$emit('backdropOff', 'success');
       };
 

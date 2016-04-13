@@ -1,102 +1,104 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$timeout', '$scope', '$state', 'growl', 'Configuration', 'UploadMultiForm', 'TempImage', 'ReviewReport', 'applicant',
-    function ($timeout, $scope, $state, growl, Configuration, UploadMultiForm, TempImage, ReviewReport, applicant) {
-      // model
+  .controller('ReviewreportCtrl', ['$rootScope', '$scope', '$state', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
+    function ($rootScope, $scope, $state, growl, Configuration, UploadService, ReviewReport, applicant) {
+      $rootScope.pageSettings.setBackgroundColor('background-whitem');
+      var referenceId = 'reportapplicant_' + applicant.id;
       $scope.applicant = applicant;
-      $scope.report = {};
+      $scope.reportData = {
+        applicant: applicant.id
+      };
+      // try to fetch the previous data of the applicant for this survey
       $scope.$emit('backdropOn', 'report get');
       ReviewReport.get({applicant_id: $scope.applicant.id}, function (data) {
         $scope.$emit('backdropOff', 'report get completed');
         if (data.count !== undefined && data.count > 0) {
-          $scope.report = data.results[0];
-          $scope.reportTemp.tempId = $scope.report.temp || 0;
+          $scope.reportData = data.results[0];
         }
       });
-      $scope.report.applicant = $scope.applicant.id;
-      $scope.referenceId = 'reportapplicant_' + $scope.applicant.id;
-      $scope.reportTemp = {
-        tempId: $scope.report.temp || 0
-      };
-
       //submit
       $scope.reportFormSubmit = function () {
+        $scope.cost_performance_error = function () {
+          return $scope.reportData.cost_performance < 1;
+        };
+        $scope.usability_error = function () {
+          return $scope.reportData.usability < 1;
+        };
+        $scope.presentation_error = function () {
+          return $scope.reportData.presentation < 1;
+        };
 
-        if ($scope.reportForm.$valid) {
-          $scope.report.temp_id = $scope.reportTemp.tempId;
+        if ($scope.reportForm.$valid && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1199) {
           $scope.$emit('backdropOn', 'post');
-          $scope.report = new ReviewReport($scope.report);
-          if (!$scope.report.id) {
-            $scope.report.$save(function (resp) {
+          var report = new ReviewReport($scope.reportData);
+          if (!report.id) {
+            report.$save(function (resp) {
+              $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
-              $timeout(function () {
-                $state.go('application.main');
-              }, 3000);
+              $state.go('application.main');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              growl.error('Sorry,some error happened.', {referenceId: referenceId});
             });
           } else {
-            $scope.report.$put(function (resp) {
+            report.$put(function (resp) {
+              $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your report has been successfully submitted.', {referenceId: $scope.referenceId});
-              $timeout(function () {
-                $state.go('application.main');
-              }, 3000);
+              $state.go('application.main');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-              //growl.error('Sorry,some error happened.');
+              growl.error('Sorry,some error happened.', {referenceId: referenceId});
             });
           }
           return false;
-
         } else {
           $scope.reportForm.submitted = true;
           $scope.reportForm.$invalid = true;
         }
+      };
+      // summerNote character amount check
 
+      $scope.onChange = function (contents) {
+        $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
       };
 
       //summerNote Image Upload
 
+      var videoSuccessCallback = function (data) {
+        var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
+        $scope.editor.summernote('insertNode', videoNode);
+
+        $scope.reportData.video_assets = $scope.reportData.video_assets || [];
+        $scope.reportData.video_assets.push(data.id);
+
+        $scope.$emit('backdropOff', 'success');
+      };
+      var imageSuccessCallback = function (data) {
+        $scope.editor.summernote('insertImage', data.imageUrl);
+        $scope.reportData.image_assets = $scope.reportData.image_assets || [];
+        $scope.reportData.image_assets.push(data.id);
+        $scope.$emit('backdropOff', 'success');
+      };
+
+      var errorCallback = function (response) {
+        growl.error('Failed to upload');
+        $scope.$emit('backdropOff', 'error');
+      };
+      var processCallback = function (evt) {
+        var progress = parseInt(100.0 * evt.loaded / evt.total);
+        console.log(progress);
+      };
+      var successCallbacks = {
+        VIDEO: videoSuccessCallback,
+        IMAGE: imageSuccessCallback
+      };
       $scope.imageUpload = function (files) {
-        for (var i = 0; i < files.length; i++) {
-          var data = {
-            image: files[i],
-            type: 'report'
-          };
-          var uploadMultiImages = UploadMultiForm(
-            Configuration.apiBaseUrl + '/upload/rest/temps/' + $scope.reportTemp.tempId + '/images/',
-            'POST',
-            data,
-            function (resp) {
-              $scope.reportTemp.tempId = resp.data.temp;
-              $scope.$emit('backdropOff', 'success');
-              var img = $('<img />');
-              img.attr({
-                'src': resp.data.image,
-                'data-id': resp.data.id
-              });
-              img.bind('DOMNodeRemovedFromDocument', function () {
-                var tempImageId = $(this).attr('data-id');
-                var resource = TempImage($scope.reportTemp.tempId, tempImageId);
-                resource.delete();
-              });
-              $scope.editor.summernote('insertNode', img[0]);
-            }, function (resp) {
-              growl.error('Sorry,some error happened.');
-              console.log(resp);
-              $scope.$emit('backdropOff', 'error');
-            });
-          $scope.$emit('backdropOn', 'post');
-          uploadMultiImages.upload();
-        }
+        UploadService.uploadFiles(files, 'REVIEW_REPORT_DETAILS', successCallbacks, errorCallback, processCallback);
+        $scope.$emit('backdropOn', 'post');
       };
     }])
-  .controller('ReviewReportVisualCtrl', function ($scope,$rootScope, report) {
+  .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, report) {
     $rootScope.pageSettings.setBackgroundColor('background-whitem');
     $scope.report = report;
   });

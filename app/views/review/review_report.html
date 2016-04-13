@@ -35,22 +35,58 @@
           <div class="col-md-12">
             <div class="form-group">
               <label>Create a title for your review:</label>
-              <input type="text" class="form-control" name='title' ng-model="report.title"
+              <input type="text" class="form-control" name='title' ng-model="reportData.title"
                      ng-required="true" ng-maxlength="200">
 
-              <p class="message-error" ng-show="reportForm.submitted && reportForm.title.$error.required">
-                *required</p>
+              <div class="" ng-show="reportForm.$submitted || reportForm.title.$touched"
+                   ng-messages="reportForm.title.$error">
+                <p class="message-error" ng-message="required">* required.</p>
 
-              <p class="message-error" ng-show="reportForm.submitted && reportForm.title.$error.maxlength">*
-                no more than 200 chars.</p>
+                <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+              </div>
+
             </div>
             <div class="form-group">
               <label>Share your experience of using this product:</label>
-              <summernote config="summerNoteFull" ng-model="report.details" on-change="change(contents)"
+              <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
                           editor="editor"></summernote>
+              <p ng-class="{'font-danger':detailCharacterCount<1200,'font-success':detailCharacterCount>1199}" style="margin-top: -10px">Total characters:{{detailCharacterCount}}. <span
+                ng-show="detailCharacterCount<1200"> At least 1200 characters.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="margin-bottom">
+              <b>Value for Money: </b>
+              <uib-rating ng-model="reportData.cost_performance" max="5" read-only="false"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
+                          state-off="'fa fa-star-o'"
+                          aria-labelledby="default-rating" ng-required="true"></uib-rating>
+              <span class="font-striking margin-left" ng-show="reportData.cost_performance">{{reportData.cost_performance}}'</span>
 
+              <p class="font-striking" ng-show="reportForm.$submitted && cost_performance_error()">* required</p>
+            </div>
+            <div class="margin-bottom">
+              <b>Usability: </b>
+              <uib-rating ng-model="reportData.usability" max="5" read-only="false"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
+                          state-off="'fa fa-star-o'"
+                          aria-labelledby="default-rating"></uib-rating>
+              <span class="font-striking margin-left" ng-show="reportData.usability">{{reportData.usability}}'</span>
 
+              <p class="font-danger" ng-show="reportForm.$submitted && usability_error()">* required</p>
+            </div>
+            <div class="margin-bottom">
+              <b>Presentation: </b>
+              <uib-rating ng-model="reportData.presentation" max="5" read-only="false"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
+                          state-off="'fa fa-star-o'"
+                          aria-labelledby="default-rating"></uib-rating>
+              <span class="font-striking margin-left"
+                    ng-show="reportData.presentation">{{reportData.presentation}}'</span>
+
+              <p class="font-danger" ng-show="reportForm.$submitted && presentation_error()">* required</p>
             </div>
           </div>
           <div class="xb-align-center margin-top-xl">

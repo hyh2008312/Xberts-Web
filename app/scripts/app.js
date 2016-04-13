@@ -176,7 +176,7 @@ angular
 
             };
             var paginator = Paginator('projectReviewREc', fetchFunction);
-            //paginator.setFilter({state: 1});
+            paginator.setFilter({state: 1});
             return paginator.load();
           }]
         }
