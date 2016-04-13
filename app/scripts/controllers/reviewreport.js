@@ -29,7 +29,7 @@ angular.module('xbertsApp')
           return $scope.reportData.presentation < 1;
         };
 
-        if ($scope.reportForm.$valid && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1199) {
+        if ($scope.reportForm.$valid && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1999) {
           $scope.$emit('backdropOn', 'post');
           var report = new ReviewReport($scope.reportData);
           if (!report.id) {

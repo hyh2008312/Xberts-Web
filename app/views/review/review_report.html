@@ -51,8 +51,8 @@
               <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
                           editor="editor"></summernote>
-              <p ng-class="{'font-danger':detailCharacterCount<1200,'font-success':detailCharacterCount>1199}" style="margin-top: -10px">Total characters:{{detailCharacterCount}}. <span
-                ng-show="detailCharacterCount<1200"> At least 1200 characters.</span>
+              <p ng-class="{'font-danger':detailCharacterCount<2000,'font-success':detailCharacterCount>1999}" style="margin-top: -10px">Total characters:{{detailCharacterCount}}. <span
+                ng-show="detailCharacterCount<2000"> At least 2000 characters.</span>
               </p>
             </div>
           </div>
