@@ -13,7 +13,7 @@ angular.module('xbertsApp')
       $scope.btnText = 'Send';
       $scope.btnSecret = true;
       $scope.isOutDated = function (time) {
-        return Date.now()-new Date(time)> 0;
+        return Date.now() - new Date(time) > 0;
       };
       $scope.tabs = [
         {title: 'profile', active: true},
@@ -39,34 +39,40 @@ angular.module('xbertsApp')
         switch (step) {
           case 'products':
             $scope.projectsTabActive = true;
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, account_id: $scope.expert.user_id};
-              angular.extend(params, otherParams);
-              ProjectsNoDetail.get(params, callback);
+            var par = {
+              name: 'project_' + $scope.expert.user_id,
+              params: {account_id: $scope.expert.user_id},
+              fetchFunction: function (params) {
+                return ProjectsNoDetail.get(params).$promise;
+              }
             };
-            $scope.projectPaginator = Paginator('project_' + $scope.expert.user_id, fetchFunction);
+            $scope.projectPaginator = Paginator(par);
             $scope.projectPaginator.clear();
             break;
           case 'followers':
             $scope.followersTabActive = true;
-            var fetchFunction1 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, interact_id: $scope.expert.interact.id, vote: 'True'};
-              angular.extend(params, otherParams);
-              var followers = Interact.Join(params);
-              followers.get(params, callback);
+            var par1 = {
+              name: 'followers_' + $scope.expert.user_id,
+              fetchFunction: function (params) {
+                return Interact.Join({interact_id: $scope.expert.interact.id, vote: 'True'}).get(params).$promise;
+              }
             };
-            $scope.followersPaginator = Paginator('followers_' + $scope.expert.user_id, fetchFunction1);
+            $scope.followersPaginator = Paginator(par1);
             $scope.followersPaginator.clear();
             break;
           case 'followings':
             $scope.followingsTabActive = true;
-            var fetchFunction2 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, joiner_id: $scope.expert.user_id, vote: 'True', interact__type: '0'};
-              angular.extend(params, otherParams);
-              var followings = Interact.Following(params);
-              followings.get(params, callback);
+            var par2 = {
+              name: 'followings_' + $scope.expert.user_id,
+              fetchFunction: function (params) {
+                return Interact.Following({
+                  joiner_id: $scope.expert.user_id,
+                  vote: 'True',
+                  interact__type: '0'
+                }).get(params).$promise;
+              }
             };
-            $scope.followingsPaginator = Paginator('followings_' + $scope.expert.user_id, fetchFunction2);
+            $scope.followingsPaginator = Paginator(par2);
             $scope.followingsPaginator.clear();
             break;
           case 'comments':
@@ -76,12 +82,14 @@ angular.module('xbertsApp')
             break;
           case 'reviews':
             $scope.reviewsTabActive = true;
-            var fetchFunction3 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, reviewer_id: $scope.expert.user_id};
-              angular.extend(params, otherParams);
-              Applicantsreview.get(params, callback);
+            var par3 = {
+              name: 'reviewapplicant_' + $scope.expert.user_id,
+              params: {reviewer_id: $scope.expert.user_id},
+              fetchFunction: function (params) {
+                return Applicantsreview.get(params).$promise;
+              }
             };
-            $scope.reviewApplicantPaginator = Paginator('reviewapplicant_' + $scope.expert.user_id, fetchFunction3);
+            $scope.reviewApplicantPaginator = Paginator(par3);
             $scope.reviewApplicantPaginator.clear();
             break;
         }
@@ -100,8 +108,7 @@ angular.module('xbertsApp')
         }
       }
 
-      if ($stateParams.action === 'applyExpert' && $rootScope.user.authRequired() && $scope.isCurrentUser &&
-          !$scope.isExpert && !$scope.pendingExpert) {
+      if ($stateParams.action === 'applyExpert' && $rootScope.user.authRequired() && $scope.isCurrentUser && !$scope.isExpert && !$scope.pendingExpert) {
         console.log('expert application process triggered');
 
         if (!$rootScope.user.isLinkedinConnected()) {
@@ -116,23 +123,23 @@ angular.module('xbertsApp')
             controller: 'ApplyExpertCtrl',
             scope: $scope,
             resolve: {
-              stages: ['SystemData', function(SystemData) {
+              stages: ['SystemData', function (SystemData) {
                 return SystemData.getStagesPromise();
               }]
             }
           });
 
           applyExpertModal.result
-            .then(function() {
+            .then(function () {
               $state.go('application.protected.profile', {}, {location: "replace"});
             })
-            .catch(function() {
+            .catch(function () {
               $location.search('action', null);
             });
         }
       }
 
-      $scope.editProfile = function() {
+      $scope.editProfile = function () {
         $state.go('application.protected.editProfile');
       };
 

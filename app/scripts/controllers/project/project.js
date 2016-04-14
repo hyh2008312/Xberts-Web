@@ -40,25 +40,16 @@ angular.module('xbertsApp')
           case 'comments':
             $scope.commentsTabActive = true;
             break;
-          case 'applications':
-            $scope.applicationsTabActive = true;
-            var fetchFunction1 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, request__project_id: $scope.project.id};
-              angular.extend(params, otherParams);
-              Distributor.get(params, callback);
-            };
-            $scope.distributorsPaginator = Paginator('distributor_' + $scope.project.id, fetchFunction1);
-            $scope.distributorsPaginator.clear();
-            $scope.distributorsPaginator.loadNext();
-            break;
           case 'inquiries':
             $scope.inquiresTabActive = true;
-            var fetchFunction2 = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, request__project_id: $scope.project.id};
-              angular.extend(params, otherParams);
-              QuoteInquiry.get(params, callback);
+            var par = {
+              name: 'inquiry_' + $scope.project.id,
+              params: {request__project_id: $scope.project.id},
+              fetchFunction: function (params) {
+                return QuoteInquiry.get(params).$promise;
+              }
             };
-            $scope.inquiriesPaginator = Paginator('inquiry_' + $scope.project.id, fetchFunction2);
+            $scope.inquiriesPaginator = Paginator(par);
             $scope.inquiriesPaginator.clear();
             $scope.inquiriesPaginator.loadNext();
             break;
@@ -97,7 +88,7 @@ angular.module('xbertsApp')
             distribution: function () {
               return $scope.distribution;
             },
-            careerExperiences: ['BuyerProfileLoad',function (BuyerProfileLoad) {
+            careerExperiences: ['BuyerProfileLoad', function (BuyerProfileLoad) {
               return BuyerProfileLoad();
             }],
             roleRequests: ['SystemConstant', 'RoleRequestsResolver',

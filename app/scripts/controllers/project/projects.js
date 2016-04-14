@@ -12,16 +12,13 @@ angular.module('xbertsApp')
     $rootScope.pageSettings.setBackgroundColor('');
     $scope.projectTypes = SystemData.getProjectTypes();
     $scope.projectPaginator = projectPaginator;
-    $scope.projectPaginator.watch($scope, 'projectPaginator.currentPage');
     $scope.projects = {
       project_category_id: localStorageService.get('project_search_type') || '',
       ordering: localStorageService.get('project_search_order') || '-date_published'
     };
     $scope.onSearch = function () {
       $scope.projectPaginator.params = $scope.projects;
-      $scope.projectPaginator.items = [];
-      $scope.projectPaginator.currentPage = 0;
-      $scope.projectPaginator.next = 'true';
+      $scope.projectPaginator.clear();
       $scope.projectPaginator.loadNext();
     };
     $scope.onClearSearch = function () {

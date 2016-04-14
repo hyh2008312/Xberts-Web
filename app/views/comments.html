@@ -1,8 +1,8 @@
 <div ng-controller="CommentCtrl">
   <feedback btn-text="{{ btnText }}" btn-secret="{{ btnSecret }}" ng-show="interact.owner!=user.getUserId()"></feedback>
   <div style="clear: both" infinite-scroll="feedbackPaginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="feedbackPaginator.loading || !feedbackPaginator.hasNext()">
+       infinite-scroll-disabled="feedbackPaginator.getLoading() || !feedbackPaginator.getNext()">
     <feedback-detail ng-repeat="item in feedbackPaginator.items" item="item"></feedback-detail>
-    <load-more class="row spin-large" ng-if="feedbackPaginator.loading"></load-more>
+    <load-more class="row spin-large" ng-if="feedbackPaginator.getLoading()"></load-more>
   </div>
 </div>

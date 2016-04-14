@@ -2,9 +2,10 @@
   <div class="jumbotron section-title" style="background-image: url(/images/banner-experts.jpg);min-height: 220px;">
     <h2 class="font-whitem">Join our tech influencer network to bring innovative products to global market!</h2>
 
-      <h3 class="text-center">
-        <a class="button button-glow button-primary" ui-sref="application.protected.profile({action:'applyExpert'})">Join Influencer Network</a>
-      </h3>
+    <h3 class="text-center">
+      <a class="button button-glow button-primary" ui-sref="application.protected.profile({action:'applyExpert'})">Join
+        Influencer Network</a>
+    </h3>
   </div>
   <div class="row section-body">
     <div class="col-sm-4 col-md-3">
@@ -21,7 +22,7 @@
     </div>
     <div class="col-sm-4 col-md-9">
       <div class="list" infinite-scroll="expertPaginator.loadNext()" infinite-scroll-distance='0'
-           infinite-scroll-disabled="expertPaginator.loading || !expertPaginator.hasNext()">
+           infinite-scroll-disabled="expertPaginator.getLoading() || !expertPaginator.getNext()">
         <div class="list-title list-search">
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-5">
@@ -29,7 +30,8 @@
                 <option value="">-- All Geographies --</option>
                 <option ng-repeat="country in countries"
                         value="{{ country.code }}"
-                        ng-selected="experts.country==country.code">{{ country.name }}</option>
+                        ng-selected="experts.country==country.code">{{ country.name }}
+                </option>
               </select>
             </div>
             <div class="col-xs-12 col-sm-6  col-md-4 col-md-offset-3">
@@ -43,25 +45,31 @@
             </div>
           </div>
         </div>
-        <div class="item-avatar-large item-hover" style="min-height: 127px;" ng-repeat="expert in expertPaginator.items">
+        <div class="item-avatar-large item-hover" style="min-height: 127px;"
+             ng-repeat="expert in expertPaginator.items">
           <div class="item-image text-center">
             <avatar-img src="expert.avatar"></avatar-img>
-            <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })" class="btn btn-xs btn-primary">Team Up</a>
+            <a ui-sref="application.expert({ expertId:expert.user_id , tab:'comments' })"
+               class="btn btn-xs btn-primary">Team Up</a>
           </div>
           <div class="item-body">
             <p class="item-body-header">
               <span><a ui-sref="application.expert({ expertId:expert.user_id })">{{ expert.short_name }}</a></span>
               <span class="pull-right">{{ expert.country }}</span></p>
+
             <p class="item-body-title">{{ expert.company_title}}</p>
+
             <p>
-              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
+              <span class="label label-default"
+                    ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
             </p>
+
             <p class="item-body-detail p-3-max">{{ expert.biography }}</p>
           </div>
         </div>
 
       </div>
-      <load-more class="row spin-large" ng-if="expertPaginator.loading"></load-more>
+      <load-more class="row spin-large" ng-if="expertPaginator.getLoading()"></load-more>
     </div>
   </div>
 </section>

@@ -150,19 +150,15 @@ angular.module('xbertsApp')
           }
         };
         $scope.getFeedbackPaginator = function () {
-          var fetchFunction = function (nextPage, otherParams, callback) {
-            var feedbacksResult = Interact.Feedback({interact_id: $scope.interact.id});
-            if ($scope.interact.type === '0') {
-              feedbacksResult = Interact.Feedback({interact_id: $scope.interact.id});
+          var par = {
+            name: 'feedback_' + $scope.interact.id,
+            fetchFunction: function (params) {
+              return Interact.Feedback({interact_id: $scope.interact.id}).get(params).$promise;
             }
-            var params = {page: nextPage};
-            angular.extend(params, otherParams);
-            feedbacksResult.get(params, callback);
           };
-          $scope.feedbackPaginator = Paginator('feedback_' + $scope.interact.id, fetchFunction);
+          $scope.feedbackPaginator = Paginator(par);
           $scope.feedbackPaginator.clear();
           $scope.feedbackPaginator.loadNext();
-          //$scope.feedbackPaginator.watch($scope,'feedbackPaginator.items.length');
         };
       }
 

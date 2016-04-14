@@ -22,12 +22,13 @@ angular.module('xbertsApp')
         //
         //});
         var Notifications = Notification.notificationsResource($rootScope.user.getUserId());
-        var fetchFunction = function (nextPage, otherParams, callback) {
-          var params = {page: nextPage};
-          angular.extend(params, otherParams);
-          Notifications.get(params, callback);
+        var par = {
+          name: 'notification',
+          fetchFunction: function (params) {
+            return Notifications.get(params).$promise;
+          }
         };
-        scope.paginator = Paginator('notification', fetchFunction);
+        scope.paginator = Paginator(par);
         scope.remove = function (index) {
           var notification = new Notifications(scope.paginator.items[index]);
           scope.notificationsCount -= 1;

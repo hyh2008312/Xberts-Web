@@ -1,9 +1,9 @@
 <uib-carousel interval="5000" no-wrap="false" style="margin-top: 0px;">
   <uib-slide ng-repeat="slide in slides" active="slide.active">
     <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
-        <div class="carousel-caption">
-          <h3 ng-bind-html="slide.text"></h3>
-        </div>
+      <div class="carousel-caption">
+        <h3 ng-bind-html="slide.text"></h3>
+      </div>
     </section>
   </uib-slide>
 </uib-carousel>
@@ -37,7 +37,8 @@
               <p class="p-8">{{ event.brief }}</p>
             </div>
             <div class="cover-footer text-center">
-              <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View & Register</a>
+              <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View &
+                Register</a>
             </div>
           </div>
         </div>
@@ -52,7 +53,7 @@
     <h3>Popular events to connect with innovators, buyers and solution providers</h3>
   </div>
   <div class="row section-body" infinite-scroll="eventPaginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="eventPaginator.loading || !eventPaginator.hasNext()">
+       infinite-scroll-disabled="eventPaginator.getLoading() || !eventPaginator.getNext()">
     <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items">
       <div class="card card-bordless cover">
         <div class="card-header"
@@ -74,11 +75,12 @@
             <p class="p-8">{{ event.brief }}</p>
           </div>
           <div class="cover-footer text-center">
-            <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View & Register</a>
+            <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View &
+              Register</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <load-more class="row spin-large" ng-if="eventPaginator.loading"></load-more>
+  <load-more class="row spin-large" ng-if="eventPaginator.getLoading()"></load-more>
 </section>

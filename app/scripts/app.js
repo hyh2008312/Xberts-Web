@@ -142,42 +142,44 @@ angular
         controllerAs: 'main',
         resolve: {
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, is_recommended: 'True'};
-              angular.extend(params, otherParams);
-              ProjectsNoDetail.get(params, callback);
+            var par = {
+              name: 'projectRec',
+              fetchFunction: function (params) {
+                return ProjectsNoDetail.get(params).$promise;
+              }
             };
-            var paginator = Paginator('projectRec', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }],
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, is_recommended: 'True'};
-              angular.extend(params, otherParams);
-              EventNoDetail.get(params, callback);
+            var par = {
+              name: 'eventRec',
+              params: {is_recommended: 'True'},
+              fetchFunction: function (params) {
+                return EventNoDetail.get(params).$promise;
+              }
             };
-            var paginator = Paginator('eventRec', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }],
           expertPaginator: ['Paginator', 'Influencer', function (Paginator, Influencer) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, recommended: 'True'};
-              angular.extend(params, otherParams);
-              Influencer.get(params, callback);
+            var par = {
+              name: 'influencerRec',
+              params: {is_recommended: 'True'},
+              fetchFunction: function (params) {
+                return Influencer.get(params).$promise;
+              }
             };
-            var paginator = Paginator('influencerRec', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }],
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
-              angular.extend(params, otherParams);
-              ProjectReview.get(params, callback);
-
+            var par = {
+              name: 'projectReviewREc',
+              params: {is_recommended: 'True'},
+              fetchFunction: function (params) {
+                return ProjectReview.get(params).$promise;
+              },
+              filter: {state: 1}
             };
-            var paginator = Paginator('projectReviewREc', fetchFunction);
-            paginator.setFilter({state: 1});
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })
@@ -194,14 +196,14 @@ angular
             return SystemData.getProjectTypesPromise();
           }],
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
-              angular.extend(params, otherParams);
-              ProjectsNoDetail.get(params, callback);
-
+            var par = {
+              name: 'project',
+              minSize: 2,
+              fetchFunction: function (params) {
+                return ProjectsNoDetail.get(params).$promise;
+              }
             };
-            var paginator = Paginator('project', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })
@@ -283,22 +285,24 @@ angular
         controllerAs: 'events',
         resolve: {
           eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, is_partner: 'False'};
-              angular.extend(params, otherParams);
-              EventNoDetail.get(params, callback);
+            var par = {
+              name: 'event',
+              params: {is_partner: 'False'},
+              fetchFunction: function (params) {
+                return EventNoDetail.get(params).$promise;
+              }
             };
-            var paginator = Paginator('event', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }],
           eventPartnerPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage, is_partner: 'True'};
-              angular.extend(params, otherParams);
-              EventNoDetail.get(params, callback);
+            var par = {
+              name: 'event_r',
+              params: {is_partner: 'True'},
+              fetchFunction: function (params) {
+                return EventNoDetail.get(params).$promise;
+              }
             };
-            var paginator = Paginator('event_r', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })
@@ -332,13 +336,13 @@ angular
             return SystemData.getStagesPromise();
           }],
           expertPaginator: ['Paginator', 'Expert', function (Paginator, Expert) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
-              angular.extend(params, otherParams);
-              Expert.get(params, callback);
+            var par = {
+              name: 'expert',
+              fetchFunction: function (params) {
+                return Expert.get(params).$promise;
+              }
             };
-            var paginator = Paginator('expert', fetchFunction);
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })
@@ -438,14 +442,13 @@ angular
         controller: 'ReviewProjectsCtrl',
         resolve: {
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
-              angular.extend(params, otherParams);
-              ProjectReview.get(params, callback);
+            var par = {
+              name: 'projectReview',
+              fetchFunction: function (params) {
+                return ProjectReview.get(params).$promise;
+              }
             };
-            var paginator = Paginator('projectReview', fetchFunction);
-            paginator.setOrder('state');
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })

@@ -42,5 +42,4 @@ angular.module('xbertsApp')
       var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
       $scope.projectReviewPaginator = projectReviewPaginator;
-      $scope.projectReviewPaginator.watch($scope, 'projectReviewPaginator.currentPage');
     }]);

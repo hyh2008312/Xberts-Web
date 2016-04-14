@@ -36,7 +36,7 @@
 
 <section class="container">
   <div class="row section-body" infinite-scroll="projectReviewPaginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="projectReviewPaginator.loading || !projectReviewPaginator.hasNext()">
+       infinite-scroll-disabled="projectReviewPaginator.getLoading() || !projectReviewPaginator.hasNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items">
       <a class="block-link" ui-sref="application.crowdtesting({ reviewId:review.id })">
         <div class="card card-bordless">
@@ -73,5 +73,5 @@
       </a>
     </div>
   </div>
-  <load-more class="row spin-large" ng-if="projectReviewPaginator.loading"></load-more>
+  <load-more class="row spin-large" ng-if="projectReviewPaginator.getLoading()"></load-more>
 </section>

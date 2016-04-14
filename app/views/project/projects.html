@@ -4,7 +4,8 @@
       get a chance to test-drive them for free!</h2>
 
     <h3 class="text-center">
-      <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Submit a Product</a>
+      <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Submit a
+        Product</a>
     </h3>
   </div>
 </section>
@@ -43,7 +44,7 @@
     </div>
   </div>
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
-       infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.hasNext()">
+       infinite-scroll-disabled="projectPaginator.getLoading() || !projectPaginator.getNext()">
     <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="project in projectPaginator.items">
       <a class="block-link" ui-sref="application.project({projectId: project.id})">
         <div class="card card-bordless">
@@ -76,17 +77,14 @@
                   <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
                   <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
                   </span>
-
-
                   </p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </a>
     </div>
   </div>
-  <load-more class="row spin-large" ng-if="projectPaginator.loading"></load-more>
+  <load-more class="row spin-large" ng-show="projectPaginator.getLoading()"></load-more>
 </section>
