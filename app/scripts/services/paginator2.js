@@ -59,7 +59,7 @@ angular.module('xbertsApp')
         localStorageService.set(this.name + '_next', this.getNext());
       },
       _fetch: function (deferred, _process) {
-        // todo: multi-fetch for preparing enough data
+        // when using filter, there is a risk of fetching too many times, even the whole database
         var process = _process || [];
         var self = this;
         self.params.page = self.getCurrentPage() + 1;
