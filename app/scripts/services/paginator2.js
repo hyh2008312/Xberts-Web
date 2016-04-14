@@ -21,8 +21,7 @@ angular.module('xbertsApp')
         var currentPage = localStorageService.get(this.name + '_currentPage') || 0;
         this.params.page = currentPage + 1;
         var next = !(localStorageService.get(this.name + '_next') === false);
-        var pageSize = 0;
-        this.minSize = _params.minSize || 1;
+        this.minSize = _params.minSize || 0;
         var loading = false;
 
         this.resetPaging = function () {
@@ -42,12 +41,6 @@ angular.module('xbertsApp')
         this.getNext = function () {
           return next;
         };
-        this.setPageSize = function (size) {
-          pageSize = size;
-        };
-        this.getPageSize = function () {
-          return pageSize;
-        };
         this.setLoading = function (_loading) {
           loading = _loading;
         };
@@ -65,53 +58,47 @@ angular.module('xbertsApp')
         localStorageService.set(this.name + '_items', this.items);
         localStorageService.set(this.name + '_next', this.getNext());
       },
-      _fetch: function (process) {
-        self.setLoading(true);
+      _fetch: function (deferred, _process) {
+        // todo: multi-fetch for preparing enough data
+        var process = _process || [];
+        var self = this;
         self.params.page = self.getCurrentPage() + 1;
         self.fetchFunction(self.params).then(function (resource) {
-          self.setLoading(false);
           self.increaseCurrentPage();
           self.setNext(resource.next !== null);
-          if (self.getPageSize() !== 0 && resource.next !== null) {
-            self.setPageSize(resource.results.length)
+          process = process.concat(filterBy(orderBy(resource.results, self.ordering), self.filter));
+          if (self.minSize > 0 && resource.next !== null && process.length < self.minSize) {
+            self._fetch(deferred, process);
+          } else {
+            self.items = self.items.concat(process);
+            self.cache();
+            self.setLoading(false);
+            deferred.resolve(self);
           }
-          process = process.concat(filterBy(orderBy(resource.results)));
-          if (self.minSize < 1 || resource.next === null) {
-
-          }
-          self.items = self.items.concat(process);
-          self.cache();
-          deferred.resolve(self);
         });
       },
       _load: function (preload) {
-        var process = [];
         var self = this;
         var deferred = $q.defer();
-        //while (process.length < self.minSize) { // when asynchronous, do not using while-loop, except for listening
+        //while (process.length < self.minSize) { // when asynchronous, do not using loop
         if (!this.getNext() || this.getLoading()) {
           deferred.resolve(self);
         } else if (preload && this.items.length > 0) {
           deferred.resolve(self);
         } else {
           self.setLoading(true);
-          self.params.page = self.getCurrentPage() + 1;
-          self.fetchFunction(self.params).then(function (resource) {
-            self.setLoading(false);
-            self.increaseCurrentPage();
-            self.setNext(resource.next !== null);
-            if (self.getPageSize() !== 0 && resource.next !== null) {
-              self.setPageSize(resource.results.length)
-            }
-            process = process.concat(filterBy(orderBy(resource.results)));
-            self.items = self.items.concat(process);
-            self.cache();
-            deferred.resolve(self);
-          });
+          self._fetch(deferred);
+          //self.params.page = self.getCurrentPage() + 1;
+          //self.fetchFunction(self.params).then(function (resource) {
+          //  self.setLoading(false);
+          //  self.increaseCurrentPage();
+          //  self.setNext(resource.next !== null);
+          //  self.items = self.items.concat(filterBy(orderBy(resource.results, self.ordering), self.filter));
+          //  self.cache();
+          //  deferred.resolve(self);
+          //});
         }
         //}
-
-
         return deferred.promise;
       },
       load: function () {

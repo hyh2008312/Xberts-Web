@@ -177,7 +177,7 @@ angular
               fetchFunction: function (params) {
                 return ProjectReview.get(params).$promise;
               },
-              filter: {state: 1}
+              filter: {state: !0}
             };
             return Paginator(par).load();
           }]
