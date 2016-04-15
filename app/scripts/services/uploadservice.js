@@ -37,7 +37,6 @@ angular.module('xbertsApp')
           type = 'IMAGE';
         }
         uploadService.uploadFile(files[i], domain, successCallbacks[type], errorCallback, processCallback);
-
       }
     };
   }]);

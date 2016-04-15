@@ -26,7 +26,8 @@
 
             <h4 ng-show="review.state==0"> Start Date:</h4>
 
-            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM DD,YYYY'}}</p>
+            <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM
+              DD,YYYY'}}</p>
 
             <h4> Application Deadline:</h4>
 
@@ -214,7 +215,11 @@
             <div ng-switch="item.is_submit_report">
               <span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>
 
-              <span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>
+              <span ng-switch-when="false" ng-switch="item.is_extended">
+                <span class="label label-success xb-profile-label" ng-switch-when="true">Extended</span>
+
+                <span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>
+              </span>
             </div>
           </div>
         </div>
