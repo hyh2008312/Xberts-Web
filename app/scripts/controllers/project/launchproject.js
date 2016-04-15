@@ -100,7 +100,9 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'success');
       };
       var imageSuccessCallback = function (data) {
-        $scope.editor.summernote('insertImage', data.imageUrl);
+        $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
+          $image.attr('data-image-id', data.id);
+        });
         $scope.projectData.image_assets = $scope.projectData.image_assets || [];
         $scope.projectData.image_assets.push(data.id);
         $scope.$emit('backdropOff', 'success');

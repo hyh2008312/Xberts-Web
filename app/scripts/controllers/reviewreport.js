@@ -75,10 +75,13 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'success');
       };
       var imageSuccessCallback = function (data) {
-        $scope.editor.summernote('insertImage', data.imageUrl);
+        $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {
+          $image.attr('data-image-id', data.id);
+        });
         $scope.reportData.image_assets = $scope.reportData.image_assets || [];
         $scope.reportData.image_assets.push(data.id);
         $scope.$emit('backdropOff', 'success');
+        console.log($scope.reportData.image_assets);
       };
 
       var errorCallback = function (response) {
