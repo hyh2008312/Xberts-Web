@@ -113,7 +113,7 @@ angular
       KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
     }])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/main");
+    $urlRouterProvider.otherwise("/");
 
     $stateProvider
       .state('application', {
@@ -136,7 +136,7 @@ angular
         }
       })
       .state('application.main', {
-        url: "/main",
+        url: "/",
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main',
