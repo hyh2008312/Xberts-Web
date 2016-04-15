@@ -144,6 +144,7 @@ angular
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
             var par = {
               name: 'projectRec',
+              params: {recommended: 'True'},
               fetchFunction: function (params) {
                 return ProjectsNoDetail.get(params).$promise;
               }
@@ -163,7 +164,7 @@ angular
           expertPaginator: ['Paginator', 'Influencer', function (Paginator, Influencer) {
             var par = {
               name: 'influencerRec',
-              params: {is_recommended: 'True'},
+              params: {recommended: 'True'},
               fetchFunction: function (params) {
                 return Influencer.get(params).$promise;
               }
