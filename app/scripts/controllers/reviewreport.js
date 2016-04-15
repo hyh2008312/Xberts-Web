@@ -71,34 +71,36 @@ angular.module('xbertsApp')
 
         $scope.reportData.video_assets = $scope.reportData.video_assets || [];
         $scope.reportData.video_assets.push(data.id);
-
-        $scope.$emit('backdropOff', 'success');
       };
+
       var imageSuccessCallback = function (data) {
         $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {
           $image.attr('data-image-id', data.id);
         });
         $scope.reportData.image_assets = $scope.reportData.image_assets || [];
         $scope.reportData.image_assets.push(data.id);
-        $scope.$emit('backdropOff', 'success');
-        console.log($scope.reportData.image_assets);
       };
 
-      var errorCallback = function (response) {
+      var errorCallback = function (error) {
+        // Don't display error when user cancels upload
+        if (error.status === -1) {
+          return;
+        }
+
         growl.error('Failed to upload');
-        $scope.$emit('backdropOff', 'error');
       };
-      var processCallback = function (evt) {
-        var progress = parseInt(100.0 * evt.loaded / evt.total);
-        console.log(progress);
-      };
-      var successCallbacks = {
-        VIDEO: videoSuccessCallback,
-        IMAGE: imageSuccessCallback
-      };
+
       $scope.imageUpload = function (files) {
-        UploadService.uploadFiles(files, 'REVIEW_REPORT_DETAILS', successCallbacks, errorCallback, processCallback);
-        $scope.$emit('backdropOn', 'post');
+        for (var i = 0; i < files.length; i++) {
+          UploadService.uploadFile(files[i], 'REVIEW_REPORT_DETAILS', $scope)
+            .then(function (data) {
+              if (data.type === 'VIDEO') {
+                videoSuccessCallback(data.data);
+              } else {
+                imageSuccessCallback(data.data)
+              }
+            }, errorCallback);
+        }
       };
     }])
   .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, report) {

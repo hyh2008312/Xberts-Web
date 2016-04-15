@@ -544,4 +544,11 @@ $message-types: (
   min-width: 300px;
 }
 
+.dialog-vertical-center {
+  padding-top: 15%;
+}
 
+.dialog-header {
+  @include ellipsisText();
+  padding-bottom: 2px; // Avoid text bottom cutoff
+}
