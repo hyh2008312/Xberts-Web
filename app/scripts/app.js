@@ -144,7 +144,7 @@ angular
           projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
             var par = {
               name: 'projectRec',
-              params: {recommended: 'True'},
+              params: {is_recommended: 'True'},
               fetchFunction: function (params) {
                 return ProjectsNoDetail.get(params).$promise;
               }
