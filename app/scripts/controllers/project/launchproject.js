@@ -20,6 +20,9 @@ angular.module('xbertsApp')
           {active: true, disabled: false},
           {active: false, disabled: true}
         ];
+        $scope.isUploading = false;
+        $scope.uploadProgress = 0;
+
         $scope.$watch('projectData', function () {
           $scope.tags[1].disabled = !$scope.projectData.id;
         });
@@ -96,43 +99,46 @@ angular.module('xbertsApp')
 
         $scope.projectData.video_assets = $scope.projectData.video_assets || [];
         $scope.projectData.video_assets.push(data.id);
-
-        $scope.$emit('backdropOff', 'success');
       };
+
       var imageSuccessCallback = function (data) {
         $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
           $image.attr('data-image-id', data.id);
         });
         $scope.projectData.image_assets = $scope.projectData.image_assets || [];
         $scope.projectData.image_assets.push(data.id);
-        $scope.$emit('backdropOff', 'success');
       };
 
-      var errorCallback = function (response) {
+      var errorCallback = function (error) {
+        // Don't display error when user cancels upload
+        if (error.status === -1) {
+          return;
+        }
+
         growl.error('Failed to upload');
-        $scope.$emit('backdropOff', 'error');
       };
-      var processCallback = function (evt) {
-        var progress = parseInt(100.0 * evt.loaded / evt.total);
-        console.log(progress);
-      };
-      var successCallbacks = {
-        VIDEO: videoSuccessCallback,
-        IMAGE: imageSuccessCallback
-      };
+
       $scope.imageUpload = function (files) {
-        UploadService.uploadFiles(files, 'PROJECT_DETAILS', successCallbacks, errorCallback, processCallback);
-        $scope.$emit('backdropOn', 'post');
+        for (var i = 0; i < files.length; i++) {
+          UploadService.uploadFile(files[i], 'PROJECT_DETAILS', $scope)
+            .then(function (data) {
+              if (data.type === 'VIDEO') {
+                videoSuccessCallback(data.data);
+              } else {
+                imageSuccessCallback(data.data)
+              }
+            }, errorCallback);
+        }
       };
 
       var coverSuccessCallback = function (data) {
         $scope.projectData.cover = data.id;
-        $scope.$emit('backdropOff', 'success');
       };
+
       $scope.coverUpload = function ($file) {
         if ($file) {
-          $scope.$emit('backdropOn', 'post');
-          UploadService.uploadFile($file, 'PROJECT_COVER', coverSuccessCallback, errorCallback, processCallback)
+          UploadService.uploadFile($file, 'PROJECT_COVER', $scope)
+            .then(coverSuccessCallback, errorCallback);
         }
-      }
+      };
     }]);

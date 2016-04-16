@@ -1,5 +1,9 @@
 // basic layout
 
+.margin-none {
+  margin: 0;
+}
+
 .margin-top-l {
   margin-top: 20px;
 }
@@ -10,6 +14,10 @@
 
 .margin-top-xxl {
   margin-top: 40px;
+}
+
+.margin-bottom-none {
+  margin-bottom: 0;
 }
 
 .xb-align-left {
