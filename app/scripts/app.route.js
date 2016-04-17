@@ -4,7 +4,6 @@ angular
   .module('xbertsApp')
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
-
     $stateProvider
       .state('application', {
         abstract: true,
@@ -317,14 +316,13 @@ angular
         controller: 'ReviewProjectsCtrl',
         resolve: {
           projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var fetchFunction = function (nextPage, otherParams, callback) {
-              var params = {page: nextPage};
-              angular.extend(params, otherParams);
-              ProjectReview.get(params, callback);
+            var par = {
+              name: 'projectReview',
+              fetchFunction: function (params) {
+                return ProjectReview.get(params).$promise;
+              }
             };
-            var paginator = Paginator('projectReview', fetchFunction);
-            paginator.setOrder('state');
-            return paginator.load();
+            return Paginator(par).load();
           }]
         }
       })
@@ -465,7 +463,7 @@ angular
         }
       })
       .state('application.report', {
-        url: '/reports/:reportId',
+        url: '/crowdtesting/:reviewId/reports/:reportId',
         templateUrl: 'views/review/review_report_visual.html',
         controller: 'ReviewReportVisualCtrl',
         resolve: {

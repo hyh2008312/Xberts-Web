@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$scope', '$state', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
-    function ($rootScope, $scope, $state, growl, Configuration, UploadService, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$rootScope','$timeout', '$scope', '$state', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
+    function ($rootScope,$timeout, $scope, $state, growl, Configuration, UploadService, ReviewReport, applicant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       var referenceId = 'reportapplicant_' + applicant.id;
       $scope.applicant = applicant;
@@ -36,7 +36,10 @@ angular.module('xbertsApp')
             report.$save(function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              $state.go('application.main');
+              growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
+              $timeout(function(){
+                $state.go('application.main');
+              },3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: referenceId});
@@ -45,7 +48,10 @@ angular.module('xbertsApp')
             report.$put(function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              $state.go('application.main');
+              growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
+              $timeout(function(){
+                $state.go('application.main');
+              },3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: referenceId});
