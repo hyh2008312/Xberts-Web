@@ -10,6 +10,7 @@
 angular.module('xbertsApp')
   .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state','$filter', 'ReviewApplicant', '$rootScope', 'growl',
     function ($scope, $timeout, $state,$filter, ReviewApplicant, $rootScope, growl) {
+      var referenceId = 'review_apply_' + $scope.review.id;
       $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
       $scope.reviewApplicant.review = $scope.review.id;
       $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();
