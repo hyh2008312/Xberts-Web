@@ -132,7 +132,7 @@ angular.module('xbertsApp')
       };
 
       var coverSuccessCallback = function (data) {
-        $scope.projectData.cover = data.id;
+        $scope.projectData.cover = data.data.id;
       };
 
       $scope.coverUpload = function ($file) {
