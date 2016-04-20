@@ -1,10 +1,10 @@
 <section class="container header padding-bottom-clear">
   <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
-    <h2 style="color: #ffffff">Discover and vote for your favorite smart products to
-      get a chance to test-drive them for free!</h2>
+    <h2 style="color: #ffffff">The launchpad where new smart products get discovered, and meet interested buyers and
+      potential partners like you!</h2>
 
     <h3 class="text-center">
-      <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Submit a
+      <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Launch a
         Product</a>
     </h3>
   </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-xs-6 align-right">
                   <p class="p-1">
-                    <i class="fa fa-thumbs-up"></i> <span ng-bind="project.interact.vote_amount"></span>
+                    <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
 
                     <!-- todo:user config-->
                     <span ng-if='user.isAuth() && user.isStaff()'>

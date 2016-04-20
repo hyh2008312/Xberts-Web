@@ -12,7 +12,7 @@ angular.module('xbertsApp')
       template: '<div>' +
       '<button class="button button-glow button-full" ng-class="{\'button-caution\':join.vote,\'button-primary\':!join.vote}"' +
       'ng-disabled="loadingJoin || voting " ng-click="save()"> ' +
-      '<i class="fa fa-thumbs-up fa-lg"></i> Vote {{ interact.vote_amount }}' +
+      '<i class="fa fa-heart fa-lg"></i> Request {{ interact.vote_amount }}' +
       '</button>' +
       '</div>',
       require: '^join',
