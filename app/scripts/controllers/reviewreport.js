@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope','$timeout', '$scope', '$state', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
-    function ($rootScope,$timeout, $scope, $state, growl, Configuration, UploadService, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
+    function ($rootScope, $timeout, $scope, $state, growl, Configuration, UploadService, ReviewReport, applicant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       var referenceId = 'reportapplicant_' + applicant.id;
       $scope.applicant = applicant;
@@ -11,7 +11,7 @@ angular.module('xbertsApp')
       };
       // try to fetch the previous data of the applicant for this survey
       $scope.$emit('backdropOn', 'report get');
-      ReviewReport.get({applicant_id: $scope.applicant.id}, function (data) {
+      ReviewReport.get({reviewId: applicant.id, applicant_id: $scope.applicant.id}, function (data) {
         $scope.$emit('backdropOff', 'report get completed');
         if (data.count !== undefined && data.count > 0) {
           $scope.reportData = data.results[0];
@@ -37,9 +37,9 @@ angular.module('xbertsApp')
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
               growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
-              $timeout(function(){
+              $timeout(function () {
                 $state.go('application.main');
-              },3);
+              }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: referenceId});
@@ -49,9 +49,9 @@ angular.module('xbertsApp')
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
               growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
-              $timeout(function(){
+              $timeout(function () {
                 $state.go('application.main');
-              },3);
+              }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.', {referenceId: referenceId});
@@ -110,6 +110,24 @@ angular.module('xbertsApp')
       };
     }])
   .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, report) {
-    $rootScope.pageSettings.setBackgroundColor('background-whitem');
     $scope.report = report;
+
+    var title = report.title;
+    var description = report.description;
+    var backgroundColor = 'background-whitem';
+    $rootScope.pageSettings.setPage(title, description, backgroundColor);
+    $scope.tabs = [
+      {title: 'detail', active: true},
+      {title: 'comments', active: false}
+    ];
+
+    $scope.commentsTabActive = false;
+    $scope.select = function (step) {
+      $scope.commentsTabActive = false;
+      switch (step) {
+        case 'comments':
+          $scope.commentsTabActive = true;
+          break;
+      }
+    };
   });

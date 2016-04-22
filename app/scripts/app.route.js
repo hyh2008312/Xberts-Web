@@ -310,22 +310,6 @@ angular
           }]
         }
       })
-      .state('application.reviews', {
-        url: "/reviews",
-        templateUrl: 'views/review/review_projects.html',
-        controller: 'ReviewProjectsCtrl',
-        resolve: {
-          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var par = {
-              name: 'projectReview',
-              fetchFunction: function (params) {
-                return ProjectReview.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }]
-        }
-      })
       .state('application.crowdtestings', {
         url: "/crowdtesting",
         templateUrl: 'views/review/review_projects.html',
@@ -353,43 +337,10 @@ angular
           }]
         }
       })
-      .state('application.review', {
-        url: "/reviews/:reviewId",
-        templateUrl: 'views/review/review_project.html',
-        controller: 'ReviewprojectCtrl',
-        resolve: {
-          review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ProjectReviewLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.reviewApplicants', {
-        url: "/reviews/:reviewId/applicants",
-        templateUrl: 'views/review/review_applicants.html',
-        controller: 'ReviewApplicantsCtrl',
-        resolve: {
-          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
-          }]
-        }
-      })
       .state('application.selectApplicants', {
         url: "/crowdtesting/:reviewId/applicants",
         templateUrl: 'views/review/review_applicants.html',
         controller: 'ReviewApplicantsCtrl',
-        resolve: {
-          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.reviewReports', {
-        url: "/reviews/:reviewId/reports",
-        templateUrl: 'views/review/review_reports.html',
-        controller: 'ReviewReportsCtrl',
         resolve: {
           review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -405,23 +356,6 @@ angular
           review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.protected.reviewApplicant', {
-        url: '/review/:reviewId/applicant',
-        templateUrl: 'views/review/review_application.html',
-        controller: 'ReviewapplicationCtrl',
-        resolve: {
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
-          }],
-          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
-            return ProfileReviewerLoad();
-          }],
-          application: ['ReviewApplicant', '$stateParams', 'authCheck', function (ReviewApplicant, $stateParams, authCheck) {
-            return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
       })
@@ -442,16 +376,6 @@ angular
           }]
         }
       })
-      .state('application.protected.reviewReport', {
-        url: '/review/:reviewId/report',
-        templateUrl: 'views/review/review_report.html',
-        controller: 'ReviewreportCtrl',
-        resolve: {
-          applicant: ['ApplicantsreviewLoad', 'authCheck', '$stateParams', function (ApplicantsreviewLoad, authCheck, $stateParams) {
-            return ApplicantsreviewLoad($stateParams);
-          }]
-        }
-      })
       .state('application.protected.crowdtestingReport', {
         url: '/crowdtesting/:reviewId/report',
         templateUrl: 'views/review/review_report.html',
@@ -463,12 +387,12 @@ angular
         }
       })
       .state('application.report', {
-        url: '/crowdtesting/:reviewId/reports/:reportId',
+        url: '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}',
         templateUrl: 'views/review/review_report_visual.html',
         controller: 'ReviewReportVisualCtrl',
         resolve: {
-          report: ['ReviewReportMoreLoad', '$stateParams', function (ReviewReportMoreLoad, $stateParams) {
-            return ReviewReportMoreLoad($stateParams);
+          report: ['ReviewReport', '$stateParams', function (ReviewReport, $stateParams) {
+            return ReviewReport.get({reviewId: $stateParams.reviewId, id: $stateParams.reportId}).$promise;
           }]
         }
       })

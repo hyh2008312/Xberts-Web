@@ -10,7 +10,8 @@
             <span ng-switch-when="true">reviewers</span>
             <span ng-switch-when="false">reviewer</span>
           </span>,
-          <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length }}</i>
+          <i class="font-striking"> {{ review.applicants | filter:{ is_selected:true,is_submit_report:true }| length
+            }}</i>
           <span ng-switch="(review.applicants | filter:{ is_selected:true,is_submit_report:true} | length)> 1">
             <span ng-switch-when="true">reviews</span>
             <span ng-switch-when="false">review</span>
@@ -30,7 +31,7 @@
                ng-repeat="applicant in review.applicants | filter:{ is_selected:true }">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a ui-sref="application.report({ reportId:applicant.report})"
+              <a ui-sref="application.report({ reviewId:review.id,reportId:applicant.report})"
                  class="btn btn-xs btn-primary" ng-show="applicant.report">View Report</a>
               <a class="btn btn-xs btn-gray" ng-show="!applicant.report">View Report</a>
             </div>

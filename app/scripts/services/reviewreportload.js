@@ -11,15 +11,4 @@ angular.module('xbertsApp')
       });
       return delay.promise;
     };
-  }])
-  .factory('ReviewReportMoreLoad',  ['ReviewReportMore', '$q', function (ReviewReportMore, $q) {
-    return function ($stateParams) {
-      var delay = $q.defer();
-      ReviewReportMore.get({id:$stateParams.reportId}, function (report) {
-        delay.resolve(report);
-      }, function () {
-        delay.reject(('Unable to fetch project'));
-      });
-      return delay.promise;
-    };
   }]);

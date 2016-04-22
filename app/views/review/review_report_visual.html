@@ -1,19 +1,100 @@
-<section class="background-light-white">
-  <div class="container">
-    <div class="section-title">
-      <h2>{{ report.title }}</h2>
+<join ng-init="init(report.interact)">
+  <section class="background-light-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>{{ report.title }}</h2>
 
-      <h3 class="avatar-inline">
-        <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
-        <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
-          report.applicant.reviewer.fullname }}</a>
-      </h3>
+        <h3 class="avatar-inline">
+          <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
+          <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
+            report.applicant.reviewer.fullname }}</a>
+        </h3>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  <div class="container">
-    <div class="section-body" ng-bind-html="report.details | trust">
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3  col-md-push-9 padding-clear">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-body-title xb-align-center">Trial Request</h4>
+
+              <p class="card-body-detail">Want to be the first to test this product? Click on the button below to get
+                early
+                access to its Crowdtesting.</p>
+
+              <div class="pr">
+                <save class="align-center" title="Like"></save>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card card-shadowless">
+            <div class="card-body">
+              <h4>Share with Friends</h4>
+              <button class="button button-primary button-glow button-circle button-large" socialshare
+                      socialshare-provider="linkedin"
+                      socialshare-description="{{ pageSettings._description }}"
+                      socialshare-text="{{ pageSettings._title }}"
+                      socialshare-source="{{ pageSettings._shareImage }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-linkedin"></i>
+              </button>
+              <button class="button button-royal button-glow button-circle button-large" socialshare
+                      socialshare-provider="facebook"
+                      socialshare-description="{{ pageSettings._description }}"
+                      socialshare-text="{{ pageSettings._title }}"
+                      socialshare-source="{{ pageSettings._shareImage }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-facebook"></i>
+              </button>
+
+              <button class="button button-caution button-glow button-circle button-large " socialshare
+                      socialshare-provider="reddit"
+                      socialshare-description="{{ pageSettings._description }}"
+                      socialshare-text="{{ pageSettings._title }}"
+                      socialshare-source="{{ pageSettings._shareImage }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-reddit"></i>
+              </button>
+
+              <button class="button button-action button-glow button-circle button-large" socialshare
+                      socialshare-provider="twitter"
+                      socialshare-description="{{ pageSettings._description }}"
+                      socialshare-text="{{ pageSettings._title }}"
+                      socialshare-source="{{ pageSettings._shareImage }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-twitter"></i>
+              </button>
+            </div>
+
+          </div>
+          <div class="card card-shadowless" ng-show="interact.vote_amount>0">
+            <div class="card-body">
+              <h4 class="card-body-title">Interested Users</h4>
+              <saver></saver>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-md-pull-3">
+          <uib-tabset>
+            <uib-tab heading="Description" active="tabs[0].active">
+              <div ng-bind-html="report.details | trust"></div>
+            </uib-tab>
+            <uib-tab heading="Comments" active="tabs[1].active"
+                     select="select('comments')">
+              <div ng-if="commentsTabActive">
+                <div ng-include src="'views/comments.html'"></div>
+              </div>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</join>
+
+
