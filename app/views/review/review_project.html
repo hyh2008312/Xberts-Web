@@ -208,9 +208,9 @@
             <profile-avatar class="xb-profile-avatar" src="item.reviewer.avatar"
                             name="item.reviewer.fullname"></profile-avatar>
 
-            <p class="xb-profile-name">
+            <a class="xb-profile-name" ui-sref="application.expert({expertId:item.reviewer.id})">
               {{ item.reviewer.fullname }}
-            </p>
+            </a>
 
             <div ng-switch="item.is_submit_report">
               <span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>
