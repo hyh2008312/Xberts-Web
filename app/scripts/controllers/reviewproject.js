@@ -8,8 +8,9 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, $filter, review, Applicantsreview) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, $filter, review, Applicantsreview, reportPaginator) {
     $scope.review = review;
+    $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
 
     var title = "We're now calling for reviewers to test-drive our new product:" + review.project.name;

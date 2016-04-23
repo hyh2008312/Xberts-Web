@@ -334,6 +334,16 @@ angular
           review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ProjectReviewLoad($stateParams);
+          }],
+          reportPaginator: ['Paginator', 'ReviewReport', '$stateParams', function (Paginator, ReviewReport, $stateParams) {
+            var par = {
+              name: 'report_list_' + $stateParams.reviewId,
+              params: {reviewId: $stateParams.reviewId},
+              fetchFunction: function (params) {
+                return ReviewReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })
