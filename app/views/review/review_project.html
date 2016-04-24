@@ -229,7 +229,38 @@
 
     <div class="col-md-9 col-md-pull-3">
       <uib-tabset>
-        <uib-tab heading="Details">
+        <uib-tab heading="Participation Rules">
+          <h4 class="margin-bottom-xl">Process:</h4>
+          <!--<div style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
+          <!--<div style="width: 100%; margin: auto;" class="full-image">-->
+          <!--<img src="/images/review_process.png" style="width: 100%;">-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
+
+              <p class="margin-top">1. Submit Application</p>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
+
+              <p class="margin-top">2. Candidate Selection</p>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
+
+              <p class="margin-top">3. Product Shipment</p>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
+
+              <p class="margin-top">4. Review Submission</p>
+            </div>
+          </div>
+
+          <h4 class="margin-top-xl margin-bottom-xl">Details:</h4>
+
           <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
             Selected applicants will receive a free product for review purpose. To participate in this program,
             please click on the “Apply Now” button
@@ -281,25 +312,27 @@
             </li>
           </ul>
         </uib-tab>
-        <uib-tab heading="Description">
+        <uib-tab heading="Product Description">
           <div ng-bind-html="review.project.details | trust"></div>
         </uib-tab>
-        <uib-tab heading="Reports" ng-if="review.state==5">
+        <uib-tab heading="Review Reports" ng-if="review.state==5">
           <div class="list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
             <div class="item-avatar-large" style="min-height: 127px;"
-                 ng-repeat="report in reportPaginator.items"
-                 ui-sref="application.report({reviewId:review.id,reportId:report.id})">
+                 ng-repeat="report in reportPaginator.items">
               <div class="item-image text-center">
                 <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
               </div>
               <div class="item-body">
                 <p class="item-body-header">
-                  <span><a>{{report.applicant.reviewer.fullname }}</a></span>
+                  <span><a ui-sref="application.report({reviewId:review.id,reportId:report.id})">{{report.applicant.reviewer.fullname }}</a></span>
                   <span class="pull-right">{{ report.applicant.reviewer.country }}</span>
                 </p>
 
-                <p class="item-body-detail p-3-max">{{ report.description }}</p>
+                <p class="item-body-detail p-3-max" ng-bind-html="report.description |trust"></p>
+                <p class="xb-align-right">
+                  <a ui-sref="application.report({reviewId:review.id,reportId:report.id})"><i class="small">View More ...</i></a>
+                </p>
               </div>
             </div>
 
