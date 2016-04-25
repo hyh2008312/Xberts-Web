@@ -207,10 +207,12 @@
                ng-repeat="item in review.applicants | filter:applicantsSearch">
             <profile-avatar class="xb-profile-avatar" src="item.reviewer.avatar"
                             name="item.reviewer.fullname"></profile-avatar>
-
-            <a class="xb-profile-name" ui-sref="application.expert({expertId:item.reviewer.id})">
-              {{ item.reviewer.fullname }}
-            </a>
+            <p class="p-1">
+              <a class="xb-profile-name"
+                 ui-sref="application.expert({expertId:item.reviewer.id})">
+                {{ item.reviewer.fullname }}
+              </a>
+            </p>
 
             <div ng-switch="item.is_submit_report">
               <span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>
@@ -325,13 +327,16 @@
               </div>
               <div class="item-body">
                 <p class="item-body-header">
-                  <span><a ui-sref="application.report({reviewId:review.id,reportId:report.id})">{{report.applicant.reviewer.fullname }}</a></span>
+                  <span><a ui-sref="application.report({reviewId:review.id,reportId:report.id})">{{report.applicant.reviewer.fullname
+                    }}</a></span>
                   <span class="pull-right">{{ report.applicant.reviewer.country }}</span>
                 </p>
 
                 <p class="item-body-detail p-3-max" ng-bind-html="report.description |trust"></p>
+
                 <p class="xb-align-right">
-                  <a ui-sref="application.report({reviewId:review.id,reportId:report.id})"><i class="small">View More ...</i></a>
+                  <a ui-sref="application.report({reviewId:review.id,reportId:report.id})"><i class="small">View More
+                    ...</i></a>
                 </p>
               </div>
             </div>
