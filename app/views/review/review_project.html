@@ -231,6 +231,9 @@
 
     <div class="col-md-9 col-md-pull-3">
       <uib-tabset>
+        <uib-tab heading="Product Description">
+          <div ng-bind-html="review.project.details | trust"></div>
+        </uib-tab>
         <uib-tab heading="Participation Rules">
           <h4 class="margin-bottom-xl">Process:</h4>
           <!--<div style="padding-top: 0px;padding-bottom: 0px" class="background-whitem">-->
@@ -314,10 +317,7 @@
             </li>
           </ul>
         </uib-tab>
-        <uib-tab heading="Product Description">
-          <div ng-bind-html="review.project.details | trust"></div>
-        </uib-tab>
-        <uib-tab heading="Review Reports" ng-if="review.state==5">
+        <uib-tab heading="Review Reports" ng-if="review.state==5 && reportPaginator.items.length>0">
           <div class="list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
             <div class="item-avatar-large" style="min-height: 127px;"

@@ -23,6 +23,36 @@ angular.module('xbertsApp')
           buttonColor: 'button-primary',
           captionLocation: '',
           url: 'application.signup'
+        },
+        {
+          image: '/images/nox_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-left',
+          url: 'application.crowdtesting({reviewId:20})'
+          //buttonBorder:'button-border'
+        },
+        {
+          image: '/images/drf_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-right',
+          url: 'application.crowdtesting({reviewId:17})'
+          //buttonBorder:'button-border'
+        },
+        {
+          image: '/images/yee_review.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-center',
+          url: 'application.crowdtesting({reviewId:21})'
+          //buttonBorder:'button-border'
         }
       ];
     }]);
