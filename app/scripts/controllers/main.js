@@ -30,7 +30,7 @@ angular.module('xbertsApp')
           subtitle: '',
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
-          captionLocation: 'carousel-left',
+          captionLocation: 'carousel-center',
           url: 'application.crowdtesting({reviewId:20})'
           //buttonBorder:'button-border'
         },
@@ -40,7 +40,7 @@ angular.module('xbertsApp')
           subtitle: '',
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
-          captionLocation: 'carousel-right',
+          captionLocation: 'carousel-center',
           url: 'application.crowdtesting({reviewId:17})'
           //buttonBorder:'button-border'
         },
