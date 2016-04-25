@@ -83,7 +83,7 @@
                         Selected
                       </button>
                       <button ng-switch-when="true" class="button button-full button-glow button-primary"
-                              ui-sref="application.protected.reviewerShipAddress({reviewId:review.id})">Confirm Shipping
+                              ui-sref="application.protected.confirmShipAddress({reviewId:review.id})">Confirm Shipping
                         Info
                       </button>
                     </div>
@@ -117,7 +117,7 @@
                             Report
                           </button>
                           <button ng-switch-when="true" class="button button-full button-glow button-action"
-                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">View My
+                                  ui-sref="application.report({ reviewId:review.id,reportId:applicant.report})">View My
                             Report
                           </button>
                         </div>

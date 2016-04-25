@@ -274,8 +274,23 @@ angular
           }]
         }
       })
+      // todo:remove it
       .state('application.protected.reviewerShipAddress', {
         url: '/reviews/:reviewId/confirmaddress',
+        templateUrl: 'views/review/review_applicant_shipping_address.html',
+        controller: 'ShipAddressCtrl',
+        resolve: {
+          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+            return ProfileReviewerLoad();
+          }],
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            return reviewId === null ? {} : ReviewLoad($stateParams);
+          }]
+        }
+      })
+      .state('application.protected.confirmShipAddress', {
+        url: '/crowdtesting/:reviewId/confirmaddress',
         templateUrl: 'views/review/review_applicant_shipping_address.html',
         controller: 'ShipAddressCtrl',
         resolve: {

@@ -9,6 +9,8 @@
           <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
             report.applicant.reviewer.fullname }}</a>
         </h3>
+        <a class="btn btn-gray" ng-if="report.applicant.reviewer.id==user.getUserId()"
+           ui-sref="application.protected.crowdtestingReport({reviewId:stateParams.reviewId})"><i class="fa fa-edit"></i> EDIT</a>
       </div>
     </div>
   </section>
