@@ -43,16 +43,6 @@ angular.module('xbertsApp')
           captionLocation: 'carousel-center',
           url: 'application.crowdtesting({reviewId:17})'
           //buttonBorder:'button-border'
-        },
-        {
-          image: '/images/yee_review.jpg',
-          title: '',
-          subtitle: '',
-          buttonText: 'Apply Now',
-          buttonColor: 'button-primary',
-          captionLocation: 'carousel-center',
-          url: 'application.crowdtesting({reviewId:21})'
-          //buttonBorder:'button-border'
         }
       ];
     }]);
