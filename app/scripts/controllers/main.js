@@ -25,6 +25,16 @@ angular.module('xbertsApp')
           url: 'application.signup'
         },
         {
+          image: '/images/alphasense.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-center',
+          url: 'application.crowdtesting({reviewId:19})'
+          //buttonBorder:'button-border'
+        },
+        {
           image: '/images/nox_review.jpg',
           title: '',
           subtitle: '',
@@ -43,6 +53,6 @@ angular.module('xbertsApp')
           captionLocation: 'carousel-center',
           url: 'application.crowdtesting({reviewId:17})'
           //buttonBorder:'button-border'
-        }
+        },
       ];
     }]);
