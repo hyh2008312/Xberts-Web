@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="carousel-caption {{ slide.captionLocation}} hidden-xs">
-        <a ui-sref="{{ slide.url }}" class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
+        <a ng-click="slideButtonClick(slide)" class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
           slide.buttonText }}</a>
       </div>
     </section>

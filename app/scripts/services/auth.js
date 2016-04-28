@@ -225,7 +225,7 @@ angular.module('xbertsApp')
 
           $rootScope.postLoginState = null;
         } else {
-          $state.go('application.main', {}, {location: 'replace'})
+          $state.go('application.crowdtestings', {}, {location: 'replace'})
         }
       }
 
