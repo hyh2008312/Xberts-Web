@@ -22,7 +22,8 @@ angular.module('xbertsApp')
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',
-          url: 'application.signup'
+          url: 'application.crowdtestings',
+          params: {}
         },
         {
           image: '/images/alphasense.jpg',
@@ -41,7 +42,8 @@ angular.module('xbertsApp')
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
           captionLocation: 'carousel-center',
-          url: 'application.crowdtesting({reviewId:20})'
+          url: 'application.crowdtesting',
+          params: {reviewId: 20}
           //buttonBorder:'button-border'
         },
         {
@@ -51,8 +53,22 @@ angular.module('xbertsApp')
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
           captionLocation: 'carousel-center',
-          url: 'application.crowdtesting({reviewId:17})'
+          url: 'application.crowdtesting',
+          params: {reviewId: 17}
           //buttonBorder:'button-border'
         },
       ];
+
+      $scope.slideButtonClick = function (slide) {
+        if (slide === $scope.slides[0]) {
+          // Special case login for get started button on first slide that's based on user login status
+          if ($rootScope.user.isAuth()) {
+            $state.go(slide.url, slide.params);
+          } else {
+            $state.go('application.signup');
+          }
+        } else {
+          $state.go(slide.url, slide.params);
+        }
+      };
     }]);

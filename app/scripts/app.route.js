@@ -343,7 +343,7 @@ angular
       })
       .state('application.crowdtesting', {
         url: "/crowdtesting/:reviewId",
-        templateUrl: 'views/review/review_project.html',
+        templateUrl: 'views/review/review_project_1.html',
         controller: 'ReviewprojectCtrl',
         resolve: {
           review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
