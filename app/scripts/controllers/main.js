@@ -57,6 +57,17 @@ angular.module('xbertsApp')
           params: {reviewId: 17}
           //buttonBorder:'button-border'
         },
+        {
+          image: '/images/vinci.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: 'carousel-center',
+          url: 'application.crowdtesting',
+          params: {reviewId: 15}
+          //buttonBorder:'button-border'
+        },
       ];
 
       $scope.slideButtonClick = function (slide) {

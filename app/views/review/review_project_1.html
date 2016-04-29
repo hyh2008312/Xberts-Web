@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top-sub" role="navigation" ng-show="sub.subNavShow">
+<div class="navbar navbar-default navbar-fixed-top-sub hidden-xs" role="navigation" ng-show="sub.subNavShow">
   <div class="container">
     <div class="row">
       <div class="col-sm-9">
@@ -343,7 +343,7 @@
         <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
       </section>
       <section id="section-5" class="padding-top-clear">
-        <h4 class="margin-top-clear">Report</h4>
+        <h4 class="margin-top-clear">Reviews</h4>
         <hr>
         <div class="list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
              infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
