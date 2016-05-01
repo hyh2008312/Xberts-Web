@@ -32,7 +32,8 @@ angular.module('xbertsApp')
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
           captionLocation: 'carousel-center',
-          url: 'application.crowdtesting({reviewId:19})'
+          url: 'application.crowdtesting',
+          params: {reviewId: 19}
           //buttonBorder:'button-border'
         },
         {
