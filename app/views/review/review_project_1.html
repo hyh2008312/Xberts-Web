@@ -1,24 +1,20 @@
-<div class="navbar navbar-default navbar-fixed-top-sub hidden-xs" role="navigation" ng-show="sub.subNavShow">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9">
-        <ul class="nav navbar-nav">
-          <li id="sub_nav_show" du-smooth-scroll="section-1" du-scrollspy style="display: none;">
-            <a class="fade-in-line hidden-xs">Sub title</a>
-          </li>
-          <li du-smooth-scroll="section-2" du-scrollspy>
-            <a class="fade-in-line hidden-xs" ng-click="toSection2();">PROCESS</a>
-          </li>
-          <li du-smooth-scroll="section-3" du-scrollspy>
-            <a class="fade-in-line hidden-xs" ng-click="toSection3();">DETAILS</a>
-          </li>
-          <li du-smooth-scroll="section-4" du-scrollspy>
-            <a class="fade-in-line hidden-xs" ng-click="toSection4();">DESCRIPTION</a></li>
-          <li du-smooth-scroll="section-5" du-scrollspy>
-            <a class="fade-in-line hidden-xs" ng-click="toSection4();">REPORTS</a></li>
-        </ul>
-      </div>
-    </div>
+<div class="xb-sub-nav-fixed-wrapper">
+  <div class="container xb-sub-nav-fixed" ng-show="sub.subNavShow">
+    <ul class="xb-steps-container xb-justify-left xb-theme-white">
+      <li id="sub_nav_show" du-smooth-scroll="section-1" du-scrollspy style="display: none;">
+        <a>Sub title</a>
+      </li>
+      <!--<li class="xb-step" du-smooth-scroll="section-2" du-scrollspy>-->
+        <!--<a ng-click="toSection2();">PROCESS</a>-->
+      <!--</li>-->
+      <li class="xb-step" du-smooth-scroll="section-3" du-scrollspy>
+        <a ng-click="toSection3();">Participation Rules</a>
+      </li>
+      <li class="xb-step" du-smooth-scroll="section-4" du-scrollspy>
+        <a ng-click="toSection4();">Product Description</a></li>
+      <li class="xb-step" du-smooth-scroll="section-5" du-scrollspy>
+        <a ng-click="toSection4();">Review Reports</a></li>
+    </ul>
   </div>
 </div>
 <section class="section-fixed-sm"
@@ -29,8 +25,19 @@
 
   </div>
 </section>
+<div class="container xb-sub-nav-fixed margin-bottom-xl" ng-show="!sub.subNavShow">
+  <ul class="xb-steps-container xb-justify-left xb-theme-white">
+    <li class="xb-step xb-step-active">
+      <a ng-click="toSection3();">Participation Rules</a>
+    </li>
+    <li class="xb-step" du-smooth-scroll="section-4" du-scrollspy>
+      <a ng-click="toSection4();">Product Description</a></li>
+    <li class="xb-step" du-smooth-scroll="section-5" du-scrollspy>
+      <a ng-click="toSection4();">Review Reports</a></li>
+  </ul>
+</div>
 
-<section class="container">
+<div class="container">
 
   <div class="row">
     <div class="col-md-3 col-md-push-9">
@@ -253,10 +260,7 @@
     </div>
 
     <div class="col-md-9 col-md-pull-3">
-      <section class="padding-top-clear" id="section-2">
-
-        <h4 class="margin-top-clear">Process</h4>
-        <hr>
+      <div class="margin-bottom-xl" id="section-2">
         <div class="row">
           <div class="col-md-3 text-center">
             <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
@@ -279,10 +283,10 @@
             <p class="margin-top">4. Review Submission</p>
           </div>
         </div>
-      </section>
+      </div>
 
 
-      <section class="padding-top-clear" id="section-3">
+      <div class="margin-bottom-xl" id="section-3">
         <h4 class="margin-top-clear">Detail</h4>
         <hr/>
 
@@ -336,13 +340,13 @@
             </ul>
           </li>
         </ul>
-      </section>
-      <section id="section-4" class="padding-top-clear">
+      </div>
+      <div id="section-4" class="margin-bottom-xl">
         <h4 class="margin-top-clear">Description</h4>
         <hr>
         <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
-      </section>
-      <section id="section-5" class="padding-top-clear">
+      </div>
+      <div id="section-5" class="margin-bottom-xl">
         <h4 class="margin-top-clear">Reviews</h4>
         <hr>
         <div class="list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
@@ -370,8 +374,8 @@
 
         </div>
         <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
-      </section>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
