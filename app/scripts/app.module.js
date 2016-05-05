@@ -21,11 +21,11 @@ angular
     'summernote',
     'ui.bootstrap',
     'internationalPhoneNumber',
-    'duScroll',
     'dcbImgFallback',
     'configuration.properties',
     'satellizer',
     'checklist-model',
     'angularRandomString',
-    '720kb.socialshare'
+    '720kb.socialshare',
+    'mgcrea.ngStrap',
   ]);

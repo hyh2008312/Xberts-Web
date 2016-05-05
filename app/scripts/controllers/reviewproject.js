@@ -21,35 +21,35 @@ angular.module('xbertsApp')
 
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
     $scope.sub = {
-      subNavShow: false
+      fixed: true
     };
-    var section2 = angular.element(document.getElementById('section-2'));
-    var section3 = angular.element(document.getElementById('section-3'));
-    var section4 = angular.element(document.getElementById('section-4'));
-    var section5 = angular.element(document.getElementById('section-5'));
-    $scope.toSection4 = function () {
-      $document.scrollToElementAnimated(section4);
-    };
-    $scope.toSection5 = function () {
-      $document.scrollToElementAnimated(section5);
-    };
-    $scope.toSection3 = function () {
-      $document.scrollToElementAnimated(section3);
-    };
-    $scope.toSection2 = function () {
-      $document.scrollToElementAnimated(section2);
-    };
-
     $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
-      if ($target.context.id === 'section-1') {
+      console.log('active');
+      console.log($target);
+      if ($target.context.id === 'scroll-gap') {
         $scope.$apply(function () {
-          $scope.sub.subNavShow = false;
+          $scope.sub.fixed = false;
         });
       } else {
         $scope.$apply(function () {
-          $scope.sub.subNavShow = true;
+          $scope.sub.fixed = true;
         });
       }
+
+    });
+    $rootScope.$on('duScrollspy:becameInactive', function ($event, $element, $target) {
+      console.log('inactive');
+      console.log($target);
+      //if ($target.context.id === 'scroll-container') {
+      //  $scope.$apply(function () {
+      //    $scope.sub.fixed = true;
+      //  });
+      //} else {
+      //  $scope.$apply(function () {
+      //    $scope.sub.fixed = false;
+      //  });
+      //}
+
     });
 
     if ($rootScope.user.isAuth()) {

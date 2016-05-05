@@ -99,15 +99,15 @@
   border-right-color: rgba(0, 0, 0, .25);
   border-left-width: 0;
 }
-.xb-sub-nav-fixed-wrapper{
+
+.xb-sub-nav-fixed{
   position:fixed;
   top: 50px;
   width: 100%;
   z-index: 99999;
 }
-
-.xb-sub-nav-fixed{
-
+.xb-affix{
+  z-index: 99999;
 }
 
 .xb-steps-container{
@@ -137,7 +137,7 @@ li.xb-step{
 }
 
 
-.xb-step.xb-step-active{
+.xb-step.xb-step-active,.xb-step.active{
   color: $primaryColor;
   border-bottom: 2px solid $primaryColor;
   >a{
@@ -163,3 +163,4 @@ li.xb-step{
 .xb-section{
 
 }
+
