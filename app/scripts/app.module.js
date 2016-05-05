@@ -21,6 +21,7 @@ angular
     'summernote',
     'ui.bootstrap',
     'internationalPhoneNumber',
+    'duScroll',
     'dcbImgFallback',
     'configuration.properties',
     'satellizer',

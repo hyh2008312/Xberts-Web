@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $document, $filter, review, Applicantsreview, reportPaginator) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $filter, review, Applicantsreview, reportPaginator) {
     $scope.review = review;
     $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
@@ -20,37 +20,6 @@ angular.module('xbertsApp')
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
 
     $scope.applicant = {exist: false, is_selected: false, is_submit_report: false};
-    $scope.sub = {
-      fixed: true
-    };
-    $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
-      console.log('active');
-      console.log($target);
-      if ($target.context.id === 'scroll-gap') {
-        $scope.$apply(function () {
-          $scope.sub.fixed = false;
-        });
-      } else {
-        $scope.$apply(function () {
-          $scope.sub.fixed = true;
-        });
-      }
-
-    });
-    $rootScope.$on('duScrollspy:becameInactive', function ($event, $element, $target) {
-      console.log('inactive');
-      console.log($target);
-      //if ($target.context.id === 'scroll-container') {
-      //  $scope.$apply(function () {
-      //    $scope.sub.fixed = true;
-      //  });
-      //} else {
-      //  $scope.$apply(function () {
-      //    $scope.sub.fixed = false;
-      //  });
-      //}
-
-    });
 
     if ($rootScope.user.isAuth()) {
       Applicantsreview.get({
