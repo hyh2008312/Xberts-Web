@@ -476,6 +476,9 @@ $message-types: (
 .list {
   border: 1px solid $lightColor;
 }
+.list.list-borderless{
+  border:none;
+}
 
 .list-title {
   background-color: $lightColor;
