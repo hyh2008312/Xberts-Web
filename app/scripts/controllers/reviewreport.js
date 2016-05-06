@@ -4,13 +4,13 @@ angular.module('xbertsApp')
   .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
     function ($rootScope, $timeout, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
-      var referenceId = 'reportapplicant_' + applicant.id;
+      $scope.referenceId = 'reportapplicant_' + applicant.id;
       $scope.reportData = {
         applicant_id: applicant.id
       };
       // try to fetch the previous data of the applicant for this survey
       $scope.$emit('backdropOn', 'report get');
-      ReviewReport.get({reviewId: applicant.id, applicant_id: applicant.id}, function (data) {
+      ReviewReport.get({reviewId: $stateParams.reviewId, applicant_id: applicant.id}, function (data) {
         $scope.$emit('backdropOff', 'report get completed');
         if (data.count !== undefined && data.count > 0) {
           $scope.reportData = data.results[0];
@@ -32,34 +32,61 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOn', 'post');
           var report = new ReviewReport($scope.reportData);
           if (!report.id) {
+            report.report_status = 'PUBLISHED';
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
+              growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.main');
+                $state.go('application.report',{reviewId:$stateParams.reviewId,reportId:$scope.reportData.id});
               }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: referenceId});
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
             });
           } else {
+            report.report_status = 'PUBLISHED';
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been submitted successfully!', {referenceId: referenceId});
+              growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.main');
+                $state.go('application.report',{reviewId:$stateParams.reviewId,reportId:$scope.reportData.id});
               }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: referenceId});
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
             });
           }
           return false;
         } else {
           $scope.reportForm.submitted = true;
           $scope.reportForm.$invalid = true;
+        }
+      };
+
+      $scope.reportSave = function () {
+        $scope.$emit('backdropOn', 'post');
+        var report = new ReviewReport($scope.reportData);
+        report.report_status = 'DRAFT';
+        if (!report.id) {
+          report.$save({reviewId: $stateParams.reviewId}, function (resp) {
+            $scope.reportData = resp;
+            $scope.$emit('backdropOff', 'success');
+            growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+          }, function (resp) {
+            $scope.$emit('backdropOff', 'error');
+            growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+          });
+        } else {
+          report.$put({reviewId: $stateParams.reviewId}, function (resp) {
+            $scope.reportData = resp;
+            $scope.$emit('backdropOff', 'success');
+            growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+          }, function (resp) {
+            $scope.$emit('backdropOff', 'error');
+            growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+          });
         }
       };
       // summerNote character amount check

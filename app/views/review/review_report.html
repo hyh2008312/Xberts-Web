@@ -30,7 +30,7 @@
         </div>
       </div>
       <form name="reportForm" ng-submit="reportFormSubmit()" class="pr">
-        <div growl reference="reportapplicant_{{ applicant.id }}"></div>
+        <div growl reference="{{ referenceId }}"></div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -90,7 +90,8 @@
             </div>
           </div>
           <div class="xb-align-center margin-top-xl">
-            <button type="submit" class="button button-primary button-rounded button-mid-width">Submit</button>
+            <button type="button" class="button button-primary button-rounded button-mid-width" ng-click="reportSave()">Save Draft</button>
+            <button type="submit" class="button button-primary button-rounded button-mid-width">Publish</button>
           </div>
         </div>
       </form>

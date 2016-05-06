@@ -1,6 +1,6 @@
 <li role="presentation" class="dropdown dropdown-right" id="notification"
     ng-if="user.isAuth()">
-  <a href="#" class="top-right-badge-x fade-in-line" ng-mousemove="loadingNotifications();">
+  <a href="#" class="top-right-badge-x fade-in-line" ng-mouseenter="loadingNotifications();">
     <i class="fa fa-bell fa-lg"></i>
 <span class="top-right-badge striking-white" ng-if="notificationsCount > 0"
       ng-bind="notificationsCount"></span>

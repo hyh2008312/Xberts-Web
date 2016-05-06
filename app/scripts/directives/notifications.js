@@ -41,9 +41,8 @@ angular.module('xbertsApp')
           Notification.notificationsDeleteResource().deleteAll();
         };
         scope.loadingNotifications = function () {
-          if (scope.paginator.items.length < 1) {
-            scope.paginator.loadNext();
-          }
+          scope.paginator.clear();
+          scope.paginator.loadNext();
         }
       }
     };
