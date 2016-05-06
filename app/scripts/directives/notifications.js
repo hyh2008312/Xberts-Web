@@ -42,7 +42,9 @@ angular.module('xbertsApp')
         };
         scope.loadingNotifications = function () {
           scope.paginator.clear();
-          scope.paginator.loadNext();
+          scope.paginator.loadNext().then(function () {
+            scope.notificationsCount = scope.paginator.getCount();
+          });
         }
       }
     };

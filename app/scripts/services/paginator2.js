@@ -23,6 +23,7 @@ angular.module('xbertsApp')
         var next = !(localStorageService.get(this.name + '_next') === false);
         this.minSize = _params.minSize || 0;
         var loading = false;
+        var count = null;
 
         this.resetPaging = function () {
           currentPage = 0;
@@ -47,6 +48,12 @@ angular.module('xbertsApp')
         this.getLoading = function () {
           return loading;
         };
+        this.setCount = function (_count) {
+          count = _count;
+        };
+        this.getCount = function () {
+          return count;
+        };
       } else {
         return new Paginator(_params)
       }
@@ -64,6 +71,7 @@ angular.module('xbertsApp')
         var self = this;
         self.params.page = self.getCurrentPage() + 1;
         self.fetchFunction(self.params).then(function (resource) {
+          self.setCount(resource.count);
           self.increaseCurrentPage();
           self.setNext(resource.next !== null);
           process = process.concat(filterBy(orderBy(resource.results, self.ordering), self.filter));
