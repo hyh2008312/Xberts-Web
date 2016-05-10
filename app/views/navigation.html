@@ -28,7 +28,7 @@
             <li ng-class="{active: $state.includes('application.forum')}">
               <a ui-sref="application.experts" class="fade-in-line">INFLUENCERS</a>
             </li>
-            <li ng-class="{active: $state.includes('application.about')}"><a ui-sref="application.about"
+            <li ng-class="{active: $state.includes('application.about')}" class="hidden-xs"><a ui-sref="application.about"
                                                                              class="fade-in-line">ABOUT</a></li>
           </ul>
 
@@ -37,7 +37,7 @@
               <!--<a ui-sref="application.protected.launchProject" class="fade-in-line"><i-->
                 <!--class="fa fa-plus-circle fa-lg"></i> Launch Product</a>-->
             <!--</li>-->
-            <notifications ng-if="user.isAuth()"></notifications>
+            <notifications ng-if="user.isAuth()" class="hidden-xs"></notifications>
             <li ng-if="!user.isAuth()">
               <a ui-sref="application.signup" class="fade-in-line">Sign Up</a>
             </li>
