@@ -22,7 +22,7 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOn', 'post');
         $scope.profile.$put(function (resp) {
           $scope.$emit('backdropOff', 'success');
-          $state.go('application.review', {reviewId: review.id});
+          $state.go('application.crowdtesting', {reviewId: review.id});
         }, function (resp) {
           growl.error('Sorry,some error happened.');
           $scope.$emit('backdropOff', 'error');
