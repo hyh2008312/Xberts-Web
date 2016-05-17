@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $filter, review, Applicantsreview, reportPaginator) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $location,$filter, review, Applicantsreview, reportPaginator) {
     $scope.review = review;
     $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
@@ -55,6 +55,14 @@ angular.module('xbertsApp')
           break;
       }
     };
+
+    var search = $location.search();
+    var tab = search.tab || 'detail';
+    if (search.tab) {
+      for (var i = 0; i < $scope.tabs.length; i++) {
+        $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
+      }
+    }
 
   })
   .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',
