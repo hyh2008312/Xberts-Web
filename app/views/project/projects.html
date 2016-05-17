@@ -9,23 +9,23 @@
     </h3>
   </div>
 </section>
-<section class="container padding-top-clear">
+<section class="container" style="padding-top: 10px;">
   <div class="list-title list-search margin-bottom">
     <div class="row">
-      <div class="col-xs-12 col-sm-3 margin-top">
+      <div class="col-xs-12 col-sm-3">
         <select class="form-control"  ng-model="projects.project_category_id"
         ng-change="onSearch();" ng-options="item.id as item.name for item in projectTypes">
         <option value="">Filter by: All categories</option>
         </select>
 
       </div>
-      <div class="col-xs-12 col-sm-3 margin-top">
+      <div class="col-xs-12 col-sm-3">
         <select class="form-control" ng-model="projects.ordering"
         ng-change="onSearch();" ng-options=" item.value as item.label for item in otherConditions">
         </select>
 
       </div>
-      <div class="col-xs-12 col-sm-3 col-sm-offset-3 hidden-xs margin-top">
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3 hidden-xs">
         <div class="search ">
           <input type="text" name='search' class="form-control input-sm" placeholder="Search for..."
                  ng-model="projects.search"
