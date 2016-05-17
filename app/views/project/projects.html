@@ -10,30 +10,23 @@
   </div>
 </section>
 <section class="container padding-top-clear">
-  <div class="list-title list-search margin-bottom hidden-xs">
+  <div class="list-title list-search margin-bottom">
     <div class="row">
-      <div class="col-xs-12 col-sm-3 col-md-3" style="padding-right: 30px">
-        <select class="form-control input-sm" ng-required="true" ng-model="projects.project_category_id"
-                ng-change="onSearch();">
-          <option value="">Filter by: All categories</option>
-          <option value="{{ projectType.id }}" ng-repeat="projectType in projectTypes"
-                  ng-selected="project.project_category==projectType.id">{{ projectType.name }}
-          </option>
+      <div class="col-xs-12 col-sm-3 margin-top">
+        <select class="form-control"  ng-model="projects.project_category_id"
+        ng-change="onSearch();" ng-options="item.id as item.name for item in projectTypes">
+        <option value="">Filter by: All categories</option>
         </select>
+
       </div>
-      <div class="col-sm-3" style="padding-right: 30px">
-        <select class="form-control input-sm " ng-required="true" ng-model="projects.ordering"
-                ng-change="onSearch();">
-          <option value="-date_published'"
-                  ng-selected="projects.ordering=='-date_published'">Sort by: Newest
-          </option>
-          <option value="-interact__vote_amount"
-                  ng-selected="projects.ordering=='-interact__vote_amount'">Popularity
-          </option>
+      <div class="col-xs-12 col-sm-3 margin-top">
+        <select class="form-control" ng-model="projects.ordering"
+        ng-change="onSearch();" ng-options=" item.value as item.label for item in otherConditions">
         </select>
+
       </div>
-      <div class="col-xs-12 col-sm-3 col-sm-offset-3">
-        <div class="search">
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3 hidden-xs margin-top">
+        <div class="search ">
           <input type="text" name='search' class="form-control input-sm" placeholder="Search for..."
                  ng-model="projects.search"
                  ng-keydown="onKeyDown($event);">

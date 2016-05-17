@@ -34,6 +34,28 @@ angular.module('xbertsApp')
 
       })
     }
+
+    $scope.tabs = [
+      {title: 'detail', active: true},
+      {title: 'comments', active: false},
+      {title: 'reviews', active: false}
+    ];
+
+    $scope.commentsTabActive = false;
+    $scope.reviewsTabActive = false;
+    $scope.select = function (step) {
+      $scope.commentsTabActive = false;
+      $scope.reviewsTabActive = false;
+      switch (step) {
+        case 'comments':
+          $scope.commentsTabActive = true;
+          break;
+        case 'reviews':
+          $scope.reviewsTabActive = true;
+          break;
+      }
+    };
+
   })
   .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',
     function ($scope, $rootScope, SystemData, projectReviewPaginator) {

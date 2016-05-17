@@ -6,24 +6,12 @@
 
   </div>
 </section>
-<div class="xb-affix hidden-xs" data-offset-top="-50" bs-affix>
-  <div class="container margin-bottom-xl">
-    <ul class="xb-steps-container xb-justify-left xb-theme-white">
-      <li class="xb-step" du-smooth-scroll="section-rules" du-scrollspy>
-        <a href="#section-rules">Participation Rules</a>
-      </li>
-      <li class="xb-step" du-smooth-scroll="section-product" du-scrollspy>
-        <a href="#section-product">Product Description</a></li>
-      <li class="xb-step" du-smooth-scroll="section-report" du-scrollspy>
-        <a href="#section-report">Review Reports</a></li>
-    </ul>
-  </div>
-</div>
 
-<div class="container">
+<section>
+<div class=" container">
 
   <div class="row">
-    <div class="col-md-3 col-md-push-9 margin-bottom-xl margin-top">
+    <div class="col-md-3 col-md-push-9 margin-bottom-xl">
 
       <div class="card card-margin-bottomless" style="border-radius: 5px">
 
@@ -243,121 +231,142 @@
     </div>
 
     <div class="col-md-9 col-md-pull-3">
-      <div id="section-rules">
-        <div class="margin-bottom-xl">
-          <div class="row">
-            <div class="col-xs-3 col-sm-3 text-center">
-              <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
+      <uib-tabset>
+        <uib-tab heading="Details" active="tabs[0].active">
+          <div id="section-rules">
+            <div class="margin-bottom-xl hidden-xs">
+              <div class="row">
+                <div class="col-xs-3 col-sm-3 text-center">
+                  <img src="/images/review_step_1.png" style="width:100%;max-width: 60px;">
 
-              <p class="margin-top">1. Submit Application</p>
+                  <p class="margin-top">1. Submit Application</p>
+                </div>
+                <div class="col-xs-3 col-sm-3 text-center">
+                  <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
+
+                  <p class="margin-top">2. Candidate Selection</p>
+                </div>
+                <div class="col-xs-3 col-sm-3 text-center">
+                  <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
+
+                  <p class="margin-top">3. Product Shipment</p>
+                </div>
+                <div class="col-xs-3 col-sm-3 text-center">
+                  <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
+
+                  <p class="margin-top">4. Review Submission</p>
+                </div>
+              </div>
             </div>
-            <div class="col-xs-3 col-sm-3 text-center">
-              <img src="/images/review_step_2.png" style="width:100%;max-width: 60px;">
 
-              <p class="margin-top">2. Candidate Selection</p>
-            </div>
-            <div class="col-xs-3 col-sm-3 text-center">
-              <img src="/images/review_step_3.png" style="width:100%;max-width: 60px;">
 
-              <p class="margin-top">3. Product Shipment</p>
-            </div>
-            <div class="col-xs-3 col-sm-3 text-center">
-              <img src="/images/review_step_4.png" style="width:100%;max-width: 60px;">
+            <div class="margin-bottom-xl">
+              <h4 class="title-h4">Participation Rules</h4>
 
-              <p class="margin-top">4. Review Submission</p>
+              <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
+                Selected applicants will receive a free product for review purpose. To participate in this program,
+                please click on the “Apply Now” button
+                and fill out a brief application form.</p>
+
+              <p class="margin-top"><i>Timeline:</i></p>
+              <ul>
+                <li>
+                  Application Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
+                </li>
+                <li>
+                  Announce Selected Reviewers: within a week after application ended
+
+                </li>
+                <li>
+                  Testing Period: 2~3 weeks after receiving a product sample
+                </li>
+                <li>
+                  Review Submission Deadline: {{ review.date_end |amDateFormat:'MMM DD, YYYY' }}
+
+                </li>
+              </ul>
+              <p class="margin-top"><i>Benefits:</i></p>
+              <ul>
+                <li>
+                  Reviewer can keep the product sample for FREE after submitting a review report
+
+                </li>
+                <li>
+                  Be the first to test the most innovative products and share your opinions to make an impact
+
+                </li>
+              </ul>
+              <p class="margin-top"><i>Requirements:</i></p>
+              <ul>
+                <li>
+                  All selected applicants must submit their review reports before deadline, otherwise they will have to
+                  return
+                  the product to Xberts
+
+                </li>
+                <li>
+                  A review report should be UNBIASED and match the following criteria:
+                  <ul style="list-style-type: lower-alpha">
+                    <li>Minimum 500 words</li>
+                    <li>5 photos minimum</li>
+                    <li>Video is preferable but not required, unless stated otherwise</li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
 
+          <div id="section-product" class="margin-bottom-xl">
+            <h4 class="title-h4">Product Description</h4>
 
-        <div class="margin-bottom-xl">
-          <h4 class="title-h4">Detail</h4>
-          <p>{{ review.quota }} free samples will be given out for crowdtesting on Xberts.
-            Selected applicants will receive a free product for review purpose. To participate in this program,
-            please click on the “Apply Now” button
-            and fill out a brief application form.</p>
-
-          <p class="margin-top"><b>Timeline:</b></p>
-          <ul>
-            <li>
-              Application Deadline: {{ review.application_end_date |amDateFormat:'MMM DD, YYYY' }}
-            </li>
-            <li>
-              Announce Selected Reviewers: within a week after application ended
-
-            </li>
-            <li>
-              Testing Period: 2~3 weeks after receiving a product sample
-            </li>
-            <li>
-              Review Submission Deadline: {{ review.date_end |amDateFormat:'MMM DD, YYYY' }}
-
-            </li>
-          </ul>
-          <p class="margin-top"><b>Benefits:</b></p>
-          <ul>
-            <li>
-              Reviewer can keep the product sample for FREE after submitting a review report
-
-            </li>
-            <li>
-              Be the first to test the most innovative products and share your opinions to make an impact
-
-            </li>
-          </ul>
-          <p class="margin-top"><b>Requirements:</b></p>
-          <ul>
-            <li>
-              All selected applicants must submit their review reports before deadline, otherwise they will have to
-              return
-              the product to Xberts
-
-            </li>
-            <li>
-              A review report should be UNBIASED and match the following criteria:
-              <ul style="list-style-type: lower-alpha">
-                <li>Minimum 500 words</li>
-                <li>5 photos minimum</li>
-                <li>Video is preferable but not required, unless stated otherwise</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="section-product" class="margin-bottom-xl">
-        <h4 class="title-h4">Description</h4>
-        <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
-      </div>
-      <div id="section-report" class="margin-bottom-xl">
-        <h4 class="title-h4">Reviews</h4>
-        <div class="list list-borderless" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
-             infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
-          <div class="item-avatar-large" style="min-height: 127px;"
-               ng-repeat="report in reportPaginator.items">
-            <div class="item-image text-center">
-              <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
-            </div>
-            <div class="item-body">
-              <p class="item-body-header">
+            <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
+          </div>
+        </uib-tab>
+        <uib-tab heading="Reviews" active="tabs[2].active"
+                 select="select('reviews')" ng-if="reportPaginator.items.length>0">
+          <div ng-if="reviewsTabActive">
+            <div id="section-report" class="margin-bottom-xl">
+              <div class="list list-borderless" infinite-scroll="reportPaginator.loadNext()"
+                   infinite-scroll-distance='0'
+                   infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
+                <div class="item-avatar-large" style="min-height: 127px;"
+                     ng-repeat="report in reportPaginator.items">
+                  <div class="item-image text-center">
+                    <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
+                  </div>
+                  <div class="item-body">
+                    <p class="item-body-header">
                   <span><a ui-sref="application.report({reviewId:review.id,reportId:report.id})">{{report.applicant.reviewer.fullname
                     }}</a></span>
-                <span class="pull-right">{{ report.applicant.reviewer.country }}</span>
-              </p>
+                      <span class="pull-right">{{ report.applicant.reviewer.country }}</span>
+                    </p>
 
-              <p class="item-body-detail p-3-max" ng-bind-html="report.description |trust"></p>
+                    <p class="item-body-detail p-3-max" ng-bind-html="report.description |trust"></p>
 
-              <p class="xb-align-right">
-                <a ui-sref="application.report({reviewId:review.id,reportId:report.id})"><i class="small">View More
-                  ...</i></a>
-              </p>
+                    <p class="xb-align-right">
+                      <a ui-sref="application.report({reviewId:review.id,reportId:report.id})"><i class="small">View
+                        More
+                        ...</i></a>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+              <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
             </div>
-          </div>
 
-        </div>
-        <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
-      </div>
+          </div>
+        </uib-tab>
+        <uib-tab heading="Discussion" active="tabs[1].active"
+                 select="select('comments')">
+          <div ng-if="commentsTabActive">
+            <div ng-include src="'views/comments.html'"></div>
+          </div>
+        </uib-tab>
+
+      </uib-tabset>
     </div>
   </div>
 </div>
 
+</section>
