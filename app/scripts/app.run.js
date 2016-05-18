@@ -11,7 +11,6 @@ angular
         toolbar: [
           ['style', ['bold', 'italic', 'strikethrough']],
           ['fontface', ['fontname']],
-          ['textsize', ['fontsize']],
           ['alignment', ['ul', 'ol']],
           ['insert', ['link']]
         ]
@@ -23,15 +22,13 @@ angular
         toolbar: [
           ['edit', ['undo', 'redo']],
           ['headline', ['style']],
-          ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-          ['fontface', ['fontname']],
-          ['textsize', ['fontsize']],
+          ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+          //['fontface', ['fontname']],
           ['fontclr', ['color']],
           ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-          ['height', ['height']],
           ['table', ['table']],
           ['insert', ['link', 'picture', 'videoUpload', 'hr']],
-          ['view', ['fullscreen', 'codeview']]
+          ['view', ['fullscreen',]]
         ]
       };
       localStorageService.clearAll();

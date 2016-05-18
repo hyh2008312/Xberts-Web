@@ -17,18 +17,23 @@ angular.module('xbertsApp')
         }
       });
       //submit
-      $scope.reportFormSubmit = function () {
-        $scope.cost_performance_error = function () {
-          return $scope.reportData.cost_performance < 1;
-        };
-        $scope.usability_error = function () {
-          return $scope.reportData.usability < 1;
-        };
-        $scope.presentation_error = function () {
-          return $scope.reportData.presentation < 1;
-        };
 
-        if ($scope.reportForm.$valid && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1999) {
+      $scope.cost_performance_error = function () {
+        return $scope.reportData.cost_performance < 1;
+      };
+      $scope.usability_error = function () {
+        return $scope.reportData.usability < 1;
+      };
+      $scope.presentation_error = function () {
+        return $scope.reportData.presentation < 1;
+      };
+
+      $scope.formCheck=function(){
+        return $scope.reportForm.$valid && $scope.imageCount > 2 && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1999
+      };
+      $scope.reportFormSubmit = function () {
+
+        if ($scope.formCheck()) {
           $scope.$emit('backdropOn', 'post');
           var report = new ReviewReport($scope.reportData);
           if (!report.id) {
@@ -38,7 +43,7 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.report',{reviewId:$stateParams.reviewId,reportId:$scope.reportData.id});
+                $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
               }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
@@ -51,7 +56,7 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.report',{reviewId:$stateParams.reviewId,reportId:$scope.reportData.id});
+                $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
               }, 3);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
@@ -93,17 +98,20 @@ angular.module('xbertsApp')
 
       $scope.onChange = function (contents) {
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+        var groups = contents.match(/<img /ig);
+        $scope.imageCount = angular.isArray(groups) ? groups.length : 0 ;
       };
+
 
       //summerNote Image Upload
 
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
         $scope.editor.summernote('insertNode', videoNode);
-
         $scope.reportData.video_assets = $scope.reportData.video_assets || [];
         $scope.reportData.video_assets.push(data.id);
       };
+
 
       var imageSuccessCallback = function (data) {
         $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {

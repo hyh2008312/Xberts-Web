@@ -51,8 +51,11 @@
               <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
                           editor="editor"></summernote>
-              <p ng-class="{'font-danger':detailCharacterCount<2000,'font-success':detailCharacterCount>1999}" style="margin-top: -10px">Total characters:{{detailCharacterCount}}. <span
-                ng-show="detailCharacterCount<2000"> At least 2000 characters.</span>
+              <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}. <span
+                ng-show="detailCharacterCount<2000"> Please include at least 2000 characters.</span>
+              </p>
+              <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}. <span
+                ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
               </p>
             </div>
           </div>
@@ -91,7 +94,7 @@
           </div>
           <div class="xb-align-center margin-top-xl">
             <button type="button" class="button button-primary button-rounded button-mid-width" ng-click="reportSave()">Save Draft</button>
-            <button type="submit" class="button button-primary button-rounded button-mid-width">Publish</button>
+            <button type="submit" class="button button-primary button-rounded button-mid-width" ng-disabled="!formCheck()">Publish</button>
           </div>
         </div>
       </form>
