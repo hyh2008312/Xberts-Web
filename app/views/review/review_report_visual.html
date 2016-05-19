@@ -18,17 +18,21 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3  col-md-push-9 padding-clear">
-          <div class="card card-shadowless card-margin-bottomless">
+          <div class="card">
             <div class="card-body">
-              <div class="pr">
-                <save class="align-center" title="Like"></save>
+              <h4 class="xb-align-center">Do you like this story?</h4>
+              <div class="pr margin-top-l margin-bottom-l">
+                <save class="align-center" title="Like" icon="fa-thumbs-up"></save>
+              </div>
+              <div>
+                <saver></saver>
               </div>
             </div>
           </div>
 
           <div class="card card-shadowless card-margin-bottomless">
             <div class="card-body">
-              <h4>Share with Friends</h4>
+              <h4 class="margin-bottom-l">Share with Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
                       socialshare-provider="linkedin"
                       socialshare-description="{{ pageSettings._description }}"
@@ -57,20 +61,25 @@
 
               <button class="button button-action button-glow button-circle button-large" socialshare
                       socialshare-provider="twitter"
-                      socialshare-description="{{ pageSettings._description }}"
+                      socialshare-description=""
                       socialshare-text="{{ pageSettings._title }}"
                       socialshare-source="{{ pageSettings._shareImage }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-twitter"></i>
               </button>
+              <!--<button class="button button-action button-glow button-circle button-large"-->
+                      <!--socialshare-->
+                      <!--socialshare-provider="email"-->
+                      <!--socialshare-body="{{ pageSettings._description }}"-->
+                      <!--socialshare-to="test@test.ing"-->
+                      <!--socialshare-cc="test@test.ing"-->
+                      <!--socialshare-subject="{{ pageSettings._title }}"-->
+                      <!--socialshare-popup-height="300"-->
+                      <!--socialshare-popup-width="400">-->
+                <!--<i class="fa fa-envelope"></i>-->
+              <!--</button>-->
             </div>
 
-          </div>
-          <div class="card card-shadowless" ng-show="interact.vote_amount>0">
-            <div class="card-body">
-              <h4 class="card-body-title">Interested Users</h4>
-              <saver></saver>
-            </div>
           </div>
         </div>
         <div class="col-md-9 col-md-pull-3">

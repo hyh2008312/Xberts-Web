@@ -12,7 +12,7 @@ angular.module('xbertsApp')
       template: '<div>' +
       '<button class="button button-glow button-full" ng-class="{\'button-caution\':join.vote,\'button-primary\':!join.vote}"' +
       'ng-disabled="loadingJoin || voting " ng-click="save()"> ' +
-      '<i class="fa fa-heart fa-lg"></i> {{ title }} <span ng-show="interact.vote_amount>0">{{ interact.vote_amount }}<span>' +
+      '<i class="fa {{icon}} fa-lg"></i> {{ title }} <span ng-show="interact.vote_amount>0">{{ interact.vote_amount }}<span>' +
       '</button>' +
       '</div>',
       require: '^join',
@@ -20,6 +20,7 @@ angular.module('xbertsApp')
       replace: true,
       link: function postLink(scope, element, attrs, joinController) {
         scope.title = attrs.title || 'Like';
+        scope.icon = attrs.icon || '';
         scope.save = function () {
           //todo:增加登录权限
           if (scope.join.id === undefined) {
