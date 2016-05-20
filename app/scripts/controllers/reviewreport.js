@@ -28,7 +28,7 @@ angular.module('xbertsApp')
         return $scope.reportData.presentation < 1;
       };
 
-      $scope.formCheck=function(){
+      $scope.formCheck = function () {
         return $scope.reportForm.$valid && $scope.imageCount > 2 && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1999
       };
       $scope.reportFormSubmit = function () {
@@ -99,7 +99,7 @@ angular.module('xbertsApp')
       $scope.onChange = function (contents) {
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
         var groups = contents.match(/<img /ig);
-        $scope.imageCount = angular.isArray(groups) ? groups.length : 0 ;
+        $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
       };
 
 
@@ -145,7 +145,7 @@ angular.module('xbertsApp')
     }
   ])
   .
-  controller('ReviewReportVisualCtrl', function ($scope, $rootScope, report) {
+  controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport,growl) {
     $scope.report = report;
 
     var title = report.title;
@@ -166,4 +166,11 @@ angular.module('xbertsApp')
           break;
       }
     };
+    $scope.approve = function () {
+      $scope.$emit('backdropOn', 'approve project');
+      ReviewReport.patch({id: report.id, reviewId: $stateParams.reviewId}, {is_approved: 'PENDING'}, function () {
+        $scope.$emit('backdropOff', 'success');
+        growl.success('review  report is approved.');
+      })
+    }
   });
