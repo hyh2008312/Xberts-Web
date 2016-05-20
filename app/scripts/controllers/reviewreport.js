@@ -107,6 +107,7 @@ angular.module('xbertsApp')
 
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
+        videoNode.setAttribute('data-video-id', data.id);
         $scope.editor.summernote('insertNode', videoNode);
         $scope.reportData.video_assets = $scope.reportData.video_assets || [];
         $scope.reportData.video_assets.push(data.id);

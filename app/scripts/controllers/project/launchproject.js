@@ -95,6 +95,7 @@ angular.module('xbertsApp')
     function ($scope, growl, UploadService) {
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
+        videoNode.setAttribute('data-video-id', data.id);
         $scope.editor.summernote('insertNode', videoNode);
 
         $scope.projectData.video_assets = $scope.projectData.video_assets || [];
