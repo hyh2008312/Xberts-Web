@@ -38,7 +38,7 @@
               <input type="text" class="form-control" name='title' ng-model="reportData.title"
                      ng-required="true" ng-maxlength="200">
 
-              <div class="" ng-show="reportForm.$submitted || reportForm.title.$touched"
+              <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
                    ng-messages="reportForm.title.$error">
                 <p class="message-error" ng-message="required">* required.</p>
 
@@ -68,7 +68,7 @@
                           aria-labelledby="default-rating" ng-required="true"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.cost_performance">{{reportData.cost_performance}}'</span>
 
-              <p class="font-striking" ng-show="reportForm.$submitted && cost_performance_error()">* required</p>
+              <p class="font-striking" ng-show="reportForm.submitted && cost_performance_error()">* required</p>
             </div>
             <div class="margin-bottom">
               <b>Usability: </b>
@@ -78,7 +78,7 @@
                           aria-labelledby="default-rating"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.usability">{{reportData.usability}}'</span>
 
-              <p class="font-danger" ng-show="reportForm.$submitted && usability_error()">* required</p>
+              <p class="font-danger" ng-show="reportForm.submitted && usability_error()">* required</p>
             </div>
             <div class="margin-bottom">
               <b>Presentation: </b>
@@ -89,7 +89,7 @@
               <span class="font-striking margin-left"
                     ng-show="reportData.presentation">{{reportData.presentation}}'</span>
 
-              <p class="font-danger" ng-show="reportForm.$submitted && presentation_error()">* required</p>
+              <p class="font-danger" ng-show="reportForm.submitted && presentation_error()">* required</p>
             </div>
           </div>
           <div class="xb-align-center margin-top-xl">

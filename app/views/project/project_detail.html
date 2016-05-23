@@ -35,7 +35,7 @@
       <label>Describe your Product:</label>
       <summernote config="summerNoteFull" ng-model="projectData.details"
                   on-image-upload="imageUpload(files)" editable="editable"
-                  editor="editor"></summernote>
+                  editor="editor" on-paste="paste(evt)"></summernote>
 
 
     </div>

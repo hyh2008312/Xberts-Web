@@ -19,12 +19,15 @@ angular.module('xbertsApp')
       //submit
 
       $scope.cost_performance_error = function () {
+        $scope.reportData.cost_performance = $scope.reportData.cost_performance || 0;
         return $scope.reportData.cost_performance < 1;
       };
       $scope.usability_error = function () {
+        $scope.reportData.usability = $scope.reportData.usability || 0;
         return $scope.reportData.usability < 1;
       };
       $scope.presentation_error = function () {
+        $scope.reportData.presentation = $scope.reportData.presentation || 0;
         return $scope.reportData.presentation < 1;
       };
 
@@ -71,28 +74,34 @@ angular.module('xbertsApp')
       };
 
       $scope.reportSave = function () {
-        $scope.$emit('backdropOn', 'post');
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
-        if (!report.id) {
-          report.$save({reviewId: $stateParams.reviewId}, function (resp) {
-            $scope.reportData = resp;
-            $scope.$emit('backdropOff', 'success');
-            growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
-          }, function (resp) {
-            $scope.$emit('backdropOff', 'error');
-            growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-          });
+        if ($scope.reportForm.$valid) {
+          $scope.$emit('backdropOn', 'post');
+          if (!report.id) {
+            report.$save({reviewId: $stateParams.reviewId}, function (resp) {
+              $scope.reportData = resp;
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+            });
+          } else {
+            report.$put({reviewId: $stateParams.reviewId}, function (resp) {
+              $scope.reportData = resp;
+              $scope.$emit('backdropOff', 'success');
+              growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+            }, function (resp) {
+              $scope.$emit('backdropOff', 'error');
+              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+            });
+          }
         } else {
-          report.$put({reviewId: $stateParams.reviewId}, function (resp) {
-            $scope.reportData = resp;
-            $scope.$emit('backdropOff', 'success');
-            growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
-          }, function (resp) {
-            $scope.$emit('backdropOff', 'error');
-            growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
-          });
+          $scope.reportForm.submitted = true;
+          $scope.reportForm.$invalid = true;
         }
+
       };
       // summerNote character amount check
 
@@ -102,26 +111,23 @@ angular.module('xbertsApp')
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
       };
 
-      //$('#summernote').summernote({
-      //  callbacks: {
-      //    onPaste: function(e) {
-      //      console.log('Called event paste');
-      //    }
-      //  }
-      //});
-      //$('#summernote').on('summernote.paste', function(e) {
-      //  console.log('Called event paste');
-      //});
-
-      $scope.paste = function(e) {
-        console.log(e);
+      $scope.paste = function (e) {
         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-
-        console.log(bufferText);
 
         e.preventDefault();
 
-        $scope.editor.summernote('insertText', bufferText);
+        var paragraphs = bufferText.split('\n');
+        for (var i = 0; i < paragraphs.length; i++) {
+          var pNode = document.createElement('p');
+          var textNode = document.createTextNode(paragraphs[i]);
+          pNode.appendChild(textNode);
+          $scope.editor.summernote('insertNode', pNode);
+        }
+
+        //$timeout(function () {
+        //  var e = $.Event('keypress', {keyCode:13,which: 13});
+        //  $scope.editor.trigger(e);
+        //}, 200);
       };
 
 
@@ -139,6 +145,12 @@ angular.module('xbertsApp')
       var imageSuccessCallback = function (data) {
         $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {
           $image.attr('data-image-id', data.id);
+          $timeout(function () {
+            var pNode = document.createElement('p');
+            var brNode = document.createElement('br');
+            pNode.appendChild(brNode);
+            $scope.editor.summernote('insertNode', pNode);
+          }, 100);
         });
         $scope.reportData.image_assets = $scope.reportData.image_assets || [];
         $scope.reportData.image_assets.push(data.id);
@@ -168,7 +180,7 @@ angular.module('xbertsApp')
     }
   ])
   .
-  controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport,growl) {
+  controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
     $scope.report = report;
 
     var title = report.title;
