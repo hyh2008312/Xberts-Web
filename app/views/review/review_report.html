@@ -50,7 +50,7 @@
               <label>Share your experience of using this product:</label>
               <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
-                          editor="editor"></summernote>
+                          editor="editor" on-paste="paste(evt)"></summernote>
               <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}. <span
                 ng-show="detailCharacterCount<2000"> Please include at least 2000 characters.</span>
               </p>

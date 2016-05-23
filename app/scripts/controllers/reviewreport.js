@@ -102,6 +102,28 @@ angular.module('xbertsApp')
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
       };
 
+      //$('#summernote').summernote({
+      //  callbacks: {
+      //    onPaste: function(e) {
+      //      console.log('Called event paste');
+      //    }
+      //  }
+      //});
+      //$('#summernote').on('summernote.paste', function(e) {
+      //  console.log('Called event paste');
+      //});
+
+      $scope.paste = function(e) {
+        console.log(e);
+        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+        console.log(bufferText);
+
+        e.preventDefault();
+
+        $scope.editor.summernote('insertText', bufferText);
+      };
+
 
       //summerNote Image Upload
 
