@@ -66,6 +66,21 @@ angular
           'undo': 'fa fa-undo',
           'unorderedlist': 'fa fa-list-ul',
           'video': 'fa fa-youtube-play'
+        },
+        popover: {
+          image: [
+            ['remove', ['removeMedia']]
+          ],
+          link: [
+            ['link', ['linkDialogShow', 'unlink']]
+          ],
+          air: [
+            ['color', ['color']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['para', ['ul', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']]
+          ]
         }
       };
       localStorageService.clearAll();

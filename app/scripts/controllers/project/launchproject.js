@@ -103,6 +103,10 @@ angular.module('xbertsApp')
       };
 
       var imageSuccessCallback = function (data) {
+        var pNode = document.createElement('p');
+        var brNode = document.createElement('br');
+        pNode.appendChild(brNode);
+        $scope.editor.summernote('insertNode', pNode);
         $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
           $image.attr('data-image-id', data.id);
           $timeout(function () {
