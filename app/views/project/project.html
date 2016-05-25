@@ -29,17 +29,17 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <h4 class="card-body-title xb-align-center">Contact Manufacturer</h4>
+              <h4 class="card-body-title xb-align-center">Product Inquiry</h4>
 
-              <p class="card-body-detail">Interested in becoming a distributor, retailer or sales partner for this
-                product? Submit your inquiry here! </p>
+              <p class="card-body-detail">Interested in purchasing or distributing this
+                product? Send your inquiries right away!</p>
 
               <div>
                 <button class="button button-full button-glow"
-                        ng-class="{'button-primary':!inquiry.exist,'button-plain':inquiry.exist}" ng-click="open('lg')"
+                        ng-class="{'button-highlight':!inquiry.exist,'button-plain':inquiry.exist}" ng-click="open('lg')"
                         ng-disabled="inquiry.exist">
               <span ng-switch="inquiry.exist">
-                <span ng-switch-when="false">Inquire</span>
+                <span ng-switch-when="false">Contact Manufacturer</span>
                 <span ng-switch-when="true">
                   <span ng-switch="inquiry.status">
                     <span ng-switch-when="REQUESTED">Pending</span>
