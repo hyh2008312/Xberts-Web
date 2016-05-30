@@ -146,6 +146,7 @@ angular.module('xbertsApp')
         $timeout(function(){
           $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
             $image.attr('data-image-id', data.id);
+            $image.attr('style','width:100%');
             var wrapperSelector = "[data-image-id=\"" + data.id + "\"]";
             var wrapper = document.querySelector(wrapperSelector);
             console.log(wrapper);
