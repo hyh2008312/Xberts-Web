@@ -1,5 +1,5 @@
-<uib-carousel interval="5000" no-wrap="false" style="margin-top: -50px;">
-  <uib-slide ng-repeat="slide in slides" active="slide.active">
+<uib-carousel interval="5000" no-wrap="false" active="active">
+  <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
     <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
       <div class="container">
         <div class="section-title">
@@ -9,7 +9,8 @@
         </div>
       </div>
       <div class="carousel-caption {{ slide.captionLocation}} hidden-xs">
-        <a ng-click="slideButtonClick(slide)" class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
+        <a ng-click="slideButtonClick(slide)"
+           class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
           slide.buttonText }}</a>
       </div>
     </section>

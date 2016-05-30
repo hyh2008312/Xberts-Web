@@ -20,8 +20,8 @@
                 <li> Please include pictures and videos to demonstrate your opinions visually. If you would like to
                   provide videos, upload the video to YouTube and paste the url in the content page.
                 </li>
-                <li> The review report should be uploaded before {{ applicant.review.date_end | amDateFormat:'MMM DD,
-                  YYYY'}}.
+                <li> The review report should be uploaded before
+                  {{ applicant.review.date_end | amDateFormat:'MMM DD,YYYY'}}.
                 </li>
                 <li> Please feel free to contact us at info@xberts.com if you have any questions or concerns.</li>
               </ul>
@@ -50,12 +50,12 @@
               <label>Share your experience of using this product:</label>
               <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
-                          editor="editor" on-paste="paste(evt)"></summernote>
-              <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}. <span
-                ng-show="detailCharacterCount<2000"> Please include at least 2000 characters.</span>
+                          editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" on-keyup="setPrevious(evt)"></summernote>
+              <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
+                <span ng-show="detailCharacterCount<2000"> Please include at least 2000 characters.</span>
               </p>
-              <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}. <span
-                ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
+              <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
+                <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
               </p>
             </div>
           </div>
@@ -63,8 +63,8 @@
             <div class="margin-bottom">
               <b>Value for Money: </b>
               <uib-rating ng-model="reportData.cost_performance" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
-                          state-off="'fa fa-star-o'"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
+                          state-off="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating" ng-required="true"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.cost_performance">{{reportData.cost_performance}}'</span>
 
@@ -73,8 +73,8 @@
             <div class="margin-bottom">
               <b>Usability: </b>
               <uib-rating ng-model="reportData.usability" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
-                          state-off="'fa fa-star-o'"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
+                          state-off="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.usability">{{reportData.usability}}'</span>
 
@@ -83,8 +83,8 @@
             <div class="margin-bottom">
               <b>Presentation: </b>
               <uib-rating ng-model="reportData.presentation" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-on="'font-striking fa fa-star'"
-                          state-off="'fa fa-star-o'"
+                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
+                          state-off="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating"></uib-rating>
               <span class="font-striking margin-left"
                     ng-show="reportData.presentation">{{reportData.presentation}}'</span>

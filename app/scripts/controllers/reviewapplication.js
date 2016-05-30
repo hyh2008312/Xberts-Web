@@ -68,7 +68,11 @@ angular.module('xbertsApp')
       $scope.INDUSTRY = SystemConstant.INDUSTRY;
       $scope.review = review;
       var applicants_old = $filter('orderBy')(review.applicants, ['-is_selected', '+sequence_number']);
-      $scope.applicants = $filter('filter')(applicants_old, {reviewer: {is_bad_reviewer: false}});
+      if($rootScope.user.isStaff()){
+        $scope.applicants = applicants_old;
+      }else {
+        $scope.applicants = $filter('filter')(applicants_old, {reviewer: {is_bad_reviewer: false}});
+      }
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
         $state.go('application.main')
       }

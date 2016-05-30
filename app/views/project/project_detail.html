@@ -30,12 +30,12 @@
 
   <div class="col-md-9 col-md-pull-3">
     <p><b> Product Title: </b>{{ projectData.title }}</p>
-
     <div class="form-group">
       <label>Describe your Product:</label>
       <summernote config="summerNoteFull" ng-model="projectData.details"
                   on-image-upload="imageUpload(files)" editable="editable"
-                  editor="editor" on-paste="paste(evt)"></summernote>
+                  editor="editor" on-paste="paste(evt)" on-keyup="setPreviousRange(evt)"
+                  on-focus="onFocus(evt)"></summernote>
 
 
     </div>

@@ -3,6 +3,8 @@
 angular.module('xbertsApp')
   .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
     function ($rootScope, $timeout, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant) {
+
+      $scope.applicant=applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.referenceId = 'reportapplicant_' + applicant.id;
       $scope.reportData = {
@@ -15,6 +17,7 @@ angular.module('xbertsApp')
         if (data.count !== undefined && data.count > 0) {
           $scope.reportData = data.results[0];
         }
+        $scope.onChange($scope.reportData.details || "");
       });
       //submit
 
@@ -115,6 +118,7 @@ angular.module('xbertsApp')
         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
         e.preventDefault();
+        $scope.setPreviousRange();
 
         var paragraphs = bufferText.split('\n');
         for (var i = 0; i < paragraphs.length; i++) {
@@ -123,11 +127,43 @@ angular.module('xbertsApp')
           pNode.appendChild(textNode);
           $scope.editor.summernote('insertNode', pNode);
         }
+      };
 
-        //$timeout(function () {
-        //  var e = $.Event('keypress', {keyCode:13,which: 13});
-        //  $scope.editor.trigger(e);
-        //}, 200);
+      var getCurrentRange=function(){
+        var sel;
+        if (window.getSelection) {
+          sel = window.getSelection();
+          if (sel.getRangeAt && sel.rangeCount) {
+            return sel.getRangeAt(0);
+          }
+        } else if (document.selection && document.selection.createRange) {
+          return document.selection.createRange();
+        }
+        return null;
+      };
+
+      var setCurrentRange=function(range){
+        var sel;
+        if (range) {
+          if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          } else if (document.selection && range.select) {
+            //document.select is a legacy problem.
+            range.select();
+          }
+        }
+      };
+
+      $scope.previousRange=null;
+
+      $scope.setPreviousRange=function(evt){
+        $scope.previousRange=getCurrentRange();
+        console.log($scope.previousRange);
+      };
+      $scope.onFocus=function(evt){
+        evt.target.addEventListener('mouseup',$scope.setPreviousRange);
       };
 
 
@@ -136,13 +172,16 @@ angular.module('xbertsApp')
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
         videoNode.setAttribute('data-video-id', data.id);
+        setCurrentRange($scope.previousRange);
         $scope.editor.summernote('insertNode', videoNode);
+        $scope.setPreviousRange();
         $scope.reportData.video_assets = $scope.reportData.video_assets || [];
         $scope.reportData.video_assets.push(data.id);
       };
 
 
       var imageSuccessCallback = function (data) {
+        setCurrentRange($scope.previousRange);
         $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {
           $image.attr('data-image-id', data.id);
           $timeout(function () {
@@ -150,6 +189,7 @@ angular.module('xbertsApp')
             var brNode = document.createElement('br');
             pNode.appendChild(brNode);
             $scope.editor.summernote('insertNode', pNode);
+            $scope.setPreviousRange();
           }, 100);
         });
         $scope.reportData.image_assets = $scope.reportData.image_assets || [];
@@ -177,6 +217,7 @@ angular.module('xbertsApp')
             }, errorCallback);
         }
       };
+
     }
   ])
   .
@@ -207,5 +248,5 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'success');
         growl.success('review  report is approved.');
       })
-    }
+    };
   });

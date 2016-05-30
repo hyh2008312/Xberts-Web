@@ -91,8 +91,45 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService','$timeout',
-    function ($scope, growl, UploadService,$timeout) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout',
+    function ($scope, growl, UploadService, $timeout) {
+      var getCurrentRange=function(){
+        var sel;
+        if (window.getSelection) {
+          sel = window.getSelection();
+          if (sel.getRangeAt && sel.rangeCount) {
+            return sel.getRangeAt(0);
+          }
+        } else if (document.selection && document.selection.createRange) {
+          return document.selection.createRange();
+        }
+        return null;
+      };
+
+      var setCurrentRange=function(range){
+        var sel;
+        if (range) {
+          if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          } else if (document.selection && range.select) {
+            //document.select is a legacy problem.
+            range.select();
+          }
+        }
+      };
+
+      $scope.previousRange=null;
+
+      $scope.setPreviousRange=function(evt){
+        $scope.previousRange=getCurrentRange();
+        console.log($scope.previousRange);
+      };
+      $scope.onFocus=function(evt){
+        evt.target.addEventListener('mouseup',$scope.setPreviousRange);
+      };
+
       var videoSuccessCallback = function (data) {
         var videoNode = $scope.editor.summernote('videoDialog.createVideoNode', data.videoUrl);
         videoNode.setAttribute('data-video-id', data.id);
@@ -103,19 +140,22 @@ angular.module('xbertsApp')
       };
 
       var imageSuccessCallback = function (data) {
-        var pNode = document.createElement('p');
-        var brNode = document.createElement('br');
-        pNode.appendChild(brNode);
-        $scope.editor.summernote('insertNode', pNode);
-        $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
-          $image.attr('data-image-id', data.id);
-          $timeout(function () {
-            var pNode = document.createElement('p');
-            var brNode = document.createElement('br');
-            pNode.appendChild(brNode);
-            $scope.editor.summernote('insertNode', pNode);
-          }, 100);
-        });
+        setCurrentRange($scope.previousRange);
+
+        $scope.editor.summernote('insertParagraph');
+        $timeout(function(){
+          $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
+            $image.attr('data-image-id', data.id);
+            var wrapperSelector = "[data-image-id=\"" + data.id + "\"]";
+            var wrapper = document.querySelector(wrapperSelector);
+            console.log(wrapper);
+            $timeout(function () {
+              $scope.editor.summernote('insertParagraph');
+              wrapper.parentNode.setAttribute('contenteditable',false);
+              $scope.setPreviousRange();
+            }, 100);
+          });
+        },200);
         $scope.projectData.image_assets = $scope.projectData.image_assets || [];
         $scope.projectData.image_assets.push(data.id);
       };
@@ -153,15 +193,13 @@ angular.module('xbertsApp')
         }
       };
 
-      $scope.paste = function(e) {
+      $scope.paste = function (e) {
         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-
         e.preventDefault();
-
-        var paragraphs=bufferText.split('\n');
-        for(var i=0; i<paragraphs.length;i++){
-          var pNode=document.createElement('p');
-          var textNode=document.createTextNode(paragraphs[i]);
+        var paragraphs = bufferText.split('\n');
+        for (var i = 0; i < paragraphs.length; i++) {
+          var pNode = document.createElement('p');
+          var textNode = document.createTextNode(paragraphs[i]);
           pNode.appendChild(textNode);
           $scope.editor.summernote('insertNode', pNode);
         }

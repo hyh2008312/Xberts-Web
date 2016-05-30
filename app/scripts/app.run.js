@@ -24,7 +24,7 @@ angular
           ['style', ['bold', 'italic']],
           ['alignment', ['ul', 'ol']],
           ['insert', ['link', 'picture', 'videoUpload']],
-          ['view', ['fullscreen','undo', 'redo']]
+          ['view', ['fullscreen','undo', 'redo','codeview']]
         ],
         styleTags: ['h1','p'],
         icons: {
@@ -68,9 +68,6 @@ angular
           'video': 'fa fa-youtube-play'
         },
         popover: {
-          image: [
-            ['remove', ['removeMedia']]
-          ],
           link: [
             ['link', ['linkDialogShow', 'unlink']]
           ],

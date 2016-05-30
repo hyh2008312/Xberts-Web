@@ -61,6 +61,9 @@
                         <i ng-switch-when="false" class="text-danger">Dismissed</i>
                         <i ng-switch-when="null">Pending</i>
                 </span>
+              <span ng-if="user.isStaff() && applicant.reviewer.is_bad_reviewer" class="font-danger">
+                <i>Bad Reviewer</i>
+              </span>
 
               <p class="item-body-header">
                 ID: <a ng-click="open('lg',$index)">#{{ applicant.sequence_number}}</a>
