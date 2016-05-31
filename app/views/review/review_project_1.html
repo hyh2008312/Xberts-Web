@@ -42,7 +42,7 @@
                 <div ng-switch="applicant.exist" class="margin-top">
                   <div ng-switch-when="false">
                     <div ng-switch="review.state">
-                      <button ng-switch-when="0" class="button button-full button-glow button-success-disabled"
+                      <button ng-switch-when="0" class="button button-full button-success-disabled"
                               disabled>
                         Coming Soon
                       </button>
@@ -81,7 +81,7 @@
                       <button ng-switch-when="1" class="button button-full button-glow button-primary"
                               ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
                       </button>
-                      <button ng-switch-when="2" class="button button-full button-glow button-action">Screening
+                      <button ng-switch-when="2" class="button button-full button-success-disabled" disabled>Screening
                       </button>
                       <div ng-switch-when="3">
                         <div ng-switch="applicant.is_selected">
