@@ -35,14 +35,16 @@ angular.module('xbertsApp')
       }
       $scope.profile.linkedin = true;
       $scope.redirect = false;
+      $scope.active = 0;
       $scope.tabs = [
-        {active: true, disable: false},
-        {active: false, disable: true},
-        {active: false, disable: true},
-        {active: false, disable: true}
+        {index: 0, active: true, disable: false},
+        {index: 1, active: false, disable: true},
+        {index: 2, active: false, disable: true},
+        {index: 3, active: false, disable: true}
       ];
       $scope.$on('reviewStep', function (e, d) {
         var step = Number(d);
+        $scope.active = step + 1;
         $scope.tabs[step + 1].disable = false;
         $scope.tabs[step + 1].active = true;
         if (step === 2) {
@@ -68,9 +70,9 @@ angular.module('xbertsApp')
       $scope.INDUSTRY = SystemConstant.INDUSTRY;
       $scope.review = review;
       var applicants_old = $filter('orderBy')(review.applicants, ['-is_selected', '+sequence_number']);
-      if($rootScope.user.isStaff()){
+      if ($rootScope.user.isStaff()) {
         $scope.applicants = applicants_old;
-      }else {
+      } else {
         $scope.applicants = $filter('filter')(applicants_old, {reviewer: {is_bad_reviewer: false}});
       }
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
