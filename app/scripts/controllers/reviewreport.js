@@ -156,6 +156,32 @@ angular.module('xbertsApp')
         }
       };
 
+      var insertImage = function (src, id) {
+        setCurrentRange($scope.previousRange);
+
+        //src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
+        //id = id || 1;
+        var preLoading = new Image();
+        var img = document.createElement('img');
+        img.className = 'pre-loading';
+        img.setAttribute('data-image-id', id);
+        preLoading.onload = function () {
+          img.src = preLoading.src;
+          img.className = '';
+        };
+        preLoading.src = src;
+
+        var div = document.createElement('div');
+        div.appendChild(img);
+        $scope.editor.summernote('insertNode', div);
+        $timeout(function () {
+          $scope.editor.summernote('insertParagraph');
+          div.setAttribute('contenteditable', false);
+          $scope.setPreviousRange();
+        }, 100);
+
+      };
+
       $scope.previousRange=null;
 
       $scope.setPreviousRange=function(evt){
@@ -181,17 +207,7 @@ angular.module('xbertsApp')
 
 
       var imageSuccessCallback = function (data) {
-        setCurrentRange($scope.previousRange);
-        $scope.editor.summernote('insertImage', data.imageUrl, function ($image) {
-          $image.attr('data-image-id', data.id);
-          $timeout(function () {
-            var pNode = document.createElement('p');
-            var brNode = document.createElement('br');
-            pNode.appendChild(brNode);
-            $scope.editor.summernote('insertNode', pNode);
-            $scope.setPreviousRange();
-          }, 100);
-        });
+        insertImage(data.imageUrl, data.id);
         $scope.reportData.image_assets = $scope.reportData.image_assets || [];
         $scope.reportData.image_assets.push(data.id);
       };

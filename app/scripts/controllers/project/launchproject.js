@@ -93,7 +93,7 @@ angular.module('xbertsApp')
       }])
   .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout',
     function ($scope, growl, UploadService, $timeout) {
-      var getCurrentRange=function(){
+      var getCurrentRange = function () {
         var sel;
         if (window.getSelection) {
           sel = window.getSelection();
@@ -106,7 +106,33 @@ angular.module('xbertsApp')
         return null;
       };
 
-      var setCurrentRange=function(range){
+      var insertImage = function (src, id) {
+        setCurrentRange($scope.previousRange);
+
+        //src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
+        //id = id || 1;
+        var preLoading = new Image();
+        var img = document.createElement('img');
+        img.className = 'pre-loading';
+        img.setAttribute('data-image-id', id);
+        preLoading.onload = function () {
+          img.src = preLoading.src;
+          img.className = '';
+        };
+        preLoading.src = src;
+
+        var div = document.createElement('div');
+        div.appendChild(img);
+        $scope.editor.summernote('insertNode', div);
+        $timeout(function () {
+          $scope.editor.summernote('insertParagraph');
+          div.setAttribute('contenteditable', false);
+          $scope.setPreviousRange();
+        }, 100);
+
+      };
+
+      var setCurrentRange = function (range) {
         var sel;
         if (range) {
           if (window.getSelection) {
@@ -120,14 +146,13 @@ angular.module('xbertsApp')
         }
       };
 
-      $scope.previousRange=null;
+      $scope.previousRange = null;
 
-      $scope.setPreviousRange=function(evt){
-        $scope.previousRange=getCurrentRange();
-        console.log($scope.previousRange);
+      $scope.setPreviousRange = function (evt) {
+        $scope.previousRange = getCurrentRange();
       };
-      $scope.onFocus=function(evt){
-        evt.target.addEventListener('mouseup',$scope.setPreviousRange);
+      $scope.onFocus = function (evt) {
+        evt.target.addEventListener('mouseup', $scope.setPreviousRange);
       };
 
       var videoSuccessCallback = function (data) {
@@ -140,26 +165,13 @@ angular.module('xbertsApp')
       };
 
       var imageSuccessCallback = function (data) {
-        setCurrentRange($scope.previousRange);
 
-        $scope.editor.summernote('insertParagraph');
-        $timeout(function(){
-          $scope.editor.summernote('insertImage', data.imageUrl,function ($image) {
-            $image.attr('data-image-id', data.id);
-            $image.attr('style','width:100%');
-            var wrapperSelector = "[data-image-id=\"" + data.id + "\"]";
-            var wrapper = document.querySelector(wrapperSelector);
-            console.log(wrapper);
-            $timeout(function () {
-              $scope.editor.summernote('insertParagraph');
-              wrapper.parentNode.setAttribute('contenteditable',false);
-              $scope.setPreviousRange();
-            }, 100);
-          });
-        },200);
+        insertImage(data.imageUrl, data.id);
         $scope.projectData.image_assets = $scope.projectData.image_assets || [];
         $scope.projectData.image_assets.push(data.id);
       };
+
+
 
       var errorCallback = function (error) {
         // Don't display error when user cancels upload

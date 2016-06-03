@@ -11,17 +11,18 @@ angular.module('xbertsApp')
   .controller('ExpertsCtrl', function ($scope, $rootScope, SystemData, SystemConstant, expertPaginator) {
     $rootScope.pageSettings.setBackgroundColor('');
 
-    $scope.experts = {};
+    $scope.expertSearch = {};
     $scope.stages = SystemData.getStages();
     $scope.countries = SystemConstant.COUNTRIES;
     $scope.expertPaginator = expertPaginator;
     $scope.onSearch = function () {
-      $scope.expertPaginator.params = $scope.experts;
+      $scope.expertPaginator.params = $scope.expertSearch;
+      //console.log($scope.experts);
       $scope.expertPaginator.clear();
       $scope.expertPaginator.loadNext();
     };
     $scope.onClearSearch = function () {
-      $scope.experts.search = '';
+      $scope.expertSearch.search = '';
       $scope.onSearch();
     };
     $scope.onKeyDown = function ($event) {
@@ -30,10 +31,10 @@ angular.module('xbertsApp')
       }
     };
     $scope.onExpertsCareer = function (career) {
-      if ($scope.experts.career_fields__id === career) {
-        $scope.experts.career_fields__id = '';
+      if ($scope.expertSearch.career_fields__id === career) {
+        $scope.expertSearch.career_fields__id = '';
       } else {
-        $scope.experts.career_fields__id = career;
+        $scope.expertSearch.career_fields__id = career;
       }
       $scope.onSearch();
     };

@@ -742,6 +742,11 @@ form#sign_form input#id_email, input#id_password {
   //width: 100% !important;
   max-width: 850px !important;
   height: auto !important;
+  &.pre-loading{
+    background: url("../images/loading.gif") no-repeat center center;
+    width: 200px;
+    height: 200px !important;
+  }
 }
 .note-editable h1{
   font-size: 24px;

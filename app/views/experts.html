@@ -13,10 +13,10 @@
         <li class="ul-list-title">{{ stage.stage }}</li>
         <li class="list-item padding-top-10 padding-bottom-10 font-12 border-top text-indent"
             ng-repeat="career in stage.careers"
-            ng-class="{'active':experts.career_fields__id==career.id}"
+            ng-class="{'active':expertSearch.career_fields__id==career.id}"
             ng-click="onExpertsCareer(career.id);">{{ career.career_field }}
           <i class="fa fa-check text-success pull-right"
-             ng-show="experts.career_fields__id==career.id"></i>
+             ng-show="expertSearch.career_fields__id==career.id"></i>
         </li>
       </ul>
     </div>
@@ -30,14 +30,14 @@
                 <option value="">-- All Geographies --</option>
                 <option ng-repeat="country in countries"
                         value="{{ country.code }}"
-                        ng-selected="experts.country==country.code">{{ country.name }}
+                        ng-selected="expertSearch.country==country.code">{{ country.name }}
                 </option>
               </select>
             </div>
             <div class="col-xs-12 col-sm-6  col-md-4 col-md-offset-3">
               <div class="search">
                 <input type="text" name='search' class="form-control input-sm" placeholder="Search for..."
-                       ng-model="experts.search"
+                       ng-model="expertSearch.search"
                        ng-keydown="onKeyDown($event);">
                 <a class="fa fa-search" ng-click="onSearch();"></a>
                 <a class="fa fa-times" ng-click="onClearSearch();"></a>
