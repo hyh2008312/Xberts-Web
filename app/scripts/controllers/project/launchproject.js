@@ -52,6 +52,7 @@ angular.module('xbertsApp')
         //submit
         $scope.projectFormSubmit = function () {
           //project pre process
+          $scope.projectData.details = $scope.projectData.details.replace(/pre-loading/ig, "");
           $scope.projectData.certification_tags = Utils.convertTagsInputToCommaString($scope.projectTemp.tags);
           if ($scope.projectForm.$valid) {
             if ($scope.projectData.id) {
@@ -115,15 +116,18 @@ angular.module('xbertsApp')
         var img = document.createElement('img');
         img.setAttribute('data-image-id', id);
         img.setAttribute('src', src);
-        img.onload = function () {
-          this.className = '';
-        };
         var div = document.createElement('div');
         div.appendChild(img);
         $scope.editor.summernote('insertNode', div);
 
+        img.setAttribute('class', 'pre-loading');
+        img.onload = function () {
+          this.setAttribute('class', '');
+        };
+        img.onerror = function () {
+          this.setAttribute('class', '');
+        };
 
-        img.className = 'pre-loading';
 
         $timeout(function () {
           $scope.editor.summernote('insertParagraph');
@@ -171,7 +175,6 @@ angular.module('xbertsApp')
         $scope.projectData.image_assets = $scope.projectData.image_assets || [];
         $scope.projectData.image_assets.push(data.id);
       };
-
 
 
       var errorCallback = function (error) {

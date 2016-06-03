@@ -18,6 +18,7 @@ angular.module('xbertsApp')
         //element.addClass('backdrop');
         //element.height(window.screen.availHeight);
         //element.width(window.screen.availWidth);
+
         element.addClass('hide');
         $rootScope.backdropCount = 0;
         $rootScope.$on('backdropOn', function (e, d) {

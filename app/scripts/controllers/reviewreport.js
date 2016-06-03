@@ -77,6 +77,8 @@ angular.module('xbertsApp')
       };
 
       $scope.reportSave = function () {
+        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
         if ($scope.reportForm.$valid) {
@@ -165,15 +167,18 @@ angular.module('xbertsApp')
         var img = document.createElement('img');
         img.setAttribute('data-image-id', id);
         img.setAttribute('src', src);
-        img.onload = function () {
-            this.className = '';
-        };
         var div = document.createElement('div');
         div.appendChild(img);
         $scope.editor.summernote('insertNode', div);
 
+        img.setAttribute('class', 'pre-loading');
+        img.onload = function () {
+          this.setAttribute('class', '');
+        };
+        img.onerror = function () {
+          this.setAttribute('class', '');
+        };
 
-        img.className = 'pre-loading';
 
         $timeout(function () {
           $scope.editor.summernote('insertParagraph');
@@ -182,6 +187,8 @@ angular.module('xbertsApp')
         }, 100);
 
       };
+
+      //$scope.insertImage=insertImage;
 
 
       $scope.previousRange=null;
