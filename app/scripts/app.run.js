@@ -17,7 +17,7 @@ angular
       };
       $rootScope.pageSettings = PageService.pageSetting;
       $rootScope.summerNoteFull = {
-        height: 300,
+        height: 600,
         shortcuts: false,
         toolbar: [
           ['headline', ['style']],

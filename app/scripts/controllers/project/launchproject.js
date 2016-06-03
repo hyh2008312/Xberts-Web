@@ -109,21 +109,22 @@ angular.module('xbertsApp')
       var insertImage = function (src, id) {
         setCurrentRange($scope.previousRange);
 
-        //src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
-        //id = id || 1;
-        var preLoading = new Image();
-        var img = document.createElement('img');
-        img.className = 'pre-loading';
-        img.setAttribute('data-image-id', id);
-        preLoading.onload = function () {
-          img.src = preLoading.src;
-          img.className = '';
-        };
-        preLoading.src = src;
+        src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
+        id = id || 1;
 
+        var img = document.createElement('img');
+        img.setAttribute('data-image-id', id);
+        img.setAttribute('src', src);
+        img.onload = function () {
+          this.className = '';
+        };
         var div = document.createElement('div');
         div.appendChild(img);
         $scope.editor.summernote('insertNode', div);
+
+
+        img.className = 'pre-loading';
+
         $timeout(function () {
           $scope.editor.summernote('insertParagraph');
           div.setAttribute('contenteditable', false);
