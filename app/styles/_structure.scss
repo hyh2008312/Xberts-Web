@@ -739,7 +739,7 @@ form#sign_form input#id_email, input#id_password {
 //summer-note overrides
 
 .note-editable img{
-  //width: 100% !important;
+  width: 100% !important;
   max-width: 850px !important;
   height: auto !important;
   &.pre-loading{
