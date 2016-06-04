@@ -115,7 +115,7 @@ angular
         templateUrl: 'views/project/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
-        abstract: true,
+        //abstract: true,
         resolve: {
           projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
@@ -129,7 +129,8 @@ angular
       .state('application.protected.projectLaunch.detail', {
         url: "/ProductDetail",
         templateUrl: 'views/project/project_detail.html',
-        controller: 'LaunchProjectDetailCtrl'
+        controller: 'LaunchProjectDetailCtrl',
+        controllerAs: 'launchProjectDetail'
       })
       .state('application.protected.projectEdit.basic', {
         url: "/BasicInfo",
@@ -138,7 +139,8 @@ angular
       .state('application.protected.projectEdit.detail', {
         url: "/ProductDetail",
         templateUrl: 'views/project/project_detail.html',
-        controller: 'LaunchProjectDetailCtrl'
+        controller: 'LaunchProjectDetailCtrl',
+        controllerAs: 'launchProjectDetail'
       })
       .state('application.project', {
         url: "/products/:projectId?tab",

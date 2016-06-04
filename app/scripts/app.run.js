@@ -24,7 +24,7 @@ angular
           ['style', ['bold', 'italic']],
           ['alignment', ['ul', 'ol']],
           ['insert', ['link', 'picture', 'videoUpload']],
-          ['view', ['fullscreen','undo', 'redo','codeview']]
+          ['view', ['fullscreen','undo', 'redo']]
         ],
         styleTags: ['h1','p'],
         icons: {

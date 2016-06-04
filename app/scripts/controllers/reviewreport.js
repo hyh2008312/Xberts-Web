@@ -111,6 +111,7 @@ angular.module('xbertsApp')
       // summerNote character amount check
 
       $scope.onChange = function (contents) {
+        console.log(contents);
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
         var groups = contents.match(/<img /ig);
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
