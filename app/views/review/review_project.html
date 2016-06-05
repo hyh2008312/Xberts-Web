@@ -38,9 +38,9 @@
               <p class="font-gray-light">{{ review.quota }} Free Samples</p>
 
 
-              <h4 ng-show="review.state==0"> Start Date:</h4>
+              <h4 ng-show="review.status === 'UPCOMING'"> Start Date:</h4>
 
-              <p ng-show="review.state==0" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM
+              <p ng-show="review.status === 'UPCOMING'" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM
                 DD,YYYY'}}</p>
 
               <h4> Application Deadline:</h4>
@@ -53,21 +53,21 @@
 
               <div ng-switch="applicant.exist" class="margin-top">
                 <div ng-switch-when="false">
-                  <div ng-switch="review.state">
-                    <button ng-switch-when="0" class="button button-full button-glow button-success-disabled" disabled>
+                  <div ng-switch="review.status">
+                    <button ng-switch-when="UPCOMING" class="button button-full button-glow button-success-disabled" disabled>
                       Coming Soon
                     </button>
-                    <button ng-switch-when="1" class="button button-full button-glow button-primary"
+                    <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
                             ui-sref="application.protected.apply({reviewId:review.id})">Apply Now
                     </button>
-                    <button ng-switch-when="2" class="button button-full button-glow button-plain" disabled>Application
+                    <button ng-switch-when="SELECTION" class="button button-full button-glow button-plain" disabled>Application
                       Ended
                     </button>
-                    <button ng-switch-when="3" class="button button-full button-glow button-plain" disabled>Application
+                    <button ng-switch-when="CONFIRMATION" class="button button-full button-glow button-plain" disabled>Application
                       Ended
                     </button>
 
-                    <div ng-switch-when="4">
+                    <div ng-switch-when="REVIEW">
                       <div ng-switch="user.isAuth()">
                         <button ng-switch-when="true" class="button button-full button-glow button-plain" disabled>In
                           Progress
@@ -77,23 +77,23 @@
                         </button>
                       </div>
                     </div>
-                    <button ng-switch-when="5" class="button button-full button-glow button-plain" disabled>Completed
+                    <button ng-switch-when="ENDED" class="button button-full button-glow button-plain" disabled>Completed
                     </button>
                   </div>
                 </div>
 
                 <div ng-switch-when="true">
-                  <div ng-switch="review.state">
-                    <button ng-switch-when="0" class="button button-full button-action button-success-disabled"
+                  <div ng-switch="review.status">
+                    <button ng-switch-when="UPCOMING" class="button button-full button-action button-success-disabled"
                             disabled>
                       Coming Soon
                     </button>
-                    <button ng-switch-when="1" class="button button-full button-glow button-primary"
+                    <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
                             ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
                     </button>
-                    <button ng-switch-when="2" class="button button-full button-glow button-success-disabled" disabled>Screening
+                    <button ng-switch-when="SELECTION" class="button button-full button-glow button-success-disabled" disabled>Screening
                     </button>
-                    <div ng-switch-when="3">
+                    <div ng-switch-when="CONFIRMATION">
                       <div ng-switch="applicant.is_selected">
                         <button ng-switch-when="false" class="button button-full button-glow button-action" disabled>Not
                           Selected
@@ -105,7 +105,7 @@
                         </button>
                       </div>
                     </div>
-                    <div ng-switch-when="4">
+                    <div ng-switch-when="REVIEW">
                       <div ng-switch="applicant.is_selected">
                         <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>Not
                           Selected
@@ -123,7 +123,7 @@
                         </div>
                       </div>
                     </div>
-                    <div ng-switch-when="5">
+                    <div ng-switch-when="ENDED">
                       <div ng-switch="applicant.is_selected">
                         <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>
                           Completed
@@ -151,28 +151,28 @@
           </div>
         </div>
 
-        <div ng-show="review.state == 2">
+        <div ng-show="review.status === 'SELECTION'">
           <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
             <a class="button button-primary button-glow button-full"
                ui-sref="application.selectApplicants({reviewId:review.id})">Select
               Applicants</a>
           </div>
         </div>
-        <div ng-show="review.state == 3">
+        <div ng-show="review.status === 'CONFIRMATION'">
           <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
             <a class="button button-primary button-glow button-full"
                ui-sref="application.selectApplicants({reviewId:review.id})">View
               Applicants</a>
           </div>
         </div>
-        <div ng-show="review.state == 4">
+        <div ng-show="review.status === 'REVIEW'">
           <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
             <a class="button button-primary button-glow button-full"
                ui-sref="application.selectApplicants({reviewId:review.id})">View
               Shipping Address</a>
           </div>
         </div>
-        <div ng-show="review.state == 5">
+        <div ng-show="review.status === 'ENDED'">
           <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
             <a class="button button-primary button-glow button-full"
                ui-sref="application.crowdtestingReports({reviewId:review.id})">View

@@ -67,7 +67,7 @@ angular
               fetchFunction: function (params) {
                 return ProjectReview.get(params).$promise;
               },
-              filter: {state: '!0'},
+              filter: {status: '!UPCOMING'},
               minSize: 3
             };
             return Paginator(par).load();

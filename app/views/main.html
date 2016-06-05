@@ -142,7 +142,7 @@
 
     <div class="row section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items | limitTo:3">
-        <a class="block-link" ui-sref="application.review({ reviewId:review.id })">
+        <a class="block-link" ui-sref="application.crowdtesting({ reviewId:review.id })">
           <div class="card">
             <div class="card-header" style="background-image: url({{ review.project.image }})">
             </div>
@@ -153,23 +153,23 @@
                 Available Units: {{ review.quota }} free samples
               </p>
 
-              <p class="card-body-detail" ng-switch="review.state">
-                <span ng-switch-when="0">Start Date: {{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</span>
-                <span ng-switch-when="1">Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</span>
-                <span ng-switch-when="2">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-                <span ng-switch-when="3">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-                <span ng-switch-when="4">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-                <span ng-switch-when="5">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+              <p class="card-body-detail" ng-switch="review.status">
+                <span ng-switch-when="UPCOMING">Start Date: {{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="APPLICATION">Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="SELECTION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="CONFIRMATION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="REVIEW">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+                <span ng-switch-when="ENDED">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
               </p>
 
 
-              <div class="card-body-footer align-right" ng-switch="review.state">
-                <span ng-switch-when="0" class="label label-success" style="font-size: 16px">Coming Soon</span>
-                <span ng-switch-when="1" class="label label-primary" style="font-size: 16px">Apply Now</span>
-                <span ng-switch-when="2" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="3" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="4" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="5" class="label label-default" style="font-size: 16px">Completed</span>
+              <div class="card-body-footer align-right" ng-switch="review.status">
+                <span ng-switch-when="UPCOMING" class="label label-success" style="font-size: 16px">Coming Soon</span>
+                <span ng-switch-when="APPLICATION" class="label label-primary" style="font-size: 16px">Apply Now</span>
+                <span ng-switch-when="SELECTION" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="CONFIRMATION" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="REVIEW" class="label label-info" style="font-size: 16px">In Progress</span>
+                <span ng-switch-when="ENDED" class="label label-default" style="font-size: 16px">Completed</span>
               </div>
 
             </div>
@@ -180,7 +180,7 @@
     <p></p>
 
     <div class="align-center">
-      <a ui-sref="application.reviews" class="button button-primary button-glow">View More Campaigns</a>
+      <a ui-sref="application.crowdtestings" class="button button-primary button-glow">View More Campaigns</a>
     </div>
   </div>
 </section>
