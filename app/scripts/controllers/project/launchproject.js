@@ -98,7 +98,6 @@ angular.module('xbertsApp')
   .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout','$uibModal',
     function ($scope, growl, UploadService, $timeout,$uibModal) {
       $scope.projectForm.submitted = false;
-      console.log($scope.projectForm.submitted);
       var getCurrentRange = function () {
         var sel;
         if (window.getSelection) {
@@ -125,9 +124,9 @@ angular.module('xbertsApp')
         div.appendChild(img);
         $scope.editor.summernote('insertNode', div);
 
-        img.setAttribute('class', 'pre-loading');
+        img.setAttribute('class', 'pre-loading full-image');
         img.onload = function () {
-          this.setAttribute('class', '');
+          this.setAttribute('class', 'full-image');
         };
         img.onerror = function () {
           this.setAttribute('class', '');
