@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant',
-    function ($rootScope, $timeout, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant','$uibModal',
+    function ($rootScope, $timeout, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant,$uibModal) {
 
-      $scope.applicant=applicant;
+      $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.referenceId = 'reportapplicant_' + applicant.id;
       $scope.reportData = {
@@ -82,6 +82,7 @@ angular.module('xbertsApp')
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
         if ($scope.reportForm.$valid) {
+          $scope.reportForm.submitted = true;
           $scope.$emit('backdropOn', 'post');
           if (!report.id) {
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
@@ -111,10 +112,10 @@ angular.module('xbertsApp')
       // summerNote character amount check
 
       $scope.onChange = function (contents) {
-        console.log(contents);
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
         var groups = contents.match(/<img /ig);
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
+        $scope.reportForm.$pristine = true;
       };
 
       $scope.paste = function (e) {
@@ -132,7 +133,7 @@ angular.module('xbertsApp')
         }
       };
 
-      var getCurrentRange=function(){
+      var getCurrentRange = function () {
         var sel;
         if (window.getSelection) {
           sel = window.getSelection();
@@ -145,7 +146,7 @@ angular.module('xbertsApp')
         return null;
       };
 
-      var setCurrentRange=function(range){
+      var setCurrentRange = function (range) {
         var sel;
         if (range) {
           if (window.getSelection) {
@@ -192,13 +193,13 @@ angular.module('xbertsApp')
       //$scope.insertImage=insertImage;
 
 
-      $scope.previousRange=null;
+      $scope.previousRange = null;
 
-      $scope.setPreviousRange=function(evt){
-        $scope.previousRange=getCurrentRange();
+      $scope.setPreviousRange = function (evt) {
+        $scope.previousRange = getCurrentRange();
       };
-      $scope.onFocus=function(evt){
-        evt.target.addEventListener('mouseup',$scope.setPreviousRange);
+      $scope.onFocus = function (evt) {
+        evt.target.addEventListener('mouseup', $scope.setPreviousRange);
       };
 
 
@@ -242,6 +243,47 @@ angular.module('xbertsApp')
             }, errorCallback);
         }
       };
+
+      $scope.transitionListen = true;
+
+      $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+        console.log($scope.transitionListen);
+        console.log($scope.reportForm.$pristine);
+        console.log($scope.reportForm.submitted);
+
+        if (!$scope.transitionListen || $scope.reportForm.submitted) return;
+
+        event.preventDefault();
+        $scope.$emit('backdropOff', 'transition prevented');
+
+        $scope.toState = toState;
+
+        $scope.open('md');
+
+      });
+
+      $scope.open = function (size) {
+
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modal/leave-prompt.html',
+          controller: 'LeavePromptController',
+          size: size,
+          resolve: {
+            title: function () {
+              return 'report';
+            }
+          }
+        });
+        modalInstance.result.then(function (result) {
+          $scope.transitionListen = false;
+          $state.go($scope.toState.name);
+        }, function (value) {
+          console.info('Modal closed: ' + value);
+        });
+      };
+
+
 
     }
   ])

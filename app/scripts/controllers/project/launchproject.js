@@ -52,9 +52,12 @@ angular.module('xbertsApp')
         //submit
         $scope.projectFormSubmit = function () {
           //project pre process
-          $scope.projectData.details = $scope.projectData.details.replace(/pre-loading/ig, "");
+          if ($scope.projectData.details) {
+            $scope.projectData.details = $scope.projectData.details.replace(/pre-loading/ig, "");
+          }
           $scope.projectData.certification_tags = Utils.convertTagsInputToCommaString($scope.projectTemp.tags);
           if ($scope.projectForm.$valid) {
+            $scope.projectForm.submitted = true;
             if ($scope.projectData.id) {
               $scope.projectData.$patch(function (data) {
                 $scope.$emit('backdropOff', 'success');
@@ -92,8 +95,10 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout',
-    function ($scope, growl, UploadService, $timeout) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout','$uibModal',
+    function ($scope, growl, UploadService, $timeout,$uibModal) {
+      $scope.projectForm.submitted = false;
+      console.log($scope.projectForm.submitted);
       var getCurrentRange = function () {
         var sel;
         if (window.getSelection) {
@@ -110,8 +115,8 @@ angular.module('xbertsApp')
       var insertImage = function (src, id) {
         setCurrentRange($scope.previousRange);
 
-        src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
-        id = id || 1;
+        //src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
+        //id = id || 1;
 
         var img = document.createElement('img');
         img.setAttribute('data-image-id', id);
@@ -222,5 +227,44 @@ angular.module('xbertsApp')
         }
 
       };
+
+      $scope.transitionListen = true;
+
+      $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+        console.log('kk');
+
+        if (!$scope.transitionListen || $scope.projectForm.submitted) return;
+
+
+        event.preventDefault();
+        $scope.$emit('backdropOff', 'transition prevented');
+
+        $scope.toState = toState;
+
+        $scope.open('md');
+
+      });
+
+      $scope.open = function (size) {
+
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modal/leave-prompt.html',
+          controller: 'LeavePromptController',
+          size: size,
+          resolve: {
+            title: function () {
+              return 'project';
+            }
+          }
+        });
+        modalInstance.result.then(function (result) {
+          $scope.transitionListen = false;
+          $state.go($scope.toState.name);
+        }, function (value) {
+          console.info('Modal closed: ' + value);
+        });
+      };
+
 
     }]);
