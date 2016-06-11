@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="col-sm-2 text-center expert-profile-btn">
-          <follow width="120" ng-if="!isCurrentUser"></follow>
+          <button class="btn btn-primary btn-fixed-sm" ng-if="!isCurrentUser" ng-click="contactUser()">Contact</button>
           <button class="btn btn-primary btn-fixed-sm" ng-if="isCurrentUser" ng-click="editProfile()">Edit</button>
         </div>
       </div>
@@ -40,26 +40,10 @@
             <uib-tab heading="Products" active="tabs[1].active" select="select('products')" ng-if="expert.product_amount>0">
               <div ng-include src="'views/profile/projectstab.html'"></div>
             </uib-tab>
-            <uib-tab heading="Crowd Testing" active="tabs[5].active" select="select('reviews')" ng-if="expert.applicant_amount>0">
+            <uib-tab heading="Crowd Testing" active="tabs[5].active" select="select('reviews')"
+                     ng-if="isCurrentUser && expert.applicant_amount>0">
               <div ng-include src="'views/profile/reviewstab.html'"></div>
             </uib-tab>
-            <uib-tab heading="Followers" active="tabs[2].active" select="select('followers')">
-              <div ng-if="followersTabActive">
-                <joins joins-paginator="followersPaginator"></joins>
-              </div>
-            </uib-tab>
-            <uib-tab heading="Followings" active="tabs[3].active" select="select('followings')">
-              <div ng-if="followingsTabActive">
-                <followings joins-paginator="followingsPaginator"></followings>
-              </div>
-            </uib-tab>
-
-            <uib-tab heading="Message" active="tabs[4].active" select="select('comments')">
-              <div ng-if="commentsTabActive">
-                <div ng-include src="'views/comments.html'"></div>
-              </div>
-            </uib-tab>
-
           </uib-tabset>
         </div>
       </div>

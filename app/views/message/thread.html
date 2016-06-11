@@ -1,0 +1,34 @@
+<div class="list-title align-center">
+  <h3 class="wordwrap" style="margin: 0px">{{ firstMessage.subject }}</h3>
+  <div ng-switch="firstMessage.category">
+    <span ng-switch-when="PRODUCT_INQUIRY" class="label label-default" >Product Inquiry</span>
+    <span ng-switch-when="REVIEW_QUESTION" class="label label-default" >Crowdtesting Question</span>
+    <span ng-switch-default class="label label-default" >Direct Message</span>
+  </div>
+</div>
+<div class="list">
+  <div class="item-avatar-large"
+       ng-repeat="message in messages">
+    <div class="item-image text-center">
+      <avatar-img src="message.sender.avatar" name="message.sender.shortName"></avatar-img>
+    </div>
+    <div class="item-body">
+      <p class="item-body-header">
+        <span>{{ message.sender.shortName }}</span>
+        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
+      </p>
+      <p class="item-body-detail wordwrap">{{ message.body }}</p>
+    </div>
+  </div>
+</div>
+<div class="margin-top-l">
+  <form name="replyForm" ng-submit="replyMessage()" novalidate>
+    <textarea name='body' class="form-control" rows="5"
+              ng-model="data.body" required>
+    </textarea>
+
+    <div class="margin-top align-right">
+      <button type="submit" class="btn btn-primary" ng-disabled="replyForm.$invalid">Reply</button>
+    </div>
+  </form>
+</div>

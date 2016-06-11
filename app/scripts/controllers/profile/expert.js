@@ -143,4 +143,17 @@ angular.module('xbertsApp')
         $state.go('application.protected.editProfile');
       };
 
+      $scope.contactUser = function () {
+        var sendMessageModal = $uibModal.open({
+          templateUrl: 'views/modal/send-message.html',
+          windowClass: 'dialog-vertical-center',
+          controller: 'SendMessageCtrl',
+          resolve: {
+            recipientId: function() {
+              return $scope.expert.user_id;
+            }
+          }
+        });
+      };
+
     }]);

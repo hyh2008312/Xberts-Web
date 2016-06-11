@@ -37,6 +37,7 @@
               <!--<a ui-sref="application.protected.launchProject" class="fade-in-line"><i-->
                 <!--class="fa fa-plus-circle fa-lg"></i> Launch Product</a>-->
             <!--</li>-->
+            <messages ng-if="user.isAuth()" class="hidden-xs"></messages>
             <notifications ng-if="user.isAuth()" class="hidden-xs"></notifications>
             <li ng-if="!user.isAuth()">
               <a ui-sref="application.signup" class="fade-in-line">Sign Up</a>

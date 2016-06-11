@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h3>Send Message</h3>
+</div>
+<form name="sendMessageForm" ng-submit="sendMessage()" novalidate clear-form-error>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="subjectInput">
+              <span>Subject:</span>
+              <span class="error" ng-show="sendMessageForm.$submitted || sendMessageForm.subject.$touched">
+                <span ng-show="sendMessageForm.subject.$error.required">Please enter a subject.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row bottom-buffer-sm">
+          <div class="col-md-12">
+            <input type="text" id="subjectInput" class="form-control" name="subject"
+                   ng-model="data.subject" ng-model-options="{ updateOn: 'blur' }"
+                   required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="bodyInput">
+              <span>Message:</span>
+              <span class="error" ng-show="sendMessageForm.$submitted || sendMessageForm.body.$touched">
+                <span ng-show="sendMessageForm.body.$error.required">Please enter a message.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row bottom-buffer-sm">
+          <div class="col-md-12">
+            <textarea id="bodyInput" class="form-control" name="body" rows="5"
+                      ng-model="data.body" ng-model-options="{ updateOn: 'blur' }"
+                      required></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row text-left error bottom-buffer-sm" ng-show="sendMessageForm.$submitted"
+         ng-messages="sendMessageForm.serverError">
+      <div class="col-md-12">
+        <div ng-messages-include="views/message/form_error.html"></div>
+      </div>
+    </div>
+    <input type="submit" value="Send" class="btn btn-primary btn-fixed-sm">
+    <input type="button" value="Cancel" class="btn btn-default btn-fixed-sm" ng-click="$dismiss()">
+  </div>
+</form>
+

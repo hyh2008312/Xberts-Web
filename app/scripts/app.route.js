@@ -477,5 +477,32 @@ angular
             // no-opt
           }]
         }
+      })
+      .state('application.protected.message', {
+        abstract: true,
+        templateUrl: 'views/message/message.html',
+        controller: 'MessageCtrl'
+      })
+      .state('application.protected.message.inbox', {
+        url: '/message/inbox?direction&category',
+        templateUrl: 'views/message/inbox.html',
+        controller: 'MessageInboxCtrl',
+        resolve: {
+          messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
+            function ($stateParams, protectedAuthCheck, MessageResolver) {
+              return MessageResolver.getMessages($stateParams);
+          }]
+        }
+      })
+      .state('application.protected.message.thread', {
+        url: '/message/thread/{threadId:[0-9]+}',
+        templateUrl: 'views/message/thread.html',
+        controller: 'MessageThreadCtrl',
+        resolve: {
+          messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
+            function ($stateParams, protectedAuthCheck, MessageResolver) {
+              return MessageResolver.viewThread($stateParams);
+          }]
+        }
       });
   }]);

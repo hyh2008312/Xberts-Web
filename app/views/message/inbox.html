@@ -1,0 +1,23 @@
+<div class="list">
+  <div class="item-avatar-large item-hover"
+       ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient">
+    <div class="item-image text-center">
+      <avatar-img src="contact.avatar" name="contact.shortName"></avatar-img>
+    </div>
+    <div class="item-body" ng-click="viewThread(message.thread)">
+      <p class="item-body-header">
+        <span ng-if="showSender">from&nbsp;</span>
+        <span ng-if="!showSender">to&nbsp;</span>
+        <span><a ng-click="viewContact(contact.id, $event)">{{ contact.shortName }}</a></span>
+        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
+      </p>
+      <p class="item-body-title p-1-max">{{ message.subject }}</p>
+      <p ng-switch="message.category">
+        <span ng-switch-when="PRODUCT_INQUIRY" class="label label-default" >Product Inquiry</span>
+        <span ng-switch-when="REVIEW_QUESTION" class="label label-default" >Crowdtesting Question</span>
+        <span ng-switch-default class="label label-default" >Direct Message</span>
+      </p>
+      <p class="item-body-detail p-3-max">{{ message.body }}</p>
+    </div>
+  </div>
+</div>
