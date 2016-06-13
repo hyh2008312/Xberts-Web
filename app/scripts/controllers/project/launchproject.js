@@ -95,8 +95,8 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout','$uibModal',
-    function ($scope, growl, UploadService, $timeout,$uibModal) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout','$uibModal','$state',
+    function ($scope, growl, UploadService, $timeout,$uibModal,$state) {
       $scope.projectForm.submitted = false;
       var getCurrentRange = function () {
         var sel;
