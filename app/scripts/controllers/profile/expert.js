@@ -108,9 +108,30 @@ angular.module('xbertsApp')
         }
       }
 
-      if ($stateParams.action === 'applyExpert' && $rootScope.user.authRequired() && $scope.isCurrentUser && !$scope.isExpert && !$scope.pendingExpert) {
-        console.log('expert application process triggered');
+      var sendMessage = function () {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
 
+        var sendMessageModal = $uibModal.open({
+          templateUrl: 'views/modal/send-message.html',
+          windowClass: 'dialog-vertical-center',
+          controller: 'SendMessageCtrl',
+          resolve: {
+            recipientId: function() {
+              return $scope.expert.user_id;
+            }
+          }
+        });
+      };
+
+      $scope.contactUser = function () {
+        $state.go('application.expert', {expertId: $scope.expert.user_id, action: 'contact'});
+
+        sendMessage();
+      };
+
+      if ($stateParams.action === 'applyExpert' && $rootScope.user.authRequired() && $scope.isCurrentUser && !$scope.isExpert && !$scope.pendingExpert) {
         if (!$rootScope.user.isLinkedinConnected()) {
           $uibModal.open({
             templateUrl: 'views/profile/linkedin-connect-modal.html',
@@ -137,23 +158,12 @@ angular.module('xbertsApp')
               $location.search('action', null);
             });
         }
+      } else if ($stateParams.action === 'contact' && $rootScope.user.authRequired() &&
+        $rootScope.user.getUserId() !== $scope.expert.user_id) {
+        sendMessage();
       }
 
       $scope.editProfile = function () {
         $state.go('application.protected.editProfile');
       };
-
-      $scope.contactUser = function () {
-        var sendMessageModal = $uibModal.open({
-          templateUrl: 'views/modal/send-message.html',
-          windowClass: 'dialog-vertical-center',
-          controller: 'SendMessageCtrl',
-          resolve: {
-            recipientId: function() {
-              return $scope.expert.user_id;
-            }
-          }
-        });
-      };
-
     }]);
