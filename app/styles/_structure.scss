@@ -748,6 +748,11 @@ form#sign_form input#id_email, input#id_password {
     height: 200px !important;
   }
 }
+.note-diseditable img{
+  width: 100% !important;
+  max-width: 850px !important;
+  height: auto !important;
+}
 .note-editable h1{
   font-size: 24px;
 }

@@ -11,7 +11,6 @@ angular.module('xbertsApp')
   .controller('ProjectsCtrl', ['$scope', 'projectPaginator', '$rootScope', 'SystemData', 'localStorageService', function ($scope, projectPaginator, $rootScope, SystemData, localStorageService) {
     $rootScope.pageSettings.setBackgroundColor('');
     $scope.projectTypes = SystemData.getProjectTypes();
-    console.log($scope.projectTypes);
     $scope.otherConditions=[
       {value:"-date_published",label:"Sorted by: Latest"},
       {value:"-interact__vote_amount",label:"Popular"}];

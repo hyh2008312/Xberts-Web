@@ -39,6 +39,8 @@ angular.module('xbertsApp')
       };
       $scope.reportFormSubmit = function () {
 
+        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+
         if ($scope.formCheck()) {
           $scope.$emit('backdropOn', 'post');
           var report = new ReviewReport($scope.reportData);

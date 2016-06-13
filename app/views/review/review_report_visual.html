@@ -92,7 +92,7 @@
         <div class="col-md-9 col-md-pull-3">
           <uib-tabset>
             <uib-tab heading="Description" active="tabs[0].active">
-              <div ng-bind-html="report.details | trust" class="note-editable"></div>
+              <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
             </uib-tab>
             <uib-tab heading="Comments" active="tabs[1].active"
                      select="select('comments')">
