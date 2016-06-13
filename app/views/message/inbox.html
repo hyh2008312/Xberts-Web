@@ -1,4 +1,7 @@
-<div class="list">
+<div ng-if="isEmpty">
+  <h3 class="margin-none">You have no message</h3>
+</div>
+<div class="list" ng-if="!isEmpty">
   <div class="item-avatar-large item-hover"
        ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient">
     <div class="item-image text-center">

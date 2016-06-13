@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MessageInboxCtrl', ['$scope', '$state', '$stateParams', 'messages',
-    function($scope, $state, $stateParams, messages) {
+  .controller('MessageInboxCtrl', ['_', '$scope', '$state', '$stateParams', 'messages',
+    function(_, $scope, $state, $stateParams, messages) {
       $scope.messages = messages;
+      $scope.isEmpty = _(messages).isEmpty();
 
       if ($stateParams['direction'] === 'outgoing') {
         $scope.$parent.category = 'outgoing';
