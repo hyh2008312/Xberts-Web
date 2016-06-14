@@ -755,11 +755,17 @@ form#sign_form input#id_email, input#id_password {
 }
 .note-editable h1{
   font-size: 24px;
+  span{
+    font-size: 24px!important;
+  }
 }
 
 .note-product{
   h1{
     font-size: 24px;
+    span{
+      font-size: 24px!important;
+    }
   }
 }
 
