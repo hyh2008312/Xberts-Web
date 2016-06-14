@@ -117,7 +117,7 @@
         <div class="col-md-9 col-md-pull-3">
           <uib-tabset>
             <uib-tab heading="Description" active="tabs[0].active">
-              <div ng-bind-html=" project.details | trust"></div>
+              <div ng-bind-html=" project.details | trust" class="note-product"></div>
               <div class="text-center" ng-if="user.isStaff()">
                 <div growl></div>
                 <a ng-click="approve(true)">

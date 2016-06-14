@@ -1,4 +1,41 @@
-<!doctype html> <html ng-app="xbertsApp"> <head> <base href="/"> <meta charset="utf-8"> <meta name="fragment" content="!"> <title ng-bind="pageSettings._title">Xberts - Innovations worth spreading</title> <meta name="description" content="Xberts.com is the go-to-market platform for Asia’s smart hardware brands to enter global market."> <meta name="viewport" content="width=device-width"> <meta property="og:title" content="{{ pageSettings._title}}"> <meta property="og:description" content="{{ pageSettings._description}}"> <meta property="og:image" content="{{ pageSettings._shareImage}}"> <link rel="icon" type="image/png" href="/images/favicon.3bfd590c.png"> <link rel="stylesheet" href="styles/vendor.76e133e8.css"> <link rel="stylesheet" href="styles/main.2cdde2c5.css"> </head> <body ng-class="pageSettings._backgroundColor"> <!-- Google Tag Manager --> <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5Q6BDP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <script>(function (w, d, s, l, i) {
+<!doctype html>
+<html ng-app="xbertsApp">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="fragment" content="!">
+  <title ng-bind="pageSettings._title">Xberts - Innovations worth spreading</title>
+  <meta name="description"
+        content="Xberts.com is the go-to-market platform for Asia’s smart hardware brands to enter global market.">
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:title" content="{{ pageSettings._title}}"/>
+  <meta property="og:description" content="{{ pageSettings._description}}"/>
+  <meta property="og:image" content="{{ pageSettings._shareImage}}"/>
+  <link rel="icon" type="image/png" href="/images/favicon.png"/>
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css" />
+  <link rel="stylesheet" href="/bower_components/Buttons/css/buttons.css" />
+  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+  <link rel="stylesheet" href="/bower_components/intl-tel-input/build/css/intlTelInput.css" />
+  <link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.css" />
+  <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- endbuild -->
+</head>
+<body ng-class="pageSettings._backgroundColor">
+
+<!-- Google Tag Manager -->
+<noscript>
+  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
   w[l] = w[l] || [];
   w[l].push({
     'gtm.start': new Date().getTime(), event: 'gtm.js'
@@ -9,7 +46,231 @@
   j.src =
     '//www.googletagmanager.com/gtm.js?id=' + i + dl;
   f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'dataLayer', 'GTM-5Q6BDP');</script> <!-- End Google Tag Manager --> <backdrop></backdrop> <div growl></div> <!--[if lte IE 8]>
+})(window, document, 'script', 'dataLayer', 'GTM-5Q6BDP');</script>
+<!-- End Google Tag Manager -->
+
+<backdrop></backdrop>
+<div growl></div>
+<!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
-<![endif]--> <div ui-view></div> <footer> <div class="container text-center"> <p><a ui-sref="application.about">About Us</a>&nbsp;|&nbsp;<a href="mailto:info@xberts.com" target="_blank">Contact Us</a></p> <p>2016 Xberts Inc. All rights reserved.</p> <p> <a href="https://www.linkedin.com/company/xberts"><i class="fa fa-linkedin-square fa-2x"></i></a> <a href="https://twitter.com/HardwareXberts"><i class="fa fa-twitter-square fa-2x"></i></a> <a href="https://www.facebook.com/globalXberts"><i class="fa fa-facebook-square fa-2x"></i></a> </p> </div> </footer> <script src="scripts/util.5e4256e5.js"></script> <script src="scripts/angular.2cae2d8a.js"></script> <script src="scripts/moment.556eacdd.js"></script> <script src="scripts/bootstrap.5bf6ec59.js"></script> <script src="scripts/summernote.7f6a8dad.js"></script> <script src="scripts/international-phone-number.75e8f717.js"></script> <script src="scripts/vendor.06a22b22.js"></script> <script src="scripts/scripts.f95dd350.js"></script> <!-- Environment specific config override that's deployed and sourced separately, don't minify. --> <script src="scripts/override-configuration.28c7e746.js"></script> </body> </html>
+<![endif]-->
+
+<div ui-view></div>
+
+<footer>
+  <div class="container text-center">
+    <p><a ui-sref="application.about">About Us</a>&nbsp;|&nbsp;<a href="mailto:info@xberts.com" target="_blank">Contact
+      Us</a></p>
+
+    <p>2016 Xberts Inc. All rights reserved.</p>
+
+    <p>
+      <a href="https://www.linkedin.com/company/xberts"><i class="fa fa-linkedin-square fa-2x"></i></a>
+      <a href="https://twitter.com/HardwareXberts"><i class="fa fa-twitter-square fa-2x"></i></a>
+      <a href="https://www.facebook.com/globalXberts"><i class="fa fa-facebook-square fa-2x"></i></a>
+    </p>
+  </div>
+</footer>
+
+<!-- build:js(.) scripts/util.js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/string/dist/string.min.js"></script>
+<script src="/bower_components/underscore/underscore.js"></script>
+<script src="/bower_components/Buttons/js/buttons.js"></script>
+<!-- endbuild -->
+<!-- build:js(.) scripts/angular.js -->
+<script src="/bower_components/angular/angular.js"></script>
+<!-- endbuild -->
+<!-- build:js(.) scripts/moment.js -->
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/angular-moment/angular-moment.js"></script>
+<!-- endbuild -->
+<!-- build:js(.) scripts/bootstrap.js -->
+<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- endbuild -->
+<!-- build:js(.) scripts/summernote.js -->
+<!-- Temporary fix for summernote bug related to video insert, switch back to official dist once it's fixed -->
+<!-- Already filed bug against summernote: https://github.com/summernote/summernote/issues/1819 -->
+<script src="scripts/libs/summernote.js"></script>
+<script src="/bower_components/angular-summernote/dist/angular-summernote.js"></script>
+<!-- endbuild -->
+<!-- build:js(.) scripts/international-phone-number.js -->
+<script src="/bower_components/intl-tel-input/build/js/intlTelInput.min.js"></script>
+<script src="/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
+<script src="/bower_components/international-phone-number/releases/international-phone-number.js"></script>
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="/bower_components/angular-touch/angular-touch.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="/bower_components/angular-messages/angular-messages.js"></script>
+<script src="/bower_components/angular-random-string/src/angular-random-string.js"></script>
+<script src="/bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="/bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<script src="/bower_components/angular-scroll/angular-scroll.js"></script>
+<script src="/bower_components/summernote/dist/summernote.js"></script>
+<script src="/bower_components/satellizer/satellizer.js"></script>
+<script src="/bower_components/ng-idle/angular-idle.js"></script>
+<script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+<script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="/bower_components/angular-growl-v2/build/angular-growl.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="/bower_components/angular-img-fallback/angular.dcb-img-fallback.js"></script>
+<script src="/bower_components/checklist-model/checklist-model.js"></script>
+<script src="/bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/plugins/summernote-video-upload.js"></script>
+<script src="scripts/app.module.js"></script>
+<script src="scripts/app.config.js"></script>
+<script src="scripts/app.run.js"></script>
+<script src="scripts/app.route.js"></script>
+<script src="scripts/app.value.js"></script>
+<script src="scripts/configs/configuration.js"></script>
+<script src="scripts/configs/default-configuration.js"></script>
+<script src="scripts/controllers/application.js"></script>
+<script src="scripts/controllers/event.js"></script>
+<script src="scripts/controllers/eventlauch.js"></script>
+<script src="scripts/controllers/login/linkedin-login.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/message/inbox.js"></script>
+<script src="scripts/controllers/message/message.js"></script>
+<script src="scripts/controllers/message/thread.js"></script>
+<script src="scripts/controllers/notification.js"></script>
+<script src="scripts/controllers/profile/apply-expert.js"></script>
+<script src="scripts/controllers/profile/change-email.js"></script>
+<script src="scripts/controllers/profile/change-password.js"></script>
+<script src="scripts/controllers/profile/edit-profile.js"></script>
+<script src="scripts/controllers/profile/expert.js"></script>
+<script src="scripts/controllers/profile/linkedin-connect.js"></script>
+<script src="scripts/controllers/profile/user-profile.js"></script>
+<script src="scripts/controllers/profile/setting.js"></script>
+<script src="scripts/controllers/project/projects.js"></script>
+<script src="scripts/controllers/resetpassword/resetpassword.js"></script>
+<script src="scripts/controllers/resetpassword/resetpasswordconfirm.js"></script>
+<script src="scripts/controllers/resetpassword/resetpasswordrequest.js"></script>
+<script src="scripts/controllers/resources.js"></script>
+<script src="scripts/controllers/signup.js"></script>
+<script src="scripts/directives/avatar-img.js"></script>
+<script src="scripts/directives/backdrop.js"></script>
+<script src="scripts/directives/clearformerror.js"></script>
+<script src="scripts/directives/commentdetail.js"></script>
+<script src="scripts/directives/compareto.js"></script>
+<script src="scripts/directives/feedback.js"></script>
+<script src="scripts/directives/feedbackdetail.js"></script>
+<script src="scripts/directives/followings.js"></script>
+<script src="scripts/directives/join.js"></script>
+<script src="scripts/directives/joins.js"></script>
+<script src="scripts/directives/loadmore.js"></script>
+<script src="scripts/directives/messages.js"></script>
+<script src="scripts/directives/notifications.js"></script>
+<script src="scripts/directives/questioninput.js"></script>
+<script src="scripts/directives/redirect.js"></script>
+<script src="scripts/directives/save.js"></script>
+<script src="scripts/directives/saver.js"></script>
+<script src="scripts/filters/decode.js"></script>
+<script src="scripts/filters/narrow.js"></script>
+<script src="scripts/filters/projectcategory.js"></script>
+<script src="scripts/filters/split.js"></script>
+<script src="scripts/filters/tagsplit.js"></script>
+<script src="scripts/filters/trust.js"></script>
+<script src="scripts/interceptors/auth.js"></script>
+<script src="scripts/interceptors/request.js"></script>
+<script src="scripts/listeners/keepalive.js"></script>
+<script src="scripts/listeners/logout.js"></script>
+<script src="scripts/listeners/state-change-error.js"></script>
+<script src="scripts/listeners/state-change-start.js"></script>
+<script src="scripts/listeners/state-change-success.js"></script>
+<script src="scripts/listeners/unauthorized.js"></script>
+<script src="scripts/modals/progress-bar.js"></script>
+<script src="scripts/modals/send-message.js"></script>
+<script src="scripts/resolvers/message-resolver.js"></script>
+<script src="scripts/resolvers/role-requests-resolver.js"></script>
+<script src="scripts/resolvers/token-check-resolver.js"></script>
+<script src="scripts/resolvers/user-profile-resolver.js"></script>
+<script src="scripts/resolvers/user-resolver.js"></script>
+<script src="scripts/services/account.js"></script>
+<script src="scripts/services/analytics.js"></script>
+<script src="scripts/services/asset.js"></script>
+<script src="scripts/services/auth.js"></script>
+<script src="scripts/services/message.js"></script>
+<script src="scripts/services/notification.js"></script>
+<script src="scripts/services/oauth-token.js"></script>
+<script src="scripts/services/paginator2.js"></script>
+<script src="scripts/services/password.js"></script>
+<script src="scripts/services/project.js"></script>
+<script src="scripts/services/projectload.js"></script>
+<script src="scripts/services/signup.js"></script>
+<script src="scripts/services/upload-aws.js"></script>
+<script src="scripts/services/user-profile.js"></script>
+<script src="scripts/utils/file.js"></script>
+<script src="scripts/utils/string.js"></script>
+<script src="scripts/utils/underscore.js"></script>
+<script src="scripts/utils/url.js"></script>
+<script src="scripts/services/event.js"></script>
+<script src="scripts/services/uploadmultiform.js"></script>
+<script src="scripts/services/expert.js"></script>
+<script src="scripts/services/modalwrap.js"></script>
+<script src="scripts/services/contact.js"></script>
+<script src="scripts/services/tempimage.js"></script>
+<script src="scripts/controllers/project/launchproject.js"></script>
+<script src="scripts/controllers/project/projectinfo.js"></script>
+<script src="scripts/controllers/profile/companyinfo.js"></script>
+<script src="scripts/controllers/project/requestinfo.js"></script>
+<script src="scripts/services/systemdata.js"></script>
+<script src="scripts/services/distribution.js"></script>
+<script src="scripts/services/distributionload.js"></script>
+<script src="scripts/services/organization.js"></script>
+<script src="scripts/services/projectsnodetail.js"></script>
+<script src="scripts/controllers/events.js"></script>
+<script src="scripts/services/eventload.js"></script>
+<script src="scripts/services/eventnodetail.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/experts.js"></script>
+<script src="scripts/services/systemconstant.js"></script>
+<script src="scripts/controllers/reviewapplication.js"></script>
+<script src="scripts/controllers/profileinfo.js"></script>
+<script src="scripts/controllers/reviewapplicationinfo.js"></script>
+<script src="scripts/services/review.js"></script>
+<script src="scripts/controllers/reviewapplicationconfirminfo.js"></script>
+<script src="scripts/services/reviewapplicant.js"></script>
+<script src="scripts/services/reviewload.js"></script>
+<script src="scripts/services/profilereviewer.js"></script>
+<script src="scripts/services/profilereviewerload.js"></script>
+<script src="scripts/controllers/project/project.js"></script>
+<script src="scripts/services/interact.js"></script>
+<script src="scripts/services/projectonlydetail.js"></script>
+<script src="scripts/controllers/comment.js"></script>
+<script src="scripts/services/expertload.js"></script>
+<script src="scripts/controllers/project/distributor.js"></script>
+<script src="scripts/services/distributor.js"></script>
+<script src="scripts/controllers/reviewreport.js"></script>
+<script src="scripts/services/reviewreport.js"></script>
+<script src="scripts/services/reviewreportload.js"></script>
+<script src="scripts/services/applicantsreview.js"></script>
+<script src="scripts/services/applicantsreviewload.js"></script>
+<script src="scripts/controllers/reviewproject.js"></script>
+<script src="scripts/controllers/reviewerShippingAddress.js"></script>
+<script src="scripts/services/pagesetting.js"></script>
+<script src="scripts/services/uploadservice.js"></script>
+<script src="scripts/directives/preload.js"></script>
+<script src="scripts/controllers/leave-prompt.js"></script>
+<!-- endbuild -->
+
+<!-- Environment specific config override that's deployed and sourced separately, don't minify. -->
+<script src="scripts/override-configuration.js"></script>
+
+</body>
+</html>
