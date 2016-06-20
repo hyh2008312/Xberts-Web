@@ -28,7 +28,8 @@
 
                 <h4 ng-show="review.status === 'UPCOMING'"> Start Date:</h4>
 
-                <p ng-show="review.status === 'UPCOMING'" class="font-gray-light">{{ review.date_started | amDateFormat:'MMM
+                <p ng-show="review.status === 'UPCOMING'" class="font-gray-light">{{ review.date_started |
+                  amDateFormat:'MMM
                   DD,YYYY'}}</p>
 
                 <h4> Application Deadline:</h4>
@@ -53,7 +54,8 @@
                         Application
                         Ended
                       </button>
-                      <button ng-switch-when="CONFIRMATION" class="button button-full button-glow button-plain" disabled>
+                      <button ng-switch-when="CONFIRMATION" class="button button-full button-glow button-plain"
+                              disabled>
                         Application
                         Ended
                       </button>
@@ -68,7 +70,8 @@
                           </button>
                         </div>
                       </div>
-                      <button ng-switch-when="ENDED" class="button button-full button-glow button-plain" disabled>Completed
+                      <button ng-switch-when="ENDED" class="button button-full button-glow button-plain" disabled>
+                        Completed
                       </button>
                     </div>
                   </div>
@@ -81,7 +84,8 @@
                       <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
                               ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
                       </button>
-                      <button ng-switch-when="SELECTION" class="button button-full button-success-disabled" disabled>Screening
+                      <button ng-switch-when="SELECTION" class="button button-full button-success-disabled" disabled>
+                        Screening
                       </button>
                       <div ng-switch-when="CONFIRMATION">
                         <div ng-switch="applicant.is_selected">
@@ -173,42 +177,64 @@
             </div>
           </div>
 
-          <div class="hidden-xs">
-            <h4 style="margin-top: 20px;margin-bottom: 15px;">Share with Friends</h4>
-            <button class="button button-primary button-glow button-circle button-large" socialshare
-                    socialshare-provider="linkedin"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.title }}"
-                    socialshare-source="{{ review.project.image }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-linkedin"></i>
-            </button>
-            <button class="button button-royal button-glow button-circle button-large" socialshare
-                    socialshare-provider="facebook"
-                    socialshare-media="{{ review.project.image }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.title }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-facebook"></i>
-            </button>
+          <!--<div class="hidden-xs">-->
+          <!--<h4 style="margin-top: 20px;margin-bottom: 15px;">Share with Friends</h4>-->
+          <!--<button class="button button-primary button-glow button-circle button-large" socialshare-->
+          <!--socialshare-provider="linkedin"-->
+          <!--socialshare-description="{{ review.project.description }}"-->
+          <!--socialshare-text="{{ review.title }}"-->
+          <!--socialshare-source="{{ review.project.image }}"-->
+          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
+          <!--<i class="fa fa-linkedin"></i>-->
+          <!--</button>-->
+          <!--<button class="button button-royal button-glow button-circle button-large" socialshare-->
+          <!--socialshare-provider="facebook"-->
+          <!--socialshare-media="{{ review.project.image }}"-->
+          <!--socialshare-description="{{ review.project.description }}"-->
+          <!--socialshare-text="{{ review.title }}"-->
+          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
+          <!--<i class="fa fa-facebook"></i>-->
+          <!--</button>-->
 
-            <button class="button button-caution button-glow button-circle button-large " socialshare
-                    socialshare-provider="reddit"
-                    socialshare-media="{{ review.project.image }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.title }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-reddit"></i>
-            </button>
-            <button class="button button-action button-glow button-circle button-large" socialshare
-                    socialshare-provider="twitter"
-                    socialshare-media="{{ review.project.image }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.title }}"
-                    socialshare-source="{{ review.project.image }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-twitter"></i>
-            </button>
+          <!--<button class="button button-caution button-glow button-circle button-large " socialshare-->
+          <!--socialshare-provider="reddit"-->
+          <!--socialshare-media="{{ review.project.image }}"-->
+          <!--socialshare-description="{{ review.project.description }}"-->
+          <!--socialshare-text="{{ review.title }}"-->
+          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
+          <!--<i class="fa fa-reddit"></i>-->
+          <!--</button>-->
+          <!--<button class="button button-action button-glow button-circle button-large" socialshare-->
+          <!--socialshare-provider="twitter"-->
+          <!--socialshare-media="{{ review.project.image }}"-->
+          <!--socialshare-description="{{ review.project.description }}"-->
+          <!--socialshare-text="{{ review.title }}"-->
+          <!--socialshare-source="{{ review.project.image }}"-->
+          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
+          <!--<i class="fa fa-twitter"></i>-->
+          <!--</button>-->
+          <!--</div>-->
+          <h4 style="margin-top: 20px;margin-bottom: 15px;">Campaign Owner</h4>
+          <h4></h4>
+
+
+          <div class="card">
+            <div class="card-body pr">
+              <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
+                <div class="item-image">
+                  <avatar-img src="review.project.account.avatar"></avatar-img>
+                </div>
+                <div class="item-body">
+                  <p class="item-body-header">
+                    <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
+                      review.project.account.fullname }}</a></p>
+                    <p><i class="fa fa-map-marker"></i> {{ review.project.account.country }}</p>
+                </div>
+              </div>
+              <button class="button button-full button-glow button-primary" ng-show="!isCurrentUser" ng-click="contactUser()">
+                Contact
+              </button>
+            </div>
           </div>
 
           <h4 ng-show="review.is_publish_applicants_confirmed" style="margin-top: 20px;margin-bottom: 15px;">
@@ -228,13 +254,13 @@
                 </p>
 
                 <!--<div ng-switch="item.is_submit_report">-->
-                  <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>-->
+                <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>-->
 
-              <!--<span ng-switch-when="false" ng-switch="item.is_extended">-->
+                <!--<span ng-switch-when="false" ng-switch="item.is_extended">-->
                 <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Extended</span>-->
 
                 <!--<span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>-->
-              <!--</span>-->
+                <!--</span>-->
                 <!--</div>-->
               </div>
             </div>

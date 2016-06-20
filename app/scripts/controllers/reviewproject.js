@@ -8,10 +8,12 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $location,$filter, review, Applicantsreview, reportPaginator) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $location,$filter,$uibModal, review, Applicantsreview, reportPaginator) {
     $scope.review = review;
     $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
+
+    console.log(review);
 
     var title = "We're now calling for reviewers to test-drive our new product:" + review.project.name;
     var description = review.project.description;
@@ -63,6 +65,29 @@ angular.module('xbertsApp')
         $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
       }
     }
+
+    $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === $scope.review.project.account.id;
+
+    var sendMessage = function () {
+      if (!$rootScope.user.authRequired()) {
+        return;
+      }
+
+      var sendMessageModal = $uibModal.open({
+        templateUrl: 'views/modal/send-message.html',
+        windowClass: 'dialog-vertical-center',
+        controller: 'SendMessageCtrl',
+        resolve: {
+          recipientId: function() {
+            return $scope.review.project.account.id;
+          }
+        }
+      });
+    };
+
+    $scope.contactUser = function () {
+      sendMessage();
+    };
 
   })
   .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',

@@ -23,7 +23,7 @@ angular
           ['headline', ['style']],
           ['style', ['bold', 'italic']],
           ['alignment', ['ul', 'ol']],
-          ['insert', ['link', 'picture', 'videoUpload']],
+          ['insert', ['link', 'picture', 'video']],
           ['view', ['fullscreen','undo', 'redo']]
         ],
         styleTags: ['h1','p'],
