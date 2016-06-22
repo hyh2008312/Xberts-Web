@@ -13,8 +13,6 @@ angular.module('xbertsApp')
     $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
 
-    console.log(review);
-
     var title = "We're now calling for reviewers to test-drive our new product:" + review.project.name;
     var description = review.project.description;
     var backgroundColor = 'background-whitem';

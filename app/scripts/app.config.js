@@ -25,7 +25,7 @@ angular
     ipnConfig.autoPlaceholder = false;
   }])
   .config(['growlProvider', function (growlProvider) {
-    growlProvider.globalTimeToLive(10000);
+    growlProvider.globalTimeToLive(3000);
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalDisableCountDown(true);
   }])

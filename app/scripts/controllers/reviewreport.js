@@ -6,7 +6,6 @@ angular.module('xbertsApp')
 
       $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
-      $scope.referenceId = 'reportapplicant_' + applicant.id;
       $scope.reportData = {
         applicant_id: applicant.id
       };
@@ -50,26 +49,26 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
-              }, 3);
+                growl.success('Your review has been submitted successfully!');
+              }, 0);
+              $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              growl.error('Sorry,some error happened.');
             });
           } else {
             report.report_status = 'PUBLISHED';
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been submitted successfully!', {referenceId: $scope.referenceId});
               $timeout(function () {
-                $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
-              }, 3);
+                growl.success('Your review has been submitted successfully!');
+              }, 0);
+              $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              growl.error('Sorry,some error happened.');
             });
           }
           return false;
@@ -91,19 +90,19 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+              growl.success('Your review has been saved successfully!');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              growl.error('Sorry,some error happened.');
             });
           } else {
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!', {referenceId: $scope.referenceId});
+              growl.success('Your review has been saved successfully!');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
-              growl.error('Sorry,some error happened.', {referenceId: $scope.referenceId});
+              growl.error('Sorry,some error happened.');
             });
           }
         } else {
@@ -251,9 +250,6 @@ angular.module('xbertsApp')
 
       $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
-        console.log($scope.transitionListen);
-        console.log($scope.reportForm.$pristine);
-        console.log($scope.reportForm.submitted);
 
         if (!$scope.transitionListen || $scope.reportForm.submitted) return;
 
