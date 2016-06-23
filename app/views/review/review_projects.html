@@ -60,13 +60,23 @@
 
 
             <div class="card-body-footer align-right" ng-switch="review.status">
-              <span ng-switch-when="UPCOMING" class="label label-success" style="font-size: 16px">Coming Soon</span>
-              <span ng-switch-when="APPLICATION" class="label label-primary" style="font-size: 16px">Apply Now</span>
-              <span ng-switch-when="SELECTION" class="label label-info" style="font-size: 16px">In Progress</span>
-              <span ng-switch-when="CONFIRMATION" class="label label-info" style="font-size: 16px">In Progress</span>
-              <span ng-switch-when="REVIEW" class="label label-info" style="font-size: 16px">In Progress</span>
-              <span ng-switch-when="ENDED" class="label label-default" style="font-size: 16px">Completed</span>
+              <div class="row">
+                <div class="col-xs-6 align-left">
+                  <p class="p-1" ng-if="review.is_private">Private</p>
+                </div>
+                <div class="col-xs-6 align-right" ng-switch="review.status">
+                  <span ng-switch-when="UPCOMING" class="label label-success" style="font-size: 16px">Coming Soon</span>
+                  <span ng-switch-when="APPLICATION" class="label label-primary" style="font-size: 16px">Apply Now</span>
+                  <span ng-switch-when="SELECTION" class="label label-info" style="font-size: 16px">In Progress</span>
+                  <span ng-switch-when="CONFIRMATION" class="label label-info" style="font-size: 16px">In Progress</span>
+                  <span ng-switch-when="REVIEW" class="label label-info" style="font-size: 16px">In Progress</span>
+                  <span ng-switch-when="ENDED" class="label label-default" style="font-size: 16px">Completed</span>
+                </div>
+              </div>
             </div>
+
+
+
           </div>
 
         </div>

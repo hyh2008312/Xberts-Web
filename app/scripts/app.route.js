@@ -504,5 +504,13 @@ angular
               return MessageResolver.viewThread($stateParams);
           }]
         }
-      });
+      })
+      .state('application.error',{
+        url: '/error',
+        templateUrl: 'views/error.html',
+        controller:function($rootScope){
+          $rootScope.pageSettings.setBackgroundColor('');
+        }
+      })
+    ;
   }]);

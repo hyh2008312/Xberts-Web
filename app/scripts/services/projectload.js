@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ProjectLoad', ['ProjectsNoDetail', '$q', 'localStorageService',
-    function (ProjectsNoDetail, $q, localStorageService) {
+  .factory('ProjectLoad', ['ProjectsNoDetail', '$q', 'localStorageService','$state','$rootScope',
+    function (ProjectsNoDetail, $q, localStorageService,$state,$rootScope) {
       return function ($stateParams) {
         var projectId = Number($stateParams.projectId);
         var projects = localStorageService.get('project_items') || [];
@@ -18,6 +18,8 @@ angular.module('xbertsApp')
             delay.resolve(project);
           }, function () {
             delay.reject(('Unable to fetch project'));
+            $rootScope.$emit('backdropOff', 'off');
+            $state.go('application.error');
           });
           return delay.promise;
         } else {

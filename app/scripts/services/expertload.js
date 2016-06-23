@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ExpertLoad', ['Expert', '$q', 'localStorageService',
-    function (Expert, $q, localStorageService) {
+  .factory('ExpertLoad', ['Expert', '$q', 'localStorageService','$rootScope','$state',
+    function (Expert, $q, localStorageService,$rootScope,$state) {
       function getExpert($stateParams) {
         var expertId = Number($stateParams.expertId);
         var delay = $q.defer();
@@ -10,6 +10,8 @@ angular.module('xbertsApp')
           delay.resolve(project);
         }, function () {
           delay.reject(('Unable to fetch expert'));
+          $rootScope.$emit('backdropOff', 'off');
+          $state.go('application.error');
         });
         return delay.promise;
 
