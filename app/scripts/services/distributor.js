@@ -2,5 +2,5 @@
 
 angular.module('xbertsApp')
   .factory('Distributor', ['$resource', 'Configuration', function ($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/projects/rest/distributors/:id/', {id: '@id'});
+    return $resource(Configuration.apiBaseUrl + '/projects/distributors/:id/', {id: '@id'});
   }]);

@@ -38,7 +38,7 @@ angular.module('xbertsApp')
 
         if ($scope.projectForm.$valid && !$scope.projectForm.logoRequired) {
 
-          var url = Configuration.apiBaseUrl + '/projects/rest/projects/';
+          var url = Configuration.apiBaseUrl + '/projects/projects/';
           var method = 'POST';
           if ($scope.project.id) {
             url = url + $scope.project.id + '/';

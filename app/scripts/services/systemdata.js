@@ -3,13 +3,13 @@
 angular.module('xbertsApp')
   .factory('SystemData', ['$resource', '$rootScope', '$q', 'Configuration',
     function ($resource, $rootScope, $q, Configuration) {
-    var targetGeoResource = $resource(Configuration.apiBaseUrl + '/projects/rest/target_geos/', null);
-    var supportTypeResource = $resource(Configuration.apiBaseUrl + '/projects/rest/support_types/', null);
-    var projectTypeResource = $resource(Configuration.apiBaseUrl + '/projects/rest/project_categories/', null);
-    var transportationModelResource = $resource(Configuration.apiBaseUrl + '/projects/rest/transportation_models/', null);
+    var targetGeoResource = $resource(Configuration.apiBaseUrl + '/projects/target_geos/', null);
+    var supportTypeResource = $resource(Configuration.apiBaseUrl + '/projects/support_types/', null);
+    var projectTypeResource = $resource(Configuration.apiBaseUrl + '/projects/project_categories/', null);
+    var transportationModelResource = $resource(Configuration.apiBaseUrl + '/projects/transportation_models/', null);
     var stagesResource = $resource(Configuration.apiBaseUrl + '/xberts/rest/stages/', null);
 
-    var saleChannelsResource = $resource(Configuration.apiBaseUrl + '/projects/rest/sale_channels/', null);
+    var saleChannelsResource = $resource(Configuration.apiBaseUrl + '/projects/sale_channels/', null);
 
     var targetGeos = null;
     var transportationModels = null;
