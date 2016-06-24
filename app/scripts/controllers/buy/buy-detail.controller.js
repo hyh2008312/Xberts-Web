@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('SaleDetailController', ['$scope', '$rootScope', '$location', '$stateParams', '$uibModal', 'growl', 'SystemData',
-    'Interact','sale',
-    function ($scope, $rootScope, $location, $stateParams, $uibModal, growl, SystemData,
-              Interact, sale) {
+  .controller('SaleDetailController', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal',
+    'growl', 'SystemData', 'Interact', 'sale', 'ShopifyService',
+    function ($scope, $rootScope, $location, $state, $stateParams, $uibModal,
+              growl, SystemData, Interact, sale, ShopifyService) {
       var project=sale.project;
       var title = project.title;
       var description = project.description;
@@ -55,4 +55,32 @@ angular.module('xbertsApp')
       $scope.contactUser = function () {
         sendMessage();
       };
+
+      var buyProduct = function() {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
+
+        $location.search('action', null);
+
+        $scope.$emit('backdropOn', 'buy');
+
+        ShopifyService.buy(sale.inventoryId, $rootScope.user)
+          .then(function() {
+            $scope.$emit('backdropOff', 'buySuccess');
+          })
+          .catch(function() {
+            $scope.$emit('backdropOff', 'buyFailed');
+          });
+      };
+
+      $scope.buyClicked = function() {
+        $state.go('application.buyDetail', {saleId: sale.id, action: 'buy'});
+
+        buyProduct();
+      };
+
+      if ($stateParams.action === 'buy' && $rootScope.user.authRequired()) {
+        buyProduct();
+      }
     }]);

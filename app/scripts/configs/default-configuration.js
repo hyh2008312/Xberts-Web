@@ -35,5 +35,9 @@ angular.module('configuration.properties', [])
     // Maximum number of expertise an user can select
     userExpertiseMax: 5,
 
-    awsCloudFrontUrl: 'https://d1fn1iewii1xto.cloudfront.net'
+    awsCloudFrontUrl: 'https://d1fn1iewii1xto.cloudfront.net',
+
+    shopifyDomain: 'xberts',
+    shopifyAppId: '6',
+    shopifyKey: 'e645ba2826a8244882d1f62efd0ae361'
   });

@@ -513,9 +513,10 @@ angular
         }
       })
       .state('application.buyDetail', {
-        url: '/buy/{saleId:[0-9]+}',
+        url: '/buy/{saleId:[0-9]+}?action',
         templateUrl: 'views/buy/buy-detail.html',
         controller: 'SaleDetailController',
+        reloadOnSearch: false,
         resolve: {
           sale: ['Sales', '$stateParams', function (Sales, $stateParams) {
             return Sales.get({saleId: $stateParams.saleId}).$promise;
