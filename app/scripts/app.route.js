@@ -491,7 +491,7 @@ angular
           messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
             function ($stateParams, protectedAuthCheck, MessageResolver) {
               return MessageResolver.getMessages($stateParams);
-          }]
+            }]
         }
       })
       .state('application.protected.message.thread', {
@@ -502,14 +502,27 @@ angular
           messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
             function ($stateParams, protectedAuthCheck, MessageResolver) {
               return MessageResolver.viewThread($stateParams);
-          }]
+            }]
         }
       })
-      .state('application.error',{
+      .state('application.error', {
         url: '/error',
         templateUrl: 'views/error.html',
-        controller:function($rootScope){
+        controller: function ($rootScope) {
           $rootScope.pageSettings.setBackgroundColor('');
+        }
+      })
+      .state('application.buyDetail', {
+        url: '/buy/{saleId:[0-9]+}',
+        templateUrl: 'views/buy/buy-detail.html',
+        controller: 'SaleDetailController',
+        resolve: {
+          sale: ['Sales', '$stateParams', function (Sales, $stateParams) {
+            return Sales.get({saleId: $stateParams.saleId}).$promise;
+          }],
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }]
         }
       })
     ;

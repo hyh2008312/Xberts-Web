@@ -1,0 +1,152 @@
+<join ng-init="init(sale.project.interact)">
+  <section class="section-fixed-sm"
+           style="background-image: url({{ sale.project.banner }})">
+    <div class="section-title " style="margin-top:90px">
+
+      <h1 style="color: #FFFFFF;">{{ sale.project.title }}</h1>
+
+    </div>
+  </section>
+
+  <section>
+    <div class=" container">
+
+      <div class="row">
+        <div class="col-md-3 col-md-push-9 margin-bottom-xl">
+
+          <div class="card" style="border-radius: 5px">
+
+            <div class="card-body">
+              <div class="card-body-detail">
+                <h4> Sale Price:</h4>
+
+                <p class="font-gray-light">${{ sale.salePrice }} USD</p>
+                <h4> Original Price: </h4>
+
+                <p class="font-gray-light">${{ sale.project.retailPrice }} USD</p>
+
+                <h4> Time Left: </h4>
+
+                <p class="font-gray-light">XXX </p>
+
+                <h4> Unit Sold: </h4>
+
+                <p class="font-gray-light">XXX </p>
+
+                <button class="button button-full button-glow button-caution">
+                  Buy Now
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="border-radius: 5px">
+
+            <div class="card-body">
+              <div class="card-body-detail">
+                <h4> Ships to:</h4>
+
+                <p class="font-gray-light">United States</p>
+                <h4> Estimated Delivery: </h4>
+
+                <p class="font-gray-light">4-5 weeks</p>
+
+                <h4> Shipping Policy: </h4>
+
+                <p class="font-gray-light">Standard Ground Shipping </p>
+
+                <h4> Return Policy: </h4>
+
+                <p class="font-gray-light">Final sale, not eligible for return </p>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-body pr">
+              <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
+                <div class="item-image">
+                  <avatar-img src="sale.project.account.avatar"></avatar-img>
+                </div>
+                <div class="item-body">
+                  <p class="item-body-header">
+
+                  <p class="p-1"><a ui-sref="application.expert({ expertId:sale.project.account.id })">{{
+                    sale.project.account.fullname }}</a></p>
+
+                  <p><i class="fa fa-map-marker"></i> {{ sale.project.account.country }}</p>
+                </div>
+              </div>
+              <button class="button button-full button-glow button-primary" ng-show="!isCurrentUser"
+                      ng-click="contactUser()">
+                Contact
+              </button>
+            </div>
+          </div>
+
+          <div class="card card-shadowless">
+            <div class="card-body">
+              <h4>Share with Friends</h4>
+              <button class="button button-primary button-glow button-circle button-large" socialshare
+                      socialshare-provider="linkedin"
+                      socialshare-description="{{ sale.project.description }}"
+                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-source="{{ sale.project.image }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-linkedin"></i>
+              </button>
+              <button class="button button-royal button-glow button-circle button-large" socialshare
+                      socialshare-provider="facebook"
+                      socialshare-media="{{ sale.project.image }}"
+                      socialshare-description="{{ sale.project.description }}"
+                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-facebook"></i>
+              </button>
+
+              <button class="button button-caution button-glow button-circle button-large " socialshare
+                      socialshare-provider="reddit"
+                      socialshare-media="{{ sale.project.image }}"
+                      socialshare-description="{{ sale.project.description }}"
+                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-reddit"></i>
+              </button>
+
+              <button class="button button-action button-glow button-circle button-large" socialshare
+                      socialshare-provider="twitter"
+                      socialshare-media="{{ sale.project.image }}"
+                      socialshare-description="{{ sale.project.description }}"
+                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-source="{{ sale.project.image }}"
+                      socialshare-url="{{ pageSettings.getUrl() }}">
+                <i class="fa fa-twitter"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-9 col-md-pull-3">
+          <uib-tabset>
+            <uib-tab heading="Details" active="tabs[0].active">
+              <div id="section-product" class="margin-bottom-xl">
+                <div class="tab-content" ng-bind-html="sale.project.details | trust"></div>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Discussion" active="tabs[1].active"
+                     select="select('comments')">
+              <div ng-if="commentsTabActive">
+                <div ng-include src="'views/comments.html'"></div>
+              </div>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</join>
