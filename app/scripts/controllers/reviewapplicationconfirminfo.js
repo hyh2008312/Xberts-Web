@@ -8,15 +8,14 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state','$filter', 'ReviewApplicant', '$rootScope', 'growl',
-    function ($scope, $timeout, $state,$filter, ReviewApplicant, $rootScope, growl) {
-      var referenceId = 'review_apply_' + $scope.review.id;
+  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state', '$filter', 'ReviewApplicant', '$rootScope', 'growl',
+    function ($scope, $timeout, $state, $filter, ReviewApplicant, $rootScope, growl) {
       $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
       $scope.reviewApplicant.review = $scope.review.id;
       $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();
-      var message = 'Your application has been submitted successfully! ' +
-        'You will receive an email notification with one week after application ends on' +
-        '. Please stay tuned!';
+      var message = 'Your application has been submitted successfully!' +
+        '  You will receive an email notification ' +
+        'within 7 business days after application deadline.';
       $scope.reviewApplicantConfirmFormSubmit = function () {
         if ($scope.reviewApplicantForm.$valid) {
           $scope.$emit('backdropOn', 'post');
@@ -24,10 +23,10 @@ angular.module('xbertsApp')
             $scope.reviewApplicant.$put(function (resp) {
               $scope.$emit('backdropOff', 'success');
               //$scope.$emit('reviewStep', '2');
-              growl.success(message, {referenceId: referenceId});
+              growl.success(message);
               $timeout(function () {
                 $state.go('application.crowdtestings');
-              }, 3);
+              }, 0);
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
