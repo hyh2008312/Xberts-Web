@@ -149,71 +149,35 @@
           </div>
 
           <div ng-show="review.status === 'SELECTION'">
-            <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+            <div class="margin-top" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
               <a class="button button-primary button-glow button-full"
                  ui-sref="application.selectApplicants({reviewId:review.id})">Select
                 Applicants</a>
             </div>
           </div>
           <div ng-show="review.status === 'CONFIRMATION'">
-            <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+            <div class="margin-top" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
               <a class="button button-primary button-glow button-full"
                  ui-sref="application.selectApplicants({reviewId:review.id})">View
                 Applicants</a>
             </div>
           </div>
           <div ng-show="review.status === 'REVIEW'">
-            <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+            <div class="margin-top" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
               <a class="button button-primary button-glow button-full"
                  ui-sref="application.selectApplicants({reviewId:review.id})">View
                 Shipping Address</a>
             </div>
           </div>
           <div ng-show="review.status === 'ENDED'">
-            <div class="margin-top" ng-if="user.getUserId() == review.project.account || user.isStaff()">
+            <div class="margin-top" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
               <a class="button button-primary button-glow button-full"
                  ui-sref="application.crowdtestingReports({reviewId:review.id})">View
                 Reports</a>
             </div>
           </div>
 
-          <!--<div class="hidden-xs">-->
-          <!--<h4 style="margin-top: 20px;margin-bottom: 15px;">Share with Friends</h4>-->
-          <!--<button class="button button-primary button-glow button-circle button-large" socialshare-->
-          <!--socialshare-provider="linkedin"-->
-          <!--socialshare-description="{{ review.project.description }}"-->
-          <!--socialshare-text="{{ review.title }}"-->
-          <!--socialshare-source="{{ review.project.image }}"-->
-          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
-          <!--<i class="fa fa-linkedin"></i>-->
-          <!--</button>-->
-          <!--<button class="button button-royal button-glow button-circle button-large" socialshare-->
-          <!--socialshare-provider="facebook"-->
-          <!--socialshare-media="{{ review.project.image }}"-->
-          <!--socialshare-description="{{ review.project.description }}"-->
-          <!--socialshare-text="{{ review.title }}"-->
-          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
-          <!--<i class="fa fa-facebook"></i>-->
-          <!--</button>-->
 
-          <!--<button class="button button-caution button-glow button-circle button-large " socialshare-->
-          <!--socialshare-provider="reddit"-->
-          <!--socialshare-media="{{ review.project.image }}"-->
-          <!--socialshare-description="{{ review.project.description }}"-->
-          <!--socialshare-text="{{ review.title }}"-->
-          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
-          <!--<i class="fa fa-reddit"></i>-->
-          <!--</button>-->
-          <!--<button class="button button-action button-glow button-circle button-large" socialshare-->
-          <!--socialshare-provider="twitter"-->
-          <!--socialshare-media="{{ review.project.image }}"-->
-          <!--socialshare-description="{{ review.project.description }}"-->
-          <!--socialshare-text="{{ review.title }}"-->
-          <!--socialshare-source="{{ review.project.image }}"-->
-          <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
-          <!--<i class="fa fa-twitter"></i>-->
-          <!--</button>-->
-          <!--</div>-->
           <h4 style="margin-top: 20px;margin-bottom: 15px;">Campaign Owner</h4>
           <h4></h4>
 
@@ -226,9 +190,9 @@
                 </div>
                 <div class="item-body">
                   <p class="item-body-header">
-                    <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
+                    <p class="p-2"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
                       review.project.account.fullname }}</a></p>
-                    <p><i class="fa fa-map-marker"></i> {{ review.project.account.country }}</p>
+                    <!--<p><i class="fa fa-map-marker"></i> {{ review.project.account.country }}</p>-->
                 </div>
               </div>
               <button class="button button-full button-glow button-primary" ng-show="!isCurrentUser" ng-click="contactUser()">

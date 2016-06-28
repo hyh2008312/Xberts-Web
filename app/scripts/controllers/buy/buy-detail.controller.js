@@ -5,7 +5,13 @@ angular.module('xbertsApp')
     'growl', 'SystemData', 'Interact', 'sale', 'ShopifyService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal,
               growl, SystemData, Interact, sale, ShopifyService) {
-      var project=sale.project;
+
+      sale.soldUnits = sale.totalUnits - sale.availableUnits;
+      sale.dateEndedTimestamp = new Date(sale.dateEnded);
+
+      console.log(sale);
+
+      var project = sale.project;
       var title = project.title;
       var description = project.description;
       var backgroundColor = 'background-whitem';
@@ -19,6 +25,20 @@ angular.module('xbertsApp')
       $scope.tabs = [
         {title: 'detail', active: true},
         {title: 'comments', active: false}
+      ];
+
+      var availablePercentage = Math.ceil(100 * sale.availableUnits / sale.totalUnits);
+      var soldPercentage = 100 - availablePercentage;
+
+      $scope.stacked = [
+        {
+          value: soldPercentage,
+          type: 'success'
+        },
+        {
+          value: availablePercentage,
+          type: 'danger'
+        }
       ];
 
       $scope.commentsTabActive = false;
@@ -45,8 +65,8 @@ angular.module('xbertsApp')
           windowClass: 'dialog-vertical-center',
           controller: 'SendMessageCtrl',
           resolve: {
-            recipientId: function() {
-              return $scope.review.project.account.id;
+            recipientId: function () {
+              return $scope.sale.project.account.id;
             }
           }
         });
@@ -56,7 +76,7 @@ angular.module('xbertsApp')
         sendMessage();
       };
 
-      var buyProduct = function() {
+      var buyProduct = function () {
         if (!$rootScope.user.authRequired()) {
           return;
         }
@@ -66,15 +86,15 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOn', 'buy');
 
         ShopifyService.buy(sale.inventoryId, $rootScope.user)
-          .then(function() {
+          .then(function () {
             $scope.$emit('backdropOff', 'buySuccess');
           })
-          .catch(function() {
+          .catch(function () {
             $scope.$emit('backdropOff', 'buyFailed');
           });
       };
 
-      $scope.buyClicked = function() {
+      $scope.buyClicked = function () {
         $state.go('application.buyDetail', {saleId: sale.id, action: 'buy'});
 
         buyProduct();

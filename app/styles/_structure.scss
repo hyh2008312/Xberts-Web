@@ -784,3 +784,17 @@ form#sign_form input#id_email, input#id_password {
 img.full-image{
   width: 100%;
 }
+
+.progress{
+  position: relative;
+}
+
+.progress-tip{
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  text-align: center;
+  color: #333;
+
+}

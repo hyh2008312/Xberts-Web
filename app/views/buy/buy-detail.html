@@ -20,18 +20,26 @@
               <div class="card-body-detail">
                 <h4> Sale Price:</h4>
 
-                <p class="font-gray-light">${{ sale.salePrice }} USD</p>
+                <p class="font-gray-light">{{ sale.salePrice |currency }}</p>
                 <h4> Original Price: </h4>
 
-                <p class="font-gray-light">${{ sale.project.retailPrice }} USD</p>
+                <p class="font-gray-light">{{ sale.project.retailPrice |currency }}</p>
 
                 <h4> Time Left: </h4>
 
-                <p class="font-gray-light">XXX </p>
+                <p class="font-gray-light">
+                  <timer end-time="sale.dateEnded">
+                    {{days}} day{{daysS}}, {{hours}}:{{minutes}}:{{seconds}}
+                  </timer>
+                </p>
 
                 <h4> Unit Sold: </h4>
 
-                <p class="font-gray-light">XXX </p>
+                <p class="font-gray-light">
+
+                  <uib-progressbar class="active" max="sale.totalUnits" value="sale.soldUnits" type="success"><i
+                    class="progress-tip"> {{ sale.soldUnits }} / {{ sale.totalUnits }}</i></uib-progressbar>
+                </p>
 
                 <button class="button button-full button-glow button-caution" ng-click="buyClicked()">
                   Buy Now
@@ -132,7 +140,7 @@
 
         <div class="col-md-9 col-md-pull-3">
           <uib-tabset>
-            <uib-tab heading="Details" active="tabs[0].active">
+            <uib-tab heading="Description" active="tabs[0].active">
               <div id="section-product" class="margin-bottom-xl">
                 <div class="tab-content" ng-bind-html="sale.project.details | trust"></div>
               </div>

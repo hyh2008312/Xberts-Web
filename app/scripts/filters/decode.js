@@ -53,4 +53,12 @@ angular.module('xbertsApp')
 
       return n_link
     };
+  })
+  .filter('doubleDigit', function () {
+    return function (number) {
+      if (number < 10) {
+        return '0' + number.toString();
+      }
+      return item
+    };
   });
