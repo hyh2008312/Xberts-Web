@@ -27,6 +27,25 @@ angular.module('xbertsApp')
           url: 'application.crowdtestings',
           params: {}
         },
+        {
+          id:1,
+          image: '/images/jisiwei.jpg',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: '',
+          url: 'application.crowdtestings',
+          params: {}
+        },
+        {
+          id:2,
+          image: '/images/FitSleep.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: '',
+          url: 'application.review({reviewId:9})'
+        }
       ];
 
       $scope.slideButtonClick = function (slide) {

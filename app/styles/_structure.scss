@@ -46,7 +46,7 @@ hr {
 
 .section-fixed {
   height: $sectionFixedHeight;
-  background: rgba(0, 0, 0, 0.6) no-repeat center;
+  background: rgba(0, 0, 0, 0.6) no-repeat left;
   background-size: cover;
   position: relative;
   > .cover-layer {
