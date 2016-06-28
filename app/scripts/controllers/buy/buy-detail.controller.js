@@ -85,7 +85,7 @@ angular.module('xbertsApp')
 
         $scope.$emit('backdropOn', 'buy');
 
-        ShopifyService.buy(sale.inventoryId, $rootScope.user)
+        ShopifyService.buy(sale.shopGatewayInventoryId, $rootScope.user, 1)
           .then(function () {
             $scope.$emit('backdropOff', 'buySuccess');
           })
