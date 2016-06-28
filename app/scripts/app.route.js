@@ -513,7 +513,7 @@ angular
         }
       })
       .state('application.buyDetail', {
-        url: '/buy/{saleId:[0-9]+}?action',
+        url: '/sales/{saleId:[0-9]+}?action',
         templateUrl: 'views/buy/buy-detail.html',
         controller: 'SaleDetailController',
         reloadOnSearch: false,
