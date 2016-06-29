@@ -33,7 +33,7 @@ angular.module('xbertsApp')
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
           captionLocation: '',
-          url: 'application.crowdtestings',
+          url: 'application.review({reviewId:29})',
           params: {}
         },
         {
@@ -44,7 +44,7 @@ angular.module('xbertsApp')
           buttonText: 'Apply Now',
           buttonColor: 'button-primary',
           captionLocation: '',
-          url: 'application.review({reviewId:9})'
+          url: 'application.review({reviewId:30})'
         }
       ];
 
