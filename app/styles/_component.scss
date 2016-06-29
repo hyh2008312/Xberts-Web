@@ -201,6 +201,7 @@ $avatarTypes: (
   background-color: $whiteColor;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   margin-bottom: 20px;
+  position: relative;
   &.card-bordless {
     border: 0;
   }
@@ -215,6 +216,12 @@ $avatarTypes: (
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border-bottom: 1px solid $lightGrayColor;
+  }
+  > .card-cover{
+    position: absolute;
+    top:0;
+    left: 0;
+    min-width: 30%;
   }
   > .card-body, .card-body {
     padding: 10px 10px;

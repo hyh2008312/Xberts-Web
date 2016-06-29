@@ -526,5 +526,24 @@ angular
           }]
         }
       })
+      .state('application.buyList', {
+        url: '/sales',
+        templateUrl: 'views/buy/buy-list.html',
+        controller: 'SaleListController',
+        resolve: {
+          projectTypes: ['SystemData', function (SystemData) {
+            return SystemData.getProjectTypesPromise();
+          }],
+          salesPaginator: ['Paginator', 'Sales', function (Paginator, Sales) {
+            var par = {
+              name: 'buyList',
+              fetchFunction: function (params) {
+                return Sales.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
+      })
     ;
   }]);
