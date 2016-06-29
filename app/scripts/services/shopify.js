@@ -9,10 +9,10 @@ angular.module('xbertsApp')
         appId: Configuration.shopifyAppId
       });
 
-      this.buy = function(inventoryId, user) {
+      this.buy = function(inventoryId, user, quantity) {
         return client.fetchProduct(inventoryId)
           .then(function(product) {
-            var checkoutUrl = product.selectedVariant.checkoutUrl(1);
+            var checkoutUrl = product.selectedVariant.checkoutUrl(quantity);
             // Autofill email in checkout form with user's account email
             checkoutUrl = checkoutUrl + '&checkout[email]=' + user.getUserEmail();
 

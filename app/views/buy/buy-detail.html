@@ -20,7 +20,7 @@
               <div class="card-body-detail">
                 <h4> Sale Price:</h4>
 
-                <p class="font-gray-light">{{ sale.salePrice |currency }}</p>
+                <p class="font-gray-light">{{ sale.salePrice.amount |currency }}</p>
                 <h4> Original Price: </h4>
 
                 <p class="font-gray-light"><del>{{ sale.project.retailPrice |currency }}</del></p>
