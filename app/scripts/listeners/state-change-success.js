@@ -14,9 +14,17 @@ angular.module('xbertsApp')
         });
       }
 
-      $rootScope.previous = {
-        state: fromState.name,
-        params: fromParams
-      };
+      if (fromState.name !== 'application.login' && fromState.name !== 'application.signup' &&
+          fromState.name !== 'application.linkedinLogin' && fromState.name !== 'application.resetPassword.request' &&
+          fromState.name !== 'application.resetPassword.sent' &&
+          fromState.name !== 'application.resetPassword.confirm' &&
+          fromState.name !== 'application.resetPassword.success' &&
+          fromState.name !== 'application.resetPassword.error' &&
+          fromState.name !== 'application.error') {
+        $rootScope.previous = {
+          state: fromState.name,
+          params: fromParams
+        };
+      }
     });
   }]);
