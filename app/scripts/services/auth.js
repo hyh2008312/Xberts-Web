@@ -224,6 +224,8 @@ angular.module('xbertsApp')
           $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {location: 'replace'});
 
           $rootScope.postLoginState = null;
+        } else if ($rootScope.previous) {
+          $state.go($rootScope.previous.state, $rootScope.previous.params, {location: 'replace'});
         } else {
           $state.go('application.crowdtestings', {}, {location: 'replace'})
         }

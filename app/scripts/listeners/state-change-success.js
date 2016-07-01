@@ -13,5 +13,10 @@ angular.module('xbertsApp')
           'initialLoadTime': initialLoadTime
         });
       }
+
+      $rootScope.previous = {
+        state: fromState.name,
+        params: fromParams
+      };
     });
   }]);
