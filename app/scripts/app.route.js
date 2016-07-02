@@ -19,8 +19,8 @@ angular
         abstract: true,
         template: '<div ui-view></div>',
         resolve: {
-          protectedAuthCheck: ['authCheck', function (authCheck) {
-            // no-opt
+          protectedAuthCheck: ['authCheck', 'UserResolver', function (authCheck, UserResolver) {
+            return UserResolver.protectedResolver();
           }]
         }
       })
@@ -105,7 +105,7 @@ angular
         controllerAs: 'launchProject',
         abstract: true,
         resolve: {
-          projectTypes: ['SystemData', function (SystemData) {
+          projectTypes: ['protectedAuthCheck', 'SystemData', function (protectedAuthCheck, SystemData) {
             return SystemData.getProjectTypesPromise();
           }]
         }
@@ -115,9 +115,8 @@ angular
         templateUrl: 'views/project/launchproject.html',
         controller: 'LaunchprojectCtrl',
         controllerAs: 'launchProject',
-        //abstract: true,
         resolve: {
-          projectTypes: ['SystemData', function (SystemData) {
+          projectTypes: ['protectedAuthCheck', 'SystemData', function (protectedAuthCheck, SystemData) {
             return SystemData.getProjectTypesPromise();
           }]
         }
@@ -268,7 +267,7 @@ angular
         templateUrl: 'views/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
         resolve: {
-          userProfile: ['authCheck', 'UserProfileResolver', function (authCheck, UserProfileResolver) {
+          userProfile: ['protectedAuthCheck', 'UserProfileResolver', function (protectedAuthCheck, UserProfileResolver) {
             return UserProfileResolver.resolver();
           }],
           stages: ['SystemData', function (SystemData) {
@@ -282,7 +281,7 @@ angular
         templateUrl: 'views/review/review_applicant_shipping_address.html',
         controller: 'ShipAddressCtrl',
         resolve: {
-          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
@@ -296,7 +295,7 @@ angular
         templateUrl: 'views/review/review_applicant_shipping_address.html',
         controller: 'ShipAddressCtrl',
         resolve: {
-          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
@@ -395,10 +394,10 @@ angular
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ReviewLoad($stateParams);
           }],
-          reviewer: ['ProfileReviewerLoad', 'authCheck', function (ProfileReviewerLoad, authCheck) {
+          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
-          application: ['ReviewApplicant', '$stateParams', 'authCheck', function (ReviewApplicant, $stateParams, authCheck) {
+          application: ['ReviewApplicant', '$stateParams', 'protectedAuthCheck', function (ReviewApplicant, $stateParams, protectedAuthCheck) {
             return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
@@ -408,7 +407,7 @@ angular
         templateUrl: 'views/review/review_report.html',
         controller: 'ReviewreportCtrl',
         resolve: {
-          applicant: ['ApplicantsreviewLoad', 'authCheck', '$stateParams', function (ApplicantsreviewLoad, authCheck, $stateParams) {
+          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams', function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
             return ApplicantsreviewLoad($stateParams);
           }]
         }
@@ -488,8 +487,10 @@ angular
         templateUrl: 'views/message/inbox.html',
         controller: 'MessageInboxCtrl',
         resolve: {
-          messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
-            function ($stateParams, protectedAuthCheck, MessageResolver) {
+          messages: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
+            function ($stateParams, MessageResolver, protectedAuthCheck) {
+              console.log('message resolver start');
+
               return MessageResolver.getMessages($stateParams);
             }]
         }
@@ -499,8 +500,8 @@ angular
         templateUrl: 'views/message/thread.html',
         controller: 'MessageThreadCtrl',
         resolve: {
-          messages: ['$stateParams', 'protectedAuthCheck', 'MessageResolver',
-            function ($stateParams, protectedAuthCheck, MessageResolver) {
+          messages: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
+            function ($stateParams, MessageResolver, protectedAuthCheck) {
               return MessageResolver.viewThread($stateParams);
             }]
         }
@@ -544,6 +545,5 @@ angular
             return Paginator(par).load();
           }]
         }
-      })
-    ;
+      });
   }]);
