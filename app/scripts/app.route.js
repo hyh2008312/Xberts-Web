@@ -489,8 +489,6 @@ angular
         resolve: {
           messages: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
             function ($stateParams, MessageResolver, protectedAuthCheck) {
-              console.log('message resolver start');
-
               return MessageResolver.getMessages($stateParams);
             }]
         }
