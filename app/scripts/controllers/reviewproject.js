@@ -88,8 +88,8 @@ angular.module('xbertsApp')
     };
 
   })
-  .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator',
-    function ($scope, $rootScope, SystemData, projectReviewPaginator) {
+  .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator','$state',
+    function ($scope, $rootScope, SystemData, projectReviewPaginator,$state) {
 
       var title = 'Xberts - Crowdtesting';
       var description = 'Receive free samples of new products to test and review!Launch a Campaign';
@@ -97,4 +97,9 @@ angular.module('xbertsApp')
       var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
       $scope.projectReviewPaginator = projectReviewPaginator;
+
+      $scope.applyNow=function(id,$event){
+        $state.go('application.protected.apply',{reviewId:id});
+        console.log('aas');
+      }
     }]);

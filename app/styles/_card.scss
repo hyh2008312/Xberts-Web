@@ -174,3 +174,24 @@ li.xb-step{
 
 }
 
+
+.xb-avatar-wall{
+  display: flex;
+  .xb-avatar-text{
+    margin-right: 10px;
+  }
+  .xb-avatar-list{
+    height: 30px;
+    overflow: hidden;
+    img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    img:last-child{
+      margin-right:0;
+    }
+  }
+}

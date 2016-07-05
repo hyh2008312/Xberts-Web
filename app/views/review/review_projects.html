@@ -38,49 +38,63 @@
   <div class="row section-body" infinite-scroll="projectReviewPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectReviewPaginator.getLoading() || !projectReviewPaginator.getNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items">
-      <a class="block-link" ui-sref="application.crowdtesting({ reviewId:review.id })">
-        <div class="card card-bordless">
-          <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})">
+      <div class="card card-bordless">
+        <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
+             ui-sref="application.crowdtesting({ reviewId:review.id })">
+        </div>
+        <div class="card-body">
+          <div class="card-body-header" ui-sref="application.crowdtesting({ reviewId:review.id })">
+            <div class="avatar-text-small-1">
+              <avatar-img src="review.project.account.avatar" name="review.project.account.fullname"
+                          show-name="true"></avatar-img>
+            </div>
           </div>
-          <div class="card-body">
-            <p class="card-body-title p-2">{{ review.title }}</p>
+          <p class="card-body-title p-2" ui-sref="application.crowdtesting({ reviewId:review.id })">{{ review.title
+            }}</p>
 
-            <p class="card-body-detail">
-              Available Units: {{ review.quota }} free samples
-            </p>
+          <p class="card-body-detail" ui-sref="application.crowdtesting({ reviewId:review.id })">
+            Available Units: {{ review.quota }} free samples
+          </p>
 
-            <p class="card-body-detail" ng-switch="review.status">
-              <span ng-switch-when="UPCOMING">Start Date: {{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</span>
-              <span ng-switch-when="APPLICATION">Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</span>
-              <span ng-switch-when="SELECTION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-              <span ng-switch-when="CONFIRMATION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-              <span ng-switch-when="REVIEW">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-              <span ng-switch-when="ENDED">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
-            </p>
+          <p class="card-body-detail" ng-switch="review.status">
+            <span ng-switch-when="UPCOMING">Start Date: {{ review.date_started | amDateFormat:'MMM DD, YYYY'}}</span>
+            <span ng-switch-when="APPLICATION">Application Deadline: {{ review.application_end_date | amDateFormat:'MMM DD, YYYY'}}</span>
+            <span ng-switch-when="SELECTION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+            <span
+              ng-switch-when="CONFIRMATION">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+            <span ng-switch-when="REVIEW">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+            <span ng-switch-when="ENDED">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
+          </p>
 
-
-            <div class="card-body-footer align-right" ng-switch="review.status">
-              <div class="row">
-                <div class="col-xs-6 align-left">
-                  <p class="p-1" ng-if="review.is_private">Private</p>
-                </div>
-                <div class="col-xs-6 align-right" ng-switch="review.status">
-                  <span ng-switch-when="UPCOMING" class="label label-success" style="font-size: 16px">Coming Soon</span>
-                  <span ng-switch-when="APPLICATION" class="label label-primary" style="font-size: 16px">Apply Now</span>
-                  <span ng-switch-when="SELECTION" class="label label-info" style="font-size: 16px">In Progress</span>
-                  <span ng-switch-when="CONFIRMATION" class="label label-info" style="font-size: 16px">In Progress</span>
-                  <span ng-switch-when="REVIEW" class="label label-info" style="font-size: 16px">In Progress</span>
-                  <span ng-switch-when="ENDED" class="label label-default" style="font-size: 16px">Completed</span>
-                </div>
+          <div class="card-body-footer align-right" ng-switch="review.status">
+            <div class="xb-avatar-wall">
+              <div class="xb-avatar-text" ng-switch="review.status">
+                <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
+                  Soon
+                </label>
+                <button ng-switch-when="APPLICATION" class="button button-primary" style="font-size: 16px"
+                        ng-click="applyNow($event);">Apply Now
+                </button>
+                <label ng-switch-when="SELECTION" class="button-label button-label-info" style="font-size: 16px">In
+                  Progress</label>
+                <label ng-switch-when="CONFIRMATION" class="button-label button-label-info" style="font-size: 16px">In
+                  Progress</label>
+                <label ng-switch-when="REVIEW" class="button-label button-label-info" style="font-size: 16px">In
+                  Progress</label>
+                <label ng-switch-when="ENDED" class="button-label button-label-gray"
+                       style="font-size: 16px">Completed</label>
+              </div>
+              <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
+                <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
+                            show-name="true" ng-repeat="applicant in review.applicants"></profile-avatar>
               </div>
             </div>
-
-
-
           </div>
 
+
         </div>
-      </a>
+
+      </div>
     </div>
   </div>
   <load-more class="row spin-large" ng-if="projectReviewPaginator.getLoading()"></load-more>

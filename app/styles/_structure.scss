@@ -49,6 +49,12 @@ hr {
   background: rgba(0, 0, 0, 0.6) no-repeat left;
   background-size: cover;
   position: relative;
+  @media screen and (max-width: 767px) {
+    background: rgba(0, 0, 0, 0.6) no-repeat center;
+    background-size: cover;
+    //height: $sectionFixedHeight - 100;
+    //background-size: 100%;
+  }
   > .cover-layer {
     position: absolute;
     top: 0;
@@ -142,7 +148,7 @@ hr {
       font-weight: normal;
     }
     @media screen and (max-width: 767px) {
-      h1{
+      h1 {
         font-size: 24px;
       }
     }
@@ -743,33 +749,35 @@ form#sign_form input#id_email, input#id_password {
 
 //summer-note overrides
 
-.note-editable img{
+.note-editable img {
   width: 100% !important;
   max-width: 850px !important;
   height: auto !important;
-  &.pre-loading{
+  &.pre-loading {
     background: url("../images/loading.gif") no-repeat center center;
     width: 200px;
     height: 200px !important;
   }
 }
-.note-diseditable img{
+
+.note-diseditable img {
   width: 100% !important;
   max-width: 850px !important;
   height: auto !important;
 }
-.note-editable h1{
+
+.note-editable h1 {
   font-size: 24px;
-  span{
-    font-size: 24px!important;
+  span {
+    font-size: 24px !important;
   }
 }
 
-.note-product{
-  h1{
+.note-product {
+  h1 {
     font-size: 24px;
-    span{
-      font-size: 24px!important;
+    span {
+      font-size: 24px !important;
     }
   }
 }
@@ -777,6 +785,7 @@ form#sign_form input#id_email, input#id_password {
 .note-editor.note-frame.fullscreen {
   z-index: 1040;
 }
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -786,39 +795,89 @@ form#sign_form input#id_email, input#id_password {
   z-index: 1030;
   background-color: #000;
 }
-img.full-image{
+
+img.full-image {
   width: 100%;
 }
 
-.progress{
+.progress {
   position: relative;
 }
-.progress-tip-down{
+
+.progress-tip-down {
   position: relative;
-  .progress{
+  .progress {
     margin-bottom: 40px;
   }
 }
 
-.progress-tip{
+.progress-tip {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
-  right:0;
+  right: 0;
   text-align: center;
   color: #333;
 }
-.progress-tip-left{
+
+.progress-tip-left {
   position: absolute;
-  top:23px;
+  top: 23px;
   left: 0;
   text-align: left;
   z-index: 5;
 }
-.progress-tip-right{
+
+.progress-tip-right {
   position: absolute;
-  top:23px;
+  top: 23px;
   right: 0;
   text-align: right;
   z-index: 5;
+}
+
+.button-small-padding {
+  padding: 0 10px;
+}
+
+.button-label {
+  color: #666666;
+  background-color: #eeeeee;
+  border-color: #eeeeee;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  padding: 0 10px;
+  margin: 0;
+  display: inline-block;
+  appearance: none;
+  cursor: default;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  min-width: 130px;
+}
+
+.button-label-gray {
+  background-color: $lightGrayColor;
+  color: #ffffff;
+}
+
+.button-label-success {
+  background-color: #00cc52;
+  color: #ffffff;
+}
+
+.button-label-info {
+  background-color: #5bc0de;
+  color: #ffffff;
 }
