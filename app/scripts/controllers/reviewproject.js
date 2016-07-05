@@ -8,7 +8,7 @@
  * Controller of the xbertsApp
  */
 angular.module('xbertsApp')
-  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $location,$filter,$uibModal, review, Applicantsreview, reportPaginator) {
+  .controller('ReviewprojectCtrl', function ($rootScope, $scope, $location, $filter, $uibModal, review, Applicantsreview, reportPaginator) {
     $scope.review = review;
     $scope.reportPaginator = reportPaginator;
     $scope.applicantsSearch = {is_selected: true, is_exempted: false};
@@ -76,7 +76,7 @@ angular.module('xbertsApp')
         windowClass: 'dialog-vertical-center',
         controller: 'SendMessageCtrl',
         resolve: {
-          recipientId: function() {
+          recipientId: function () {
             return $scope.review.project.account.id;
           }
         }
@@ -88,18 +88,21 @@ angular.module('xbertsApp')
     };
 
   })
-  .controller('ReviewProjectsCtrl', ['$scope', '$rootScope', 'SystemData', 'projectReviewPaginator','$state',
-    function ($scope, $rootScope, SystemData, projectReviewPaginator,$state) {
+  .controller('ReviewProjectsCtrl',
+    ['$scope', '$rootScope', 'SystemData', 'callingReviewPaginator', 'progressingReviewPaginator', 'completedReviewPaginator', '$state',
+      function ($scope, $rootScope, SystemData,callingReviewPaginator,progressingReviewPaginator, completedReviewPaginator, $state) {
 
-      var title = 'Xberts - Crowdtesting';
-      var description = 'Receive free samples of new products to test and review!Launch a Campaign';
-      var backgroundColor = '';
-      var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
-      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
-      $scope.projectReviewPaginator = projectReviewPaginator;
+        var title = 'Xberts - Crowdtesting';
+        var description = 'Receive free samples of new products to test and review!Launch a Campaign';
+        var backgroundColor = '';
+        var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
+        $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+        $scope.callingReviewPaginator = callingReviewPaginator;
+        $scope.progressingReviewPaginator = progressingReviewPaginator;
+        $scope.completedReviewPaginator = completedReviewPaginator;
 
-      $scope.applyNow=function(id,$event){
-        $state.go('application.protected.apply',{reviewId:id});
-        console.log('aas');
-      }
-    }]);
+        $scope.applyNow = function (id, $event) {
+          $state.go('application.protected.apply', {reviewId: id});
+          console.log('aas');
+        }
+      }]);

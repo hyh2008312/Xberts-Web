@@ -331,9 +331,30 @@ angular
         templateUrl: 'views/review/review_projects.html',
         controller: 'ReviewProjectsCtrl',
         resolve: {
-          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+          callingReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
             var par = {
-              name: 'projectReview',
+              name: 'callingReview',
+              params: {type: 'coming'},
+              fetchFunction: function (params) {
+                return ProjectReview.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
+          }],
+          progressingReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+            var par = {
+              name: 'progressingReview',
+              params: {type: 'progress'},
+              fetchFunction: function (params) {
+                return ProjectReview.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
+          }],
+          completedReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
+            var par = {
+              name: 'completedReview',
+              params: {type: 'completed'},
               fetchFunction: function (params) {
                 return ProjectReview.get(params).$promise;
               }
