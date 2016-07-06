@@ -11,8 +11,7 @@
     <div class="section-title">
       <h2>Calling For Reviewers</h2>
     </div>
-    <div class="row section-body" infinite-scroll="callingReviewPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="callingReviewPaginator.getLoading() || !callingReviewPaginator.getNext()">
+    <div class="row section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in callingReviewPaginator.items">
         <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
@@ -49,14 +48,17 @@
                   <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
                     Soon
                   </label>
-                  <button ng-switch-when="APPLICATION" class="button button-small button-primary" style="font-size: 16px"
+                  <button ng-switch-when="APPLICATION" class="button button-small button-primary"
+                          style="font-size: 16px"
                           ng-click="applyNow(review.id,$event);">Apply Now
                   </button>
                   <label ng-switch-when="SELECTION" class="button-label button-label-info" style="font-size: 16px">Selecting</label>
                   <label ng-switch-when="CONFIRMATION" class="button-label button-label-info" style="font-size: 16px">Confirming</label>
                   <label ng-switch-when="REVIEW" class="button-label button-label-info" style="font-size: 16px">Reviewing</label>
                   <button ng-switch-when="ENDED" class="button button-small button-primary"
-                         style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View Reports</button>
+                          style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View
+                    Reports
+                  </button>
                 </div>
                 <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                   <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
@@ -71,6 +73,11 @@
         </div>
       </div>
     </div>
+    <load-more class="row spin-large" ng-if="callingReviewPaginator.getLoading()"></load-more>
+    <div class="align-center">
+      <button class="button button-large button-primary" ng-click="callingReviewPaginator.loadNext()"
+              ng-if="callingReviewPaginator.getNext() && !callingReviewPaginator.getLoading()">Load More</button>
+    </div>
   </div>
 </section>
 <section class="background-whitem">
@@ -78,8 +85,7 @@
     <div class="section-title">
       <h2>Review In Progress</h2>
     </div>
-    <div class="row section-body" infinite-scroll="progressingReviewPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="progressingReviewPaginator.getLoading() || !progressingReviewPaginator.getNext()">
+    <div class="row section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in progressingReviewPaginator.items">
         <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
@@ -116,14 +122,17 @@
                   <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
                     Soon
                   </label>
-                  <button ng-switch-when="APPLICATION" class="button button-small button-primary" style="font-size: 16px"
+                  <button ng-switch-when="APPLICATION" class="button button-small button-primary"
+                          style="font-size: 16px"
                           ng-click="applyNow(review.id,$event);">Apply Now
                   </button>
                   <label ng-switch-when="SELECTION" class="button-label button-label-info" style="font-size: 16px">Selecting</label>
                   <label ng-switch-when="CONFIRMATION" class="button-label button-label-info" style="font-size: 16px">Confirming</label>
                   <label ng-switch-when="REVIEW" class="button-label button-label-info" style="font-size: 16px">Reviewing</label>
                   <button ng-switch-when="ENDED" class="button button-small button-primary"
-                          style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View Reports</button>
+                          style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View
+                    Reports
+                  </button>
                 </div>
                 <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                   <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
@@ -138,16 +147,19 @@
         </div>
       </div>
     </div>
-    <!--<load-more class="row spin-large" ng-if="projectReviewPaginator.getLoading()"></load-more>-->
+    <load-more class="row spin-large" ng-if="progressingReviewPaginator.getLoading()"></load-more>
+    <div class="align-center">
+      <button class="button button-large button-primary" ng-click="progressingReviewPaginator.loadNext()"
+              ng-if="progressingReviewPaginator.getNext() && !progressingReviewPaginator.getLoading()">Load More</button>
+    </div>
   </div>
 </section>
-<section >
+<section>
   <div class="container">
     <div class="section-title">
       <h2>Review Completed</h2>
     </div>
-    <div class="row section-body" infinite-scroll="completedReviewPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="completedReviewPaginator.getLoading() || !completedReviewPaginator.getNext()">
+    <div class="row section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
         <div class="card card-bordless">
           <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
@@ -184,14 +196,17 @@
                   <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
                     Soon
                   </label>
-                  <button ng-switch-when="APPLICATION" class="button button-small button-primary" style="font-size: 16px"
+                  <button ng-switch-when="APPLICATION" class="button button-small button-primary"
+                          style="font-size: 16px"
                           ng-click="applyNow(review.id,$event);">Apply Now
                   </button>
                   <label ng-switch-when="SELECTION" class="button-label button-label-info" style="font-size: 16px">Selecting</label>
                   <label ng-switch-when="CONFIRMATION" class="button-label button-label-info" style="font-size: 16px">Confirming</label>
                   <label ng-switch-when="REVIEW" class="button-label button-label-info" style="font-size: 16px">Reviewing</label>
                   <button ng-switch-when="ENDED" class="button button-small button-primary"
-                          style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View Reports</button>
+                          style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View
+                    Reports
+                  </button>
                 </div>
                 <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                   <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
@@ -206,6 +221,10 @@
         </div>
       </div>
     </div>
-    <!--<load-more class="row spin-large" ng-if="projectReviewPaginator.getLoading()"></load-more>-->
+    <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
+    <div class="align-center">
+      <button class="button button-large button-primary" ng-click="completedReviewPaginator.loadNext()"
+              ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">Load More</button>
+    </div>
   </div>
 </section>
