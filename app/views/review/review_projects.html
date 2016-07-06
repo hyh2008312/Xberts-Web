@@ -74,9 +74,8 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="callingReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl">
-      <button class="button button-large button-glow button-primary" ng-click="callingReviewPaginator.loadNext()"
-              ng-if="callingReviewPaginator.getNext() && !callingReviewPaginator.getLoading()">Load More</button>
+    <div class="align-center margin-top-xxl" ng-if="callingReviewPaginator.getNext() && !callingReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="callingReviewPaginator.loadNext()">Load More</button>
     </div>
   </div>
 </section>
@@ -148,9 +147,8 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="progressingReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl">
-      <button class="button button-large button-primary button-glow" ng-click="progressingReviewPaginator.loadNext()"
-              ng-if="progressingReviewPaginator.getNext() && !progressingReviewPaginator.getLoading()">Load More</button>
+    <div class="align-center margin-top-xxl" ng-if="progressingReviewPaginator.getNext() && !progressingReviewPaginator.getLoading()">
+      <button class="button button-large button-primary button-glow" ng-click="progressingReviewPaginator.loadNext()">Load More</button>
     </div>
   </div>
 </section>
