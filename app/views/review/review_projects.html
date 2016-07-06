@@ -6,7 +6,7 @@
   </div>
 </section>
 
-<section class="">
+<section class="" style="padding-top: 20px;">
   <div class="container">
     <div class="section-title">
       <h2>Calling For Reviewers</h2>
@@ -222,9 +222,8 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl">
-      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()"
-              ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">Load More</button>
+    <div class="align-center margin-top-xxl" ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()">Load More</button>
     </div>
   </div>
 </section>
