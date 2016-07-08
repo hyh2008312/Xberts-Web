@@ -1,7 +1,6 @@
 <section class="container header padding-bottom-clear">
   <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
-    <h2 style="color: #ffffff">The launchpad where new smart products get discovered, and meet interested buyers and
-      potential partners like you!</h2>
+    <h2 style="color: #ffffff">Vote for the products you like and we will bring it to you at a special discount!</h2>
 
     <h3 class="text-center">
       <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Launch a
@@ -13,15 +12,15 @@
   <div class="list-title list-search margin-bottom">
     <div class="row">
       <div class="col-xs-12 col-sm-3">
-        <select class="form-control"  ng-model="projects.project_category_id"
-        ng-change="onSearch();" ng-options="item.id as item.name for item in projectTypes">
-        <option value="">Filter by: All categories</option>
+        <select class="form-control" ng-model="projects.project_category_id"
+                ng-change="onSearch();" ng-options="item.id as item.name for item in projectTypes">
+          <option value="">Filter by: All categories</option>
         </select>
 
       </div>
       <div class="col-xs-12 col-sm-3">
         <select class="form-control" ng-model="projects.ordering"
-        ng-change="onSearch();" ng-options=" item.value as item.label for item in otherConditions">
+                ng-change="onSearch();" ng-options=" item.value as item.label for item in otherConditions">
         </select>
 
       </div>
@@ -38,45 +37,50 @@
   </div>
   <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="projectPaginator.getLoading() || !projectPaginator.getNext()">
-    <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="project in projectPaginator.items">
-      <a class="block-link" ui-sref="application.project({projectId: project.id})">
-        <div class="card card-bordless">
-          <div class="card-header" style="background-image: url({{ project.image }})">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="project in projectPaginator.items">
+      <div class="card card-bordless">
+        <div class="card-header" style="background-image: url({{ project.image }})"
+             ui-sref="application.project({projectId: project.id})">
+        </div>
+        <div class="card-body">
+
+          <p class="card-body-header">{{project.project_category_name}}</p>
+
+          <p class="card-body-title p-3" ng-bind="project.title" ui-sref="application.project({projectId: project.id})">
+          </p>
+
+          <button class="button button-full button-glow margin-bottom"
+                  ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
+                  ng-click="want(project)" ng-disabled="project.voting "
+                  ng-switch="project.interact.current_voter.vote">
+            <span ng-switch-when="false">Want</span>
+            <span ng-switch-when="true">Wanted</span>
+          </button>
+
+
+          <div class="card-body-footer align-right" ng-switch="review.status"
+               ui-sref="application.project({projectId: project.id})">
+            <div class="xb-avatar-wall">
+              <div class="xb-avatar-text">
+                {{ project.interact.vote_amount }} want<span ng-show="project.interact.vote_amount>1">s</span>:
+              </div>
+              <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
+                <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"
+                                show-name="true" ng-repeat="voter in project.interact.voters"></profile-avatar>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="card-body-header">
-              <div class="avatar-text-small-1">
-                <avatar-img src="project.account.avatar" name="project.account.fullname" show-name="true"></avatar-img>
-              </div>
-            </div>
-            <p class="card-body-title p-3" ng-bind="project.title">
-            </p>
 
-            <div class="card-body-footer">
-              <div class="row">
-                <div class="col-xs-6 align-left">
-                  <p class="p-1" ng-bind="project.project_category_name"></p>
-                </div>
-                <div class="col-xs-6 align-right">
-                  <p class="p-1">
-                    <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
+          <div class="card-body-footer text-center" ng-if='user.isAuth() && user.isStaff()'>
 
-                    <!-- todo:user config-->
-                    <span ng-if='user.isAuth() && user.isStaff()'>
-                      <i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>
-                      <i class="fa fa-hashtag"></i> <span ng-bind="project.inquiry_amount"></span>
-                    </span>
-                  <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
-                  <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
-                  <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
-                  </span>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <span ng-switch="project.interact.is_verified">
+            <i class="fa fa-question fa-lg text-danger" ng-switch-when="0"></i>
+            <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
+            <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
+            </span>
           </div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
   <load-more class="row spin-large" ng-show="projectPaginator.getLoading()"></load-more>
