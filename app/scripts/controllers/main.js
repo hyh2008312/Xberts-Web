@@ -46,6 +46,17 @@ angular.module('xbertsApp')
           captionLocation: '',
           url: 'application.crowdtesting',
           params: {reviewId: 30}
+        },
+        {
+          id:3,
+          image: '/images/ucam.jpg',
+          title: '',
+          subtitle: '',
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          captionLocation: '',
+          url: 'application.crowdtesting',
+          params: {reviewId: 28}
         }
       ];
 
