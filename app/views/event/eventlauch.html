@@ -77,7 +77,10 @@
             <div class="form-group">
               <label>Details:</label>
               <summernote config="summerNoteFull" ng-model="event.details"
-                          on-image-upload="imageUpload(files)" editable="editable" editor="editor"></summernote>
+                          on-image-upload="imageUpload(files)" editable="editable" editor="editor"
+                          on-paste="paste(evt)"
+                          on-keyup="setPreviousRange(evt)"
+                          on-focus="onFocus(evt)"></summernote>
 
 
             </div>
