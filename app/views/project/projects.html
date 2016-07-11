@@ -53,8 +53,8 @@
                   ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
                   ng-click="want(project)" ng-disabled="project.voting "
                   ng-switch="project.interact.current_voter.vote">
-            <span ng-switch-when="false">Want</span>
-            <span ng-switch-when="true">Wanted</span>
+            <span ng-switch-when="false">Vote</span>
+            <span ng-switch-when="true">Voted</span>
           </button>
 
 
@@ -62,7 +62,7 @@
                ui-sref="application.project({projectId: project.id})">
             <div class="xb-avatar-wall">
               <div class="xb-avatar-text">
-                {{ project.interact.vote_amount }} want<span ng-show="project.interact.vote_amount>1">s</span>:
+                <span style="height: 30px;padding-top: 5px">{{ project.interact.vote_amount }} vote<span ng-show="project.interact.vote_amount>1">s</span></span>
               </div>
               <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                 <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"
