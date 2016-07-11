@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EventLauchCtrl', ['$scope', '$state', '$timeout', 'Configuration', 'growl', 'UploadMultiForm', 'event',
-    'UploadService',
-    function ($scope, $state, $timeout, Configuration, growl, UploadMultiForm, event, UploadService) {
+    'UploadService', 'EventService',
+    function ($scope, $state, $timeout, Configuration, growl, UploadMultiForm, event, UploadService, EventService) {
       var tagsParse = function (tagstring) {
         var tags = [];
         if (tagstring === undefined || tagstring === null || tagstring === "") {
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
       }
       $scope.eventTemp = {
         tags: tagsParse($scope.event.tags),
-        logo: null,
+        cover: null,
         banner: null,
         organizer_logo: null
       };
@@ -40,23 +40,12 @@ angular.module('xbertsApp')
 
       //submit
       $scope.eventFormSubmit = function () {
-        if ($scope.eventTemp.logo) {
-          $scope.event.logo = $scope.eventTemp.logo;
-        }
-        $scope.eventForm.logoRequired = ($scope.event.logo === null) || ($scope.event.logo === undefined);
+        $scope.eventForm.coverRequired = !$scope.event.cover;
+        $scope.eventForm.bannerRequired = !$scope.event.banner;
+        $scope.eventForm.organizerLogoRequired = !$scope.event.organizer_logo;
 
-        if ($scope.eventTemp.banner) {
-          $scope.event.banner = $scope.eventTemp.banner;
-        }
-        $scope.eventForm.bannerRequired = ($scope.event.banner === null) || ($scope.event.banner === undefined);
-
-        if ($scope.eventTemp.organizer_logo) {
-          $scope.event.organizer_logo = $scope.eventTemp.organizer_logo;
-        }
-        $scope.eventForm.organizerLogoRequired = ($scope.event.organizer_logo === null) || ($scope.event.organizer_logo === undefined);
-
-
-        if ($scope.eventForm.$valid && !$scope.eventForm.logoRequired && !$scope.eventForm.organizerLogoRequired && !$scope.eventForm.bannerRequired) {
+        if ($scope.eventForm.$valid && !$scope.eventForm.coverRequired && !$scope.eventForm.organizerLogoRequired &&
+            !$scope.eventForm.bannerRequired) {
           $scope.$emit('backdropOn', 'post');
           //event pre process
           var tags = [];
@@ -65,27 +54,25 @@ angular.module('xbertsApp')
           }
           $scope.event.tags = tags.join(',');
 
-          var method = 'POST';
-          var url = Configuration.apiBaseUrl + '/resources/events/';
-          if ($scope.event.id) {
-            url = url + $scope.event.id + '/';
-            method = 'PUT';
-          }
-
-          //upload multiform-data
-          //console.log($scope.event);
-          $scope.uploadMulti = UploadMultiForm(url, method, $scope.event, function (resp) {
+          var successCallback = function (response) {
             $scope.$emit('backdropOff', 'success');
-            $state.go('application.event', {eventId: resp.data.id});
-          }, function (resp) {
-            growl.error('Sorry,some error happened.');
+            $state.go('application.event', {eventId: response.id});
+          };
+
+          var errorCallback = function (response) {
+            growl.error('Oops, something went wrong.');
             $scope.$emit('backdropOff', 'error');
-            //console.log(resp)
-          });
-          $scope.uploadMulti.upload();
+          };
 
-          return false;
-
+          if ($scope.event.id) {
+            EventService.update($scope.event)
+              .then(successCallback)
+              .catch(errorCallback);
+          } else {
+            EventService.create($scope.event)
+              .then(successCallback)
+              .catch(errorCallback);
+          }
         } else {
           $scope.eventForm.submitted = true;
           $scope.eventForm.$invalid = true;
@@ -176,6 +163,36 @@ angular.module('xbertsApp')
             .then(function (data) {
               imageSuccessCallback(data.data);
             }, errorCallback);
+        }
+      };
+
+      $scope.coverUpload = function ($file) {
+        if ($file) {
+          UploadService.uploadFile($file, 'EVENT_COVER', $scope)
+            .then(function (data) {
+              $scope.event.cover = data.data.id;
+            })
+            .catch(errorCallback);
+        }
+      };
+
+      $scope.bannerUpload = function ($file) {
+        if ($file) {
+          UploadService.uploadFile($file, 'EVENT_BANNER', $scope)
+            .then(function (data) {
+              $scope.event.banner = data.data.id;
+            })
+            .catch(errorCallback);
+        }
+      };
+
+      $scope.organizerLogoUpload = function ($file) {
+        if ($file) {
+          UploadService.uploadFile($file, 'EVENT_ORGANIZER_LOGO', $scope)
+            .then(function (data) {
+              $scope.event.organizer_logo = data.data.id;
+            })
+            .catch(errorCallback);
         }
       };
 

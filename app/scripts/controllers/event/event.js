@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:EventCtrl
- * @description
- * # EventCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('EventCtrl', ['$scope', '$rootScope', 'EventProject', 'event',
     function ($scope, $rootScope, EventProject, event) {
