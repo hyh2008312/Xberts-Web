@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ProfileinfoCtrl
- * @description
- * # ProfileinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('ShipAddressCtrl', ['$scope', 'SystemConstant', 'growl', '$rootScope', 'reviewer', 'review', '$state', function ($scope, SystemConstant, growl, $rootScope, reviewer, review, $state) {
     //submit

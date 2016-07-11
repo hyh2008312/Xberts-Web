@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EventLauchCtrl', ['$scope', '$state', 'Configuration', 'growl', 'UploadMultiForm', 'TempImage', 'event',
-    function ($scope, $state, Configuration, growl, UploadMultiForm, TempImage, event) {
+  .controller('EventLauchCtrl', ['$scope', '$state', '$timeout', 'Configuration', 'growl', 'UploadMultiForm', 'event',
+    'UploadService',
+    function ($scope, $state, $timeout, Configuration, growl, UploadMultiForm, event, UploadService) {
       var tagsParse = function (tagstring) {
         var tags = [];
         if (tagstring === undefined || tagstring === null || tagstring === "") {
@@ -25,7 +26,6 @@ angular.module('xbertsApp')
       }
       $scope.eventTemp = {
         tags: tagsParse($scope.event.tags),
-        tempId: $scope.event.temp || 0,
         logo: null,
         banner: null,
         organizer_logo: null
@@ -64,7 +64,6 @@ angular.module('xbertsApp')
             tags.push($scope.eventTemp.tags[i].text);
           }
           $scope.event.tags = tags.join(',');
-          $scope.event.temp_id = $scope.eventTemp.tempId;
 
           var method = 'POST';
           var url = Configuration.apiBaseUrl + '/resources/events/';
@@ -93,39 +92,103 @@ angular.module('xbertsApp')
         }
       };
 
-      //summerNote Image Upload
+      $scope.previousRange = null;
 
+      var getCurrentRange = function () {
+        var sel;
+        if (window.getSelection) {
+          sel = window.getSelection();
+          if (sel.getRangeAt && sel.rangeCount) {
+            return sel.getRangeAt(0);
+          }
+        } else if (document.selection && document.selection.createRange) {
+          return document.selection.createRange();
+        }
+        return null;
+      };
+
+      $scope.setPreviousRange = function (evt) {
+        $scope.previousRange = getCurrentRange();
+      };
+
+      $scope.onFocus = function (evt) {
+        evt.target.addEventListener('mouseup', $scope.setPreviousRange);
+      };
+
+      var setCurrentRange = function (range) {
+        var sel;
+        if (range) {
+          if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          } else if (document.selection && range.select) {
+            //document.select is a legacy problem.
+            range.select();
+          }
+        }
+      };
+
+      var insertImage = function (src, id) {
+        setCurrentRange($scope.previousRange);
+
+        var img = document.createElement('img');
+        img.setAttribute('data-image-id', id);
+        img.setAttribute('src', src);
+        var div = document.createElement('div');
+        div.appendChild(img);
+        $scope.editor.summernote('insertNode', div);
+
+        img.setAttribute('class', 'pre-loading full-image');
+        img.onload = function () {
+          this.setAttribute('class', 'full-image');
+        };
+        img.onerror = function () {
+          this.setAttribute('class', '');
+        };
+
+        $timeout(function () {
+          $scope.editor.summernote('insertParagraph');
+          div.setAttribute('contenteditable', false);
+          $scope.setPreviousRange();
+        }, 100);
+      };
+
+      var imageSuccessCallback = function (data) {
+        insertImage(data.imageUrl, data.id);
+        $scope.event.image_assets = $scope.event.image_assets || [];
+        $scope.event.image_assets.push(data.id);
+      };
+
+      var errorCallback = function (error) {
+        // Don't display error when user cancels upload
+        if (error.status === -1) {
+          return;
+        }
+
+        growl.error('Failed to upload');
+      };
+
+      //summerNote Image Upload
       $scope.imageUpload = function (files) {
         for (var i = 0; i < files.length; i++) {
-          var data = {
-            image: files[i],
-            type: 'event'
-          };
-          var uploadMultiImages = UploadMultiForm(
-            Configuration.apiBaseUrl + '/upload/rest/temps/' + $scope.eventTemp.tempId + '/images/',
-            'POST',
-            data,
-            function (resp) {
-              $scope.eventTemp.tempId = resp.data.temp;
-              $scope.$emit('backdropOff', 'success');
-              var img = $('<img />');
-              img.attr({
-                'src': resp.data.image,
-                'data-id': resp.data.id
-              });
-              img.bind('DOMNodeRemovedFromDocument', function () {
-                var tempImageId = $(this).attr('data-id');
-                var resource = TempImage($scope.eventTemp.tempId, tempImageId);
-                resource.delete();
-              });
-              $scope.editor.summernote('insertNode', img[0]);
-            }, function (resp) {
-              growl.error('Sorry,some error happened.');
-              //console.log(resp);
-              $scope.$emit('backdropOff', 'error');
-            });
-          $scope.$emit('backdropOn', 'post');
-          uploadMultiImages.upload();
+          UploadService.uploadFile(files[i], 'EVENT_DETAILS', $scope)
+            .then(function (data) {
+              imageSuccessCallback(data.data);
+            }, errorCallback);
         }
+      };
+
+      $scope.paste = function (e) {
+        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+        e.preventDefault();
+        var paragraphs = bufferText.split('\n');
+        for (var i = 0; i < paragraphs.length; i++) {
+          var pNode = document.createElement('p');
+          var textNode = document.createTextNode(paragraphs[i]);
+          pNode.appendChild(textNode);
+          $scope.editor.summernote('insertNode', pNode);
+        }
+
       };
     }]);
