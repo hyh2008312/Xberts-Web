@@ -1,6 +1,6 @@
 <section class="container header padding-bottom-clear">
   <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
-    <h2 style="color: #ffffff">Showcase your product to connect with global distribution partners and buyers!!</h2>
+    <h2 style="color: #ffffff">Vote for the products you like and we will bring it to you at a special discount!</h2>
 
     <h3 class="text-center">
       <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Suggest a
@@ -53,8 +53,8 @@
                   ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
                   ng-click="want(project)" ng-disabled="project.voting "
                   ng-switch="project.interact.current_voter.vote">
-            <span ng-switch-when="false">Vote</span>
-            <span ng-switch-when="true">Voted</span>
+            <span ng-switch-when="false">VOTE</span>
+            <span ng-switch-when="true">VOTED</span>
           </button>
 
 
