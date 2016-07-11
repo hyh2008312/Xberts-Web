@@ -1,4 +1,4 @@
-<section class="section-fixed" style="background-image: url({{ event.banner }})">
+<section class="section-fixed" style="background-image: url({{ event.banner_url }})">
   <div class="mask" ngf-background="eventTemp.banner"></div>
   <div class="cover-layer">
     <div class="section-title " style="margin-top:90px">
@@ -93,8 +93,8 @@
           </div>
           <div class="col-md-3">
             <h3 class="margin-top-clear">
-              <button class="btn btn-primary btn-block btn-lg" type="file"
-                      name="banner" ngf-select
+              <button class="btn btn-primary btn-block btn-lg" type="file" name="banner"
+                      ngf-select="bannerUpload($file)"
                       ng-model="eventTemp.banner"
                       accept="image/*"
                       ngf-max-size="'2MB'">
@@ -106,22 +106,22 @@
             <p class='message-error' ng-show="eventForm.banner.$error.maxSize">File too large: max 2MB</p>
 
             <h3>
-              <button class="btn btn-primary btn-block btn-lg" type="file"
-                      name="logo" ngf-select
-                      ng-model="eventTemp.logo"
+              <button class="btn btn-primary btn-block btn-lg" type="file" name="cover"
+                      ngf-select="coverUpload($file)"
+                      ng-model="eventTemp.cover"
                       accept="image/*"
                       ngf-max-size="'1MB'">
-                Event Logo Image
+                Event Cover Image
               </button>
             </h3>
-            <p class='message-error' ng-show="eventForm.logo.$error.maxSize">File too large: max 1MB</p>
+            <p class='message-error' ng-show="eventForm.cover.$error.maxSize">File too large: max 1MB</p>
 
-            <p class="message-error" ng-show="eventForm.submitted && eventForm.logoRequired">*
+            <p class="message-error" ng-show="eventForm.submitted && eventForm.coverRequired">*
               required</p>
 
             <div class="card">
-              <div class="card-header" style="background-image: url({{ event.logo }})">
-                <div class="mask" ngf-background="eventTemp.logo"></div>
+              <div class="card-header" style="background-image: url({{ event.cover_url }})">
+                <div class="mask" ngf-background="eventTemp.cover"></div>
               </div>
             </div>
           </div>
@@ -146,8 +146,8 @@
           </div>
           <div class="col-md-3">
             <h3 class="margin-top-clear">
-              <button class="btn btn-primary btn-block btn-lg" type="file"
-                      name="organizer_logo" ngf-select
+              <button class="btn btn-primary btn-block btn-lg" type="file" name="organizer_logo"
+                      ngf-select="organizerLogoUpload($file)"
                       ng-model="eventTemp.organizer_logo"
                       accept="image/*"
                       ngf-max-size="'1MB'">
@@ -160,7 +160,7 @@
               required</p>
 
             <div class="card">
-              <div class="card-header" style="background-image: url({{ event.organizer_logo }})">
+              <div class="card-header" style="background-image: url({{ event.organizer_logo_url }})">
                 <div class="mask" ngf-background="eventTemp.organizer_logo"></div>
               </div>
             </div>
