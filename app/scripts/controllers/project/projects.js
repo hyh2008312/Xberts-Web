@@ -39,8 +39,6 @@ angular.module('xbertsApp')
         localStorageService.set('project_search_order', $scope.projects.ordering);
       });
 
-      console.log(projectPaginator.items);
-
       $scope.want = function (project) {
         console.log(project.interact.current_voter);
         var vote = !project.interact.current_voter.vote;
