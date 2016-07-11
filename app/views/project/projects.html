@@ -61,8 +61,8 @@
           <div class="card-body-footer align-right" ng-switch="review.status"
                ui-sref="application.project({projectId: project.id})">
             <div class="xb-avatar-wall">
-              <div class="xb-avatar-text">
-                <span style="height: 30px;padding-top: 5px">{{ project.interact.vote_amount }} vote<span ng-show="project.interact.vote_amount>1">s</span></span>
+              <div class="xb-avatar-text" style="height: 30px;padding-top: 5px;min-width: 60px;text-align: left;">
+                <span>{{ project.interact.vote_amount }} vote<span ng-show="project.interact.vote_amount>1">s</span></span>
               </div>
               <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                 <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"
