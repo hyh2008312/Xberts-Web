@@ -1,19 +1,16 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'Configuration', 'FileUtil',
-    function ($resource, $rootScope, Upload, Configuration, FileUtil) {
+  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'Configuration',
+    function ($resource, $rootScope, Upload, Configuration) {
       this.generatePolicy = function (type, file) {
-        var fileExtension = file.name.split('.').pop();
-
         return $resource(Configuration.apiBaseUrl + '/aws/s3policy/', null, {
           generate: {
             method: 'POST'
           }
         }).generate({
           type: type,
-          fileFormat: fileExtension,
-          contentType: FileUtil.getContentType(file)
+          fileName: file.name
         }).$promise;
       };
 
@@ -21,13 +18,13 @@ angular.module('xbertsApp')
         postParams.file = file;
 
         var upload = Upload.upload({
-          url: Configuration.awsCloudFrontUrl,
+          url: postParams.url,
           method: 'POST',
           withCredentials: false,
           data: {
             acl: postParams.acl,
             key: postParams.key,
-            'Content-Type': FileUtil.getContentType(file),
+            'Content-Type': postParams.contentType,
             policy: postParams.policy,
             'x-amz-algorithm': postParams.algorithm,
             'x-amz-credential': postParams.credential,
