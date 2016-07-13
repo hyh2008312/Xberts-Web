@@ -2,9 +2,6 @@
 
 angular.module('configuration.properties', [])
   .constant('defaultConfiguration', {
-    apiBaseUrl: 'http://localhost:8000/api',
-
-    oauthClientId: 'CwWuk2YE1v2LZIyKy2mvwyuhliYKHkKSxfhb0835',
     // Threshold for triggering oauth token refresh prior to current token expiration date
     tokenRefreshThreshold: 600, // seconds
     tokenRefreshCheckInterval: 60, // seconds
@@ -34,7 +31,7 @@ angular.module('configuration.properties', [])
 
     // Maximum number of expertise an user can select
     userExpertiseMax: 5,
-    
+
     shopifyDomain: 'xberts',
     shopifyAppId: '6',
     shopifyKey: 'e645ba2826a8244882d1f62efd0ae361'

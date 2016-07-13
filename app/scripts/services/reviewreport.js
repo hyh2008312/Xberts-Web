@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ReviewReport', ['$resource', 'Configuration', function ($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/review/reviews/:reviewId/reports/:id/', {id: '@id'}, {
+  .factory('ReviewReport', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/review/reviews/:reviewId/reports/:id/', {id: '@id'}, {
       'put': {method: 'PUT'},
       'patch': {method: 'PATCH'}
 

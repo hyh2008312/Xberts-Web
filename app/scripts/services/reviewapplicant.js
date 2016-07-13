@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ReviewApplicant', ['$resource', 'Configuration', '$rootScope', '$q', function ($resource, Configuration, $rootScope, $q) {
-    var Applicant = $resource(Configuration.apiBaseUrl + '/review/applicants/:id/', {id: '@id'}, {
+  .factory('ReviewApplicant', ['$resource', 'Configuration', '$rootScope', '$q', 'API_BASE_URL',
+    function ($resource, Configuration, $rootScope, $q, API_BASE_URL) {
+    var Applicant = $resource(API_BASE_URL + '/review/applicants/:id/', {id: '@id'}, {
       'put': {method: 'PUT'},
       'patch': {method: 'PATCH'}
     });

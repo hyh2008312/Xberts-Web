@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('AccountService', ['$resource', 'Configuration', function($resource, Configuration) {
+  .service('AccountService', ['$resource', 'API_BASE_URL', function($resource, API_BASE_URL) {
     this.changeEmail = function(email) {
-      return $resource(Configuration.apiBaseUrl + '/accounts/email/', null, {
+      return $resource(API_BASE_URL + '/accounts/email/', null, {
         update: {
           method: 'PUT'
         }
@@ -11,7 +11,7 @@ angular.module('xbertsApp')
     };
 
     this.linkedinConnect = function(token) {
-      return $resource(Configuration.apiBaseUrl + '/accounts/linkedin/connect/', {}, {
+      return $resource(API_BASE_URL + '/accounts/linkedin/connect/', {}, {
         linkedinConnect: {
           method: 'POST',
           params: {
@@ -22,18 +22,18 @@ angular.module('xbertsApp')
     };
 
     this.requestRole = function(role) {
-      return $resource(Configuration.apiBaseUrl + '/accounts/rolerequests/').save({
+      return $resource(API_BASE_URL + '/accounts/rolerequests/').save({
         role: role
       }).$promise;
     };
 
     this.getPendingRoleRequests = function(role) {
-      return $resource(Configuration.apiBaseUrl + '/accounts/rolerequests/', {status: 'REQUESTED'}).query({
+      return $resource(API_BASE_URL + '/accounts/rolerequests/', {status: 'REQUESTED'}).query({
         role: role
       }).$promise;
     };
 
     this.deactivate = function() {
-      return $resource(Configuration.apiBaseUrl + '/accounts/deactivate/').delete().$promise;
+      return $resource(API_BASE_URL + '/accounts/deactivate/').delete().$promise;
     };
   }]);

@@ -2,9 +2,11 @@
 
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
-    '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle',
+    '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
+    'OAUTH_CLIENT_ID',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
-             _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle) {
+             _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
+             OAUTH_CLIENT_ID) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved) {
         this._userId = userId || '';
@@ -114,12 +116,12 @@ angular.module('xbertsApp')
       }
 
       function login(credentials) {
-        return $resource(Configuration.apiBaseUrl + '/oauth2/token/', {}, {
+        return $resource(API_BASE_URL + '/oauth2/token/', {}, {
           getToken: {
             method: 'POST',
             params: {
               grant_type: 'password',
-              client_id: Configuration.oauthClientId,
+              client_id: OAUTH_CLIENT_ID,
               username: credentials.username,
               password: credentials.password
             }
@@ -163,7 +165,7 @@ angular.module('xbertsApp')
       }
 
       function getLinkedinToken(code) {
-        return $resource(Configuration.apiBaseUrl + '/accounts/linkedin/token/')
+        return $resource(API_BASE_URL + '/accounts/linkedin/token/')
           .save({
             code: code,
             redirectUri: $state.href('application.linkedinLogin', {}, {absolute: true})
@@ -173,7 +175,7 @@ angular.module('xbertsApp')
       function exchangeLinkedinToken(accessToken) {
         var params = {
           grant_type: 'convert_token',
-          client_id: Configuration.oauthClientId,
+          client_id: OAUTH_CLIENT_ID,
           backend: 'linkedin-oauth2',
           token: accessToken
         };
@@ -183,7 +185,7 @@ angular.module('xbertsApp')
           params['source'] = localStorageService.cookie.get(Configuration.signupSourceStorageKey);
         }
 
-        return $resource(Configuration.apiBaseUrl + '/oauth2/convert-token/', {}, {
+        return $resource(API_BASE_URL + '/oauth2/convert-token/', {}, {
           exchangeToken: {
             method: 'POST',
             params: params
@@ -199,7 +201,7 @@ angular.module('xbertsApp')
       }
 
       function loginComplete() {
-        return $resource(Configuration.apiBaseUrl + '/accounts/login/complete/', {}, {
+        return $resource(API_BASE_URL + '/accounts/login/complete/', {}, {
           loginComplete: {
             method: 'PUT'
           }
@@ -250,12 +252,12 @@ angular.module('xbertsApp')
           return deferred.promise;
         }
 
-        return $resource(Configuration.apiBaseUrl + '/oauth2/token/', {}, {
+        return $resource(API_BASE_URL + '/oauth2/token/', {}, {
           refresh: {
             method: 'POST',
             params: {
               grant_type: 'refresh_token',
-              client_id: Configuration.oauthClientId,
+              client_id: OAUTH_CLIENT_ID,
               refresh_token: refreshToken
             }
           }
@@ -287,11 +289,11 @@ angular.module('xbertsApp')
 
           return deferred.promise;
         } else {
-          return $resource(Configuration.apiBaseUrl + '/oauth2/revoke-token/', {}, {
+          return $resource(API_BASE_URL + '/oauth2/revoke-token/', {}, {
             revokeToken: {
               method: 'POST',
               params: {
-                client_id: Configuration.oauthClientId,
+                client_id: OAUTH_CLIENT_ID,
                 token: token
               }
             }
@@ -300,7 +302,7 @@ angular.module('xbertsApp')
       }
 
       function fetchUser() {
-        return $resource(Configuration.apiBaseUrl + '/accounts/user/').get().$promise;
+        return $resource(API_BASE_URL + '/accounts/user/').get().$promise;
       }
 
       function auth() {

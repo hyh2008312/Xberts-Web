@@ -144,8 +144,9 @@ angular.module('xbertsApp')
     };
   }])
   .controller('ReviewRequestCtrl', ['$rootScope', '$scope', 'SystemData', 'SystemConstant', 'Configuration', '$resource',
-    'uibDateParser', 'growl', '$timeout', '$state',
-    function ($rootScope, $scope, SystemData, SystemConstant, Configuration, $resource, uibDateParser, growl, $timeout, $state) {
+    'uibDateParser', 'growl', '$timeout', '$state', 'API_BASE_URL',
+    function ($rootScope, $scope, SystemData, SystemConstant, Configuration, $resource, uibDateParser, growl, $timeout,
+              $state, API_BASE_URL) {
 
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.targetGeos = SystemData.getTargetGeos();
@@ -155,7 +156,7 @@ angular.module('xbertsApp')
       $scope.open = function () {
         $scope.datePickerStatus = true;
       };
-      var ReviewRequest = $resource(Configuration.apiBaseUrl + '/review/review_request/');
+      var ReviewRequest = $resource(API_BASE_URL + '/review/review_request/');
       $scope.review = new ReviewRequest();
       if ($scope.review.date_estimated) {
         $scope.review.date_estimated = new Date($scope.review.date_estimated);

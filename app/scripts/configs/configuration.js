@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .provider('Configuration', ['defaultConfiguration', 'overrideConfiguration',
-    function (defaultConfiguration, overrideConfiguration) {
-      var mergedConfig = angular.merge(defaultConfiguration, overrideConfiguration);
-
-      angular.extend(this, mergedConfig);
+  .provider('Configuration', ['defaultConfiguration',
+    function (defaultConfiguration) {
+      angular.extend(this, defaultConfiguration);
       this.$get = function() {
-        return mergedConfig;
+        return defaultConfiguration;
       };
   }]);

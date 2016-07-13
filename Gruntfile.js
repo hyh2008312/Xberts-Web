@@ -14,7 +14,8 @@ module.exports = function (grunt) {
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates'
+    ngtemplates: 'grunt-angular-templates',
+    ngconstant: 'grunt-ng-constant'
   });
 
   var modRewrite = require('connect-modrewrite');
@@ -22,7 +23,8 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    environment: process.env.ENV || 'local'
   };
 
   // Define the configuration for all the tasks
@@ -449,6 +451,26 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    ngconstant: {
+      options: {
+        name: 'config',
+        dest: '.tmp/scripts/config.js',
+        wrap: '"use strict";\n\n{%= __ngModule %}',
+        constants: grunt.file.readJSON('config/default.json')
+      },
+      local: {},
+      staging: {
+        options: {
+          constants: grunt.file.readJSON('config/staging.json')
+        }
+      },
+      prod: {
+        options: {
+          constants: grunt.file.readJSON('config/prod.json')
+        }
+      }
     }
   });
 
@@ -459,6 +481,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:' + appConfig.environment,
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -469,6 +492,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'ngconstant:local',
     'wiredep',
     'concurrent:test',
     'autoprefixer',
@@ -478,6 +502,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:' + appConfig.environment,
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -499,8 +524,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
-    'test',
+    // 'newer:jshint',
+    // 'test',
     'build'
   ]);
 };

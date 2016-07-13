@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UserProfileService', ['$q', '$resource', 'Configuration', 'UploadMultiForm',
-    function($q, $resource, Configuration, UploadMultiForm) {
-      var userProfileResource = $resource(Configuration.apiBaseUrl + '/accounts/userprofile/', {}, {
+  .service('UserProfileService', ['$q', '$resource', 'API_BASE_URL', 'UploadMultiForm',
+    function($q, $resource, API_BASE_URL, UploadMultiForm) {
+      var userProfileResource = $resource(API_BASE_URL + '/accounts/userprofile/', {}, {
         update: {
           method: 'PUT'
         }
@@ -11,7 +11,7 @@ angular.module('xbertsApp')
 
       this.updateAvatar = function(avatar) {
         return UploadMultiForm(
-          Configuration.apiBaseUrl + '/accounts/userprofile/avatar/',
+          API_BASE_URL + '/accounts/userprofile/avatar/',
           'PUT',
           avatar
         ).upload();

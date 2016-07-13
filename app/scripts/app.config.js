@@ -29,10 +29,10 @@ angular
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalDisableCountDown(true);
   }])
-  .config(['$authProvider', 'ConfigurationProvider', function ($authProvider, ConfigurationProvider) {
+  .config(['$authProvider', 'ConfigurationProvider', 'API_BASE_URL', function ($authProvider, ConfigurationProvider, API_BASE_URL) {
     $authProvider.linkedin({
       clientId: ConfigurationProvider.linkedinClientId,
-      url: ConfigurationProvider.apiBaseUrl + '/accounts/linkedin/token/'
+      url: API_BASE_URL + '/accounts/linkedin/token/'
     });
   }])
   .config(['tagsInputConfigProvider', function (tagsInputConfigProvider) {
