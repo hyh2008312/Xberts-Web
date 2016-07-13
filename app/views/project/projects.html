@@ -49,7 +49,7 @@
           <p class="card-body-title p-3" ng-bind="project.title" ui-sref="application.project({projectId: project.id})">
           </p>
 
-          <button class="button button-full button-glow margin-bottom"
+          <button class="button button-full margin-bottom"
                   ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
                   ng-click="want(project)" ng-disabled="project.voting "
                   ng-switch="project.interact.current_voter.vote">
