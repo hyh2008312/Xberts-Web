@@ -59,6 +59,6 @@ angular.module('xbertsApp')
       if (number < 10) {
         return '0' + number.toString();
       }
-      return item
+      return number
     };
   });

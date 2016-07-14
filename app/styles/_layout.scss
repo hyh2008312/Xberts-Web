@@ -128,12 +128,47 @@ $widthHeight: (3 2) (1 1);
 section, .xb-section {
   padding-top: $sectionBasePadding;
   padding-bottom: $sectionBasePadding;
-  background-repeat: no-repeat;
+  background: no-repeat center;
   background-size: cover;
 }
 
+
 .section-banner {
   //height: 400px;
+}
+.section-list-page{
+  padding-top: 100px;
+  .section-title{
+    h2{
+      font-size: 36px;
+      text-align: center;
+      color: $whiteColor;
+    }
+    h3,h4{
+      margin-top: 20px;
+      text-align: center;
+      color: $lightWhiteColor;
+    }
+  }
+  .section-button{
+    margin-top: 30px;
+  }
+  height: 400px;
+  @media screen and (max-width: 767px) {
+    padding-top: 80px;
+    .section-title {
+      h2 {
+        font-size: 28px;
+        text-align: center;
+        color: $whiteColor;
+      }
+      h3, h4 {
+        margin-top: 20px;
+        text-align: center;
+        color: $lightWhiteColor;
+      }
+    }
+  }
 }
 
 .xb-section-title {

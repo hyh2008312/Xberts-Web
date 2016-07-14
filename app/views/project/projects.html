@@ -1,11 +1,15 @@
-<section class="container header padding-bottom-clear">
-  <div class="jumbotron section-title" style="background-image: url(/images/5.jpg);margin-bottom: 0px;">
-    <h2 style="color: #ffffff">Vote for the products you like and we will bring it to you at a special discount!</h2>
+<section style="background-image: url(/images/discove.png);" class="section-list-page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Vote for your favorite products for the chance to save big</h2>
 
-    <h3 class="text-center">
+      <h4>The most wanted products will be made available to try through crowd testing, and to purchase through group
+        buying!</h4>
+    </div>
+    <div class="text-center section-button">
       <a class="button button-primary button-glow" ui-sref="application.protected.projectLaunch.basic">Suggest a
         Product</a>
-    </h3>
+    </div>
   </div>
 </section>
 <section class="container" style="padding-top: 10px;">
@@ -62,7 +66,8 @@
                ui-sref="application.project({projectId: project.id})">
             <div class="xb-avatar-wall">
               <div class="xb-avatar-text" style="height: 30px;padding-top: 5px;min-width: 60px;text-align: left;">
-                <span>{{ project.interact.vote_amount }} vote<span ng-show="project.interact.vote_amount>1">s</span></span>
+                <span>{{ project.interact.vote_amount }} vote<span
+                  ng-show="project.interact.vote_amount>1">s</span></span>
               </div>
               <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
                 <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"

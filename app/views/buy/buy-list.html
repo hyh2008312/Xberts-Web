@@ -1,3 +1,14 @@
+<section style="background-image: url(/images/get.png);" class="section-list-page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Get the best-rated products reviewed by our community pioneers</h2>
+
+      <h4>Purchase our hottest products at exclusive discount! And you could win a full refund by posting a fun story of
+        your product experience. </h4>
+    </div>
+  </div>
+
+</section>
 <section class="container">
   <div class="row section-body" infinite-scroll="salesPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="salesPaginator.getLoading() || !salesPaginator.getNext()">
@@ -37,8 +48,9 @@
                 <div class="col-xs-6 align-right">
                   <p class="p-1">
                     <i class="fa fa-clock-o"></i>
-                    <timer end-time="sale.dateEnded">
-                      {{days}} day{{daysS}}, {{hours}}:{{minutes}}:{{seconds}} left
+                    <timer end-time="sale.dateBuyEnded">
+                      {{days |doubleDigit }} day{{daysS}}, {{hours |
+                      doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
                     </timer>
                   </p>
                 </div>

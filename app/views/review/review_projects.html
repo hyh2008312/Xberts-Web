@@ -1,9 +1,14 @@
-<section class="container header padding-bottom-clear">
-  <div class="jumbotron section-title"
-       style="background-image: url(/images/vacature.jpg);margin-bottom: 15px;min-height: 200px;">
-    <h2 class="font-whitem" style="margin-top: 30px">Be the first to test-drive the most innovative smart products, and
-      become an early influencer by sharing your review!</h2><br/>
+<section style="background-image: url(/images/try.png);" class="section-list-page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Try out the most popular products as voted by our community
+        users</h2>
+
+      <h4>Be the first to review some cool products and share your opinions
+        to help the community make a smarter buying decision. </h4>
+    </div>
   </div>
+
 </section>
 
 <section class="" style="padding-top: 20px;">
@@ -74,8 +79,11 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="callingReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl" ng-if="callingReviewPaginator.getNext() && !callingReviewPaginator.getLoading()">
-      <button class="button button-large button-glow button-primary" ng-click="callingReviewPaginator.loadNext()">Load More</button>
+    <div class="align-center margin-top-xxl"
+         ng-if="callingReviewPaginator.getNext() && !callingReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="callingReviewPaginator.loadNext()">Load
+        More
+      </button>
     </div>
   </div>
 </section>
@@ -147,8 +155,11 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="progressingReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl" ng-if="progressingReviewPaginator.getNext() && !progressingReviewPaginator.getLoading()">
-      <button class="button button-large button-primary button-glow" ng-click="progressingReviewPaginator.loadNext()">Load More</button>
+    <div class="align-center margin-top-xxl"
+         ng-if="progressingReviewPaginator.getNext() && !progressingReviewPaginator.getLoading()">
+      <button class="button button-large button-primary button-glow" ng-click="progressingReviewPaginator.loadNext()">
+        Load More
+      </button>
     </div>
   </div>
 </section>
@@ -220,8 +231,11 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl" ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
-      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()">Load More</button>
+    <div class="align-center margin-top-xxl"
+         ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()">Load
+        More
+      </button>
     </div>
   </div>
 </section>

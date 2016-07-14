@@ -375,8 +375,18 @@ a.block-link {
 
 .container .jumbotron, .container-fluid .jumbotron {
   border-radius: 0;
-  background-size: 100% 100%;
+  background-size: cover;
   background-color: rgba(0, 0, 0, 0.6)
+}
+.jumbotron{
+  h2{
+    text-align: center;
+    color: $whiteColor;
+  }
+  h3{
+    text-align: center;
+    color: $lightColor;
+  }
 }
 
 .form-inline {
