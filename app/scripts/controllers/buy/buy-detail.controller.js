@@ -87,7 +87,7 @@ angular.module('xbertsApp')
 
         ShopifyService.buy(sale.shopGatewayInventoryId, $rootScope.user, 1)
           .then(function () {
-            $scope.$emit('backdropOff', 'buySuccess');
+            // Show spinner until purchase flow redirect
           })
           .catch(function () {
             $scope.$emit('backdropOff', 'buyFailed');
