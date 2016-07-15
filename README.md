@@ -1,9 +1,33 @@
-# xberts web app
+# Xberts web app
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+## Deployment
 
-## Build & development
+### Setup
+  - Install heroku toolbelt
+  - Login to heroku
+
+        heroku login
+  
+  - Add heroku git remote
+  
+        git remote add staging https://git.heroku.com/xberts-web-staging.git
+        git remote add prod https://git.heroku.com/xberts-web.git
+        
+  - Set default remote to staging
+  
+        git config heroku.remote staging
+        
+### Update staging server
+  - Push update
+  
+        git push staging develop:master
+        
+### Update production server
+  - Push update
+  
+        git push prod develop:master
+        
+## Build
 
 Run `grunt` for building and `grunt serve` for preview.
 
