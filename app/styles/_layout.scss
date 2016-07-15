@@ -7,6 +7,7 @@
 .margin-top-l {
   margin-top: 20px;
 }
+
 .margin-bottom-l {
   margin-bottom: 20px;
 }
@@ -14,6 +15,7 @@
 .margin-top-xl {
   margin-top: 30px;
 }
+
 .margin-bottom-xl {
   margin-bottom: 30px;
 }
@@ -90,10 +92,11 @@ $verticalAlign: top middle bottom;
 }
 
 // img layout
-.xb-flex{
+.xb-flex {
   width: 100%;
   height: 100%;
 }
+
 .xb-flex-fixed {
   max-width: 100%;
 }
@@ -132,29 +135,32 @@ section, .xb-section {
   background-size: cover;
 }
 
-
 .section-banner {
   //height: 400px;
 }
-.section-list-page{
-  padding-top: 100px;
-  background-color: rgba(0, 0, 0, 0.6);
-  .section-title{
-    h2{
+
+.section-page {
+  background-image:linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+  );
+  padding-top: 90px;
+  .section-title {
+    h2 {
       font-size: 36px;
       text-align: center;
       color: $whiteColor;
     }
-    h3,h4{
-      margin-top: 20px;
+    h3, h4 {
+      margin-top: 25px;
+      font-size: 20px;
       text-align: center;
-      color: $lightWhiteColor;
+      color: $lightColor;
     }
   }
-  .section-button{
-    margin-top: 30px;
+  .section-button {
+    margin-top: 40px;
   }
-  height: 400px;
   @media screen and (max-width: 767px) {
     padding-top: 80px;
     .section-title {
@@ -166,10 +172,18 @@ section, .xb-section {
       h3, h4 {
         margin-top: 20px;
         text-align: center;
-        color: $lightWhiteColor;
+        color: $lightColor;
       }
     }
   }
+}
+
+.section-list-page {
+  height: 400px;
+}
+
+.section-detail-page {
+  height: 350px;
 }
 
 .xb-section-title {
@@ -188,11 +202,11 @@ section, .xb-section {
 }
 
 .wordwrap {
-  white-space: pre-wrap;      /* CSS3 */
+  white-space: pre-wrap; /* CSS3 */
   white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap;     /* Opera <7 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  word-wrap: break-word;      /* IE */
+  white-space: -pre-wrap; /* Opera <7 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* IE */
 }
 
 
