@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('Review', ['$resource', 'Configuration', function ($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
+  .factory('Review', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
   }])
-  .factory('ProjectReview', ['$resource', 'Configuration', function ($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/review/projectreviews/:id/', {id: '@id'});
+  .factory('ProjectReview', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/review/projectreviews/:id/', {id: '@id'});
   }])
-  .factory('ReviewApplicants', ['$resource', 'Configuration', function ($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/review/reviews/:id/applicants/', {id: '@id'});
+  .factory('ReviewApplicants', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/review/reviews/:id/applicants/', {id: '@id'});
   }]);

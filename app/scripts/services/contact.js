@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('Contact', ['$resource', 'Configuration', function($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/resources/contacts/:id/', {id: '@id'});
+  .factory('Contact', ['$resource', 'API_BASE_URL', function($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/resources/contacts/:id/', {id: '@id'});
   }]);

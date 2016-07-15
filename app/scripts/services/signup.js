@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('SignupService', ['$resource', '$location', 'Configuration', 'localStorageService',
-    function($resource, $location, Configuration, localStorageService) {
+  .service('SignupService', ['$resource', '$location', 'Configuration', 'localStorageService', 'API_BASE_URL',
+    function($resource, $location, Configuration, localStorageService, API_BASE_URL) {
       this.signup = function(firstName, lastName, email, password, country) {
         var params = {
           firstName: firstName,
@@ -17,7 +17,7 @@ angular.module('xbertsApp')
           params['source'] = localStorageService.cookie.get(Configuration.signupSourceStorageKey);
         }
 
-        return $resource(Configuration.apiBaseUrl + '/accounts/signup/').save(params).$promise;
+        return $resource(API_BASE_URL + '/accounts/signup/').save(params).$promise;
       };
 
       this.saveSourceParam = function() {

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('Asset', ['$resource', 'Configuration', function ($resource, Configuration) {
+  .service('Asset', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
     this.createImageAsset = function(url, type) {
-      return $resource(Configuration.apiBaseUrl + '/upload/imageassets/')
+      return $resource(API_BASE_URL + '/upload/imageassets/')
         .save({
           url: url,
           type: type
@@ -11,7 +11,7 @@ angular.module('xbertsApp')
     };
 
     this.createVideoAsset = function(url, type) {
-      return $resource(Configuration.apiBaseUrl + '/upload/videoassets/')
+      return $resource(API_BASE_URL + '/upload/videoassets/')
         .save({
           url: url,
           type: type

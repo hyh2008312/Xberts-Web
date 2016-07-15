@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('EventNoDetail', ['$resource', 'Configuration', function($resource, Configuration) {
-    return $resource(Configuration.apiBaseUrl + '/resources/eventsnodetail/:id/', {id: '@id'});
+  .factory('EventNoDetail', ['$resource', 'API_BASE_URL', function($resource, API_BASE_URL) {
+    return $resource(API_BASE_URL + '/resources/eventsnodetail/:id/', {id: '@id'});
   }]);

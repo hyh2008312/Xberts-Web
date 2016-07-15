@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('SystemData', ['$resource', '$rootScope', '$q', 'Configuration',
-    function ($resource, $rootScope, $q, Configuration) {
-    var targetGeoResource = $resource(Configuration.apiBaseUrl + '/projects/target_geos/', null);
-    var supportTypeResource = $resource(Configuration.apiBaseUrl + '/projects/support_types/', null);
-    var projectTypeResource = $resource(Configuration.apiBaseUrl + '/projects/project_categories/', null);
-    var transportationModelResource = $resource(Configuration.apiBaseUrl + '/projects/transportation_models/', null);
-    var stagesResource = $resource(Configuration.apiBaseUrl + '/xberts/rest/stages/', null);
+  .factory('SystemData', ['$resource', '$rootScope', '$q', 'API_BASE_URL',
+    function ($resource, $rootScope, $q, API_BASE_URL) {
+    var targetGeoResource = $resource(API_BASE_URL + '/projects/target_geos/', null);
+    var supportTypeResource = $resource(API_BASE_URL + '/projects/support_types/', null);
+    var projectTypeResource = $resource(API_BASE_URL + '/projects/project_categories/', null);
+    var transportationModelResource = $resource(API_BASE_URL + '/projects/transportation_models/', null);
+    var stagesResource = $resource(API_BASE_URL + '/xberts/rest/stages/', null);
 
-    var saleChannelsResource = $resource(Configuration.apiBaseUrl + '/projects/sale_channels/', null);
+    var saleChannelsResource = $resource(API_BASE_URL + '/projects/sale_channels/', null);
 
     var targetGeos = null;
     var transportationModels = null;

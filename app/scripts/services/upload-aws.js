@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'Configuration',
-    function ($resource, $rootScope, Upload, Configuration) {
+  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'API_BASE_URL',
+    function ($resource, $rootScope, Upload, API_BASE_URL) {
       this.generatePolicy = function (type, file) {
-        return $resource(Configuration.apiBaseUrl + '/aws/s3policy/', null, {
+        return $resource(API_BASE_URL + '/aws/s3policy/', null, {
           generate: {
             method: 'POST'
           }

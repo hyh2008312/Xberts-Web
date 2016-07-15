@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('PasswordService', ['$resource', 'Configuration', function($resource, Configuration) {
+  .factory('PasswordService', ['$resource', 'API_BASE_URL', function($resource, API_BASE_URL) {
     function changePassword(currentPassword, newPassword) {
-      return $resource(Configuration.apiBaseUrl + '/accounts/pw/', null, {
+      return $resource(API_BASE_URL + '/accounts/pw/', null, {
         changePassword: {
           method: 'PUT'
         }
@@ -12,8 +12,8 @@ angular.module('xbertsApp')
 
     return {
       changePassword: changePassword,
-      resetPasswordRequest: $resource(Configuration.apiBaseUrl + '/accounts/resetpw/request/'),
-      resetPasswordConfirm: $resource(Configuration.apiBaseUrl + '/accounts/resetpw/confirm/:uid/:token/',
+      resetPasswordRequest: $resource(API_BASE_URL + '/accounts/resetpw/request/'),
+      resetPasswordConfirm: $resource(API_BASE_URL + '/accounts/resetpw/confirm/:uid/:token/',
         {uid: '@uid', token: '@token'})
     }
   }]);

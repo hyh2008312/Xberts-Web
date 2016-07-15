@@ -1,29 +1,29 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('Interact', ['$resource', 'Configuration', function($resource, Configuration) {
+  .factory('Interact', ['$resource', 'API_BASE_URL', function($resource, API_BASE_URL) {
     return {
       Join: function(otherParams) {
         var params = {joinId: '@id'};
         angular.extend(params, otherParams);
-        return $resource(Configuration.apiBaseUrl + '/interact/joins/:joinId/',
+        return $resource(API_BASE_URL + '/interact/joins/:joinId/',
           params,
           {'vote': {method: 'PUT', params: {vote: true}}})
       },
       Following: function(otherParams) {
         var params = {};
         angular.extend(params, otherParams);
-        return $resource(Configuration.apiBaseUrl + '/interact/followings/', params)
+        return $resource(API_BASE_URL + '/interact/followings/', params)
       },
       Feedback: function(otherParams) {
         var params = {feedbackId: '@id'};
         angular.extend(params, otherParams);
-        return $resource(Configuration.apiBaseUrl + '/interact/feedbacks/:feedbackId/', params)
+        return $resource(API_BASE_URL + '/interact/feedbacks/:feedbackId/', params)
       },
       Comment: function(otherParams) {
         var params = {commentId: '@id'};
         angular.extend(params, otherParams);
-        return $resource(Configuration.apiBaseUrl + '/interact/comments/:commentId/', params)
+        return $resource(API_BASE_URL + '/interact/comments/:commentId/', params)
       }
     };
   }]);

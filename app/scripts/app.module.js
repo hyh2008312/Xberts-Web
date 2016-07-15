@@ -29,5 +29,6 @@ angular
     'angularRandomString',
     '720kb.socialshare',
     'mgcrea.ngStrap',
-    'timer'
+    'timer',
+    'config'
   ]);
