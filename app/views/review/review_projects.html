@@ -47,7 +47,7 @@
               <span ng-switch-when="ENDED">Review Deadline: {{ review.date_end | amDateFormat:'MMM DD, YYYY'}}</span>
             </p>
 
-            <div class="card-body-footer align-right" ng-switch="review.status">
+            <div class="card-body-footer" ng-switch="review.status">
               <div class="xb-avatar-wall">
                 <div class="xb-avatar-text" ng-switch="review.status">
                   <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
