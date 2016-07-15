@@ -16,11 +16,7 @@ angular.module('xbertsApp')
             // Autofill email in checkout form with user's account email
             checkoutUrl = checkoutUrl + '&checkout[email]=' + user.getUserEmail();
 
-            if (BrowserUtil.isMobile()) {
-              $window.location.href = checkoutUrl;
-            } else {
-              $window.open(checkoutUrl, 'Checkout', 'width=1000,height=845');
-            }
+            $window.location.href = checkoutUrl;
           });
       };
   }]);
