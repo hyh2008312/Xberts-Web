@@ -1,4 +1,4 @@
 {
-  "API_BASE_URL": "https://xberts-server-staging.herokuapp.com",
+  "API_BASE_URL": "https://api-staging.xberts.com",
   "OAUTH_CLIENT_ID": "CwWuk2YE1v2LZIyKy2mvwyuhliYKHkKSxfhb0835"
 }
