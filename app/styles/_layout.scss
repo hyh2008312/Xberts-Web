@@ -355,6 +355,9 @@ hr {
   padding-bottom: 206px;
   .xb-carousel-body{
     width: 60%;
+    @media screen and (max-width: 767px) {
+      width:100%;
+    }
     text-align: left;
     .xb-carousel-title{
       color: $whiteColor;
