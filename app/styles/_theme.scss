@@ -1,0 +1,27 @@
+$colors: (
+  primary: $primaryColor,
+  success: $successColor,
+  danger: $dangerColor,
+  striking: $strikingColor,
+  whitem:$whiteColor,
+  light-white:$lightWhiteColor,
+  light:$lightColor,
+  light-gray:$lightGrayColor,
+  gray-light:$grayLightColor,
+  graym:$grayColor,
+  dark-gray: $darkGrayColor,
+  dark: $darkColor,
+  bg-white:$bgWhite,
+  bg-light:$bgLight
+);
+@each $name, $color in $colors {
+  .background-#{$name} {
+    background-color: $color;
+  }
+  .font-#{$name} {
+    color: $color;
+  }
+  .border-bottom-#{$name} {
+    border-bottom: 1px solid $color;
+  }
+}

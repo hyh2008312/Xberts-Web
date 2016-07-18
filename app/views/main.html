@@ -1,31 +1,30 @@
 <uib-carousel interval="5000" no-wrap="false" active="active">
   <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-    <section class="section-fixed landing-page" style="background-image: url({{ slide.image }})">
+    <div class="xb-carousel" style="background-image: url({{ slide.image }})">
       <div class="container">
-        <div class="section-title">
-
-          <h1 class="font-whitem" ng-bind-html=" slide.title | trust"></h1>&nbsp;
-          <h3 class="font-whitem hidden-xs" style="color: #fff;" ng-bind-html=" slide.subtitle | trust"></h3>&nbsp;
+        <div class="xb-carousel-body">
+          <h1 class="xb-carousel-title" ng-bind-html=" slide.title | trust"></h1>
+          <p class="xb-carousel-subtitle" ng-bind-html=" slide.subtitle | trust"></p>
+          <div class="xb-carousel-button-wrap">
+            <a ng-click="slideButtonClick(slide)"
+               class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
+              slide.buttonText }}</a>
+          </div>
         </div>
       </div>
-      <div class="carousel-caption {{ slide.captionLocation}} hidden-xs">
-        <a ng-click="slideButtonClick(slide)"
-           class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
-          slide.buttonText }}</a>
-      </div>
-    </section>
+    </div>
   </uib-slide>
 </uib-carousel>
-<section style="padding-top: 20px;padding-bottom: 20px" class="background-light-white">
+<section style="padding-top: 20px;padding-bottom: 20px" class="background-bg-light">
   <div class="container">
     <div style="width: 80%; margin: auto;" class="full-image">
       <img src="/images/media_bar.png" style="width: 100%;">
     </div>
   </div>
 </section>
-<section class="background-whitem">
+<section class="xb-section background-bg-white">
   <div class="container">
-    <div class="section-title">
+    <div class="xb-section-title">
       <h2>How It Works</h2>
 
       <h3></h3>
@@ -34,12 +33,11 @@
       <div class="col-md-4 col-sm-6">
         <div class="card cover card-shadowless">
           <div class="profile-square border-clear">
-            <img ng-src="/images/howitworks-solution.png">
+            <img ng-src="/images/howitwork1.png">
 
-            <p class="landing-p">Discover Innovation</p>
+            <p class="landing-p">Vote For Favorites</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Explore new inventions created by our community of
-              tech enthusiasts
+            <p class="landing-p font-graym" style="font-size: 18px">Discover and vote for your favorite cool products
             </p>
 
           </div>
@@ -48,12 +46,11 @@
       <div class="col-md-4 col-sm-6">
         <div class="card cover card-shadowless">
           <div class="profile-square border-clear">
-            <img ng-src="/images/howitworks-crowdtesting.png">
+            <img ng-src="/images/howitwork2.png">
 
-            <p class="landing-p">Review Products</p>
+            <p class="landing-p">Share Your Review</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Test-drive the latest smart products and share your
-              reviews
+            <p class="landing-p font-graym" style="font-size: 18px">Be among the first to review the most popular items
             </p>
 
           </div>
@@ -62,12 +59,11 @@
       <div class="col-md-4 col-sm-6">
         <div class="card cover card-shadowless">
           <div class="profile-square border-clear">
-            <img ng-src="/images/howitworks-marketplace.png">
+            <img ng-src="/images/howitwork3.png">
 
-            <p class="landing-p">Affiliate Partnership</p>
+            <p class="landing-p">Shop Debut Collection</p>
 
-            <p class="landing-p font-graym" style="font-size: 18px">Become a partner of the next tech star to influence
-              the market </p>
+            <p class="landing-p font-graym" style="font-size: 18px">Get the best-rated products at an exclusive discount</p>
 
           </div>
         </div>
@@ -76,12 +72,12 @@
 
   </div>
 </section>
-<section class="background-light-white">
+<section class="xb-section background-bg-light">
   <div class="container">
-    <div class="section-title">
-      <h2>Featured Smart Products</h2>
+    <div class="xb-section-title">
+      <h2>Trending Products</h2>
 
-      <h3>Seeking brand evangelists, buyers and partners </h3>
+      <h3>Vote for your favorite products for the chance to save big</h3>
     </div>
 
     <div class="row section-body">
@@ -132,12 +128,12 @@
     </div>
   </div>
 </section>
-<section class="background-whitem">
+<section class="xb-section background-bg-white">
   <div class="container">
-    <div class="section-title">
+    <div class="xb-section-title">
       <h2>CrowdTesting Campaigns</h2>
 
-      <h3>Calling for product testers and reviewers</h3>
+      <h3>Apply to review the most popular items and share your opinions</h3>
     </div>
 
     <div class="row section-body">
@@ -184,56 +180,13 @@
     </div>
   </div>
 </section>
-<section class="background-light-white">
+
+<section class="xb-section background-bg-light">
   <div class="container">
-    <div class="section-title">
-      <h2>Upcoming Events</h2>
+    <div class="xb-section-title">
+      <h2>Community Pioneers</h2>
 
-      <h3>Meet smart hardware brands and tech enthusiasts</h3>
-    </div>
-
-    <div class="row section-body">
-      <div class="col-md-4 col-sm-6" ng-repeat="event in eventPaginator.items | limitTo:3">
-        <div class="card card-bordless cover">
-          <div class="card-header"
-               style="background-image:url({{ event.cover_url }});">
-          </div>
-          <div class="card-body">
-            <p class="card-body-header"><i
-              class="fa fa-calendar"></i> {{ event.when | amDateFormat:'dddd, MMM DD, YYYY' }}
-            </p>
-
-            <p class="card-body-header p-1"><i class="fa fa-map-marker"></i> {{ event.where }}</p>
-
-            <p class="card-body-title p-2">{{ event.title }}</p>
-
-            <p class="card-body-footer p-1">{{ event.tags|tagsplit }}</p>
-          </div>
-          <div class="cover-layer cover-layer-top">
-            <div class="cover-header">
-              <p class="p-8">{{ event.brief }}</p>
-            </div>
-            <div class="cover-footer text-center">
-              <a ui-sref="application.event({ eventId: event.id })" class="button button-glow button-action">View &
-                Register</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p></p>
-
-    <div class="align-center">
-      <a ui-sref="application.events" class="button button-primary button-glow">View More Events</a>
-    </div>
-  </div>
-</section>
-<section class="background-whitem">
-  <div class="container">
-    <div class="section-title">
-      <h2>Community Influencers</h2>
-
-      <h3>Join our community and become a tech influencer</h3>
+      <h3>Join our community and meet people who share your interests</h3>
     </div>
 
 
@@ -270,13 +223,62 @@
     </div>
   </div>
 </section>
-<section class="background-light-white">
+<section class="xb-section background-bg-white">
   <div class="container full-image">
-    <div class="section-title">
-      <h2>Brands That Trust Us</h2>
+    <div class="xb-section-title">
+      <h2>Meet Creative Brands</h2>
 
-      <h3>Over 210 smart hardware brands have launched on Xberts</h3>
+      <h3>Collaborate with new brands and show your support to creators</h3>
     </div>
-    <img src="/images/main_partner.png">
+    <div class="row">
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_1.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_2.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_3.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_4.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_5.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_6.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_7.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_8.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_9.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_10.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_11.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_12.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_13.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_14.png">
+      </div>
+      <div class="col-md-2 col-xs-4 col-sm-3 xb-full-image">
+        <img src="images/parter_15.png">
+      </div>
+
+
+
+    </div>
   </div>
 </section>

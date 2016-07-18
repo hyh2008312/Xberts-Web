@@ -21,35 +21,12 @@ $lightWhiteColor: #f1f1f1;
 $whiteColor: #fff;
 //white
 
+$bgWhite:#fff;
+$bgLight:#f2f5f7;
+
 $defaultBackground: $lightWhiteColor;
 $whiteBackground: $whiteColor;
 $lightGrayBackground: $lightGrayColor;
-
-$colors: (
-  primary: $primaryColor,
-  success: $successColor,
-  danger: $dangerColor,
-  striking: $strikingColor,
-  whitem:$whiteColor,
-  light-white:$lightWhiteColor,
-  light:$lightColor,
-  light-gray:$lightGrayColor,
-  gray-light:$grayLightColor,
-  graym:$grayColor,
-  dark-gray: $darkGrayColor,
-  dark: $darkColor,
-);
-@each $name, $color in $colors {
-  .background-#{$name} {
-    background-color: $color;
-  }
-  .font-#{$name} {
-    color: $color;
-  }
-  .border-bottom-#{$name} {
-    border-bottom: 1px solid $color;
-  }
-}
 
 .striking-white {
   background-color: $strikingColor;

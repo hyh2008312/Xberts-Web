@@ -18,46 +18,24 @@ angular.module('xbertsApp')
       $scope.slides = [
         {
           id:0,
-          image: '/images/landing_1_1.jpg',
-          title: 'Bring Hardware Innovations to The World',
-          subtitle: "A cross-border market network where smart hardware manufacturers meet<br/> product reviewers, tech influencers, buyers and partners from around the world",
+          image: '/images/landing.png',
+          title: 'Connect Brand New Products With Early Adopters',
+          subtitle: "Xberts is a global community for early adopters to explore new creative products and share their experience with others",
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           captionLocation: '',
           url: 'application.crowdtestings',
           params: {}
-        },
-        {
-          id:1,
-          image: '/images/jisiwei.jpg',
-          buttonText: 'Apply Now',
-          buttonColor: 'button-primary',
-          captionLocation: '',
-          url: 'application.crowdtesting',
-          params: {reviewId: 29}
-        },
-        {
-          id:2,
-          image: '/images/FitSleep.jpg',
-          title: '',
-          subtitle: '',
-          buttonText: 'Apply Now',
-          buttonColor: 'button-primary',
-          captionLocation: '',
-          url: 'application.crowdtesting',
-          params: {reviewId: 30}
-        },
-        {
-          id:3,
-          image: '/images/ucam.jpg',
-          title: '',
-          subtitle: '',
-          buttonText: 'Apply Now',
-          buttonColor: 'button-primary',
-          captionLocation: '',
-          url: 'application.crowdtesting',
-          params: {reviewId: 28}
         }
+        //, {
+        //  id:1,
+        //  image: '/images/jisiwei.jpg',
+        //  buttonText: 'Apply Now',
+        //  buttonColor: 'button-primary',
+        //  captionLocation: '',
+        //  url: 'application.crowdtesting',
+        //  params: {reviewId: 29}
+        //}
       ];
 
       $scope.slideButtonClick = function (slide) {

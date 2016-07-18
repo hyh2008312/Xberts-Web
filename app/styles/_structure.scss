@@ -20,78 +20,7 @@ footer {
   }
 }
 
-section {
-  padding-top: $sectionSpace;
-  padding-bottom: $sectionSpace + 20px;
-}
 
-section.header {
-  padding-top: 27px;
-}
-
-.section-title {
-  text-align: center;
-  h1 {
-    font-size: 48px;
-  }
-  h3 {
-    color: $grayColor;
-    font-weight: normal;
-  }
-}
-
-hr {
-  border-top: 1px solid #C7C7C7;
-}
-
-.section-fixed {
-  height: $sectionFixedHeight;
-  background: rgba(0, 0, 0, 0.6) no-repeat left;
-  background-size: cover;
-  position: relative;
-  @media screen and (max-width: 767px) {
-    background: rgba(0, 0, 0, 0.6) no-repeat center;
-    background-size: cover;
-    //height: $sectionFixedHeight - 100;
-    //background-size: 100%;
-  }
-  > .cover-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: inherit;
-    background: rgba(0, 0, 0, 0.4);
-    //background: transparent;
-    z-index: 3;
-    h1 {
-      color: $whiteColor;
-    }
-    h2 {
-      color: $whiteColor;
-    }
-    h3 {
-      color: #f8f8f8;
-    }
-    h4, p {
-      color: $whiteColor;
-      font-size: 1.2em;
-      margin-top: 5px;;
-      margin-bottom: 5px;;
-    }
-  }
-  .section-title {
-    text-align: center;
-    position: relative;
-
-    h3 {
-      color: $lightColor;
-      font-weight: normal;
-    }
-  }
-
-}
 
 .navbar-default {
   background-color: $lightGrayBackground;
@@ -108,61 +37,7 @@ hr {
   z-index: 5;
 }
 
-.section-fixed-sm {
-  height: 350px;
-  background: rgba(0, 0, 0, 0.6) no-repeat center;
-  background-size: cover;
-  position: relative;
-  > .cover-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: inherit;
-    background: rgba(0, 0, 0, 0.4);
-    //background: transparent;
-    z-index: 3;
-    h1 {
-      color: $whiteColor;
-    }
-    h2 {
-      color: $whiteColor;
-    }
-    h3 {
-      color: #f8f8f8;
-    }
-    h4, p {
-      color: $whiteColor;
-      font-size: 1.2em;
-      margin-top: 5px;;
-      margin-bottom: 5px;;
-    }
-  }
-  .section-title {
-    text-align: center;
-    position: relative;
 
-    h3 {
-      color: $lightColor;
-      font-weight: normal;
-    }
-    @media screen and (max-width: 767px) {
-      h1 {
-        font-size: 24px;
-      }
-    }
-  }
-
-}
-
-.section-title + .section-body {
-  margin-top: $sectionSpace;
-}
-
-.section-body img {
-  max-width: 100%;
-}
 
 .panel-heading {
   padding: 15px;
