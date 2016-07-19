@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('SaleDetailController', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal',
-    'growl', 'SystemData', 'Interact', 'sale', 'ShopifyService',
+    'growl', 'SystemData', 'Interact', 'sale', 'ShopifyService', 'AnalyticsService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal,
-              growl, SystemData, Interact, sale, ShopifyService) {
+              growl, SystemData, Interact, sale, ShopifyService, AnalyticsService) {
 
       sale.soldUnits = sale.totalUnits - sale.availableUnits;
       sale.dateEndedTimestamp = new Date(sale.dateEnded);
@@ -87,6 +87,8 @@ angular.module('xbertsApp')
 
         ShopifyService.buy(sale.shopGatewayInventoryId, $rootScope.user, 1)
           .then(function () {
+            AnalyticsService.sendPageView($location.path() + '/buy');
+
             // Show spinner until purchase flow redirect
           })
           .catch(function () {
