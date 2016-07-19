@@ -265,12 +265,13 @@ hr {
   text-align: center;
   margin-bottom: 100px;
   h2{
-    font-size: 50px;
+    margin-top:0;
+    font-size: 40px;
     color:$primaryFontColor;
     font-weight: normal;
   }
   h3{
-    font-size:30px;
+    font-size:26px;
     color:$secondaryFontColor;
     font-weight: normal;
   }
@@ -351,27 +352,53 @@ hr {
 .xb-carousel{
   background: rgba(0, 0, 0, 0.6) no-repeat center;
   background-size: cover;
-  padding-top:206px;
-  padding-bottom: 206px;
+  padding-top:100px;
+  padding-bottom: 100px;
+  padding-left:10%;
+  height: 600px;
+  position: relative;
+  @media screen and (max-width: 767px) {
+    height: 450px;
+  }
   .xb-carousel-body{
-    width: 60%;
-    @media screen and (max-width: 767px) {
-      width:100%;
-    }
+    position: absolute;
+    top: 100px;
+    left:10%;
+    max-width: 60%;
     text-align: left;
     .xb-carousel-title{
       color: $whiteColor;
       font-size: 50px;
       font-weight: normal;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     .xb-carousel-subtitle{
       color: $bgLight;
-      font-size: 30px;
-      margin-bottom: 50px;
+      font-size: 26px;
+      margin-bottom: 40px;
     }
     .xb-carousel-button-wrap{
-      margin-bottom: 50px;
+      margin-bottom: 40px;
+    }
+    @media screen and (max-width: 767px) {
+      top: 50px;
+      left:15px;
+      right: 15px;
+      max-width:100%;
+      .xb-carousel-title{
+        color: $whiteColor;
+        font-size: 30px;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+      .xb-carousel-subtitle{
+        color: $bgLight;
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      .xb-carousel-button-wrap{
+        margin-bottom: 20px;
+      }
     }
   }
 
