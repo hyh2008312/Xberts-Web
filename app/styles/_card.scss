@@ -69,7 +69,8 @@
 
 .xb-statistic-sales-broad {
   padding: 15px;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
 }
 
 .xb-statistic-broad-title {
@@ -196,6 +197,15 @@ li.xb-step{
     }
     img:last-child{
       margin-right:0;
+    }
+  }
+}
+
+.progress-bar-thin {
+  .progress{
+    height: 10px;
+    .progress-bar{
+      line-height: 10px;
     }
   }
 }

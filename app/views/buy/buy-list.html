@@ -19,7 +19,7 @@
           </div>
           <div class="card-cover">
             <div class="xb-statistic-sales-broad">
-              <div class="xb-statistic-sales-broad-title font-striking">{{ sale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-title font-whitem">{{ sale.salePrice.amount | currency }}</div>
               <div class="xb-statistic-sales-broad-subtitle font-light">{{ sale.project.retailPrice | currency }}</div>
             </div>
           </div>
@@ -29,14 +29,14 @@
 
             <p class="card-body-detail p-3" ng-bind="sale.project.description"></p>
 
-            <div class="font-gray-light progress-tip-down">
+            <div class="font-gray-light progress-tip-down progress-bar-thin">
 
               <uib-progressbar class="active" max="sale.totalUnits" value="sale.totalUnits-sale.availableUnits"
                                type="success">
               </uib-progressbar>
               <div class="progress-tip">
                 <span class="progress-tip-left"> {{ sale.totalUnits-sale.availableUnits }} purchased</span>
-                <span class="progress-tip-right font-danger"> {{ sale.availableUnits }} left</span>
+                <span class="progress-tip-right"> {{ sale.availableUnits }} left</span>
               </div>
             </div>
 

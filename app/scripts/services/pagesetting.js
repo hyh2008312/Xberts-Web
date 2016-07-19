@@ -6,7 +6,7 @@ angular.module('xbertsApp')
       function Page(title, description, background, shareImage) {
         this._title = title || 'Xberts - Innovations worth spreading';
         this._description = description || 'Xberts.com is a global platform to curate, promote and bring the next generation of smart devices to global market.';
-        this._backgroundColor = background || 'background-light-white';
+        this._backgroundColor = background || 'background-bg-light';
         this._shareImage = shareImage || 'https://xberts.com/images/landing_1_1.d836e5d1.jpg';
 
         this.setTitle = function (title) {
@@ -24,7 +24,7 @@ angular.module('xbertsApp')
         this.setPage = function (title, description, background, shareImage) {
           this._title = title || 'Xberts - Innovations worth spreading';
           this._description = description || 'Xberts.com is a global platform to curate, promote and bring the next generation of smart devices to global market.';
-          this._backgroundColor = background || 'background-light-white';
+          this._backgroundColor = background || 'background-bg-light';
           this._shareImage = shareImage || 'https://xberts.com/images/landing_1_1.d836e5d1.jpg';
         };
         this.getUrl=function(){
