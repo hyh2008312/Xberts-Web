@@ -80,7 +80,7 @@
       <h3>Vote for your favorite products for the chance to save big</h3>
     </div>
 
-    <div class="row section-body">
+    <div class="row xb-section-body">
       <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items  | limitTo:3">
         <a class="block-link" ui-sref="application.project({projectId: project.id})">
           <div class="card card-bordless">
@@ -121,7 +121,6 @@
         </a>
       </div>
     </div>
-    <p></p>
 
     <div class="align-center">
       <a ui-sref="application.projects" class="button button-primary button-glow">View More Products</a>
@@ -136,7 +135,7 @@
       <h3>Apply to review the most popular items and share your opinions</h3>
     </div>
 
-    <div class="row section-body">
+    <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in projectReviewPaginator.items | limitTo:3">
         <a class="block-link" ui-sref="application.crowdtesting({ reviewId:review.id })">
           <div class="card">
@@ -173,7 +172,6 @@
         </a>
       </div>
     </div>
-    <p></p>
 
     <div class="align-center">
       <a ui-sref="application.crowdtestings" class="button button-primary button-glow">View More Campaigns</a>
@@ -190,7 +188,7 @@
     </div>
 
 
-    <div class="row section-body">
+    <div class="row xb-section-body">
       <div class="col-md-3 col-sm-6" ng-repeat="expert in expertPaginator.items">
         <div class="card cover">
           <div class="profile">
@@ -198,7 +196,7 @@
 
             <p class="profile-name p-1">{{ expert.short_name }}</p>
 
-            <p class="profile-country p-1"><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
+            <p class="profile-country p-1"><i class="fa fa-map-marker "></i> {{ expert.country }}</p>
 
             <p class="profile-title p-4">{{ expert.company_title }}</p>
 
@@ -216,8 +214,6 @@
         </div>
       </div>
     </div>
-    <p></p>
-
     <div class="align-center">
       <a ui-sref="application.experts" class="button button-primary button-glow">View More Influencers</a>
     </div>
