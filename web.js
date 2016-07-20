@@ -17,12 +17,7 @@ function start() {
   app.use(morgan('dev'));
   app.use('*', function(req, res, next) {
     var shouldRedirect = false;
-
     var host = req.get('Host');
-    if (host.match(/^www\./)) {
-      host = host.substring(4);
-      shouldRedirect = true;
-    }
 
     if (req.headers['x-forwarded-proto'] != 'https') {
       shouldRedirect = true;
