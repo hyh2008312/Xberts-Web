@@ -2,6 +2,7 @@ var throng = require('throng');
 
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
 var PORT = process.env.PORT || 5000;
+var ENV = process.env.ENV || 'local';
 
 throng({
   workers: WORKERS,
@@ -23,8 +24,8 @@ function start() {
       shouldRedirect = true;
     }
 
-    if (shouldRedirect) {
-      res.redirect(301, 'https://' + host + req.url);
+    if (shouldRedirect && ENV !== 'local') {
+      res.redirect(301, 'https://' + host + req.originalUrl);
     } else {
       next();
     }
