@@ -40,7 +40,6 @@ angular.module('xbertsApp')
       });
 
       $scope.want = function (project) {
-        console.log(project.interact.current_voter);
         var vote = !project.interact.current_voter.vote;
         //todo: 返还一个promise对象
         if (!$rootScope.user.authRequired()) {

@@ -17,7 +17,7 @@ angular.module('xbertsApp')
       $scope.active = 0;
       $scope.slides = [
         {
-          id:0,
+          id: 0,
           image: '/images/landing.png',
           title: 'Connect Brand New Products With Early Adopters',
           subtitle: "Xberts is a global community for early adopters to explore new creative products and share their experience with others",
@@ -27,7 +27,7 @@ angular.module('xbertsApp')
           params: {}
         }
         , {
-          id:1,
+          id: 1,
           image: '/images/sensative.jpg',
           title: 'Sensative is calling 20 pioneers for crowdtesting',
           subtitle: "Application Deadline<br/>12am PST - Aug 05, 2016 ",
@@ -48,6 +48,54 @@ angular.module('xbertsApp')
           }
         } else {
           $state.go(slide.url, slide.params);
+        }
+      };
+      $scope.want = function (project) {
+        var vote = !project.interact.current_voter.vote;
+        //todo: 返还一个promise对象
+        if (!$rootScope.user.authRequired()) {
+          return
+        }
+        project.voting = true;
+        if (vote) {
+          project.interact.vote_amount += 1;
+        } else {
+          if (project.interact.current_voter.id !== undefined && project.interact.vote_amount > 0) {
+            project.interact.vote_amount -= 1;
+          }
+        }
+        var Join = Interact.Join({});
+        var join;
+        if (project.interact.current_voter.id === undefined) {
+          join = new Join();
+          join.interact = project.interact.id;
+          join.vote = vote;
+          join.$save(function (result) {
+            project.voting = false;
+            if (result.vote) {
+              project.interact.voters.push(result);
+              project.interact.current_voter = result;
+            }
+          }, function (error) {
+            project.voting = false;
+            growl.error('error');
+          });
+        } else {
+          join = new Join(project.interact.current_voter);
+          join.vote = vote;
+          join.$vote(function (result) {
+            project.voting = false;
+            project.interact.current_voter = result;
+            if (result.vote) {
+              project.interact.voters.push(result);
+            } else {
+              for (var i = 0; i < project.interact.voters.length; i++) {
+                if (project.interact.voters[i].id === result.id) {
+                  project.interact.voters.splice(i, 1);
+                }
+              }
+            }
+          });
         }
       };
     }]);

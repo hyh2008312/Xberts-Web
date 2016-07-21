@@ -82,43 +82,41 @@
 
     <div class="row xb-section-body">
       <div class="col-md-4 col-sm-6" ng-repeat="project in projectPaginator.items  | limitTo:3">
-        <a class="block-link" ui-sref="application.project({projectId: project.id})">
-          <div class="card card-bordless">
-            <div class="card-header" style="background-image: url({{ project.image }})">
-            </div>
-            <div class="card-body">
-              <div class="card-body-header">
-                <div class="avatar-text-small-1">
-                  <avatar-img src="project.account.avatar"></avatar-img>
+        <div class="card card-bordless">
+          <div class="card-header" style="background-image: url({{ project.image }})"
+               ui-sref="application.project({projectId: project.id})">
+          </div>
+          <div class="card-body">
 
-                  <p ng-bind="project.account.fullname"></p>
+            <p class="card-body-header">{{project.project_category_name}}</p>
+
+            <p class="card-body-title p-3" ng-bind="project.title" ui-sref="application.project({projectId: project.id})">
+            </p>
+
+            <button class="button button-full margin-bottom"
+                    ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
+                    ng-click="want(project)" ng-disabled="project.voting "
+                    ng-switch="project.interact.current_voter.vote">
+              <span ng-switch-when="false">VOTE</span>
+              <span ng-switch-when="true">VOTED</span>
+            </button>
+
+
+            <div class="card-body-footer" ng-switch="review.status"
+                 ui-sref="application.project({projectId: project.id})">
+              <div class="xb-avatar-wall">
+                <div class="xb-avatar-text" style="height: 30px;padding-top: 5px;min-width: 60px;text-align: left;">
+                <span>{{ project.interact.vote_amount }} vote<span
+                  ng-show="project.interact.vote_amount>1">s</span></span>
+                </div>
+                <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
+                  <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"
+                                  show-name="true" ng-repeat="voter in project.interact.voters"></profile-avatar>
                 </div>
               </div>
-              <p class="card-body-title p-3" ng-bind="project.title">
-              </p>
-
-              <div class="card-body-footer">
-                <div class="row">
-                  <div class="col-xs-6 align-left">
-                    <p class="p-1" ng-bind="project.project_category_name"></p>
-                  </div>
-                  <div class="col-xs-6 align-right">
-                    <p class="p-1">
-                      <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
-                      <!--<i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>-->
-                      <!-- todo:user config-->
-                  <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
-                  <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
-                  <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
-                  </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -159,12 +157,24 @@
 
 
               <div class="card-body-footer align-right" ng-switch="review.status">
-                <span ng-switch-when="UPCOMING" class="label label-success" style="font-size: 16px">Coming Soon</span>
-                <span ng-switch-when="APPLICATION" class="label label-primary" style="font-size: 16px">Apply Now</span>
-                <span ng-switch-when="SELECTION" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="CONFIRMATION" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="REVIEW" class="label label-info" style="font-size: 16px">In Progress</span>
-                <span ng-switch-when="ENDED" class="label label-default" style="font-size: 16px">Completed</span>
+                <div class="xb-avatar-wall">
+                  <div class="xb-avatar-text" ng-switch="review.status">
+                    <label ng-switch-when="UPCOMING" class="button-label button-label-success" style="font-size: 16px">Coming
+                      Soon
+                    </label>
+                    <button ng-switch-when="APPLICATION" class="button button-small button-primary"
+                            style="font-size: 16px"
+                            ng-click="applyNow(review.id,$event);">Apply Now
+                    </button>
+                    <label ng-switch-when="SELECTION" class="button-label button-label-info" style="font-size: 16px">Selecting</label>
+                    <label ng-switch-when="CONFIRMATION" class="button-label button-label-info" style="font-size: 16px">Confirming</label>
+                    <label ng-switch-when="REVIEW" class="button-label button-label-info" style="font-size: 16px">Reviewing</label>
+                    <button ng-switch-when="ENDED" class="button button-small button-primary"
+                            style="font-size: 16px" ui-sref="application.crowdtesting({ reviewId:review.id })">View
+                      Reports
+                    </button>
+                  </div>
+                </div>
               </div>
 
             </div>
