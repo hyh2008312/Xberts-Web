@@ -20,7 +20,12 @@ function start() {
     var shouldRedirect = false;
     var host = req.get('Host');
 
-    if (req.headers['x-forwarded-proto'] != 'https') {
+    if (!host.match(/^www\..*/i) && ENV === 'prod') {
+      host = 'www.' + host;
+      shouldRedirect = true;
+    }
+
+    if (req.headers['x-forwarded-proto'] !== 'https') {
       shouldRedirect = true;
     }
 
