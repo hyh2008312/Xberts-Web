@@ -38,7 +38,7 @@ angular.module('xbertsApp')
         }
         , {
           id: 2,
-          image: '/images/sensative.jpg',
+          image: '/images/µHandy.jpg',
           title: 'µHandy is calling 15 pioneers for crowdtesting',
           subtitle: "Application Deadline<br/>12am PST - Aug 03, 2016 ",
           buttonText: 'Apply Now',
@@ -48,7 +48,7 @@ angular.module('xbertsApp')
         }
         , {
           id: 3,
-          image: '/images/sensative.jpg',
+          image: '/images/Linner.jpg',
           title: 'Linner is calling 15 pioneers for crowdtesting',
           subtitle: "Application Deadline<br/>12am PST - Aug 10, 2016 ",
           buttonText: 'Apply Now',
@@ -57,7 +57,7 @@ angular.module('xbertsApp')
           params: {reviewId: 35}
         }, {
           id: 4,
-          image: '/images/sensative.jpg',
+          image: '/images/Nival.jpg',
           title: 'Nival is calling 5 pioneers for crowdtesting',
           subtitle: "Application Deadline<br/>12am PST - Aug 01, 2016 ",
           buttonText: 'Apply Now',
