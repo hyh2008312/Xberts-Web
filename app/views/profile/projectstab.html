@@ -18,16 +18,16 @@
             <div class="card-body-footer">
               <div class="row">
                 <div class="col-xs-6 align-left">
-                  <p class="p-1" ng-bind="project.project_category_name"></p>
+                  <p class="p-1" ng-bind="project.categories[0].name"></p>
                 </div>
                 <div class="col-xs-6 align-right">
                   <p class="p-1">
                     <i class="fa fa-heart"></i> <span ng-bind="project.interact.vote_amount"></span>
                     <i class="fa fa-comment"></i> <span ng-bind="project.interact.feedback_amount"></span>
                     <!-- todo:user config-->
-                  <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.interact.is_verified">
-                  <i class="fa fa-check fa-lg text-danger" ng-switch-when="1"></i>
-                  <i class="fa fa-times fa-lg text-danger" ng-switch-when="2"></i>
+                  <span ng-if='user.isAuth() && user.isStaff()' ng-switch="project.approval_status">
+                  <i class="fa fa-check fa-lg text-danger" ng-switch-when="APPROVED"></i>
+                  <i class="fa fa-times fa-lg text-danger" ng-switch-when="DISAPPROVED"></i>
                   </span>
                   </p>
                 </div>

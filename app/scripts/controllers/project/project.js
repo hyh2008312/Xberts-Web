@@ -124,7 +124,7 @@ angular.module('xbertsApp')
         if (isApproved) {
           Project.approve.save({id: project.id},
             function () {
-              project.interact.is_verified = '1';
+              project.approval_status = 'APPROVED';
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is approved.');
@@ -137,7 +137,7 @@ angular.module('xbertsApp')
         } else {
           Project.approve.delete({id: project.id},
             function () {
-              project.interact.is_verified = '2';
+              project.approval_status = 'DISAPPROVED';
 
               $scope.$emit('backdropOff', 'success');
               growl.success('Project is rejected.');

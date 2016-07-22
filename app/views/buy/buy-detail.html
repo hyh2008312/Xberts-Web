@@ -23,7 +23,7 @@
                 <p class="font-gray-light">{{ sale.salePrice.amount |currency }}</p>
                 <h4> Original Price: </h4>
 
-                <p class="font-gray-light"><del>{{ sale.project.retailPrice |currency }}</del></p>
+                <p class="font-gray-light"><del>{{ sale.project.retailPrice.amount |currency }}</del></p>
 
                 <h4> Time Left: </h4>
                 {{sale.dateEnded}}

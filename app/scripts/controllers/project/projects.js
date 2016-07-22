@@ -17,7 +17,7 @@ angular.module('xbertsApp')
         {value: "-interact__vote_amount", label: "Popular"}];
       $scope.projectPaginator = projectPaginator;
       $scope.projects = {
-        project_category_id: localStorageService.get('project_search_type') || '',
+        categories__id: localStorageService.get('project_search_type') || '',
         ordering: localStorageService.get('project_search_order') || '-date_published'
       };
       $scope.onSearch = function () {
@@ -34,8 +34,8 @@ angular.module('xbertsApp')
           $scope.onSearch();
         }
       };
-      $scope.$watch('projects.project_category_id + projects.ordering', function () {
-        localStorageService.set('project_search_type', $scope.projects.project_category_id);
+      $scope.$watch('projects.categories__id + projects.ordering', function () {
+        localStorageService.set('project_search_type', $scope.projects.categories__id);
         localStorageService.set('project_search_order', $scope.projects.ordering);
       });
 

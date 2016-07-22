@@ -21,7 +21,7 @@
         <div class="form-group">
           <label>Select a category for your product:</label>
           <select class="form-control" ng-required="true" name="project_category"
-                  ng-model="projectData.project_category" ng-options="item.id as item.name for item in projectTypes">
+                  ng-model="projectTemp.project_category" ng-options="item.id as item.name for item in projectTypes">
             <option value="">-- Select a category --</option>
           </select>
 
@@ -35,7 +35,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Retail Price(USD):</label>
-          <input type="text" class="form-control" name='retail_price' ng-model="projectData.retail_price"
+          <input type="text" class="form-control" name='retail_price' ng-model="projectData.retail_price.amount"
                  required
                  ng-required="true" ng-maxlength="200" ng-pattern="/^[0-9]*\.?[0-9]*$/">
 
@@ -54,7 +54,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Company Name:</label>
-          <input type="text" class="form-control" name='company_name' ng-model="projectData.company_name"
+          <input type="text" class="form-control" name='company_name' ng-model="projectData.company.name"
                  required
                  ng-required="true" ng-maxlength="50">
 

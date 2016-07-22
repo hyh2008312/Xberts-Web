@@ -40,6 +40,7 @@ angular.module('xbertsApp')
             $scope.$emit('backdropOff', 'project get completed');
             $scope.projectData = result;
             $scope.projectTemp.tags = Utils.parseCommaStringForTagInput(result.certification_tags);
+            $scope.projectTemp.project_category = result.categories[0].id;
             //console.log($scope.projectData)
           }, function (error) {
             growl.error('Sorry,some error happened.');
@@ -56,6 +57,9 @@ angular.module('xbertsApp')
             $scope.projectData.details = $scope.projectData.details.replace(/pre-loading/ig, "");
           }
           $scope.projectData.certification_tags = Utils.convertTagsInputToCommaString($scope.projectTemp.tags);
+          $scope.projectData.categories = [{
+            id: $scope.projectTemp.project_category
+          }];
           if ($scope.projectForm.$valid) {
             $scope.projectForm.submitted = true;
             if ($scope.projectData.id) {
