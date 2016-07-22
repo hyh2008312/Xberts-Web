@@ -36,6 +36,36 @@ angular.module('xbertsApp')
           url: 'application.crowdtesting',
           params: {reviewId: 31}
         }
+        , {
+          id: 2,
+          image: '/images/sensative.jpg',
+          title: 'µHandy is calling 15 pioneers for crowdtesting',
+          subtitle: "Application Deadline<br/>12am PST - Aug 03, 2016 ",
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          url: 'application.crowdtesting',
+          params: {reviewId: 32}
+        }
+        , {
+          id: 3,
+          image: '/images/sensative.jpg',
+          title: 'Linner is calling 15 pioneers for crowdtesting',
+          subtitle: "Application Deadline<br/>12am PST - Aug 10, 2016 ",
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          url: 'application.crowdtesting',
+          params: {reviewId: 35}
+        }, {
+          id: 4,
+          image: '/images/sensative.jpg',
+          title: 'Nival is calling 5 pioneers for crowdtesting',
+          subtitle: "Application Deadline<br/>12am PST - Aug 01, 2016 ",
+          buttonText: 'Apply Now',
+          buttonColor: 'button-primary',
+          url: 'application.crowdtesting',
+          params: {reviewId: 36}
+        }
+
       ];
 
       $scope.slideButtonClick = function (slide) {

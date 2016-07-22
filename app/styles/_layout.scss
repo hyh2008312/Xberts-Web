@@ -289,10 +289,11 @@ hr {
 }
 
 .section-page {
-  background-image:linear-gradient(
+  background: linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
-  );
+  ) center;
+  background-size: cover;
   padding-top: 90px;
   .section-title {
     margin-left: 5%;
