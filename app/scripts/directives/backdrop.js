@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:backdrop
- * @description
- * # backdrop
- */
 angular.module('xbertsApp')
   .directive('backdrop', ['$rootScope', function ($rootScope) {
     return {
@@ -21,6 +15,13 @@ angular.module('xbertsApp')
 
         element.addClass('hide');
         $rootScope.backdropCount = 0;
+
+        var decrementCount = function () {
+          if ($rootScope.backdropCount > 0) {
+            $rootScope.backdropCount--;
+          }
+        };
+
         $rootScope.$on('backdropOn', function (e, d) {
           $rootScope.backdropCount++;
           if ($rootScope.backdropCount > 0) {
@@ -28,13 +29,13 @@ angular.module('xbertsApp')
           }
         });
         $rootScope.$on('backdropOff', function (e, d) {
-          $rootScope.backdropCount--;
+          decrementCount();
           if ($rootScope.backdropCount < 1) {
             element.addClass('hide');
           }
         });
         $rootScope.$on('backdropInit', function (e, d) {
-          $rootScope.backdropCount=0;
+          $rootScope.backdropCount = 0;
           element.addClass('hide');
         });
         $rootScope.$on('$stateChangeStart', function (e, d) {
@@ -44,16 +45,14 @@ angular.module('xbertsApp')
           }
         });
         $rootScope.$on('$stateChangeSuccess', function (e, d) {
-          $rootScope.backdropCount--;
+          decrementCount();
           if ($rootScope.backdropCount < 1) {
             element.addClass('hide');
           }
         });
         $rootScope.$on('$stateChangeError', function (e, d) {
-          $rootScope.backdropCount--;
-          if ($rootScope.backdropCount < 1) {
-            element.addClass('hide');
-          }
+          $rootScope.backdropCount = 0;
+          element.addClass('hide');
         });
       }
     };

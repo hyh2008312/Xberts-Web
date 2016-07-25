@@ -1,0 +1,10 @@
+<h2>{{ review.title }}</h2>
+<div ng-switch="review.type">
+  <div ng-switch-when="FREE_SAMPLE">
+  </div>
+  <div ng-switch-default>
+    <div ng-switch="review.status">
+      <button ng-switch-when="APPLICATION" class="button button-primary" ng-click="buyClicked()">Buy Now</button>
+    </div>
+  </div>
+</div>

@@ -75,34 +75,4 @@ angular.module('xbertsApp')
       $scope.contactUser = function () {
         sendMessage();
       };
-
-      var buyProduct = function () {
-        if (!$rootScope.user.authRequired()) {
-          return;
-        }
-
-        $location.search('action', null);
-
-        $scope.$emit('backdropOn', 'buy');
-
-        ShopifyService.buy(sale.shopGatewayInventoryId, $rootScope.user, 1)
-          .then(function () {
-            AnalyticsService.sendPageView($location.path() + '/buy');
-
-            // Show spinner until purchase flow redirect
-          })
-          .catch(function () {
-            $scope.$emit('backdropOff', 'buyFailed');
-          });
-      };
-
-      $scope.buyClicked = function () {
-        $state.go('application.buyDetail', {saleId: sale.id, action: 'buy'});
-
-        buyProduct();
-      };
-
-      if ($stateParams.action === 'buy' && $rootScope.user.authRequired()) {
-        buyProduct();
-      }
     }]);

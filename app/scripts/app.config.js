@@ -14,6 +14,19 @@ angular
     $httpProvider.interceptors.push('RequestInterceptor');
     $httpProvider.interceptors.push('AuthInterceptor');
   }])
+  .config(['$urlRouterProvider', function($urlRouterProvider) {
+    // Sourced from https://github.com/angular-ui/ui-router/issues/50
+    $urlRouterProvider.rule(function($injector, $location) {
+      var path = $location.path();
+      var hasTrailingSlash = path[path.length-1] === '/';
+
+      // Remove trailing slash, so it will match correct route
+      if(hasTrailingSlash) {
+        var newPath = path.substr(0, path.length - 1);
+        return newPath;
+      }
+    });
+  }])
   .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider
       .setPrefix('xberts')
