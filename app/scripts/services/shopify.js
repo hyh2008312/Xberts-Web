@@ -24,7 +24,7 @@ angular.module('xbertsApp')
           })
           .then(function (cart) {
             // Autofill email in checkout form with user's account email
-            checkoutUrl = cart.checkoutUrl + '&checkout[email]=' + user.getUserEmail();
+            checkoutUrl = cart.checkoutUrl + '&checkout[email]=' + encodeURIComponent(user.getUserEmail());
 
             return Sales.createOrder(saleId, quantity, cart.id);
           })
