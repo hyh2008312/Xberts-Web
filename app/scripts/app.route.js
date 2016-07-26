@@ -575,5 +575,43 @@ angular
             return ReviewService.getDetail($stateParams.reviewId);
           }]
         }
+      })
+      .state('application.campaigns', {
+        url: "/campaigns",
+        templateUrl: 'views/review/review-list.html',
+        controller: 'ReviewListCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          releaseReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'callingReview',
+              params: {stage: 'READY_FOR_SALE',status:'APPLICATION'},
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }],
+          betaReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'progressingReview',
+              params: {stage: 'BETA',status:'APPLICATION'},
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }],
+          completedReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'completedReview',
+              params: {status:'ENDED',ordering:'-application_end_date'},
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
       });
   }]);

@@ -1,0 +1,184 @@
+<section style="background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(/images/try.png);"
+         class="section-page section-list-page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Early access to new creative products at exclusive discount</h2>
+
+      <h4>Be among the first to try some of the coolest products out there, and earn big rewards by providing your
+        feedback to help brand owners shape the future of their products</h4>
+    </div>
+  </div>
+
+</section>
+
+<section class="" style="padding-top: 20px;">
+  <div class="container">
+    <div class="section-title">
+      <h2>New Release</h2>
+    </div>
+    <div class="row section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in releaseReviewPaginator.items">
+        <div class="card card-bordless">
+          <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
+               ui-sref="application.campaign({ reviewId:review.id })">
+          </div>
+          <div class="card-cover">
+            <div class="xb-statistic-sales-broad">
+              <div class="xb-statistic-sales-broad-title font-whitem">{{ review.flashsale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-subtitle font-light">{{ review.project.retailPrice.amount | currency }}</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-2" ui-sref="application.campaign({ reviewId:review.id })">{{ review.title
+              }}</p>
+
+            <p class="card-body-detail" ui-sref="application.campaign({ reviewId:review.id })">
+              Available Units: {{ review.flashsale.availableUnits }} left
+            </p>
+
+
+            <div class="card-body-footer">
+              <div class="row">
+                <div class="col-xs-6 align-left">
+                  <button class="button button-small button-primary"
+                          ng-click="applyNow(review.id,$event);">Join Now
+                  </button>
+                </div>
+                <div class="col-xs-6 align-right">
+                  <p class="p-1">
+                    <i class="fa fa-clock-o"></i>
+                    <timer end-time="review.applicationEndDate">
+                      {{days |doubleDigit }} day{{daysS}}, {{hours |
+                      doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
+                    </timer>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <load-more class="row spin-large" ng-if="releaseReviewPaginator.getLoading()"></load-more>
+    <div class="align-center margin-top-xxl"
+         ng-if="releaseReviewPaginator.getNext() && !releaseReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="releaseReviewPaginator.loadNext()">Load
+        More
+      </button>
+    </div>
+  </div>
+</section>
+<section class="background-whitem">
+  <div class="container">
+    <div class="section-title">
+      <h2>Beta Products</h2>
+    </div>
+    <div class="row section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
+        <div class="card card-bordless">
+          <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
+               ui-sref="application.campaign({ reviewId:review.id })">
+          </div>
+          <div class="card-cover">
+            <div class="xb-statistic-sales-broad">
+              <div class="xb-statistic-sales-broad-title font-whitem">{{ review.flashsale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-subtitle font-light">{{ review.project.retailPrice.amount | currency }}</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-2" ui-sref="application.campaign({ reviewId:review.id })">{{ review.title
+              }}</p>
+
+            <p class="card-body-detail" ui-sref="application.campaign({ reviewId:review.id })">
+              Available Units: {{ review.flashsale.availableUnits }} left
+            </p>
+
+            <div class="card-body-footer">
+              <div class="row">
+                <div class="col-xs-6 align-left">
+                  <button class="button button-small button-primary"
+                          ng-click="applyNow(review.id,$event);">Join Now
+                  </button>
+                </div>
+                <div class="col-xs-6 align-right">
+                  <p class="p-1">
+                    <i class="fa fa-clock-o"></i>
+                    <timer end-time="review.applicationEndDate">
+                      {{days |doubleDigit }} day{{daysS}}, {{hours |
+                      doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
+                    </timer>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <load-more class="row spin-large" ng-if="betaReviewPaginator.getLoading()"></load-more>
+    <div class="align-center margin-top-xxl"
+         ng-if="betaReviewPaginator.getNext() && !betaReviewPaginator.getLoading()">
+      <button class="button button-large button-primary button-glow" ng-click="betaReviewPaginator.loadNext()">
+        Load More
+      </button>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="section-title">
+      <h2>Past Campaigns</h2>
+    </div>
+    <div class="row section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
+        <div class="card card-bordless">
+          <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
+               ui-sref="application.campaign({ reviewId:review.id })">
+          </div>
+          <div class="card-cover">
+            <div class="xb-statistic-sales-broad">
+              <div class="xb-statistic-sales-broad-title font-whitem">{{ review.flashsale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-subtitle font-light">{{ review.project.retailPrice.amount | currency }}</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-2" ui-sref="application.campaign({ reviewId:review.id })">{{ review.title
+              }}</p>
+
+            <p class="card-body-detail" ui-sref="application.campaign({ reviewId:review.id })">
+              Available Units: {{ review.flashsale.availableUnits }} left
+            </p>
+
+            <div class="card-body-footer align-right" ng-switch="review.status">
+              <div class="xb-avatar-wall">
+                <div class="xb-avatar-text" ng-switch="review.status">
+                  Participants
+                </div>
+                <div class="xb-avatar-list" ui-sref="application.campaign({ reviewId:review.id })">
+                  <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
+                                  show-name="true" ng-repeat="applicant in review.applicants"></profile-avatar>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
+    <div class="align-center margin-top-xxl"
+         ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
+      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()">Load
+        More
+      </button>
+    </div>
+  </div>
+</section>

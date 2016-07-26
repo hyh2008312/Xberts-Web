@@ -14,4 +14,7 @@ angular.module('xbertsApp')
     this.getDetail = function (reviewId) {
       return $resource(API_BASE_URL + '/review/reviewdetail/:id/', {id: '@id'}).get({id: reviewId}).$promise;
     };
+    this.getList = function(params){
+      return $resource(API_BASE_URL + '/review/reviews/', {id: '@id'}).get(params).$promise;
+    }
   }]);
