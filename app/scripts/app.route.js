@@ -569,6 +569,7 @@ angular
         url: "/campaigns/{reviewId:[0-9]+}?action",
         templateUrl: 'views/review/review-detail.html',
         controller: 'ReviewDetailCtrl',
+        reloadOnSearch: false,
         resolve: {
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);

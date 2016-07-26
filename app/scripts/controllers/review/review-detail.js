@@ -16,7 +16,7 @@ angular.module('xbertsApp')
 
         $scope.$emit('backdropOn', 'buy');
 
-        ShopifyService.buy(review.flashsale.shopGatewayInventoryId, $rootScope.user, 1)
+        ShopifyService.buy(review.flashsale.id, review.flashsale.shopGatewayInventoryId, $rootScope.user, 1)
           .then(function () {
             AnalyticsService.sendPageView($location.path() + '/buy');
 
