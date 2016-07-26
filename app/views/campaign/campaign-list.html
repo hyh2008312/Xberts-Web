@@ -1,0 +1,65 @@
+<section style="background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(/images/get.png);" class="section-page section-list-page">
+  <div class="container">
+    <div class="section-title">
+      <h2>Get the best-rated products reviewed by our community pioneers</h2>
+
+      <h4>Purchase our hottest products at exclusive discount! And you could win a full refund by posting a fun story of
+        your product experience. </h4>
+    </div>
+  </div>
+
+</section>
+<section class="container">
+  <div class="row section-body" infinite-scroll="salesPaginator.loadNext()" infinite-scroll-distance='0'
+       infinite-scroll-disabled="salesPaginator.getLoading() || !salesPaginator.getNext()">
+    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="sale in salesPaginator.items">
+      <a class="block-link" ui-sref="application.buyDetail({saleId: sale.id})">
+        <div class="card card-bordless">
+          <div class="card-header" style="background-image: url({{ sale.project.image }})">
+          </div>
+          <div class="card-cover">
+            <div class="xb-statistic-sales-broad">
+              <div class="xb-statistic-sales-broad-title font-whitem">{{ sale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-subtitle font-light">{{ sale.project.retailPrice.amount | currency }}</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-body-title p-2" ng-bind="sale.project.title">
+            </p>
+
+            <p class="card-body-detail p-3" ng-bind="sale.project.description"></p>
+
+            <div class="font-gray-light progress-tip-down progress-bar-thin">
+
+              <uib-progressbar class="active" max="sale.totalUnits" value="sale.totalUnits-sale.availableUnits"
+                               type="success">
+              </uib-progressbar>
+              <div class="progress-tip">
+                <span class="progress-tip-left"> {{ sale.totalUnits-sale.availableUnits }} purchased</span>
+                <span class="progress-tip-right"> {{ sale.availableUnits }} left</span>
+              </div>
+            </div>
+
+            <div class="card-body-footer">
+              <div class="row">
+                <div class="col-xs-6 align-left">
+                  <p class="p-1" ng-bind="sale.project.projectCategoryName"></p>
+                </div>
+                <div class="col-xs-6 align-right">
+                  <p class="p-1">
+                    <i class="fa fa-clock-o"></i>
+                    <timer end-time="sale.dateBuyEnded">
+                      {{days |doubleDigit }} day{{daysS}}, {{hours |
+                      doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
+                    </timer>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <load-more class="row spin-large" ng-show="salesPaginator.getLoading()"></load-more>
+</section>
