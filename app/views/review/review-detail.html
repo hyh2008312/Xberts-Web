@@ -10,14 +10,17 @@
 <!--</div>-->
 
 <join ng-init="init(review.interact)">
-  <section style="background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url({{ review.banner }});" class="section-page section-detail-page">
-    <div class="container">
-      <div class="section-title">
-        <h2>{{ review.title }}</h2>
-      </div>
-    </div>
+  <!--<section style="background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url({{ review.banner }});" class="section-page section-detail-page">-->
+    <!--<div class="container">-->
+      <!--<div class="section-title">-->
+        <!--<h2>{{ review.title }}</h2>-->
+      <!--</div>-->
+    <!--</div>-->
 
-  </section>
+  <!--</section>-->
+  <div class="container">
+    <h2 class="xb-align-center margin-top-xxl">{{ review.title }}</h2>
+  </div>
 
   <section>
     <div class=" container">
@@ -25,16 +28,23 @@
       <div class="row">
         <div class="col-md-3 col-md-push-9 margin-bottom-xl">
 
+          <div class="three-to-two visible-xs" style="background-image: url({{ review.cover }})">
+
+          </div>
+
           <div class="card" style="border-radius: 5px">
 
             <div class="card-body">
               <div class="card-body-detail">
                 <h4> Sale Price:</h4>
 
-                <p class="font-gray-light">{{ review.project.retailPrice.amount |currency }}</p>
+                <p class="font-gray-light" ng-switch="review.reviewType">
+                  <span ng-switch-when="FREE_SAMPLE">free</span>
+                  <span ng-switch-default="">{{ review.flashsale.salePrice.amount |currency }}</span>
+                </p>
                 <h4> Original Price: </h4>
 
-                <p class="font-gray-light"><del>{{ review.flashsale.salePrice.amount |currency }}</del></p>
+                <p class="font-gray-light"><del>{{ review.project.retailPrice.amount |currency }}</del></p>
 
                 <h4> Time Left: </h4>
 
@@ -52,9 +62,109 @@
                     class="progress-tip"> {{ review.flashsale.totalUnits-review.flashsale.availableUnits }} / {{ review.flashsale.totalUnits }}</i></uib-progressbar>
                 </p>
 
-                <button class="button button-full button-glow button-highlight" ng-click="buyClicked()">
-                  JOIN NOW
-                </button>
+                <div ng-switch="applicant.exist" class="margin-top">
+                  <div ng-switch-when="false">
+                    <div ng-switch="review.status">
+                      <button ng-switch-when="UPCOMING" class="button button-full button-success-disabled"
+                              disabled>
+                        Coming Soon
+                      </button>
+                      <button ng-switch-when="APPLICATION" class="button button-full button-glow button-highlight"
+                              ng-click="buyClicked()">Join Now
+                      </button>
+                      <button ng-switch-when="SELECTION" class="button button-full button-glow button-plain" disabled>
+                        Application
+                        Ended
+                      </button>
+                      <button ng-switch-when="CONFIRMATION" class="button button-full button-glow button-plain"
+                              disabled>
+                        Application
+                        Ended
+                      </button>
+
+                      <div ng-switch-when="REVIEW">
+                        <div ng-switch="user.isAuth()">
+                          <button ng-switch-when="true" class="button button-full button-glow button-plain" disabled>In
+                            Progress
+                          </button>
+                          <button ng-switch-when="false" class="button button-full button-glow button-primary"
+                                  ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
+                          </button>
+                        </div>
+                      </div>
+                      <button ng-switch-when="ENDED" class="button button-full button-glow button-plain" disabled>
+                        Completed
+                      </button>
+                    </div>
+                  </div>
+                  <div ng-switch-when="true">
+                    <div ng-switch="review.status">
+                      <button ng-switch-when="UPCOMING" class="button button-full button-action button-success-disabled"
+                              disabled>
+                        Coming Soon
+                      </button>
+                      <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
+                              ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
+                      </button>
+                      <button ng-switch-when="SELECTION" class="button button-full button-success-disabled" disabled>
+                        Screening
+                      </button>
+                      <div ng-switch-when="CONFIRMATION">
+                        <div ng-switch="applicant.is_selected">
+                          <button ng-switch-when="false" class="button button-full button-glow button-action" disabled>
+                            Not
+                            Selected
+                          </button>
+                          <button ng-switch-when="true" class="button button-full button-glow button-primary"
+                                  ui-sref="application.protected.confirmShipAddress({reviewId:review.id})">Confirm
+                            Shipping
+                            Info
+                          </button>
+                        </div>
+                      </div>
+                      <div ng-switch-when="REVIEW">
+                        <div ng-switch="applicant.is_selected">
+                          <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>
+                            Not
+                            Selected
+                          </button>
+                          <div ng-switch="applicant.is_submit_report">
+                            <div ng-switch="applicant.is_submit_report">
+                              <button ng-switch-when="false" class="button button-full button-glow button-primary"
+                                      ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
+                                Report
+                              </button>
+                              <button ng-switch-when="true" class="button button-full button-glow button-primary"
+                                      ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Edit
+                                Report
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div ng-switch-when="ENDED">
+                        <div ng-switch="applicant.is_selected">
+                          <button ng-switch-when="false" class="button button-full button-glow button-plain" disabled>
+                            Completed
+                          </button>
+                          <div ng-switch="applicant.is_submit_report">
+                            <div ng-switch="applicant.is_submit_report">
+                              <button ng-switch-when="false" class="button button-full button-glow button-primary"
+                                      ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
+                                Report
+                              </button>
+                              <button ng-switch-when="true" class="button button-full button-glow button-action"
+                                      ui-sref="application.report({ reviewId:review.id,reportId:applicant.report})">View
+                                My
+                                Report
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -106,41 +216,74 @@
             </div>
           </div>
 
+          <div class="card" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
+            <div class="card-body">
+              <div ng-show="review.status === 'SELECTION'">
+                <div class="margin-top">
+                  <a class="button button-primary button-glow button-full"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'CONFIRMATION'">
+                <div class="margin-top">
+                  <a class="button button-primary button-glow button-full"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'REVIEW'">
+                <div class="margin-top">
+                  <a class="button button-primary button-glow button-full"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Shipping Address</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'ENDED'">
+                <div class="margin-top">
+                  <a class="button button-primary button-glow button-full"
+                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                    Reports</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="card card-shadowless">
             <div class="card-body">
               <h4>Share with Friends</h4>
               <button class="button button-primary button-glow button-circle button-large" socialshare
                       socialshare-provider="linkedin"
-                      socialshare-description="{{ sale.project.description }}"
-                      socialshare-text="{{ sale.project.title }}"
-                      socialshare-source="{{ sale.project.image }}"
+                      socialshare-description="{{ review.project.description }}"
+                      socialshare-text="{{ review.project.title }}"
+                      socialshare-source="{{ review.banner }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-linkedin"></i>
               </button>
               <button class="button button-royal button-glow button-circle button-large" socialshare
                       socialshare-provider="facebook"
-                      socialshare-media="{{ sale.project.image }}"
-                      socialshare-description="{{ sale.project.description }}"
-                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-media="{{ review.banner }}"
+                      socialshare-description="{{ review.project.description }}"
+                      socialshare-text="{{ review.project.title }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-facebook"></i>
               </button>
 
               <button class="button button-caution button-glow button-circle button-large " socialshare
                       socialshare-provider="reddit"
-                      socialshare-media="{{ sale.project.image }}"
-                      socialshare-description="{{ sale.project.description }}"
-                      socialshare-text="{{ sale.project.title }}"
+                      socialshare-media="{{ review.banner }}"
+                      socialshare-description="{{ review.project.description }}"
+                      socialshare-text="{{ review.project.title }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-reddit"></i>
               </button>
 
               <button class="button button-action button-glow button-circle button-large" socialshare
                       socialshare-provider="twitter"
-                      socialshare-media="{{ sale.project.image }}"
-                      socialshare-description="{{ sale.project.description }}"
-                      socialshare-text="{{ sale.project.title }}"
-                      socialshare-source="{{ sale.project.image }}"
+                      socialshare-media="{{ review.banner }}"
+                      socialshare-description="{{ review.project.description }}"
+                      socialshare-text="{{ review.project.title }}"
+                      socialshare-source="{{ review.banner }}"
                       socialshare-url="{{ pageSettings.getUrl() }}">
                 <i class="fa fa-twitter"></i>
               </button>
@@ -150,6 +293,9 @@
         </div>
 
         <div class="col-md-9 col-md-pull-3">
+          <div class="three-to-two hidden-xs" style="background-image: url({{ review.cover }})">
+
+          </div>
           <uib-tabset>
             <uib-tab heading="Description" active="tabs[0].active">
               <div id="section-product" class="margin-bottom-xl">
@@ -160,6 +306,37 @@
                      select="select('comments')">
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comments.html'"></div>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Reviewers" active="tabs[2].active"
+                     select="select('reviewers')">
+              <div ng-if="reviewersTabActive">
+                <div class="row" ng-show='review.isPublishApplicantsConfirmed'>
+                  <div class="col-xs-12">
+                    <div class=" xb-profile xb-profile-small pull-left"
+                         ng-repeat="item in review.applicants | filter:applicantsSearch">
+                      <profile-avatar class="xb-profile-avatar" src="item.reviewer.avatar"
+                                      name="item.reviewer.fullname"></profile-avatar>
+                      <p class="p-1">
+                        <a class="xb-profile-name"
+                           ui-sref="application.expert({expertId:item.reviewer.id})">
+                          {{ item.reviewer.fullname }}
+                        </a>
+                      </p>
+
+                      <!--<div ng-switch="item.is_submit_report">-->
+                      <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>-->
+
+                      <!--<span ng-switch-when="false" ng-switch="item.is_extended">-->
+                      <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Extended</span>-->
+
+                      <!--<span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>-->
+                      <!--</span>-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                  <!--</div>-->
+                </div>
               </div>
             </uib-tab>
           </uib-tabset>

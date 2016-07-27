@@ -2,10 +2,28 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', 'review',
-    'ShopifyService', 'AnalyticsService',
+    'ShopifyService', 'AnalyticsService','Applicantsreview',
     function($rootScope, $scope, $location, $state, $stateParams, review,
-             ShopifyService, AnalyticsService) {
+             ShopifyService, AnalyticsService,Applicantsreview) {
       $scope.review = review;
+
+      $scope.applicant = {exist: false, isSelected: false, isSubmitReport: false};
+
+      $scope.applicantsSearch = {isSelected: true, isExempted: false};
+
+      if ($rootScope.user.isAuth()) {
+        Applicantsreview.get({
+          review_id: $scope.review.id,
+          reviewer_id: $rootScope.user.getUserId()
+        }, function (data) {
+          if (data.count !== undefined && data.count > 0) {
+            angular.extend($scope.applicant, data.results[0]);
+            $scope.applicant.exist = true;
+          }
+        }, function () {
+
+        })
+      }
 
       var project = review.project;
       var title = project.title;
@@ -18,17 +36,23 @@ angular.module('xbertsApp')
 
       $scope.tabs = [
         {title: 'detail', active: true},
-        {title: 'comments', active: false}
+        {title: 'comments', active: false},
+        {title: 'reviewers', active: false}
       ];
 
       $scope.commentsTabActive = false;
-      $scope.applicationsTabActive = false;
+      $scope.reviewersTabActive = false;
       $scope.select = function (step) {
         $scope.commentsTabActive = false;
-        $scope.applicationsTabActive = false;
+        $scope.reviewersTabActive = false;
         switch (step) {
           case 'comments':
             $scope.commentsTabActive = true;
+            $scope.reviewersTabActive = false;
+            break;
+          case 'reviewers':
+            $scope.commentsTabActive = false;
+            $scope.reviewersTabActive = true;
             break;
         }
       };

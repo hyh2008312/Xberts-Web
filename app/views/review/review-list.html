@@ -84,7 +84,7 @@
           </div>
           <div class="card-cover">
             <div class="xb-statistic-sales-broad">
-              <div class="xb-statistic-sales-broad-title font-whitem">{{ review.flashsale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-title font-whitem">Free</div>
               <div class="xb-statistic-sales-broad-subtitle font-light">{{ review.project.retailPrice.amount | currency }}</div>
             </div>
           </div>
@@ -138,12 +138,15 @@
     <div class="row section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
         <div class="card card-bordless">
-          <div class="card-header" style="background-image: url({{ review.cover || review.project.image }})"
+          <div class="card-header" style="background-image: url({{ review.cover }})"
                ui-sref="application.campaign({ reviewId:review.id })">
           </div>
           <div class="card-cover">
             <div class="xb-statistic-sales-broad">
-              <div class="xb-statistic-sales-broad-title font-whitem">{{ review.flashsale.salePrice.amount | currency }}</div>
+              <div class="xb-statistic-sales-broad-title font-whitem" ng-switch="review.reviewType">
+                <span ng-switch-when="FREE_SAMPLE">free</span>
+                <span ng-switch-default="">{{ review.flashsale.salePrice.amount |currency }}</span>
+              </div>
               <div class="xb-statistic-sales-broad-subtitle font-light">{{ review.project.retailPrice.amount | currency }}</div>
             </div>
           </div>
