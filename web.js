@@ -10,7 +10,7 @@ throng({
 }, start);
 
 function start() {
-  var gzippo = require('gzippo');
+  var compression = require('compression');
   var express = require('express');
   var morgan = require('morgan');
   var app = express();
@@ -35,7 +35,8 @@ function start() {
       next();
     }
   });
-  app.use(gzippo.staticGzip('' + __dirname + '/dist'));
+  app.use(compression());
+  app.use(express.static('' + __dirname + '/dist'));
   app.use(function(req, res) {
     res.sendfile('dist/index.html');
   });
