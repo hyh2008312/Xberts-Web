@@ -19,8 +19,8 @@ angular.module('xbertsApp')
         {
           id: 0,
           image: '/images/landing.png',
-          title: 'Connect Brand New Products With Early Adopters',
-          subtitle: "Xberts is a global community for early adopters to explore new creative products and share their experience with others",
+          title: 'Early Access To The Latest Cool Products',
+          subtitle: "Xberts is a community where makers release their new products and collect real-world reviews from early adopters just like you",
           buttonText: 'Get Started',
           buttonColor: 'button-primary',
           url: 'application.crowdtestings',
