@@ -1,6 +1,8 @@
-// bower:scss
-// endbower
 @import "variables";
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
 @import "mix";
 @import "font";
 @import "color";
@@ -11,6 +13,3 @@
 @import "layout";
 @import "theme";
 @import "card";
-
-
-

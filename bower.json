@@ -24,7 +24,6 @@
     "ng-img-crop": "^0.3.2",
     "ng-file-upload": "^12.0.4",
     "international-phone-number": "^0.0.16",
-    "bootstrap": "^3.3.6",
     "jquery": "^2.2.4",
     "angular-growl-v2": "^0.7.9",
     "angular-route": "^1.5.5",
@@ -35,17 +34,14 @@
     "angular-socialshare": "angularjs-socialshare#^2.1.6",
     "underscore": "^1.8.3",
     "string": "^3.3.1",
-    "angular-timer": "^1.3.4"
+    "angular-timer": "^1.3.4",
+    "bootstrap-sass": "^3.3.7"
   },
   "appPath": "app",
   "moduleName": "xbertsApp",
   "overrides": {
     "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
+      "main": []
     },
     "font-awesome": {
       "main": [

@@ -362,23 +362,6 @@ module.exports = function (grunt) {
       }
     },
 
-    compress: {
-      options: {
-        mode: 'gzip'
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['**/*', '!scripts/override-configuration.*.js'],
-          dest: '<%= yeoman.dist %>/',
-          rename: function(dest, src) {
-            return dest + src + '.gz';
-          }
-        }]
-      }
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -397,18 +380,13 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true,
-          cwd: '<%= yeoman.app %>',
-          src: ['scripts/override-configuration.js'],
-          dest: '<%= yeoman.dist %>'
-        }, {
-          expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
+          cwd: '.',
+          src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
         }, {
           expand: true,
@@ -515,8 +493,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
-    'compress:dist'
+    'htmlmin'
   ]);
 
   grunt.registerTask('buildServe',[

@@ -39,7 +39,6 @@ module.exports = function(config) {
       'bower_components/angular-strap/dist/angular-strap.js',
       'bower_components/angular-strap/dist/angular-strap.tpl.js',
       'bower_components/angular-scroll/angular-scroll.js',
-      'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/summernote/dist/summernote.js',
       'bower_components/angular-summernote/dist/angular-summernote.js',
       'bower_components/satellizer/satellizer.js',
@@ -60,6 +59,7 @@ module.exports = function(config) {
       'bower_components/string/dist/string.min.js',
       'bower_components/humanize-duration/humanize-duration.js',
       'bower_components/angular-timer/dist/angular-timer.js',
+      'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
       // endbower
       "app/scripts/**/*.js",
       "test/mock/**/*.js",
