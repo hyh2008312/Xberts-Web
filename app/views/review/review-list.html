@@ -1,27 +1,82 @@
-<section style="background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(/images/try.png);"
-         class="section-page section-list-page">
+<div class="xb-carousel" style="background-image: url(/images/campaign-banner.jpg)">
   <div class="container">
-    <div class="section-title">
-      <h2>Early access to new creative products at exclusive discount</h2>
+    <div class="xb-carousel-body xb-align-center">
+      <h1 class="xb-carousel-title">Early Access To The Latest Cool Products</h1>
 
-      <h4>Be among the first to try some of the coolest products out there, and earn big rewards by providing your
-        feedback to help brand owners shape the future of their products</h4>
+      <p class="xb-carousel-subtitle">Xberts is a community where makers release their new products and collect
+        real-world reviews from early adopters just like you</p>
+      <div class="xb-carousel-howitwork visible-lg visible-md">
+        <div class="col-md-4 col-sm-6">
+          <div class="xb-card xb-card-transparent">
+            <div class="xb-card-content">
+              <div class="xb-card-image">
+                <img ng-src="/images/howitwork1.png">
+              </div>
+
+              <p class="xb-card-title">Explore New Products</p>
+
+              <p class="xb-card-detail">Discover awesome new products as soon as they hit
+                the market
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="xb-card xb-card-transparent">
+            <div class="xb-card-content">
+              <div class="xb-card-image">
+                <img ng-src="/images/howitwork2.png">
+              </div>
+
+
+              <p class="xb-card-title">First To Try</p>
+
+              <p class="xb-card-detail">Be among the first to try your favorite items at
+                early bird prices
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="xb-card xb-card-transparent">
+            <div class="xb-card-content">
+              <div class="xb-card-image">
+                <img ng-src="/images/howitwork3.png">
+              </div>
+
+              <p class="xb-card-title">Review And Earn</p>
+
+              <p class="xb-card-detail">Submit your reviews to share your experiences for
+                big prizes</p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+        <div class="row section-body" >
+      </div>
+
+
+
     </div>
   </div>
+</div>
 
-</section>
-
-<section class="" style="padding-top: 20px;">
+<section class="xb-section">
   <div class="container">
-    <div class="section-title">
+    <div class="xb-section-title">
       <h2>Shop Newly Launched Products</h2>
     </div>
-    <div class="row section-body">
+    <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in releaseReviewPaginator.items">
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
                ui-sref="application.campaign({ reviewId:review.id })">
-            <div class="image-wrap" style="background-image: url({{ review.cover }})" ui-sref="application.campaign({ reviewId:review.id })">
+            <div class="image-wrap" style="background-image: url({{ review.cover }})"
+                 ui-sref="application.campaign({ reviewId:review.id })">
 
             </div>
           </div>
@@ -35,7 +90,7 @@
                     {{ review.flashsale.availableUnits }}
                   </div>
                   <div class="xb-databoard-secondary">
-                    Units left
+                    units left
                   </div>
                 </div>
                 <div class="xb-databoard xb-databoard-c-primary col-xs-3">
@@ -48,7 +103,7 @@
                     </div>
                   </timer>
                 </div>
-                <div class="xb-databoard xb-databoard-sales col-xs-6 xb-align-right">
+                <div class="xb-databoard xb-databoard-sales col-xs-3 xb-align-right">
                   <div class="xb-databoard-primary">
                     {{ review.flashsale.salePrice.amount |currency }}
                   </div>
@@ -68,26 +123,29 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="releaseReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl"
-         ng-if="releaseReviewPaginator.getNext() && !releaseReviewPaginator.getLoading()">
-      <button class="button button-large button-glow button-primary" ng-click="releaseReviewPaginator.loadNext()">Load
-        More
+    <!--<div class="align-center margin-top-xxl"-->
+    <!--ng-if="releaseReviewPaginator.getNext() && !releaseReviewPaginator.getLoading()">-->
+    <div class="xb-section-footer align-center">
+      <button class="button button-large button-border button-rounded button-glow button-primary"
+              ng-click="releaseReviewPaginator.loadNext()">
+        VIEW MORE
       </button>
     </div>
   </div>
 </section>
-<section class="background-whitem">
+<section class="xb-section">
   <div class="container">
-    <div class="section-title">
+    <div class="xb-section-title">
       <h2>Test Pre-Launch Products</h2>
     </div>
-    <div class="row section-body">
+    <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
 
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
                ui-sref="application.campaign({ reviewId:review.id })">
-            <div class="image-wrap" style="background-image: url({{ review.cover }})" ui-sref="application.campaign({ reviewId:review.id })">
+            <div class="image-wrap" style="background-image: url({{ review.cover }})"
+                 ui-sref="application.campaign({ reviewId:review.id })">
 
             </div>
           </div>
@@ -96,15 +154,15 @@
 
             <div class="xb-card-databoard-wrap">
               <div class="xb-databoard-wrap row">
-                <div class="xb-databoard xb-databoard-c-primary col-xs-3">
+                <div class="xb-databoard xb-databoard-c-primary col-xs-4">
                   <div class="xb-databoard-primary">
                     {{ review.flashsale.totalUnits }}
                   </div>
                   <div class="xb-databoard-secondary">
-                    applicants available
+                    testers wanted
                   </div>
                 </div>
-                <div class="xb-databoard xb-databoard-c-primary col-xs-3">
+                <div class="xb-databoard xb-databoard-c-primary col-xs-4">
                   <timer end-time="review.applicationEndDate">
                     <div class="xb-databoard-primary">
                       {{days }}
@@ -114,7 +172,7 @@
                     </div>
                   </timer>
                 </div>
-                <div class="xb-databoard xb-databoard-sales col-xs-6 xb-align-right">
+                <div class="xb-databoard xb-databoard-sales col-xs-4 xb-align-right">
                   <div class="xb-databoard-primary">
                     Free
                   </div>
@@ -134,25 +192,27 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="betaReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl"
+    <div class="align-center xb-section-footer"
          ng-if="betaReviewPaginator.getNext() && !betaReviewPaginator.getLoading()">
-      <button class="button button-large button-primary button-glow" ng-click="betaReviewPaginator.loadNext()">
-        Load More
+      <button class="button button-large button-border button-rounded button-glow button-primary"
+              ng-click="betaReviewPaginator.loadNext()">
+        VIEW MORE
       </button>
     </div>
   </div>
 </section>
-<section>
+<section class="xb-section">
   <div class="container">
-    <div class="section-title">
+    <div class="xb-section-title">
       <h2>Explore The Latest Reviews</h2>
     </div>
-    <div class="row section-body">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
+    <div class="row xb-section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
                ui-sref="application.campaign({ reviewId:review.id })">
-            <div class="image-wrap" style="background-image: url({{ review.cover }})" ui-sref="application.campaign({ reviewId:review.id })">
+            <div class="image-wrap" style="background-image: url({{ review.cover }})"
+                 ui-sref="application.campaign({ reviewId:review.id })">
 
             </div>
           </div>
@@ -166,7 +226,7 @@
                     {{ review.applicants.length }}
                   </div>
                   <div class="xb-databoard-secondary">
-                    pioneers
+                    reviewers
                   </div>
                 </div>
                 <div class="xb-avatar-list col-xs-9" ui-sref="application.campaign({ reviewId:review.id })">
@@ -175,17 +235,30 @@
                 </div>
               </div>
             </div>
+            <div class="xb-card-button">
+              <button class="button button-full button-rounded button-primary"
+                      ng-click="applyNow(review.id,$event);">READ REVIEWS
+              </button>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
     <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
-    <div class="align-center margin-top-xxl"
+    <div class="align-center xb-section-footer"
          ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
-      <button class="button button-large button-glow button-primary" ng-click="completedReviewPaginator.loadNext()">Load
-        More
+      <button class="button button-large button-border button-rounded button-glow button-primary"
+              ng-click="completedReviewPaginator.loadNext()">
+        VIEW MORE
       </button>
+    </div>
+  </div>
+</section>
+<section style="padding-top: 20px;padding-bottom: 20px" class="background-bg-light">
+  <div class="container">
+    <div style="width: 80%; margin: auto;" class="full-image">
+      <img src="/images/media_bar.png" style="width: 100%;">
     </div>
   </div>
 </section>
