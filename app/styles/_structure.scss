@@ -21,14 +21,6 @@ footer {
   }
 }
 
-
-
-.navbar-default {
-  background-color: $lightGrayBackground;
-  border-color: #e7e7e7;
-  border-radius: 0;
-}
-
 .navbar-fixed-top-sub {
   position: fixed;
   top: 50px;
@@ -37,8 +29,6 @@ footer {
   border-width: 0 0 1px;
   z-index: 5;
 }
-
-
 
 .panel-heading {
   padding: 15px;
@@ -104,15 +94,6 @@ a.block-link {
 
 .full-image > img {
   width: 100%;
-}
-
-.navbar-inverse {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-color: rgba(0, 0, 0, 0.7);
-}
-
-.navbar-fixed-top {
-  border-bottom: 0;
 }
 
 .navbar {
@@ -228,7 +209,7 @@ a.block-link {
   background-color: $primaryColor;
 }
 
-.navbar-inverse {
+.navbar-default {
   .dropdown {
     &:hover {
       .dropdown-menu {

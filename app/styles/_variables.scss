@@ -1,9 +1,17 @@
+//
+// Bootstrap variable override
+// --------------------------------------------------
+$navbar-default-color: $primaryColor;
+$navbar-default-bg: $whiteColor;
+$navbar-default-border: $primaryColor;
+
+//
+// Custom variables
+// --------------------------------------------------
 $sectionBasePadding: 50px;
 
 $sectionPadding:60px;
 $sectionInnerGutter:60px;
-
-
 
 //font-color
 $primaryFontColor:#333;
