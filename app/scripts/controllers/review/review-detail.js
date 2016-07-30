@@ -28,7 +28,7 @@ angular.module('xbertsApp')
       var project = review.project;
       var title = project.title;
       var description = project.description;
-      var backgroundColor = 'background-whitem';
+      var backgroundColor = 'background-bg-light';
       var shareImage = review.banner;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
 

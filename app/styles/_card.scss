@@ -8,31 +8,37 @@
 .xb-card {
   position: relative;
   margin-bottom: 40px;
-  width:100%;
+  width: 100%;
   background-color: #ffffff;
-  border:1px solid lighten($primaryColor,20%);
+  border: 1px solid lighten($primaryColor, 20%);
 }
-.xb-card-transparent{
+
+.xb-card-transparent {
   background-color: transparent;
-  border:0;
+  border: 0;
 }
+
 // component skin
 
 // component element
 .xb-card-ratio-wrap {
   @include aspect-ratio(4, 3);
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
-.xb-card-content{
+
+.xb-card-content {
   padding: 16px;
   .xb-card-title {
     font-size: 18px;
     margin-top: 22px;
     margin-bottom: 32px;
     color: #4d4d4d;
-    &:hover{
+    position: relative;
+    height: 51px;
+    overflow: hidden;
+    &:hover {
       text-decoration: underline;
       cursor: pointer;
     }
@@ -42,11 +48,11 @@
 
   }
 
-  .xb-card-databoard-wrap{
+  .xb-card-databoard-wrap {
     margin-bottom: 20px;
-    .xb-avatar-list{
+    .xb-avatar-list {
       padding-top: 4px;
-      img{
+      img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -58,7 +64,8 @@
   }
 
 }
-.xb-card-transparent .xb-card-content{
+
+.xb-card-transparent .xb-card-content {
   .xb-card-title {
     font-size: 22px;
     margin-top: 22px;
@@ -71,37 +78,40 @@
     color: #ffffff;
   }
 }
-.xb-databoard{
-  float: left;
-  .xb-databoard-primary{
+
+.xb-databoard {
+  .xb-databoard-primary {
     font-size: 32px;
     min-height: 32px;
+    white-space: nowrap
   }
-  .xb-databoard-secondary{
+  .xb-databoard-secondary {
     font-size: 14px;
+    white-space: nowrap
   }
 }
-.xb-databoard-c-primary{
-  .xb-databoard-primary{
+
+.xb-databoard-c-primary {
+  .xb-databoard-primary {
     color: $primaryColor;
   }
-  .xb-databoard-secondary{
+  .xb-databoard-secondary {
     color: $primaryColor;
   }
 }
 
-.xb-databoard-sales{
-  .xb-databoard-primary{
+.xb-databoard-sales {
+  .xb-databoard-primary {
     color: $strikingColor;
   }
-  .xb-databoard-secondary{
+  .xb-databoard-secondary {
     color: $grayColor;
     text-decoration: line-through;
   }
 }
-.xb-databoard-wrap{
-}
 
+.xb-databoard-wrap {
+}
 
 // fixed-size avatar, align center
 
@@ -144,16 +154,17 @@
 
 .xb-statistic-sales-broad {
   padding: 15px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
 }
 
 .xb-statistic-broad-title {
   font-size: 3em;
 }
-.xb-statistic-sales-broad-title{
+
+.xb-statistic-sales-broad-title {
   font-size: 1.5em;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .xb-statistic-broad-subtitle {
@@ -190,17 +201,18 @@
   border-left-width: 0;
 }
 
-.xb-sub-nav-fixed{
-  position:fixed;
+.xb-sub-nav-fixed {
+  position: fixed;
   top: 50px;
   width: 100%;
   z-index: 998;
 }
-.xb-affix{
+
+.xb-affix {
   z-index: 998;
 }
 
-.xb-steps-container{
+.xb-steps-container {
   display: -webkit-flex;
   display: flex;
   justify-content: center;
@@ -208,81 +220,81 @@
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
-ul.xb-steps-container{
+
+ul.xb-steps-container {
   list-style-type: none;
 }
 
-li.xb-step{
+li.xb-step {
   margin-bottom: -2px;
-  &:hover{
+  &:hover {
     cursor: pointer;
     color: $primaryColor;
   }
-  >a{
+  > a {
     display: block;
     padding: 15px 30px 15px;
     text-decoration: none;
-    color:$darkColor;
+    color: $darkColor;
   }
 }
 
-
-.xb-step.xb-step-active,.xb-step.active{
+.xb-step.xb-step-active, .xb-step.active {
   color: $primaryColor;
   border-bottom: 2px solid $primaryColor;
-  >a{
+  > a {
     color: $primaryColor;
-    &:focus{
+    &:focus {
       color: $primaryColor;
     }
   }
 }
 
-.xb-theme-white{
+.xb-theme-white {
   background-color: #FFFFFF;
 }
 
-.xb-justify-left{
+.xb-justify-left {
   justify-content: flex-start;
   padding-left: 0;
 }
-.xb-justify-center{
+
+.xb-justify-center {
   justify-content: center;
 }
 
-.xb-section{
+.xb-section {
 
 }
 
-
-.xb-avatar-wall{
+.xb-avatar-wall {
   display: flex;
-  .xb-avatar-text{
+  .xb-avatar-text {
     margin-right: 10px;
-    min-width:120px;
+    min-width: 120px;
     text-align: left;
   }
-  .xb-avatar-list{
+  .xb-avatar-list {
     height: 30px;
     overflow: hidden;
-    img{
+    img {
       width: 30px;
       height: 30px;
       border-radius: 50%;
       display: inline-block;
       margin-right: 5px;
     }
-    img:last-child{
-      margin-right:0;
+    img:last-child {
+      margin-right: 0;
     }
   }
 }
 
 .progress-bar-thin {
-  .progress{
+  .progress {
     height: 12px;
     border-radius: 0;
-    .progress-bar{
+    .progress-bar {
       line-height: 10px;
     }
   }

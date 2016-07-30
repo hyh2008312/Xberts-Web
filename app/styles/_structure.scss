@@ -7,10 +7,11 @@ body {
   background-color: $bgLight;
   padding: $bodyPaddingTop 0 $bodyPaddingBottom 0;
   min-height: 100%;
+  line-height: 1.43;
 }
 
 footer {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   left: 0;
   bottom: 0;
@@ -235,12 +236,13 @@ a.block-link {
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.6)
 }
-.jumbotron{
-  h2{
+
+.jumbotron {
+  h2 {
     text-align: center;
     color: $whiteColor;
   }
-  h3{
+  h3 {
     text-align: center;
     color: $lightColor;
   }
@@ -260,7 +262,7 @@ a.block-link {
 }
 
 .tab-content {
-  padding-top: $defaultPadding * 4;
+  padding: 16px;
   overflow: hidden;
   img {
     max-width: 100%;
@@ -703,7 +705,7 @@ img.full-image {
   z-index: 5;
 }
 
-.button-small{
+.button-small {
   padding: 0 10px;
   line-height: 30px;
   height: 30px;
@@ -749,4 +751,22 @@ img.full-image {
 .button-label-info {
   background-color: #5bc0de;
   color: #ffffff;
+}
+
+//nav-tab
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.428571429;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: #3d3d3d;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: $primaryColor;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 3px solid $primaryColor;
+  border-bottom-color: transparent;
+  cursor: default;
 }

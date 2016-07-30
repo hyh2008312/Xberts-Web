@@ -296,11 +296,9 @@
           <div class="three-to-two hidden-xs" style="background-image: url({{ review.project.mainImage }})">
 
           </div>
-          <uib-tabset>
+          <uib-tabset class="background-bg-white">
             <uib-tab heading="Description" active="tabs[0].active">
-              <div id="section-product" class="margin-bottom-xl">
-                <div class="tab-content" ng-bind-html="review.project.details | trust"></div>
-              </div>
+                <div ng-bind-html="review.project.details | trust"></div>
             </uib-tab>
             <uib-tab heading="Discussion" active="tabs[1].active"
                      select="select('comments')">
