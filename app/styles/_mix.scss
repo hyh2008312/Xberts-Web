@@ -1,6 +1,4 @@
 $linkColor: #fff #3FA4F4 !default;
-$linkDefaultColor: $primaryColor $primaryColor !default;
-$activeLinkColor: #3FA4F4 #3FA4F4 !default;
 @mixin childLink($linkColor:$linkColor) {
   > a {
     color: nth($linkColor, 1);
@@ -13,21 +11,6 @@ $activeLinkColor: #3FA4F4 #3FA4F4 !default;
   &:hover, &:focus, .active {
     color: nth($linkColor, 2);
     background-color: rgba(0, 0, 0, 0.7);
-  }
-}
-
-@mixin childLinkW($linkColor:$linkColor) {
-  > a {
-    color: nth($linkColor, 1);
-    &:hover, &:focus, .active {
-      color: nth($linkColor, 2);
-      background-color: $lightGrayColor;
-    }
-  }
-  color: nth($linkColor, 1);
-  &:hover, &:focus, .active {
-    color: nth($linkColor, 2);
-    background-color: $lightGrayColor;
   }
 }
 

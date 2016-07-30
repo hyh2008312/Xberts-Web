@@ -1,6 +1,5 @@
-<li ng-if="user.isAuth()" role="presentation">
-  <a ui-sref="application.protected.message.inbox" class="top-right-badge-x fade-in-line" >
+<li class="hidden-xs fade-in-line" ui-sref-active="active">
+  <a ui-sref="application.protected.message.inbox" class="top-right-badge-x" >
     <i class="fa fa-envelope fa-lg"></i>
-    <span ng-if="messageCount > 0" ng-bind="messageCount" class="top-right-badge striking-white"></span>
   </a>
 </li>

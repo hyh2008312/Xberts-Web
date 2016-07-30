@@ -1,13 +1,13 @@
-<li role="presentation" class="dropdown dropdown-right" id="notification"
-    ng-if="user.isAuth()">
-  <a href="#" class="top-right-badge-x fade-in-line" ng-mouseenter="loadingNotifications();">
+<li class="hidden-xs dropdown dropdown-right" id="notification">
+  <a href="#" class="dropdown-toggle top-right-badge-x fade-in-line" data-toggle="dropdown" aria-haspopup="true"
+     aria-expanded="false" ng-mouseenter="loadingNotifications();">
     <i class="fa fa-bell fa-lg"></i>
-<span class="top-right-badge striking-white" ng-if="notificationsCount > 0"
+    <span class="top-right-badge striking-white" ng-if="notificationsCount > 0"
       ng-bind="notificationsCount"></span>
   </a>
-  <ul class="dropdown-menu navbar-inverse" style="overflow: auto; max-height: 500px;">
+  <ul class="dropdown-menu" style="overflow: auto; max-height: 500px;">
     <div class="text-center" ng-show="notificationsCount==0">No Notifications</div>
-    <li class="item-avatar-middle-inverse cover" ng-repeat="notification in paginator.items">
+    <li class="item-avatar-middle cover" ng-repeat="notification in paginator.items">
       <div class="item-image">
         <img ng-src="{{ notification.post_avatar }}">
       </div>

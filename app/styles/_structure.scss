@@ -22,15 +22,6 @@ footer {
   }
 }
 
-.navbar-fixed-top-sub {
-  position: fixed;
-  top: 50px;
-  left: 0;
-  right: 0;
-  border-width: 0 0 1px;
-  z-index: 5;
-}
-
 .panel-heading {
   padding: 15px;
 }
@@ -98,137 +89,26 @@ a.block-link {
 }
 
 .navbar {
+  // Center logo
   .navbar-brand {
-    padding: $navbarBrandPaddingTop 15px $navbarBrandPaddingBottom 0;
-    margin-left: 0;
+    padding: $navbarBrandPaddingTop 0px;
+    position: absolute;
+    left: 50%;
+    margin-left: -$navbarBrandWidth / 2 !important;
   }
-  .nav {
-    > li {
-      margin-right: 1px;
-      > a {
-        padding: $navbarLinkPaddingTop 10px $navbarLinkPaddingBottom 10px;
-        > .avatar-text-smaller-1 {
-          margin-top: -4px;
-        }
-      }
-      > a.top-right-badge-x {
-        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 10px)
-      }
-      @include childLink();
-      &.active {
-        @include childLink($activeLinkColor);
-        &:after {
-          content: "";
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 0;
-          border-bottom: 3px solid rgb(63, 164, 244);
-        }
-      }
-    }
-  }
-  .navbar-right.nav {
-    position: relative;
-    > li {
-      > a {
-        padding: $navbarLinkPaddingTop 8px $navbarLinkPaddingBottom 8px;
-      }
-      > a.top-right-badge-x {
-        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
-      }
-      &.dropdown.dropdown-right {
-        position: static;
-        > .dropdown-menu {
-          //width: 100%;
-          position: fixed;
-          top: 50px;
-          right: 20px;
-          width: 350px;
-        }
-      }
-    }
-  }
-}
 
-.navbar.navbar-default {
-  .navbar-brand {
-    padding: $navbarBrandPaddingTop 15px $navbarBrandPaddingBottom 0;
-    margin-left: 0;
+  .avatar-text-smaller-1 {
+    max-width: 130px;
   }
-  .nav {
-    > li {
-      margin-right: 1px;
-      > a {
-        padding: $navbarLinkPaddingTop 10px $navbarLinkPaddingBottom 10px;
-        > .avatar-text-smaller-1 {
-          margin-top: -4px;
-        }
-      }
-      > a.top-right-badge-x {
-        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 10px)
-      }
-      @include childLinkW($linkDefaultColor);
-      &.active {
-        @include childLinkW($activeLinkColor);
-        &:after {
-          content: "";
-          position: absolute;
-          width: 100%;
-          bottom: 0;
-          left: 0;
-          border-bottom: 3px solid rgb(63, 164, 244);
-        }
-      }
-    }
-  }
-  .navbar-right.nav {
-    position: relative;
-    > li {
-      > a {
-        padding: $navbarLinkPaddingTop 8px $navbarLinkPaddingBottom 8px;
-      }
-      > a.top-right-badge-x {
-        @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
-      }
-      &.dropdown.dropdown-right {
-        position: static;
-        > .dropdown-menu {
-          //width: 100%;
-          position: fixed;
-          top: 50px;
-          right: 20px;
-          width: 350px;
-        }
-      }
-    }
+
+  .top-right-badge-x {
+    @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
   }
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #fff;
   background-color: $primaryColor;
-}
-
-.navbar-default {
-  .dropdown {
-    &:hover {
-      .dropdown-menu {
-        display: block;
-      }
-    }
-    .dropdown-menu {
-      padding: 0;
-    }
-  }
-
-  .dropdown-menu > li {
-    > a {
-      position: relative;
-      padding: 5px 10px;
-    }
-    @include childLink();
-  }
 }
 
 .container .jumbotron, .container-fluid .jumbotron {

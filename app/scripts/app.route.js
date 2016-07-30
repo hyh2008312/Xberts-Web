@@ -24,56 +24,6 @@ angular
           }]
         }
       })
-      .state('application.main', {
-        url: "/",
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main',
-        resolve: {
-          projectPaginator: ['Paginator', 'ProjectsNoDetail', function (Paginator, ProjectsNoDetail) {
-            var par = {
-              name: 'projectRec',
-              params: {is_recommended: 'True'},
-              fetchFunction: function (params) {
-                return ProjectsNoDetail.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var par = {
-              name: 'eventRec',
-              params: {is_recommended: 'True'},
-              fetchFunction: function (params) {
-                return EventNoDetail.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          expertPaginator: ['Paginator', 'Influencer', function (Paginator, Influencer) {
-            var par = {
-              name: 'influencerRec',
-              params: {recommended: 'True'},
-              fetchFunction: function (params) {
-                return Influencer.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          projectReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var par = {
-              name: 'projectReviewREc',
-              params: {is_recommended: 'True'},
-              fetchFunction: function (params) {
-                return ProjectReview.get(params).$promise;
-              },
-              filter: {status: '!UPCOMING'},
-              minSize: 3
-            };
-            return Paginator(par).load();
-          }]
-        }
-      })
       .state('application.about', {
         url: "/about",
         templateUrl: 'views/about.html'
@@ -577,7 +527,7 @@ angular
         }
       })
       .state('application.campaigns', {
-        url: "/campaigns",
+        url: "/",
         templateUrl: 'views/review/review-list.html',
         controller: 'ReviewListCtrl',
         reloadOnSearch: false,
