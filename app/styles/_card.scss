@@ -21,6 +21,9 @@
 // component element
 .xb-card-ratio-wrap {
   @include aspect-ratio(4, 3);
+  &:hover{
+    cursor: pointer;
+  }
 }
 .xb-card-content{
   padding: 16px;
@@ -29,6 +32,10 @@
     margin-top: 22px;
     margin-bottom: 32px;
     color: #4d4d4d;
+    &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   .xb-card-detail {
