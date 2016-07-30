@@ -433,6 +433,14 @@ hr {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.five-to-three {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 16px;
+}
 
 .button-rounded {
   border-radius: 10px;
@@ -445,4 +453,26 @@ hr {
 
 .button-border.button-primary{
   color: $primaryColor;
+}
+.button-primary, .button-primary-flat {
+  background-color: $primaryColor;
+}
+
+.xb-page-product{
+  background-color: #ffffff;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+  .xb-page-product-title{
+    margin-bottom: 30px;
+  }
+  .xb-page-product-subtitle{
+    color: $primaryColor;
+    font-size: 18px;;
+  }
+}
+.xb-page-product + section{
+  padding-top:0;
 }
