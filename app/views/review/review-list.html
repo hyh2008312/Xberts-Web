@@ -5,6 +5,7 @@
 
       <p class="xb-carousel-subtitle">Xberts is a community where makers release their new products and collect
         real-world reviews from early adopters just like you</p>
+
       <div class="xb-carousel-howitwork visible-lg visible-md">
         <div class="col-md-4 col-sm-6">
           <div class="xb-card xb-card-transparent">
@@ -56,9 +57,8 @@
           </div>
         </div>
       </div>
-        <div class="row section-body" >
+      <div class="row section-body">
       </div>
-
 
 
     </div>
@@ -123,9 +123,8 @@
       </div>
     </div>
     <load-more class="row spin-large" ng-if="releaseReviewPaginator.getLoading()"></load-more>
-    <!--<div class="align-center margin-top-xxl"-->
-    <!--ng-if="releaseReviewPaginator.getNext() && !releaseReviewPaginator.getLoading()">-->
-    <div class="xb-section-footer align-center">
+    <div class="xb-section-footer align-center"
+         ng-if="releaseReviewPaginator.getNext() && !releaseReviewPaginator.getLoading()">
       <button class="button button-large button-border button-rounded button-glow button-primary"
               ng-click="releaseReviewPaginator.loadNext()">
         VIEW MORE
@@ -207,7 +206,7 @@
       <h2>Explore The Latest Reviews</h2>
     </div>
     <div class="row xb-section-body">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
                ui-sref="application.campaign({ reviewId:review.id })">
@@ -237,7 +236,7 @@
             </div>
             <div class="xb-card-button">
               <button class="button button-full button-rounded button-primary"
-                      ng-click="applyNow(review.id,$event);">READ REVIEWS
+                      ui-sref="application.campaign({ reviewId:review.id })">READ REVIEWS
               </button>
             </div>
           </div>

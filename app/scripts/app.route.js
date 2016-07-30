@@ -605,7 +605,7 @@ angular
           completedReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
               name: 'completedReview',
-              params: {status:['SELECTION', 'CONFIRMATION','REVIEW','ENDED'],ordering:'-application_end_date'},
+              params: {status:['ENDED'],ordering:'-application_end_date'},
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
               }
