@@ -37,8 +37,9 @@
 
         <!--<notifications ng-if="user.isAuth()"></notifications>-->
 
-        <li ng-if="user.isAuth()" class="dropdown">
-          <a class="fade-in-line dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        <li ng-if="user.isAuth()" uib-dropdown is-open="userDropdownStatus.isopen"
+            ng-mouseenter="userDropdownStatus.isopen = true" ng-mouseleave="userDropdownStatus.isopen = false">
+          <a class="fade-in-line" uib-dropdown-toggle aria-haspopup="true"
              aria-expanded="false" ui-sref-active="{ active: 'application.expert({ expertId: user.getUserId() })' }">
             <div class="avatar-text-smaller-1">
               <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true"></avatar-img>

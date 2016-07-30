@@ -3,6 +3,10 @@
 angular.module('xbertsApp')
   .controller('ApplicationCtrl', ['$scope', '$rootScope', '$state', '$interval', 'AuthService', 'AnalyticsService',
     function($scope, $rootScope, $state, $interval, AuthService, AnalyticsService) {
+      $scope.userDropdownStatus = {
+        isopen: false
+      };
+
       $scope.linkedinError = {};
 
       $scope.logout = function() {
