@@ -61,4 +61,9 @@ angular.module('xbertsApp')
       }
       return number
     };
+  })
+  .filter('percentage', function () {
+    return function (number) {
+      return Math.round(number*100);
+    };
   });

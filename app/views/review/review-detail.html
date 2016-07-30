@@ -25,7 +25,7 @@
       <p class="xb-page-product-subtitle">
         <span class="margin-right">
           <i class="fa fa-tag"></i> Category: <span
-          ng-repeat="category in review.project.categories">category.name <span ng-if="!$last">,</span></span>
+          ng-repeat="category in review.project.categories">{{ category.name }}<span ng-if="!$last">,</span></span>
         </span>
 
         <button class="button button-primary button-glow button-circle button-small" socialshare
@@ -79,7 +79,7 @@
 
           <div class="xb-card-board">
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Product Storage:</p>
+              <p class="xb-card-board-label"> Product Stage:</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
                 <span ng-switch-when="FREE_SAMPLE">Beta</span>
@@ -87,7 +87,7 @@
               </p>
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Sale Price:</p>
+              <p class="xb-card-board-label"> Early Bird Price:</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
                 <span ng-switch-when="FREE_SAMPLE">Free</span>
@@ -95,7 +95,7 @@
               </p>
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Original Price: </p>
+              <p class="xb-card-board-label"> MSRP: </p>
 
               <p class="xb-card-board-value">
                 <del>{{ review.project.retailPrice.amount |currency }}</del>
@@ -113,7 +113,7 @@
 
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Unit Sold: </p>
+              <p class="xb-card-board-label"> Units Sold: </p>
 
               <div class="font-gray-light progress-tip-down progress-bar-thin">
 
@@ -122,8 +122,7 @@
                 </uib-progressbar>
                 <div class="progress-tip">
                   <span
-                    class="progress-tip-left"> {{ review.flashsale.totalUnits-review.flashsale.availableUnits }}</span>
-                  <span class="progress-tip-right"> {{ review.flashsale.totalUnits }}</span>
+                    class="progress-tip-left"> {{ percentage() }}% Claimed</span>
                 </div>
               </div>
             </div>
@@ -136,7 +135,7 @@
                     Coming Soon
                   </button>
                   <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
-                          ng-click="buyClicked()">Join Now
+                          ng-click="buyClicked()">SHOP NOW
                   </button>
                   <button ng-switch-when="SELECTION" class="button button-full button-glow button-plain" disabled>
                     Application
@@ -238,7 +237,15 @@
             <div class="xb-card-board-title">Shipping Info</div>
 
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Ships to:</p>
+              <p class="xb-card-board-label"> Shipping Charge:</p>
+
+              <p class="xb-card-board-value">
+                Free shipping
+              </p>
+            </div>
+
+            <div class="xb-card-board-item">
+              <p class="xb-card-board-label"> Shipping Availability:</p>
 
               <p class="xb-card-board-value">
                 United States
@@ -248,27 +255,19 @@
               <p class="xb-card-board-label"> Estimated Delivery:</p>
 
               <p class="xb-card-board-value">
-                4-5 week
-              </p>
-            </div>
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Shipping Policy:</p>
-
-              <p class="xb-card-board-value">
-                Standard Ground Shipping
+                2-3 weeks after campaign ends
               </p>
             </div>
             <div class="xb-card-board-item">
               <p class="xb-card-board-label"> Return Policy:</p>
 
               <p class="xb-card-board-value">
-                Final sale, not eligible for return
+                Full refund for damaged merchandise
               </p>
             </div>
           </div>
 
-
-          <div class="xb-card-board">
+          <div class="xb-card-board" ng-if="review.reviewType='FREE_SAMPLE'">
             <div class="card-body pr">
               <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
                 <div class="item-image">
@@ -337,7 +336,7 @@
                 <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Reviewers" active="tabs[2].active"
+            <uib-tab heading="Reviews" active="tabs[2].active"
                      select="select('reviewers')">
               <div ng-if="reviewersTabActive">
                 <div class="row" ng-show='review.isPublishApplicantsConfirmed'>

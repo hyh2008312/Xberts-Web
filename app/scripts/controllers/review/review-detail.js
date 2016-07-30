@@ -2,14 +2,20 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', 'review',
-    'ShopifyService', 'AnalyticsService','Applicantsreview',
-    function($rootScope, $scope, $location, $state, $stateParams, review,
-             ShopifyService, AnalyticsService,Applicantsreview) {
+    'ShopifyService', 'AnalyticsService', 'Applicantsreview',
+    function ($rootScope, $scope, $location, $state, $stateParams, review,
+              ShopifyService, AnalyticsService, Applicantsreview) {
       $scope.review = review;
 
       $scope.applicant = {exist: false, isSelected: false, isSubmitReport: false};
 
       $scope.applicantsSearch = {isSelected: true, isExempted: false};
+
+      $scope.percentage = function () {
+        var decimal = ($scope.review.flashsale.totalUnits - $scope.review.flashsale.availableUnits) / $scope.review.flashsale.totalUnits;
+        console.log(Math.round(decimal * 100));
+        return Math.round(decimal * 100);
+      };
 
       if ($rootScope.user.isAuth()) {
         Applicantsreview.get({
@@ -112,4 +118,4 @@ angular.module('xbertsApp')
       }
 
 
-  }]);
+    }]);
