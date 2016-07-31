@@ -272,9 +272,28 @@ hr {
   margin-bottom: 50px;
   h2 {
     margin-top: 0;
-    font-size: 36px;
-    color: #3d3d3d;
+    font-size: 30px;
+    color: $primaryFontColor;
     font-weight: normal;
+    position: relative;
+
+    &:before {
+      content: "";
+      display: block;
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      border-bottom: 1px solid $lightGrayColor;
+      left: 0;
+    }
+
+    span {
+      position: relative;
+      background: $defaultBackground;
+      z-index: 1;
+      padding: 0 10px;
+    }
   }
   h3 {
     font-size: 26px;

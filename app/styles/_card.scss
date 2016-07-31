@@ -62,7 +62,7 @@
   .xb-card-title {
     font-size: 17.6px;
     margin-bottom: 32px;
-    color: #4d4d4d;
+    color: $primaryFontColor;
     position: relative;
     height: 51px;
     overflow: hidden;
@@ -126,20 +126,29 @@
 }
 
 .xb-databoard-c-primary {
+  display: inline-block;
+  padding: 0 10px;
+  border-right: 1px solid $lightGrayColor;
+  font-weight: 300;
+
   .xb-databoard-primary {
-    color: $primaryColor;
+    color: $primaryFontColor;
   }
   .xb-databoard-secondary {
-    color: $primaryColor;
+    color: $secondaryFontColor;
   }
 }
 
 .xb-databoard-sales {
+  display: inline-block;
+  padding: 0 10px;
+  font-weight: 300;
+
   .xb-databoard-primary {
     color: $strikingColor;
   }
   .xb-databoard-secondary {
-    color: $grayColor;
+    color: $secondaryFontColor;
     text-decoration: line-through;
   }
 }
