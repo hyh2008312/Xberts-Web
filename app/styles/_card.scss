@@ -341,3 +341,41 @@ li.xb-step {
     background-color: $primaryColor;
   }
 }
+
+.xb-list{
+  .xb-list-item{
+    &.xb-list-item-left-image{
+
+      height: 200px;
+
+      padding-left: 216px;
+      position:relative;
+
+      .xb-list-image{
+        position:absolute;
+        top:0;
+        left:0;
+        width: 200px;
+        height: 200px;
+      }
+    }
+    .xb-list-item-title{
+      font-size: 18px;
+      color:#333333;
+    }
+    .xb-list-item-detail{
+      font-size: 14px;
+      color: rgb(153, 153, 153);
+    }
+    .xb-list-footer{
+      position:absolute;
+      right:0;
+      left: 216px;
+      bottom:0;
+    }
+  }
+
+}
+.xb-list-title{
+
+}

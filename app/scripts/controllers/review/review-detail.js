@@ -2,10 +2,11 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', 'review',
-    'ShopifyService', 'AnalyticsService', 'Applicantsreview',
+    'ShopifyService', 'AnalyticsService', 'Applicantsreview','reportPaginator',
     function ($rootScope, $scope, $location, $state, $stateParams, review,
-              ShopifyService, AnalyticsService, Applicantsreview) {
+              ShopifyService, AnalyticsService, Applicantsreview,reportPaginator) {
       $scope.review = review;
+      $scope.reportPaginator = reportPaginator;
 
       $scope.applicant = {exist: false, isSelected: false, isSubmitReport: false};
 
@@ -13,7 +14,6 @@ angular.module('xbertsApp')
 
       $scope.percentage = function () {
         var decimal = ($scope.review.flashsale.totalUnits - $scope.review.flashsale.availableUnits) / $scope.review.flashsale.totalUnits;
-        console.log(Math.round(decimal * 100));
         return Math.round(decimal * 100);
       };
 
@@ -37,8 +37,6 @@ angular.module('xbertsApp')
       var backgroundColor = 'background-bg-light';
       var shareImage = review.banner;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
-
-      //$scope.projectTypes = SystemData.getProjectTypes();
 
       $scope.tabs = [
         {title: 'detail', active: true},

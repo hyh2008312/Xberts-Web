@@ -90,6 +90,17 @@ $numbers: (1 2 3 4 5 8 10);
       left: 0;
     }
   }
+  &.padding-clear {
+    min-height: $imageSize;
+    padding: 0 0 0 $imageSize + $padding;
+    > .item-image {
+      top:0;
+      left: 0;
+      img {
+        margin-bottom: 0;
+      }
+    }
+  }
   @if $color == $whiteColor {
     border-bottom: 1px solid $darkColor;
   } @else {

@@ -523,6 +523,16 @@ angular
         resolve: {
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
+          }],
+          reportPaginator: ['Paginator', 'ReviewReport', '$stateParams', function (Paginator, ReviewReport, $stateParams) {
+            var par = {
+              name: 'report_list_' + $stateParams.reviewId,
+              params: {reviewId: $stateParams.reviewId, is_approved: 'APPROVED'},
+              fetchFunction: function (params) {
+                return ReviewReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })

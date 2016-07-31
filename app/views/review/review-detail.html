@@ -338,34 +338,49 @@
             </uib-tab>
             <uib-tab heading="Reviews" active="tabs[2].active"
                      select="select('reviewers')">
-              <div ng-if="reviewersTabActive">
-                <div class="row" ng-show='review.isPublishApplicantsConfirmed'>
-                  <div class="col-xs-12">
-                    <div class=" xb-profile xb-profile-small pull-left"
-                         ng-repeat="item in review.applicants | filter:applicantsSearch">
-                      <profile-avatar class="xb-profile-avatar" src="item.reviewer.avatar"
-                                      name="item.reviewer.fullname"></profile-avatar>
-                      <p class="p-1">
-                        <a class="xb-profile-name"
-                           ui-sref="application.expert({expertId:item.reviewer.id})">
-                          {{ item.reviewer.fullname }}
-                        </a>
-                      </p>
+              <div ng-if="reviewersTabActive && review.status=='ENDED'">
+                <div class="xb-list" infinite-scroll="reportPaginator.loadNext()"
+                     infinite-scroll-distance='0'
+                     infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
+                  <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
+                    <img ng-src="{{ report.image }}" class="xb-list-image">
 
-                      <!--<div ng-switch="item.is_submit_report">-->
-                      <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Submitted</span>-->
+                    <p class="xb-list-item-title">{{report.title}}</p>
 
-                      <!--<span ng-switch-when="false" ng-switch="item.is_extended">-->
-                      <!--<span class="label label-success xb-profile-label" ng-switch-when="true">Extended</span>-->
+                    <p class="xb-list-item-detail" ng-bind-html="report.description |trust"></p>
 
-                      <!--<span class="label label-default xb-profile-label" ng-switch-when="false">Selected</span>-->
-                      <!--</span>-->
-                      <!--</div>-->
+                    <div class="xb-list-footer">
+                      <div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">
+                        <div class="item-image">
+                          <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
+                        </div>
+                        <div class="item-body">
+                          <p class="p-1">
+                            <a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">
+                              {{ report.applicant.reviewer.fullname }}</a>
+                          </p>
+
+                          <div class="row" style="margin-top: 10px;">
+                            <div class="col-xs-6">
+
+                              <p class="p-1">
+                                {{report.applicant.reviewer.country}}
+                              </p>
+                            </div>
+                            <div class="col-xs-6 xb-align-right"><a class="text-underline"
+                                                                    ui-sref="application.expert({ expertId:sale.project.account.id })">
+                              View More</a></div>
+                          </div>
+
+
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <!--</div>-->
                 </div>
+                <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
               </div>
+
             </uib-tab>
           </uib-tabset>
         </div>
