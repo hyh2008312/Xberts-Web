@@ -6,6 +6,8 @@
       <p class="xb-carousel-subtitle">Xberts is a community where makers release their new products and collect
         real-world reviews from early adopters just like you</p>
 
+      <!--<button ng-if="!user.isAuth()" class="button button-rounded button-primary" style="margin-top: 70px; width: 25%;">JOIN NOW</button>-->
+
       <div class="xb-carousel-howitwork visible-lg visible-md">
         <div class="col-md-4 col-sm-6">
           <div class="xb-card xb-card-transparent">
@@ -68,7 +70,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2>Shop Newly Launched Products</h2>
+      <h2><span>Shop Newly Launched Products</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in releaseReviewPaginator.items">
@@ -83,8 +85,8 @@
             <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
 
             <div class="xb-card-databoard-wrap">
-              <div class="xb-databoard-wrap row">
-                <div class="xb-databoard xb-databoard-c-primary col-xs-3">
+              <div class="xb-databoard-wrap text-center">
+                <div class="xb-databoard xb-databoard-c-primary">
                   <div class="xb-databoard-primary">
                     {{ review.flashsale.availableUnits }}
                   </div>
@@ -92,7 +94,7 @@
                     Units Left
                   </div>
                 </div>
-                <div class="xb-databoard xb-databoard-c-primary col-xs-3">
+                <div class="xb-databoard xb-databoard-c-primary">
                   <timer end-time="review.applicationEndDate">
                     <div class="xb-databoard-primary">
                       {{days }}
@@ -102,7 +104,7 @@
                     </div>
                   </timer>
                 </div>
-                <div class="xb-databoard xb-databoard-sales col-xs-6 xb-align-right">
+                <div class="xb-databoard xb-databoard-sales">
                   <div class="xb-databoard-primary">
                     {{ review.flashsale.salePrice.amount |currency }}
                   </div>
@@ -114,7 +116,7 @@
             </div>
             <div class="xb-card-button">
               <button class="button button-full button-rounded button-primary"
-                      ui-sref="application.campaign({ reviewId:review.id })">SHOP NOW
+                      ng-click="applyNow(review.id,$event);">BUY NOW
               </button>
             </div>
           </div>
@@ -134,7 +136,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2>Test Pre-Launch Products</h2>
+      <h2><span>Test Pre-Launch Products</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
@@ -201,7 +203,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2>Explore The Latest Reviews</h2>
+      <h2><span>Explore The Latest Reviews</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
