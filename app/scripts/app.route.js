@@ -536,7 +536,7 @@ angular
           }]
         }
       })
-      .state('application.campaigns', {
+      .state('application.main', {
         url: "/",
         templateUrl: 'views/review/review-list.html',
         controller: 'ReviewListCtrl',

@@ -13,7 +13,11 @@ angular.module('xbertsApp')
       $scope.betaReviewPaginator = betaReviewPaginator;
       $scope.completedReviewPaginator = completedReviewPaginator;
 
-      $scope.applyNow = function (id, $event) {
+      $scope.buyNow = function (id, $event) {
         $state.go('application.campaign', {reviewId: id, action: 'buy'});
+      }
+
+      $scope.applyNow = function (id, $event) {
+        $state.go('application.protected.apply', {reviewId: id});
       }
     }]);
