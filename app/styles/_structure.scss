@@ -101,6 +101,16 @@ a.block-link {
     max-width: 130px;
   }
 
+  // Reduce padding for avatar image
+  .navbar-right {
+    .dropdown {
+      > a {
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+    }
+  }
+
   .top-right-badge-x {
     @include topRightBadgeX(10px, $navbarLinkPaddingTop, 5px)
   }
