@@ -10,7 +10,7 @@
   margin-bottom: 40px;
   width: 100%;
   background-color: #ffffff;
-  border: 1px solid lighten($primaryColor, 20%);
+  border: 1px solid $lightGrayColor;
 }
 
 .xb-card-board{
@@ -51,7 +51,7 @@
 
 // component element
 .xb-card-ratio-wrap {
-  @include aspect-ratio(4, 3);
+  @include aspect-ratio(3, 2);
   &:hover {
     cursor: pointer;
   }
@@ -60,8 +60,7 @@
 .xb-card-content {
   padding: 16px;
   .xb-card-title {
-    font-size: 18px;
-    margin-top: 22px;
+    font-size: 17.6px;
     margin-bottom: 32px;
     color: #4d4d4d;
     position: relative;
@@ -116,12 +115,12 @@
 
 .xb-databoard {
   .xb-databoard-primary {
-    font-size: 32px;
-    min-height: 32px;
+    font-size: 16px;
+    min-height: 16px;
     white-space: nowrap
   }
   .xb-databoard-secondary {
-    font-size: 14px;
+    font-size: 16px;
     white-space: nowrap
   }
 }

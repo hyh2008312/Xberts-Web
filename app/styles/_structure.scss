@@ -11,14 +11,21 @@ body {
 }
 
 footer {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: $blackColor;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   color: #ffffff;
   > .container {
-    @include pFirstMargin();
+    padding-top: 40px;
+    padding-bottom: 30px;
+
+    :first-child {
+      img {
+        margin-right: 20px;
+      }
+    }
   }
 }
 

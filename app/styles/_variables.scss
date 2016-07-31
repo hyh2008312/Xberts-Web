@@ -1,9 +1,12 @@
 //
 // Bootstrap variable override
 // --------------------------------------------------
+$grid-gutter-width: 40px;
+$container-large-desktop: (1040px + $grid-gutter-width);
+
 $navbar-default-color: $blackColor;
 $navbar-default-bg: $whiteColor;
-$navbar-default-border: $grayLightColor;
+$navbar-default-border: $lightGrayColor;
 $navbar-default-link-color: $blackColor;
 $navbar-default-link-hover-color: $blackColor;
 $navbar-default-link-active-color: $blackColor;
@@ -13,7 +16,7 @@ $navbar-default-link-active-bg: transparent;
 $dropdown-link-color: $blackColor;
 $dropdown-link-hover-color: $blackColor;
 $dropdown-link-active-color: $blackColor;
-$dropdown-border: $grayLightColor;
+$dropdown-border: $lightGrayColor;
 
 //
 // Custom variables
