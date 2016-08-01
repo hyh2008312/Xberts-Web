@@ -1,14 +1,3 @@
-<!--<h2>{{ review.title }}</h2>-->
-<!--<div ng-switch="review.type">-->
-<!--<div ng-switch-when="FREE_SAMPLE">-->
-<!--</div>-->
-<!--<div ng-switch-default>-->
-<!--<div ng-switch="review.status">-->
-<!--<button ng-switch-when="APPLICATION" class="button button-primary" ng-click="buyClicked()">Buy Now</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
 <join ng-init="init(review.interact)">
   <div class="xb-page-product">
     <div class="container ">
@@ -65,16 +54,16 @@
               <p class="xb-card-board-label"> Product Stage:</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Beta</span>
-                <span ng-switch-default="">New Release</span>
+                <span ng-switch-when="'FREE_SAMPLE'">Beta</span>
+                <span ng-switch-default>New Release</span>
               </p>
             </div>
             <div class="xb-card-board-item">
               <p class="xb-card-board-label"> Early Bird Price:</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Free</span>
-                <span ng-switch-default="">{{ review.flashsale.salePrice.amount |currency }}</span>
+                <span ng-switch-when="'FREE_SAMPLE'">Free</span>
+                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
               </p>
             </div>
             <div class="xb-card-board-item">
@@ -117,9 +106,9 @@
                           disabled>
                     Coming Soon
                   </button>
-                  <div class="" ng-switch-when="APPLICATION">
+                  <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
-                      <button ng-switch-when="FREE_SAMPLE" class="button button-full button-glow button-primary"
+                      <button ng-switch-when="'FREE_SAMPLE'" class="button button-full button-glow button-primary"
                               ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
                       </button>
                       <button ng-switch-default class="button button-full button-glow button-primary"
