@@ -305,18 +305,18 @@
           <div class="five-to-three hidden-xs" style="background-image: url({{ review.project.mainImage }})">
 
           </div>
-          <uib-tabset class="background-bg-white">
-            <uib-tab heading="Description" active="tabs[0].active">
+          <uib-tabset class="background-bg-white" active="tabActive">
+            <uib-tab heading="Description" index="0">
               <div ng-bind-html="review.project.details | trust"></div>
             </uib-tab>
-            <uib-tab heading="Discussion" active="tabs[1].active"
+            <uib-tab heading="Discussion" index="1"
                      select="select('comments')">
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Reviews" active="tabs[2].active"
-                     select="select('reviewers')">
+            <uib-tab heading="Reviews" index="2"
+                     select="select('reviews')">
               <div ng-if="reviewersTabActive && review.status=='ENDED'">
                 <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                      infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">

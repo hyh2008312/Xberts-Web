@@ -516,7 +516,7 @@ angular
         }
       })
       .state('application.campaign', {
-        url: "/campaigns/{reviewId:[0-9]+}?action",
+        url: "/campaigns/{reviewId:[0-9]+}?action&tab",
         templateUrl: 'views/review/review-detail.html',
         controller: 'ReviewDetailCtrl',
         reloadOnSearch: false,
