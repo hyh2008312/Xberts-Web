@@ -52,7 +52,6 @@
           <div class="xb-card-board">
             <div class="xb-card-board-item">
               <p class="xb-card-board-label"> Product Stage:</p>
-              {{ review.reviewType }}
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
                 <span ng-switch-when="FREE_SAMPLE">Beta</span>
@@ -321,12 +320,13 @@
               <div ng-if="reviewersTabActive && review.status=='ENDED'">
                 <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                      infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
+
                   <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
                     <img ng-src="{{ report.image }}" class="xb-list-image">
 
                     <p class="xb-list-item-title">{{report.title}}</p>
 
-                    <p class="xb-list-item-detail" ng-bind-html="report.description |trust"></p>
+                    <p class="xb-list-item-detail p-4" ng-bind-html="report.description |trust"></p>
 
                     <div class="xb-list-footer">
                       <div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">
@@ -334,7 +334,7 @@
                           <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
                         </div>
                         <div class="item-body">
-                          <p class="p-1">
+                          <p class="p-1" style="padding-top: 3px;">
                             <a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">
                               {{ report.applicant.reviewer.fullname }}</a>
                           </p>
@@ -342,13 +342,13 @@
                           <div class="row" style="margin-top: 10px;">
                             <div class="col-xs-6">
 
-                              <p class="p-1">
-                                {{report.applicant.reviewer.country}}
+                              <p class="p-1" style="margin-bottom: 0">
+                                <i class="fa fa-map-marker"></i> {{report.applicant.reviewer.country}}
                               </p>
                             </div>
                             <div class="col-xs-6 xb-align-right"><a class="text-underline"
                                                                     ui-sref="application.report({reviewId:review.id,reportId:report.id})">
-                              View More</a></div>
+                              View More...</a></div>
                           </div>
 
 
@@ -359,6 +359,83 @@
                 </div>
                 <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
               </div>
+
+              <!--<div class="xb-list">-->
+                <!--<div class="xb-list-item xb-list-item-left-image">-->
+                  <!--<img src="/images/test.jpeg" class="xb-list-image">-->
+
+                  <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
+
+                  <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
+                    <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
+                    <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
+
+                  <!--<div class="xb-list-footer">-->
+                    <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
+                      <!--<div class="item-image">-->
+                        <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
+                      <!--</div>-->
+                      <!--<div class="item-body">-->
+                        <!--<p class="p-1" style="padding-top: 3px;">-->
+                          <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
+                            <!--Yudong zhao</a>-->
+                        <!--</p>-->
+
+                        <!--<div class="row" style="margin-top: 10px;">-->
+                          <!--<div class="col-xs-6">-->
+
+                            <!--<p class="p-1">-->
+                              <!--JHs-->
+                            <!--</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-xs-6 xb-align-right"><a class="text-underline"-->
+                                                                  <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
+                            <!--View More...</a></div>-->
+                        <!--</div>-->
+
+
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="xb-list-item xb-list-item-left-image">-->
+                  <!--<img src="/images/test.jpeg" class="xb-list-image">-->
+
+                  <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
+
+                  <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
+                    <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
+                    <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
+
+                  <!--<div class="xb-list-item-footer">-->
+                    <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
+                      <!--<div class="item-image">-->
+                        <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
+                      <!--</div>-->
+                      <!--<div class="item-body" style="padding-top: 3px;">-->
+                        <!--<p class="p-1">-->
+                          <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
+                            <!--Yudong zhao</a>-->
+                        <!--</p>-->
+
+                        <!--<div class="row" style="margin-top: 10px;">-->
+                          <!--<div class="col-xs-6">-->
+
+                            <!--<p class="p-1" style="margin-bottom: 0">-->
+                              <!--<i class="fa fa-map-marker"></i>JHs-->
+                            <!--</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
+                                                                  <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
+                            <!--View More...</a></div>-->
+                        <!--</div>-->
+
+
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
 
             </uib-tab>
           </uib-tabset>
