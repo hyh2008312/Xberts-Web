@@ -1,47 +1,53 @@
-<div class="signup-bg">
-  <div class="container marketing">
-    <div class="login-signin-caption">
-      <p class="login-title">Sign in to Xberts</p>
-      <div class="error" ng-messages="loginError">
-        <p ng-messages-include="views/message/linkedin_error.html"></p>
+<div class="container">
+  <div class="row">
+    <div class="login-container">
+      <h3 class="text-center margin-top-none">Sign In</h3>
+
+      <div class="form-group has-error">
+        <div class="help-block" ng-messages="loginError">
+          <p ng-messages-include="views/message/linkedin_error.html"></p>
+        </div>
       </div>
       <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
-        <div class="error" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
-          <p ng-message="invalidCredentials">The email or password you entered is incorrect.</p>
-          <p ng-messages-include="views/message/form_error.html"></p>
+        <div class="form-group has-error">
+          <div class="help-block" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
+            <p ng-message="invalidCredentials">The email or password you entered is incorrect.</p>
+            <p ng-messages-include="views/message/form_error.html"></p>
+          </div>
         </div>
-        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.email.$touched"
-             ng-messages="loginForm.email.$error">
-          <p ng-message="required">Please enter your email.</p>
-          <p ng-message="email">The email you entered is invalid.</p>
+
+        <div class="form-group" ng-class="{'has-error': errorCheck(loginForm, 'email')}">
+          <div class="help-block" ng-show="errorCheck(loginForm, 'email')"
+               ng-messages="loginForm.email.$error">
+            <p ng-message="required">Please enter your email.</p>
+            <p ng-message="email">The email you entered is invalid.</p>
+          </div>
+          <input type="email" id="id_email" name="email" placeholder="Email" class="form-control input-lg"
+                 ng-model="username" required ng-model-options="{ updateOn: 'blur' }">
         </div>
-        <p align="left">
-          <input type="email" id="id_email" name="email" placeholder="Email" class="form-control login-form-control" ng-model="username" required ng-model-options="{ updateOn: 'blur' }">
-        </p>
-        <div align="left" class="error" ng-show="loginForm.$submitted || loginForm.password.$touched"
-             ng-messages="loginForm.email.$error">
-          <p ng-message="required">Please enter your password.</p>
+
+        <div class="form-group" ng-class="{'has-error': errorCheck(loginForm, 'password')}">
+          <div class="help-block" ng-show="errorCheck(loginForm, 'password')"
+               ng-messages="loginForm.password.$error">
+            <p ng-message="required">Please enter your password.</p>
+          </div>
+          <input type="password" id="id_password" name="password" placeholder="Password" class="form-control input-lg"
+                 ng-model="password" required ng-model-options="{ updateOn: 'blur' }">
         </div>
-        <p align="left">
-          <input type="password" id="id_password" name="password" placeholder="Password" class="form-control login-form-control" ng-model="password" required ng-model-options="{ updateOn: 'blur' }">
-        </p>
-        <p align="left">
-          <a ui-sref="application.resetPassword.request">Forgot your password?</a>
-        </p>
-        <input type="submit" value="Sign in" class="login-btn">
+
+        <p><a ui-sref="application.resetPassword.request">Forgot your password?</a></p>
+
+        <input type="submit" value="Sign In" class="btn btn-primary btn-lg btn-block">
       </form>
-      <div class="login-line-wrapper">
-        <div class="login-or-line">
-          <div class="login-line-content">or</div>
-        </div>
-      </div>
-      <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin()">
+
+      <h5 class="header-divider"><span>Or</span></h5>
+
+      <a type="button" href="#" class="btn btn-primary btn-lg btn-block linkedin-btn" ng-click="linkedinLogin()">
         <i class="fa fa-linkedin"></i>
-        <span class="linkedin-btn-title">Sign in with LinkedIn</span>
+        <span class="linkedin-btn-title">Continue with LinkedIn</span>
       </a>
-      <div class="login-tips">
-        Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a>
-      </div>
+
+      <p>Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a></p>
     </div>
   </div>
 </div>

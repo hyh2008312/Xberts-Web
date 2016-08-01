@@ -6,19 +6,34 @@ $sectionBasePadding: 50px;
 $sectionPadding:60px;
 $sectionInnerGutter:60px;
 
-//font-color
+// Font color
 $primaryFontColor: $blackColor;
 $secondaryFontColor: $darkGrayColor;
+
+// Main variables
+$xb-default-bg: $lightWhiteColor;
+$xb-default-border: $lightGrayColor;
+
+// Form variables
+$xb-form-default-bg: $whiteColor;
 
 //
 // Bootstrap variable override
 // --------------------------------------------------
+$brand-primary: $primaryColor;
+
 $grid-gutter-width: 40px;
 $container-large-desktop: (1040px + $grid-gutter-width);
 
+$btn-default-color: $brand-primary;
+$btn-default-bg: transparent;
+$btn-default-border: $brand-primary;
+$btn-border-radius-base: 10px;
+$btn-border-radius-large: 10px;
+
 $navbar-default-color: $primaryFontColor;
 $navbar-default-bg: $whiteColor;
-$navbar-default-border: $lightGrayColor;
+$navbar-default-border: $xb-default-border;
 $navbar-default-link-color: $primaryFontColor;
 $navbar-default-link-hover-color: $primaryFontColor;
 $navbar-default-link-active-color: $primaryFontColor;
@@ -28,6 +43,6 @@ $navbar-default-link-active-bg: transparent;
 $dropdown-link-color: $primaryFontColor;
 $dropdown-link-hover-color: $primaryFontColor;
 $dropdown-link-active-color: $primaryFontColor;
-$dropdown-border: $lightGrayColor;
+$dropdown-border: $xb-default-border;
 
 

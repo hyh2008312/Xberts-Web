@@ -9,6 +9,14 @@ angular.module('xbertsApp')
 
       $scope.linkedinError = {};
 
+      $scope.errorCheck = function(form, field) {
+        if ((form.$submitted || form[field].$touched) && form[field].$invalid) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+
       $scope.logout = function() {
         AnalyticsService.sendPageView('/logout');
 
