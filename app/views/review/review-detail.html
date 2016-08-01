@@ -10,14 +10,6 @@
 <!--</div>-->
 
 <join ng-init="init(review.interact)">
-  <!--<section style="background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url({{ review.banner }});" class="section-page section-detail-page">-->
-  <!--<div class="container">-->
-  <!--<div class="section-title">-->
-  <!--<h2>{{ review.title }}</h2>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--</section>-->
   <div class="xb-page-product">
     <div class="container ">
       <h2 class="xb-page-product-title">{{ review.title }}</h2>
@@ -44,15 +36,6 @@
                 socialshare-url="{{ pageSettings.getUrl() }}">
           <i class="fa fa-facebook"></i>
         </button>
-
-        <!--<button class="button button-caution button-glow button-circle button-small " socialshare-->
-        <!--socialshare-provider="reddit"-->
-        <!--socialshare-media="{{ review.banner }}"-->
-        <!--socialshare-description="{{ review.project.description }}"-->
-        <!--socialshare-text="{{ review.project.title }}"-->
-        <!--socialshare-url="{{ pageSettings.getUrl() }}">-->
-        <!--<i class="fa fa-reddit"></i>-->
-        <!--</button>-->
 
         <button class="button button-caution button-glow button-circle button-small" socialshare
                 socialshare-provider="twitter"
@@ -134,9 +117,16 @@
                           disabled>
                     Coming Soon
                   </button>
-                  <button ng-switch-when="APPLICATION" class="button button-full button-glow button-primary"
-                          ng-click="buyClicked()">SHOP NOW
-                  </button>
+                  <div class="" ng-switch-when="APPLICATION">
+                    <div ng-switch="review.reviewType">
+                      <button ng-switch-when="FREE_SAMPLE" class="button button-full button-glow button-primary"
+                              ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
+                      </button>
+                      <button ng-switch-default class="button button-full button-glow button-primary"
+                              ng-click="buyClicked()">BUY NOW
+                      </button>
+                    </div>
+                  </div>
                   <button ng-switch-when="SELECTION" class="button button-full button-glow button-plain" disabled>
                     Application
                     Ended
@@ -339,8 +329,7 @@
             <uib-tab heading="Reviews" active="tabs[2].active"
                      select="select('reviewers')">
               <div ng-if="reviewersTabActive && review.status=='ENDED'">
-                <div class="xb-list" infinite-scroll="reportPaginator.loadNext()"
-                     infinite-scroll-distance='0'
+                <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                      infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
                   <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
                     <img ng-src="{{ report.image }}" class="xb-list-image">
