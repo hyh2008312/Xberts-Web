@@ -43,42 +43,6 @@ $lightGrayBackground: $lightGrayColor;
   color: $dangerColor;
 }
 
-.btn-striking {
-  background-color: $strikingColor;
-  border-color: darken($strikingColor, 8%);
-  color: $whiteColor;
-  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
-    background-color: darken($strikingColor, 8%);
-    border-color: darken($strikingColor, 8%);
-    color: $whiteColor;
-  }
-}
-
-.btn-orange {
-  background-color: $orangeColor;
-  border-color: darken($orangeColor, 8%);
-  color: $whiteColor;
-  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
-    background-color: darken($orangeColor, 8%);
-    border-color: darken($orangeColor, 8%);
-    color: $whiteColor;
-  }
-}
-
-.btn-success {
-  background-color: lighten($successColor, 3%) !important;
-  border-color: $successColor !important;
-  color: #ffffff !important;
-  //border: 0;
-  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
-    background-color: $successColor !important;
-    border-color: $successColor !important;
-  }
-  &:focus, &:active:focus {
-    outline: 5px auto $successColor
-  }
-}
-
 .btn-gray {
   background-color: #CCCCCC;
   color: #ffffff;
