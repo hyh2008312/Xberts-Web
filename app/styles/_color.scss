@@ -1,4 +1,4 @@
-$primaryColor: #2a9fd6;
+$primaryColor: #059ddc;
 $dangerColor: #a94442;
 $strikingColor: #e5910d;
 $successColor: #00cc52;
@@ -22,10 +22,9 @@ $lightWhiteColor: #f9f9f9;
 $whiteColor: #fff;
 //white
 
-$bgWhite:#fff;
-$bgLight:#f9f9f9;
+$bgWhite: $whiteColor;
+$bgLight: $lightWhiteColor;
 
-$defaultBackground: $lightWhiteColor;
 $whiteBackground: $whiteColor;
 $lightGrayBackground: $lightGrayColor;
 
@@ -42,15 +41,6 @@ $lightGrayBackground: $lightGrayColor;
 .white-danger {
   background-color: $whiteColor;
   color: $dangerColor;
-}
-
-.btn-primary {
-  background-color: $primaryColor;
-  border-color: darken($primaryColor, 8%);
-  &:hover, &:focus, &:active:hover, &:active:focus, &:active:hover:focus {
-    background-color: darken($primaryColor, 8%);
-    border-color: darken($primaryColor, 8%);
-  }
 }
 
 .btn-striking {

@@ -1,72 +1,76 @@
-<div class="signup-bg">
-  <div class="container marketing">
-    <div class="register-signin-caption">
-      <p class="login-title">Create an Account</p>
+<div class="container">
+  <div class="row">
+    <div class="login-container">
+      <h3 class="text-center margin-top-none">Create a Account</h3>
+
       <form name="signupForm" ng-submit="signup()" novalidate clear-form-error>
-        <div class="error" ng-show="signupForm.$submitted"
-             ng-messages="signupForm.serverError">
-          <div ng-message="userExist">An account already exists with that email.</div>
-          <div ng-messages-include="views/message/form_error.html"></div>
+        <div class="form-group has-error">
+          <div class="help-block" ng-show="signupForm.$submitted" ng-messages="signupForm.serverError">
+            <div ng-message="userExist">An account already exists with that email.</div>
+            <div ng-messages-include="views/message/form_error.html"></div>
+          </div>
         </div>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.firstName.$touched"
-             ng-messages="signupForm.firstName.$error">
-          <p ng-message="required">Please enter your first name.</p>
+        <div class="form-group" ng-class="{'has-error': errorCheck(signupForm, 'firstName')}">
+          <div class="help-block" ng-show="errorCheck(signupForm, 'firstName')"
+               ng-messages="signupForm.firstName.$error">
+            <p ng-message="required">Please enter your first name.</p>
+          </div>
+          <input type="text" name="firstName" class="form-control input-lg" placeholder="First name"
+                 ng-model="firstName" required>
         </div>
-        <p align="left">
-          <input type="text" name="firstName" class="form-control login-form-control" placeholder="First name" ng-model="firstName" required>
-        </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.lastName.$touched"
-             ng-messages="signupForm.lastName.$error">
-          <p ng-message="required">Please enter your last name.</p>
+        <div class="form-group" ng-class="{'has-error': errorCheck(signupForm, 'lastName')}">
+          <div class="help-block" ng-show="errorCheck(signupForm, 'lastName')"
+               ng-messages="signupForm.lastName.$error">
+            <p ng-message="required">Please enter your last name.</p>
+          </div>
+          <input type="text" name="lastName" class="form-control input-lg" placeholder="Last name"
+                 ng-model="lastName" required>
         </div>
-        <p align="left">
-          <input type="text" name="lastName" class="form-control login-form-control" placeholder="Last name" ng-model="lastName" required>
-        </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.email.$touched"
-             ng-messages="signupForm.email.$error">
-          <p ng-message="required">Please enter your email.</p>
-          <p ng-message="email">The email you entered is invalid.</p>
+        <div class="form-group" ng-class="{'has-error': errorCheck(signupForm, 'email')}">
+          <div class="help-block" ng-show="errorCheck(signupForm, 'email')"
+               ng-messages="signupForm.email.$error">
+            <p ng-message="required">Please enter your email.</p>
+            <p ng-message="email">The email you entered is invalid.</p>
+          </div>
+          <input type="email" id="id_email" name="email" class="form-control input-lg" placeholder="Email" required
+                 ng-model="email" ng-model-options="{ updateOn: 'blur' }">
         </div>
-        <p align="left">
-          <input type="email" id="id_email" name="email" class="form-control login-form-control" placeholder="Email" ng-model="email" required ng-model-options="{ updateOn: 'blur' }">
-        </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.password.$touched"
-             ng-messages="signupForm.password.$error">
-          <p ng-message="required">Please enter your password.</p>
+        <div class="form-group" ng-class="{'has-error': errorCheck(signupForm, 'password')}">
+          <div class="help-block" ng-show="errorCheck(signupForm, 'password')"
+               ng-messages="signupForm.password.$error">
+            <p ng-message="required">Please enter your password.</p>
+          </div>
+          <input type="password" id="id_password" name="password" class="form-control input-lg" placeholder="Password" required
+                 ng-model="password">
         </div>
-        <p align="left">
-          <input type="password" id="id_password" name="password" class="form-control login-form-control register-password-form-control" placeholder="Password" ng-model="password" required>
-        </p>
 
-        <div align="left" class="error" ng-show="signupForm.$submitted || signupForm.country.$touched"
-             ng-messages="signupForm.country.$error">
-          <p ng-message="required">Please select your country.</p>
-        </div>
-        <p align="left">
-          <select id="id_country" name="country" class="form-control login-form-control"
+        <div class="form-group" ng-class="{'has-error': errorCheck(signupForm, 'country')}">
+          <div class="help-block" ng-show="errorCheck(signupForm, 'country')"
+               ng-messages="signupForm.country.$error">
+            <p ng-message="required">Please select your country.</p>
+          </div>
+          <select id="id_country" name="country" class="form-control input-lg"
                   ng-options="option.name for option in countryOptions track by option.code"
-                  ng-model="country" required>
+                  required ng-model="country">
             <option value="">Select your country</option>
           </select>
-        </p>
-
-        <input type="submit" class="login-btn" value="Sign up">
-      </form>
-      <div class="login-line-wrapper">
-        <div class="login-or-line">
-          <div class="login-line-content">or</div>
         </div>
-      </div>
-      <a type="button" href="#" class="btn linkedin-btn login-linkedin-btn" ng-click="linkedinLogin()">
+
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign Up">
+      </form>
+
+      <h5 class="header-divider"><span>Or</span></h5>
+
+      <a type="button" href="#" class="btn btn-primary btn-lg btn-block linkedin-btn" ng-click="linkedinLogin()">
         <i class="fa fa-linkedin"></i>
-        <span class="linkedin-btn-title">Sign in with LinkedIn</span>
+        <span class="linkedin-btn-title">Continue with LinkedIn</span>
       </a>
-      <div class="login-tips">Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a>
-      </div>
+
+      <p>Already a Member?&nbsp;&nbsp;<a ui-sref="application.login">Sign in now.</a></p>
     </div>
   </div>
 </div>
