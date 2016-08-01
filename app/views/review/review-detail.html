@@ -52,18 +52,19 @@
           <div class="xb-card-board">
             <div class="xb-card-board-item">
               <p class="xb-card-board-label"> Product Stage:</p>
+              {{ review.reviewType }}
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="'FREE_SAMPLE'">Beta</span>
-                <span ng-switch-default>New Release</span>
+                <span ng-switch-when="FREE_SAMPLE">Beta</span>
+                <span ng-switch-when="PAID">New Release</span>
               </p>
             </div>
             <div class="xb-card-board-item">
               <p class="xb-card-board-label"> Early Bird Price:</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="'FREE_SAMPLE'">Free</span>
-                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
+                <span ng-switch-when="FREE_SAMPLE">Free</span>
+                <span ng-switch-when="PAID">{{ review.flashsale.salePrice.amount |currency }}</span>
               </p>
             </div>
             <div class="xb-card-board-item">
@@ -108,10 +109,10 @@
                   </button>
                   <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
-                      <button ng-switch-when="'FREE_SAMPLE'" class="button button-full button-glow button-primary"
+                      <button ng-switch-when="FREE_SAMPLE" class="button button-full button-glow button-primary"
                               ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
                       </button>
-                      <button ng-switch-default class="button button-full button-glow button-primary"
+                      <button ng-switch-when="PAID" class="button button-full button-glow button-primary"
                               ng-click="buyClicked()">BUY NOW
                       </button>
                     </div>
