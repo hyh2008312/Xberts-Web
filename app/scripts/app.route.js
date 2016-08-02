@@ -385,7 +385,7 @@ angular
       })
       .state('application.report', {
         url: '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}',
-        templateUrl: 'views/review/review_report_visual.html',
+        templateUrl: 'views/review/review-report.html',
         controller: 'ReviewReportVisualCtrl',
         resolve: {
           report: ['ReviewReport', '$stateParams', function (ReviewReport, $stateParams) {

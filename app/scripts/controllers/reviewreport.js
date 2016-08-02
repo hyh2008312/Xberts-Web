@@ -292,12 +292,14 @@ angular.module('xbertsApp')
 
     var title = report.title;
     var description = report.description;
-    var backgroundColor = 'background-whitem';
-    $rootScope.pageSettings.setPage(title, description, backgroundColor);
+    var backgroundColor = 'background-bg-light';
+    var shareImage = report.image;
+    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
     $scope.tabs = [
       {title: 'detail', active: true},
       {title: 'comments', active: false}
     ];
+    $scope.tabActive=0;
 
     $scope.commentsTabActive = false;
     $scope.select = function (step) {
