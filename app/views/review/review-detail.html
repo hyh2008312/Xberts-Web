@@ -308,8 +308,10 @@
           <uib-tabset class="background-bg-white" active="tabActive">
             <uib-tab heading="Description" index="0">
               <div class="xb-detail-section">
-                <h3 class="xb-detail-section-title margin-top-clear">Want to try it for free? Submit your
-                  application!</h3>
+                <h3 class="xb-detail-section-title margin-top-clear" ng-switch="review.reviewType">
+                  <span ng-switch-when="FREE_SAMPLE">Want to try it for free? Submit your application!</span>
+                  <span ng-switch-when="PAID">Want to win a full refund? Share your reviews!</span>
+                  </h3>
 
                 <div class="row xb-detail-section-detail">
                   <div class="col-xs-3 col-sm-3 text-center">
@@ -381,7 +383,7 @@
                       </li>
                       <li>
                         The review content should be UNBIASED and match the following criteria:
-                        <ul>
+                        <ul class="xb-ul-alpha">
                           <li>Minimum 300 words</li>
                           <li>3 photos minimum</li>
                           <li>Video is preferable</li>
@@ -400,7 +402,7 @@
               </div>
 
               <div class="xb-detail-section">
-                <h3 class="xb-detail-section-title">Product Description</h3>
+                <h3 class="xb-detail-section-title">Product Description:</h3>
 
                 <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail">
                 </div>
