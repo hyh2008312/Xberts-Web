@@ -371,17 +371,15 @@ hr {
   background-size: cover;
   padding-top: 100px;
   padding-bottom: 100px;
-  padding-left: 10%;
   height: 600px;
   position: relative;
   @media screen and (max-width: 767px) {
     height: 450px;
   }
+
   .xb-carousel-body {
-    position: absolute;
-    top: 140px;
-    left: 10%;
-    max-width: 80%;
+    padding-top: 50px;
+
     .xb-carousel-title {
       color: $whiteColor;
       font-size: 50px;
@@ -397,32 +395,37 @@ hr {
       padding-left: 5%;
       padding-right: 5%;
     }
+
     .xb-carousel-button-wrap {
-      margin-top: 50px;
-      width: 100%;
+      position: absolute;
+      bottom: 150px;
+      width: 200px;
+      left: 50%;
+      margin-left: -100px;
     }
+
     @media screen and (max-width: 767px) {
-      top: 100px;
-      left: 15px;
-      right: 15px;
+      padding-top: 0px;
       max-width: 100%;
+
       .xb-carousel-title {
         color: $whiteColor;
         font-size: 30px;
         font-weight: normal;
         margin-bottom: 20px;
       }
+
       .xb-carousel-subtitle {
         color: $bgLight;
         font-size: 18px;
         margin-bottom: 20px;
       }
+
       .xb-carousel-button-wrap {
-        margin-bottom: 20px;
+        bottom: 100px;
       }
     }
   }
-
 }
 
 .xb-full-image {

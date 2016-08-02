@@ -121,10 +121,10 @@
                   <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
                       <button ng-switch-when="FREE_SAMPLE" class="btn btn-block btn-primary"
-                              ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
+                              ui-sref="application.protected.apply({reviewId:review.id})">TRY ME NOW
                       </button>
                       <button ng-switch-when="PAID" class="btn btn-block btn-primary"
-                              ng-click="buyClicked()">BUY NOW
+                              ng-click="buyClicked()">TRY ME NOW
                       </button>
                     </div>
                   </div>
@@ -322,7 +322,7 @@
               <div class="xb-detail-section">
                 <h3 class="xb-detail-section-title margin-top-clear" ng-switch="review.reviewType">
                   <span ng-switch-when="FREE_SAMPLE">Want to try it for free? Submit your application!</span>
-                  <span ng-switch-when="PAID">Want to win a full refund? Share your reviews!</span>
+                  <span ng-switch-when="PAID">Want to win a reward? Share your reviews!</span>
                   </h3>
 
                 <div class="row xb-detail-section-detail">
@@ -376,7 +376,7 @@
                   <div ng-switch-when="PAID">
                     <ul>
                       <li>Get 10% discount on your next purchase</li>
-                      <li>The best reviewer will get a full refund to a gift card</li>
+                      <li>The best reviewer will get a gift card of full purchase price</li>
                     </ul>
                   </div>
 
@@ -405,7 +405,7 @@
                   </div>
                   <div ng-switch-when="PAID">
                     <ul>
-                      <li>All participants should submit their reviews before DD-MM to be considered a reward</li>
+                      <li>All participants should submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD,YYYY'}} to be considered a reward</li>
                       <li>The review content should be ORIGINAL and related to the product</li>
                     </ul>
                   </div>

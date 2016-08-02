@@ -26,32 +26,32 @@ angular.module('xbertsApp')
         {
           id: 0,
           image: '/images/Emie_lamp.jpg',
-          title: 'This adorable connected lamp brings brightness, warmth and companion to you',
-          subtitle: "",
+          title: 'Elfy Connected Lamp',
+          subtitle: 'This adorable connected lamp brings brightness, warmth and companion to you.',
           buttonText: 'Try Me Now',
-          buttonColor: 'button-primary',
+          buttonColor: 'btn-primary',
           url: 'application.campaign',
-          params: {reviewId: 31}
+          params: {reviewId: 47}
         }
         , {
           id: 1,
           image: '/images/Emie_Watch.jpeg',
-          title: 'Stay on top of your health and fitness goals, without compromising on your sense of style',
-          subtitle: "",
+          title: 'Nevo Balade Parisienne Smart Watch',
+          subtitle: 'Stay on top of your health and fitness goals, without compromising on your sense of style.',
           buttonText: 'Try Me Now',
-          buttonColor: 'button-primary',
+          buttonColor: 'btn-primary',
           url: 'application.campaign',
-          params: {reviewId: 31}
+          params: {reviewId: 48}
         }
         , {
           id: 2,
           image: '/images/Jorno_keyboard.jpg',
-          title: 'Just your type. Check out this ultra-slim compact folding keyboard',
-          subtitle: "",
+          title: 'Jorno Folding Bluetooth Keyboard',
+          subtitle: 'Just your type. Check out this ultra-slim compact folding keyboard.',
           buttonText: 'Try Me Now',
-          buttonColor: 'button-primary',
+          buttonColor: 'btn-primary',
           url: 'application.campaign',
-          params: {reviewId: 32}
+          params: {reviewId: 49}
         }
       ];
     }]);

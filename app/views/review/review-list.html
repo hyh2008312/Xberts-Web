@@ -26,9 +26,8 @@
           <h1 class="xb-carousel-title" ng-bind-html=" slide.title | trust"></h1>
           <p class="xb-carousel-subtitle" ng-bind-html=" slide.subtitle | trust"></p>
           <div class="xb-carousel-button-wrap xb-align-center">
-            <a ng-click="slideButtonClick(slide)"
-               class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
-              slide.buttonText }}</a>
+            <button ng-click="slideButtonClick(slide)"
+                    class="btn btn-lg btn-block {{ slide.buttonColor }}">{{ slide.buttonText }}</button>
           </div>
         </div>
       </div>
@@ -39,7 +38,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2 class="header-divider"><span>Shop Newly Launched Products</span></h2>
+      <h2 class="header-divider"><span>Try Newly Launched Products</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in releaseReviewPaginator.items">
@@ -87,7 +86,7 @@
             </div>
             <div class="xb-card-button">
               <button class="btn btn-primary btn-block"
-                      ng-click="buyNow(review.id, $event);">BUY NOW
+                      ng-click="buyNow(review.id, $event);">TRY ME NOW
               </button>
             </div>
           </div>
@@ -109,7 +108,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2><span>Test Pre-Launch Products</span></h2>
+      <h2><span>Try Beta Products</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
@@ -158,7 +157,7 @@
             </div>
             <div class="xb-card-button">
               <button class="btn btn-primary btn-block"
-                      ng-click="applyNow(review.id,$event);">APPLY NOW
+                      ng-click="applyNow(review.id,$event);">TRY ME NOW
               </button>
             </div>
           </div>
@@ -180,7 +179,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2><span>Explore The Latest Reviews</span></h2>
+      <h2><span>Read Community Trial Experience</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
