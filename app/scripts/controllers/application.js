@@ -18,6 +18,8 @@ angular.module('xbertsApp')
       };
 
       $scope.logout = function() {
+        $scope.userDropdownStatus = false;
+
         AnalyticsService.sendPageView('/logout');
 
         $rootScope.$emit('logout', true);
