@@ -238,10 +238,6 @@ a.block-link {
   margin: 0 auto;
 }
 
-.btn-fixed-sm {
-  width: 120px;
-}
-
 .optional-field {
   color: $grayColor;
 }
@@ -340,16 +336,6 @@ $xy: (
 
 .bottom-buffer-sm {
   margin-bottom: 20px;
-}
-
-// Linkedin button
-.linkedin-btn {
-  background: #0077B5;
-  border-color: #0077B5;
-}
-
-.linkedin-btn-title {
-  padding-left: 20px;
 }
 
 .login-container {
@@ -486,54 +472,6 @@ img.full-image {
   right: 0;
   text-align: right;
   z-index: 5;
-}
-
-.button-small {
-  padding: 0 10px;
-  line-height: 30px;
-  height: 30px;
-}
-
-.button-label {
-  color: #666666;
-  background-color: #eeeeee;
-  border-color: #eeeeee;
-  font-weight: 300;
-  font-size: 16px;
-  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  text-decoration: none;
-  text-align: center;
-  line-height: 30px;
-  height: 30px;
-  padding: 0 10px;
-  margin: 0;
-  display: inline-block;
-  appearance: none;
-  cursor: default;
-  border: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: .3s;
-  transition-duration: .3s;
-  min-width: 130px;
-}
-
-.button-label-gray {
-  background-color: $lightGrayColor;
-  color: #ffffff;
-}
-
-.button-label-success {
-  background-color: #00cc52;
-  color: #ffffff;
-}
-
-.button-label-info {
-  background-color: #5bc0de;
-  color: #ffffff;
 }
 
 //nav-tab

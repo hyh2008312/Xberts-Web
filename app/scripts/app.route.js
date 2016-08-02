@@ -378,8 +378,9 @@ angular
         templateUrl: 'views/review/review_report.html',
         controller: 'ReviewreportCtrl',
         resolve: {
-          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams', function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
-            return ApplicantsreviewLoad($stateParams);
+          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams',
+            function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
+              return ApplicantsreviewLoad($stateParams);
           }]
         }
       })

@@ -1,6 +1,3 @@
-/**
- * Created by zyd on 16/6/7.
- */
 'use strict';
 
 angular.module('xbertsApp')

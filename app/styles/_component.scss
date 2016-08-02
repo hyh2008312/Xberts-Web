@@ -550,22 +550,6 @@ $message-types: (
   }
 }
 
-.button-full {
-  width: 100%;
-}
-
-.button.button-success-disabled:disabled {
-  @extend .btn-success;
-}
-
-.button-min-width {
-  min-width: 200px;
-}
-
-.button-mid-width {
-  min-width: 300px;
-}
-
 .dialog-vertical-center {
   padding-top: 15%;
 }
