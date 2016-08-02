@@ -31,10 +31,6 @@
   background-color: $primaryColor;
 }
 
-.button.button-success-disabled:disabled {
-  @extend .btn-success;
-}
-
 .button-small {
   padding: 0 10px;
   line-height: 30px;
@@ -111,6 +107,10 @@ a.btn-gray, .btn-gray {
     color: $brand-primary;
     border-color: $brand-primary;
   }
+}
+
+.btn-success-disabled:disabled {
+  @extend .btn-success;
 }
 
 // Linkedin button

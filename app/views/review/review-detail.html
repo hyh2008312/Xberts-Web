@@ -5,7 +5,7 @@
 
       <p class="xb-page-product-subtitle">
         <span class="margin-right">
-          <i class="fa fa-tag"></i> Category: <span
+          <i class="fa fa-tag"></i>&nbsp;<span
           ng-repeat="category in review.project.categories">{{ category.name }}<span ng-if="!$last">,</span></span>
         </span>
 
@@ -51,30 +51,36 @@
 
           <div class="xb-card-board">
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Product Stage:</p>
+              <p class="xb-card-board-label"> Product Stage</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
                 <span ng-switch-when="FREE_SAMPLE">Beta</span>
                 <span ng-switch-when="PAID">New Release</span>
               </p>
             </div>
+
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Early Bird Price:</p>
+              <p ng-switch="review.reviewType" class="xb-card-board-label">
+                <span ng-switch-when="FREE_SAMPLE"> Sample Price</span>
+                <span ng-switch-default> Early Bird Price</span>
+              </p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
                 <span ng-switch-when="FREE_SAMPLE">Free</span>
-                <span ng-switch-when="PAID">{{ review.flashsale.salePrice.amount |currency }}</span>
+                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
               </p>
             </div>
+
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> MSRP: </p>
+              <p class="xb-card-board-label"> Original Price</p>
 
               <p class="xb-card-board-value">
                 <del>{{ review.project.retailPrice.amount |currency }}</del>
               </p>
             </div>
+
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Time Left: </p>
+              <p class="xb-card-board-label"> Time Left</p>
 
               <p class="xb-card-board-value">
                 <timer end-time="review.applicationEndDate">
@@ -82,19 +88,25 @@
                   {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
                 </timer>
               </p>
-
             </div>
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Units Sold: </p>
 
-              <div class="font-gray-light progress-tip-down progress-bar-thin">
+            <div class="xb-card-board-item" ng-switch="review.reviewType">
+              <div ng-switch-when="FREE_SAMPLE">
+                <p class="xb-card-board-label"> Total Available Units</p>
+                <p class="xb-card-board-value">{{ review.flashsale.totalUnits }}</p>
+              </div>
+              <div ng-switch-default>
+                <p class="xb-card-board-label"> Units Sold</p>
 
-                <uib-progressbar class="active" max="review.flashsale.totalUnits"
-                                 value="review.flashsale.totalUnits-review.flashsale.availableUnits">
-                </uib-progressbar>
-                <div class="progress-tip">
-                  <span
-                    class="progress-tip-left"> {{ percentage() }}% Claimed</span>
+                <div class="font-gray-light progress-tip-down progress-bar-thin">
+
+                  <uib-progressbar class="active" max="review.flashsale.totalUnits"
+                                   value="review.flashsale.totalUnits-review.flashsale.availableUnits">
+                  </uib-progressbar>
+                  <div class="progress-tip">
+                    <span
+                      class="progress-tip-left"> {{ percentage() }}% Claimed</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,25 +114,25 @@
             <div ng-switch="applicant.exist" class="margin-top">
               <div ng-switch-when="false">
                 <div ng-switch="review.status">
-                  <button ng-switch-when="UPCOMING" class="button button-full button-success-disabled"
+                  <button ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
                           disabled>
                     Coming Soon
                   </button>
                   <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
-                      <button ng-switch-when="FREE_SAMPLE" class="button button-full button-primary"
+                      <button ng-switch-when="FREE_SAMPLE" class="btn btn-block btn-primary"
                               ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
                       </button>
-                      <button ng-switch-when="PAID" class="button button-full button-primary"
+                      <button ng-switch-when="PAID" class="btn btn-block btn-primary"
                               ng-click="buyClicked()">BUY NOW
                       </button>
                     </div>
                   </div>
-                  <button ng-switch-when="SELECTION" class="button button-full button-plain" disabled>
+                  <button ng-switch-when="SELECTION" class="btn btn-block btn-default" disabled>
                     Application
                     Ended
                   </button>
-                  <button ng-switch-when="CONFIRMATION" class="button button-full button-plain"
+                  <button ng-switch-when="CONFIRMATION" class="btn btn-block btn-default"
                           disabled>
                     Application
                     Ended
@@ -128,38 +140,38 @@
 
                   <div ng-switch-when="REVIEW">
                     <div ng-switch="user.isAuth()">
-                      <button ng-switch-when="true" class="button button-full button-plain" disabled>In
+                      <button ng-switch-when="true" class="btn btn-block btn-default" disabled>In
                         Progress
                       </button>
-                      <button ng-switch-when="false" class="button button-full button-primary"
+                      <button ng-switch-when="false" class="btn btn-block btn-primary"
                               ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
                       </button>
                     </div>
                   </div>
-                  <button ng-switch-when="ENDED" class="button button-full button-plain" disabled>
+                  <button ng-switch-when="ENDED" class="btn btn-block btn-default" disabled>
                     Completed
                   </button>
                 </div>
               </div>
               <div ng-switch-when="true">
                 <div ng-switch="review.status">
-                  <button ng-switch-when="UPCOMING" class="button button-full button-action button-success-disabled"
+                  <button ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
                           disabled>
                     Coming Soon
                   </button>
-                  <button ng-switch-when="APPLICATION" class="button button-full button-primary"
+                  <button ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
                           ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
                   </button>
-                  <button ng-switch-when="SELECTION" class="button button-full button-success-disabled" disabled>
+                  <button ng-switch-when="SELECTION" class="btn btn-block btn-success-disabled" disabled>
                     Screening
                   </button>
                   <div ng-switch-when="CONFIRMATION">
                     <div ng-switch="applicant.is_selected">
-                      <button ng-switch-when="false" class="button button-full button-action" disabled>
+                      <button ng-switch-when="false" class="btn btn-block btn-success-disabled" disabled>
                         Not
                         Selected
                       </button>
-                      <button ng-switch-when="true" class="button button-full button-primary"
+                      <button ng-switch-when="true" class="btn btn-block btn-primary"
                               ui-sref="application.protected.confirmShipAddress({reviewId:review.id})">Confirm
                         Shipping
                         Info
@@ -168,17 +180,17 @@
                   </div>
                   <div ng-switch-when="REVIEW">
                     <div ng-switch="applicant.is_selected">
-                      <button ng-switch-when="false" class="button button-full button-plain" disabled>
+                      <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
                         Not
                         Selected
                       </button>
                       <div ng-switch="applicant.is_submit_report">
                         <div ng-switch="applicant.is_submit_report">
-                          <button ng-switch-when="false" class="button button-full button-primary"
+                          <button ng-switch-when="false" class="btn btn-block btn-primary"
                                   ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
                             Report
                           </button>
-                          <button ng-switch-when="true" class="button button-full button-primary"
+                          <button ng-switch-when="true" class="btn btn-block btn-primary"
                                   ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Edit
                             Report
                           </button>
@@ -188,16 +200,16 @@
                   </div>
                   <div ng-switch-when="ENDED">
                     <div ng-switch="applicant.is_selected">
-                      <button ng-switch-when="false" class="button button-full button-plain" disabled>
+                      <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
                         Completed
                       </button>
                       <div ng-switch="applicant.is_submit_report">
                         <div ng-switch="applicant.is_submit_report">
-                          <button ng-switch-when="false" class="button button-full button-primary"
+                          <button ng-switch-when="false" class="btn btn-block btn-primary"
                                   ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
                             Report
                           </button>
-                          <button ng-switch-when="true" class="button button-full button-action"
+                          <button ng-switch-when="true" class="btn btn-block btn-success"
                                   ui-sref="application.report({ reviewId:review.id,reportId:applicant.report})">View
                             My
                             Report
@@ -212,11 +224,11 @@
 
           </div>
 
-          <div class="xb-card-board">
+          <div class="xb-card-board" ng-if="review.reviewType === 'PAID'">
             <div class="xb-card-board-title">Shipping Info</div>
 
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Shipping Charge:</p>
+              <p class="xb-card-board-label"> Shipping Charge</p>
 
               <p class="xb-card-board-value">
                 Free shipping
@@ -224,24 +236,24 @@
             </div>
 
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Shipping Availability:</p>
+              <p class="xb-card-board-label"> Shipping Availability</p>
 
               <p class="xb-card-board-value">
                 United States
               </p>
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Estimated Delivery:</p>
+              <p class="xb-card-board-label"> Estimated Delivery</p>
 
               <p class="xb-card-board-value">
                 2-3 weeks after campaign ends
               </p>
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Return Policy:</p>
+              <p class="xb-card-board-label"> Return Policy</p>
 
               <p class="xb-card-board-value">
-                Full refund for damaged merchandise
+                Free return
               </p>
             </div>
           </div>
@@ -255,14 +267,14 @@
                 <div class="item-body">
                   <p class="item-body-header">
 
-                  <p class="p-1"><a ui-sref="application.expert({ expertId:sale.project.account.id })">{{
+                  <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
                     review.project.account.fullname }}</a></p>
 
                 </div>
               </div>
-              <button class="button button-full button-primary" ng-show="!isCurrentUser"
+              <button class="btn btn-block btn-primary" ng-show="!isCurrentUser"
                       ng-click="contactUser()">
-                Contact
+                Contact Maker
               </button>
             </div>
           </div>
@@ -271,28 +283,28 @@
             <div class="card-body">
               <div ng-show="review.status === 'SELECTION'">
                 <div class="margin-top">
-                  <a class="button button-primary button-full"
+                  <a class="btn btn-block btn-primary"
                      ui-sref="application.selectApplicants({reviewId:review.id})">Select
                     Applicants</a>
                 </div>
               </div>
               <div ng-show="review.status === 'CONFIRMATION'">
                 <div class="margin-top">
-                  <a class="button button-primary button-full"
+                  <a class="btn btn-block btn-primary"
                      ui-sref="application.selectApplicants({reviewId:review.id})">View
                     Applicants</a>
                 </div>
               </div>
               <div ng-show="review.status === 'REVIEW'">
                 <div class="margin-top">
-                  <a class="button button-primary button-full"
+                  <a class="btn btn-block btn-primary"
                      ui-sref="application.selectApplicants({reviewId:review.id})">View
                     Shipping Address</a>
                 </div>
               </div>
               <div ng-show="review.status === 'ENDED'">
                 <div class="margin-top">
-                  <a class="button button-primary button-full"
+                  <a class="btn btn-block btn-primary"
                      ui-sref="application.crowdtestingReports({reviewId:review.id})">View
                     Reports</a>
                 </div>
@@ -417,9 +429,13 @@
             </uib-tab>
             <uib-tab heading="Reviews" index="2"
                      select="select('reviews')">
-              <div ng-if="reviewersTabActive && review.status=='ENDED'">
+              <div ng-if="reviewersTabActive">
                 <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
                      infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
+
+                  <div ng-if="reportPaginator.items.length === 0">
+                    <h4 class="empty-state">Waiting for reviews&hellip;</h4>
+                  </div>
 
                   <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
                     <img ng-src="{{ report.image }}" class="xb-list-image">

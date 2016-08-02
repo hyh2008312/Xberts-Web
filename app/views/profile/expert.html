@@ -37,13 +37,6 @@
             <uib-tab heading="Biography" active="tabs[0].active" select="select('profile')">
               <div ng-bind-html=" expert.biography | trust"></div>
             </uib-tab>
-            <uib-tab heading="Products" active="tabs[1].active" select="select('products')" ng-if="expert.product_amount>0">
-              <div ng-include src="'views/profile/projectstab.html'"></div>
-            </uib-tab>
-            <uib-tab heading="Crowd Testing" active="tabs[5].active" select="select('reviews')"
-                     ng-if="isCurrentUser && expert.applicant_amount>0">
-              <div ng-include src="'views/profile/reviewstab.html'"></div>
-            </uib-tab>
           </uib-tabset>
         </div>
       </div>

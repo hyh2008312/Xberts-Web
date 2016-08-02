@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', 'review',
+  .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
     'ShopifyService', 'AnalyticsService', 'Applicantsreview','reportPaginator',
-    function ($rootScope, $scope, $location, $state, $stateParams, review,
+    function ($rootScope, $scope, $location, $state, $stateParams, $uibModal, review,
               ShopifyService, AnalyticsService, Applicantsreview,reportPaginator) {
       $scope.review = review;
       $scope.reportPaginator = reportPaginator;
@@ -90,7 +90,7 @@ angular.module('xbertsApp')
           controller: 'SendMessageCtrl',
           resolve: {
             recipientId: function () {
-              return $scope.sale.project.account.id;
+              return $scope.review.project.account.id;
             }
           }
         });
