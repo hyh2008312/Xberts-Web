@@ -54,4 +54,8 @@ angular.module('xbertsApp')
           params: {reviewId: 49}
         }
       ];
+
+      $scope.slideButtonClick = function(slide) {
+        $state.go(slide.url, slide.params);
+      };
     }]);
