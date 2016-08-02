@@ -1,17 +1,40 @@
-<div class="xb-carousel" style="background-image: url(/images/campaign-banner.jpg)">
-  <div class="container">
-    <div class="xb-carousel-body xb-align-center">
-      <h1 class="xb-carousel-title">Early Access To The Latest Cool Products</h1>
+<!--<uib-carousel interval="5000" no-wrap="false" active="active">-->
+  <!--<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">-->
+    <!--<div class="xb-carousel" style="background-image: url(/images/campaign-banner.jpg)">-->
+      <!--<div class="container">-->
+        <!--<div class="xb-carousel-body xb-align-center">-->
+          <!--<h1 class="xb-carousel-title">Early Access To The Latest Cool Products</h1>-->
 
-      <p class="xb-carousel-subtitle">Xberts is a community where makers release their new products and collect
-        real-world reviews from early adopters just like you</p>
+          <!--<p class="xb-carousel-subtitle">Xberts is a community where makers release their new products and collect-->
+            <!--real-world reviews from early adopters just like you</p>-->
 
-      <button ng-if="!user.isAuth()" class="btn btn-primary btn-lg xb-carousel-button-wrap"
-              ui-sref="application.signup">JOIN NOW</button>
+          <!--<button ng-if="!user.isAuth()" class="btn btn-primary btn-lg xb-carousel-button-wrap"-->
+                  <!--ui-sref="application.signup">JOIN NOW-->
+          <!--</button>-->
 
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</uib-slide>-->
+<!--</uib-carousel>-->
+
+<uib-carousel interval="5000" no-wrap="false" active="active">
+  <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+    <div class="xb-carousel" style="background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url({{ slide.image }})">
+      <div class="container">
+        <div class="xb-carousel-body">
+          <h1 class="xb-carousel-title" ng-bind-html=" slide.title | trust"></h1>
+          <p class="xb-carousel-subtitle" ng-bind-html=" slide.subtitle | trust"></p>
+          <div class="xb-carousel-button-wrap xb-align-center">
+            <a ng-click="slideButtonClick(slide)"
+               class="button  {{ slide.buttonBorder }} {{ slide.buttonColor }} button-glow">{{
+              slide.buttonText }}</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </uib-slide>
+</uib-carousel>
 
 <section class="xb-section">
   <div class="container">
@@ -169,7 +192,8 @@
             </div>
           </div>
           <div class="xb-card-content">
-            <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">{{ review.title }}</p>
+            <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">{{
+              review.title }}</p>
 
             <div class="xb-card-databoard-wrap">
               <div class="xb-databoard-wrap row">
@@ -183,7 +207,8 @@
                               'other': 'Reviews'}">
                   </div>
                 </div>
-                <div class="xb-avatar-list col-xs-9" ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">
+                <div class="xb-avatar-list col-xs-9"
+                     ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">
                   <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
                                   show-name="true" ng-repeat="applicant in review.applicants"></profile-avatar>
                 </div>
