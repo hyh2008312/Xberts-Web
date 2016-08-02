@@ -43,20 +43,6 @@ $lightGrayBackground: $lightGrayColor;
   color: $dangerColor;
 }
 
-.btn-gray {
-  background-color: #CCCCCC;
-  color: #ffffff;
-}
-
-a.btn-gray, .btn-gray {
-  background-color: #CCCCCC;
-  color: #ffffff;
-  &:hover {
-    color: #ffffff;
-    background-color: #c0c0c0;
-  }
-}
-
 .nav > li.disabled {
   > a:hover, > a:focus, > a {
     color: $grayLightColor;

@@ -447,26 +447,6 @@ hr {
   margin-bottom: 16px;
 }
 
-.button-rounded {
-  border-radius: 10px;
-}
-
-.button-primary {
-  border-color: $primaryColor;
-  color: white;
-
-  &:hover {
-    background-color: darken($primaryColor, 10%);
-  }
-}
-
-.button-border.button-primary{
-  color: $primaryColor;
-}
-.button-primary, .button-primary-flat {
-  background-color: $primaryColor;
-}
-
 .xb-page-product{
   background-color: #ffffff;
   padding-top: 40px;

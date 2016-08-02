@@ -257,6 +257,7 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'transition prevented');
 
         $scope.toState = toState;
+        $scope.toParams = toParams;
 
         $scope.open('md');
 
@@ -276,7 +277,7 @@ angular.module('xbertsApp')
         });
         modalInstance.result.then(function (result) {
           $scope.transitionListen = false;
-          $state.go($scope.toState.name);
+          $state.go($scope.toState, $scope.toParams);
         }, function (value) {
           console.info('Modal closed: ' + value);
         });

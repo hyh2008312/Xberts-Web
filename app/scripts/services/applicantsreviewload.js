@@ -15,13 +15,13 @@ angular.module('xbertsApp')
             growl.error("Sorry, you have not been selected for this review.");
             delay.reject(('Unable to fetch Applicantsreview'));
             $rootScope.$emit("backdropInit",'backdropInit');
-            $state.go('application.crowdtesting', {reviewId: $stateParams.reviewId});
+            $state.go('application.campaign', {reviewId: $stateParams.reviewId});
           }
         }, function () {
           growl.error("Sorry, you have not been selected for this review.");
           delay.reject(('Unable to fetch Applicantsreview'));
           $rootScope.$emit("backdropInit",'backdropInit');
-          $state.go('application.crowdtesting', {reviewId: $stateParams.reviewId})
+          $state.go('application.campaign', {reviewId: $stateParams.reviewId})
         });
         return delay.promise;
       };
