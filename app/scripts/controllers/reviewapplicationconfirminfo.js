@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:SurveyconfirminfoCtrl
- * @description
- * # SurveyconfirminfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state', '$filter', 'ReviewApplicant', '$rootScope', 'growl',
     function ($scope, $timeout, $state, $filter, ReviewApplicant, $rootScope, growl) {
@@ -24,9 +17,7 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               //$scope.$emit('reviewStep', '2');
               growl.success(message);
-              $timeout(function () {
-                $state.go('application.crowdtestings');
-              }, 0);
+              $state.go('application.main');
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
@@ -36,7 +27,8 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               //$scope.$emit('reviewStep', '2');
               $scope.$emit('backdropOff', 'success');
-              $state.go('application.crowdtestings');
+              growl.success(message);
+              $state.go('application.main');
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
