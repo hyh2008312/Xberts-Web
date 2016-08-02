@@ -390,7 +390,7 @@
                 <div ng-switch="review.reviewType" class="xb-detail-section-detail">
                   <div ng-switch-when="FREE_SAMPLE">
                     <ul>
-                      <li>All selected applicants must submit their reviews before DD-MM, otherwise they will have to
+                      <li>All selected applicants must submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD,YYYY'}}., otherwise they will have to
                         return the product to Xberts
                       </li>
                       <li>
