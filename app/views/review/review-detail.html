@@ -307,7 +307,105 @@
           </div>
           <uib-tabset class="background-bg-white" active="tabActive">
             <uib-tab heading="Description" index="0">
-              <div ng-bind-html="review.project.details | trust"></div>
+              <div class="xb-detail-section">
+                <h3 class="xb-detail-section-title margin-top-clear">Want to try it for free? Submit your
+                  application!</h3>
+
+                <div class="row xb-detail-section-detail">
+                  <div class="col-xs-3 col-sm-3 text-center">
+                    <img src="/images/crowdtesting-step-1.png" style="width:100%;max-width: 60px;">
+
+                    <p class="margin-top" ng-switch="review.reviewType">
+                      <span ng-switch-when="FREE_SAMPLE">Apply Now</span>
+                      <span ng-switch-when="PAID">Place Order</span>
+                    </p>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 text-center">
+                    <img src="/images/crowdtesting-step-2.png" style="width:100%;max-width: 60px;">
+
+                    <p class="margin-top" ng-switch="review.reviewType">
+                      <span ng-switch-when="FREE_SAMPLE">Get Selected</span>
+                      <span ng-switch-when="PAID">Try Product</span>
+                    </p>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 text-center">
+                    <img src="/images/crowdtesting-step-3.png" style="width:100%;max-width: 60px;">
+
+                    <p class="margin-top" ng-switch="review.reviewType">
+                      <span ng-switch-when="FREE_SAMPLE">Try Product</span>
+                      <span ng-switch-when="PAID">Share Review</span>
+                    </p>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 text-center">
+                    <img src="/images/crowdtesting-step-4.png" style="width:100%;max-width: 60px;">
+
+                    <p class="margin-top" ng-switch="review.reviewType">
+                      <span ng-switch-when="FREE_SAMPLE">Submit Review</span>
+                      <span ng-switch-when="PAID">Get Reward</span>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="xb-detail-section">
+
+                <h3 class="xb-detail-section-title">Rewards: </h3>
+
+                <div ng-switch="review.reviewType" class="xb-detail-section-detail">
+                  <div ng-switch-when="FREE_SAMPLE">
+                    <ul>
+                      <li>Keep the product for FREE after submitting a review as instructed</li>
+                      <li>Get the privilege of being selected for more free trial campaigns</li>
+                    </ul>
+                  </div>
+                  <div ng-switch-when="PAID">
+                    <ul>
+                      <li>Get 10% discount on your next purchase</li>
+                      <li>The best reviewer will get a full refund to a gift card</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="xb-detail-section">
+
+                <h3 class="xb-detail-section-title">Requirements: </h3>
+
+                <div ng-switch="review.reviewType" class="xb-detail-section-detail">
+                  <div ng-switch-when="FREE_SAMPLE">
+                    <ul>
+                      <li>All selected applicants must submit their reviews before DD-MM, otherwise they will have to
+                        return the product to Xberts
+                      </li>
+                      <li>
+                        The review content should be UNBIASED and match the following criteria:
+                        <ul>
+                          <li>Minimum 300 words</li>
+                          <li>3 photos minimum</li>
+                          <li>Video is preferable</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div ng-switch-when="PAID">
+                    <ul>
+                      <li>All participants should submit their reviews before DD-MM to be considered a reward</li>
+                      <li>The review content should be ORIGINAL and related to the product</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="xb-detail-section">
+                <h3 class="xb-detail-section-title">Product Description</h3>
+
+                <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail">
+                </div>
+
+              </div>
             </uib-tab>
             <uib-tab heading="Discussion" index="1"
                      select="select('comments')">
@@ -361,80 +459,80 @@
               </div>
 
               <!--<div class="xb-list">-->
-                <!--<div class="xb-list-item xb-list-item-left-image">-->
-                  <!--<img src="/images/test.jpeg" class="xb-list-image">-->
+              <!--<div class="xb-list-item xb-list-item-left-image">-->
+              <!--<img src="/images/test.jpeg" class="xb-list-image">-->
 
-                  <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
+              <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
 
-                  <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
-                    <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
-                    <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
+              <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
+              <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
+              <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
 
-                  <!--<div class="xb-list-item-footer">-->
-                    <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
-                      <!--<div class="item-image">-->
-                        <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
-                      <!--</div>-->
-                      <!--<div class="item-body">-->
-                        <!--<p class="p-1" style="padding-top: 3px;">-->
-                          <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
-                            <!--Yudong zhao</a>-->
-                        <!--</p>-->
+              <!--<div class="xb-list-item-footer">-->
+              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
+              <!--<div class="item-image">-->
+              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
+              <!--</div>-->
+              <!--<div class="item-body">-->
+              <!--<p class="p-1" style="padding-top: 3px;">-->
+              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
+              <!--Yudong zhao</a>-->
+              <!--</p>-->
 
-                        <!--<div class="row" style="margin-top: 10px;">-->
-                          <!--<div class="col-xs-6">-->
+              <!--<div class="row" style="margin-top: 10px;">-->
+              <!--<div class="col-xs-6">-->
 
-                            <!--<p class="p-1">-->
-                              <!--<i class="fa fa-map-marker"></i>JHs-->
-                            <!--</p>-->
-                          <!--</div>-->
-                          <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
-                                                                  <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
-                            <!--View More...</a></div>-->
-                        <!--</div>-->
-
-
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<div class="xb-list-item xb-list-item-left-image">-->
-                  <!--<img src="/images/test.jpeg" class="xb-list-image">-->
-
-                  <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
-
-                  <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
-                    <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
-                    <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
-
-                  <!--<div class="xb-list-item-footer">-->
-                    <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
-                      <!--<div class="item-image">-->
-                        <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
-                      <!--</div>-->
-                      <!--<div class="item-body" style="padding-top: 3px;">-->
-                        <!--<p class="p-1">-->
-                          <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
-                            <!--Yudong zhao</a>-->
-                        <!--</p>-->
-
-                        <!--<div class="row" style="margin-top: 10px;">-->
-                          <!--<div class="col-xs-6">-->
-
-                            <!--<p class="p-1" style="margin-bottom: 0">-->
-                              <!--<i class="fa fa-map-marker"></i>JHs-->
-                            <!--</p>-->
-                          <!--</div>-->
-                          <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
-                                                                  <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
-                            <!--View More...</a></div>-->
-                        <!--</div>-->
+              <!--<p class="p-1">-->
+              <!--<i class="fa fa-map-marker"></i>JHs-->
+              <!--</p>-->
+              <!--</div>-->
+              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
+              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
+              <!--View More...</a></div>-->
+              <!--</div>-->
 
 
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="xb-list-item xb-list-item-left-image">-->
+              <!--<img src="/images/test.jpeg" class="xb-list-image">-->
+
+              <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
+
+              <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
+              <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
+              <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
+
+              <!--<div class="xb-list-item-footer">-->
+              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
+              <!--<div class="item-image">-->
+              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
+              <!--</div>-->
+              <!--<div class="item-body" style="padding-top: 3px;">-->
+              <!--<p class="p-1">-->
+              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
+              <!--Yudong zhao</a>-->
+              <!--</p>-->
+
+              <!--<div class="row" style="margin-top: 10px;">-->
+              <!--<div class="col-xs-6">-->
+
+              <!--<p class="p-1" style="margin-bottom: 0">-->
+              <!--<i class="fa fa-map-marker"></i>JHs-->
+              <!--</p>-->
+              <!--</div>-->
+              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
+              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
+              <!--View More...</a></div>-->
+              <!--</div>-->
+
+
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
               <!--</div>-->
 
             </uib-tab>

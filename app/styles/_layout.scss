@@ -465,3 +465,14 @@ hr {
 .xb-page-product + section{
   padding-top:0;
 }
+
+.xb-detail-section{
+  .xb-detail-section-title{
+    padding-bottom: 10px;
+    margin-bottom:10px;
+    font-weight: normal;
+  }
+  .xb-detail-section-detail{
+    color: #999999;
+  }
+}
