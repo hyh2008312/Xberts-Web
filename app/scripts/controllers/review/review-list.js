@@ -35,7 +35,7 @@ angular.module('xbertsApp')
         }
         , {
           id: 1,
-          image: '/images/Emie_Watch.jpeg',
+          image: '/images/Emie_Watch.jpg',
           title: 'Nevo Balade Parisienne Smart Watch',
           subtitle: 'Stay on top of your health and fitness goals, without compromising on your sense of style.',
           buttonText: 'Try Me Now',
