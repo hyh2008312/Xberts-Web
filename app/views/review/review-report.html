@@ -3,11 +3,36 @@
     <div class="container ">
       <h2 class="xb-page-product-title">{{ report.title }}</h2>
 
-      <h3 class="avatar-inline">
+      <p class="xb-page-product-subtitle avatar-inline">
         <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
         <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
           report.applicant.reviewer.fullname }}</a>
-      </h3>
+        <button class="button button-primary button-glow button-circle button-small" socialshare
+                socialshare-provider="linkedin"
+                socialshare-description="{{ pageSettings._description }}"
+                socialshare-text="{{ pageSettings._title }}"
+                socialshare-source="{{ pageSettings._shareImage }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-linkedin"></i>
+        </button>
+        <button class="button button-royal button-glow button-circle button-small" socialshare
+                socialshare-provider="facebook"
+                socialshare-description="{{ pageSettings._description }}"
+                socialshare-text="{{ pageSettings._title }}"
+                socialshare-source="{{ pageSettings._shareImage }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-facebook"></i>
+        </button>
+
+        <button class="button button-caution button-glow button-circle button-small" socialshare
+                socialshare-provider="twitter"
+                socialshare-description=""
+                socialshare-text="{{ pageSettings._title }}"
+                socialshare-source="{{ pageSettings._shareImage }}"
+                socialshare-url="{{ pageSettings.getUrl() }}">
+          <i class="fa fa-twitter"></i>
+        </button>
+      </p>
       <a class="btn btn-gray" ng-if="report.applicant.reviewer.id==user.getUserId()"
          ui-sref="application.protected.crowdtestingReport({reviewId:stateParams.reviewId})"><i class="fa fa-edit"></i> EDIT</a>
       <a ng-click="approve()" ng-if="user.isStaff()">
@@ -22,7 +47,7 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-3  col-md-push-9 padding-clear">
+        <div class="col-md-4 col-md-push-8 margin-bottom-xl">
           <div class="xb-card-board">
             <div class="card-body">
               <h4 class="xb-align-center">Do you like this story?</h4>
@@ -34,40 +59,8 @@
               </div>
             </div>
           </div>
-
-          <div class="xb-card-board">
-            <div class="card-body">
-              <h4 class="margin-bottom-l">Share with Friends</h4>
-              <button class="button button-primary button-glow button-circle button-large" socialshare
-                      socialshare-provider="linkedin"
-                      socialshare-description="{{ pageSettings._description }}"
-                      socialshare-text="{{ pageSettings._title }}"
-                      socialshare-source="{{ pageSettings._shareImage }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-linkedin"></i>
-              </button>
-              <button class="button button-royal button-glow button-circle button-large" socialshare
-                      socialshare-provider="facebook"
-                      socialshare-description="{{ pageSettings._description }}"
-                      socialshare-text="{{ pageSettings._title }}"
-                      socialshare-source="{{ pageSettings._shareImage }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-facebook"></i>
-              </button>
-
-              <button class="button button-caution button-glow button-circle button-large" socialshare
-                      socialshare-provider="twitter"
-                      socialshare-description=""
-                      socialshare-text="{{ pageSettings._title }}"
-                      socialshare-source="{{ pageSettings._shareImage }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-twitter"></i>
-              </button>
-            </div>
-
-          </div>
         </div>
-        <div class="col-md-9 col-md-pull-3">
+        <div class="col-md-8 col-md-pull-4">
           <uib-tabset class="background-bg-white" active="tabActive">
             <uib-tab heading="Description" index="0">
               <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
