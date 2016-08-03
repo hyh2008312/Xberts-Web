@@ -3,6 +3,8 @@
 angular
   .module('xbertsApp')
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('/crowdtesting/:reviewId', '/campaigns/:reviewId');
+
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('application', {
@@ -273,64 +275,6 @@ angular
         resolve: {
           targetGeos: ['SystemData', function (SystemData) {
             return SystemData.getTargetGeosPromise();
-          }]
-        }
-      })
-      .state('application.crowdtestings', {
-        url: "/crowdtesting",
-        templateUrl: 'views/review/review_projects.html',
-        controller: 'ReviewProjectsCtrl',
-        resolve: {
-          callingReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var par = {
-              name: 'callingReview',
-              params: {type: 'coming'},
-              fetchFunction: function (params) {
-                return ProjectReview.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          progressingReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var par = {
-              name: 'progressingReview',
-              params: {type: 'progress'},
-              fetchFunction: function (params) {
-                return ProjectReview.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          completedReviewPaginator: ['Paginator', 'ProjectReview', function (Paginator, ProjectReview) {
-            var par = {
-              name: 'completedReview',
-              params: {type: 'completed'},
-              fetchFunction: function (params) {
-                return ProjectReview.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }]
-        }
-      })
-      .state('application.crowdtesting', {
-        url: "/crowdtesting/:reviewId",
-        templateUrl: 'views/review/review_project_1.html',
-        controller: 'ReviewprojectCtrl',
-        resolve: {
-          review: ['ProjectReviewLoad', '$stateParams', function (ProjectReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ProjectReviewLoad($stateParams);
-          }],
-          reportPaginator: ['Paginator', 'ReviewReport', '$stateParams', function (Paginator, ReviewReport, $stateParams) {
-            var par = {
-              name: 'report_list_' + $stateParams.reviewId,
-              params: {reviewId: $stateParams.reviewId, is_approved: 'APPROVED'},
-              fetchFunction: function (params) {
-                return ReviewReport.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
           }]
         }
       })
