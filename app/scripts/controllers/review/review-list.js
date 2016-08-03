@@ -28,7 +28,7 @@ angular.module('xbertsApp')
           image: '/images/Emie_lamp.jpg',
           title: 'Elfy Connected Lamp',
           subtitle: 'This adorable connected lamp brings brightness, warmth and companion to you.',
-          buttonText: 'Try Me Now',
+          buttonText: 'Shop Now',
           buttonColor: 'btn-primary',
           url: 'application.campaign',
           params: {reviewId: 47}
@@ -38,7 +38,7 @@ angular.module('xbertsApp')
           image: '/images/Emie_Watch.jpg',
           title: 'Nevo Balade Parisienne Smart Watch',
           subtitle: 'Stay on top of your health and fitness goals, without compromising on your sense of style.',
-          buttonText: 'Try Me Now',
+          buttonText: 'Shop Now',
           buttonColor: 'btn-primary',
           url: 'application.campaign',
           params: {reviewId: 48}
@@ -48,7 +48,7 @@ angular.module('xbertsApp')
           image: '/images/Jorno_keyboard.jpg',
           title: 'Jorno Folding Bluetooth Keyboard',
           subtitle: 'Just your type. Check out this ultra-slim compact folding keyboard.',
-          buttonText: 'Try Me Now',
+          buttonText: 'Shop Now',
           buttonColor: 'btn-primary',
           url: 'application.campaign',
           params: {reviewId: 49}
