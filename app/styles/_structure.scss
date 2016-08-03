@@ -116,8 +116,8 @@ a.block-link {
   .navbar-right {
     .dropdown {
       > a {
-        padding-top: 13px;
-        padding-bottom: 13px;
+        padding-top: $xb-navbar-avatar-padding;
+        padding-bottom: $xb-navbar-avatar-padding;
       }
     }
   }

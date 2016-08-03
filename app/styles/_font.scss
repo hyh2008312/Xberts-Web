@@ -7,18 +7,7 @@ $bodyPaddingBottom: 80px;
 $sectionSpace: 50px;
 $cardSpace: 20px;
 
-$navbarHeight: 50px !default;
-$navbarBrandWidth: 120px !default;
-$navbarBrandHeight: 32px !default;
-$navbarBrandPaddingTop: ($navbarHeight - $navbarBrandHeight) / 2;
-$navbarBrandPaddingBottom: ($navbarHeight - $navbarBrandHeight) / 2;
-$navbarLineWhiteHalf: (20px - 14px) / 2;
-$navbarLinkPaddingBottom: $navbarBrandPaddingBottom;
-$navbarLinkPaddingTop: 50px - 20px - $navbarLinkPaddingBottom;
-
 $sectionFixedHeight : 450px;
-
-
 
 .padding{
   padding: $defaultPadding $defaultPadding * 2

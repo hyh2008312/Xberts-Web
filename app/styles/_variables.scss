@@ -3,8 +3,8 @@
 // --------------------------------------------------
 $sectionBasePadding: 50px;
 
-$sectionPadding:60px;
-$sectionInnerGutter:60px;
+$sectionPadding: 60px;
+$sectionInnerGutter: 60px;
 
 // Font color
 $primaryFontColor: $blackColor;
@@ -13,6 +13,16 @@ $secondaryFontColor: $darkGrayColor;
 // Main variables
 $xb-default-bg: $lightWhiteColor;
 $xb-default-border: $lightGrayColor;
+
+// Navbar
+$navbar-height: 60px;
+$navbarBrandWidth: 120px;
+$navbarBrandHeight: 32px;
+$navbarBrandPaddingTop: ($navbar-height - $navbarBrandHeight) / 2;
+$navbarBrandPaddingBottom: ($navbar-height - $navbarBrandHeight) / 2;
+$navbarLinkPaddingBottom: $navbarBrandPaddingBottom;
+$navbarLinkPaddingTop: 50px - 20px - $navbarLinkPaddingBottom;
+$xb-navbar-avatar-padding: ($navbar-height - 24) / 2;
 
 // Footer
 $xb-footer-height: 120px;
