@@ -7,8 +7,9 @@ angular.module('xbertsApp')
       var title = 'Xberts - Crowdtesting';
       var description = 'Receive free samples of new products to test and review!Launch a Campaign';
       var backgroundColor = 'background-bg-light';
-      var shareImage = 'https://xberts.com/media/project/2016/03/11/3I9WcKxdVp.png';
-      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+      var shareImage = '/images/campaign-banner.jpg';
+      var shareImageFullUrl='https://xberts.com/'+shareImage;
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImageFullUrl);
       $scope.releaseReviewPaginator = releaseReviewPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;
       $scope.completedReviewPaginator = completedReviewPaginator;
