@@ -20,9 +20,8 @@ $navbarBrandWidth: 120px;
 $navbarBrandHeight: 32px;
 $navbarBrandPaddingTop: ($navbar-height - $navbarBrandHeight) / 2;
 $navbarBrandPaddingBottom: ($navbar-height - $navbarBrandHeight) / 2;
-$navbarLinkPaddingBottom: $navbarBrandPaddingBottom;
-$navbarLinkPaddingTop: 50px - 20px - $navbarLinkPaddingBottom;
-$xb-navbar-avatar-padding: ($navbar-height - 24) / 2;
+$xb-navbar-avatar-padding: ($navbar-height - 24px) / 2;
+$xb-navbar-icon-padding: ($navbar-height - 20px) / 2;
 
 // Footer
 $xb-footer-height: 120px;

@@ -54,7 +54,7 @@
               <p class="xb-card-board-label"> Product Stage</p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Beta</span>
+                <span ng-switch-when="FREE_SAMPLE">Pre-launch</span>
                 <span ng-switch-when="PAID">New Release</span>
               </p>
             </div>
@@ -122,10 +122,10 @@
                   <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
                       <button ng-switch-when="FREE_SAMPLE" class="btn btn-block btn-primary"
-                              ui-sref="application.protected.apply({reviewId:review.id})">TRY ME NOW
+                              ui-sref="application.protected.apply({reviewId:review.id})">TEST NOW
                       </button>
                       <button ng-switch-when="PAID" class="btn btn-block btn-primary"
-                              ng-click="buyClicked()">TRY ME NOW
+                              ng-click="buyClicked()">SHOP NOW
                       </button>
                     </div>
                   </div>
