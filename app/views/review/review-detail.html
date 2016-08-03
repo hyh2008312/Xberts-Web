@@ -93,6 +93,7 @@
             <div class="xb-card-board-item" ng-switch="review.reviewType">
               <div ng-switch-when="FREE_SAMPLE">
                 <p class="xb-card-board-label"> Total Available Units</p>
+
                 <p class="xb-card-board-value">{{ review.flashsale.totalUnits }}</p>
               </div>
               <div ng-switch-default>
@@ -323,40 +324,51 @@
                 <h3 class="xb-detail-section-title margin-top-clear" ng-switch="review.reviewType">
                   <span ng-switch-when="FREE_SAMPLE">Want to try it for free? Submit your application!</span>
                   <span ng-switch-when="PAID">Want to win a reward? Share your reviews!</span>
-                  </h3>
+                </h3>
 
                 <div class="row xb-detail-section-detail">
-                  <div class="col-xs-3 col-sm-3 text-center">
-                    <img src="/images/crowdtesting-step-1.png" style="width:100%;max-width: 60px;">
+                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line xb-right-side">
+                    <div class="xb-reiview-connect">
 
-                    <p class="margin-top" ng-switch="review.reviewType">
-                      <span ng-switch-when="FREE_SAMPLE">Apply Now</span>
-                      <span ng-switch-when="PAID">Place Order</span>
-                    </p>
+
+                      <img src="/images/crowdtesting-step-1.png"
+                           style="width:100%;max-width: 60px;background-color: #ffffff">
+
+                      <p class="margin-top" ng-switch="review.reviewType">
+                        <span ng-switch-when="FREE_SAMPLE">Apply Now</span>
+                        <span ng-switch-when="PAID">Place Order</span>
+                      </p>
+                    </div>
                   </div>
-                  <div class="col-xs-3 col-sm-3 text-center">
-                    <img src="/images/crowdtesting-step-2.png" style="width:100%;max-width: 60px;">
+                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line">
+                    <div class="xb-reiview-connect">
+                      <img src="/images/crowdtesting-step-2.png" style="width:100%;max-width: 60px;">
 
-                    <p class="margin-top" ng-switch="review.reviewType">
-                      <span ng-switch-when="FREE_SAMPLE">Get Selected</span>
-                      <span ng-switch-when="PAID">Try Product</span>
-                    </p>
+                      <p class="margin-top" ng-switch="review.reviewType">
+                        <span ng-switch-when="FREE_SAMPLE">Get Selected</span>
+                        <span ng-switch-when="PAID">Try Product</span>
+                      </p>
+                    </div>
                   </div>
-                  <div class="col-xs-3 col-sm-3 text-center">
-                    <img src="/images/crowdtesting-step-3.png" style="width:100%;max-width: 60px;">
+                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line">
+                    <div class="xb-reiview-connect">
+                      <img src="/images/crowdtesting-step-3.png" style="width:100%;max-width: 60px;">
 
-                    <p class="margin-top" ng-switch="review.reviewType">
-                      <span ng-switch-when="FREE_SAMPLE">Try Product</span>
-                      <span ng-switch-when="PAID">Share Review</span>
-                    </p>
+                      <p class="margin-top" ng-switch="review.reviewType">
+                        <span ng-switch-when="FREE_SAMPLE">Try Product</span>
+                        <span ng-switch-when="PAID">Share Review</span>
+                      </p>
+                    </div>
                   </div>
-                  <div class="col-xs-3 col-sm-3 text-center">
-                    <img src="/images/crowdtesting-step-4.png" style="width:100%;max-width: 60px;">
+                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line xb-left-side">
+                    <div class="xb-reiview-connect">
+                      <img src="/images/crowdtesting-step-4.png" style="width:100%;max-width: 60px;">
 
-                    <p class="margin-top" ng-switch="review.reviewType">
-                      <span ng-switch-when="FREE_SAMPLE">Submit Review</span>
-                      <span ng-switch-when="PAID">Get Reward</span>
-                    </p>
+                      <p class="margin-top" ng-switch="review.reviewType">
+                        <span ng-switch-when="FREE_SAMPLE">Submit Review</span>
+                        <span ng-switch-when="PAID">Get Reward</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -390,7 +402,8 @@
                 <div ng-switch="review.reviewType" class="xb-detail-section-detail">
                   <div ng-switch-when="FREE_SAMPLE">
                     <ul>
-                      <li>All selected applicants must submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD, YYYY'}}, otherwise they will have to
+                      <li>All selected applicants must submit their reviews before {{ review.dateEnd | amDateFormat:'MMM
+                        DD, YYYY'}}, otherwise they will have to
                         return the product to Xberts
                       </li>
                       <li>
@@ -405,7 +418,9 @@
                   </div>
                   <div ng-switch-when="PAID">
                     <ul>
-                      <li>All participants should submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD, YYYY'}} to be considered for reward</li>
+                      <li>All participants should submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD,
+                        YYYY'}} to be considered for reward
+                      </li>
                       <li>The review content should be ORIGINAL and related to the product</li>
                     </ul>
                   </div>

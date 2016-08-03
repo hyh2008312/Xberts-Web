@@ -558,3 +558,29 @@ $message-types: (
   @include ellipsisText();
   padding-bottom: 2px; // Avoid text bottom cutoff
 }
+
+.xb-review-connect-line{
+  &:before{
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    top: 28px;
+    left:0;
+    width: 100%;
+    border-bottom: 1px solid $xb-default-border;
+  }
+  &.xb-right-side:before{
+    left:50%;
+    width: 50%;
+  }
+  &.xb-left-side:before{
+    left:0;
+    width: 50%;
+  }
+
+  .xb-reiview-connect{
+    position: relative;
+    z-index: 1;
+  }
+}

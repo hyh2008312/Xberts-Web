@@ -10,7 +10,7 @@ angular.module('xbertsApp')
   .directive('save', ['Interact', '$rootScope', function (Interact, $rootScope) {
     return {
       template: '<div>' +
-      '<button class="button button-glow" ng-class="{\'button-caution\':join.vote,\'button-primary\':!join.vote}"' +
+      '<button class="btn btn-block" ng-class="{\'btn-danger\':join.vote,\'btn-primary\':!join.vote}"' +
       'ng-disabled="loadingJoin || voting " ng-click="save()"> ' +
       '<i class="fa {{icon}} fa-lg"></i> {{ title }} <span ng-show="interact.vote_amount>0">{{ interact.vote_amount }}<span>' +
       '</button>' +
