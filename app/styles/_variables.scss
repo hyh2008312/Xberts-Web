@@ -14,6 +14,9 @@ $secondaryFontColor: $darkGrayColor;
 $xb-default-bg: $lightWhiteColor;
 $xb-default-border: $lightGrayColor;
 
+// Footer
+$xb-footer-height: 120px;
+
 // Form variables
 $xb-form-default-bg: $whiteColor;
 
@@ -36,6 +39,7 @@ $navbar-default-link-hover-color: $primaryFontColor;
 $navbar-default-link-active-color: $primaryFontColor;
 $navbar-default-link-hover-bg: transparent;
 $navbar-default-link-active-bg: transparent;
+$navbar-margin-bottom: 0px;
 
 $dropdown-link-color: $primaryFontColor;
 $dropdown-link-hover-color: $primaryFontColor;
