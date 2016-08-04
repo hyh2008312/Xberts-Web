@@ -107,6 +107,10 @@
                                   Not
                                   Selected
                                 </button>
+                                <button ng-switch-when="null" class="btn btn-block btn-success-disabled" disabled>
+                                  Not
+                                  Selected
+                                </button>
                                 <button ng-switch-when="true" class="btn btn-block btn-primary"
                                         ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">Confirm
                                   Shipping
@@ -141,6 +145,9 @@
                             <div ng-switch-when="ENDED">
                               <div ng-switch="applicant.is_selected">
                                 <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
+                                  Completed
+                                </button>
+                                <button ng-switch-when="null" class="btn btn-block btn-default" disabled>
                                   Completed
                                 </button>
                                 <div ng-switch-when="true">
