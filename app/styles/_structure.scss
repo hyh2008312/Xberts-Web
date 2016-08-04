@@ -99,6 +99,14 @@ a.block-link {
   width: 100%;
 }
 
+.coupon-banner {
+  width: 100%;
+  height: 50px;
+  padding-top: 15px;
+  color: $xb-default-font-color-inverse;
+  background-color: $brand-primary;
+}
+
 .navbar {
   // Center logo
   .navbar-brand {
