@@ -143,7 +143,7 @@
                                 <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
                                   Completed
                                 </button>
-                                <div ng-switch="true">
+                                <div ng-switch-when="true">
                                   <div ng-switch="applicant.is_submit_report">
                                     <button ng-switch-when="false" class="btn btn-block btn-primary"
                                             ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
