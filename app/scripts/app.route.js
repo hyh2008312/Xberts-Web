@@ -5,6 +5,7 @@ angular
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.when('/crowdtesting/:reviewId', '/campaigns/:reviewId');
 
+
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('application', {
@@ -31,7 +32,7 @@ angular
         templateUrl: 'views/about.html'
       })
       .state('application.projects', {
-        url: '/products',
+        url: '/productlisting',
         templateUrl: 'views/project/projects.html',
         controller: 'ProjectsCtrl',
         resolve: {
