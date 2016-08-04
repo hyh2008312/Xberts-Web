@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
-    'ProjectsNoDetail', 'Interact', 'expert', 'roleRequests', 'Applicantsreview', 'SystemConstant',
+    'ReviewService', 'Interact', 'expert', 'roleRequests', 'Applicantsreview', 'SystemConstant',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
-              ProjectsNoDetail, Interact, expert, roleRequests, Applicantsreview, SystemConstant) {
+              ReviewService, Interact, expert, roleRequests, Applicantsreview, SystemConstant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
@@ -17,37 +17,52 @@ angular.module('xbertsApp')
       };
       $scope.tabs = [
         {title: 'profile', active: true},
-        {title: 'products', active: false},
-        {title: 'followers', active: false},
-        {title: 'followings', active: false},
-        {title: 'comments', active: false},
-        {title: 'reviews', active: false}
+        {title: 'campaigns', active: false},
+        {title: 'trials', active: false}
       ];
+      $scope.tabActive=0;
+
+      var search = $location.search();
+      var tab = search.tab || 'profile';
+      switch (tab){
+        case 'profile':
+          $scope.tabActive=0;
+          break;
+        case 'campaigns':
+          $scope.tabActive=1;
+          break;
+        case 'trials':
+          $scope.tabActive=2;
+          break;
+        default:
+          $scope.tabActive=0;
+      }
+
       //todo: 交互信息可能发生变化,重读交互信息
       // before entering into detail page, should the project interact info
-      $scope.projectsTabActive = false;
+      $scope.campaignsTabActive = false;
       $scope.followingsTabActive = false;
       $scope.commentsTabActive = false;
       $scope.followersTabActive = false;
-      $scope.reviewsTabActive = false;
+      $scope.trialsTabActive = false;
       $scope.select = function (step) {
-        $scope.projectsTabActive = false;
+        $scope.campaignsTabActive = false;
         $scope.followingsTabActive = false;
         $scope.commentsTabActive = false;
         $scope.followersTabActive = false;
-        $scope.reviewsTabActive = false;
+        $scope.trialsTabActive = false;
         switch (step) {
-          case 'products':
-            $scope.projectsTabActive = true;
+          case 'campaigns':
+            $scope.campaignsTabActive = true;
             var par = {
-              name: 'project_' + $scope.expert.user_id,
-              params: {account_id: $scope.expert.user_id},
+              name: 'campaigns_'+ $scope.expert.user_id,
+              params: {owner: $scope.expert.user_id},
               fetchFunction: function (params) {
-                return ProjectsNoDetail.get(params).$promise;
+                return ReviewService.getList(params);
               }
             };
-            $scope.projectPaginator = Paginator(par);
-            $scope.projectPaginator.clear();
+            $scope.campaignPaginator = Paginator(par);
+            $scope.campaignPaginator.clear();
             break;
           case 'followers':
             $scope.followersTabActive = true;
@@ -80,10 +95,10 @@ angular.module('xbertsApp')
             // TODO: Doesn't seem be used, remove if no issue is seen
             //$scope.$broadcast('feedback', step);
             break;
-          case 'reviews':
-            $scope.reviewsTabActive = true;
+          case 'trials':
+            $scope.trialsTabActive = true;
             var par3 = {
-              name: 'reviewapplicant_' + $scope.expert.user_id,
+              name: 'trials_' + $scope.expert.user_id,
               params: {reviewer_id: $scope.expert.user_id},
               fetchFunction: function (params) {
                 return Applicantsreview.get(params).$promise;
@@ -100,13 +115,6 @@ angular.module('xbertsApp')
         // TODO: Doesn't seem be used, remove if no issue is seen
         //$scope.$broadcast('expert', step);
       };
-      var search = $location.search();
-      var tab = search.tab || 'profile';
-      if (search.tab) {
-        for (var i = 0; i < $scope.tabs.length; i++) {
-          $scope.tabs[i].active = $scope.tabs[i].title === search.tab;
-        }
-      }
 
       var sendMessage = function () {
         if (!$rootScope.user.authRequired()) {

@@ -33,9 +33,15 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <uib-tabset>
-            <uib-tab heading="Biography" active="tabs[0].active" select="select('profile')">
+          <uib-tabset active="tabActive">
+            <uib-tab heading="Biography" index="0" select="select('profile')">
               <div ng-bind-html=" expert.biography | trust"></div>
+            </uib-tab>
+            <uib-tab heading="My Campaigns" index="1" select="select('campaigns')">
+              <div ng-include src="'/views/profile/campaignstab.html'"></div>
+            </uib-tab>
+            <uib-tab heading="My Trials" index="2" select="select('trials')">
+                <div ng-include src="'/views/profile/reviewstab.html'"></div>
             </uib-tab>
           </uib-tabset>
         </div>

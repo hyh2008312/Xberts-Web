@@ -1,48 +1,83 @@
-<div ng-if="reviewsTabActive">
+<div ng-if="trialsTabActive">
   <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-disabled="reviewApplicantPaginator.getLoading() || !reviewApplicantPaginator.getNext()">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
-      <a class="block-link" ui-sref="application.crowdtesting({ reviewId:applicant.review.id })">
-        <div class="card">
-          <div class="card-header" style="background-image: url({{ applicant.review.project.image }})">
-          </div>
-          <div class="card-body">
-            <p class="card-body-title p-1">{{ applicant.review.title }}</p>
+      <div class="xb-card">
+        <div class="xb-card-ratio-wrap"
+             ui-sref="application.campaign({ reviewId:applicant.review.id })">
+          <div class="image-wrap" style="background-image: url({{ applicant.review.cover }})">
 
-            <p class="card-body-detail">
-              Available Units: {{ applicant.review.quota }}
-            </p>
-
-            <p class="card-body-detail" ng-switch="isOutDated(applicant.review.application_end_date)">
-              <span ng-switch-when="true">
-                Review Deadline: {{ applicant.review.date_end | amDateFormat:'MMM DD, YYYY'}}
-              </span>
-              <span ng-switch-when="false">
-                Application Deadline: {{ applicant.review.application_end_date | amDateFormat:'MMM DD, YYYY'}}
-              </span>
-            </p>
-
-            <div class="card-body-footer align-right" ng-switch="applicant.review.is_publish_applicants">
-              <div ng-switch-when="false">
-                <span>Pending Selection</span>
-              </div>
-              <div ng-switch-when="true">
-                <div ng-switch="applicant.is_selected">
-                  <div ng-switch-when="true">
-                    <div ng-switch="applicant.is_submit_report">
-                      <span ng-switch-when="false">Pending Review</span>
-                      <span ng-switch-when="true">Review Submitted</span>
-                    </div>
-                  </div>
-                  <span ng-switch-when="false">Not Selected</span>
-                  <span ng-switch-when="null">Pending Selection</span>
-                </div>
-              </div>
-
-            </div>
           </div>
         </div>
-      </a>
+        <div class="xb-card-content">
+          <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{ applicant.review.title }}</p>
+
+          <div class="xb-card-button">
+            <div ng-switch="applicant.review.status">
+              <button ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
+                      ui-sref="application.protected.apply({reviewId:applicant.review.id})">Edit Application
+              </button>
+              <button ng-switch-when="SELECTION" class="btn btn-block btn-success-disabled" disabled>
+                Screening
+              </button>
+              <div ng-switch-when="CONFIRMATION">
+                <div ng-switch="applicant.is_selected">
+                  <button ng-switch-when="false" class="btn btn-block btn-success-disabled" disabled>
+                    Not
+                    Selected
+                  </button>
+                  <button ng-switch-when="true" class="btn btn-block btn-primary"
+                          ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">Confirm
+                    Shipping
+                    Info
+                  </button>
+                </div>
+              </div>
+              <div ng-switch-when="REVIEW">
+                <div ng-switch="applicant.is_selected">
+                  <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
+                    Not
+                    Selected
+                  </button>
+                  <div ng-switch="applicant.is_submit_report">
+                    <div ng-switch="applicant.is_submit_report">
+                      <button ng-switch-when="false" class="btn btn-block btn-primary"
+                              ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                        Report
+                      </button>
+                      <button ng-switch-when="true" class="btn btn-block btn-primary"
+                              ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Edit
+                        Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ng-switch-when="ENDED">
+                <div ng-switch="applicant.is_selected">
+                  <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
+                    Completed
+                  </button>
+                  <div ng-switch="applicant.is_submit_report">
+                    <div ng-switch="applicant.is_submit_report">
+                      <button ng-switch-when="false" class="btn btn-block btn-primary"
+                              ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                        Report
+                      </button>
+                      <button ng-switch-when="true" class="btn btn-block btn-success"
+                              ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">View
+                        My
+                        Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <load-more class="row spin-large" ng-if="reviewApplicantPaginator.getLoading()"></load-more>
