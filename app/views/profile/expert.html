@@ -124,7 +124,7 @@
                                   Not
                                   Selected
                                 </button>
-                                <div ng-switch="applicant.is_submit_report">
+                                <div ng-switch-when="true">
                                   <div ng-switch="applicant.is_submit_report">
                                     <button ng-switch-when="false" class="btn btn-block btn-primary"
                                             ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
