@@ -105,6 +105,10 @@ a.block-link {
   padding-top: 15px;
   color: $xb-default-font-color-inverse;
   background-color: $brand-primary;
+
+  @media screen and (max-width: $screen-sm-min) {
+    height: 70px;
+  }
 }
 
 .navbar {
