@@ -491,7 +491,11 @@ angular
           releaseReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
               name: 'callingReview',
-              params: {stage: 'READY_FOR_SALE',status:'APPLICATION'},
+              params: {
+                stage: 'READY_FOR_SALE',
+                status:'APPLICATION',
+                page_size: 12
+              },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
               }
@@ -501,7 +505,11 @@ angular
           betaReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
               name: 'progressingReview',
-              params: {stage: 'BETA',status:'APPLICATION'},
+              params: {
+                stage: 'BETA',
+                status:'APPLICATION',
+                page_size: 9
+              },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
               }
@@ -511,7 +519,11 @@ angular
           completedReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
               name: 'completedReview',
-              params: {status:['ENDED'],ordering:'-application_end_date'},
+              params: {
+                status:['ENDED'],
+                ordering:'-application_end_date',
+                page_size: 6
+              },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
               }
