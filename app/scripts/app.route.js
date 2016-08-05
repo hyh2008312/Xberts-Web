@@ -531,5 +531,13 @@ angular
             return Paginator(par).load();
           }]
         }
+      })
+      .state('application.terms', {
+        url: "/terms",
+        templateUrl: 'views/terms.html'
+      })
+      .state('application.privacy', {
+        url: "/privacy",
+        templateUrl: 'views/privacy.html'
       });
   }]);
