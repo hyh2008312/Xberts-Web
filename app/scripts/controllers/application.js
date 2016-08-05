@@ -32,5 +32,21 @@ angular.module('xbertsApp')
 
         AuthService.linkedinLogin();
       };
+
+      $scope.facebookLogin = function(loginError) {
+        $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView('/facebooklogin');
+
+        AuthService.facebookLogin()
+          .then(function (response) {
+            AuthService.loginRedirect();
+          })
+          .catch(function (response) {
+            $scope.$emit('backdropOff', 'error');
+
+            loginError.facebookError = true;
+          });
+      };
     }]);
 

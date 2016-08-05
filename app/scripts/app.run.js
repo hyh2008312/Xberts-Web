@@ -2,8 +2,8 @@
 
 angular
   .module('xbertsApp')
-  .run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'PageService', 'SignupService',
-    function ($rootScope, $state, $stateParams, localStorageService, PageService, SignupService) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
+    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.summerNoteSimple = {
@@ -83,4 +83,23 @@ angular
       localStorageService.clearAll();
       // Capture potential campaign/source query param
       SignupService.saveSourceParam();
+
+      // Load facebook SDK
+      $window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1109067122496559',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      // Load the SDK asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     }]);

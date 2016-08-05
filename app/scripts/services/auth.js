@@ -131,6 +131,27 @@ angular.module('xbertsApp')
         });
       }
 
+      function facebookLogin() {
+        var deferred = $q.defer();
+
+        FB.login(function (response) {
+          if (response.status === 'connected') {
+            exchangeToken(response.authResponse.accessToken, 'facebook')
+              .then(function (response) {
+                deferred.resolve();
+              })
+              .catch(function (response) {
+                deferred.reject(response);
+              });
+          } else {
+            console.log('facebook login failed: ' + response.status);
+            deferred.reject();
+          }
+        }, {scope: 'public_profile,email'});
+
+        return deferred.promise;
+      }
+
       function linkedinLogin() {
         var oauth2Url = 'https://www.linkedin.com/uas/oauth2/authorization';
         var state = Configuration.linkedinDefaultState;
@@ -172,11 +193,11 @@ angular.module('xbertsApp')
           }).$promise;
       }
 
-      function exchangeLinkedinToken(accessToken) {
+      function exchangeToken(accessToken, backend) {
         var params = {
           grant_type: 'convert_token',
           client_id: OAUTH_CLIENT_ID,
-          backend: 'linkedin-oauth2',
+          backend: backend,
           token: accessToken
         };
 
@@ -237,7 +258,7 @@ angular.module('xbertsApp')
         } else if ($rootScope.previous && $rootScope.previous.state) {
           $state.go($rootScope.previous.state, $rootScope.previous.params, {location: 'replace'});
         } else {
-          $state.go('application.crowdtestings', {}, {location: 'replace'})
+          $state.go('application.main', {}, {location: 'replace'})
         }
       }
 
@@ -339,9 +360,10 @@ angular.module('xbertsApp')
 
       return {
         login: login,
+        facebookLogin: facebookLogin,
         linkedinLogin: linkedinLogin,
         getLinkedinToken: getLinkedinToken,
-        exchangeLinkedinToken: exchangeLinkedinToken,
+        exchangeToken: exchangeToken,
         auth: auth,
         setUser: setUser,
         loginRedirect: loginRedirect,

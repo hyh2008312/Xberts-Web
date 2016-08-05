@@ -9,6 +9,8 @@ angular.module('xbertsApp')
         $scope.loginError = {linkedinError: true};
 
         $location.search('error', null);
+      } else {
+        $scope.loginError = {};
       }
 
       $scope.login = function(form) {

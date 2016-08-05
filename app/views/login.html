@@ -5,9 +5,10 @@
 
       <div class="form-group has-error">
         <div class="help-block" ng-messages="loginError">
-          <p ng-messages-include="views/message/linkedin_error.html"></p>
+          <p ng-messages-include="views/message/login_error.html"></p>
         </div>
       </div>
+
       <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
         <div class="form-group has-error">
           <div class="help-block" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
@@ -41,6 +42,11 @@
       </form>
 
       <h5 class="header-divider"><span>Or</span></h5>
+
+      <a type="button" href="#" class="btn btn-primary btn-lg btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+        <i class="fa fa-facebook"></i>
+        <span class="linkedin-btn-title">Continue with Facebook</span>
+      </a>
 
       <a type="button" href="#" class="btn btn-primary btn-lg btn-block linkedin-btn" ng-click="linkedinLogin()">
         <i class="fa fa-linkedin"></i>

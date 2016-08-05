@@ -24,7 +24,7 @@ angular.module('xbertsApp')
       if (verified) {
         AuthService.getLinkedinToken(params.code)
           .then(function(value) {
-            return AuthService.exchangeLinkedinToken(value.access_token);
+            return AuthService.exchangeToken(value.access_token, 'linkedin-oauth2');
           })
           .then(function(value) {
             if (localStorageService.cookie.get(Configuration.postLoginStateStorageKey)) {
