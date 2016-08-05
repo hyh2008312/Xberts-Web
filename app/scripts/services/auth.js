@@ -136,18 +136,35 @@ angular.module('xbertsApp')
 
         FB.login(function (response) {
           if (response.status === 'connected') {
-            exchangeToken(response.authResponse.accessToken, 'facebook')
-              .then(function (response) {
-                deferred.resolve();
-              })
-              .catch(function (response) {
-                deferred.reject(response);
-              });
+            var accessToken = response.authResponse.accessToken;
+
+            FB.api('/me/permissions', function(response) {
+              var declined = [];
+              for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].status == 'declined') {
+                  declined.push(response.data[i].permission)
+                }
+              }
+
+              if (_(declined).contains('email')) {
+                deferred.reject('missing_permission');
+              } else {
+                exchangeToken(accessToken, 'facebook')
+                  .then(function (response) {
+                    deferred.resolve();
+                  })
+                  .catch(function (response) {
+                    deferred.reject(response);
+                  });
+              }
+            });
           } else {
-            console.log('facebook login failed: ' + response.status);
             deferred.reject();
           }
-        }, {scope: 'public_profile,email'});
+        }, {
+          scope: 'public_profile,email',
+          auth_type: 'rerequest'
+        });
 
         return deferred.promise;
       }

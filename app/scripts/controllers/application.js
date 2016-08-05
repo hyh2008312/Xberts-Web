@@ -45,8 +45,11 @@ angular.module('xbertsApp')
           .catch(function (response) {
             $scope.$emit('backdropOff', 'error');
 
-            loginError.facebookError = true;
+            if (response === 'missing_permission') {
+              loginError.facebookPermissionError = true;
+            } else {
+              loginError.facebookError = true;
+            }
           });
       };
     }]);
-
