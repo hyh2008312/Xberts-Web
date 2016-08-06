@@ -56,4 +56,34 @@ angular.module('xbertsApp')
         });
       }
     };
+  }])
+  .directive('firstPop', ['$rootScope','$cookies','$uibModal', function ($rootScope,$cookies,$uibModal) {
+    return {
+      restrict: 'E',
+      link: function postLink(scope, element, attrs) {
+        //element.addClass('backdrop');
+        //element.height(window.screen.availHeight);
+        //element.width(window.screen.availWidth);
+
+        //element.addClass('hide');
+        //$rootScope.backdropCount = 0;
+
+
+        var pop = function () {
+          var isFirst=$cookies.get('isFirst');
+          if (isFirst) {
+            return;
+          }
+
+          $cookies.put('isFirst', true);
+
+          var sendMessageModal = $uibModal.open({
+            templateUrl: 'views/modal/send-message.html',
+            windowClass: 'dialog-vertical-center'
+          });
+        };
+
+        pop();
+      }
+    };
   }]);
