@@ -7,6 +7,10 @@ body {
   margin-bottom: $xb-footer-height;
   background-color: $xb-default-bg;
   line-height: 1.43;
+
+  @media screen and (max-width: $screen-sm-min) {
+    margin-bottom: $xb-footer-height-screen-sm;
+  }
 }
 
 footer {
@@ -16,12 +20,17 @@ footer {
   height: $xb-footer-height;
   background-color: $primaryFontColor;
   color: $grayLightColor;
+
+  @media screen and (max-width: $screen-sm-min) {
+    height: $xb-footer-height-screen-sm;
+  }
+
   > .container {
     padding-top: 50px;
 
     :first-child {
-      img {
-        margin-right: 20px;
+      span, a {
+        margin-left: 20px;
       }
     }
 
