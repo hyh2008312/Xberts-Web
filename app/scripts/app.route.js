@@ -199,11 +199,7 @@ angular
         resolve: {
           expert: ['ExpertLoad', '$stateParams', function (ExpertLoad, $stateParams) {
             return ExpertLoad.get($stateParams);
-          }],
-          roleRequests: ['authCheck', 'SystemConstant', 'RoleRequestsResolver',
-            function (authCheck, SystemConstant, RoleRequestsResolver) {
-              return RoleRequestsResolver.resolver(SystemConstant.ROLES.DOMAIN_EXPERT);
-            }]
+          }]
         }
       })
       .state('application.protected.profile', {

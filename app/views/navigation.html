@@ -54,7 +54,7 @@
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
               <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</a>
             </li>
-            <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
+            <li ng-if="user.hasRole('campaign_owner')" data-toggle="collapse" data-target="#js-navbar-collapse.in">
               <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'campaigns' })">My Campaigns</a>
             </li>
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">

@@ -1,185 +1,179 @@
-<join ng-init="init(expert.interact)">
-  <section class="background-light-white">
-    <div class="container">
-      <div row>
-        <div class="col-sm-2 text-center expert-profile">
-          <avatar-img src="expert.avatar" name="expert.fullname"></avatar-img>
-          <p class="label label-primary" ng-if="pendingExpert">Pending Expert Verification</p>
-          <p class="label label-primary" ng-if="isExpert">Verified Expert</p>
-        </div>
-        <div class="col-sm-8">
-          <div class="section-title">
+<section class="background-light-white">
+  <div class="container">
+    <div row>
+      <div class="col-sm-2 text-center expert-profile">
+        <avatar-img src="expert.avatar" name="expert.fullname"></avatar-img>
+        <p class="label label-primary" ng-if="isExpert">Verified Expert</p>
+      </div>
+      <div class="col-sm-8">
+        <div class="section-title">
 
-            <h2 ng-bind="expert.short_name"></h2>
+          <h2 ng-bind="expert.short_name"></h2>
 
-            <p><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
+          <p><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
 
-            <p>{{ expert.company_title}}</p>
+          <p>{{ expert.company_title}}</p>
 
-            <p>
-              <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
-            </p>
-          </div>
-        </div>
-        <div class="col-sm-2 text-center expert-profile-btn">
-          <button class="btn btn-primary btn-fixed-sm" ng-if="!isCurrentUser" ng-click="contactUser()">Contact</button>
-          <button class="btn btn-primary btn-fixed-sm" ng-if="isCurrentUser" ng-click="editProfile()">Edit</button>
+          <p>
+            <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
+          </p>
         </div>
       </div>
-
+      <div class="col-sm-2 text-center expert-profile-btn">
+        <button class="btn btn-primary btn-fixed-sm" ng-if="!isCurrentUser" ng-click="contactUser()">Contact</button>
+        <button class="btn btn-primary btn-fixed-sm" ng-if="isCurrentUser" ng-click="editProfile()">Edit</button>
+      </div>
     </div>
-  </section>
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <uib-tabset active="tabActive">
-            <uib-tab heading="Biography" index="0" select="select('profile')">
-              <div ng-bind-html=" expert.biography | trust"></div>
-            </uib-tab>
-            <uib-tab heading="My Campaigns" index="1" select="select('campaigns')">
-              <div ng-if="campaignsTabActive">
-                <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0'
-                     infinite-scroll-disabled="campaignPaginator.getLoading() || !campaignPaginator.getNext()">
-                  <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
-                    <div class="xb-card">
-                      <div class="xb-card-ratio-wrap"
-                           ui-sref="application.campaign({ reviewId:review.id })">
-                        <div class="image-wrap" style="background-image: url({{ review.cover }})">
 
-                        </div>
-                      </div>
-                      <div class="xb-card-content">
-                        <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
-                        <div class="xb-card-button">
-                          <div ng-switch="review.status">
-                            <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
-                               ui-sref="application.campaign({ reviewId:review.id })">Coming Soon</a>
-                            <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
-                               ui-sref="application.campaign({ reviewId:review.id })">Application Open</a>
-                            <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
-                               ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                              Applicants</a>
-                            <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-primary"
-                               ui-sref="application.selectApplicants({reviewId:review.id})">View
-                              Applicants</a>
-                            <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
-                               ui-sref="application.selectApplicants({reviewId:review.id})">View
-                              Shipping Address</a>
-                            <a ng-switch-when="ENDED" class="btn btn-block btn-primary"
-                               ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                              Reports</a>
-                          </div>
-                        </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <uib-tabset active="tabActive">
+          <uib-tab heading="Biography" index="0" select="select()">
+            <div ng-bind-html=" expert.biography | trust"></div>
+          </uib-tab>
+
+          <uib-tab ng-if="user.hasRole('campaign_owner')" heading="My Campaigns" index="1" select="select()">
+            <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0'
+                 infinite-scroll-disabled="campaignPaginator.getLoading() || !campaignPaginator.getNext()">
+              <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
+                <div class="xb-card">
+                  <div class="xb-card-ratio-wrap"
+                       ui-sref="application.campaign({ reviewId:review.id })">
+                    <div class="image-wrap" style="background-image: url({{ review.cover }})">
+
+                    </div>
+                  </div>
+                  <div class="xb-card-content">
+                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
+                    <div class="xb-card-button">
+                      <div ng-switch="review.status">
+                        <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
+                           ui-sref="application.campaign({ reviewId:review.id })">Coming Soon</a>
+                        <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
+                           ui-sref="application.campaign({ reviewId:review.id })">Application Open</a>
+                        <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                          Applicants</a>
+                        <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">View
+                          Applicants</a>
+                        <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">View
+                          Shipping Address</a>
+                        <a ng-switch-when="ENDED" class="btn btn-block btn-primary"
+                           ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                          Reports</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <load-more class="row spin-large" ng-if="campaignPaginator.getLoading()"></load-more>
               </div>
-            </uib-tab>
-            <uib-tab heading="My Trials" index="2" select="select('trials')">
-              <div ng-if="trialsTabActive">
-                <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
-                     infinite-scroll-disabled="reviewApplicantPaginator.getLoading() || !reviewApplicantPaginator.getNext()">
-                  <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
-                    <div class="xb-card">
-                      <div class="xb-card-ratio-wrap"
-                           ui-sref="application.campaign({ reviewId:applicant.review.id })">
-                        <div class="image-wrap" style="background-image: url({{ applicant.review.cover }})">
+            </div>
+            <load-more class="row spin-large" ng-if="campaignPaginator.getLoading()"></load-more>
+          </uib-tab>
 
+          <uib-tab heading="My Trials" index="2" select="select()">
+            <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
+                 infinite-scroll-disabled="reviewApplicantPaginator.getLoading() || !reviewApplicantPaginator.getNext()">
+              <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
+                <div class="xb-card">
+                  <div class="xb-card-ratio-wrap"
+                       ui-sref="application.campaign({ reviewId:applicant.review.id })">
+                    <div class="image-wrap" style="background-image: url({{ applicant.review.cover }})">
+
+                    </div>
+                  </div>
+                  <div class="xb-card-content">
+                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{ applicant.review.title }}</p>
+
+                    <div class="xb-card-button">
+                      <div ng-switch="applicant.review.status">
+                        <button ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
+                                ui-sref="application.protected.apply({reviewId:applicant.review.id})">Edit Application
+                        </button>
+                        <button ng-switch-when="SELECTION" class="btn btn-block btn-success-disabled" disabled>
+                          Screening
+                        </button>
+                        <div ng-switch-when="CONFIRMATION">
+                          <div ng-switch="applicant.is_selected">
+                            <button ng-switch-when="false" class="btn btn-block btn-success-disabled" disabled>
+                              Not
+                              Selected
+                            </button>
+                            <button ng-switch-when="null" class="btn btn-block btn-success-disabled" disabled>
+                              Not
+                              Selected
+                            </button>
+                            <button ng-switch-when="true" class="btn btn-block btn-primary"
+                                    ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">Confirm
+                              Shipping
+                              Info
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <div class="xb-card-content">
-                        <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{ applicant.review.title }}</p>
-
-                        <div class="xb-card-button">
-                          <div ng-switch="applicant.review.status">
-                            <button ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
-                                    ui-sref="application.protected.apply({reviewId:applicant.review.id})">Edit Application
+                        <div ng-switch-when="REVIEW">
+                          <div ng-switch="applicant.is_selected">
+                            <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
+                              Not
+                              Selected
                             </button>
-                            <button ng-switch-when="SELECTION" class="btn btn-block btn-success-disabled" disabled>
-                              Screening
+                            <button ng-switch-when="null" class="btn btn-block btn-default" disabled>
+                              Not
+                              Selected
                             </button>
-                            <div ng-switch-when="CONFIRMATION">
-                              <div ng-switch="applicant.is_selected">
-                                <button ng-switch-when="false" class="btn btn-block btn-success-disabled" disabled>
-                                  Not
-                                  Selected
-                                </button>
-                                <button ng-switch-when="null" class="btn btn-block btn-success-disabled" disabled>
-                                  Not
-                                  Selected
+                            <div ng-switch-when="true">
+                              <div ng-switch="applicant.is_submit_report">
+                                <button ng-switch-when="false" class="btn btn-block btn-primary"
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                                  Report
                                 </button>
                                 <button ng-switch-when="true" class="btn btn-block btn-primary"
-                                        ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">Confirm
-                                  Shipping
-                                  Info
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Edit
+                                  Report
                                 </button>
-                              </div>
-                            </div>
-                            <div ng-switch-when="REVIEW">
-                              <div ng-switch="applicant.is_selected">
-                                <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
-                                  Not
-                                  Selected
-                                </button>
-                                <button ng-switch-when="null" class="btn btn-block btn-default" disabled>
-                                  Not
-                                  Selected
-                                </button>
-                                <div ng-switch-when="true">
-                                  <div ng-switch="applicant.is_submit_report">
-                                    <button ng-switch-when="false" class="btn btn-block btn-primary"
-                                            ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
-                                      Report
-                                    </button>
-                                    <button ng-switch-when="true" class="btn btn-block btn-primary"
-                                            ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Edit
-                                      Report
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div ng-switch-when="ENDED">
-                              <div ng-switch="applicant.is_selected">
-                                <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
-                                  Completed
-                                </button>
-                                <button ng-switch-when="null" class="btn btn-block btn-default" disabled>
-                                  Completed
-                                </button>
-                                <div ng-switch-when="true">
-                                  <div ng-switch="applicant.is_submit_report">
-                                    <button ng-switch-when="false" class="btn btn-block btn-primary"
-                                            ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
-                                      Report
-                                    </button>
-                                    <button ng-switch-when="true" class="btn btn-block btn-success"
-                                            ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">View
-                                      My
-                                      Report
-                                    </button>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
-
+                        </div>
+                        <div ng-switch-when="ENDED">
+                          <div ng-switch="applicant.is_selected">
+                            <button ng-switch-when="false" class="btn btn-block btn-default" disabled>
+                              Completed
+                            </button>
+                            <button ng-switch-when="null" class="btn btn-block btn-default" disabled>
+                              Completed
+                            </button>
+                            <div ng-switch-when="true">
+                              <div ng-switch="applicant.is_submit_report">
+                                <button ng-switch-when="false" class="btn btn-block btn-primary"
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                                  Report
+                                </button>
+                                <button ng-switch-when="true" class="btn btn-block btn-success"
+                                        ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">View
+                                  My
+                                  Report
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
-                <load-more class="row spin-large" ng-if="reviewApplicantPaginator.getLoading()"></load-more>
               </div>
-
-            </uib-tab>
-          </uib-tabset>
-        </div>
+            </div>
+            <load-more class="row spin-large" ng-if="reviewApplicantPaginator.getLoading()"></load-more>
+          </uib-tab>
+        </uib-tabset>
       </div>
     </div>
-  </section>
-</join>
-
+  </div>
+</section>
