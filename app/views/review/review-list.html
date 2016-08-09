@@ -174,25 +174,6 @@
             <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">{{
               review.title }}</p>
 
-            <div class="xb-card-databoard-wrap">
-              <div class="xb-databoard-wrap row">
-                <div class="xb-databoard xb-databoard-c-primary col-xs-3 text-center">
-                  <div class="xb-databoard-primary">
-                    {{ review.applicants.length }}
-                  </div>
-                  <div class="xb-databoard-secondary" ng-pluralize count="review.applicants.length"
-                       when="{'0': 'Review',
-                              '1': 'Review',
-                              'other': 'Reviews'}">
-                  </div>
-                </div>
-                <div class="xb-avatar-list col-xs-9"
-                     ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">
-                  <profile-avatar src="applicant.reviewer.avatar" name="applicant.reviewer.fullname"
-                                  show-name="true" ng-repeat="applicant in review.applicants"></profile-avatar>
-                </div>
-              </div>
-            </div>
             <div class="xb-card-button">
               <button class="btn btn-warning btn-block"
                       ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">READ REVIEWS
