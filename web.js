@@ -13,6 +13,7 @@ function start() {
   var compression = require('compression');
   var express = require('express');
   var morgan = require('morgan');
+  var prerender = require('prerender-node');
   var app = express();
 
   app.use(morgan('dev'));
@@ -35,6 +36,7 @@ function start() {
       next();
     }
   });
+  app.use(prerender.set('prerenderToken', 'W7C9qOob3QilKJiMu1XN'));
   app.use(compression());
   app.use(express.static('' + __dirname + '/dist'));
   app.use(function(req, res) {
