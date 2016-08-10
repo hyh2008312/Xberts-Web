@@ -5,7 +5,7 @@
         <div class="xb-carousel-body">
           <h1 class="xb-carousel-title" ng-bind-html=" slide.title | trust"></h1>
           <p class="xb-carousel-subtitle" ng-bind-html=" slide.subtitle | trust"></p>
-          <div class="xb-carousel-button-wrap xb-align-center">
+          <div ng-if="slide.buttonShow" class="xb-carousel-button-wrap xb-align-center">
             <button ng-click="slideButtonClick(slide)"
                     class="btn btn-lg btn-block {{ slide.buttonColor }}">{{ slide.buttonText }}</button>
           </div>
@@ -18,7 +18,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2 class="header-divider"><span>Shop Newest Products</span></h2>
+      <h2 class="header-divider"><span>Get Early Bird Offers</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in releaseReviewPaginator.items">
@@ -66,7 +66,7 @@
             </div>
             <div class="xb-card-button">
               <button class="btn btn-primary btn-block"
-                      ng-click="buyNow(review.id, $event);">SHOP NOW
+                      ng-click="buyNow(review.id, $event);">GET IT NOW
               </button>
             </div>
           </div>
@@ -88,7 +88,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2><span>Test Pre-launch Products</span></h2>
+      <h2><span>Try Pre-launched Innovations</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in betaReviewPaginator.items">
@@ -137,7 +137,7 @@
             </div>
             <div class="xb-card-button">
               <button class="btn btn-success btn-block"
-                      ng-click="applyNow(review.id,$event);">TEST NOW
+                      ng-click="applyNow(review.id,$event);">TRY IT NOW
               </button>
             </div>
           </div>

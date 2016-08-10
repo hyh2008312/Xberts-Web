@@ -61,7 +61,7 @@
 
             <div class="xb-card-board-item">
               <p ng-switch="review.reviewType" class="xb-card-board-label">
-                <span ng-switch-when="FREE_SAMPLE"> Sample Price</span>
+                <span ng-switch-when="FREE_SAMPLE"> Pre-launch Price</span>
                 <span ng-switch-default> Early Bird Price</span>
               </p>
 
@@ -94,7 +94,12 @@
               <div ng-switch-when="FREE_SAMPLE">
                 <p class="xb-card-board-label"> Total Available Units</p>
 
-                <p class="xb-card-board-value">{{ review.flashsale.totalUnits }}</p>
+                <p class="xb-card-board-value">{{ review.flashsale.totalUnits }}&nbsp;
+                  <span ng-pluralize count="review.flashsale.totalUnits"
+                        when="{'0': 'sample',
+                               '1': 'sample',
+                               'other': 'samples'}"></span>
+                </p>
               </div>
               <div ng-switch-default>
                 <p class="xb-card-board-label"> Units Sold</p>
@@ -122,10 +127,10 @@
                   <div ng-switch-when="APPLICATION">
                     <div ng-switch="review.reviewType">
                       <button ng-switch-when="FREE_SAMPLE" class="btn btn-block btn-success"
-                              ui-sref="application.protected.apply({reviewId:review.id})">TEST NOW
+                              ui-sref="application.protected.apply({reviewId:review.id})">TRY IT NOW
                       </button>
                       <button ng-switch-when="PAID" class="btn btn-block btn-primary"
-                              ng-click="buyClicked()">SHOP NOW
+                              ng-click="buyClicked()">GET IT NOW
                       </button>
                     </div>
                   </div>
@@ -240,14 +245,14 @@
               <p class="xb-card-board-label"> Shipping Availability</p>
 
               <p class="xb-card-board-value">
-                United States
+                Worldwide
               </p>
             </div>
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Estimated Delivery</p>
+              <p class="xb-card-board-label"> Ships In</p>
 
               <p class="xb-card-board-value">
-                2-3 weeks after campaign ends
+                1 week after campaign ends
               </p>
             </div>
             <div class="xb-card-board-item">
@@ -273,7 +278,7 @@
 
                 </div>
               </div>
-              <button class="btn btn-block btn-primary" ng-show="!isCurrentUser"
+              <button class="btn btn-block btn-primary text-uppercase" ng-show="!isCurrentUser"
                       ng-click="contactUser()">
                 Contact Maker
               </button>
@@ -322,8 +327,8 @@
             <uib-tab heading="Description" index="0">
               <div class="xb-detail-section">
                 <h3 class="xb-detail-section-title margin-top-clear" ng-switch="review.reviewType">
-                  <span ng-switch-when="FREE_SAMPLE">Want to try it for free? Submit your application!</span>
-                  <span ng-switch-when="PAID">Want to win a reward? Share your reviews!</span>
+                  <span ng-switch-when="FREE_SAMPLE">Be a product tester and it's yours to keep!</span>
+                  <span ng-switch-when="PAID">Share your experiences to earn rewards!</span>
                 </h3>
 
                 <div class="row xb-detail-section-detail">
@@ -356,7 +361,7 @@
 
                       <p class="margin-top" ng-switch="review.reviewType">
                         <span ng-switch-when="FREE_SAMPLE">Try Product</span>
-                        <span ng-switch-when="PAID">Share Review</span>
+                        <span ng-switch-when="PAID">Write Review</span>
                       </p>
                     </div>
                   </div>
@@ -449,7 +454,7 @@
                      infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
 
                   <div ng-if="reportPaginator.items.length === 0">
-                    <h4 class="empty-state">Waiting for reviews&hellip;</h4>
+                    <h4 class="empty-state">Reviews are collected after product shipment.</h4>
                   </div>
 
                   <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
@@ -490,84 +495,6 @@
                 </div>
                 <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
               </div>
-
-              <!--<div class="xb-list">-->
-              <!--<div class="xb-list-item xb-list-item-left-image">-->
-              <!--<img src="/images/test.jpeg" class="xb-list-image">-->
-
-              <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
-
-              <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
-              <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
-              <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
-
-              <!--<div class="xb-list-item-footer">-->
-              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
-              <!--<div class="item-image">-->
-              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
-              <!--</div>-->
-              <!--<div class="item-body">-->
-              <!--<p class="p-1" style="padding-top: 3px;">-->
-              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
-              <!--Yudong zhao</a>-->
-              <!--</p>-->
-
-              <!--<div class="row" style="margin-top: 10px;">-->
-              <!--<div class="col-xs-6">-->
-
-              <!--<p class="p-1">-->
-              <!--<i class="fa fa-map-marker"></i>JHs-->
-              <!--</p>-->
-              <!--</div>-->
-              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
-              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
-              <!--View More...</a></div>-->
-              <!--</div>-->
-
-
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<div class="xb-list-item xb-list-item-left-image">-->
-              <!--<img src="/images/test.jpeg" class="xb-list-image">-->
-
-              <!--<p class="xb-list-item-title">Make everyday conversations</p>-->
-
-              <!--<p class="xb-list-item-detail p-4">他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。-->
-              <!--但因特殊的历史原因， 他也沉寂了长达26年。 “他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师， 他的水彩画曾获美国水彩展金奖。 但因特殊的历史原因-->
-              <!--“他的作品是不可思议的， 人类几乎达不到。” ··· 水彩画的魔术师 他是我国的一级美术师 “他</p>-->
-
-              <!--<div class="xb-list-item-footer">-->
-              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
-              <!--<div class="item-image">-->
-              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
-              <!--</div>-->
-              <!--<div class="item-body" style="padding-top: 3px;">-->
-              <!--<p class="p-1">-->
-              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
-              <!--Yudong zhao</a>-->
-              <!--</p>-->
-
-              <!--<div class="row" style="margin-top: 10px;">-->
-              <!--<div class="col-xs-6">-->
-
-              <!--<p class="p-1" style="margin-bottom: 0">-->
-              <!--<i class="fa fa-map-marker"></i>JHs-->
-              <!--</p>-->
-              <!--</div>-->
-              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
-              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
-              <!--View More...</a></div>-->
-              <!--</div>-->
-
-
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-
             </uib-tab>
           </uib-tabset>
         </div>
