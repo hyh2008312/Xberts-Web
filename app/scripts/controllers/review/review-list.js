@@ -15,11 +15,11 @@ angular.module('xbertsApp')
       $scope.completedReviewPaginator = completedReviewPaginator;
 
       $scope.buyNow = function (id, $event) {
-        $state.go('application.campaign', {reviewId: id, action: 'buy'});
+        $state.go('application.campaign', {reviewId: id});
       };
 
       $scope.applyNow = function (id, $event) {
-        $state.go('application.protected.apply', {reviewId: id});
+        $state.go('application.campaign', {reviewId: id});
       };
 
       $scope.active = 0;
