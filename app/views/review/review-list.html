@@ -110,9 +110,9 @@
                     {{ review.flashsale.totalUnits }}
                   </div>
                   <div class="xb-databoard-secondary" ng-pluralize count="review.flashsale.totalUnits"
-                       when="{'0': 'Unit Total',
-                              '1': 'Unit Total',
-                              'other': 'Units Total'}">
+                       when="{'0': 'Sample',
+                              '1': 'Sample',
+                              'other': 'Samples'}">
                   </div>
                 </div>
                 <div class="xb-databoard xb-databoard-c-primary">
@@ -159,7 +159,7 @@
 <section class="xb-section">
   <div class="container">
     <div class="xb-section-title">
-      <h2><span>Read Product Reviews</span></h2>
+      <h2><span>Read Community Curated Reviews</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
