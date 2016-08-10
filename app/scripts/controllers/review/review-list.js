@@ -30,7 +30,7 @@ angular.module('xbertsApp')
           title: 'Early Access to Creative Products',
           subtitle: 'Get early bird offers on latest gadgets and try pre-launched innovations for free.',
           buttonShow: !$rootScope.user.isAuth(),
-          buttonText: 'Join Now',
+          buttonText: 'Sign Up Now',
           buttonColor: 'btn-primary',
           url: 'application.signup',
           params: {}
