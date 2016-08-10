@@ -4,11 +4,13 @@ html {
 }
 
 body {
+  margin-top: $xb-coupon-bar-height;
   margin-bottom: $xb-footer-height;
   background-color: $xb-default-bg;
   line-height: 1.43;
 
   @media screen and (max-width: $screen-sm-min) {
+    margin-top: $xb-coupon-bar-height-screen-sm;
     margin-bottom: $xb-footer-height-screen-sm;
   }
 }
@@ -110,13 +112,13 @@ a.block-link {
 
 .coupon-banner {
   width: 100%;
-  height: 50px;
+  height: $xb-coupon-bar-height;
   padding-top: 15px;
   color: $xb-default-font-color-inverse;
   background-color: $brand-primary;
 
   @media screen and (max-width: $screen-sm-min) {
-    height: 70px;
+    height: $xb-coupon-bar-height-screen-sm;
   }
 }
 
