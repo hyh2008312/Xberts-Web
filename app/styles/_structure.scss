@@ -44,6 +44,13 @@ footer {
   }
 }
 
+@media screen and (max-width: $screen-sm-min) {
+  // Hide shipping info card on mobile
+  #shipping-info-card {
+    display: none;
+  }
+}
+
 .panel-heading {
   padding: 15px;
 }

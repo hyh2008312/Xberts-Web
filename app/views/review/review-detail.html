@@ -230,7 +230,7 @@
 
           </div>
 
-          <div class="xb-card-board" ng-if="review.reviewType === 'PAID'">
+          <div class="xb-card-board" id="shipping-info-card" ng-if="review.reviewType === 'PAID'">
             <div class="xb-card-board-title">Shipping Info</div>
 
             <div class="xb-card-board-item">
@@ -394,39 +394,6 @@
                     <ul>
                       <li>Get 10% discount on your next purchase</li>
                       <li>The best reviewer will get a gift card of full purchase price</li>
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="xb-detail-section">
-
-                <h3 class="xb-detail-section-title">Requirements: </h3>
-
-                <div ng-switch="review.reviewType" class="xb-detail-section-detail">
-                  <div ng-switch-when="FREE_SAMPLE">
-                    <ul>
-                      <li>All selected applicants must submit their reviews before {{ review.dateEnd | amDateFormat:'MMM
-                        DD, YYYY'}}, otherwise they will have to
-                        return the product to Xberts
-                      </li>
-                      <li>
-                        The review content should be UNBIASED and match the following criteria:
-                        <ul class="xb-ul-alpha">
-                          <li>Minimum 300 words</li>
-                          <li>3 photos minimum</li>
-                          <li>Video is preferable</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                  <div ng-switch-when="PAID">
-                    <ul>
-                      <li>All participants should submit their reviews before {{ review.dateEnd | amDateFormat:'MMM DD,
-                        YYYY'}} to be considered for reward
-                      </li>
-                      <li>The review content should be ORIGINAL and related to the product</li>
                     </ul>
                   </div>
 
