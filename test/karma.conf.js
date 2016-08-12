@@ -60,7 +60,6 @@ module.exports = function(config) {
       'bower_components/humanize-duration/humanize-duration.js',
       'bower_components/angular-timer/dist/angular-timer.js',
       'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-      'bower_components/angular-backtop/dist/angular-backtop.js',
       // endbower
       "app/scripts/**/*.js",
       "test/mock/**/*.js",

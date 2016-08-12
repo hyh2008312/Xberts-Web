@@ -30,6 +30,5 @@ angular
     '720kb.socialshare',
     'mgcrea.ngStrap',
     'timer',
-    'config',
-    'angular.backtop'
+    'config'
   ]);
