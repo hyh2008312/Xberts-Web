@@ -21,3 +21,9 @@ Disallow: /setting
 Disallow: /message
 Disallow: /error
 Disallow: /sales
+Disallow: /adviceapp
+Disallow: /projects
+Disallow: /qa
+Disallow: /v2
+Disallow: /experts
+Disallow: /explore
