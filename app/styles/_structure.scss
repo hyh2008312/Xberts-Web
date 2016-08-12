@@ -49,6 +49,11 @@ footer {
   #shipping-info-card {
     display: none;
   }
+
+  // Hide contact maker card on mobile
+  #contact-owner-card {
+    display: none;
+  }
 }
 
 .panel-heading {
