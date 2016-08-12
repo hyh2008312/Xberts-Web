@@ -490,7 +490,7 @@ angular
               params: {
                 stage: 'READY_FOR_SALE',
                 status:'APPLICATION',
-                page_size: 12
+                page_size: 9
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
@@ -504,7 +504,7 @@ angular
               params: {
                 stage: 'BETA',
                 status:'APPLICATION',
-                page_size: 9
+                page_size: 12
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
