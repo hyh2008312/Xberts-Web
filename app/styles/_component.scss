@@ -569,6 +569,9 @@ $message-types: (
     left:0;
     width: 100%;
     border-bottom: 1px solid $xb-default-border;
+    @media screen and (max-width: 767px){
+      top: 20px;
+    }
   }
   &.xb-right-side:before{
     left:50%;
