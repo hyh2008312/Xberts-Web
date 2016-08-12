@@ -84,6 +84,10 @@ angular
       // Capture potential campaign/source query param
       SignupService.saveSourceParam();
 
+      $rootScope.$on('$stateChangeSuccess', function() {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+      });
+
       // Load facebook SDK
       $window.fbAsyncInit = function() {
         FB.init({

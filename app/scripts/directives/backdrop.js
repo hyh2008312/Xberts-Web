@@ -86,4 +86,27 @@ angular.module('xbertsApp')
         pop();
       }
     };
+  }])
+  .directive('backToTop', ['$rootScope', function ($rootScope,$cookies,$uibModal) {
+    return {
+      template: '<div class="xb-back-to-top">' +
+      '<button class="btn btn-primary btn-sm" ng-click="goToTop()"><i class="fa fa-arrow-up"></i></button> ' +
+      '</div>',
+      restrict: 'E',
+      replace: true,
+      link: function postLink(scope, element, attrs) {
+        //element.addClass('backdrop');
+        //element.height(window.screen.availHeight);
+        //element.width(window.screen.availWidth);
+
+        //element.addClass('hide');
+        //$rootScope.backdropCount = 0;
+
+
+        scope.goToTop=function(){
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
+        };
+
+      }
+    };
   }]);
