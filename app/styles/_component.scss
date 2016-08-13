@@ -572,6 +572,9 @@ $message-types: (
     @media screen and (max-width: 767px){
       top: 20px;
     }
+    @media screen and (max-width: 400px){
+      top: 18px;
+    }
   }
   &.xb-right-side:before{
     left:50%;
