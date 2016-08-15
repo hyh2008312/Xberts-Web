@@ -478,13 +478,20 @@ hr {
   }
   .xb-detail-section-detail{
     color: #999999;
-    iframe{
-      max-width: 100% !important;
+    @media screen and (max-width: 767px){
+      iframe{
+        max-width: 100% !important;
+        height: auto !important;
+      }
     }
+
   }
   .tab-pane{
-    .iframe{
-      max-width: 100% !important;
+    @media screen and (max-width: 767px){
+      iframe{
+        max-width: 100% !important;
+        height: auto !important;
+      }
     }
   }
 }
