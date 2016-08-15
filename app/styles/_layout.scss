@@ -486,12 +486,12 @@ hr {
     }
 
   }
-  .tab-pane{
-    @media screen and (max-width: 767px){
-      iframe{
-        max-width: 100% !important;
-        height: auto !important;
-      }
+}
+.tab-pane{
+  @media screen and (max-width: 767px){
+    iframe{
+      max-width: 100% !important;
+      height: auto !important;
     }
   }
 }
