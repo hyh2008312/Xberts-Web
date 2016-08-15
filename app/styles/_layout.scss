@@ -478,6 +478,9 @@ hr {
   }
   .xb-detail-section-detail{
     color: #999999;
+    iframe{
+      max-width: 100% !important;
+    }
   }
 }
 ul.xb-ul-alpha{
