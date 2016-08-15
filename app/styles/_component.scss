@@ -601,3 +601,27 @@ $message-types: (
     opacity: 1 !important;
   }
 }
+.olark-launch-button {
+  position: fixed !important;
+  bottom: 55px !important;
+  right: 20px !important;
+  height: 48px !important;
+  width: auto !important;
+  z-index: 10000000000000 !important;
+  background: #2d2d2d !important;
+  border: 0 !important;
+  border-radius: 100px !important;
+}
+
+.xb-footer-buttons{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  padding: 10px 10px;
+  color: #ffffff;
+}
+.xb-button-padding-top-bottom{
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
