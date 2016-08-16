@@ -61,11 +61,12 @@
 <!--<back-to-top></back-to-top>-->
 <!--<back-top button-text="Scroll top"></back-top>-->
 
-<footer ng-if="state.is('application.main')">
+<footer ng-if="state.is('application.main') || state.is('application.about')">
   <div class="container">
     <div class="pull-left">
       <p><img src="/images/xberts_gray.png" width="60" height="16" alt="xberts"><span>&copy; 2016 Xberts, Inc. All rights reserved.</span>
         <span>|</span>
+        <a ui-sref="application.about">About Us</a>
         <a href="http://blog.xberts.com" target="_blank">Blog</a>
         <a ui-sref="application.terms">Terms</a>
         <a ui-sref="application.privacy">Privacy</a>
