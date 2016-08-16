@@ -451,7 +451,7 @@
                             </div>
                             <div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"
                                                                     ui-sref="application.report({reviewId:review.id,reportId:report.id})">
-                              View More...</a></div>
+                              View More</a></div>
                           </div>
 
 
@@ -472,14 +472,14 @@
   </section>
 
   <div class="xb-footer-buttons visible-xs-block">
-    <div class="row xb-align-center">
-      <div class="col-xs-6 xb-button-padding-top-bottom">
+    <div class="row">
+      <div class="col-xs-6 xb-button-padding-top-bottom xb-no-wrap">
         <timer end-time="review.applicationEndDate">
           {{days|doubleDigit}} day{{daysS}},
           {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
         </timer>
       </div>
-      <div class="col-xs-6">
+      <div class="col-xs-6 xb-align-center">
         <div ng-switch="applicant.exist">
           <div ng-switch-when="false">
             <div ng-switch="review.status">
