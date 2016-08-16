@@ -99,95 +99,11 @@ angular
         templateUrl: 'views/project/project.html',
         controller: 'ProjectCtrl',
         resolve: {
-          distributions: ['DistributionLoad', '$stateParams', function (DistributionLoad, $stateParams) {
-            return DistributionLoad($stateParams);
-          }],
           projectTypes: ['SystemData', function (SystemData) {
             return SystemData.getProjectTypesPromise();
           }],
           project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
             return ProjectLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.projectnorequest', {
-        url: "/projectsnorequest/:projectId",
-        templateUrl: 'views/project_no_request.html',
-        controller: 'ProjectNoRequestCtrl',
-        resolve: {
-          projectTypes: ['SystemData', function (SystemData) {
-            return SystemData.getProjectTypesPromise();
-          }],
-          project: ['ProjectLoad', '$stateParams', function (ProjectLoad, $stateParams) {
-            return ProjectLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.events', {
-        url: '/events',
-        templateUrl: 'views/event/events.html',
-        controller: 'EventsCtrl',
-        controllerAs: 'events',
-        resolve: {
-          eventPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var par = {
-              name: 'event',
-              params: {is_partner: 'False'},
-              fetchFunction: function (params) {
-                return EventNoDetail.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }],
-          eventPartnerPaginator: ['Paginator', 'EventNoDetail', function (Paginator, EventNoDetail) {
-            var par = {
-              name: 'event_r',
-              params: {is_partner: 'True'},
-              fetchFunction: function (params) {
-                return EventNoDetail.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }]
-        }
-      })
-      .state('application.event', {
-        url: '/events/:eventId',
-        templateUrl: 'views/event/event.html',
-        controller: 'EventCtrl',
-        resolve: {
-          event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
-            return EventLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.vote', {
-        url: "/vote/:eventId",
-        templateUrl: 'views/event/vote.html',
-        controller: 'VoteCtrl'
-      })
-      .state('application.voteoff', {
-        url: "/voteoff/:eventId",
-        templateUrl: 'views/event/voteoffline.html',
-        controller: 'VoteOffCtrl'
-      })
-      .state('application.experts', {
-        url: '/influencers',
-        templateUrl: 'views/experts.html',
-        controller: 'ExpertsCtrl',
-        controllerAs: 'experts',
-        resolve: {
-          stages: ['SystemData', function (SystemData) {
-            return SystemData.getStagesPromise();
-          }],
-          expertPaginator: ['Paginator', 'Expert', function (Paginator, Expert) {
-            var par = {
-              name: 'expert',
-              fetchFunction: function (params) {
-                return Expert.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
           }]
         }
       })
@@ -206,11 +122,6 @@ angular
         url: '/profile?action',
         controller: 'UserProfileCtrl'
       })
-      .state('application.protected.companyInfo', {
-        url: '/profile/company',
-        templateUrl: 'views/profile/companyform.html',
-        controller: 'CompanyFormCtrl'
-      })
       .state('application.protected.editProfile', {
         url: '/editprofile',
         templateUrl: 'views/profile/edit-profile.html',
@@ -221,21 +132,6 @@ angular
           }],
           stages: ['SystemData', function (SystemData) {
             return SystemData.getStagesPromise();
-          }]
-        }
-      })
-      // todo:remove it
-      .state('application.protected.reviewerShipAddress', {
-        url: '/reviews/:reviewId/confirmaddress',
-        templateUrl: 'views/review/review_applicant_shipping_address.html',
-        controller: 'ShipAddressCtrl',
-        resolve: {
-          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
-            return ProfileReviewerLoad();
-          }],
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
           }]
         }
       })
@@ -250,28 +146,6 @@ angular
           review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
             return reviewId === null ? {} : ReviewLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.protected.launch', {
-        url: '/launch/:eventId',
-        templateUrl: 'views/event/eventlauch.html',
-        controller: 'EventLauchCtrl',
-        resolve: {
-          event: ['EventLoad', '$stateParams', function (EventLoad, $stateParams) {
-            var eventId = $stateParams.eventId || null;
-            return eventId === null ? {} : EventLoad($stateParams);
-          }]
-        }
-      })
-      .state('application.reviewRequest', {
-        url: "/review/request",
-        templateUrl: 'views/review/review_request.html',
-        controller: 'ReviewRequestCtrl',
-        controllerAs: 'reviewRequest',
-        resolve: {
-          targetGeos: ['SystemData', function (SystemData) {
-            return SystemData.getTargetGeosPromise();
           }]
         }
       })
@@ -422,39 +296,6 @@ angular
         templateUrl: 'views/error.html',
         controller: function ($rootScope) {
           $rootScope.pageSettings.setBackgroundColor('');
-        }
-      })
-      .state('application.buyDetail', {
-        url: '/sales/{saleId:[0-9]+}?action',
-        templateUrl: 'views/buy/buy-detail.html',
-        controller: 'SaleDetailController',
-        reloadOnSearch: false,
-        resolve: {
-          sale: ['Sales', '$stateParams', function (Sales, $stateParams) {
-            return Sales.get({saleId: $stateParams.saleId}).$promise;
-          }],
-          projectTypes: ['SystemData', function (SystemData) {
-            return SystemData.getProjectTypesPromise();
-          }]
-        }
-      })
-      .state('application.buyList', {
-        url: '/sales',
-        templateUrl: 'views/buy/buy-list.html',
-        controller: 'SaleListController',
-        resolve: {
-          projectTypes: ['SystemData', function (SystemData) {
-            return SystemData.getProjectTypesPromise();
-          }],
-          salesPaginator: ['Paginator', 'Sales', function (Paginator, Sales) {
-            var par = {
-              name: 'buyList',
-              fetchFunction: function (params) {
-                return Sales.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }]
         }
       })
       .state('application.campaign', {

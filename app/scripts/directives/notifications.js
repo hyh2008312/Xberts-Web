@@ -1,15 +1,9 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:notifications
- * @description
- * # notifications
- */
 angular.module('xbertsApp')
   .directive('notifications', function ($rootScope, Notification, Paginator) {
     return {
-      templateUrl: 'views/notification.html',
+      templateUrl: 'views/directive/notification.html',
       replace: true,
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
@@ -18,9 +12,6 @@ angular.module('xbertsApp')
         Notification.notificationsCountResource($rootScope.user.getUserId()).get(function (results) {
           scope.notificationsCount = results.sum;
         });
-        //$scope.$watch('notificationsCount',function(){
-        //
-        //});
         var Notifications = Notification.notificationsResource($rootScope.user.getUserId());
         var par = {
           name: 'notification',

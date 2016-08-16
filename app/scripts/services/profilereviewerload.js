@@ -11,15 +11,4 @@ angular.module('xbertsApp')
       });
       return delay.promise;
     };
-  }])
-  .factory('BuyerProfileLoad', ['BuyerProfile', '$q', '$rootScope', function (BuyerProfile, $q, $rootScope) {
-    return function () {
-      var delay = $q.defer();
-      BuyerProfile.query({user_id: $rootScope.user.getUserId()}, function (careerExperience) {
-        delay.resolve(careerExperience);
-      }, function () {
-        delay.reject(('Unable to fetch buyer info'));
-      });
-      return delay.promise;
-    };
   }]);

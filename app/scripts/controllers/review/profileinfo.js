@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ProfileinfoCtrl
- * @description
- * # ProfileinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('ProfileinfoCtrl', ['$scope', '$location', 'SystemConstant', 'growl', 'AnalyticsService',
     function ($scope, $location, SystemConstant, growl, AnalyticsService) {
