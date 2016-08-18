@@ -127,7 +127,7 @@
                 <div ng-switch="review.reviewType">
                   <div ng-switch-when="FREE_SAMPLE">
                     <button ng-if="!applicant.exist" class="btn btn-block btn-success"
-                            ui-sref="application.protected.apply({reviewId:review.id})">Try It Now
+                            ui-sref="application.protected.apply({reviewId:review.id})">TRY IT NOW
                     </button>
                     <button ng-if="applicant.exist" class="btn btn-block btn-primary"
                             ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
@@ -135,7 +135,7 @@
                   </div>
                   <div ng-switch-default>
                     <button class="btn btn-block btn-primary"
-                            ng-click="buyClicked()">Get It Now
+                            ng-click="buyClicked()">GET II NOW
                     </button>
                   </div>
                 </div>
