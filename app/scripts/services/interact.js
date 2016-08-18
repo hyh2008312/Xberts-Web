@@ -10,11 +10,6 @@ angular.module('xbertsApp')
           params,
           {'vote': {method: 'PUT', params: {vote: true}}})
       },
-      Following: function(otherParams) {
-        var params = {};
-        angular.extend(params, otherParams);
-        return $resource(API_BASE_URL + '/interact/followings/', params)
-      },
       Feedback: function(otherParams) {
         var params = {feedbackId: '@id'};
         angular.extend(params, otherParams);

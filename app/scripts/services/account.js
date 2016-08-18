@@ -21,18 +21,6 @@ angular.module('xbertsApp')
       }).linkedinConnect().$promise;
     };
 
-    this.requestRole = function(role) {
-      return $resource(API_BASE_URL + '/accounts/rolerequests/').save({
-        role: role
-      }).$promise;
-    };
-
-    this.getPendingRoleRequests = function(role) {
-      return $resource(API_BASE_URL + '/accounts/rolerequests/', {status: 'REQUESTED'}).query({
-        role: role
-      }).$promise;
-    };
-
     this.deactivate = function() {
       return $resource(API_BASE_URL + '/accounts/deactivate/').delete().$promise;
     };
