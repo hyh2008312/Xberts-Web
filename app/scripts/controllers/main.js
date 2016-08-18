@@ -128,4 +128,8 @@ angular.module('xbertsApp')
           });
         }
       };
+    }])
+  .controller('MainCtrl', ['$scope', '$rootScope',
+    function ($scope, $rootScope) {
+      $rootScope.pageSettings.setTitle('About Xberts');
     }]);

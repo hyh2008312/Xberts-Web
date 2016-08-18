@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
-    'ShopifyService', 'AnalyticsService', 'Applicantsreview','reportPaginator',
+    'ShopifyService', 'AnalyticsService', 'Applicantsreview', 'reportPaginator',
     function ($rootScope, $scope, $location, $state, $stateParams, $uibModal, review,
-              ShopifyService, AnalyticsService, Applicantsreview,reportPaginator) {
+              ShopifyService, AnalyticsService, Applicantsreview, reportPaginator) {
       $scope.review = review;
       $scope.reportPaginator = reportPaginator;
 
@@ -36,29 +36,29 @@ angular.module('xbertsApp')
       var description = project.description;
       var backgroundColor = 'background-bg-light';
       var shareImage = review.banner;
-      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
       $scope.tabs = [
         {title: 'detail', active: true},
         {title: 'comments', active: false},
         {title: 'reviews', active: false}
       ];
-      $scope.tabActive=0;
+      $scope.tabActive = 0;
 
       var search = $location.search();
       var tab = search.tab || 'detail';
-      switch (tab){
+      switch (tab) {
         case 'detail':
-          $scope.tabActive=0;
-              break;
+          $scope.tabActive = 0;
+          break;
         case 'comments':
-          $scope.tabActive=1;
-              break;
+          $scope.tabActive = 1;
+          break;
         case 'reviews':
-          $scope.tabActive=2;
-              break;
+          $scope.tabActive = 2;
+          break;
         default:
-          $scope.tabActive=0;
+          $scope.tabActive = 0;
       }
       $scope.commentsTabActive = false;
       $scope.reviewersTabActive = false;

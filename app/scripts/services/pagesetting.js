@@ -3,11 +3,12 @@
 angular.module('xbertsApp')
   .factory('PageService', ['$location',
     function ($location) {
-      function Page(title, description, background, shareImage) {
-        this._title = title || 'Xberts - Innovations worth spreading';
-        this._description = description || 'Xberts.com is a global platform to curate, promote and bring the next generation of smart devices to global market.';
+      function Page(title, description, background, shareImage,hiddenFooter) {
+        this._title = title || 'Xberts - Early Access to Creative Products';
+        this._description = description || 'Xberts is a Crowdtesting community where innovators release their new products and collect unbiased reviews from early adopters like you.';
         this._backgroundColor = background || 'background-bg-light';
-        this._shareImage = shareImage || 'https://xberts.com/images/landing_1_1.d836e5d1.jpg';
+        this._shareImage = shareImage || 'https://xberts.com/images/xberts.03f0d97d.png';
+        this._hiddenFooter = hiddenFooter && true;
 
         this.setTitle = function (title) {
           this._title = title;
@@ -21,15 +22,19 @@ angular.module('xbertsApp')
         this.setShareImage = function (shareImage) {
           this._shareImage = shareImage;
         };
-        this.setPage = function (title, description, background, shareImage) {
+        this.setPage = function (title, description, background, shareImage,hiddenFooter) {
           this._title = title || 'Xberts - Innovations worth spreading';
           this._description = description || 'Xberts.com is a global platform to curate, promote and bring the next generation of smart devices to global market.';
           this._backgroundColor = background || 'background-bg-light';
           this._shareImage = shareImage || 'https://xberts.com/images/landing_1_1.d836e5d1.jpg';
+          this._hiddenFooter = hiddenFooter && true;
         };
         this.getUrl=function(){
            return $location.absUrl();
-        }
+        };
+        this.setHiddenFooter = function (hiddenFooter) {
+          this._hiddenFooter = hiddenFooter;
+        };
       }
 
       var page = new Page();
