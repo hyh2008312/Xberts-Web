@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ReviewCtrl
- * @description
- * # ReviewCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('ReviewapplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', 'application',
     function ($scope, $rootScope, review, reviewer, application) {

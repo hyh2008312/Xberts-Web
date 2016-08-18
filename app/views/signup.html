@@ -5,7 +5,7 @@
 
       <div class="form-group has-error">
         <div class="help-block" ng-messages="loginError">
-          <p ng-messages-include="views/message/login_error.html"></p>
+          <p ng-messages-include="views/text/login_error.html"></p>
         </div>
       </div>
 
@@ -13,7 +13,7 @@
         <div class="form-group has-error">
           <div class="help-block" ng-show="signupForm.$submitted" ng-messages="signupForm.serverError">
             <div ng-message="userExist">An account already exists with that email.</div>
-            <div ng-messages-include="views/message/form_error.html"></div>
+            <div ng-messages-include="views/text/form_error.html"></div>
           </div>
         </div>
 

@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name xbertsApp.controller:ReviewinfoCtrl
- * @description
- * # ReviewinfoCtrl
- * Controller of the xbertsApp
- */
 angular.module('xbertsApp')
   .controller('ReviewapplicationinfoCtrl', ['$scope', '$location', 'ReviewApplicant', '$filter', 'AnalyticsService',
     function ($scope, $location, ReviewApplicant, $filter, AnalyticsService) {

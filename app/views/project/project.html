@@ -1,4 +1,4 @@
-<join ng-init="init(project.interact)">
+<div>
   <section class="background-light-white">
     <div class="container">
       <div class="section-title">
@@ -27,94 +27,11 @@
               <p class="xb-statistic-broad-title">${{ project.retail_price.amount }} USD</p>
             </div>
           </div>
-          <!--<div class="card">-->
-            <!--<div class="card-body">-->
-              <!--<h4 class="card-body-title xb-align-center">Product Inquiry</h4>-->
 
-              <!--<p class="card-body-detail">Interested in purchasing or distributing this-->
-                <!--product? Send your inquiries right away!</p>-->
-
-              <!--<div>-->
-                <!--<button class="button button-full button-glow"-->
-                        <!--ng-class="{'button-highlight':!inquiry.exist,'button-plain':inquiry.exist}" ng-click="open('lg')"-->
-                        <!--ng-disabled="inquiry.exist">-->
-              <!--<span ng-switch="inquiry.exist">-->
-                <!--<span ng-switch-when="false">Contact Manufacturer</span>-->
-                <!--<span ng-switch-when="true">-->
-                  <!--<span ng-switch="inquiry.status">-->
-                    <!--<span ng-switch-when="REQUESTED">Pending</span>-->
-                    <!--<span ng-switch-when="RESOLVED">Resolved</span>-->
-                    <!--<span ng-switch-when="UNRESOLVED">Unresolved</span>-->
-                  <!--</span>-->
-                <!--</span>-->
-              <!--</span>-->
-
-                <!--</button>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-body-title xb-align-center">Community Interest</h4>
-
-              <p class="card-body-detail">Want to get this product at a special discount? Vote for it!</p>
-
-              <div class="pr">
-                <save class="align-center" title="VOTE"></save>
-              </div>
-              <div class="">
-                <saver></saver>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card card-shadowless">
-            <div class="card-body">
-              <h4>Share with Friends</h4>
-              <button class="button button-primary button-glow button-circle button-large" socialshare
-                      socialshare-provider="linkedin"
-                      socialshare-description="{{ project.description }}"
-                      socialshare-text="{{ project.title }}"
-                      socialshare-source="{{ project.image }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-linkedin"></i>
-              </button>
-              <button class="button button-royal button-glow button-circle button-large" socialshare
-                      socialshare-provider="facebook"
-                      socialshare-media="{{ project.image }}"
-                      socialshare-description="{{ project.description }}"
-                      socialshare-text="{{ project.title }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-facebook"></i>
-              </button>
-
-              <button class="button button-caution button-glow button-circle button-large " socialshare
-                      socialshare-provider="reddit"
-                      socialshare-media="{{ project.image }}"
-                      socialshare-description="{{ project.description }}"
-                      socialshare-text="{{ project.title }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-reddit"></i>
-              </button>
-
-              <button class="button button-action button-glow button-circle button-large" socialshare
-                      socialshare-provider="twitter"
-                      socialshare-media="{{ project.image }}"
-                      socialshare-description="{{ project.description }}"
-                      socialshare-text="{{ project.title }}"
-                      socialshare-source="{{ project.image }}"
-                      socialshare-url="{{ pageSettings.getUrl() }}">
-                <i class="fa fa-twitter"></i>
-              </button>
-            </div>
-
-          </div>
         </div>
         <div class="col-md-9 col-md-pull-3">
           <uib-tabset>
-            <uib-tab heading="Description" active="tabs[0].active">
+            <uib-tab heading="Description" active="true">
               <div ng-bind-html=" project.details | trust" class="note-product"></div>
               <div class="text-center" ng-if="user.isStaff()">
                 <div growl></div>
@@ -132,29 +49,10 @@
                 </a>
               </div>
             </uib-tab>
-            <uib-tab heading="Discussion" active="tabs[1].active"
-                     select="select('comments')">
-              <div ng-if="commentsTabActive">
-                <div ng-include src="'views/comments.html'"></div>
-              </div>
-            </uib-tab>
-            <!--<uib-tab heading="Inquiries" active="tabs[2].active" select="select('applications')"-->
-            <!--ng-if="user.isStaff() || user.getUserId()==project.account.id">-->
-            <!--<div ng-if="applicationsTabActive">-->
-            <!--<div ng-include src="'views/project/applicationlist.html'"></div>-->
-            <!--</div>-->
-            <!--</uib-tab>-->
-            <uib-tab heading="Inquiries({{ project.inquiry_amount }})" active="tabs[2].active"
-                     select="select('inquiries')"
-                     ng-if="user.isStaff()">
-              <div ng-if="inquiresTabActive">
-                <div ng-include src="'views/project/inquirieslist.html'"></div>
-              </div>
-            </uib-tab>
           </uib-tabset>
         </div>
 
       </div>
     </div>
   </section>
-</join>
+</div>

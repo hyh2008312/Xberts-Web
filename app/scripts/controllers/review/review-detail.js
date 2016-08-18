@@ -13,8 +13,12 @@ angular.module('xbertsApp')
       $scope.applicantsSearch = {isSelected: true, isExempted: false};
 
       $scope.percentage = function () {
-        var decimal = ($scope.review.flashsale.totalUnits - $scope.review.flashsale.availableUnits) / $scope.review.flashsale.totalUnits;
-        return Math.round(decimal * 100);
+        if ($scope.review.flashsale) {
+          var decimal = ($scope.review.flashsale.totalUnits - $scope.review.flashsale.availableUnits) / $scope.review.flashsale.totalUnits;
+          return Math.round(decimal * 100);
+        } else {
+          return 0;
+        }
       };
 
       if ($rootScope.user.isAuth()) {

@@ -53,29 +53,6 @@
           <p class="card-body-title p-3" ng-bind="project.title" ui-sref="application.project({projectId: project.id})">
           </p>
 
-          <button class="button button-full margin-bottom"
-                  ng-class="{'button-caution':project.interact.current_voter.vote,'button-primary':!project.interact.current_voter.vote}"
-                  ng-click="want(project)" ng-disabled="project.voting "
-                  ng-switch="project.interact.current_voter.vote">
-            <span ng-switch-when="false">VOTE</span>
-            <span ng-switch-when="true">VOTED</span>
-          </button>
-
-
-          <div class="card-body-footer" ng-switch="review.status"
-               ui-sref="application.project({projectId: project.id})">
-            <div class="xb-avatar-wall">
-              <div class="xb-avatar-text" style="height: 30px;padding-top: 5px;min-width: 60px;text-align: left;">
-                <span>{{ project.interact.vote_amount }} vote<span
-                  ng-show="project.interact.vote_amount>1">s</span></span>
-              </div>
-              <div class="xb-avatar-list" ui-sref="application.crowdtesting({ reviewId:review.id })">
-                <profile-avatar src="voter.joiner.avatar" name="voter.joiner.fullname"
-                                show-name="true" ng-repeat="voter in project.interact.voters"></profile-avatar>
-              </div>
-            </div>
-          </div>
-
           <div class="card-body-footer text-center" ng-if='user.isAuth() && user.isStaff()'>
 
             <span ng-switch="project.approval_status">

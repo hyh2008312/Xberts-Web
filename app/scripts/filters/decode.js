@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc filter
- * @name xbertsApp.filter:decode
- * @function
- * @description
- * # decode
- * Filter in the xbertsApp.
- */
 angular.module('xbertsApp')
   .filter('decode', function () {
     return function (items, code) {

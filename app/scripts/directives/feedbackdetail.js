@@ -1,15 +1,9 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:feedbackDetail
- * @description
- * # feedbackDetail
- */
 angular.module('xbertsApp')
   .directive('feedbackDetail', ['Paginator', '$rootScope', 'Interact', 'growl', function (Paginator, $rootScope, Interact, growl) {
     return {
-      templateUrl: 'views/feedbackdetail.html',
+      templateUrl: 'views/comment/feedbackdetail.html',
       replace: true,
       scope: {
         item: '='

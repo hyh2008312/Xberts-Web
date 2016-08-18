@@ -1,15 +1,9 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:commentDetail
- * @description
- * # commentDetail
- */
 angular.module('xbertsApp')
   .directive('commentDetail', function () {
     return {
-      templateUrl: 'views/commentdetail.html',
+      templateUrl: 'views/comment/commentdetail.html',
       restrict: 'E',
       replace:true,
       require:'^feedbackDetail',

@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:preload
- * @description
- * # backdrop
- */
 angular.module('xbertsApp')
   .directive('preload',function () {
     return {

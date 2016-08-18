@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc directive
- * @name xbertsApp.directive:loadMore
- * @description
- * # loadMore
- */
 angular.module('xbertsApp')
   .directive('loadMore', function () {
     return {
