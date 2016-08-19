@@ -7,7 +7,7 @@ angular.module('xbertsApp')
     var supportTypeResource = $resource(API_BASE_URL + '/projects/support_types/', null);
     var projectTypeResource = $resource(API_BASE_URL + '/projects/project_categories/', null);
     var transportationModelResource = $resource(API_BASE_URL + '/projects/transportation_models/', null);
-    var stagesResource = $resource(API_BASE_URL + '/xberts/rest/stages/', null);
+    var stagesResource = $resource(API_BASE_URL + '/xberts/stages/', null);
 
     var saleChannelsResource = $resource(API_BASE_URL + '/projects/sale_channels/', null);
 
