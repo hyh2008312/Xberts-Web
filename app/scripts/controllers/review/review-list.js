@@ -4,12 +4,9 @@ angular.module('xbertsApp')
   .controller('ReviewListCtrl', ['$scope', '$rootScope', 'releaseReviewPaginator', 'betaReviewPaginator', 'completedReviewPaginator', '$state',
     function ($scope, $rootScope,releaseReviewPaginator,betaReviewPaginator, completedReviewPaginator, $state) {
 
-      var title = 'Xberts - Crowdtesting';
-      var description = 'Receive free samples of new products to test and review!Launch a Campaign';
+
       var backgroundColor = 'background-bg-light';
-      var shareImage = '/images/campaign-banner.jpg';
-      var shareImageFullUrl='https://xberts.com'+shareImage;
-      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImageFullUrl);
+      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $scope.releaseReviewPaginator = releaseReviewPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;
       $scope.completedReviewPaginator = completedReviewPaginator;
