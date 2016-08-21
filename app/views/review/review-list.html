@@ -160,50 +160,50 @@
     </div>
   </div>
 </section>
+<!--<section class="xb-section" id="reviews">-->
+  <!--<div class="container">-->
+    <!--<div class="xb-section-title">-->
+      <!--<h2><span>Read Community Curated Reviews</span></h2>-->
+    <!--</div>-->
+    <!--<div class="row xb-section-body">-->
+      <!--<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">-->
+        <!--<div class="xb-card">-->
+          <!--<div class="xb-card-ratio-wrap"-->
+               <!--ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">-->
+            <!--<div class="image-wrap" style="background-image: url({{ review.cover }})">-->
+
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="xb-card-content">-->
+            <!--<p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">{{-->
+              <!--review.title }}</p>-->
+
+            <!--<div class="xb-card-button">-->
+              <!--<button class="btn btn-warning btn-block"-->
+                      <!--ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">READ REVIEWS-->
+              <!--</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    <!--</div>-->
+    <!--<load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>-->
+    <!--<div class="align-center xb-section-footer row"-->
+         <!--ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">-->
+      <!--<div class="col-md-4 col-md-offset-4">-->
+        <!--<button class="btn btn-lg btn-block btn-default btn-default-brand"-->
+                <!--ng-click="completedReviewPaginator.loadNext()">-->
+          <!--VIEW MORE-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->
 <section class="xb-section" id="reviews">
   <div class="container">
     <div class="xb-section-title">
-      <h2><span>Read Community Curated Reviews</span></h2>
-    </div>
-    <div class="row xb-section-body">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in completedReviewPaginator.items">
-        <div class="xb-card">
-          <div class="xb-card-ratio-wrap"
-               ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">
-            <div class="image-wrap" style="background-image: url({{ review.cover }})">
-
-            </div>
-          </div>
-          <div class="xb-card-content">
-            <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">{{
-              review.title }}</p>
-
-            <div class="xb-card-button">
-              <button class="btn btn-warning btn-block"
-                      ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">READ REVIEWS
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <load-more class="row spin-large" ng-if="completedReviewPaginator.getLoading()"></load-more>
-    <div class="align-center xb-section-footer row"
-         ng-if="completedReviewPaginator.getNext() && !completedReviewPaginator.getLoading()">
-      <div class="col-md-4 col-md-offset-4">
-        <button class="btn btn-lg btn-block btn-default btn-default-brand"
-                ng-click="completedReviewPaginator.loadNext()">
-          VIEW MORE
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="xb-section" id="reports">
-  <div class="container">
-    <div class="xb-section-title">
-      <h2><span>Reports</span></h2>
+      <h2><span>Featured Community Reviews</span></h2>
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="report in recommendedReportsPaginator.items">
