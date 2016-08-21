@@ -9,7 +9,8 @@ angular.module('xbertsApp')
       $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $scope.releaseReviewPaginator = releaseReviewPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;
-      $scope.completedReviewPaginator = completedReviewPaginator;
+      $scope.betaReviewPaginator = betaReviewPaginator;
+      $scope.recommendedReportsPaginator = recommendedReportsPaginator;
 
       $scope.buyNow = function (id, $event) {
         $state.go('application.campaign', {reviewId: id});
