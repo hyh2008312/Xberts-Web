@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewListCtrl', ['$scope', '$rootScope', 'releaseReviewPaginator', 'betaReviewPaginator', 'completedReviewPaginator', 'recommendedReportsPaginator', '$state',
-    function ($scope, $rootScope, releaseReviewPaginator, betaReviewPaginator, completedReviewPaginator, recommendedReportsPaginator, $state) {
+  .controller('ReviewListCtrl', ['$scope', '$rootScope', 'releaseReviewPaginator', 'betaReviewPaginator', 'recommendedReportsPaginator', '$state',
+    function ($scope, $rootScope, releaseReviewPaginator, betaReviewPaginator, recommendedReportsPaginator, $state) {
 
 
       var backgroundColor = 'background-bg-light';
       $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $scope.releaseReviewPaginator = releaseReviewPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;
-      $scope.betaReviewPaginator = betaReviewPaginator;
+      //$scope.completedReviewPaginator = completedReviewPaginator;
       $scope.recommendedReportsPaginator = recommendedReportsPaginator;
 
       $scope.buyNow = function (id, $event) {
