@@ -209,7 +209,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="report in recommendedReportsPaginator.items">
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
-               ui-sref="application.campaign({ reviewId:review.id,tab:'reviews' })">
+               ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">
             <div class="image-wrap" style="background-image: url({{ report.image }})">
 
             </div>
