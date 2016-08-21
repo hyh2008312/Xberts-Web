@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewListCtrl', ['$scope', '$rootScope', 'releaseReviewPaginator', 'betaReviewPaginator', 'completedReviewPaginator', '$state',
-    function ($scope, $rootScope,releaseReviewPaginator,betaReviewPaginator, completedReviewPaginator, $state) {
+  .controller('ReviewListCtrl', ['$scope', '$rootScope', 'releaseReviewPaginator', 'betaReviewPaginator', 'completedReviewPaginator', 'recommendedReportsPaginator', '$state',
+    function ($scope, $rootScope, releaseReviewPaginator, betaReviewPaginator, completedReviewPaginator, recommendedReportsPaginator, $state) {
 
 
       var backgroundColor = 'background-bg-light';
@@ -64,7 +64,7 @@ angular.module('xbertsApp')
         }
       ];
 
-      $scope.slideButtonClick = function(slide) {
+      $scope.slideButtonClick = function (slide) {
         $state.go(slide.url, slide.params);
       };
     }]);

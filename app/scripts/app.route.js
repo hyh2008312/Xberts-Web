@@ -367,6 +367,15 @@ angular
               }
             };
             return Paginator(par).load();
+          }],
+          recommendedReportsPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+            var par = {
+              name: 'all_report_list',
+              fetchFunction: function (params) {
+                return AllReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })
