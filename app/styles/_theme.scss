@@ -12,7 +12,8 @@ $colors: (
   dark-gray: $darkGrayColor,
   dark: $darkColor,
   bg-white:$bgWhite,
-  bg-light:$bgLight
+  bg-light:$bgLight,
+  bg-gray:$bgGray,
 );
 @each $name, $color in $colors {
   .background-#{$name} {

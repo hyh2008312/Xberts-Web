@@ -155,6 +155,11 @@ section.header {
 hr {
   border-top: 1px solid #C7C7C7;
 }
+.xb-about-banner {
+  height: 280px;
+  background: rgba(0, 0, 0, 0.6) no-repeat center;
+  background-size: cover;
+}
 
 .section-fixed {
   height: $sectionFixedHeight;
@@ -267,8 +272,34 @@ hr {
   background: no-repeat center;
   background-size: cover;
 }
-.xb-section+.xb-section{
-  padding-top:0;
+
+.xb-section-about {
+  padding: 100px 0;
+}
+
+.xb-section-about-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 40px;
+  color: #333;
+  font-weight: normal;
+}
+
+.xb-section-about-detail {
+  margin-top: 50px;
+  font-size: 22px;
+  color: #666;
+}
+
+.xb-section-about-image {
+  margin-top: 100px;
+  img {
+    margin-bottom: 40px;
+  }
+}
+
+.xb-section + .xb-section {
+  padding-top: 0;
 }
 
 .xb-section-title {
@@ -290,7 +321,8 @@ hr {
 .xb-section-body {
   margin-bottom: 0;
 }
-.xb-section-footer{
+
+.xb-section-footer {
   margin-bottom: 0;
 }
 
@@ -391,7 +423,7 @@ hr {
       font-size: 26px;
       margin-bottom: 40px;
     }
-    .xb-carousel-howitwork{
+    .xb-carousel-howitwork {
       padding-left: 5%;
       padding-right: 5%;
     }
@@ -441,6 +473,7 @@ hr {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .five-to-three {
   position: relative;
   width: 100%;
@@ -450,36 +483,37 @@ hr {
   margin-bottom: 16px;
 }
 
-.xb-page-product{
+.xb-page-product {
   background-color: #ffffff;
   padding-top: 40px;
   padding-bottom: 40px;
   margin-top: 16px;
   margin-bottom: 16px;
   text-align: center;
-  .xb-page-product-title{
+  .xb-page-product-title {
     margin-bottom: 30px;
   }
-  .xb-page-product-subtitle{
+  .xb-page-product-subtitle {
     color: $primaryColor;
     font-size: 18px;;
   }
 }
-.xb-page-product + section{
-  padding-top:0;
+
+.xb-page-product + section {
+  padding-top: 0;
 }
 
-.xb-detail-section{
-  .xb-detail-section-title{
+.xb-detail-section {
+  .xb-detail-section-title {
     padding-bottom: 10px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     font-weight: normal;
     font-size: 18px;
   }
-  .xb-detail-section-detail{
+  .xb-detail-section-detail {
     color: #999999;
-    @media screen and (max-width: 767px){
-      iframe{
+    @media screen and (max-width: 767px) {
+      iframe {
         max-width: 100% !important;
         height: auto !important;
       }
@@ -487,18 +521,20 @@ hr {
 
   }
 }
-.tab-pane{
-  @media screen and (max-width: 767px){
-    iframe{
+
+.tab-pane {
+  @media screen and (max-width: 767px) {
+    iframe {
       max-width: 100% !important;
       height: auto !important;
     }
   }
 }
-ul.xb-ul-alpha{
+
+ul.xb-ul-alpha {
   list-style: lower-alpha;
 }
 
-.xb-no-wrap{
+.xb-no-wrap {
   white-space: nowrap;
 }
