@@ -13,13 +13,13 @@
                 socialshare-provider="linkedin"
                 socialshare-description="{{ review.project.description }}"
                 socialshare-text="{{ review.project.title }}"
-                socialshare-source="{{ review.banner }}"
+                socialshare-source="{{ review.project.mainImage }}"
                 socialshare-url="{{ pageSettings.getUrl() }}">
           <i class="fa fa-linkedin"></i>
         </button>
         <button class="button button-royal button-circle button-small" socialshare
                 socialshare-provider="facebook"
-                socialshare-media="{{ review.banner }}"
+                socialshare-media="{{ review.project.mainImage }}"
                 socialshare-description="{{ review.project.description }}"
                 socialshare-text="{{ review.project.title }}"
                 socialshare-url="{{ pageSettings.getUrl() }}">
@@ -28,10 +28,10 @@
 
         <button class="button button-caution button-circle button-small" socialshare
                 socialshare-provider="twitter"
-                socialshare-media="{{ review.banner }}"
+                socialshare-media="{{ review.project.mainImage }}"
                 socialshare-description="{{ review.project.description }}"
                 socialshare-text="{{ review.project.title }}"
-                socialshare-source="{{ review.banner }}"
+                socialshare-source="{{ review.project.mainImage }}"
                 socialshare-url="{{ pageSettings.getUrl() }}">
           <i class="fa fa-twitter"></i>
         </button>
@@ -45,7 +45,7 @@
       <div class="row">
         <div class="col-md-4 col-md-push-8 margin-bottom-xl">
 
-          <div class="five-to-three visible-xs" style="background-image: url({{ review.cover }})">
+          <div class="five-to-three visible-xs" style="background-image: url({{ review.project.mainImage }})">
 
           </div>
 
