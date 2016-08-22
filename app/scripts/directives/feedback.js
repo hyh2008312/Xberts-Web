@@ -8,17 +8,13 @@ angular.module('xbertsApp')
       require: '^join',
       link: function postLink(scope, element, attrs, joinController) {
         var feedbackCallback = function () {
-          scope.feedback = {secret: scope.btnSecret};
+          scope.feedback = {};
         };
         scope.btnText = attrs.btnText || 'Comment';
-        scope.btnSecret = attrs.btnSecret ? true : false;
-        scope.feedback = {
-          secret: scope.btnSecret
-        };
+        scope.feedback = {};
         scope.feedbackFormSubmit = function () {
           if (scope.feedbackForm.$valid) {
             joinController.leaveFeedback(scope.feedback, feedbackCallback);
-          } else {
           }
         }
       }

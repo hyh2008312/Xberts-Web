@@ -354,23 +354,12 @@ angular
             };
             return Paginator(par).load();
           }],
-          //completedReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
-          //  var par = {
-          //    name: 'completedReview',
-          //    params: {
-          //      status: ['ENDED'],
-          //      ordering: '-application_end_date',
-          //      page_size: 6
-          //    },
-          //    fetchFunction: function (params) {
-          //      return ReviewService.getList(params);
-          //    }
-          //  };
-          //  return Paginator(par).load();
-          //}],
           recommendedReportsPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
             var par = {
               name: 'all_report_list',
+              params: {
+                page_size: 12
+              },
               fetchFunction: function (params) {
                 return AllReport.get(params).$promise;
               }
