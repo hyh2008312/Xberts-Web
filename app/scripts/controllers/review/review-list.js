@@ -11,6 +11,7 @@ angular.module('xbertsApp')
       $scope.betaReviewPaginator = betaReviewPaginator;
       //$scope.completedReviewPaginator = completedReviewPaginator;
       $scope.recommendedReportsPaginator = recommendedReportsPaginator;
+      $rootScope.pageSettings.setPage();
 
       $scope.buyNow = function (id, $event) {
         $state.go('application.campaign', {reviewId: id});
