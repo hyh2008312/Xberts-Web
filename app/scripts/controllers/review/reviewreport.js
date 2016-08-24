@@ -34,7 +34,7 @@ angular.module('xbertsApp')
       };
 
       $scope.formCheck = function () {
-        return $scope.reportForm.$valid && $scope.imageCount > 2 && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 1999
+        return $scope.reportForm.$valid && $scope.imageCount > 2 && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 999
       };
       $scope.reportFormSubmit = function () {
         $scope.reportForm.submitted = true;

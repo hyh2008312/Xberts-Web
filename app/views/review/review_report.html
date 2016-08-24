@@ -51,7 +51,7 @@
                           on-image-upload="imageUpload(files)" editable="editable"
                           editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" on-keyup="setPrevious(evt)"></summernote>
               <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
-                <span ng-show="detailCharacterCount<2000"> Please include at least 2000 characters.</span>
+                <span ng-show="detailCharacterCount<1000"> Please include at least 1000 characters.</span>
               </p>
               <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
                 <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>

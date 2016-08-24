@@ -36,7 +36,7 @@ angular.module('xbertsApp')
       }
 
       var project = review.project;
-      var title = project.title;
+      var title = review.title;
       var description = project.description;
       var backgroundColor = 'background-bg-light';
       var shareImage = review.project.mainImage;
