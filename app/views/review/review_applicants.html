@@ -116,7 +116,7 @@
                   </p>
                 </div>
               </div>
-              <p class="xb-align-right">
+              <p class="xb-align-right" ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
                 <a class="xb-link" ng-click="open('lg',$index)">View Detail</a>
               </p>
               <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
