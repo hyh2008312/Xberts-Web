@@ -162,6 +162,24 @@ angular.module('xbertsApp')
           console.log('Modal dismissed at: ' + new Date());
         });
       };
+
+      var sendMessage = function (account_id) {
+        var sendMessageModal = $uibModal.open({
+          templateUrl: 'views/modal/send-message.html',
+          windowClass: 'dialog-vertical-center',
+          controller: 'SendMessageCtrl',
+          resolve: {
+            recipientId: function () {
+              return account_id;
+            }
+          }
+        });
+      };
+
+      $scope.contactUser = function (account_id) {
+        sendMessage(account_id);
+      };
+
     }])
   .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant', 'applicantLeft',
     function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant, applicantLeft) {

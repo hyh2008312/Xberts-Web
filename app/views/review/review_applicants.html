@@ -49,11 +49,11 @@
         <div class="list">
           <p class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
 
-          <div class="item-avatar-large item-hover" style="min-height: 127px;"
+          <div class="item-avatar-large item-hover" style="min-height: 150px;"
                ng-repeat="applicant in filterApplicants">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a class="btn btn-xs btn-primary" ng-click="open('lg',$index)">View Detail</a>
+              <a class="btn btn-xs btn-primary" ng-click="contactUser(applicant.reviewer.id)">Contact</a>
             </div>
             <div class="item-body">
               <span ng-switch="applicant.is_selected" class="pull-right">
@@ -116,6 +116,9 @@
                   </p>
                 </div>
               </div>
+              <p class="xb-align-right">
+                <a class="xb-link" ng-click="open('lg',$index)">View Detail</a>
+              </p>
               <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
                 <div class="row">
                   <div class="col-md-6">

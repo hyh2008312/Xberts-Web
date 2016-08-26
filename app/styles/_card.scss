@@ -410,3 +410,11 @@ li.xb-step {
 .xb-list-title{
 
 }
+
+a.xb-link{
+  color: $primaryColor;
+  text-decoration: underline;
+  &:hover{
+    color: darken($primaryColor,20%);
+  }
+}
