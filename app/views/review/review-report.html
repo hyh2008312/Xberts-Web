@@ -52,7 +52,8 @@
             <div class="card-body">
               <h4 class="xb-align-center">Get It Immediately</h4>
               <div class="pr margin-top-l margin-bottom-l">
-                <a class="btn btn-block btn-primary" ui-sref="application.campaign({reviewId:report.applicant.review})">Shop Now</a>
+                <a ng-if="report.paid_review" class="btn btn-block btn-primary" ui-sref="application.campaign({reviewId:report.paid_review})">Shop Now</a>
+                <a ng-if="!report.paid_review" class="btn btn-block btn-default" disabled>Sold Out</a>
               </div>
             </div>
           </div>
