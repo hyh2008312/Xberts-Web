@@ -368,6 +368,27 @@ angular
           }]
         }
       })
+      .state('application.preLaunchReview', {
+        url: "/prelaunch",
+        templateUrl: 'views/review/review-prelaunch-list.html',
+        controller: 'ReviewPreLaunchListCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          preLaunchReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'preLaunchReview',
+              params: {
+                stage: 'BETA',
+                page_size: 12
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
+      })
       .state('application.terms', {
         url: "/terms",
         templateUrl: 'views/terms.html'

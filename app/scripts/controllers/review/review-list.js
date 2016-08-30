@@ -69,4 +69,21 @@ angular.module('xbertsApp')
       $scope.slideButtonClick = function (slide) {
         $state.go(slide.url, slide.params);
       };
+    }])
+  .controller('ReviewPreLaunchListCtrl', ['$scope', '$rootScope', 'preLaunchReviewPaginator', '$state',
+    function ($scope, $rootScope, preLaunchReviewPaginator, $state) {
+
+
+      var backgroundColor = 'background-bg-light';
+      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
+      $scope.preLaunchReviewPaginator = preLaunchReviewPaginator;
+      $rootScope.pageSettings.setPage();
+
+      $scope.buyNow = function (id, $event) {
+        $state.go('application.campaign', {reviewId: id});
+      };
+
+      $scope.applyNow = function (id, $event) {
+        $state.go('application.campaign', {reviewId: id});
+      };
     }]);

@@ -1,0 +1,97 @@
+<section class="xb-section" id="pre-launch">
+  <div class="container">
+    <div class="xb-section-title">
+      <h2><span>Review Pre-launch Products</span></h2>
+    </div>
+    <div class="row xb-section-body">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in preLaunchReviewPaginator.items">
+
+        <div class="xb-card">
+          <div class="xb-card-ratio-wrap"
+               ui-sref="application.campaign({ reviewId:review.id })">
+            <div class="image-wrap" style="background-image: url({{ review.cover }})">
+
+            </div>
+          </div>
+          <div class="xb-card-content">
+            <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
+
+            <div class="xb-card-databoard-wrap">
+              <div class="xb-databoard-wrap text-center">
+                <div class="xb-databoard xb-databoard-c-primary">
+                  <div class="xb-databoard-primary">
+                    {{ review.sampleNum }}
+                  </div>
+                  <div class="xb-databoard-secondary" ng-pluralize count="review.sampleNum"
+                       when="{'0': 'Sample',
+                              '1': 'Sample',
+                              'other': 'Samples'}">
+                  </div>
+                </div>
+                <div class="xb-databoard xb-databoard-c-primary">
+                  <div time-left end-time="review.applicationEndDate">
+                    <div class="xb-databoard-primary">
+                      {{ timeValue }}
+                    </div>
+                    <div class="xb-databoard-secondary text-capitalize">
+                      {{ timeUnit }} Left
+                    </div>
+                  </div>
+                </div>
+                <div class="xb-databoard xb-databoard-sales">
+                  <div class="xb-databoard-primary">
+                    Free
+                  </div>
+                  <div class="xb-databoard-secondary">
+                    {{ review.project.retailPrice.amount | currency}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="xb-card-button" ng-switch="review.status">
+              <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
+                 disabled>
+                Coming Soon
+              </a>
+
+              <a ng-switch-when="APPLICATION" class="btn btn-block btn-success"
+                 ui-sref="application.campaign({ reviewId:review.id })">
+                JOIN NOW
+              </a>
+
+              <a ng-switch-when="SELECTION" class="btn btn-block btn-success"
+                 ui-sref="application.campaign({ reviewId:review.id })">
+                APPLICATION SCREENING
+              </a>
+
+              <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-success"
+                 ui-sref="application.campaign({ reviewId:review.id })">
+                APPLICATION SCREENING
+              </a>
+
+              <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
+                 ui-sref="application.campaign({ reviewId:review.id })">
+                SUBMIT REVIEW
+              </a>
+
+              <a ng-switch-when="ENDED" class="btn btn-block btn-warning"
+                 ui-sref="application.campaign({ reviewId:review.id })">
+                READ REVIEWS
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <load-more class="row spin-large" ng-if="preLaunchReviewPaginator.getLoading()"></load-more>
+    <div class="align-center xb-section-footer row"
+         ng-if="preLaunchReviewPaginator.getNext() && !preLaunchReviewPaginator.getLoading()">
+      <div class="col-md-4 col-md-offset-4">
+        <button class="btn btn-lg btn-block btn-default btn-default-brand"
+                ng-click="preLaunchReviewPaginator.loadNext()">
+          VIEW MORE
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

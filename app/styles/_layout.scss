@@ -155,6 +155,7 @@ section.header {
 hr {
   border-top: 1px solid #C7C7C7;
 }
+
 .xb-about-banner {
   height: 280px;
   background: rgba(0, 0, 0, 0.6) no-repeat center;
@@ -309,12 +310,18 @@ hr {
     font-size: 30px;
     color: $primaryFontColor;
     font-weight: normal;
-    @include headerDivider($xb-default-bg);
+    text-align: center;
   }
   h3 {
     font-size: 26px;
     color: $secondaryFontColor;
     font-weight: normal;
+  }
+}
+
+.xb-section-title-decoration {
+  h2 {
+    @include headerDivider($xb-default-bg);
   }
 }
 
