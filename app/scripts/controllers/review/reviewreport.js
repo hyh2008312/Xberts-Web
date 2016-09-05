@@ -295,7 +295,7 @@ angular.module('xbertsApp')
     var description = report.description;
     var backgroundColor = 'background-bg-light';
     var shareImage = report.image;
-    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage);
+    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage,true);
     $scope.tabs = [
       {title: 'detail', active: true},
       {title: 'comments', active: false}
