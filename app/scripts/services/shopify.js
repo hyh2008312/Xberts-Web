@@ -2,25 +2,24 @@
 
 angular.module('xbertsApp')
   .service('ShopifyService', ['$', '$window', '$resource', 'Configuration', 'Sales',
-    function($, $window, $resource, Configuration, Sales) {
+    function ($, $window, $resource, Configuration, Sales) {
       var client = ShopifyBuy.buildClient({
         apiKey: Configuration.shopifyKey,
         myShopifyDomain: Configuration.shopifyDomain,
         appId: Configuration.shopifyAppId
       });
 
-      this.buy = function(saleId, inventoryId, user, quantity) {
-        var product;
+      this.fetchProduct = function (inventoryId) {
+        return client.fetchProduct(inventoryId);
+      };
+
+
+      this.buy = function (saleId, varient, user, quantity) {
         var checkoutUrl;
 
-        return client.fetchProduct(inventoryId)
-          .then(function(data) {
-            product = data;
-
-            return client.createCart();
-          })
-          .then(function(cart) {
-            return cart.addVariants({variant: product.selectedVariant, quantity: quantity});
+        return client.createCart()
+          .then(function (cart) {
+            return cart.addVariants({variant: varient, quantity: quantity});
           })
           .then(function (cart) {
             // Autofill email in checkout form with user's account email and add cart id to order attr
@@ -40,4 +39,4 @@ angular.module('xbertsApp')
             $window.location.href = checkoutUrl;
           });
       };
-  }]);
+    }]);

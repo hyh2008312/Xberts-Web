@@ -117,6 +117,20 @@
               </div>
             </div>
 
+            <div ng-if="review.reviewType=='PAID' && saleInfo.reload && saleInfo.productVariants.length>1 " class="xb-card-board-item">
+              <p class="xb-card-board-label" ng-bind="saleInfo.options"> Options</p>
+              <select class="form-control" name="variant"
+                      ng-options="item as item.title for item in saleInfo.productVariants"
+                      ng-model="saleInfo.variant"
+                      ng-required="true">
+              </select>
+            </div>
+
+            <div class="xb-card-board-item" ng-if="review.reviewType=='PAID'">
+              <p class="xb-card-board-label"> Quantity</p>
+              <input class="form-control" ng-model="saleInfo.quantity" ng-keyup="clearNoNum(saleInfo,'quantity')">
+            </div>
+
             <div class="margin-top" ng-include="'views/review/review-main-action.html'">
             </div>
           </div>

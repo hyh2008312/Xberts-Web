@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewDetailCtrl', ['$rootScope', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
+  .controller('ReviewDetailCtrl', ['$rootScope', '$timeout', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
     'ShopifyService', 'AnalyticsService', 'Applicantsreview', 'reportPaginator',
-    function ($rootScope, $scope, $location, $state, $stateParams, $uibModal, review,
+    function ($rootScope, $timeout, $scope, $location, $state, $stateParams, $uibModal, review,
               ShopifyService, AnalyticsService, Applicantsreview, reportPaginator) {
       $scope.review = review;
       $scope.reportPaginator = reportPaginator;
@@ -34,6 +34,30 @@ angular.module('xbertsApp')
 
         })
       }
+
+      $scope.saleInfo = {
+        variant: null,
+        quantity: 1,
+        productVariants: [],
+        reload: true,
+        options: 'Options'
+      };
+      if (review.flashsale != null && review.flashsale.shopGatewayInventoryId != null) {
+        ShopifyService.fetchProduct(review.flashsale.shopGatewayInventoryId).then(function (data) {
+          angular.copy(data.variants, $scope.saleInfo.productVariants);
+          $scope.saleInfo.variant = $scope.saleInfo.productVariants[0];
+          $scope.saleInfo.reload = false;
+          var options = [];
+          for (var i = 0; i < $scope.saleInfo.variant.optionValues.length; i++) {
+            options.push($scope.saleInfo.variant.optionValues[i].name);
+          }
+          $scope.saleInfo.options = options.join(' / ');
+          $timeout(function () {
+            $scope.saleInfo.reload = true;
+          }, 0);
+        });
+      }
+
 
       var project = review.project;
       var title = review.title;
@@ -104,6 +128,11 @@ angular.module('xbertsApp')
         sendMessage();
       };
 
+      $scope.clearNoNum = function(obj,attr){
+        obj[attr] = obj[attr].replace(/[^\d]/g,"");
+        obj[attr] = obj[attr].replace(/^0/g,"");
+      };
+
 
       var buyProduct = function () {
         if (!$rootScope.user.authRequired()) {
@@ -114,7 +143,7 @@ angular.module('xbertsApp')
 
         $scope.$emit('backdropOn', 'buy');
 
-        ShopifyService.buy(review.flashsale.id, review.flashsale.shopGatewayInventoryId, $rootScope.user, 1)
+        ShopifyService.buy(review.flashsale.id, $scope.saleInfo.variant, $rootScope.user, $scope.saleInfo.quantity)
           .then(function () {
             AnalyticsService.sendPageView($location.path() + '/buy');
 
