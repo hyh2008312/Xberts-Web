@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 col-md-push-8 margin-bottom-xl">
-          <div class="xb-card-board">
+          <div class="xb-card-board hidden-xs">
             <div class="card-body">
               <h4 class="xb-align-center">Get It Immediately</h4>
               <div class="pr margin-top-l margin-bottom-l">
@@ -88,6 +88,19 @@
       </div>
     </div>
   </section>
+
+  <div class="xb-footer-buttons visible-xs-block">
+    <div class="row">
+      <div class="col-xs-6 xb-button-padding-top-bottom xb-no-wrap">
+        Get it!
+      </div>
+      <div class="col-xs-6 xb-align-center">
+        <a ng-if="report.paid_review" class="btn btn-block btn-primary" ui-sref="application.campaign({reviewId:report.paid_review})">Shop Now</a>
+        <a ng-if="!report.paid_review" class="btn btn-block btn-default" disabled>Sold Out</a>
+      </div>
+    </div>
+  </div>
+
 </join>
 
 
