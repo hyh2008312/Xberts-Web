@@ -37,7 +37,7 @@ angular.module('xbertsApp')
 
       $scope.saleInfo = {
         variant: null,
-        quantity: 1,
+        quantity: '1',
         productVariants: [],
         reload: true,
         options: 'Options'
