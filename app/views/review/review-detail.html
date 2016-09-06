@@ -333,7 +333,7 @@
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab heading="Reviews" index="2"
+            <uib-tab heading="Influencer Reviews {{ review.reportAmount}}" index="2"
                      select="select('reviews')">
               <div ng-if="reviewersTabActive">
                 <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
