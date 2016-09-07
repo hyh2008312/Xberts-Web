@@ -626,3 +626,8 @@ $message-types: (
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
+.badge-primary {
+  color: #fff ;
+  background-color: $primaryColor;
+}
