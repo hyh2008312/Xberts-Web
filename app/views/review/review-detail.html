@@ -336,8 +336,7 @@
             <uib-tab index="2" select="select('reviews')">
               <uib-tab-heading>
                 Influencer Reviews
-                <!--<span class="badge" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>-->
-                <span class="badge" ng-class="{'badge-primary':reviewersTabActive}">2</span>
+                <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
               </uib-tab-heading>
               <div ng-if="reviewersTabActive">
                 <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
