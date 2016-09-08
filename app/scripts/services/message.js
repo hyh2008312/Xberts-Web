@@ -27,6 +27,6 @@ angular.module('xbertsApp')
     };
 
     this.getThread = function (threadId) {
-      return $resource(API_BASE_URL + '/messages/thread/' + threadId + '/messages/').query().$promise;
+      return $resource(API_BASE_URL + '/messages/threads/' + threadId + '/messages/').query().$promise;
     };
   }]);
