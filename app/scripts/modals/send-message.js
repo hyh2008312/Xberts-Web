@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('SendMessageCtrl', ['$scope', 'recipientId', 'MessageService',
-    function($scope, recipientId, MessageService) {
+  .controller('SendMessageCtrl', ['$rootScope', '$scope', 'recipientId', 'MessageService',
+    function($rootScope, $scope, recipientId, MessageService) {
       $scope.sendMessage = function() {
         if (!$scope.sendMessageForm.$valid) {
           return;
@@ -11,7 +11,8 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOn', 'sendMessage');
         $scope.sendMessageForm.serverError = {};
 
-        MessageService.sendMessage(recipientId, $scope.data.subject, $scope.data.body, null, null)
+        MessageService.sendMessage($rootScope.user.getUserId(), recipientId, $scope.data.subject, $scope.data.body,
+          null, null)
           .then(function() {
             $scope.$emit('backdropOff', 'sendMessageSuccess');
 
