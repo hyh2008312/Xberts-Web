@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
-    'ReviewService', 'Interact', 'expert', 'Applicantsreview', 'SystemConstant',
+    'ReviewService', 'Interact', 'expert', 'Applicantsreview', 'Sales', 'SystemConstant',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
-              ReviewService, Interact, expert, Applicantsreview, SystemConstant) {
+              ReviewService, Interact, expert, Applicantsreview, Sales, SystemConstant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
@@ -13,18 +13,19 @@ angular.module('xbertsApp')
       var tabIndexToParam = {
         '0': 'profile',
         '1': 'campaigns',
-        '2': 'trials'
+        '2': 'trials',
+        '3': 'orders'
       };
       var tabParamToIndex = _(tabIndexToParam).invert();
 
-      $scope.select = function() {
+      $scope.select = function () {
         // Active tab index is only accurate after timeout
-        setTimeout(function() {
-          $scope.$apply(function() {
+        setTimeout(function () {
+          $scope.$apply(function () {
             switch ($scope.tabActive) {
               case 1:
                 var par = {
-                  name: 'campaigns_'+ $scope.expert.user_id,
+                  name: 'campaigns_' + $scope.expert.user_id,
                   params: {owner: $scope.expert.user_id},
                   fetchFunction: function (params) {
                     return ReviewService.getList(params);
@@ -42,6 +43,15 @@ angular.module('xbertsApp')
                 };
                 $scope.reviewApplicantPaginator = Paginator(par3);
                 break;
+              case 3:
+                var par4 = {
+                  name: 'orders_' + $scope.expert.user_id,
+                  fetchFunction: function (params) {
+                    return Sales.getList(params);
+                  }
+                };
+                $scope.ordersPaginator = Paginator(par4);
+                break;
               default:
                 break;
             }
@@ -58,7 +68,7 @@ angular.module('xbertsApp')
 
       updateActiveTabOnSearch();
 
-      $scope.$on('$locationChangeSuccess', function() {
+      $scope.$on('$locationChangeSuccess', function () {
         updateActiveTabOnSearch();
       });
 
@@ -72,7 +82,7 @@ angular.module('xbertsApp')
           windowClass: 'dialog-vertical-center',
           controller: 'SendMessageCtrl',
           resolve: {
-            recipientId: function() {
+            recipientId: function () {
               return $scope.expert.user_id;
             }
           }
@@ -86,7 +96,7 @@ angular.module('xbertsApp')
       };
 
       if ($stateParams.action === 'contact' && $rootScope.user.authRequired() &&
-          $rootScope.user.getUserId() !== $scope.expert.user_id) {
+        $rootScope.user.getUserId() !== $scope.expert.user_id) {
         sendMessage();
       }
 

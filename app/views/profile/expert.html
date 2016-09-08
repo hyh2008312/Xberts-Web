@@ -15,7 +15,8 @@
           <p>{{ expert.company_title}}</p>
 
           <p>
-            <span class="label label-default" ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
+            <span class="label label-default"
+                  ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
           </p>
         </div>
       </div>
@@ -49,7 +50,9 @@
                     </div>
                   </div>
                   <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
+                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title
+                      }}</p>
+
                     <div class="xb-card-button">
                       <div ng-switch="review.status">
                         <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
@@ -77,8 +80,9 @@
             <load-more class="row spin-large" ng-if="campaignPaginator.getLoading()"></load-more>
           </uib-tab>
 
-          <uib-tab heading="My Trials" index="2" select="select()">
-            <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()" infinite-scroll-distance='0'
+          <uib-tab heading="My Crowdtesting" index="2" select="select()">
+            <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()"
+                 infinite-scroll-distance='0'
                  infinite-scroll-disabled="reviewApplicantPaginator.getLoading() || !reviewApplicantPaginator.getNext()">
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
                 <div class="xb-card">
@@ -89,9 +93,10 @@
                     </div>
                   </div>
                   <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{ applicant.review.title }}</p>
+                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{
+                      applicant.review.title }}</p>
 
-                    <div class="xb-card-button">
+                    <div class="xb-card-button" ng-if="user.getUserId()==expert.user_id">
                       <div ng-switch="applicant.review.status">
                         <button ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
                                 ui-sref="application.protected.apply({reviewId:applicant.review.id})">Edit Application
@@ -110,7 +115,8 @@
                               Selected
                             </button>
                             <button ng-switch-when="true" class="btn btn-block btn-primary"
-                                    ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">Confirm
+                                    ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">
+                              Confirm
                               Shipping
                               Info
                             </button>
@@ -129,11 +135,13 @@
                             <div ng-switch-when="true">
                               <div ng-switch="applicant.is_submit_report">
                                 <button ng-switch-when="false" class="btn btn-block btn-primary"
-                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                                  Submit
                                   Report
                                 </button>
                                 <button ng-switch-when="true" class="btn btn-block btn-primary"
-                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Edit
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                                  Edit
                                   Report
                                 </button>
                               </div>
@@ -151,11 +159,13 @@
                             <div ng-switch-when="true">
                               <div ng-switch="applicant.is_submit_report">
                                 <button ng-switch-when="false" class="btn btn-block btn-primary"
-                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">Submit
+                                        ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                                  Submit
                                   Report
                                 </button>
                                 <button ng-switch-when="true" class="btn btn-block btn-success"
-                                        ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">View
+                                        ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
+                                  View
                                   My
                                   Report
                                 </button>
@@ -171,6 +181,35 @@
               </div>
             </div>
             <load-more class="row spin-large" ng-if="reviewApplicantPaginator.getLoading()"></load-more>
+          </uib-tab>
+          <uib-tab heading="My Orders" index="3" select="select()" ng-if="user.getUserId()==expert.user_id">
+            <div class="row section-body" infinite-scroll="ordersPaginator.loadNext()"
+                 infinite-scroll-distance='0'
+                 infinite-scroll-disabled="ordersPaginator.getLoading() || !ordersPaginator.getNext()">
+              <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="order in ordersPaginator.items">
+                <div class="xb-card">
+                  <div class="xb-card-ratio-wrap"
+                       ui-sref="application.campaign({ reviewId:order.flashSale.review.id })">
+                    <div class="image-wrap" style="background-image: url({{ order.flashSale.review.project.image }})">
+
+                    </div>
+                  </div>
+                  <div class="xb-card-content">
+                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{
+                      order.flashSale.review.project.title }}</p>
+
+                    <p class="font-graym"> Order date: {{ order.order_date | amDateFormat:'MMM DD,YYYY'}}</p>
+
+                    <div class="xb-card-button">
+                      <a class="btn btn-block btn-primary"
+                         ng-href="{{ order.shopGatewayOrderStatusUrl }}" target="_blank">View Status
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <load-more class="row spin-large" ng-if="ordersPaginator.getLoading()"></load-more>
           </uib-tab>
         </uib-tabset>
       </div>
