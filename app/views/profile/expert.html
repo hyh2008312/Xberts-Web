@@ -176,6 +176,14 @@
                       </div>
 
                     </div>
+                    <div class="xb-card-button" ng-if="user.getUserId()!=expert.user_id">
+                      <button class="btn btn-block btn-success"
+                              ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
+                        View
+                        My
+                        Review
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
