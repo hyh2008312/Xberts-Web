@@ -34,9 +34,14 @@ angular.module('xbertsApp')
                 $scope.campaignPaginator = Paginator(par);
                 break;
               case 2:
+                var filter = '';
+                if ($rootScope.user.getUserId() != expert.user_id) {
+                  filter = {is_submit_report: true, review: {status: 'ENDED'}};
+                }
                 var par3 = {
                   name: 'trials_' + $scope.expert.user_id,
                   params: {reviewer_id: $scope.expert.user_id},
+                  filter: filter,
                   fetchFunction: function (params) {
                     return Applicantsreview.get(params).$promise;
                   }
