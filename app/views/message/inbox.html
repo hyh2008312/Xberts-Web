@@ -3,7 +3,8 @@
 </div>
 <div class="list" ng-if="!isEmpty">
   <div class="item-avatar-large item-hover"
-       ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient">
+       ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient"
+       ng-class="{'item-new': !message.readAt}">
     <div class="item-image text-center">
       <avatar-img src="contact.userProfile.avatar" name="contact.shortName"></avatar-img>
     </div>

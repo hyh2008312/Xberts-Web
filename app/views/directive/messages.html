@@ -1,5 +1,7 @@
 <li class="hidden-xs fade-in-line" ui-sref-active="active">
   <a ui-sref="application.protected.message.inbox" class="top-right-badge-x" >
     <i class="fa fa-envelope fa-lg"></i>
+    <span class="top-right-badge striking-white" ng-if="unreadMessageCount > 0"
+          ng-bind="unreadMessageCount"></span>
   </a>
 </li>

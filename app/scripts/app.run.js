@@ -6,6 +6,7 @@ angular
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
+      $rootScope.unreadMessageCount = 0;
       $rootScope.summerNoteSimple = {
         height: 200,
         toolbar: [

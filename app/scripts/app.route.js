@@ -277,7 +277,7 @@ angular
         resolve: {
           messages: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
             function ($stateParams, MessageResolver, protectedAuthCheck) {
-              return MessageResolver.getMessages($stateParams);
+              return MessageResolver.getThreads($stateParams);
             }]
         }
       })
