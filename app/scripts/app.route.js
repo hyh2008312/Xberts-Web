@@ -144,10 +144,10 @@ angular
           reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
-          }]
+          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams',
+            function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
+              return ApplicantsreviewLoad($stateParams);
+            }]
         }
       })
       .state('application.selectApplicants', {
