@@ -51,8 +51,6 @@
 
         <messages ng-if="user.isAuth()"></messages>
 
-        <!--<notifications ng-if="user.isAuth()"></notifications>-->
-
         <li ng-if="user.isAuth()" uib-dropdown is-open="userDropdownStatus.isopen"
             ng-mouseenter="userDropdownStatus.isopen = true" ng-mouseleave="userDropdownStatus.isopen = false">
           <a class="fade-in-line" uib-dropdown-toggle aria-haspopup="true"
