@@ -119,7 +119,7 @@ $numbers: (1 2 3 4 5 8 10);
     }
 
     &.item-new {
-      background-color: $lightColor;
+      background-color: lighten($lightColor, 10%);
     }
   }
   p {
