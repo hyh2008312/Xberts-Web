@@ -26,8 +26,8 @@ angular.module('xbertsApp')
         {
           id: 0,
           image: 'https://xberts.imgix.net/static/banner/engineer_adjusting_3d_printer.jpg?auto=format%2Cenhance&crop=entropy&fit=crop&h=600&q=60&w=1200&s=c5544734db8e38f9c68e9be878867179',
-          title: 'Early Access to Creative Products',
-          subtitle: 'Try pre-launch innovations for free and get early bird offers on latest gadgets.',
+          title: 'Discover Creative	Products Through Expert Reviews',
+          subtitle: 'We bring you the best gadgets and innovations that are tested by influential experts',
           buttonShow: !$rootScope.user.isAuth(),
           buttonText: 'Sign Up Now',
           buttonColor: 'btn-primary',

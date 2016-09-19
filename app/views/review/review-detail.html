@@ -51,22 +51,13 @@
 
           <div class="xb-card-board">
             <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Product Stage</p>
-
-              <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Pre-launch</span>
-                <span ng-switch-when="PAID">New Release</span>
-              </p>
-            </div>
-
-            <div class="xb-card-board-item">
               <p ng-switch="review.reviewType" class="xb-card-board-label">
-                <span ng-switch-when="FREE_SAMPLE"> Pre-launch Price</span>
+                <span ng-switch-when="FREE_SAMPLE"> Campaign Reward</span>
                 <span ng-switch-default> Early Bird Price</span>
               </p>
 
               <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Free</span>
+                <span ng-switch-when="FREE_SAMPLE">Free Sample</span>
                 <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
               </p>
             </div>
@@ -199,7 +190,7 @@
               </div>
               <button class="btn btn-block btn-primary text-uppercase" ng-show="!isCurrentUser"
                       ng-click="contactUser()">
-                Contact Maker
+                Contact Owner
               </button>
             </div>
           </div>
@@ -335,7 +326,7 @@
             </uib-tab>
             <uib-tab index="2" select="select('reviews')">
               <uib-tab-heading>
-                Influencer Reviews
+                Community Reviews
                 <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
               </uib-tab-heading>
               <div ng-if="reviewersTabActive">

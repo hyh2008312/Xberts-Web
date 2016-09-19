@@ -9,7 +9,7 @@
     <div ng-switch="review.reviewType">
       <div ng-switch-when="FREE_SAMPLE">
         <button ng-if="!applicant.exist" class="btn btn-block btn-success"
-                ui-sref="application.protected.apply({reviewId:review.id})">JOIN NOW
+                ui-sref="application.protected.apply({reviewId:review.id})">APPLY NOW
         </button>
         <button ng-if="applicant.exist" class="btn btn-block btn-primary"
                 ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
