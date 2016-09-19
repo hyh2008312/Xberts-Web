@@ -2,13 +2,13 @@
 
 angular.module('xbertsApp')
   .service('MessageResolver', ['MessageService', function (MessageService) {
-    this.getMessages = function ($stateParams) {
+    this.getThreads = function ($stateParams) {
       var direction = 'incoming';
       if ($stateParams['direction'] === 'outgoing') {
         direction = 'outgoing';
       }
 
-      return MessageService.getMessages({}, direction);
+      return MessageService.getThreads({}, direction);
     };
 
     this.viewThread = function ($stateParams) {

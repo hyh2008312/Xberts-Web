@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('messages', ['$rootScope', function($rootScope) {
+  .directive('messages', ['$rootScope', 'MessageService', function($rootScope, MessageService) {
     return {
       templateUrl: 'views/directive/messages.html',
       replace: true,
@@ -10,6 +10,8 @@ angular.module('xbertsApp')
         if (!$rootScope.user.isAuth()) {
           return;
         }
+
+        MessageService.getUnreadMessageCount();
       }
     };
   }]);

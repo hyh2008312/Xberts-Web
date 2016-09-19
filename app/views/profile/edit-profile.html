@@ -3,7 +3,7 @@
 
   <form name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
     <div class="row form-group">
-        <img class="img-circle avatar-thumb center-block" ngf-src="data.avatar || data.currentAvatar || '/images/empty-avater.gif'">
+        <img class="img-circle avatar-thumb center-block" ngf-src="data.avatar || data.currentAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a'">
     </div>
     <div class="row form-group">
       <button type="file" class="btn center-block" ngf-select ng-model="data.avatar" name="avatar"

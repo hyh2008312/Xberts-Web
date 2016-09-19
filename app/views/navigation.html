@@ -16,7 +16,7 @@
 
       <a class="navbar-brand" ui-sref="application.main" data-toggle="collapse"
          data-target="#js-navbar-collapse.in">
-        <img src="/images/xberts.png" width="120" height="32" alt="xberts">
+        <img src="https://xberts.imgix.net/static/logo/xberts.png?s=002189d55781053e56aea0dabb832b32" width="120" height="32" alt="xberts">
       </a>
     </div>
 
@@ -50,8 +50,6 @@
         </li>
 
         <messages ng-if="user.isAuth()"></messages>
-
-        <!--<notifications ng-if="user.isAuth()"></notifications>-->
 
         <li ng-if="user.isAuth()" uib-dropdown is-open="userDropdownStatus.isopen"
             ng-mouseenter="userDropdownStatus.isopen = true" ng-mouseleave="userDropdownStatus.isopen = false">

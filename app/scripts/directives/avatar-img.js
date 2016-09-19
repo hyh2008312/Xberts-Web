@@ -23,7 +23,7 @@ angular.module('xbertsApp')
       replace: true,
       templateUrl: 'views/directive/avatar_1.html',
       link: function postLink(scope, element, attrs) {
-        scope.avatarSrc = scope.avatarSrc || '/images/empty-avater.gif';
+        scope.avatarSrc = scope.avatarSrc || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
       }
     }
   });
