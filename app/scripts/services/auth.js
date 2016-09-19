@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         this._lastName = lastName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
-        this._userAvatar = userAvatar || '/images/empty-avater.gif';
+        this._userAvatar = userAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
         this._isLinkedinSignup = isLinkedinSignup || false;
         this._isLinkedinConnected = isLinkedinConnected || false;
         this._roles = roles || [];
