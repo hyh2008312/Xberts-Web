@@ -50,10 +50,29 @@
         <div class="col-md-4 col-md-push-8 margin-bottom-xl">
           <div class="xb-card-board hidden-xs">
             <div class="card-body">
-              <h4 class="xb-align-center">Get It Immediately</h4>
+              <h4 class="xb-align-center">Product Details</h4>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Product Name</p>
+
+                <p class="xb-card-board-value">
+                  {{ review.product_title }}
+                </p>
+              </div>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Original Price</p>
+
+                <p class="xb-card-board-value">
+                  <del>{{ report.product_price.amount |currency }}</del>
+                </p>
+              </div>
+
+
+
               <div class="pr margin-top-l margin-bottom-l">
                 <a ng-if="report.paid_review" class="btn btn-block btn-primary" ui-sref="application.campaign({reviewId:report.paid_review})">Shop Now</a>
-                <a ng-if="!report.paid_review" class="btn btn-block btn-default" disabled>Sold Out</a>
+                <a ng-if="!report.paid_review && report.buy_url" class="btn btn-block btn-primary" disabled ng-href="{{report.buy_url }}" target="_blank">Shop Now</a>
               </div>
             </div>
           </div>
