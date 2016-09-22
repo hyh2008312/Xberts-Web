@@ -40,6 +40,7 @@ angular.module('xbertsApp')
         $scope.reportForm.submitted = true;
 
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
         if ($scope.formCheck()) {
           $scope.$emit('backdropOn', 'post');
@@ -80,6 +81,7 @@ angular.module('xbertsApp')
 
       $scope.reportSave = function () {
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';

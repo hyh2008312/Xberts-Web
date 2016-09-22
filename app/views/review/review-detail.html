@@ -297,7 +297,7 @@
                   <div ng-switch-when="FREE_SAMPLE">
                     <ul>
                       <li>Keep the product for FREE after submitting a review as instructed</li>
-                      <li>Get the privilege of being selected for more product</li>
+                      <li>Get the privilege of being selected for more product review campaigns</li>
                     </ul>
                   </div>
                   <div ng-switch-when="PAID">
@@ -318,7 +318,7 @@
 
               </div>
             </uib-tab>
-            <uib-tab heading="Discussion" index="1"
+            <uib-tab heading="Comments" index="1"
                      select="select('comments')">
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comment/comments.html'"></div>
@@ -326,7 +326,7 @@
             </uib-tab>
             <uib-tab index="2" select="select('reviews')">
               <uib-tab-heading>
-                Community Reviews
+                Expert Reviews
                 <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
               </uib-tab-heading>
               <div ng-if="reviewersTabActive">
