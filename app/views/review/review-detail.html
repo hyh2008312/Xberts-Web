@@ -235,10 +235,9 @@
           </div>
           <uib-tabset class="background-bg-white" active="tabActive">
             <uib-tab heading="Description" index="0">
-              <div class="xb-detail-section">
-                <h3 class="xb-detail-section-title margin-top-clear" ng-switch="review.reviewType">
-                  <span ng-switch-when="FREE_SAMPLE">Be a product reviewer and it's yours to keep!</span>
-                  <span ng-switch-when="PAID">Share your experiences to earn rewards!</span>
+              <div class="xb-detail-section" ng-show="review.reviewType=='FREE_SAMPLE'">
+                <h3 class="xb-detail-section-title margin-top-clear">
+                  <span>Be a product reviewer and it's yours to keep!</span>
                 </h3>
 
                 <div class="row xb-detail-section-detail">
@@ -249,9 +248,8 @@
                       <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-1.png?s=ce7f49e6c6813943dfcb682258e1942d"
                            style="width:100%;max-width: 60px;background-color: #ffffff">
 
-                      <p class="margin-top" ng-switch="review.reviewType">
-                        <span ng-switch-when="FREE_SAMPLE">Apply Now</span>
-                        <span ng-switch-when="PAID">Place Order</span>
+                      <p class="margin-top">
+                        <span>Apply Now</span>
                       </p>
                     </div>
                   </div>
@@ -259,9 +257,8 @@
                     <div class="xb-reiview-connect">
                       <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-2.png?s=410c1960225e6aac0a7a6f2c296f5be3" style="width:100%;max-width: 60px;">
 
-                      <p class="margin-top" ng-switch="review.reviewType">
-                        <span ng-switch-when="FREE_SAMPLE">Get Selected</span>
-                        <span ng-switch-when="PAID">Try Product</span>
+                      <p class="margin-top">
+                        <span>Get Selected</span>
                       </p>
                     </div>
                   </div>
@@ -269,9 +266,8 @@
                     <div class="xb-reiview-connect">
                       <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-3.png?s=15de7b612cbf8e1a3122782c3a40bded" style="width:100%;max-width: 60px;">
 
-                      <p class="margin-top" ng-switch="review.reviewType">
-                        <span ng-switch-when="FREE_SAMPLE">Try Product</span>
-                        <span ng-switch-when="PAID">Write Review</span>
+                      <p class="margin-top">
+                        <span>Try Product</span>
                       </p>
                     </div>
                   </div>
@@ -279,9 +275,8 @@
                     <div class="xb-reiview-connect">
                       <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-4.png?s=68f3472b3a181a61adae433a0f19b08c" style="width:100%;max-width: 60px;">
 
-                      <p class="margin-top" ng-switch="review.reviewType">
-                        <span ng-switch-when="FREE_SAMPLE">Submit Review</span>
-                        <span ng-switch-when="PAID">Get Reward</span>
+                      <p class="margin-top">
+                        <span>Submit Review</span>
                       </p>
                     </div>
                   </div>
@@ -289,21 +284,15 @@
 
               </div>
 
-              <div class="xb-detail-section">
+              <div class="xb-detail-section" ng-show="review.reviewType=='FREE_SAMPLE'">
 
                 <h3 class="xb-detail-section-title">Rewards: </h3>
 
-                <div ng-switch="review.reviewType" class="xb-detail-section-detail">
-                  <div ng-switch-when="FREE_SAMPLE">
+                <div class="xb-detail-section-detail">
+                  <div>
                     <ul>
                       <li>Keep the product for FREE after submitting a review as instructed</li>
                       <li>Get the privilege of being selected for more product review campaigns</li>
-                    </ul>
-                  </div>
-                  <div ng-switch-when="PAID">
-                    <ul>
-                      <li>Get 10% discount on your next purchase</li>
-                      <li>The best reviewer will get a gift card of full purchase price</li>
                     </ul>
                   </div>
 
@@ -324,7 +313,7 @@
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab index="2" select="select('reviews')">
+            <uib-tab index="2" select="select('reviews')" ng-show="review.status=='ENDED' && review.reportAmount>0">
               <uib-tab-heading>
                 Expert Reviews
                 <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
