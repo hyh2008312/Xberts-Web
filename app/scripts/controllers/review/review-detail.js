@@ -8,6 +8,13 @@ angular.module('xbertsApp')
       $scope.review = review;
       $scope.reportPaginator = reportPaginator;
 
+      if ($scope.review.reviewType == 'FREE_SAMPLE') {
+        $scope.isShowReview = $scope.review.status == 'ENDED' && $scope.review.reportAmount > 0;
+      } else {
+        $scope.isShowReview = $scope.review.reportAmount > 0;
+      }
+
+
       $scope.applicant = {exist: false, isSelected: false, isSubmitReport: false};
 
       $scope.applicantsSearch = {isSelected: true, isExempted: false};
@@ -128,9 +135,9 @@ angular.module('xbertsApp')
         sendMessage();
       };
 
-      $scope.clearNoNum = function(obj,attr){
-        obj[attr] = obj[attr].replace(/[^\d]/g,"");
-        obj[attr] = obj[attr].replace(/^0/g,"");
+      $scope.clearNoNum = function (obj, attr) {
+        obj[attr] = obj[attr].replace(/[^\d]/g, "");
+        obj[attr] = obj[attr].replace(/^0/g, "");
       };
 
 

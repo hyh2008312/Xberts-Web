@@ -313,7 +313,7 @@
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab index="2" select="select('reviews')" ng-show="review.status=='ENDED' && review.reportAmount>0">
+            <uib-tab index="2" select="select('reviews')" ng-show="isShowReview">
               <uib-tab-heading>
                 Expert Reviews
                 <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
