@@ -112,7 +112,7 @@
         Get it!
       </div>
       <div class="col-xs-6 xb-align-center">
-        <a ng-if="report.paid_review" class="btn btn-block btn-primary text-uppercase" ui-sref="application.campaign({reviewId:report.paid_review})">Shop Now</a>
+        <a ng-if="report.paid_review" class="btn btn-block btn-primary text-uppercase" ui-sref="application.salescampaign({reviewId:report.paid_review})">Shop Now</a>
         <a ng-if="!report.paid_review && report.buy_url" class="btn btn-block btn-primary text-uppercase" ng-href="{{report.buy_url }}" target="_blank">Shop Now</a>
       </div>
     </div>
