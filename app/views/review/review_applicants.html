@@ -182,18 +182,32 @@
 
         </div>
         <iframe name="download" style="display: none"></iframe>
-        <div class="margin-top align-right" ng-show="review.applicants_file_url && user.isStaff()">
-          <a class="btn btn-primary" target="download"
-             ng-href="{{ review.applicants_file_url }}">Download
-          </a>
-        </div>
-        <div class="margin-top text-center" ng-show="user.isStaff()"
-             ng-switch="review.is_publish_applicants_confirmed">
-          <button class="btn btn-primary" ng-switch-when="false" ng-click="ConfirmSelectionResult()"
+        <div class="margin-top clearfix" ng-show="user.isStaff()">
+          <button class="btn btn-primary" ng-show="review.is_publish_applicants_confirmed" ng-click="ConfirmSelectionResult()"
                   ng-disabled="!review.is_publish_applicants">Confirm Selection
             Result
           </button>
+
+          <a class="btn btn-primary pull-right" target="download" ng-show="review.applicants_file_url"
+             ng-href="{{ review.applicants_file_url }}">Download
+          </a>
+        </div>
+
+        <div class="margin-top clearfix" ng-show="user.isStaff()">
+          <button class="btn btn-primary" ng-show="review.selected_applicants_file_url" ng-click="exportAddress()"
+                  ng-disabled="!review.selected_applicants_file_url">Export Address
+          </button>
+
+          <a class="btn btn-primary pull-left" target="download" ng-show="review.selected_applicants_file_url"
+             ng-href="{{ review.selected_applicants_file_url }}">Download Address
+          </a>
+        </div>
+
+        <div class="margin-top text-center" ng-show="user.isStaff()"
+             ng-switch="review.is_publish_applicants_confirmed">
+
           <label ng-switch-when="true" class="label label-info padding">Confirmed</label>
+
         </div>
       </div>
     </div>

@@ -52,8 +52,8 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review',
-    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review) {
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review','ReviewService',
+    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review,ReviewService) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
@@ -86,6 +86,11 @@ angular.module('xbertsApp')
         }, function () {
           $scope.$emit('backdropOff', 'success');
         })
+      };
+
+      $scope.exportAddress=function(){
+        $scope.$emit('backdropOn', 'post');
+        ReviewService.exportAddress(review.id);
       };
       $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
       $scope.applicantsFilter = function () {
