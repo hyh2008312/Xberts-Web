@@ -1,9 +1,10 @@
 <div ng-if="isEmpty">
   <h3 class="margin-none">You have no message</h3>
 </div>
-<div class="list" ng-if="!isEmpty">
+<div class="list" ng-if="!isEmpty" infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0'
+     infinite-scroll-disabled="messagePaginator.getLoading() || !messagePaginator.getNext()">
   <div class="item-avatar-large item-hover"
-       ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient"
+       ng-repeat="message in messagePaginator.items" ng-init="contact = showSender ? message.sender : message.recipient"
        ng-class="{'item-new': !message.readAt && showSender}">
     <div class="item-image text-center">
       <avatar-img src="contact.userProfile.avatar" name="contact.shortName"></avatar-img>
@@ -21,3 +22,4 @@
     </div>
   </div>
 </div>
+<load-more class="row spin-large" ng-show="messagePaginator.getLoading()"></load-more>

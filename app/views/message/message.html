@@ -6,6 +6,8 @@
             ng-class="{'active':category === 'incoming'}" ng-click="filterMessage('incoming')">Inbox</li>
         <li class="list-item padding-top-10 padding-bottom-10 font-12 border-top text-indent"
             ng-class="{'active':category === 'outgoing'}" ng-click="filterMessage('outgoing')">Sent</li>
+        <li class="list-item padding-top-10 padding-bottom-10 font-12 border-top text-indent"
+            ng-class="{'active':category === 'notification'}" ng-click="showNotification()">Notification</li>
       </ul>
     </div>
     <div ui-view class="col-sm-8 col-md-9"></div>

@@ -7,6 +7,20 @@ angular.module('xbertsApp')
         return $resource(API_BASE_URL + '/messages/messages/').get(params).$promise;
       };
 
+      this.getMessage = function(messageId) {
+        var message;
+
+        return this.readMessage(messageId)
+          .then(function(data) {
+            message = data;
+
+            return this.getUnreadMessageCount();
+          }.bind(this))
+          .then(function(data) {
+            return message;
+          });
+      };
+
       this.getMessageCount = function(params) {
         var deferred = $q.defer();
 
@@ -24,13 +38,16 @@ angular.module('xbertsApp')
       this.getUnreadMessageCount = function() {
         return this.getMessageCount({
           page_size: 1,
-          category: 'DIRECT',
           direction: 'incoming',
           unread: 'True'
         })
           .then(function(count) {
             $rootScope.unreadMessageCount = count;
           });
+      };
+
+      this.readMessage = function(messageId) {
+        return $resource(API_BASE_URL + '/messages/messages/' + messageId + '/read/').save().$promise;
       };
 
       this.sendMessage = function (senderId, recipientId, subject, body, threadId, parentId) {

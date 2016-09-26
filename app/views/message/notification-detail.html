@@ -1,0 +1,22 @@
+<div class="list-title align-center">
+  <h3 class="margin-none wordwrap">{{ message.subject }}</h3>
+  <message-label category="message.category"></message-label>
+</div>
+
+<div class="list">
+  <div class="item-avatar-large">
+    <div class="item-image text-center">
+      <avatar-img src="message.sender.userProfile.avatar" name="message.sender.shortName"></avatar-img>
+    </div>
+    <div class="item-body">
+      <p class="item-body-header">
+        <span class="xb-bold xb-dark-font">{{ message.sender.shortName }}</span>
+        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
+      </p>
+      <p class="item-body-detail wordwrap" ng-bind-html="messageBody"></p>
+      <p class="margin-top-l">
+        <a class="btn btn-primary" ng-href="{{ message.actionUrl }}">{{ actionBtnText }}</a>
+      </p>
+    </div>
+  </div>
+</div>
