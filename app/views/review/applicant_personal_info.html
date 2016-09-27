@@ -26,6 +26,22 @@
             <div class="col-md-3">
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label">Country: </label>
+
+            <div class="col-md-5">
+              <select class="form-control" name="mail_country" ng-model="profile.mail_country" ng-required="true"
+                      ng-options="item.code as item.name for item in COUNTRIES">
+                <option value="">choose a country</option>
+              </select>
+
+              <div class="" ng-show="profileForm.$submitted || profileForm.mail_country.$touched"
+                   ng-messages="profileForm.mail_country.$error">
+                <p class="message-error" ng-message="required">* required.</p>
+              </div>
+            </div>
+          </div>
           <!--<div class="form-group">-->
             <!--<label class="col-md-4 control-label">Date of Birth(YYYY-MM-DD):</label>-->
 
