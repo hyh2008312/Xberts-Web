@@ -25,6 +25,6 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/review/applicants/' + applicantId + '/confirmaddress/').save().$promise;
     };
     this.exportAddress = function(reiviewId) {
-      return $resource(API_BASE_URL + '/review/reviews/' + reiviewId + '/exportAddress/').save().$promise;
+      return $resource(API_BASE_URL + '/review/reviews/' + reiviewId + '/exportaddress/').save().$promise;
     };
   }]);

@@ -194,7 +194,7 @@
         </div>
 
         <div class="margin-top clearfix" ng-show="user.isStaff()">
-          <button class="btn btn-primary" ng-show="review.selected_applicants_file_url" ng-click="exportAddress()"
+          <button class="btn btn-primary" ng-show="!review.selected_applicants_file_url" ng-click="exportAddress()"
                   ng-disabled="!review.is_publish_applicants_confirmed">Export Address
           </button>
 
