@@ -11,7 +11,7 @@
           <span class="margin-left"><i
             class="fa fa-tag"></i> {{ projectTypes | decode : project.project_category }}</span>
         </h3>
-        <a class="btn btn-gray" ng-if="project.account.id==user.getUserId()"
+        <a class="btn btn-gray" ng-if="project.account.id==user.getUserId() || user.isStaff()"
            ui-sref="application.protected.projectEdit.basic({projectId:project.id})"><i class="fa fa-edit"></i> EDIT</a>
       </div>
     </div>
