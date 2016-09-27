@@ -6,6 +6,7 @@ angular.module('xbertsApp')
 
 
       var backgroundColor = 'background-bg-light';
+      $scope.value=3;
       $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $scope.releaseReviewPaginator = releaseReviewPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;

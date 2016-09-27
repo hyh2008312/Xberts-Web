@@ -63,7 +63,7 @@
               <b>Value for Money: </b>
               <uib-rating ng-model="reportData.cost_performance" max="5" read-only="false"
                           titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-off="'font-striking glyphicon-star'"
+                          state-on="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating" ng-required="true"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.cost_performance">{{reportData.cost_performance}}'</span>
 
@@ -73,7 +73,7 @@
               <b>Usability: </b>
               <uib-rating ng-model="reportData.usability" max="5" read-only="false"
                           titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-off="'font-striking glyphicon-star'"
+                          state-on="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating"></uib-rating>
               <span class="font-striking margin-left" ng-show="reportData.usability">{{reportData.usability}}'</span>
 
@@ -83,7 +83,7 @@
               <b>Presentation: </b>
               <uib-rating ng-model="reportData.presentation" max="5" read-only="false"
                           titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-off="'font-striking glyphicon-star'"
+                          state-on="'font-striking glyphicon-star'"
                           aria-labelledby="default-rating"></uib-rating>
               <span class="font-striking margin-left"
                     ng-show="reportData.presentation">{{reportData.presentation}}'</span>
