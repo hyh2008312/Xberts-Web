@@ -410,9 +410,9 @@ angular
           }]
         }
       })
-      .state('application.preLaunchReview', {
-        url: "/prelaunch",
-        templateUrl: 'views/review/review-prelaunch-list.html',
+      .state('application.testingcampaigns', {
+        url: "/testingcampaign",
+        templateUrl: 'views/review/review-testcampaign-list.html',
         controller: 'ReviewPreLaunchListCtrl',
         reloadOnSearch: false,
         resolve: {
@@ -425,6 +425,47 @@ angular
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
+      })
+      .state('application.salecampaigns', {
+        url: "/salecampaign",
+        templateUrl: 'views/review/review-salecampaign-list.html',
+        controller: 'SaleCampaignListCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          saleCampaignPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'saleCampaigns',
+              params: {
+                stage: 'READY_FOR_SALE',
+                page_size: 12
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
+      })
+      .state('application.campaignreviews', {
+        url: "/reviews",
+        templateUrl: 'views/review/review-review-list.html',
+        controller: 'CampaignReviewListCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          reviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+            var par = {
+              name: 'all_report_list',
+              params: {
+                page_size: 12
+              },
+              fetchFunction: function (params) {
+                return AllReport.get(params).$promise;
               }
             };
             return Paginator(par).load();

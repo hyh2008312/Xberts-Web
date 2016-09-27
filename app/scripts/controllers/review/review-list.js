@@ -87,4 +87,29 @@ angular.module('xbertsApp')
       $scope.applyNow = function (id, $event) {
         $state.go('application.campaign', {reviewId: id});
       };
-    }]);
+    }])
+  .controller('SaleCampaignListCtrl', ['$scope', '$rootScope', 'saleCampaignPaginator', '$state',
+    function ($scope, $rootScope, saleCampaignPaginator, $state) {
+
+
+      var backgroundColor = 'background-bg-light';
+      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
+      $scope.saleCampaignPaginator = saleCampaignPaginator;
+      $rootScope.pageSettings.setPage();
+
+      $scope.buyNow = function (id, $event) {
+        $state.go('application.campaign', {reviewId: id});
+      };
+
+      $scope.applyNow = function (id, $event) {
+        $state.go('application.campaign', {reviewId: id});
+      };
+    }])
+.controller('CampaignReviewListCtrl', ['$scope', '$rootScope', 'reviewPaginator', '$state',
+  function ($scope, $rootScope, reviewPaginator, $state) {
+
+    var backgroundColor = 'background-bg-light';
+    $rootScope.pageSettings.setBackgroundColor('backgroundColor');
+    $scope.reviewPaginator = reviewPaginator;
+    $rootScope.pageSettings.setPage();
+  }]);
