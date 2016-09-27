@@ -90,7 +90,9 @@ angular.module('xbertsApp')
 
       $scope.exportAddress=function(){
         $scope.$emit('backdropOn', 'post');
-        ReviewService.exportAddress(review.id);
+        ReviewService.exportAddress(review.id).then(function(){
+          $scope.$emit('backdropOff', 'success');
+        });
       };
       $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
       $scope.applicantsFilter = function () {
