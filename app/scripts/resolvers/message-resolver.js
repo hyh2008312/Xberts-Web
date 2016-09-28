@@ -21,6 +21,7 @@ angular.module('xbertsApp')
         'CONFIRM_ADDRESS_REMINDER', 'REVIEW_APPLICATION', 'REVIEW_SELECTION_ANNOUNCEMENT',
         'REVIEW_SELECTION_REVOKE', 'REPORT_CHECK_IN', 'REPORT_REMINDER', 'REPORT_PAST_DUE',
         'SHIPPING_NOTIFICATION'];
+      param.direction = 'incoming';
       return MessageService.getMessages(param);
     };
 
