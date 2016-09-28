@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('MessageResolver', ['MessageService', function (MessageService) {
+  .service('MessageResolver', ['MessageService', 'Configuration', function (MessageService, Configuration) {
     this.getThreads = function ($stateParams) {
       var direction = 'incoming';
       if ($stateParams['direction'] === 'outgoing') {
@@ -17,10 +17,7 @@ angular.module('xbertsApp')
 
     this.getNotifications = function(param) {
       param.page_size = 10;
-      param.category = ['PRODUCT_INQUIRY', 'FEEDBACK', 'COMMENT', 'LIKE', 'CONFIRM_ADDRESS',
-        'CONFIRM_ADDRESS_REMINDER', 'REVIEW_APPLICATION', 'REVIEW_SELECTION_ANNOUNCEMENT',
-        'REVIEW_SELECTION_REVOKE', 'REPORT_CHECK_IN', 'REPORT_REMINDER', 'REPORT_PAST_DUE',
-        'SHIPPING_NOTIFICATION'];
+      param.category = Configuration.notificationCategories;
       param.direction = 'incoming';
       return MessageService.getMessages(param);
     };

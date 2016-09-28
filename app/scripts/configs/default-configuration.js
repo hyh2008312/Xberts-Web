@@ -34,5 +34,10 @@ angular.module('configuration.properties', [])
 
     shopifyDomain: 'xberts',
     shopifyAppId: '6',
-    shopifyKey: 'e645ba2826a8244882d1f62efd0ae361'
+    shopifyKey: 'e645ba2826a8244882d1f62efd0ae361',
+
+    notificationCategories: ['PRODUCT_INQUIRY', 'FEEDBACK', 'COMMENT', 'LIKE', 'CONFIRM_ADDRESS',
+      'CONFIRM_ADDRESS_REMINDER', 'REVIEW_APPLICATION', 'REVIEW_SELECTION_ANNOUNCEMENT',
+      'REVIEW_SELECTION_REVOKE', 'REPORT_CHECK_IN', 'REPORT_REMINDER', 'REPORT_PAST_DUE',
+      'SHIPPING_NOTIFICATION']
   });

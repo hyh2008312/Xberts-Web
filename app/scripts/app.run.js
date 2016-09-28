@@ -6,6 +6,8 @@ angular
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
+      $rootScope.unreadDirectMessageCount = 0;
+      $rootScope.unreadNotificationMessageCount = 0;
       $rootScope.unreadMessageCount = 0;
       $rootScope.summerNoteSimple = {
         height: 200,
