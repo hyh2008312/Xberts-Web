@@ -8,7 +8,8 @@ angular.module('xbertsApp')
       scope: {
         endTime: '=endTime',
         timeValue: '=?',
-        timeUnit: '=?'
+        timeUnit: '=?',
+        extraInfo:'=?'
       },
       controller: ['$scope', '$element', 'moment', function($scope, $element, moment) {
         var now = moment();

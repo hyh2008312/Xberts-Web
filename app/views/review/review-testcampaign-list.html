@@ -31,12 +31,18 @@
                   </div>
                 </div>
                 <div class="xb-databoard xb-databoard-c-primary">
-                  <div time-left end-time="review.applicationEndDate">
-                    <div class="xb-databoard-primary">
+                  <div time-left end-time="review.applicationEndDate" extra-info="review.applicantCount">
+                    <div class="xb-databoard-primary" ng-show="timeValue>0">
                       {{ timeValue }}
                     </div>
-                    <div class="xb-databoard-secondary text-capitalize">
+                    <div class="xb-databoard-secondary text-capitalize" ng-show="timeValue>0">
                       {{ timeUnit }} Left
+                    </div>
+                    <div class="xb-databoard-primary" ng-show="timeValue<=0">
+                      {{ extraInfo }}
+                    </div>
+                    <div class="xb-databoard-secondary text-capitalize" ng-show="timeValue<=0">
+                      applicants
                     </div>
                   </div>
                 </div>
