@@ -442,6 +442,7 @@ angular
               name: 'saleCampaigns',
               params: {
                 stage: 'READY_FOR_SALE',
+                status: 'APPLICATION',
                 page_size: 12
               },
               fetchFunction: function (params) {

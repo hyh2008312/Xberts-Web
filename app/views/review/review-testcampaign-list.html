@@ -10,13 +10,13 @@
 
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
-               ui-sref="application.campaign({ reviewId:review.id })">
+               ui-sref="application.testingcampaign({ reviewId:review.id })">
             <div class="image-wrap" style="background-image: url({{ review.cover }})">
 
             </div>
           </div>
           <div class="xb-card-content">
-            <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title }}</p>
+            <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">{{ review.title }}</p>
 
             <div class="xb-card-databoard-wrap">
               <div class="xb-databoard-wrap text-center">
@@ -57,27 +57,27 @@
               </a>
 
               <a ng-switch-when="APPLICATION" class="btn btn-block btn-success"
-                 ui-sref="application.campaign({ reviewId:review.id })">
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
                 JOIN NOW
               </a>
 
               <a ng-switch-when="SELECTION" class="btn btn-block btn-success"
-                 ui-sref="application.campaign({ reviewId:review.id })">
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
                 APPLICATION SCREENING
               </a>
 
               <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-success"
-                 ui-sref="application.campaign({ reviewId:review.id })">
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
                 APPLICATION SCREENING
               </a>
 
               <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
-                 ui-sref="application.campaign({ reviewId:review.id })">
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
                 SUBMIT REVIEW
               </a>
 
               <a ng-switch-when="ENDED" class="btn btn-block btn-warning"
-                 ui-sref="application.campaign({ reviewId:review.id })">
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
                 READ REVIEWS
               </a>
             </div>
