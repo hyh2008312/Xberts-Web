@@ -292,6 +292,31 @@ angular
             }]
         }
       })
+      .state('application.protected.message.notification', {
+        url: '/message/notification',
+        templateUrl: 'views/message/notification.html',
+        controller: 'MessageNotificationCtrl',
+        resolve: {
+          messagePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+            function (Paginator, MessageResolver, protectedAuthCheck) {
+              return Paginator({
+                name: 'message',
+                fetchFunction: MessageResolver.getNotifications
+              }).load();
+          }]
+        }
+      })
+      .state('application.protected.message.notificationDetail', {
+        url: '/message/notification/{messageId:[0-9]+}',
+        templateUrl: 'views/message/notification-detail.html',
+        controller: 'MessageNotificationDetailCtrl',
+        resolve: {
+          message: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
+            function ($stateParams, MessageResolver, protectedAuthCheck) {
+              return MessageResolver.viewNotification($stateParams);
+            }]
+        }
+      })
       .state('application.error', {
         url: '/error',
         templateUrl: 'views/error.html',
