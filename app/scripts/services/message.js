@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('MessageService', ['$resource', '$rootScope', '$q', 'API_BASE_URL',
-    function ($resource, $rootScope, $q, API_BASE_URL) {
+  .service('MessageService', ['$resource', '$rootScope', '$q', 'API_BASE_URL', 'Configuration',
+    function ($resource, $rootScope, $q, API_BASE_URL, Configuration) {
       this.getMessages = function(params) {
         return $resource(API_BASE_URL + '/messages/messages/').get(params).$promise;
       };
@@ -36,13 +36,30 @@ angular.module('xbertsApp')
       };
 
       this.getUnreadMessageCount = function() {
-        return this.getMessageCount({
+        var param = {
           page_size: 1,
           direction: 'incoming',
           unread: 'True'
-        })
+        };
+
+        var directParam = {};
+        angular.copy(param, directParam);
+        directParam.category = ['DIRECT'];
+
+        var notificationParam = {};
+        angular.copy(param, notificationParam);
+        notificationParam.category = Configuration.notificationCategories;
+
+        return this.getMessageCount(directParam)
           .then(function(count) {
-            $rootScope.unreadMessageCount = count;
+            $rootScope.unreadDirectMessageCount = count;
+
+            return this.getMessageCount(notificationParam);
+          }.bind(this))
+          .then(function(count) {
+            $rootScope.unreadNotificationMessageCount = count;
+            $rootScope.unreadMessageCount = $rootScope.unreadDirectMessageCount +
+              $rootScope.unreadNotificationMessageCount;
           });
       };
 
