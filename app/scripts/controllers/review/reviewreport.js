@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant','$uibModal',
-    function ($rootScope, $timeout, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant,$uibModal) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout','$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant','$uibModal',
+    function ($rootScope, $timeout,$interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant,$uibModal) {
 
       $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
@@ -79,7 +79,7 @@ angular.module('xbertsApp')
         }
       };
 
-      $scope.reportSave = function () {
+      var reportSave = function () {
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
         $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
@@ -113,14 +113,54 @@ angular.module('xbertsApp')
         }
 
       };
+
+      var reportAutoSave = function () {
+        console.log('autosave');
+        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
+
+        var report = new ReviewReport($scope.reportData);
+        report.report_status = 'DRAFT';
+        if ($scope.reportForm.$valid) {
+          $scope.reportForm.submitted = true;
+          if (!report.id) {
+            report.$save({reviewId: $stateParams.reviewId}, function (resp) {
+              $scope.reportData = resp;
+            }, function (resp) {
+            });
+          } else {
+            report.$put({reviewId: $stateParams.reviewId}, function (resp) {
+              $scope.reportData = resp;
+            }, function (resp) {
+            });
+          }
+        } else {
+          $scope.reportForm.submitted = true;
+          $scope.reportForm.$invalid = true;
+        }
+
+      };
+
+      $scope.reportSave = function () {
+        reportSave();
+      };
+
+
       // summerNote character amount check
+
+      var autoSave=null;
 
       $scope.onChange = function (contents) {
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
         var groups = contents.match(/<img /ig);
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
         $scope.reportForm.$pristine = true;
+
+        if(autoSave==null){
+          autoSave=$interval(reportAutoSave,10000);
+        }
       };
+
 
       $scope.paste = function (e) {
         var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
