@@ -75,6 +75,7 @@ angular.module('xbertsApp')
 
       $scope.tabs = [
         {title: 'detail', active: true},
+        {title: 'shipping', active: false},
         {title: 'comments', active: false},
         {title: 'reviews', active: false}
       ];
@@ -86,11 +87,14 @@ angular.module('xbertsApp')
         case 'detail':
           $scope.tabActive = 0;
           break;
-        case 'comments':
+        case 'shipping':
           $scope.tabActive = 1;
           break;
-        case 'reviews':
+        case 'comments':
           $scope.tabActive = 2;
+          break;
+        case 'reviews':
+          $scope.tabActive = 3;
           break;
         default:
           $scope.tabActive = 0;

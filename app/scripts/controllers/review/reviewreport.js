@@ -357,7 +357,7 @@ angular.module('xbertsApp')
       $scope.$emit('backdropOn', 'approve project');
       ReviewReport.patch({id: report.id, reviewId: $stateParams.reviewId}, {is_approved: 'PENDING'}, function () {
         $scope.$emit('backdropOff', 'success');
-        growl.success('review  report is approved.');
+        growl.success('review report is approved.');
       })
     };
   });

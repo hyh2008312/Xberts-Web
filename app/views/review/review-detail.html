@@ -39,11 +39,12 @@
     </div>
   </div>
 
-  <section>
+  <section id="review-detail">
     <div class=" container">
 
       <div class="row">
-        <div class="col-md-4 col-md-push-8 margin-bottom-xl">
+
+        <div class="col-xs-12 col-sm-12 margin-bottom-xl visible-xs visible-sm">
 
           <div class="five-to-three visible-xs" style="background-image: url({{ review.project.mainImage }})">
 
@@ -140,39 +141,7 @@
             </div>
           </div>
 
-          <div class="xb-card-board hidden-xs" id="shipping-info-card" ng-if="review.reviewType === 'PAID'">
-            <div class="xb-card-board-title">Shipping Info</div>
 
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Shipping Charge</p>
-
-              <p class="xb-card-board-value">
-                Free shipping
-              </p>
-            </div>
-
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Shipping Availability</p>
-
-              <p class="xb-card-board-value">
-                Worldwide
-              </p>
-            </div>
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Ships In</p>
-
-              <p class="xb-card-board-value">
-                1 week after campaign ends
-              </p>
-            </div>
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Return Policy</p>
-
-              <p class="xb-card-board-value">
-                Free return
-              </p>
-            </div>
-          </div>
 
           <div class="xb-card-board" id="contact-owner-card" ng-if="review.reviewType=='FREE_SAMPLE'">
             <div class="card-body pr">
@@ -229,7 +198,8 @@
           </div>
         </div>
 
-        <div class="col-md-8 col-md-pull-4">
+
+        <div class="col-xs-12 col-sm-12 col-md-8">
           <div class="five-to-three hidden-xs" style="background-image: url({{ review.project.mainImage }})">
 
           </div>
@@ -307,13 +277,47 @@
 
               </div>
             </uib-tab>
-            <uib-tab heading="Comments" index="1"
+            <uib-tab heading="Shipping Info" index="1" ng-show="review.reviewType === 'PAID'">
+              <div class="xb-card-board hidden-xs">
+
+                <div class="xb-card-board-item">
+                  <p class="xb-card-board-label"> Shipping Charge</p>
+
+                  <p class="xb-card-board-value">
+                    Free shipping
+                  </p>
+                </div>
+
+                <div class="xb-card-board-item">
+                  <p class="xb-card-board-label"> Shipping Availability</p>
+
+                  <p class="xb-card-board-value">
+                    Worldwide
+                  </p>
+                </div>
+                <div class="xb-card-board-item">
+                  <p class="xb-card-board-label"> Ships In</p>
+
+                  <p class="xb-card-board-value">
+                    1 week after campaign ends
+                  </p>
+                </div>
+                <div class="xb-card-board-item">
+                  <p class="xb-card-board-label"> Return Policy</p>
+
+                  <p class="xb-card-board-value">
+                    Free return
+                  </p>
+                </div>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Comments" index="2"
                      select="select('comments')">
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
             </uib-tab>
-            <uib-tab index="2" select="select('reviews')" ng-show="isShowReview">
+            <uib-tab index="3" select="select('reviews')" ng-show="isShowReview">
               <uib-tab-heading>
                 Expert Reviews
                 <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
@@ -366,6 +370,154 @@
               </div>
             </uib-tab>
           </uib-tabset>
+        </div>
+
+        <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed data-spy="affix" data-offset-top="340">
+
+          <div class="xb-card-board">
+            <div class="xb-card-board-item">
+              <p ng-switch="review.reviewType" class="xb-card-board-label">
+                <span ng-switch-when="FREE_SAMPLE"> Campaign Reward</span>
+                <span ng-switch-default> Early Bird Price</span>
+              </p>
+
+              <p class="xb-card-board-value" ng-switch="review.reviewType">
+                <span ng-switch-when="FREE_SAMPLE">Free Sample</span>
+                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
+              </p>
+            </div>
+
+            <div class="xb-card-board-item">
+              <p class="xb-card-board-label"> Original Price</p>
+
+              <p class="xb-card-board-value">
+                <del>{{ review.project.retailPrice.amount |currency }}</del>
+              </p>
+            </div>
+
+            <div class="xb-card-board-item">
+              <p class="xb-card-board-label"> Time Left</p>
+
+              <p class="xb-card-board-value">
+                <timer end-time="review.applicationEndDate">
+                  {{days|doubleDigit}} day{{daysS}},
+                  {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
+                </timer>
+              </p>
+            </div>
+
+            <div class="xb-card-board-item" ng-switch="review.reviewType">
+              <div ng-switch-when="FREE_SAMPLE">
+                <p class="xb-card-board-label"> Total Available Units</p>
+
+                <p class="xb-card-board-value">{{ review.sampleNum }}&nbsp;
+                  <span ng-pluralize count="review.sampleNum"
+                        when="{'0': 'sample',
+                               '1': 'sample',
+                               'other': 'samples'}"></span>
+                </p>
+              </div>
+              <div ng-switch-default>
+                <p class="xb-card-board-label"> Units Sold</p>
+
+                <div class="font-gray-light progress-tip-down progress-bar-thin">
+
+                  <uib-progressbar class="active" max="review.flashsale.totalUnits"
+                                   value="review.flashsale.totalUnits-review.flashsale.availableUnits">
+                  </uib-progressbar>
+                  <div class="progress-tip">
+                    <span
+                      class="progress-tip-left"> {{ percentage() }}% Claimed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-if="review.reviewType=='PAID' && saleInfo.reload && saleInfo.productVariants.length>1 "
+                 class="xb-card-board-item">
+              <p class="xb-card-board-label" ng-bind="saleInfo.options"> Options</p>
+              <select class="form-control" name="variant"
+                      ng-options="item as item.title for item in saleInfo.productVariants"
+                      ng-model="saleInfo.variant"
+                      ng-required="true">
+              </select>
+            </div>
+
+            <div class="xb-card-board-item" ng-if="review.reviewType=='PAID'">
+              <p class="xb-card-board-label"> Quantity</p>
+              <select class="form-control" name="quantity"
+                      ng-model="saleInfo.quantity"
+                      ng-required="true">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div class="margin-top" ng-include="'views/review/review-main-action.html'">
+            </div>
+          </div>
+
+          <div class="xb-card-board" id="contact-owner-card" ng-if="review.reviewType=='FREE_SAMPLE'">
+            <div class="card-body pr">
+              <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
+                <div class="item-image">
+                  <avatar-img src="review.project.account.avatar"></avatar-img>
+                </div>
+                <div class="item-body">
+                  <p class="item-body-header">
+
+                  <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
+                    review.project.account.fullname }}</a></p>
+
+                </div>
+              </div>
+              <button class="btn btn-block btn-primary text-uppercase" ng-show="!isCurrentUser"
+                      ng-click="contactUser()">
+                Contact Owner
+              </button>
+            </div>
+          </div>
+
+          <div class="xb-card-board" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
+            <div class="card-body">
+              <div ng-show="review.status === 'SELECTION'">
+                <div class="margin-top">
+                  <a class="btn btn-block btn-primary"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'CONFIRMATION'">
+                <div class="margin-top">
+                  <a class="btn btn-block btn-primary"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'REVIEW'">
+                <div class="margin-top">
+                  <a class="btn btn-block btn-primary"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Shipping Address</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'ENDED'">
+                <div class="margin-top">
+                  <a class="btn btn-block btn-primary"
+                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                    Reports</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

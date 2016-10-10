@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('timeLeft', ['$compile', function($compile) {
+  .directive('timeLeft', ['$compile', function ($compile) {
     return {
       restrict: 'A',
       replace: false,
@@ -9,9 +9,9 @@ angular.module('xbertsApp')
         endTime: '=endTime',
         timeValue: '=?',
         timeUnit: '=?',
-        extraInfo:'=?'
+        extraInfo: '=?'
       },
-      controller: ['$scope', '$element', 'moment', function($scope, $element, moment) {
+      controller: ['$scope', '$element', 'moment', function ($scope, $element, moment) {
         var now = moment();
         var endTime = moment($scope.endTime);
 
@@ -47,4 +47,21 @@ angular.module('xbertsApp')
         $element.append($compile($element.contents())($scope));
       }]
     };
-  }]);
+  }])
+  .directive('autoFixed', function () {
+    return {
+      restrict: 'A',
+      replace: false,
+      link: function postLink(scope, element, attrs) {
+
+        element.on("affix.bs.affix",function(){
+          $(this).css("width", element.width());
+          $(this).css("left", element.offset().left);
+        });
+        element.on("affix-top.bs.affix",function(){
+          $(this).css("width", '');
+          $(this).css("left", '');
+        })
+      }
+    };
+  });
