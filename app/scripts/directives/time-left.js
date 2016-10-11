@@ -48,24 +48,29 @@ angular.module('xbertsApp')
       }]
     };
   }])
-  .directive('autoFixed', ['$timeout',function ($timeout) {
+  .directive('autoFixed', ['$timeout', function ($timeout) {
     return {
       restrict: 'A',
       replace: false,
       link: function postLink(scope, element, attrs) {
 
-        element.on("affix.bs.affix",function(){
-          $(this).css("width", element.width());
+        element.on("affix.bs.affix", function () {
+          $(this).css("width", element.innerWidth());
           $(this).css("left", element.offset().left);
         });
-        element.on("affix-top.bs.affix",function(){
+        element.on("affix-top.bs.affix", function () {
           $(this).css("width", '');
           $(this).css("left", '');
         });
 
         function applyAffix() {
-          $timeout(function() {
-            element.affix({ offset: { top: element.offset().top - 20 } });
+          $timeout(function () {
+            element.affix({
+              offset: {
+                top: element.offset().top + element.innerHeight() + 20,
+                bottom: 130
+              }
+            });
           });
         }
 
