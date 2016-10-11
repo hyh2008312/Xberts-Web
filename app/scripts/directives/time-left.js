@@ -48,7 +48,7 @@ angular.module('xbertsApp')
       }]
     };
   }])
-  .directive('autoFixed', function () {
+  .directive('autoFixed', ['$timeout',function ($timeout) {
     return {
       restrict: 'A',
       replace: false,
@@ -61,7 +61,20 @@ angular.module('xbertsApp')
         element.on("affix-top.bs.affix",function(){
           $(this).css("width", '');
           $(this).css("left", '');
-        })
+        });
+
+        function applyAffix() {
+          $timeout(function() {
+            element.affix({ offset: { top: element.offset().top - 20 } });
+          });
+        }
+
+        //$rootScope.$on('$stateChangeSuccess', function() {
+        //  $element.removeData('bs.affix').removeClass('affix affix-top affix-bottom');
+        //  applyAffix();
+        //});
+
+        applyAffix();
       }
     };
-  });
+  }]);
