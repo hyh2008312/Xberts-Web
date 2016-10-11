@@ -47,7 +47,8 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-md-push-8 margin-bottom-xl">
+
+        <div class="col-xs-12 col-sm-12 col-md-4 margin-bottom-xl visible-xs visible-sm">
           <div class="xb-card-board">
             <div class="card-body">
               <div class="xb-card-board-item">
@@ -112,7 +113,8 @@
           </div>
 
         </div>
-        <div class="col-md-8 col-md-pull-4">
+
+        <div class="col-xs-12 col-sm-12 col-md-8">
           <uib-tabset class="background-bg-white" active="tabActive">
             <uib-tab heading="Description" index="0">
               <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
@@ -124,6 +126,72 @@
               </div>
             </uib-tab>
           </uib-tabset>
+        </div>
+
+        <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed data-spy="affix" data-offset-top="340">
+          <div class="xb-card-board">
+            <div class="card-body">
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Product Name</p>
+
+                <p class="xb-card-board-value">
+                  {{ report.product_title }}
+                </p>
+              </div>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Original Price</p>
+
+                <p class="xb-card-board-value">
+                  {{ report.product_price.amount |currency }}
+                </p>
+              </div>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Value for Money</p>
+
+                <p class="xb-card-board-value">
+                  <span uib-rating ng-model="report.cost_performance" max="5" read-only="true" state-on="'font-striking glyphicon-star'"></span>
+                </p>
+              </div>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Usability</p>
+
+                <p class="xb-card-board-value">
+                  <span uib-rating ng-model="report.usability" max="5" read-only="true" state-on="'font-striking glyphicon-star'"></span>
+                </p>
+              </div>
+
+              <div class="xb-card-board-item">
+                <p class="xb-card-board-label"> Presentation</p>
+
+                <p class="xb-card-board-value">
+                  <span uib-rating ng-model="report.presentation" max="5" read-only="true" state-on="'font-striking glyphicon-star'"></span>
+                </p>
+              </div>
+
+
+
+              <div class="pr margin-top-l margin-bottom-l">
+                <a ng-if="report.paid_review" class="btn btn-block btn-primary text-uppercase" ui-sref="application.campaign({reviewId:report.paid_review})">Shop Now</a>
+                <a ng-if="!report.paid_review && report.buy_url" class="btn btn-block btn-primary text-uppercase" ng-href="{{report.buy_url }}" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="xb-card-board">
+            <div class="card-body">
+              <h4 class="xb-align-center">Do you like this review?</h4>
+              <div class="pr margin-top-l margin-bottom-l">
+                <save class="align-center" title="Like" icon="fa-thumbs-up"></save>
+              </div>
+              <div>
+                <saver></saver>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
