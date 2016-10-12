@@ -48,15 +48,15 @@ angular.module('xbertsApp')
       }]
     };
   }])
-  .directive('autoFixed', ['$timeout', function ($timeout) {
+  .directive('autoFixed', ['$timeout','$window', function ($timeout,$window) {
     return {
       restrict: 'A',
       replace: false,
       link: function postLink(scope, element, attrs) {
 
         element.on("affix.bs.affix", function () {
-          $(this).css("width", element.innerWidth());
-          $(this).css("left", element.offset().left);
+          $(this).css("width", element.parent().innerWidth() * 0.33333);
+          $(this).css("left", element.parent().innerWidth() * 0.66666 + element.parent().offset().left);
         });
         element.on("affix-top.bs.affix", function () {
           $(this).css("width", '');
@@ -67,17 +67,25 @@ angular.module('xbertsApp')
           $timeout(function () {
             element.affix({
               offset: {
-                top: element.offset().top + element.innerHeight() + 20,
-                bottom: 130
+                top: element.offset().top - 20
               }
             });
           });
+        }
+
+        function resize() {
+          if(element.hasClass('affix')){
+            element.css("width", element.parent().innerWidth() * 0.33333);
+            element.css("left", element.parent().innerWidth() * 0.66666 + element.parent().offset().left);
+          }
         }
 
         //$rootScope.$on('$stateChangeSuccess', function() {
         //  $element.removeData('bs.affix').removeClass('affix affix-top affix-bottom');
         //  applyAffix();
         //});
+
+        angular.element($window).bind('resize', resize);
 
         applyAffix();
       }
