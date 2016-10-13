@@ -16,7 +16,7 @@
           </div>
           <div class="xb-card-cover">
             {{ ( review.project.retailPrice.amount - review.flashsale.salePrice.amount ) /
-            review.project.retailPrice.amount | percentage}}% Off
+            review.project.retailPrice.amount | percentage}}% <span class="xb-card-cover-tip">OFF</span>
           </div>
           <div class="xb-card-content">
             <p class="xb-card-title " ui-sref="application.salecampaign({ reviewId:review.id })">{{ review.title }}</p>
