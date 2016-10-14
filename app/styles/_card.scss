@@ -17,23 +17,32 @@
   position: absolute;
   top:0;
   left: 0;
-  min-width: 6em;
+  width: 6em;
   height: 4em;
   background-color: rgba(0,0,0,0.5);
   color: $strikingColor;
-  padding: 0.9em 0.8em;
+  padding: 0.8em;
   line-height: 1em;
   text-align: center;
+  span+span{
+    padding-top: 0.5em;
+  }
 }
 .xb-card-cover-number{
   font-size: 16px;
   font-weight: bold;
+  &--block{
+    @extend .xb-card-cover-number;
+    display: block;
+  }
 }
 .xb-card-cover-text{
-  display: block;
   font-size: 12px;
   text-align: center;
-  padding-top: 0.6em;
+  &--block{
+    @extend .xb-card-cover-text;
+    display: block;
+  }
 }
 
 .xb-card-board{
@@ -86,7 +95,7 @@
   padding: 16px;
   .xb-card-title {
     font-size: 17.6px;
-    margin-bottom: 32px;
+    margin-bottom: 15px;
     color: $primaryFontColor;
     position: relative;
     height: 51px;
@@ -98,7 +107,7 @@
   }
 
   .xb-card-databoard-wrap {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 
     .xb-avatar-list {
       img {
