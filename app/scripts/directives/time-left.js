@@ -67,7 +67,7 @@ angular.module('xbertsApp')
           $timeout(function () {
             element.affix({
               offset: {
-                top: element.offset().top - 20
+                top: element.offset().top + element.innerHeight() + 20
               }
             });
           });
