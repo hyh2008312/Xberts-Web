@@ -7,31 +7,7 @@
         <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
         <a class="a-gray-primary" ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">{{
           report.applicant.reviewer.fullname }}</a>
-        <button class="button button-primary button-circle button-small" socialshare
-                socialshare-provider="linkedin"
-                socialshare-description="{{ pageSettings._description }}"
-                socialshare-text="{{ pageSettings._title }}"
-                socialshare-source="{{ pageSettings._shareImage }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-linkedin"></i>
-        </button>
-        <button class="button button-royal button-circle button-small" socialshare
-                socialshare-provider="facebook"
-                socialshare-description="{{ pageSettings._description }}"
-                socialshare-text="{{ pageSettings._title }}"
-                socialshare-source="{{ pageSettings._shareImage }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-facebook"></i>
-        </button>
 
-        <button class="button button-caution button-circle button-small" socialshare
-                socialshare-provider="twitter"
-                socialshare-description=""
-                socialshare-text="{{ pageSettings._title }}"
-                socialshare-source="{{ pageSettings._shareImage }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-twitter"></i>
-        </button>
       </p>
       <a class="btn btn-gray" ng-if="report.applicant.reviewer.id==user.getUserId()"
          ui-sref="application.protected.crowdtestingReport({reviewId:stateParams.reviewId})"><i class="fa fa-edit"></i> EDIT</a>
@@ -49,6 +25,33 @@
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-4 margin-bottom-xl visible-xs visible-sm">
+          <div class="xb-card-board">
+            <button class="button button-primary button-circle button-small" socialshare
+                    socialshare-provider="linkedin"
+                    socialshare-description="{{ pageSettings._description }}"
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-linkedin"></i>
+            </button>
+            <button class="button button-royal button-circle button-small" socialshare
+                    socialshare-provider="facebook"
+                    socialshare-description="{{ pageSettings._description }}"
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-facebook"></i>
+            </button>
+
+            <button class="button button-caution button-circle button-small" socialshare
+                    socialshare-provider="twitter"
+                    socialshare-description=""
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-twitter"></i>
+            </button>
+          </div>
           <div class="xb-card-board">
             <div class="card-body">
               <div class="xb-card-board-item">
@@ -129,6 +132,34 @@
         </div>
 
         <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed>
+          <div class="xb-card-board">
+            <button class="button button-primary button-circle button-small" socialshare
+                    socialshare-provider="linkedin"
+                    socialshare-description="{{ pageSettings._description }}"
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-linkedin"></i>
+            </button>
+            <button class="button button-royal button-circle button-small" socialshare
+                    socialshare-provider="facebook"
+                    socialshare-description="{{ pageSettings._description }}"
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-facebook"></i>
+            </button>
+
+            <button class="button button-caution button-circle button-small" socialshare
+                    socialshare-provider="twitter"
+                    socialshare-description=""
+                    socialshare-text="{{ pageSettings._title }}"
+                    socialshare-source="{{ pageSettings._shareImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-twitter"></i>
+            </button>
+          </div>
+
           <div class="xb-card-board">
             <div class="card-body">
               <div class="xb-card-board-item">

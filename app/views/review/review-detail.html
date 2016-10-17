@@ -8,33 +8,6 @@
           <i class="fa fa-tag"></i>&nbsp;<span
           ng-repeat="category in review.project.categories">{{ category.name }}<span ng-if="!$last">,</span></span>
         </span>
-
-        <button class="button button-primary button-circle button-small" socialshare
-                socialshare-provider="linkedin"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.project.title }}"
-                socialshare-source="{{ review.project.mainImage }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-linkedin"></i>
-        </button>
-        <button class="button button-royal button-circle button-small" socialshare
-                socialshare-provider="facebook"
-                socialshare-media="{{ review.project.mainImage }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.project.title }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-facebook"></i>
-        </button>
-
-        <button class="button button-caution button-circle button-small" socialshare
-                socialshare-provider="twitter"
-                socialshare-media="{{ review.project.mainImage }}"
-                socialshare-description="{{ review.project.description }}"
-                socialshare-text="{{ review.project.title }}"
-                socialshare-source="{{ review.project.mainImage }}"
-                socialshare-url="{{ pageSettings.getUrl() }}">
-          <i class="fa fa-twitter"></i>
-        </button>
       </p>
     </div>
   </div>
@@ -48,6 +21,35 @@
 
           <div class="five-to-three visible-xs" style="background-image: url({{ review.project.mainImage }})">
 
+          </div>
+
+          <div class="xb-card-board">
+            <button class="button button-primary button-circle button-small" socialshare
+                    socialshare-provider="linkedin"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-source="{{ review.project.mainImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-linkedin"></i>
+            </button>
+            <button class="button button-royal button-circle button-small" socialshare
+                    socialshare-provider="facebook"
+                    socialshare-media="{{ review.project.mainImage }}"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-facebook"></i>
+            </button>
+
+            <button class="button button-caution button-circle button-small" socialshare
+                    socialshare-provider="twitter"
+                    socialshare-media="{{ review.project.mainImage }}"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-source="{{ review.project.mainImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-twitter"></i>
+            </button>
           </div>
 
           <div class="xb-card-board">
@@ -373,6 +375,35 @@
         </div>
 
         <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed>
+
+          <div class="xb-card-board">
+            <button class="button button-primary button-circle button-large" socialshare
+                    socialshare-provider="linkedin"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-source="{{ review.project.mainImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-linkedin"></i>
+            </button>
+            <button class="button button-royal button-circle button-large" socialshare
+                    socialshare-provider="facebook"
+                    socialshare-media="{{ review.project.mainImage }}"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-facebook"></i>
+            </button>
+
+            <button class="button button-caution button-circle button-large" socialshare
+                    socialshare-provider="twitter"
+                    socialshare-media="{{ review.project.mainImage }}"
+                    socialshare-description="{{ review.project.description }}"
+                    socialshare-text="{{ review.project.title }}"
+                    socialshare-source="{{ review.project.mainImage }}"
+                    socialshare-url="{{ pageSettings.getUrl() }}">
+              <i class="fa fa-twitter"></i>
+            </button>
+          </div>
 
           <div class="xb-card-board">
             <div class="xb-card-board-item">
