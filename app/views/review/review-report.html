@@ -180,13 +180,13 @@
             </div>
           </div>
 
-          <div class="xb-card-board affix-hidden">
+          <div class="xb-card-board">
             <div class="card-body">
               <h4 class="xb-align-center">Do you like this review?</h4>
               <div class="pr margin-top-l margin-bottom-l">
                 <save class="align-center" title="Like" icon="fa-thumbs-up"></save>
               </div>
-              <div>
+              <div class="affix-hidden">
                 <saver></saver>
               </div>
             </div>
@@ -204,8 +204,8 @@
         Get it!
       </div>
       <div class="col-xs-6 xb-align-center">
-        <a ng-if="report.paid_review" class="btn btn-block btn-primary text-uppercase" ui-sref="application.salescampaign({reviewId:report.paid_review})">Shop Now</a>
-        <a ng-if="!report.paid_review && report.buy_url" class="btn btn-block btn-primary text-uppercase" ng-href="{{report.buy_url }}" target="_blank">Shop Now</a>
+        <a ng-if="report.paid_review" class="btn btn-block btn-primary text-uppercase" ui-sref="application.salescampaign({reviewId:report.paid_review})">See Product</a>
+        <a ng-if="!report.paid_review && report.buy_url" class="btn btn-block btn-primary text-uppercase" ng-href="{{report.buy_url }}" target="_blank">See Product</a>
       </div>
     </div>
   </div>
