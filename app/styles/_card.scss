@@ -209,10 +209,20 @@
   border-radius: 50%;
 }
 
+.xb-profile-avatar-wrap img{
+  width: 44px;
+  height: 44px;
+  // mixin
+  border-radius: 50%;
+}
 .xb-profile-name {
   //font-size: ;
   @include ellipsisMultiText(1);
   margin-bottom: 2px;
+}
+
+.xb-profile-company{
+
 }
 
 .xb-profile + .xb-profile {
