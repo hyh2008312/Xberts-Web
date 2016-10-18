@@ -7,7 +7,7 @@ angular.module('xbertsApp')
         this._title = title || 'Xberts - Discover Creative Products Through Expert Reviews';
         this._description = description || 'Xberts is a community-curated marketplace for people to explore the best tech and designs through unbiased reviews from experts and opinion leaders.';
         this._backgroundColor = background || 'background-bg-light';
-        this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts.png?s=002189d55781053e56aea0dabb832b32';
+        this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts_logo_sqaure_200x200.jpg?s=17eb238192e044bc8909cd83c934da82';
         this._hiddenFooter = hiddenFooter && true;
 
         this.setTitle = function (title) {
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
           this._title = title || 'Xberts - Discover Creative Products Through Expert Reviews';
           this._description = description || 'Xberts is a community-curated marketplace for people to explore the best tech and designs through unbiased reviews from experts and opinion leaders.';
           this._backgroundColor = background || 'background-bg-light';
-          this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts.png?s=002189d55781053e56aea0dabb832b32';
+          this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts_logo_sqaure_200x200.jpg?s=17eb238192e044bc8909cd83c934da82';
           this._hiddenFooter = hiddenFooter && true;
         };
         this.getUrl=function(){
