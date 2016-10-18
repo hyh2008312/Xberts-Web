@@ -132,6 +132,11 @@ a.block-link {
   @media screen and (max-width: $screen-sm-min) {
     height: $xb-coupon-bar-height-screen-sm;
   }
+
+  a {
+    color: $xb-default-font-color-inverse;
+    text-decoration: underline;
+  }
 }
 
 .navbar {

@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3>Invite Friends</h3>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <p>Invite your friends to join. Get a $10 off coupon for each friend that signs up!</p>
+    <p>Send the following link to your friends or click the facebook share button.</p>
+    <p><blockquote>{{ inviteLink }}</blockquote></p>
+  </div>
+</div>
+<div class="modal-footer">
+  <a type="button" href="#" class="btn btn-primary btn-lg facebook-btn" ng-click="facebookShare()">
+    <i class="fa fa-facebook"></i>
+    <span class="linkedin-btn-title">Share on Facebook</span>
+  </a>
+</div>

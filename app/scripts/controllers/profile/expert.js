@@ -100,9 +100,24 @@ angular.module('xbertsApp')
         sendMessage();
       };
 
+      var inviteFriend = function () {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
+
+        var inviteFriendModal = $uibModal.open({
+          templateUrl: 'views/modal/invite-friend.html',
+          windowClass: 'dialog-vertical-center',
+          controller: 'InviteFriendCtrl'
+        });
+      };
+
       if ($stateParams.action === 'contact' && $rootScope.user.authRequired() &&
         $rootScope.user.getUserId() !== $scope.expert.user_id) {
         sendMessage();
+      } else if ($stateParams.action === 'invite' && $rootScope.user.authRequired() &&
+        $rootScope.user.getUserId() === $scope.expert.user_id) {
+        inviteFriend();
       }
 
       $scope.editProfile = function () {
