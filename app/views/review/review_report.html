@@ -18,9 +18,9 @@
               <ul>
                 <li> You are encouraged to be creative and write in your personal style.</li>
                 <li> Please include pictures and videos to demonstrate your opinions visually. If you would like to
-                  provide videos, upload the video to YouTube and paste the url in the content page.
+                  provide videos, please upload them to Youtube first.
                 </li>
-                <li> The review report should be uploaded before
+                <li> Please submit your review post before the deadline:
                   {{ applicant.review.date_end | amDateFormat:'MMM DD,YYYY'}}.
                 </li>
                 <li> Please feel free to contact us at info@xberts.com if you have any questions or concerns.</li>
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>Create a title for your review:</label>
+              <label>Create an engaging title for your review: </label>
               <input type="text" class="form-control" name='title' ng-model="reportData.title"
                      ng-required="true" ng-maxlength="200">
 
@@ -45,14 +45,97 @@
               </div>
 
             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>List out at least 3 Pros:</label>
+                  <ul class="xb-input-list">
+                    <li><input type="text" class="form-control" name='pro_1' ng-model="reportDataTemp.pro_1"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.pro_1.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='pro_2' ng-model="reportDataTemp.pro_2"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.pro_2.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='pro_3' ng-model="reportDataTemp.pro_3"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.pro_3.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='pro_4' ng-model="reportDataTemp.pro_4"
+                               ng-maxlength="200"></li>
+                    <li><input type="text" class="form-control" name='pro_5' ng-model="reportDataTemp.pro_5"
+                               ng-maxlength="200"></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>List out at least 3 Cons:</label>
+                  <ul class="xb-input-list">
+                    <li><input type="text" class="form-control" name='con_1' ng-model="reportDataTemp.con_1"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.con_1.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='con_2' ng-model="reportDataTemp.con_2"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.con_2.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='con_3' ng-model="reportDataTemp.con_3"
+                               ng-required="true" ng-maxlength="200">
+                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
+                           ng-messages="reportForm.con_3.$error">
+                        <p class="message-error" ng-message="required">* required.</p>
+
+                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
+                      </div>
+                    </li>
+                    <li><input type="text" class="form-control" name='con_4' ng-model="reportDataTemp.con_4"
+                               ng-maxlength="200"></li>
+                    <li><input type="text" class="form-control" name='con_5' ng-model="reportDataTemp.con_5"
+                               ng-maxlength="200"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
             <div class="form-group">
-              <label>Share your experience of using this product:</label>
+              <label>Describe the unboxing & user experience of this product:</label>
               <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
                           on-image-upload="imageUpload(files)" editable="editable"
-                          editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" on-keyup="setPrevious(evt)"></summernote>
+                          editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)"
+                          on-keyup="setPrevious(evt)"></summernote>
               <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
                 <span ng-show="detailCharacterCount<1000"> Please include at least 1000 characters.</span>
               </p>
+
               <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
                 <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
               </p>
@@ -92,8 +175,12 @@
             </div>
           </div>
           <div class="xb-align-center margin-top-xl">
-            <button type="button" class="button button-primary button-rounded button-mid-width" ng-click="reportSave()">Save Draft</button>
-            <button type="submit" class="button button-primary button-rounded button-mid-width" ng-disabled="!formCheck()">Publish</button>
+            <button type="button" class="button button-primary button-rounded button-mid-width" ng-click="reportSave()">
+              Save Draft
+            </button>
+            <button type="submit" class="button button-primary button-rounded button-mid-width"
+                    ng-disabled="!formCheck()">Publish
+            </button>
           </div>
         </div>
       </form>

@@ -635,3 +635,13 @@ $message-types: (
   color: #fff ;
   background-color: $primaryColor;
 }
+
+ul.xb-input-list{
+  list-style: none;
+  padding: 5px;
+  border:1px solid $lightGrayColor;
+  border-radius: 5px;
+  li + li{
+    margin-top: 5px;
+  }
+}

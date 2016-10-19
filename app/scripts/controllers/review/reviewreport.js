@@ -1,13 +1,78 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout','$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant','$uibModal',
-    function ($rootScope, $timeout,$interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant,$uibModal) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal',
+    function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal) {
 
       $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.reportData = {
         applicant_id: applicant.id
+      };
+      $scope.reportDataTemp = {};
+
+      var preprocessProsAndCons = function () {
+        var pros = '';
+        if ($scope.reportDataTemp.pro_1) {
+          pros = pros + $scope.reportDataTemp.pro_1;
+        }
+        if ($scope.reportDataTemp.pro_2) {
+          pros = pros + '##' + $scope.reportDataTemp.pro_2;
+        }
+        if ($scope.reportDataTemp.pro_3) {
+          pros = pros + '##' + $scope.reportDataTemp.pro_3;
+        }
+        if ($scope.reportDataTemp.pro_4) {
+          pros = pros + '##' + $scope.reportDataTemp.pro_4;
+        }
+        if ($scope.reportDataTemp.pro_5) {
+          pros = pros + '##' + $scope.reportDataTemp.pro_5;
+        }
+        $scope.reportData.pros = pros;
+
+
+        var cons = '';
+        if ($scope.reportDataTemp.con_1) {
+          cons = cons + $scope.reportDataTemp.con_1;
+        }
+        if ($scope.reportDataTemp.con_2) {
+          cons = cons + '##' + $scope.reportDataTemp.con_2;
+        }
+        if ($scope.reportDataTemp.con_3) {
+          cons = cons + '##' + $scope.reportDataTemp.con_3;
+        }
+        if ($scope.reportDataTemp.con_4) {
+          cons = cons + '##' + $scope.reportDataTemp.con_4;
+        }
+        if ($scope.reportDataTemp.con_5) {
+          cons = cons + '##' + $scope.reportDataTemp.con_5;
+        }
+        $scope.reportData.cons = cons;
+
+      };
+
+      var fillReportDataTemp = function () {
+        var prosArray =[];
+        if($scope.reportData.pros){
+          prosArray= $scope.reportData.pros.split("##");
+        }
+
+        $scope.reportDataTemp.pro_1 = prosArray[0] ? prosArray[0] : '';
+        $scope.reportDataTemp.pro_2 = prosArray[1] ? prosArray[1] : '';
+        $scope.reportDataTemp.pro_3 = prosArray[2] ? prosArray[2] : '';
+        $scope.reportDataTemp.pro_4 = prosArray[3] ? prosArray[3] : '';
+        $scope.reportDataTemp.pro_5 = prosArray[4] ? prosArray[4] : '';
+
+        var consArray =[];
+        if($scope.reportData.cons){
+          consArray= $scope.reportData.cons.split("##");
+        }
+
+        $scope.reportDataTemp.con_1 = consArray[0] ? consArray[0] : '';
+        $scope.reportDataTemp.con_2 = consArray[1] ? consArray[1] : '';
+        $scope.reportDataTemp.con_3 = consArray[2] ? consArray[2] : '';
+        $scope.reportDataTemp.con_4 = consArray[3] ? consArray[3] : '';
+        $scope.reportDataTemp.con_5 = consArray[4] ? consArray[4] : '';
       };
       // try to fetch the previous data of the applicant for this survey
       $scope.$emit('backdropOn', 'report get');
@@ -15,6 +80,7 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOff', 'report get completed');
         if (data.count !== undefined && data.count > 0) {
           $scope.reportData = data.results[0];
+          fillReportDataTemp();
         }
         $scope.onChange($scope.reportData.details || "");
       });
@@ -36,11 +102,14 @@ angular.module('xbertsApp')
       $scope.formCheck = function () {
         return $scope.reportForm.$valid && $scope.imageCount > 2 && !$scope.cost_performance_error() && !$scope.usability_error() && !$scope.presentation_error() && $scope.detailCharacterCount > 999
       };
+
+
       $scope.reportFormSubmit = function () {
         $scope.reportForm.submitted = true;
 
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
         $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
+        preprocessProsAndCons();
 
         if ($scope.formCheck()) {
           $scope.$emit('backdropOn', 'post');
@@ -80,6 +149,10 @@ angular.module('xbertsApp')
       };
 
       var reportSave = function () {
+
+        preprocessProsAndCons();
+
+        console.log($scope.reportData);
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
         $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
@@ -115,7 +188,9 @@ angular.module('xbertsApp')
       };
 
       var reportAutoSave = function () {
-        console.log('autosave');
+
+        preprocessProsAndCons();
+
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
         $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
@@ -148,7 +223,7 @@ angular.module('xbertsApp')
 
       // summerNote character amount check
 
-      var autoSave=null;
+      var autoSave = null;
 
       $scope.onChange = function (contents) {
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
@@ -156,8 +231,8 @@ angular.module('xbertsApp')
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
         $scope.reportForm.$pristine = true;
 
-        if(autoSave==null){
-          autoSave=$interval(reportAutoSave,10000);
+        if (autoSave == null) {
+          autoSave = $interval(reportAutoSave, 10000);
         }
       };
 
@@ -326,7 +401,6 @@ angular.module('xbertsApp')
       };
 
 
-
     }
   ])
   .
@@ -337,12 +411,12 @@ angular.module('xbertsApp')
     var description = report.description;
     var backgroundColor = 'background-bg-light';
     var shareImage = report.image;
-    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage,true);
+    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
     $scope.tabs = [
       {title: 'detail', active: true},
       {title: 'comments', active: false}
     ];
-    $scope.tabActive=0;
+    $scope.tabActive = 0;
 
     $scope.commentsTabActive = false;
     $scope.select = function (step) {

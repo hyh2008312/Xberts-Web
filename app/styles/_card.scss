@@ -219,10 +219,15 @@
   //font-size: ;
   @include ellipsisMultiText(1);
   margin-bottom: 2px;
+  color: $grayColor;
+  &:hover {
+    color: $primaryColor;
+    cursor: pointer;
+  }
 }
 
 .xb-profile-company{
-
+  color: $grayColor;
 }
 
 .xb-profile + .xb-profile {
