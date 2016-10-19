@@ -400,12 +400,6 @@ angular.module('xbertsApp')
         });
       };
 
-      // Send project category to GA
-      if (dataLayer) {
-        dataLayer.push({
-          projectCategory: $scope.applicant.review.project.categories[0].name
-        });
-      }
     }])
   .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
     $scope.report = report;
@@ -437,4 +431,11 @@ angular.module('xbertsApp')
         growl.success('review report is approved.');
       })
     };
+
+    // Send project category to GA
+    if (dataLayer) {
+      dataLayer.push({
+        projectCategory: $scope.report.product_categories[0].name
+      });
+    }
   });
