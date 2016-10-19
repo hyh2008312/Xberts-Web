@@ -75,7 +75,7 @@ angular.module('xbertsApp')
         };
 
         this.getInviteLink = function() {
-          return $location.protocol() + '://' + $location.host() + $state.href('application.testingcampaigns') +
+          return $location.protocol() + '://' + location.host + $state.href('application.testingcampaigns') +
             '?source=userrefer_' + this._inviteToken;
         };
 
