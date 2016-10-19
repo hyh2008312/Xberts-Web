@@ -156,7 +156,7 @@ angular.module('xbertsApp')
 
         ShopifyService.buy(review.flashsale.id, $scope.saleInfo.variant, $rootScope.user, $scope.saleInfo.quantity)
           .then(function () {
-            AnalyticsService.sendPageView($location.path() + '/buy');
+            AnalyticsService.sendPageView($location.path() + '/buy', null, $scope.review.project.categories[0].name);
 
             // Show spinner until purchase flow redirect
           })
@@ -166,7 +166,7 @@ angular.module('xbertsApp')
       };
 
       $scope.buyClicked = function () {
-        $state.go('application.campaign', {reviewId: review.id, action: 'buy'});
+        $state.go('application.salecampaign', {reviewId: review.id, action: 'buy'});
 
         buyProduct();
       };
@@ -175,5 +175,10 @@ angular.module('xbertsApp')
         buyProduct();
       }
 
-
+      // Send project category to GA
+      if (dataLayer) {
+        dataLayer.push({
+          projectCategory: $scope.review.project.categories[0].name
+        });
+      }
     }]);
