@@ -8,7 +8,7 @@ angular.module('xbertsApp')
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
              OAUTH_CLIENT_ID) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
-                    roles, isResolved) {
+                    roles, isResolved, inviteToken) {
         this._userId = userId || '';
         this._firstName = firstName || '';
         this._lastName = lastName || '';
@@ -20,6 +20,7 @@ angular.module('xbertsApp')
         this._roles = roles || [];
         // Indicate whether login state has been fetched from backend
         this._isResolved = isResolved || false;
+        this._inviteToken = inviteToken || '';
 
         this.isAuth = function() {
           return this._userId ? true : false;
@@ -73,6 +74,11 @@ angular.module('xbertsApp')
           return this._isResolved;
         };
 
+        this.getInviteLink = function() {
+          return $location.protocol() + '://' + location.host + $state.href('application.testingcampaigns') +
+            '?source=userrefer_' + this._inviteToken;
+        };
+
         this.setFirstName = function(firstName) {
           this._firstName = firstName;
         };
@@ -111,7 +117,7 @@ angular.module('xbertsApp')
 
       function setUser(user) {
         $rootScope.user = new User(user.id, user.firstName, user.lastName, user.email, user.isStaff, user.avatar,
-          user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true);
+          user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true, user.inviteToken);
           localStorageService.clearAll();
       }
 

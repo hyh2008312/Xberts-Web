@@ -52,9 +52,9 @@ angular.module('xbertsApp')
       };
 
       var fillReportDataTemp = function () {
-        var prosArray =[];
-        if($scope.reportData.pros){
-          prosArray= $scope.reportData.pros.split("##");
+        var prosArray = [];
+        if ($scope.reportData.pros) {
+          prosArray = $scope.reportData.pros.split("##");
         }
 
         $scope.reportDataTemp.pro_1 = prosArray[0] ? prosArray[0] : '';
@@ -63,9 +63,9 @@ angular.module('xbertsApp')
         $scope.reportDataTemp.pro_4 = prosArray[3] ? prosArray[3] : '';
         $scope.reportDataTemp.pro_5 = prosArray[4] ? prosArray[4] : '';
 
-        var consArray =[];
-        if($scope.reportData.cons){
-          consArray= $scope.reportData.cons.split("##");
+        var consArray = [];
+        if ($scope.reportData.cons) {
+          consArray = $scope.reportData.cons.split("##");
         }
 
         $scope.reportDataTemp.con_1 = consArray[0] ? consArray[0] : '';
@@ -400,11 +400,14 @@ angular.module('xbertsApp')
         });
       };
 
-
-    }
-  ])
-  .
-  controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
+      // Send project category to GA
+      if (dataLayer) {
+        dataLayer.push({
+          projectCategory: $scope.applicant.review.project.categories[0].name
+        });
+      }
+    }])
+  .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
     $scope.report = report;
 
     var title = report.title;

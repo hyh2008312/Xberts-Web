@@ -1,6 +1,5 @@
 <div class="coupon-banner text-center text-uppercase navbar-fixed-top">
-  <p ng-if="!user.isAuth()">Enjoy $10 off your first order of $20+ after signing up.</p>
-  <p ng-if="user.isAuth()">Enjoy $10 off your first order of $20+. Use <strong>XBERTS</strong> discount code at checkout.</p>
+  <p><a ui-sref="application.protected.profile({ action: 'invite' })">Invite friends</a> to get $10 off your next purchase.</p>
 </div>
 
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -69,6 +68,10 @@
             </li>
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
               <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'orders' })">My Orders</a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
+              <a ui-sref="application.protected.profile({ action: 'invite' })">Invite Friends</a>
             </li>
 
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
