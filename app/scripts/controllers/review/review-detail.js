@@ -171,6 +171,18 @@ angular.module('xbertsApp')
         buyProduct();
       };
 
+      $scope.applyNow = function() {
+        if ($rootScope.user.hasRole('bad_reviewer')) {
+          var reportReminderModal = $uibModal.open({
+            templateUrl: 'views/modal/report-reminder.html',
+            windowClass: 'dialog-vertical-center',
+            controller: 'ReportReminderCtrl'
+          });
+        } else {
+          $state.go('application.protected.apply', {reviewId: review.id});
+        }
+      }
+
       if ($stateParams.action === 'buy' && $rootScope.user.authRequired()) {
         buyProduct();
       }
