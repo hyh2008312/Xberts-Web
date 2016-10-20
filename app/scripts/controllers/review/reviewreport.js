@@ -413,6 +413,12 @@ angular.module('xbertsApp')
       {title: 'detail', active: true},
       {title: 'comments', active: false}
     ];
+    if($scope.report.pros){
+      $scope.pros=$scope.report.pros.split('##');
+    }
+    if($scope.report.cons){
+      $scope.cons=$scope.report.cons.split('##');
+    }
     $scope.tabActive = 0;
 
     $scope.commentsTabActive = false;

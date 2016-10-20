@@ -645,3 +645,10 @@ ul.xb-input-list{
     margin-top: 5px;
   }
 }
+
+.xb-cons{
+  border-left: 1px solid $lightColor;
+  @media screen and (max-width: 767px) {
+    border-left: 0;
+  }
+}
