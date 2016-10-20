@@ -134,19 +134,21 @@
             <uib-tab heading="Description" index="0">
               <div class="row" ng-show="report.pros">
                 <div class="col-md-6">
-                  <h4>Pros</h4>
+                  <h2>Pros</h2>
                   <ul class="xb-list-pros-cons">
                     <li ng-repeat="item in pros track by $index">{{ item }}</li>
                   </ul>
                 </div>
                 <div class="col-md-6 xb-cons">
-                  <h4>Cons</h4>
+                  <h2>Cons</h2>
                   <ul class="xb-list-pros-cons">
                     <li ng-repeat="item in cons track by $index">{{ item }}</li>
                   </ul>
                 </div>
+                <hr class="margin-bottom">
+
               </div>
-              <h4>Unboxing & User Experience</h4>
+
               <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
             </uib-tab>
             <uib-tab heading="Comments" index="1"
@@ -157,6 +159,7 @@
             </uib-tab>
           </uib-tabset>
         </div>
+
 
         <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed>
           <div class="xb-card-board">
