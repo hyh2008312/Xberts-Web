@@ -145,10 +145,10 @@
                     <li ng-repeat="item in cons track by $index">{{ item }}</li>
                   </ul>
                 </div>
-                <hr class="margin-bottom">
+
 
               </div>
-
+              <hr class="margin-bottom" ng-show="report.pros">
               <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
             </uib-tab>
             <uib-tab heading="Comments" index="1"
