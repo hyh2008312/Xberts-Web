@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="ok()"><span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">Share with Friends</h4>
+</div>
+<div class="modal-body">
+  <p>Share your review with your social network to increase your influence on Xberts. The more people LIKE your review
+    post, the higher chance you will be selected for other review campaigns！ </p>
+
+  <div class="xb-card-board text-center">
+    <button class="button button-primary button-circle button" socialshare
+            socialshare-provider="linkedin"
+            socialshare-description="{{ socialContent.description }}"
+            socialshare-text="{{ socialContent.title }}"
+            socialshare-source="{{ socialContent.image }}"
+            socialshare-url="{{ socialContent.url }}">
+      <i class="fa fa-linkedin"></i>
+    </button>
+    <button class="button button-royal button-circle button" socialshare
+            socialshare-provider="facebook"
+            socialshare-description="{{ socialContent.description }}"
+            socialshare-text="{{ socialContent.title }}"
+            socialshare-source="{{ socialContent.image }}"
+            socialshare-url="{{ socialContent.url }}">
+      <i class="fa fa-facebook"></i>
+    </button>
+
+    <button class="button button-caution button-circle button" socialshare
+            socialshare-provider="twitter"
+            socialshare-description="{{ socialContent.description }}"
+            socialshare-text="{{ socialContent.title }}"
+            socialshare-source="{{ socialContent.image }}"
+            socialshare-url="{{ socialContent.url }}">
+      <i class="fa fa-twitter"></i>
+    </button>
+  </div>
+</div>

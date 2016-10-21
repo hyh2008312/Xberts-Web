@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal',
-    function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal','XBSocialShare',
+    function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal,XBSocialShare) {
 
       $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
@@ -122,7 +122,13 @@ angular.module('xbertsApp')
               $timeout(function () {
                 growl.success('Your review has been submitted successfully!');
               }, 0);
-              $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              XBSocialShare.open('md',
+                {
+                  title:$scope.reportData.title
+                },
+                'application.report',
+                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              //$state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -152,7 +158,7 @@ angular.module('xbertsApp')
 
         preprocessProsAndCons();
 
-        console.log($scope.reportData);
+        //console.log($scope.reportData);
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
         $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
 
@@ -165,7 +171,16 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!');
+              //growl.success('Your review has been saved successfully!');
+              XBSocialShare.open('md',
+                {
+                  title:$scope.reportData.title,
+                  description:$scope.reportData.description,
+                  image:$scope.reportData.image,
+                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
+                },
+                'application.report',
+                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -174,7 +189,16 @@ angular.module('xbertsApp')
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!');
+              //growl.success('Your review has been saved successfully!');
+              XBSocialShare.open('md',
+                {
+                  title:$scope.reportData.title,
+                  description:$scope.reportData.description,
+                  image:$scope.reportData.image,
+                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
+                },
+                'application.report',
+                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -197,7 +221,6 @@ angular.module('xbertsApp')
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
         if ($scope.reportForm.$valid) {
-          $scope.reportForm.submitted = true;
           if (!report.id) {
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
@@ -210,7 +233,6 @@ angular.module('xbertsApp')
             });
           }
         } else {
-          $scope.reportForm.submitted = true;
           $scope.reportForm.$invalid = true;
         }
 
@@ -223,7 +245,7 @@ angular.module('xbertsApp')
 
       // summerNote character amount check
 
-      var autoSave = null;
+      $scope.autoSave = null;
 
       $scope.onChange = function (contents) {
         $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
@@ -231,10 +253,12 @@ angular.module('xbertsApp')
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
         $scope.reportForm.$pristine = true;
 
-        if (autoSave == null) {
-          autoSave = $interval(reportAutoSave, 10000);
+        if ($scope.autoSave == null) {
+          $scope.autoSave = $interval(reportAutoSave, 10000);
         }
       };
+
+
 
 
       $scope.paste = function (e) {
@@ -368,6 +392,9 @@ angular.module('xbertsApp')
       $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
 
+        //$interval.cancel($scope.autoSave);
+
+
         if (!$scope.transitionListen || $scope.reportForm.submitted) return;
 
         event.preventDefault();
@@ -394,6 +421,9 @@ angular.module('xbertsApp')
         });
         modalInstance.result.then(function (result) {
           $scope.transitionListen = false;
+          if($scope.autoSave){
+            $interval.cancel($scope.autoSave);
+          }
           $state.go($scope.toState, $scope.toParams);
         }, function (value) {
           console.info('Modal closed: ' + value);
