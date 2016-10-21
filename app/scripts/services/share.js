@@ -1,6 +1,6 @@
 'use strict';
 angular.module('xbertsApp')
-  .controller('ShareController', ['$scope','$uibModalInstance', function ($scope,$uibModalInstance) {
+  .controller('ShareController', ['$scope','$uibModalInstance','socialContent', function ($scope,$uibModalInstance,socialContent) {
 
     $scope.ok = function () {
       $uibModalInstance.close('YES');
@@ -9,6 +9,8 @@ angular.module('xbertsApp')
     $scope.cancel = function () {
       $uibModalInstance.dismiss('NO');
     };
+
+    $scope.socialContent=socialContent;
 
   }])
   .factory('XBSocialShare', ['$uibModal','$state', function ($uibModal,$state) {

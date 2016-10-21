@@ -124,7 +124,10 @@ angular.module('xbertsApp')
               }, 0);
               XBSocialShare.open('md',
                 {
-                  title:$scope.reportData.title
+                  title:$scope.reportData.title,
+                  description:$scope.reportData.description,
+                  image:$scope.reportData.image,
+                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
                 },
                 'application.report',
                 {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
@@ -138,10 +141,19 @@ angular.module('xbertsApp')
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              $timeout(function () {
-                growl.success('Your review has been submitted successfully!');
-              }, 0);
-              $state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              XBSocialShare.open('md',
+                {
+                  title:$scope.reportData.title,
+                  description:$scope.reportData.description,
+                  image:$scope.reportData.image,
+                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
+                },
+                'application.report',
+                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              //$timeout(function () {
+              //  growl.success('Your review has been submitted successfully!');
+              //}, 0);
+              //$state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -171,16 +183,7 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              //growl.success('Your review has been saved successfully!');
-              XBSocialShare.open('md',
-                {
-                  title:$scope.reportData.title,
-                  description:$scope.reportData.description,
-                  image:$scope.reportData.image,
-                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
-                },
-                'application.report',
-                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              growl.success('Your review has been saved successfully!');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -189,16 +192,7 @@ angular.module('xbertsApp')
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              //growl.success('Your review has been saved successfully!');
-              XBSocialShare.open('md',
-                {
-                  title:$scope.reportData.title,
-                  description:$scope.reportData.description,
-                  image:$scope.reportData.image,
-                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
-                },
-                'application.report',
-                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              growl.success('Your review has been saved successfully!');
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
