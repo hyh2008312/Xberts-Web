@@ -13,9 +13,9 @@ angular.module('xbertsApp')
     $scope.socialContent=socialContent;
 
   }])
-  .factory('XBSocialShare', ['$uibModal','$state', function ($uibModal,$state) {
+  .factory('XBSocialShare', ['$uibModal','$state', function ($uibModal) {
 
-    var open = function (size,socialContent,redirectState,redirectStateParam) {
+    var open = function (size,socialContent) {
 
       var modalInstance = $uibModal.open({
         templateUrl: 'views/modal/share.html',
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
         }
       });
       modalInstance.result.then(function (result) {
-        $state.go(redirectState,redirectStateParam);
+        //$state.go(redirectState,redirectStateParam);
       }, function (value) {
         console.info('Modal closed: ' + value);
       });

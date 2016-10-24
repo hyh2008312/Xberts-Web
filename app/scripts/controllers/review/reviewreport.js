@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal','XBSocialShare',
-    function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal,XBSocialShare) {
+  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal',
+    function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal) {
 
       $scope.applicant = applicant;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
@@ -108,7 +108,7 @@ angular.module('xbertsApp')
         $scope.reportForm.submitted = true;
 
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         preprocessProsAndCons();
 
         if ($scope.formCheck()) {
@@ -122,16 +122,12 @@ angular.module('xbertsApp')
               $timeout(function () {
                 growl.success('Your review has been submitted successfully!');
               }, 0);
-              XBSocialShare.open('md',
-                {
-                  title:$scope.reportData.title,
-                  description:$scope.reportData.description,
-                  image:$scope.reportData.image,
-                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
-                },
-                'application.report',
-                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
-              //$state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+
+              $state.go('application.report', {
+                reviewId: $stateParams.reviewId,
+                reportId: $scope.reportData.id,
+                action: 'share'
+              });
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -141,19 +137,15 @@ angular.module('xbertsApp')
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              XBSocialShare.open('md',
-                {
-                  title:$scope.reportData.title,
-                  description:$scope.reportData.description,
-                  image:$scope.reportData.image,
-                  url:"https://xberts.com/crowdtesting/"+$stateParams.reviewId+"/reports/"+ $scope.reportData.id
-                },
-                'application.report',
-                {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+
               //$timeout(function () {
               //  growl.success('Your review has been submitted successfully!');
               //}, 0);
-              //$state.go('application.report', {reviewId: $stateParams.reviewId, reportId: $scope.reportData.id});
+              $state.go('application.report', {
+                reviewId: $stateParams.reviewId,
+                reportId: $scope.reportData.id,
+                action: 'share'
+              });
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -172,7 +164,7 @@ angular.module('xbertsApp')
 
         //console.log($scope.reportData);
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
 
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
@@ -210,7 +202,7 @@ angular.module('xbertsApp')
         preprocessProsAndCons();
 
         $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}$/ig, "<p><br></p>");
+        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
 
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
@@ -251,8 +243,6 @@ angular.module('xbertsApp')
           $scope.autoSave = $interval(reportAutoSave, 10000);
         }
       };
-
-
 
 
       $scope.paste = function (e) {
@@ -415,7 +405,7 @@ angular.module('xbertsApp')
         });
         modalInstance.result.then(function (result) {
           $scope.transitionListen = false;
-          if($scope.autoSave){
+          if ($scope.autoSave) {
             $interval.cancel($scope.autoSave);
           }
           $state.go($scope.toState, $scope.toParams);
@@ -425,7 +415,7 @@ angular.module('xbertsApp')
       };
 
     }])
-  .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
+  .controller('ReviewReportVisualCtrl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, XBSocialShare, $location) {
     $scope.report = report;
 
     var title = report.title;
@@ -437,11 +427,11 @@ angular.module('xbertsApp')
       {title: 'detail', active: true},
       {title: 'comments', active: false}
     ];
-    if($scope.report.pros){
-      $scope.pros=$scope.report.pros.split('##');
+    if ($scope.report.pros) {
+      $scope.pros = $scope.report.pros.split('##');
     }
-    if($scope.report.cons){
-      $scope.cons=$scope.report.cons.split('##');
+    if ($scope.report.cons) {
+      $scope.cons = $scope.report.cons.split('##');
     }
     $scope.tabActive = 0;
 
@@ -461,6 +451,19 @@ angular.module('xbertsApp')
         growl.success('review report is approved.');
       })
     };
+
+    var search = $location.search();
+    var tab = search.action || '';
+    if (tab == 'share') {
+      XBSocialShare.open('md',
+        {
+          title: pageSettings._title,
+          description: pageSettings._description,
+          image: pageSettings._shareImage,
+          url: pageSettings.getUrl()
+        }
+      );
+    }
 
     // Send project category to GA
     if (dataLayer) {

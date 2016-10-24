@@ -201,7 +201,7 @@ angular
         }
       })
       .state('application.report', {
-        url: '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}',
+        url: '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action',
         templateUrl: 'views/review/review-report.html',
         controller: 'ReviewReportVisualCtrl',
         resolve: {
