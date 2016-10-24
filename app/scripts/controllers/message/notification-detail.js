@@ -3,7 +3,6 @@
 angular.module('xbertsApp')
   .controller('MessageNotificationDetailCtrl', ['_', '$scope', '$rootScope', '$state', '$stateParams', 'message', 'MessageService',
     function (_, $scope, $rootScope, $state, $stateParams, message, MessageService) {
-      $scope.messageBody = message.body.replace(/(\n)/g, ' ');
       $scope.message = message;
 
       switch(message.category) {

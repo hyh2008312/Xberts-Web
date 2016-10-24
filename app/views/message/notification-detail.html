@@ -13,7 +13,7 @@
         <span class="xb-bold xb-dark-font">{{ message.sender.shortName }}</span>
         <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
       </p>
-      <p class="item-body-detail wordwrap" ng-bind-html="messageBody"></p>
+      <p class="item-body-detail" ng-bind-html="message.body"></p>
       <p class="margin-top-l">
         <a class="btn btn-primary" ng-href="{{ message.actionUrl }}">{{ actionBtnText }}</a>
       </p>
