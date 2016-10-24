@@ -457,10 +457,10 @@ angular.module('xbertsApp')
     if (tab == 'share') {
       XBSocialShare.open('md',
         {
-          title: pageSettings._title,
-          description: pageSettings._description,
-          image: pageSettings._shareImage,
-          url: pageSettings.getUrl()
+          title: $rootScope.pageSettings._title,
+          description: $rootScope.pageSettings._description,
+          image: $rootScope.pageSettings._shareImage,
+          url: $rootScope.pageSettings.getUrl()
         }
       );
     }
