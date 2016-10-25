@@ -405,14 +405,14 @@ li.xb-step {
 
       min-height: 216px;
 
-      padding-left: 216px;
+      padding-left: 316px;
       position:relative;
 
       .xb-list-image{
         position:absolute;
         top:0;
         left:0;
-        width: 200px;
+        width: 300px;
         height: 200px;
       }
 
@@ -438,7 +438,7 @@ li.xb-step {
     .xb-list-item-footer{
       position:absolute;
       right:0;
-      left: 216px;
+      left: 316px;
       bottom: 16px;
       @media screen and (max-width: 767px){
         position:static;
