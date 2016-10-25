@@ -442,6 +442,8 @@ angular.module('xbertsApp')
         case 'comments':
           $scope.commentsTabActive = true;
           break;
+        default:
+          $scope.commentsTabActive = false;
       }
     };
     $scope.approve = function () {

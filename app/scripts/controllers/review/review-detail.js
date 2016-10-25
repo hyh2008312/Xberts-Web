@@ -113,6 +113,9 @@ angular.module('xbertsApp')
             $scope.commentsTabActive = false;
             $scope.reviewersTabActive = true;
             break;
+          default:
+            $scope.commentsTabActive = false;
+            $scope.reviewersTabActive = false;
         }
       };
 

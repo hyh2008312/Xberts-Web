@@ -207,7 +207,7 @@
 
           </div>
           <uib-tabset class="background-bg-white" active="tabActive">
-            <uib-tab heading="Description" index="0">
+            <uib-tab heading="Description" index="0" select="select('description')">
               <div class="xb-detail-section" ng-show="review.reviewType=='FREE_SAMPLE'">
                 <h3 class="xb-detail-section-title margin-top-clear">
                   <span>Be a product reviewer and it's yours to keep!</span>
@@ -280,7 +280,7 @@
 
               </div>
             </uib-tab>
-            <uib-tab heading="Shipping Info" index="1" ng-show="review.reviewType === 'PAID'">
+            <uib-tab heading="Shipping Info" index="1" select="select('shipping')" ng-show="review.reviewType === 'PAID'" >
               <div class="xb-card-board hidden-xs">
 
                 <div class="xb-card-board-item">
