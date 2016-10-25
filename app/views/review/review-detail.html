@@ -316,11 +316,11 @@
             </uib-tab>
             <uib-tab index="2"
                      select="select('comments')">
+              <uib-tab-heading>
+                Comments
+                <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="review.commentAmount>0">{{ review.commentAmount}}</span>
+              </uib-tab-heading>
               <div ng-if="commentsTabActive">
-                <uib-tab-heading>
-                  Comments
-                  <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="review.commentAmount>0">{{ review.commentAmount}}</span>
-                </uib-tab-heading>
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
             </uib-tab>
