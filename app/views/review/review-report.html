@@ -150,8 +150,12 @@
               <hr class="margin-bottom" ng-show="report.pros">
               <div ng-bind-html="report.details | trust" class="note-diseditable"></div>
             </uib-tab>
-            <uib-tab heading="Comments" index="1"
+            <uib-tab index="1"
                      select="select('comments')">
+              <uib-tab-heading>
+                Comments
+                <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="report.commentAmount>0">{{ report.commentAmount}}</span>
+              </uib-tab-heading>
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
