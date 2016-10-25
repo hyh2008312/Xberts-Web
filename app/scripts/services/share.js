@@ -20,6 +20,7 @@ angular.module('xbertsApp')
       var modalInstance = $uibModal.open({
         templateUrl: 'views/modal/share.html',
         controller: 'ShareController',
+        windowClass: 'dialog-vertical-center',
         size: size,
         resolve: {
           socialContent:socialContent

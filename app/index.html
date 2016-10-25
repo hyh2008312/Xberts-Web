@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="xbertsApp">
+<html ng-app="xbertsApp" prefix="og: http://ogp.me/ns#">
 <head>
   <base href="/">
   <meta charset="utf-8">
@@ -11,6 +11,7 @@
   <meta property="og:title" content="{{ pageSettings._title}}"/>
   <meta property="og:description" content="{{ pageSettings._description}}"/>
   <meta property="og:image" content="{{ pageSettings._shareImage}}"/>
+  <meta property="og:url" content="{{ pageSettings.getUrl()}}"/>
   <link rel="icon" type="image/png" href="https://xberts.imgix.net/static/icon/favicon.png?s=4ad0cff89de078554cb908b847b144c5"/>
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->

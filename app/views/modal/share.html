@@ -1,5 +1,6 @@
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="ok()"><span aria-hidden="true">&times;</span>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="ok()"><span
+    aria-hidden="true">&times;</span>
   </button>
   <h4 class="modal-title">Share with Friends</h4>
 </div>
@@ -8,30 +9,29 @@
     post, the higher chance you will be selected for other review campaigns！ </p>
 
   <div class="xb-card-board text-center">
-    <button class="button button-primary button-circle button" socialshare
+    <button class="btn btn-primary btn-lg btn-social linkedin-btn center-block" socialshare
             socialshare-provider="linkedin"
             socialshare-description="{{ socialContent.description }}"
             socialshare-text="{{ socialContent.title }}"
-            socialshare-source="{{ socialContent.image }}"
+            socialshare-source="Xberts.com"
             socialshare-url="{{ socialContent.url }}">
-      <i class="fa fa-linkedin"></i>
+      <i class="fa fa-linkedin margin-right"></i><span class="btn-text">Share on LinkedIn</span>
     </button>
-    <button class="button button-royal button-circle button" socialshare
+    <button class="btn btn-primary facebook-btn btn-lg btn-social center-block" socialshare
             socialshare-provider="facebook"
             socialshare-description="{{ socialContent.description }}"
             socialshare-text="{{ socialContent.title }}"
-            socialshare-source="{{ socialContent.image }}"
+            socialshare-picture="{{ socialContent.image }}"
             socialshare-url="{{ socialContent.url }}">
-      <i class="fa fa-facebook"></i>
+      <i class="fa fa-facebook margin-right"></i><span class="btn-text">Share on Facebook</span>
     </button>
 
-    <button class="button button-caution button-circle button" socialshare
+    <button class="btn btn-success btn-social btn-lg center-block" socialshare
             socialshare-provider="twitter"
             socialshare-description="{{ socialContent.description }}"
             socialshare-text="{{ socialContent.title }}"
-            socialshare-source="{{ socialContent.image }}"
             socialshare-url="{{ socialContent.url }}">
-      <i class="fa fa-twitter"></i>
+      <i class="fa fa-twitter margin-right"></i><span class="btn-text">Share on Twitter</span>
     </button>
   </div>
 </div>

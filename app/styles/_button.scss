@@ -128,3 +128,14 @@ a.btn-gray, .btn-gray {
 .linkedin-btn-title {
   padding-left: 20px;
 }
+
+.btn-social{
+  //max-width: 300px;
+  min-width: 250px;
+  display: block;
+  margin-bottom: 5px;
+  .btn-text{
+    font-size: 16px;
+  }
+
+}
