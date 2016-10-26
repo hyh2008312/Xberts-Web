@@ -154,7 +154,7 @@
                      select="select('comments')">
               <uib-tab-heading>
                 Comments
-                <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="report.commentAmount>0">{{ report.commentAmount}}</span>
+                <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="report.comment_amount>0">{{ report.comment_amount}}</span>
               </uib-tab-heading>
               <div ng-if="commentsTabActive">
                 <div ng-include src="'views/comment/comments.html'"></div>
