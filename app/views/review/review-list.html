@@ -201,10 +201,36 @@
                 </div>
               </div>
             </div>
-            <div class="xb-card-button">
-              <button class="btn btn-success btn-block"
-                      ui-sref="application.testingcampaign({ reviewId:review.id })">APPLY NOW
-              </button>
+            <div class="xb-card-button" ng-switch="review.status">
+              <a ng-switch-when="UPCOMING" class="btn btn-block btn-default"
+                 disabled>
+                Coming Soon
+              </a>
+
+              <a ng-switch-when="APPLICATION" class="btn btn-block btn-success"
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
+                APPLY NOW
+              </a>
+
+              <a ng-switch-when="SELECTION" class="btn btn-block btn-success"
+                 ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+                APPLICANT SCREENING
+              </a>
+
+              <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-success"
+                 ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+                APPLICANT SCREENING
+              </a>
+
+              <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
+                SUBMIT REVIEW
+              </a>
+
+              <a ng-switch-when="ENDED" class="btn btn-block btn-warning"
+                 ui-sref="application.testingcampaign({ reviewId:review.id })">
+                READ REVIEWS
+              </a>
             </div>
           </div>
         </div>
