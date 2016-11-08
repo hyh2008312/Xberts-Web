@@ -412,7 +412,6 @@ angular
               name: 'progressingReview',
               params: {
                 stage: 'BETA',
-                status: 'APPLICATION',
                 page_size: 12
               },
               fetchFunction: function (params) {
