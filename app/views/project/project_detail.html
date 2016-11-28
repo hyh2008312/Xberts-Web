@@ -16,13 +16,13 @@
               ngf-select="coverUpload($file)"
               ng-model="projectTemp.logo"
               accept="image/*"
-              ngf-max-size="'1MB'" ng-switch="projectTemp.logo != null ">
+              ngf-max-size="'5MB'" ng-switch="projectTemp.logo != null ">
         <span ng-switch-when="true">Change</span>
         <span ng-switch-when="false">Upload</span>
 
       </button>
     </div>
-    <p class='message-error' ng-show="projectForm.logo.$error.maxSize">Your image is too large: max 1MB</p>
+    <p class='message-error' ng-show="projectForm.logo.$error.maxSize">Your image is too large: max 5MB</p>
 
     <p class="message-error" ng-show="projectForm.submitted && projectForm.logoRequired">*
       required</p>
