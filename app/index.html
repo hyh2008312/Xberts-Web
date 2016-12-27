@@ -12,16 +12,17 @@
   <meta property="og:description" content="{{ pageSettings._description}}"/>
   <meta property="og:image" content="{{ pageSettings._shareImage}}"/>
   <meta property="og:url" content="{{ pageSettings.getUrl()}}"/>
-  <link rel="icon" type="image/png" href="https://xberts.imgix.net/static/icon/favicon.png?s=4ad0cff89de078554cb908b847b144c5"/>
+  <link rel="icon" type="image/png"
+        href="https://xberts.imgix.net/static/icon/favicon.png?s=4ad0cff89de078554cb908b847b144c5"/>
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css" />
-  <link rel="stylesheet" href="/bower_components/Buttons/css/buttons.css" />
-  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
-  <link rel="stylesheet" href="/bower_components/intl-tel-input/build/css/intlTelInput.css" />
-  <link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.css" />
-  <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.css" />
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css"/>
+  <link rel="stylesheet" href="/bower_components/Buttons/css/buttons.css"/>
+  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css"/>
+  <link rel="stylesheet" href="/bower_components/intl-tel-input/build/css/intlTelInput.css"/>
+  <link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.css"/>
+  <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -61,32 +62,49 @@
 <!--<first-pop></first-pop>-->
 <!--<back-to-top></back-to-top>-->
 <!--<back-top button-text="Scroll top"></back-top>-->
+<footer class="footer" ng-class="{'hidden-xs':pageSettings._hiddenFooter}">
+  <div class="container footer__block-wrap">
+    <div class="footer__logo-wrap">
+      <img src="https://xberts.imgix.net/static/logo/xberts_gray.png?s=3a37df7592ec9621e3fee5825afab4b2"
+           class="footer__logo"/>
+    </div>
+    <div class="footer__text-wrap">
+      <p class="footer__text">©2016 Xberts, Inc. All rights reserved</p>
+    </div>
+    <div class="footer__text-wrap hidden-xs">
+      <p class="footer__text">|</p>
+    </div>
+    <ul class="list-inline">
+      <li><a ui-sref="application.about">About</a></li>
+      <li><a href="http://blog.xberts.com" target="_blank">Blog</a></li>
+      <li><a ui-sref="application.terms">Terms</a></li>
+      <li><a ui-sref="application.privacy">Privacy</a></li>
+    </ul>
 
-<footer ng-class="{'hidden-xs':pageSettings._hiddenFooter}">
-  <div class="container">
-    <div class="pull-left">
-      <p><img src="https://xberts.imgix.net/static/logo/xberts_gray.png?s=3a37df7592ec9621e3fee5825afab4b2" width="60" height="16" alt="xberts"><span>&copy; 2016 Xberts, Inc. All rights reserved.</span>
-        <span>|</span>
-        <a ui-sref="application.about">About</a>
-        <a href="http://blog.xberts.com" target="_blank">Blog</a>
-        <a ui-sref="application.terms">Terms</a>
-        <a ui-sref="application.privacy">Privacy</a>
-      </p>
+    <div class="footer__text-wrap hidden-xs">
+      <p class="footer__text">|</p>
     </div>
 
-    <div class="pull-right">
-      <p>
+    <ul class="list-inline">
+      <li>
         <a href="https://www.linkedin.com/company/xberts">
-          <img src="https://xberts.imgix.net/static/logo/linkedin_logo.png?s=e49cb618c972eba7d64530c2a4a4f691" width="25" height="25" alt="linkedin">
+          <img src="https://xberts.imgix.net/static/logo/linkedin_logo.png?s=e49cb618c972eba7d64530c2a4a4f691"
+               width="25" height="25" alt="linkedin">
         </a>
+      </li>
+      <li>
         <a href="https://twitter.com/HardwareXberts">
-          <img src="https://xberts.imgix.net/static/logo/twitter_logo.png?s=40a2ce3bf67ee4ee92c51c1edccb16f6" width="25" height="25" alt="twitter">
+          <img src="https://xberts.imgix.net/static/logo/twitter_logo.png?s=40a2ce3bf67ee4ee92c51c1edccb16f6" width="25"
+               height="25" alt="twitter">
         </a>
+      </li>
+      <li>
         <a href="https://www.facebook.com/globalXberts">
-          <img src="https://xberts.imgix.net/static/logo/facebook_logo.png?s=9dd230b2233b6601b06184c9dd9f9ee6" width="25" height="25" alt="facebook">
+          <img src="https://xberts.imgix.net/static/logo/facebook_logo.png?s=9dd230b2233b6601b06184c9dd9f9ee6"
+               width="25" height="25" alt="facebook">
         </a>
-      </p>
-    </div>
+      </li>
+    </ul>
   </div>
 </footer>
 

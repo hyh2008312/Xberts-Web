@@ -21,35 +21,38 @@
 
     <div class="collapse navbar-collapse" id="js-navbar-collapse">
       <ul class="nav navbar-nav">
-        <!--<li class="fade-in-line" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">-->
+        <!--<li class="" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">-->
           <!--<a ui-sref="application.salecampaigns">DEALS</a>-->
         <!--</li>-->
 
-        <li class="fade-in-line" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">
-          <a ui-sref="application.campaignreviews">REVIEWS</a>
+        <li class="" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">
+          <a href="https://discover.xberts.com?utm_source=Xberts&utm_medium=Navigation&utm_campaign=Clicked">discover</a>
+        </li>
+        <li class="" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">
+          <a ui-sref="application.campaignreviews">reviews</a>
         </li>
 
-        <li class="fade-in-line" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">
-          <a ui-sref="application.testingcampaigns">CROWDTESTING</a>
+        <li class="" ui-sref-active="active" data-toggle="collapse" data-target="#js-navbar-collapse.in">
+          <a ui-sref="application.testingcampaigns">crowdtesting</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="!user.isAuth()" class="fade-in-line" ui-sref-active="active" data-toggle="collapse"
+        <li ng-if="!user.isAuth()" class="" ui-sref-active="active" data-toggle="collapse"
             data-target="#js-navbar-collapse.in">
-          <a ui-sref="application.signup">SIGN UP</a>
+          <a ui-sref="application.signup">sign up</a>
         </li>
 
-        <li ng-if="!user.isAuth()" class="fade-in-line" ui-sref-active="active" data-toggle="collapse"
+        <li ng-if="!user.isAuth()" class="" ui-sref-active="active" data-toggle="collapse"
             data-target="#js-navbar-collapse.in">
-          <a ui-sref="application.login">SIGN IN</a>
+          <a ui-sref="application.login">sign in</a>
         </li>
 
         <messages ng-if="user.isAuth()"></messages>
 
         <li ng-if="user.isAuth()" uib-dropdown is-open="userDropdownStatus.isopen"
             ng-mouseenter="userDropdownStatus.isopen = true" ng-mouseleave="userDropdownStatus.isopen = false">
-          <a class="fade-in-line" uib-dropdown-toggle aria-haspopup="true"
+          <a class="" uib-dropdown-toggle aria-haspopup="true"
              aria-expanded="false" ui-sref-active="{ active: 'application.expert({ expertId: user.getUserId() })' }">
             <div class="avatar-text-smaller-1">
               <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true"></avatar-img>

@@ -1,0 +1,102 @@
+
+.navbar-default .navbar-nav > li > a {
+  font-size: $font-size-large;
+  text-transform: capitalize;
+  font-weight: 400;
+  &.active {
+    &, &:hover, &:focus, &:active {
+      color: $navbar-default-link-active-color;
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+  &:focus {
+    color: $navbar-default-link-active-color;
+  }
+}
+.navbar {
+  // Center logo
+  //.navbar-brand {
+  //  padding: $navbarBrandPaddingTop 0px;
+  //  position: absolute;
+  //  left: 50%;
+  //  margin-left: -$navbarBrandWidth / 2 !important;
+  //}
+  .navbar-brand {
+    padding: ($navbar-height - 30) / 2 20px ($navbar-height - 30) / 2 15px;
+
+    img {
+      width: 120px;
+      height: 30px;
+    }
+  }
+
+  .avatar-text-smaller-1 {
+    max-width: 130px;
+  }
+
+  // Reduce padding for avatar image
+  .navbar-right {
+    .dropdown {
+      > a {
+        padding-top: $xb-navbar-avatar-padding;
+        padding-bottom: $xb-navbar-avatar-padding;
+      }
+    }
+  }
+
+  .top-right-badge-x {
+    @include topRightBadgeX(10px, $xb-navbar-icon-padding, 5px)
+  }
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: $primaryColor;
+}
+
+
+/* Remove the padding we set earlier */
+.navbar {
+  > .container {
+    .navbar-brand {
+      margin-left: 0;
+    }
+  }
+}
+.navbar-right {
+  float: right !important;
+  margin-right: -8px;
+}
+
+//nav-tab
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.428571429;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: #3d3d3d;
+  padding: 15px 30px;
+  @media screen and (max-width: 767px) {
+    padding: 15px 10px;
+  }
+}
+
+
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: $primaryColor;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 3px solid $primaryColor;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+
+.nav.navbar-nav{
+  >li{
+    >a{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

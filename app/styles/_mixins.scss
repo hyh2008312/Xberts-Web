@@ -37,4 +37,10 @@
 }
 
 
+@mixin xs-screen(){
+  @media screen and (max-width: $screen-sm-min) {
+    @content;
+  }
+}
+
 

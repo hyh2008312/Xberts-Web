@@ -1,0 +1,77 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 20px;
+  /* Set the fixed height of the footer here */
+  background-color: #1c2429;
+  &__block-wrap{
+    > * {
+      display: inline-block;
+      margin-bottom: 0;
+      @include xs-screen{
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+    }
+  }
+  &__text-wrap{
+    padding: 30px 10px;
+    color: #999999;
+    @include xs-screen{
+      padding: 0;
+    }
+  }
+  &__text{
+    margin-bottom: 0;
+  }
+
+  &__logo-wrap{
+    img{
+      width: 120px;
+      height: 30px;
+      vertical-align: bottom;
+      @include xs-screen{
+        margin-top: 10px;
+      }
+    }
+  }
+  .list-inline{
+    color: #999999;
+    li{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  /* box-shadow: 0 0 3px #888; */
+}
+
+//footer {
+//  position: absolute;
+//  bottom: 0;
+//  width: 100%;
+//  height: $xb-footer-height;
+//  background-color: $primaryFontColor;
+//  color: $grayLightColor;
+//
+//  @media screen and (max-width: $screen-sm-min) {
+//    height: $xb-footer-height-screen-sm;
+//  }
+//
+//  > .container {
+//    padding-top: 50px;
+//
+//    :first-child {
+//      span, a {
+//        margin-left: 20px;
+//      }
+//    }
+//
+//    .pull-right {
+//      a {
+//        color: transparent;
+//      }
+//    }
+//  }
+//}
