@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state', '$filter', 'ReviewApplicant', '$rootScope', 'growl',
-    function ($scope, $timeout, $state, $filter, ReviewApplicant, $rootScope, growl) {
+  .controller('ReviewapplicationconfirminfoCtrl', ['$scope', '$timeout', '$state', '$filter', 'ReviewApplicant', '$rootScope', 'growl','$window',
+    function ($scope, $timeout, $state, $filter, ReviewApplicant, $rootScope, growl,$window) {
       $scope.reviewApplicant = ReviewApplicant.getApplicationResource($scope.application);
       $scope.reviewApplicant.review = $scope.review.id;
       $scope.reviewApplicant.reviewer = $rootScope.user.getUserId();
@@ -17,7 +17,7 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               //$scope.$emit('reviewStep', '2');
               growl.success(message);
-              $state.go('application.main');
+              $window.location.href='https://discover.xberts.com';
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
@@ -28,7 +28,7 @@ angular.module('xbertsApp')
               //$scope.$emit('reviewStep', '2');
               $scope.$emit('backdropOff', 'success');
               growl.success(message);
-              $state.go('application.main');
+              $window.location.href='https://discover.xberts.com';
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
