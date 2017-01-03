@@ -24,12 +24,12 @@ angular.module('xbertsApp')
           data: {
             acl: postParams.acl,
             key: postParams.key,
-            'Content-Type': postParams.contentType,
+            'Content-Type': postParams['Content-Type'],
             policy: postParams.policy,
-            'x-amz-algorithm': postParams.algorithm,
-            'x-amz-credential': postParams.credential,
-            'x-amz-date': postParams.date,
-            'x-amz-signature': postParams.signature,
+            'x-amz-algorithm': postParams['x-amz-algorithm'],
+            'x-amz-credential': postParams['x-amz-credential'],
+            'x-amz-date': postParams['x-amz-date'],
+            'x-amz-signature': postParams['x-amz-signature'],
             file: file
           }
         });
