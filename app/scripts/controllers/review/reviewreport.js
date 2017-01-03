@@ -107,8 +107,10 @@ angular.module('xbertsApp')
       $scope.reportFormSubmit = function () {
         $scope.reportForm.submitted = true;
 
-        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        if($scope.reportData.details){
+          $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+          $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        }
         preprocessProsAndCons();
 
         if ($scope.formCheck()) {
@@ -163,8 +165,10 @@ angular.module('xbertsApp')
         preprocessProsAndCons();
 
         //console.log($scope.reportData);
-        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        if($scope.reportData.details){
+          $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+          $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        }
 
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
@@ -201,8 +205,10 @@ angular.module('xbertsApp')
 
         preprocessProsAndCons();
 
-        $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
-        $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        if($scope.reportData.details){
+          $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
+          $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+        }
 
         var report = new ReviewReport($scope.reportData);
         report.report_status = 'DRAFT';
