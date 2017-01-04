@@ -54,20 +54,6 @@
   background-color: $primaryColor;
 }
 
-
-/* Remove the padding we set earlier */
-.navbar {
-  > .container {
-    .navbar-brand {
-      margin-left: 0;
-    }
-  }
-}
-.navbar-right {
-  float: right !important;
-  margin-right: -8px;
-}
-
 //nav-tab
 .nav-tabs > li > a {
   margin-right: 2px;
