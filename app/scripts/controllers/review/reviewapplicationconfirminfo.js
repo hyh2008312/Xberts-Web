@@ -17,7 +17,7 @@ angular.module('xbertsApp')
               $scope.$emit('backdropOff', 'success');
               //$scope.$emit('reviewStep', '2');
               growl.success(message);
-              $window.location.href='https://discover.xberts.com?utm_source=Xberts&utm_medium=Crowdtesting&utm_campaign=AppSubmitted';
+              $window.location.href='https://discover.xberts.com';
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
@@ -28,7 +28,7 @@ angular.module('xbertsApp')
               //$scope.$emit('reviewStep', '2');
               $scope.$emit('backdropOff', 'success');
               growl.success(message);
-              $window.location.href='https://discover.xberts.com?utm_source=Xberts&utm_medium=Crowdtesting&utm_campaign=AppSubmitted';
+              $window.location.href='https://discover.xberts.com';
             }, function (resp) {
               growl.error('Sorry,some error happened.');
               $scope.$emit('backdropOff', 'error');
