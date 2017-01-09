@@ -343,7 +343,7 @@ $avatarTypes: (
 }
 
 .profile {
-  background-color: $whiteColor;
+  background-color: #f9f9f9;
   text-align: center;
   padding: 20px;
   //margin-bottom: 20px;
@@ -353,17 +353,19 @@ $avatarTypes: (
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    margin: 10px auto 14px auto;
+    margin: 10px auto 16px auto;
   }
   > .profile-name {
     a{
       color: $darkColor;
     }
     color: $darkColor;
-    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 24px;
   }
   > .profile-title {
-    color: $darkGrayColor;
+    color: $darkColor;
+    font-weight: 300;
   }
   > .profile-country {
     color: $grayLightColor;
