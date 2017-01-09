@@ -345,7 +345,6 @@ $avatarTypes: (
 .profile {
   background-color: $whiteColor;
   text-align: center;
-  border-bottom: 1px solid $lightColor;
   padding: 20px;
   //margin-bottom: 20px;
   img {
@@ -357,6 +356,9 @@ $avatarTypes: (
     margin: 10px auto 14px auto;
   }
   > .profile-name {
+    a{
+      color: $darkColor;
+    }
     color: $darkColor;
     font-weight: bold;
   }

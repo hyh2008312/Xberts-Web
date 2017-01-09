@@ -393,7 +393,7 @@ angular
         controller: 'ReviewListCtrl',
         reloadOnSearch: false,
         resolve: {
-          releaseReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+          reviewerPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
               name: 'callingReview',
               params: {
@@ -402,7 +402,7 @@ angular
                 page_size: 12
               },
               fetchFunction: function (params) {
-                return ReviewService.getList(params);
+                return ReviewService.getRecommendedReviewers(params);
               }
             };
             return Paginator(par).load();
