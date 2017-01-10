@@ -17,7 +17,7 @@ angular.module('xbertsApp')
     };
 
     this.getRecommendedReviewers =function () {
-      return $resource(API_BASE_URL + '/xberts/reviewers/', {recommended: 'True'}).get().$promise;
+      return $resource(API_BASE_URL + '/xberts/reviewers_/', {recommended: 'True'}).get().$promise;
     };
 
     this.getApplicantsForUser = function(reviewId, userId) {
