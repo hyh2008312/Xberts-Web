@@ -8,85 +8,58 @@
          infinite-scroll-disabled="preLaunchReviewPaginator.getLoading() || !preLaunchReviewPaginator.getNext()">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in preLaunchReviewPaginator.items">
 
-        <div class="xb-card">
-          <div class="xb-card-ratio-wrap"
+        <div class="xcard">
+          <div class="xcard__image_wrap"
                ui-sref="application.testingcampaign({ reviewId:review.id })">
-            <div class="image-wrap" style="background-image: url({{ review.cover }})">
-
-            </div>
+            <img ng-src="{{ review.cover }}"/>
           </div>
-          <div class="xb-card-content">
-            <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">{{ review.title }}</p>
+          <div class="xcard__block">
+            <p class="xcard__title align-center" ui-sref="application.testingcampaign({ reviewId:review.id })">{{
+              review.title }}</p>
 
-            <div class="xb-card-databoard-wrap">
-              <div class="xb-databoard-wrap text-center">
-                <div class="xb-databoard xb-databoard-c-primary">
-                  <div class="xb-databoard-primary">
-                    {{ review.sampleNum }}
-                  </div>
-                  <div class="xb-databoard-secondary" ng-pluralize count="review.sampleNum"
-                       when="{'0': 'Sample',
-                              '1': 'Sample',
-                              'other': 'Samples'}">
-                  </div>
-                </div>
-                <div class="xb-databoard xb-databoard-c-primary">
-                  <div time-left end-time="review.applicationEndDate" extra-info="review.applicantCount">
-                    <div class="xb-databoard-primary" ng-show="timeValue>0">
-                      {{ timeValue }}
-                    </div>
-                    <div class="xb-databoard-secondary text-capitalize" ng-show="timeValue>0">
-                      {{ timeUnit }} Left
-                    </div>
-                    <div class="xb-databoard-primary" ng-show="timeValue<=0">
-                      {{ extraInfo }}
-                    </div>
-                    <div class="xb-databoard-secondary text-capitalize" ng-show="timeValue<=0">
-                      applicants
-                    </div>
-                  </div>
-                </div>
-                <div class="xb-databoard xb-databoard-sales">
-                  <div class="xb-databoard-primary">
-                    Free
-                  </div>
-                  <div class="xb-databoard-secondary">
-                    {{ review.project.retailPrice.amount | currency}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="xb-card-button" ng-switch="review.status">
-              <a ng-switch-when="UPCOMING" class="btn btn-block btn-default"
-                 disabled>
-                Coming Soon
-              </a>
+            <ul class="status-list-inline align-center">
+              <li time-left end-time="review.applicationEndDate" extra-info="review.applicantCount" class="status">
+                <span class="status__value" ng-show="timeValue>0">{{ timeValue }}</span>
+                <span class="status__key" ng-show="timeValue>0"> {{ timeUnit }} Left </span>
+                <span class="status__value" ng-show="timeValue<=0">{{ extraInfo }}</span>
+                <span class="status__key" ng-show="timeValue<=0">applicants</span>
+              </li>
+              <li class="status">
+                <span class="status__value">Free</span>
+                <span class="status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="xcard__footer" ng-switch="review.status">
+            <a ng-switch-when="UPCOMING" class="reverse-btn reverse-btn--gray"
+               disabled>
+              Coming Soon
+            </a>
 
-              <a ng-switch-when="APPLICATION" class="btn btn-block btn-success"
-                 ui-sref="application.testingcampaign({ reviewId:review.id })">
-                APPLY NOW
-              </a>
+            <a ng-switch-when="APPLICATION" class="reverse-btn reverse-btn--blue"
+               ui-sref="application.testingcampaign({ reviewId:review.id })">
+              APPLY NOW
+            </a>
 
-              <a ng-switch-when="SELECTION" class="btn btn-block btn-success"
-                 ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
-                APPLICANT SCREENING
-              </a>
+            <a ng-switch-when="SELECTION" class="reverse-btn reverse-btn--gray"
+               ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+              APPLICANT SCREENING
+            </a>
 
-              <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-success"
-                 ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
-                APPLICANT SCREENING
-              </a>
+            <a ng-switch-when="CONFIRMATION" class="reverse-btn reverse-btn--gray"
+               ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+              APPLICANT SCREENING
+            </a>
 
-              <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
-                 ui-sref="application.testingcampaign({ reviewId:review.id })">
-                SUBMIT REVIEW
-              </a>
+            <a ng-switch-when="REVIEW" class="reverse-btn reverse-btn--green"
+               ui-sref="application.testingcampaign({ reviewId:review.id })">
+              SUBMIT REVIEW
+            </a>
 
-              <a ng-switch-when="ENDED" class="btn btn-block btn-warning"
-                 ui-sref="application.testingcampaign({ reviewId:review.id })">
-                READ REVIEWS
-              </a>
-            </div>
+            <a ng-switch-when="ENDED" class="reverse-btn reverse-btn--yellow"
+               ui-sref="application.testingcampaign({ reviewId:review.id })">
+              READ REVIEWS
+            </a>
           </div>
         </div>
       </div>

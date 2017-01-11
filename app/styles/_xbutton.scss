@@ -1,0 +1,49 @@
+$blue: #1c87d9;
+$green:#569d11;
+$yellow: #db8c10;
+$gray:#999;
+
+.reverse-btn{
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #FFFFFF;
+
+  &--blue{
+    color: $blue;
+    &:hover{
+      color: #FFFFFF;
+      background-color: $blue;
+      text-decoration: none;
+    }
+  }
+
+  &--green{
+    color: $green;
+    &:hover{
+      color: #FFFFFF;
+      background-color: $green;
+      text-decoration: none;
+    }
+  }
+
+  &--yellow{
+    color: $yellow;
+    &:hover{
+      color: #FFFFFF;
+      background-color: $yellow;
+      text-decoration: none;
+    }
+  }
+
+  &--gray{
+    color: $gray;
+    &:hover{
+      color: $gray;
+      background-color: #FFFFFF;
+      text-decoration: none;
+    }
+  }
+}

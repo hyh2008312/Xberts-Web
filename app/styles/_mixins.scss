@@ -36,9 +36,38 @@
   transform: translateY(-50%);
 }
 
+// aspect ratio
 
+@mixin xaspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: percentage($height / $width);
+  }
+}
+
+
+//media mixin
+
+// for mobile
 @mixin xs-screen(){
-  @media screen and (max-width: $screen-sm-min) {
+  @media screen and (max-width: $screen-xs-max) {
+    @content;
+  }
+}
+
+// for table
+@mixin sm-screen(){
+  @media screen and (min-width: $screen-sm-min)and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+// for desktop
+@mixin md-screen(){
+  @media screen and (min-width: $screen-md-min) {
     @content;
   }
 }
