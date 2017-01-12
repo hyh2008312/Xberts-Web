@@ -3,6 +3,7 @@
   margin-bottom: 40px;
   background-color: #ffffff;
   word-wrap: break-word;
+  border: 1px solid #EEEEEE;
   &__block {
     padding: 20px;
   }
@@ -17,7 +18,7 @@
       max-width: 100%;
     }
 
-    // fix chrome bug for add a border to img of no src
+    // fix chrome bug of adding a border to img of no src
     img[src=""],img:not([src]){
       border:0;
       opacity:0;
