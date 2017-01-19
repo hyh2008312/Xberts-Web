@@ -12,6 +12,7 @@ $gray:#999;
   line-height: 20px;
   padding-bottom: 20px;
   background-color: #FFFFFF;
+  font-weight: 500;
 
   &--blue{
     color: $blue;
@@ -47,5 +48,58 @@ $gray:#999;
       background-color: #FFFFFF;
       text-decoration: none;
     }
+  }
+}
+.c-btn{
+  text-align: center;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 9px 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+
+  &--lg{
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  &--sm{
+    font-size: 14px;
+    line-height: 14px;
+  }
+  &--block{
+    display: block;
+    width: 100%;
+  }
+  &--blue{
+    background-color: $blue;
+    color: #FFFFFF;
+  }
+
+  &--green{
+    background-color: $green;
+    color: #FFFFFF;
+  }
+
+  &--yellow{
+    background-color: $yellow;
+    color: #FFFFFF;
+  }
+
+  &--gray{
+    background-color: $gray;
+    color: #FFFFFF;
+  }
+
+  &:hover, &:focus, &:active{
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  &--xs-fixed-bottom{
+
   }
 }

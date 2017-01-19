@@ -60,3 +60,9 @@ angular
       IdleProvider.timeout(0);
       KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
     }]);
+  // .config(['$affixProvider',function($affixProvider) {
+  //   angular.extend($affixProvider.defaults, {
+  //     setWidth: false,
+  //     inlineStyles:false
+  //   });
+  // }]);

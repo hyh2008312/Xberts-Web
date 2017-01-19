@@ -1,0 +1,35 @@
+.feedback-form{
+  margin-bottom: 40px;
+}
+.comment{
+  &__text{
+    font-size: 16px;
+    font-weight: 300;
+    color: #333;
+  }
+  &__post-time{
+    font-size: 14px;
+    font-weight: 300;
+    color: #999999;
+    float: right;
+    @include xs-screen{
+      float: none;
+      display: block;
+    }
+  }
+
+  &__poster__country{
+    color: #999999;
+    font-weight: 300;
+  }
+
+  &__icon{
+    color: #999999;
+  }
+
+  &--sub{
+    @include xs-screen{
+      margin-left: -50px;
+    }
+  }
+}

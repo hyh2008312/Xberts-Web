@@ -97,16 +97,16 @@
             <p class="xcard__title align-center" ui-sref="application.testingcampaign({ reviewId:review.id })">{{
               review.title }}</p>
 
-            <ul class="status-list-inline align-center">
-              <li time-left end-time="review.applicationEndDate" extra-info="review.applicantCount" class="status">
-                <span class="status__value" ng-show="timeValue>0">{{ timeValue }}</span>
-                <span class="status__key" ng-show="timeValue>0"> {{ timeUnit }} Left </span>
-                <span class="status__value" ng-show="timeValue<=0">{{ extraInfo }}</span>
-                <span class="status__key" ng-show="timeValue<=0">applicants</span>
+            <ul class="l-list-inline align-center">
+              <li time-left end-time="review.applicationEndDate" extra-info="review.applicantCount" class="c-status">
+                <span class="c-status__value" ng-show="timeValue>0">{{ timeValue }}</span>
+                <span class="c-status__key" ng-show="timeValue>0"> {{ timeUnit }} Left </span>
+                <span class="c-status__value" ng-show="timeValue<=0">{{ extraInfo }}</span>
+                <span class="c-status__key" ng-show="timeValue<=0">applicants</span>
               </li>
-              <li class="status">
-                <span class="status__value">Free</span>
-                <span class="status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
+              <li class="c-status">
+                <span class="c-status__value">Free</span>
+                <span class="c-status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
               </li>
             </ul>
           </div>

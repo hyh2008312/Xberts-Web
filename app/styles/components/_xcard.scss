@@ -1,9 +1,12 @@
 .xcard {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   background-color: #ffffff;
   word-wrap: break-word;
   border: 1px solid #EEEEEE;
+  &__header{
+    border-bottom: 1px solid #dcdcdc;
+  }
   &__block {
     padding: 20px;
   }
@@ -43,6 +46,10 @@
   }
   &__footer{
     border-top: 1px solid #EEEEEE;
+  }
+
+  &--borderless{
+    border:none;
   }
 }
 

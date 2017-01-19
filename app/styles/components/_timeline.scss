@@ -1,0 +1,86 @@
+.c-timeline{
+  position: relative;
+  margin-top: 20px;
+  &__item{
+    position: relative;
+    line-height: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &:before{
+      content: " ";
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background: #dcdcdc;
+      left: 50%;
+      margin-left: -1px;
+    }
+    &:after{
+      content: " ";
+      display: table;
+      clear: both;
+    }
+    &__event{
+      display: block;
+      width: 50%;
+      float: left;
+      padding-right: 10px;
+      text-align: right;
+      font-weight: 300;
+      font-size: 14px;
+    }
+    &__time{
+      float: left;
+      display: block;
+      width: 50%;
+      padding-left: 10px;
+      text-align: left;
+      font-weight: 300;
+      font-size: 14px;
+    }
+    &__point{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      margin-left: -2px;
+      background-color: #999;
+      font-size: 14px;
+    }
+
+
+    $parent:&;
+
+    &:first-child{
+      &:before{
+        top: 50%;
+        height: 60%;
+      }
+
+      #{$parent}__point{
+        margin-top: -2px;
+      }
+    }
+    &:last-child{
+      &:before{
+        height: 60%;
+      }
+
+      #{$parent}__point{
+        margin-top: 2px;
+      }
+    }
+
+    &--active{
+      #{$parent}__point{
+        width: 7px;
+        height: 7px;
+        margin-left: -4px;
+        background-color: #000;
+      }
+    }
+  }
+}

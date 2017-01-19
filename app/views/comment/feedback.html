@@ -1,12 +1,12 @@
-<div>
+<div class="feedback-form border-bottom">
   <form name="feedbackForm" ng-submit="feedbackFormSubmit()" class="pr">
     <div growl reference="interact_{{ interact.id }}"></div>
     <textarea name='detail' class="form-control" rows="5"
               ng-model="feedback.details" ng-required="true">
     </textarea>
 
-    <div class="margin-top">
-      <button type="submit" class="button button-small button-primary pull-right">{{ btnText }}</button>
+    <div class="margin-top align-right">
+      <button type="submit" class="c-btn c-btn--blue">{{ btnText }}</button>
     </div>
   </form>
 </div>

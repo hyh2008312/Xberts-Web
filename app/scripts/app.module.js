@@ -30,5 +30,6 @@ angular
     '720kb.socialshare',
     'mgcrea.ngStrap',
     'timer',
-    'config'
+    'config',
+    'mgcrea.ngStrap'
   ]);

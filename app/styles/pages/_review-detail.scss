@@ -1,0 +1,57 @@
+.review-detail-page{
+  margin-top: 30px;
+  padding-bottom: 30px;
+  font-size: 16px;
+  line-height: 28px;
+  @include xs-screen{
+    margin-top: 10px;
+  }
+}
+.review-info{
+  padding-top: 30px;
+  &__title{
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  &__category{
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    margin-bottom: 30px;
+    @include xs-screen{
+      margin-bottom: 20px;
+    }
+  }
+  &__reviewer{
+    margin-bottom: 30px;
+  }
+  &__status{
+    margin-bottom: 20px;
+  }
+
+  @include xs-screen{
+    padding-top: 0;
+  }
+}
+.review-section{
+  &__title{
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  margin-bottom: 30px;
+}
+
+.review-button-wrap{
+  @include xs-screen{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 20px 0px 20px;
+    background-color: rgba(255,255,255,0.8);
+  }
+}

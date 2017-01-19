@@ -1,581 +1,343 @@
 <join ng-init="init(review.interact)">
-  <div class="xb-page-product">
-    <div class="container ">
-      <h2 class="xb-page-product-title">{{ review.title }}</h2>
-
-      <p class="xb-page-product-subtitle">
-        <span class="margin-right">
-          <i class="fa fa-tag"></i>&nbsp;<span
-          ng-repeat="category in review.project.categories">{{ category.name }}<span ng-if="!$last">,</span></span>
-        </span>
-      </p>
-    </div>
-  </div>
-
-  <section id="review-detail">
-    <div class=" container">
+  <div id="review-detail" class="review-detail-page">
+    <div class="container">
 
       <div class="row">
 
-        <div class="col-xs-12 col-sm-12 margin-bottom-xl visible-xs visible-sm">
-
-          <div class="three-to-two visible-xs" style="background-image: url({{ review.project.mainImage }})">
-
-          </div>
-
-          <div class="xb-card-board">
-            <p class="xb-card-board-label">Share with Friends</p>
-            <button class="button button-primary button-circle button-small" socialshare
-                    socialshare-provider="linkedin"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-source="{{ review.project.mainImage }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-linkedin"></i>
-            </button>
-            <button class="button button-royal button-circle button-small" socialshare
-                    socialshare-provider="facebook"
-                    socialshare-media="{{ review.project.mainImage }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-facebook"></i>
-            </button>
-
-            <button class="button button-action button-circle button-small" socialshare
-                    socialshare-provider="twitter"
-                    socialshare-media="{{ review.project.mainImage }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-source="{{ review.project.mainImage }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-twitter"></i>
-            </button>
-          </div>
-
-          <div class="xb-card-board">
-            <div class="xb-card-board-item">
-              <p ng-switch="review.reviewType" class="xb-card-board-label">
-                <span ng-switch-when="FREE_SAMPLE"> Campaign Reward</span>
-                <span ng-switch-default> Early Bird Price</span>
-              </p>
-
-              <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Free Sample</span>
-                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
-              </p>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+          <div class="xcard xcard--borderless">
+            <div class="xcard__image_wrap">
+              <img ng-src="{{ review.project.mainImage }}"/>
             </div>
-
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Original Price</p>
-
-              <p class="xb-card-board-value">
-                <del>{{ review.project.retailPrice.amount |currency }}</del>
-              </p>
-            </div>
-
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Time Left</p>
-
-              <p class="xb-card-board-value">
+            <div class="xcard__block">
+              <div class="review-info visible-xs visible-sm">
+                <p class="review-info__title">{{ review.title }}</p>
+                <p class="review-info__category">
+            <span class="margin-right">
+              <span ng-repeat="category in review.project.categories">{{ category.name }}<span
+                ng-if="!$last">,</span></span>
+            </span>
+                </p>
+                <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
+                  <li class="c-status c-status--review-detail">
+                    <span class="c-status__key">Available Units</span>
+                    <ng-pluralize class="c-status__value" count="review.sampleNum"
+                                  when="{'0': '0 sample',
+                               '1': '1 sample',
+                               'other': '{{review.sampleNum}} samples'}"></ng-pluralize>
+                  </li>
+                  <li class="c-status c-status--review-detail">
+                    <span class="c-status__key">Time Left</span>
+              <span class="c-status__value">
                 <timer end-time="review.applicationEndDate">
                   {{days|doubleDigit}} day{{daysS}},
                   {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
                 </timer>
-              </p>
-            </div>
+              </span>
+                  </li>
+                  <li class="c-status c-status--review-detail">
+                    <span class="c-status__key">Price</span>
+                    <span class="c-status__value"><span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span> Free</span>
+                  </li>
+                </ul>
+                <div class="review-info__button" ng-include="'views/review/review-main-action.html'">
+                </div>
+                <div class="c-image-line visible-xs visible-sm">
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step1-green.png?s=5dedc19db80f1cc000b92ec473dd84ef">
+                    </div>
 
-            <div class="xb-card-board-item" ng-switch="review.reviewType">
-              <div ng-switch-when="FREE_SAMPLE">
-                <p class="xb-card-board-label"> Total Available Units</p>
+                    <p class="c-image-line__item__text">
+                      Join<br/> Now
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step2-green.png?s=5b3fce4c449bb1e6621a4f04299959fb"/>
+                    </div>
+                    <p class="c-image-line__item__text">
+                      Get<br/>Selected
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step3-green.png?s=6264a1aa1b3677e6c98a4c49c94fb132"/>
+                    </div>
 
-                <p class="xb-card-board-value">{{ review.sampleNum }}&nbsp;
-                  <span ng-pluralize count="review.sampleNum"
-                        when="{'0': 'sample',
-                               '1': 'sample',
-                               'other': 'samples'}"></span>
-                </p>
-              </div>
-              <div ng-switch-default>
-                <p class="xb-card-board-label"> Units Sold</p>
+                    <p class="c-image-line__item__text">
+                      Receive<br/>Product
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step4-green.png?s=b7760dd8326c6f9aa6363def0904c41c">
+                    </div>
+                    <p class="c-image-line__item__text">
+                      Submit<br/>Review
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step5-green.png?s=341647267eb2e89a6ac2c249177d54c7">
+                    </div>
 
-                <div class="font-gray-light progress-tip-down progress-bar-thin">
-
-                  <uib-progressbar class="active" max="review.flashsale.totalUnits"
-                                   value="review.flashsale.totalUnits-review.flashsale.availableUnits">
-                  </uib-progressbar>
-                  <div class="progress-tip">
-                    <span
-                      class="progress-tip-left"> {{ percentage() }}% Claimed</span>
+                    <p class="c-image-line__item__text">
+                      Review<br/>Ended
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
+              <div class="review-section hidden-xs hidden-sm">
+                <h4 class="review-section__title">
+                  Be a product reviewer and it's yours to keep!
+                </h4>
+                <div class="c-image-line">
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step1-green.png?s=5dedc19db80f1cc000b92ec473dd84ef">
+                    </div>
 
-            <div ng-if="review.reviewType=='PAID' && saleInfo.reload && saleInfo.productVariants.length>1 "
-                 class="xb-card-board-item">
-              <p class="xb-card-board-label" ng-bind="saleInfo.options"> Options</p>
-              <select class="form-control" name="variant"
-                      ng-options="item as item.title for item in saleInfo.productVariants"
-                      ng-model="saleInfo.variant"
-                      ng-required="true">
-              </select>
-            </div>
+                    <p class="c-image-line__item__text">
+                      Join Now
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step2-green.png?s=5b3fce4c449bb1e6621a4f04299959fb"/>
+                    </div>
+                    <p class="c-image-line__item__text">
+                      Get Selected
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step3-green.png?s=6264a1aa1b3677e6c98a4c49c94fb132"/>
+                    </div>
 
-            <div class="xb-card-board-item" ng-if="review.reviewType=='PAID'">
-              <p class="xb-card-board-label"> Quantity</p>
-              <select class="form-control" name="quantity"
-                      ng-model="saleInfo.quantity"
-                      ng-required="true">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-            </div>
+                    <p class="c-image-line__item__text">
+                      Receive Product
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step4-green.png?s=b7760dd8326c6f9aa6363def0904c41c">
+                    </div>
+                    <p class="c-image-line__item__text">
+                      Submit Review
+                    </p>
+                  </div>
+                  <div class="c-image-line__item">
+                    <div class="c-image-line__item__image-wrap">
+                      <img
+                        src="https://xberts.imgix.net/static/icon/step5-green.png?s=341647267eb2e89a6ac2c249177d54c7">
+                    </div>
 
-            <div class="margin-top" ng-include="'views/review/review-main-action.html'">
+                    <p class="c-image-line__item__text">
+                      Review Ended
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="review-section hidden-xs hidden-sm">
+                <h4 class="review-section__title">Benefits</h4>
+                <ul>
+                  <li>Reviewers can keep the product sample fro FREE after submitting a review report</li>
+                  <li>Be the first to test the most innovative products and share your opinions to make an impact</li>
+                </ul>
+              </div>
+              <div class="review-section hidden-xs hidden-sm">
+                <h4 class="review-section__title">Requirements</h4>
+                <ul>
+                  <li>All selected applicants must submit their review reports before deadline, otherwise they will have
+                    to return the products to Xberts
+                  </li>
+                  <li>A review report should be UNBIASED and match the following criteria:</li>
+                </ul>
+              </div>
             </div>
           </div>
-
-
-
-          <div class="xb-card-board" id="contact-owner-card" ng-if="review.reviewType=='FREE_SAMPLE'">
-            <div class="card-body pr">
-              <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
-                <div class="item-image">
-                  <avatar-img src="review.project.account.avatar"></avatar-img>
-                </div>
-                <div class="item-body">
-                  <p class="item-body-header">
-
-                  <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
-                    review.project.account.fullname }}</a></p>
-
-                </div>
-              </div>
-              <button class="btn btn-block btn-primary text-uppercase" ng-show="!isCurrentUser"
-                      ng-click="contactUser()">
-                Contact Owner
-              </button>
+          <div class="xcard xcard--borderless">
+            <div class="xcard__header">
+              <ul class="nav nav-underlines" bs-affix data-offset-top="-70">
+                <li data-target="#review-description" bs-scrollspy>
+                  <a href="#review-description">Description</a>
+                </li>
+                <li data-target="#review-comment" bs-scrollspy>
+                  <a href="#review-comment" bs-scrollspy>Comments</a>
+                </li>
+              </ul>
             </div>
-          </div>
-
-          <div class="xb-card-board" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
-            <div class="card-body">
-              <div ng-show="review.status === 'SELECTION'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                    Applicants</a>
-                </div>
-              </div>
-              <div ng-show="review.status === 'CONFIRMATION'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
-                    Applicants</a>
-                </div>
-              </div>
-              <div ng-show="review.status === 'REVIEW'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
-                    Shipping Address</a>
-                </div>
-              </div>
-              <div ng-show="review.status === 'ENDED'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                    Reports</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-xs-12 col-sm-12 col-md-8">
-          <div class="three-to-two hidden-xs" style="background-image: url({{ review.project.mainImage }})">
-
-          </div>
-          <uib-tabset class="background-bg-white" active="tabActive">
-            <uib-tab heading="Description" index="0" select="select('description')">
-              <div class="xb-detail-section" ng-show="review.reviewType=='FREE_SAMPLE'">
-                <h3 class="xb-detail-section-title margin-top-clear">
-                  <span>Be a product reviewer and it's yours to keep!</span>
-                </h3>
-
-                <div class="row xb-detail-section-detail">
-                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line xb-right-side">
-                    <div class="xb-reiview-connect">
-
-
-                      <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-1.png?s=ce7f49e6c6813943dfcb682258e1942d"
-                           style="width:100%;max-width: 60px;background-color: #ffffff">
-
-                      <p class="margin-top">
-                        <span>Apply Now</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line">
-                    <div class="xb-reiview-connect">
-                      <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-2.png?s=410c1960225e6aac0a7a6f2c296f5be3" style="width:100%;max-width: 60px;">
-
-                      <p class="margin-top">
-                        <span>Get Selected</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line">
-                    <div class="xb-reiview-connect">
-                      <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-3.png?s=15de7b612cbf8e1a3122782c3a40bded" style="width:100%;max-width: 60px;">
-
-                      <p class="margin-top">
-                        <span>Try Product</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-xs-3 col-sm-3 text-center xb-review-connect-line xb-left-side">
-                    <div class="xb-reiview-connect">
-                      <img src="https://xberts.imgix.net/static/icon/crowdtesting-step-4.png?s=68f3472b3a181a61adae433a0f19b08c" style="width:100%;max-width: 60px;">
-
-                      <p class="margin-top">
-                        <span>Submit Review</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="xb-detail-section" ng-show="review.reviewType=='FREE_SAMPLE'">
-
-                <h3 class="xb-detail-section-title">Rewards: </h3>
-
-                <div class="xb-detail-section-detail">
-                  <div>
-                    <ul>
-                      <li>Keep the product for FREE after submitting a review as instructed</li>
-                      <li>Get the privilege of being selected for more product review campaigns</li>
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="xb-detail-section">
-                <h3 class="xb-detail-section-title" ng-show="review.reviewType=='FREE_SAMPLE'">Product Description:</h3>
-
-                <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail">
-                </div>
-
-              </div>
-            </uib-tab>
-            <uib-tab heading="Shipping Info" index="1" select="select('shipping')" ng-show="review.reviewType === 'PAID'" >
-              <div class="xb-card-board hidden-xs">
-
-                <div class="xb-card-board-item">
-                  <p class="xb-card-board-label"> Shipping Charge</p>
-
-                  <p class="xb-card-board-value">
-                    Free shipping
-                  </p>
-                </div>
-
-                <div class="xb-card-board-item">
-                  <p class="xb-card-board-label"> Shipping Availability</p>
-
-                  <p class="xb-card-board-value">
-                    Worldwide
-                  </p>
-                </div>
-                <div class="xb-card-board-item">
-                  <p class="xb-card-board-label"> Ships In</p>
-
-                  <p class="xb-card-board-value">
-                    1 week after campaign ends
-                  </p>
-                </div>
-                <div class="xb-card-board-item">
-                  <p class="xb-card-board-label"> Return Policy</p>
-
-                  <p class="xb-card-board-value">
-                    We accept returns within 20 days of delivery
-                  </p>
-                </div>
-              </div>
-            </uib-tab>
-            <uib-tab index="2"
-                     select="select('comments')">
-              <uib-tab-heading>
-                Comments
-                <span class="badge" ng-class="{'badge-primary':commentsTabActive}" ng-show="review.commentAmount>0">{{ review.commentAmount}}</span>
-              </uib-tab-heading>
-              <div ng-if="commentsTabActive">
+            <div class="xcard__block">
+              <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail"
+                   id="review-description"></div>
+              <div class="review-section" id="review-comment">
+                <h4 class="review-section__title">
+                 Comments
+                </h4>
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
-            </uib-tab>
-            <uib-tab index="3" select="select('reviews')" ng-show="isShowReview">
-              <uib-tab-heading>
-                Expert Reviews
-                <span class="badge" ng-class="{'badge-primary':reviewersTabActive}" ng-show="review.reportAmount>0">{{ review.reportAmount}}</span>
-              </uib-tab-heading>
-              <div ng-if="reviewersTabActive">
-                <div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'
-                     infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">
+              <!--<div ng-show="review.reportAmount>0">-->
+              <!--<div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'-->
+              <!--infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">-->
 
-                  <div ng-if="reportPaginator.items.length === 0">
-                    <h4 class="empty-state">Reviews are collected after product shipment.</h4>
-                  </div>
+              <!--<div ng-if="reportPaginator.items.length === 0">-->
+              <!--<h4 class="empty-state">Reviews are collected after product shipment.</h4>-->
+              <!--</div>-->
 
-                  <div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">
-                    <img ng-src="{{ report.image }}" class="xb-list-image">
+              <!--<div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">-->
+              <!--<img ng-src="{{ report.image }}" class="xb-list-image">-->
 
-                    <p class="xb-list-item-title p-1">{{report.title}}</p>
+              <!--<p class="xb-list-item-title p-1">{{report.title}}</p>-->
 
-                    <p class="xb-list-item-detail p-4" ng-bind-html="report.description |trust"></p>
+              <!--<p class="xb-list-item-detail p-4" ng-bind-html="report.description |trust"></p>-->
 
-                    <div class="xb-list-item-footer">
-                      <div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">
-                        <div class="item-image">
-                          <avatar-img src="report.applicant.reviewer.avatar"></avatar-img>
-                        </div>
-                        <div class="item-body">
-                          <p class="p-1" style="padding-top: 3px;">
-                            <a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">
-                              {{ report.applicant.reviewer.fullname }}</a>
-                          </p>
+              <!--<div class="xb-list-item-footer">-->
+              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
+              <!--<div class="item-image">-->
+              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
+              <!--</div>-->
+              <!--<div class="item-body">-->
+              <!--<p class="p-1" style="padding-top: 3px;">-->
+              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
+              <!--{{ report.applicant.reviewer.fullname }}</a>-->
+              <!--</p>-->
 
-                          <div class="row" style="margin-top: 10px;">
-                            <div class="col-xs-6">
+              <!--<div class="row" style="margin-top: 10px;">-->
+              <!--<div class="col-xs-6">-->
 
-                              <p class="p-1" style="margin-bottom: 0">
-                                <i class="fa fa-map-marker"></i> {{report.applicant.reviewer.country}}
-                              </p>
-                            </div>
-                            <div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"
-                                                                    ui-sref="application.report({reviewId:review.id,reportId:report.id})">
-                              View More</a></div>
-                          </div>
+              <!--<p class="p-1" style="margin-bottom: 0">-->
+              <!--<i class="fa fa-map-marker"></i> {{report.applicant.reviewer.country}}-->
+              <!--</p>-->
+              <!--</div>-->
+              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
+              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
+              <!--View More</a></div>-->
+              <!--</div>-->
 
 
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>
-              </div>
-            </uib-tab>
-          </uib-tabset>
-        </div>
-
-        <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm" auto-fixed>
-
-
-          <div class="xb-card-board">
-
-            <p class="xb-card-board-label">Share With Friends</p>
-
-            <button class="button button-primary button-circle button-small" socialshare
-                    socialshare-provider="linkedin"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-source="{{ review.project.mainImage }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-linkedin"></i>
-            </button>
-            <button class="button button-royal button-circle button-small" socialshare
-                    socialshare-provider="facebook"
-                    socialshare-media="{{ review.project.mainImage }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-facebook"></i>
-            </button>
-
-            <button class="button button-action button-circle button-small" socialshare
-                    socialshare-provider="twitter"
-                    socialshare-media="{{ review.project.mainImage }}"
-                    socialshare-description="{{ review.project.description }}"
-                    socialshare-text="{{ review.project.title }}"
-                    socialshare-source="{{ review.project.mainImage }}"
-                    socialshare-url="{{ pageSettings.getUrl() }}">
-              <i class="fa fa-twitter"></i>
-            </button>
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>-->
+              <!--</div>-->
+            </div>
           </div>
-
-          <div class="xb-card-board">
-            <div class="xb-card-board-item">
-              <p ng-switch="review.reviewType" class="xb-card-board-label">
-                <span ng-switch-when="FREE_SAMPLE"> Campaign Reward</span>
-                <span ng-switch-default> Early Bird Price</span>
-              </p>
-
-              <p class="xb-card-board-value" ng-switch="review.reviewType">
-                <span ng-switch-when="FREE_SAMPLE">Free Sample</span>
-                <span ng-switch-default>{{ review.flashsale.salePrice.amount |currency }}</span>
-              </p>
-            </div>
-
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Original Price</p>
-
-              <p class="xb-card-board-value">
-                <del>{{ review.project.retailPrice.amount |currency }}</del>
+        </div>
+        <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm">
+          <div class="review-info align-center">
+            <p class="review-info__title">{{ review.title }}</p>
+            <p class="review-info__category">
+            <span class="margin-right">
+              <span ng-repeat="category in review.project.categories">{{ category.name }}<span
+                ng-if="!$last">,</span></span>
+            </span>
+            </p>
+            <div class="c-user review-info__reviewer">
+              <avatar-img src="review.project.account.avatar"></avatar-img>
+              <p class="c-user__name">
+                <a ui-sref="application.expert({ expertId:review.project.account.id })">{{
+                  review.project.account.fullname }}</a>
               </p>
             </div>
 
-            <div class="xb-card-board-item">
-              <p class="xb-card-board-label"> Time Left</p>
-
-              <p class="xb-card-board-value">
+            <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
+              <li class="c-status c-status--review-detail">
+                <span class="c-status__key">Available Units</span>
+              <span class="c-status__value" ng-pluralize count="review.sampleNum"
+                    when="{'0': '0 sample',
+                               '1': '1 sample',
+                               'other': '{{ review.sampleNum }} samples'}"></span>
+              </li>
+              <li class="c-status c-status--review-detail">
+                <span class="c-status__key">Time Left</span>
+              <span class="c-status__value">
                 <timer end-time="review.applicationEndDate">
                   {{days|doubleDigit}} day{{daysS}},
                   {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
                 </timer>
-              </p>
-            </div>
-
-            <div class="xb-card-board-item" ng-switch="review.reviewType">
-              <div ng-switch-when="FREE_SAMPLE">
-                <p class="xb-card-board-label"> Total Available Units</p>
-
-                <p class="xb-card-board-value">{{ review.sampleNum }}&nbsp;
-                  <span ng-pluralize count="review.sampleNum"
-                        when="{'0': 'sample',
-                               '1': 'sample',
-                               'other': 'samples'}"></span>
-                </p>
-              </div>
-              <div ng-switch-default>
-                <p class="xb-card-board-label"> Units Sold</p>
-
-                <div class="font-gray-light progress-tip-down progress-bar-thin">
-
-                  <uib-progressbar class="active" max="review.flashsale.totalUnits"
-                                   value="review.flashsale.totalUnits-review.flashsale.availableUnits">
-                  </uib-progressbar>
-                  <div class="progress-tip">
-                    <span
-                      class="progress-tip-left"> {{ percentage() }}% Claimed</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="review.reviewType=='PAID' && saleInfo.reload && saleInfo.productVariants.length>1 "
-                 class="xb-card-board-item">
-              <p class="xb-card-board-label" ng-bind="saleInfo.options"> Options</p>
-              <select class="form-control" name="variant"
-                      ng-options="item as item.title for item in saleInfo.productVariants"
-                      ng-model="saleInfo.variant"
-                      ng-required="true">
-              </select>
-            </div>
-
-            <div class="xb-card-board-item" ng-if="review.reviewType=='PAID'">
-              <p class="xb-card-board-label"> Quantity</p>
-              <select class="form-control" name="quantity"
-                      ng-model="saleInfo.quantity"
-                      ng-required="true">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-            </div>
-
-            <div class="margin-top" ng-include="'views/review/review-main-action.html'">
+              </span>
+              </li>
+              <li class="c-status c-status--review-detail">
+                <span class="c-status__key">Price</span>
+                <span class="c-status__value"><span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span> Free</span>
+              </li>
+            </ul>
+            <div class="review-info__button" ng-include="'views/review/review-main-action.html'">
             </div>
           </div>
 
-          <div class="xb-card-board" id="contact-owner-card" ng-if="review.reviewType=='FREE_SAMPLE'">
-            <div class="card-body pr">
-              <div class="item-avatar-middle-x padding-lr-clear" style="border-bottom: 0;">
-                <div class="item-image">
-                  <avatar-img src="review.project.account.avatar"></avatar-img>
-                </div>
-                <div class="item-body">
-                  <p class="item-body-header">
-
-                  <p class="p-1"><a ui-sref="application.expert({ expertId:review.project.account.id })">{{
-                    review.project.account.fullname }}</a></p>
-
-                </div>
-              </div>
-              <button class="btn btn-block btn-primary text-uppercase" ng-show="!isCurrentUser"
-                      ng-click="contactUser()">
-                Contact Owner
-              </button>
+          <div class="c-timeline">
+            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
+              <span class="c-timeline__item__event">Application Deadline</span>
+              <span class="c-timeline__item__point"></span>
+              <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}</span>
+            </div>
+            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION'}">
+              <span class="c-timeline__item__event">Announce Reviewers</span>
+              <span class="c-timeline__item__point"></span>
+              <span class="c-timeline__item__time">within 7 business days</span>
+            </div>
+            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='REVIEW'}">
+              <span class="c-timeline__item__event">Testing Period</span>
+              <span class="c-timeline__item__point"></span>
+              <span class="c-timeline__item__time">2 weeks</span>
+            </div>
+            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='ENDED'}">
+              <span class="c-timeline__item__event">Review Submission Deadline</span>
+              <span class="c-timeline__item__point"></span>
+              <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD,YYYY' }}</span>
             </div>
           </div>
 
-          <div class="xb-card-board" ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
-            <div class="card-body">
-              <div ng-show="review.status === 'SELECTION'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                    Applicants</a>
-                </div>
+          <div ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
+            <div ng-show="review.status === 'SELECTION'">
+              <div class="margin-top">
+                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                   ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                  Applicants</a>
               </div>
-              <div ng-show="review.status === 'CONFIRMATION'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
-                    Applicants</a>
-                </div>
+            </div>
+            <div ng-show="review.status === 'CONFIRMATION'">
+              <div class="margin-top">
+                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                   ui-sref="application.selectApplicants({reviewId:review.id})">View
+                  Applicants</a>
               </div>
-              <div ng-show="review.status === 'REVIEW'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
-                    Shipping Address</a>
-                </div>
+            </div>
+            <div ng-show="review.status === 'REVIEW'">
+              <div class="margin-top">
+                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                   ui-sref="application.selectApplicants({reviewId:review.id})">View
+                  Shipping Address</a>
               </div>
-              <div ng-show="review.status === 'ENDED'">
-                <div class="margin-top">
-                  <a class="btn btn-block btn-primary"
-                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                    Reports</a>
-                </div>
+            </div>
+            <div ng-show="review.status === 'ENDED'">
+              <div class="margin-top">
+                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                   ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                  Reports</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
 
-  </section>
-
-  <div class="xb-footer-buttons visible-xs-block">
-    <div class="row">
-      <div class="col-xs-6 xb-button-padding-top-bottom xb-no-wrap">
-        <timer end-time="review.applicationEndDate">
-          {{days|doubleDigit}} day{{daysS}},
-          {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}} left
-        </timer>
-      </div>
-      <div class="col-xs-6 xb-align-center" ng-include="'views/review/review-main-action.html'">
       </div>
     </div>
+
   </div>
 
+  </div>
 </join>

@@ -1,4 +1,4 @@
-<div class="item-avatar-middle-x padding-lr-clear">
+<div class="item-avatar-middle-x padding-lr-clear comment comment--sub">
   <div class="item-image">
     <avatar-img src="item.post.joiner.avatar"></avatar-img>
   </div>
@@ -7,13 +7,13 @@
       <span><a ui-sref="application.expert({ expertId:item.post.joiner.id })">{{ item.post.joiner.fullname }}</a></span>
       <span>to:</span>
       <span><a ui-sref="application.expert({ expertId:item.post_to.joiner.id })">{{ item.post_to.joiner.fullname }}</a></span>
-      <span class="pull-right" am-time-ago='item.date_published'></span></p>
+      <span class="comment__post-time" am-time-ago='item.date_published'></span></p>
 
-    <p class="item-body-title">{{ item.details}}</p>
+    <p class="item-body-title comment__text">{{ item.details}}</p>
 
     <p class="item-body-header align-right">
       <span>{{ item.comment_amount }}</span>
-      <a class="a-gray"><i class="fa fa-comment" ng-click="commentsToggle()"></i></a>
+      <a class="a-gray"><i class="fa fa-comment comment__icon" ng-click="commentsToggle()"></i></a>
     </p>
 
     <div ng-show="replyActive">
@@ -25,7 +25,7 @@
     </textarea>
 
         <div class="margin-top align-right">
-          <button type="submit" class="button button-small button-primary">Reply</button>
+          <button type="submit" class="c-btn c-btn--blue c-btn--sm">Reply</button>
         </div>
       </form>
     </div>

@@ -1,0 +1,58 @@
+.l-list-inline{
+  padding-left: 0;
+  list-style: none;
+  margin-left: 0;
+  margin-bottom:0;
+  &--strip{
+    border-top:2px solid #EEEEEE;
+    border-bottom: 2px solid #EEEEEE;
+  }
+  >li{
+    display: inline-block;
+  }
+}
+.c-status{
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__key{
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+  }
+  &__value{
+    display: block;
+    font-size: 24px;
+    color: #333;
+    font-weight: 500;
+  }
+
+  $parent: &;
+
+  &--review-detail{
+    line-height: 14px;
+    padding: 20px 15px;
+    #{$parent}__value{
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    @include xs-screen{
+      padding: 12px 2px;
+      &:first-child{
+        padding-left: 0;
+      }
+      &:last-child{
+        padding-right: 0;
+      }
+      #{$parent}__value{
+        margin-top: 20px;
+        font-size: 12px;
+      }
+      #{$parent}__key{
+        font-size: 12px;
+      }
+    }
+  }
+}

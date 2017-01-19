@@ -1,112 +1,59 @@
 <div ng-switch="review.status">
+  <div ng-switch-when="UPCOMING">
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--gray"
+         disabled>
+        Coming Soon
+      </a>
+    </div>
 
-  <button ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
-          disabled>
-    Coming Soon
-  </button>
-
+  </div>
   <div ng-switch-when="APPLICATION">
-    <div ng-switch="review.reviewType">
-      <div ng-switch-when="FREE_SAMPLE">
-        <button ng-if="!applicant.exist" class="btn btn-block btn-success" ng-click="applyNow()">APPLY NOW
-        </button>
-        <button ng-if="applicant.exist" class="btn btn-block btn-primary"
-                ui-sref="application.protected.apply({reviewId:review.id})">Edit Application
-        </button>
-      </div>
-      <div ng-switch-default>
-        <button class="btn btn-block btn-primary"
-                ng-click="buyClicked()">GET IT NOW
-        </button>
-      </div>
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--blue"
+         ui-sref="application.protected.apply({reviewId:review.id})">
+        APPLY NOW
+      </a>
     </div>
-  </div>
 
+    <p>Product sponsors will offer 7 free samples to selected applicants for review purpose. To participate in this
+      review campaign, please click on the "Join Now" button to get started.</p>
+  </div>
   <div ng-switch-when="SELECTION">
-    <button ng-if="!applicant.exist" class="btn btn-block btn-default" disabled>
-      Application
-      Ended
-    </button>
-    <button ng-if="applicant.exist" class="btn btn-block btn-success-disabled" disabled>
-      Screening
-    </button>
-  </div>
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--gray" disabled>
+        APPLICANT SCREENING
+      </a>
+    </div>
 
+    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}，please stay tuned!</p>
+  </div>
   <div ng-switch-when="CONFIRMATION">
-    <div ng-if="!applicant.exist">
-      <button class="btn btn-block btn-default"
-              disabled>
-        Application
-        Ended
-      </button>
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--gray" disabled>
+        APPLICANT SCREENING
+      </a>
     </div>
-    <div ng-if="applicant.exist">
-      <button ng-if="!applicant.is_selected" class="btn btn-block btn-success-disabled" disabled>
-        Not
-        Selected
-      </button>
-      <button ng-if="applicant.is_selected" class="btn btn-block btn-primary"
-              ui-sref="application.protected.confirmShipAddress({reviewId:review.id})">Confirm
-        Shipping
-        Info
-      </button>
-    </div>
-  </div>
 
+    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}，please stay tuned!</p>
+  </div>
   <div ng-switch-when="REVIEW">
-    <div ng-if="!applicant.exist">
-      <div ng-switch="user.isAuth()">
-        <button ng-switch-when="true" class="btn btn-block btn-default" disabled>In
-          Progress
-        </button>
-        <button ng-switch-when="false" class="btn btn-block btn-primary"
-                ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit Report
-        </button>
-      </div>
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--green"
+         ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">
+        SUBMIT REVIEW
+      </a>
     </div>
-    <div ng-if="applicant.exist">
-      <div ng-if="!applicant.is_selected">
-        <button class="btn btn-block btn-default" disabled>
-          Not
-          Selected
-        </button>
-      </div>
-      <div ng-if="applicant.is_selected">
-        <button ng-if="!applicant.is_submit_report" class="btn btn-block btn-primary"
-                ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
-          Report
-        </button>
-        <button ng-if="applicant.is_submit_report" class="btn btn-block btn-primary"
-                ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Edit
-          Report
-        </button>
-      </div>
-    </div>
-  </div>
 
-  <div ng-switch-default>
-    <div ng-if="!applicant.exist">
-      <button class="btn btn-block btn-default" disabled>
-        Completed
-      </button>
+    <p>Only selected reviewers can submit their reviews on this page.</p>
+  </div>
+  <div ng-switch-when="ENDED">
+    <div class="review-button-wrap">
+      <a class="c-btn c-btn--block c-btn--lg c-btn--gray">
+        REVIEW ENDED
+      </a>
     </div>
-    <div ng-if="applicant.exist">
-      <div ng-if="!applicant.is_selected">
-        <button class="btn btn-block btn-default" disabled>
-          Completed
-        </button>
-      </div>
-      <div ng-if="applicant.is_selected">
-        <button ng-if="!applicant.is_submit_report" class="btn btn-block btn-primary"
-                ui-sref="application.protected.crowdtestingReport({reviewId:review.id})">Submit
-          Report
-        </button>
-        <button ng-if="applicant.is_submit_report" class="btn btn-block btn-success"
-                ui-sref="application.report({ reviewId:review.id,reportId:applicant.report})">View
-          My
-          Report
-        </button>
-      </div>
-    </div>
+
+    <p></p>
   </div>
 </div>

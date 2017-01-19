@@ -73,52 +73,6 @@ angular.module('xbertsApp')
       var shareImage = review.project.mainImage;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
-      $scope.tabs = [
-        {title: 'detail', active: true},
-        {title: 'shipping', active: false},
-        {title: 'comments', active: false},
-        {title: 'reviews', active: false}
-      ];
-      $scope.tabActive = 0;
-
-      var search = $location.search();
-      var tab = search.tab || 'detail';
-      switch (tab) {
-        case 'detail':
-          $scope.tabActive = 0;
-          break;
-        case 'shipping':
-          $scope.tabActive = 1;
-          break;
-        case 'comments':
-          $scope.tabActive = 2;
-          break;
-        case 'reviews':
-          $scope.tabActive = 3;
-          break;
-        default:
-          $scope.tabActive = 0;
-      }
-      $scope.commentsTabActive = false;
-      $scope.reviewersTabActive = false;
-      $scope.select = function (step) {
-        $scope.commentsTabActive = false;
-        $scope.reviewersTabActive = false;
-        switch (step) {
-          case 'comments':
-            $scope.commentsTabActive = true;
-            $scope.reviewersTabActive = false;
-            break;
-          case 'reviews':
-            $scope.commentsTabActive = false;
-            $scope.reviewersTabActive = true;
-            break;
-          default:
-            $scope.commentsTabActive = false;
-            $scope.reviewersTabActive = false;
-        }
-      };
-
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === $scope.review.project.account.id;
 
       var sendMessage = function () {

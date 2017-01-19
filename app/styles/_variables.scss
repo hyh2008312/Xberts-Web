@@ -40,9 +40,6 @@ $xb-form-default-bg: $whiteColor;
 // --------------------------------------------------
 $brand-primary: $primaryColor;
 
-$grid-gutter-width: 40px;
-$container-large-desktop: (1040px + $grid-gutter-width);
-
 $btn-border-radius-base: 10px;
 $btn-border-radius-large: 10px;
 
@@ -64,7 +61,7 @@ $dropdown-link-hover-color: $primaryFontColor;
 $dropdown-link-active-color: $primaryFontColor;
 $dropdown-border: $xb-default-border;
 
-$grid-gutter-width: 30px;
+$grid-gutter-width: 20px;
 $container-large-desktop: (1180px + $grid-gutter-width);
 
 

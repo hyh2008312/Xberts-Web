@@ -1,0 +1,22 @@
+.affix-side.affix-top{
+  .is-affix{
+    display: none;
+  }
+}
+
+.affix-side.affix{
+  left: 0;
+  width: 100%;
+  .not-affix{
+    display: none;
+  }
+}
+
+.affix-side.affix-bottom{
+  left: 0;
+  width: 100%;
+  .not-affix{
+    display: none;
+  }
+}
+
