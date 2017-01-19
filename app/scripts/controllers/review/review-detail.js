@@ -65,6 +65,14 @@ angular.module('xbertsApp')
         });
       }
 
+      $scope.depositInfo = {
+        variant: null
+      };
+      if (review.deposit && review.deposit.shopGatewayInventoryId) {
+        ShopifyService.fetchProduct(review.deposit.shopGatewayInventoryId).then(function (data) {
+          $scope.depositInfo.variant = data.variants[0];
+        });
+      }
 
       var project = review.project;
       var title = review.title;
@@ -111,7 +119,12 @@ angular.module('xbertsApp')
 
         $scope.$emit('backdropOn', 'buy');
 
-        ShopifyService.buy(review.flashsale.id, $scope.saleInfo.variant, $rootScope.user, $scope.saleInfo.quantity)
+        ShopifyService.buy(review.flashsale.id,
+          $scope.saleInfo.variant,
+          $scope.saleInfo.quantity,
+          review.deposit ? review.deposit.id : null,
+          $scope.depositInfo.variant,
+          $rootScope.user)
           .then(function () {
             AnalyticsService.sendPageView($location.path() + '/buy', null, $scope.review.project.categories[0].name);
 

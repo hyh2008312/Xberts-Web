@@ -141,6 +141,9 @@ angular
         templateUrl: 'views/review/review_applicant_shipping_address.html',
         controller: 'ShipAddressCtrl',
         resolve: {
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getDetail($stateParams.reviewId);
+          }],
           reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
@@ -411,7 +414,6 @@ angular
             var par = {
               name: 'progressingReview',
               params: {
-                stage: 'BETA',
                 page_size: 12
               },
               fetchFunction: function (params) {
@@ -444,7 +446,6 @@ angular
             var par = {
               name: 'preLaunchReview',
               params: {
-                stage: 'BETA',
                 page_size: 12
               },
               fetchFunction: function (params) {

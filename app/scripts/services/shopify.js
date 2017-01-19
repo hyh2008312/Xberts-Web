@@ -14,12 +14,23 @@ angular.module('xbertsApp')
       };
 
 
-      this.buy = function (saleId, varient, user, quantity) {
+      this.buy = function (saleId, saleVariant, saleQuantity, depositId, depositVariant, user) {
         var checkoutUrl;
+        var cartId;
 
         return client.createCart()
           .then(function (cart) {
-            return cart.addVariants({variant: varient, quantity: quantity});
+            var items = [];
+
+            if (saleId && saleVariant) {
+              items.push({variant: saleVariant, quantity: saleQuantity});
+            }
+
+            if (depositId && depositVariant) {
+              items.push({variant: depositVariant, quantity: 1});
+            }
+
+            return cart.addVariants.apply(cart, items);
           })
           .then(function (cart) {
             // Autofill email in checkout form with user's account email and add cart id to order attr
@@ -32,8 +43,16 @@ angular.module('xbertsApp')
               }
             });
             checkoutUrl = cart.checkoutUrl + '&' + paramStr;
+            cartId = cart.id;
 
-            return Sales.createOrder(saleId, quantity, cart.id);
+            if (saleId && saleVariant) {
+              return Sales.createOrder(saleId, saleQuantity, cartId);
+            }
+          })
+          .then(function () {
+            if (depositId && depositVariant) {
+              return Sales.createDepositOrder(depositId, cartId);
+            }
           })
           .then(function (data) {
             $window.location.href = checkoutUrl;
