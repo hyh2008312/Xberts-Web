@@ -15,8 +15,8 @@ angular.module('xbertsApp')
         $scope.profileForm.phoneError = !$scope.profile.phone_number;
 
         if ($scope.profileForm.$valid && !$scope.profileForm.phoneError) {
-          var shouldPaySale = review.flashsale && review.flashsale.shopGatewayInventoryId && !applicant.hasPaidSale;
-          var shouldPayDeposit = review.deposit && review.deposit.shopGatewayInventoryId && !applicant.hasPaidDeposit;
+          var shouldPaySale = review.flashsale && review.flashsale.shopGatewayInventoryId !== '0' && !applicant.hasPaidSale;
+          var shouldPayDeposit = review.deposit && review.deposit.shopGatewayInventoryId !== '0' && !applicant.hasPaidDeposit;
           var saleVariant;
           var depositVariant;
 
