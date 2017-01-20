@@ -185,8 +185,11 @@
               </ul>
             </div>
             <div class="xcard__block">
-              <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail"
-                   id="review-description"></div>
+              <div class="review-section" id="review-description">
+                <div ng-bind-html="review.project.details | trust" class="xb-detail-section-detail"></div>
+              </div>
+
+
               <div class="review-section" id="review-comment">
                 <h4 class="review-section__title">
                   Comments
@@ -290,7 +293,7 @@
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}</span>
               </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION'}">
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION' || review.status=='CONFIRMATION'}">
                 <span class="c-timeline__item__event">Announce Reviewers</span>
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">within 7 business days</span>
