@@ -1,0 +1,9 @@
+.c-share{
+  text-align: center;
+  .c-btn{
+    margin-right: 20px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}

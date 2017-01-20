@@ -57,20 +57,12 @@
     &:first-child{
       &:before{
         top: 50%;
-        height: 60%;
-      }
-
-      #{$parent}__point{
-        margin-top: -2px;
+        height: 50%;
       }
     }
     &:last-child{
       &:before{
-        height: 60%;
-      }
-
-      #{$parent}__point{
-        margin-top: 2px;
+        height: 50%;
       }
     }
 
@@ -79,6 +71,7 @@
         width: 7px;
         height: 7px;
         margin-left: -4px;
+        margin-top: -2px;
         background-color: #000;
       }
     }

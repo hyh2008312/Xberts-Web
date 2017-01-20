@@ -3,31 +3,38 @@
   padding-bottom: 30px;
   font-size: 16px;
   line-height: 28px;
+  font-weight: 300;
   @include xs-screen{
     margin-top: 10px;
   }
 }
 .review-info{
-  padding-top: 30px;
+  padding-top: 20px;
   &__title{
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 10px;
+    line-height: 32px;
+    margin-bottom: 0;
   }
   &__category{
     font-size: 14px;
+    line-height: 20px;
     font-weight: 300;
     color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     @include xs-screen{
       margin-bottom: 20px;
     }
   }
   &__reviewer{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   &__status{
     margin-bottom: 20px;
+  }
+
+  .c-timeline{
+    margin-bottom: 30px;
   }
 
   @include xs-screen{
@@ -39,9 +46,19 @@
     margin-top: 0;
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   margin-bottom: 30px;
+}
+
+.review-ul{
+  padding-left: 20px;
+  margin-bottom: 0;
+
+  &--lower-alpha{
+    list-style-type: lower-alpha ;
+  }
+
 }
 
 .review-button-wrap{

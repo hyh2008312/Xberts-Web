@@ -150,18 +150,25 @@
               </div>
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Benefits</h4>
-                <ul>
+                <ul class="review-ul">
                   <li>Reviewers can keep the product sample fro FREE after submitting a review report</li>
                   <li>Be the first to test the most innovative products and share your opinions to make an impact</li>
                 </ul>
               </div>
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Requirements</h4>
-                <ul>
+                <ul class="review-ul">
                   <li>All selected applicants must submit their review reports before deadline, otherwise they will have
                     to return the products to Xberts
                   </li>
-                  <li>A review report should be UNBIASED and match the following criteria:</li>
+                  <li>
+                    A review report should be UNBIASED and match the following criteria:
+                    <ul class="review-ul review-ul--lower-alpha">
+                      <li>Minimum 500 words</li>
+                      <li>5 photos minimum</li>
+                      <li>Video is preferable but not required, unless stated otherwise</li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -169,11 +176,11 @@
           <div class="xcard xcard--borderless">
             <div class="xcard__header">
               <ul class="nav nav-underlines" bs-affix data-offset-top="-70">
-                <li data-target="#review-description" bs-scrollspy>
-                  <a href="#review-description">Description</a>
+                <li data-target="#review-description" du-scrollspy="review-description">
+                  <a du-smooth-scroll="review-description">Description</a>
                 </li>
-                <li data-target="#review-comment" bs-scrollspy>
-                  <a href="#review-comment" bs-scrollspy>Comments</a>
+                <li data-target="#review-comment" du-scrollspy="review-comment">
+                  <a du-smooth-scroll="review-comment">Comments</a>
                 </li>
               </ul>
             </div>
@@ -182,7 +189,7 @@
                    id="review-description"></div>
               <div class="review-section" id="review-comment">
                 <h4 class="review-section__title">
-                 Comments
+                  Comments
                 </h4>
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
@@ -235,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 margin-bottom-xl hidden-xs hidden-sm">
+        <div class="col-md-4 hidden-xs hidden-sm">
           <div class="review-info align-center">
             <p class="review-info__title">{{ review.title }}</p>
             <p class="review-info__category">
@@ -276,61 +283,69 @@
             </ul>
             <div class="review-info__button" ng-include="'views/review/review-main-action.html'">
             </div>
+
+            <div class="c-timeline">
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
+                <span class="c-timeline__item__event">Application Deadline</span>
+                <span class="c-timeline__item__point"></span>
+                <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}</span>
+              </div>
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION'}">
+                <span class="c-timeline__item__event">Announce Reviewers</span>
+                <span class="c-timeline__item__point"></span>
+                <span class="c-timeline__item__time">within 7 business days</span>
+              </div>
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='REVIEW'}">
+                <span class="c-timeline__item__event">Testing Period</span>
+                <span class="c-timeline__item__point"></span>
+                <span class="c-timeline__item__time">2 weeks</span>
+              </div>
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='ENDED'}">
+                <span class="c-timeline__item__event">Review Submission Deadline</span>
+                <span class="c-timeline__item__point"></span>
+                <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD,YYYY' }}</span>
+              </div>
+            </div>
+
+            <share
+              title="{{ pageSettings._title }}"
+              description="{{ pageSettings._description }}"
+              url="{{pageSettings.getUrl()}}"
+              image="{{pageSettings_shareImage }}">
+            </share>
+
+            <div ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
+              <div ng-show="review.status === 'SELECTION'">
+                <div class="margin-top">
+                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'CONFIRMATION'">
+                <div class="margin-top">
+                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Applicants</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'REVIEW'">
+                <div class="margin-top">
+                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                    Shipping Address</a>
+                </div>
+              </div>
+              <div ng-show="review.status === 'ENDED'">
+                <div class="margin-top">
+                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
+                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                    Reports</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="c-timeline">
-            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
-              <span class="c-timeline__item__event">Application Deadline</span>
-              <span class="c-timeline__item__point"></span>
-              <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}</span>
-            </div>
-            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION'}">
-              <span class="c-timeline__item__event">Announce Reviewers</span>
-              <span class="c-timeline__item__point"></span>
-              <span class="c-timeline__item__time">within 7 business days</span>
-            </div>
-            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='REVIEW'}">
-              <span class="c-timeline__item__event">Testing Period</span>
-              <span class="c-timeline__item__point"></span>
-              <span class="c-timeline__item__time">2 weeks</span>
-            </div>
-            <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='ENDED'}">
-              <span class="c-timeline__item__event">Review Submission Deadline</span>
-              <span class="c-timeline__item__point"></span>
-              <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD,YYYY' }}</span>
-            </div>
-          </div>
-
-          <div ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
-            <div ng-show="review.status === 'SELECTION'">
-              <div class="margin-top">
-                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                   ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                  Applicants</a>
-              </div>
-            </div>
-            <div ng-show="review.status === 'CONFIRMATION'">
-              <div class="margin-top">
-                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                   ui-sref="application.selectApplicants({reviewId:review.id})">View
-                  Applicants</a>
-              </div>
-            </div>
-            <div ng-show="review.status === 'REVIEW'">
-              <div class="margin-top">
-                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                   ui-sref="application.selectApplicants({reviewId:review.id})">View
-                  Shipping Address</a>
-              </div>
-            </div>
-            <div ng-show="review.status === 'ENDED'">
-              <div class="margin-top">
-                <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                   ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                  Reports</a>
-              </div>
-            </div>
-          </div>
         </div>
 
 
