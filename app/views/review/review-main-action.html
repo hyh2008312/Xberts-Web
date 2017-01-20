@@ -16,7 +16,12 @@
       </a>
     </div>
 
-    <p>Product sponsors will offer 7 free samples to selected applicants for review purpose. To participate in this
+    <p>Product sponsors will offer
+      <span ng-pluralize count="review.sampleNum"
+            when="{'0': '0 free sample',
+                   '1': '1 free sample',
+                   'other': '{{ review.sampleNum }} free samples'}"></span> to selected applicants for
+      review purpose. To participate in this
       review campaign, please click on the "Join Now" button to get started.</p>
   </div>
   <div ng-switch-when="SELECTION">
@@ -26,7 +31,8 @@
       </a>
     </div>
 
-    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}，please stay tuned!</p>
+    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM
+      DD,YYYY' }}，please stay tuned!</p>
   </div>
   <div ng-switch-when="CONFIRMATION">
     <div class="review-button-wrap">
@@ -35,7 +41,8 @@
       </a>
     </div>
 
-    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}，please stay tuned!</p>
+    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM
+      DD,YYYY' }}，please stay tuned!</p>
   </div>
   <div ng-switch-when="REVIEW">
     <div class="review-button-wrap">
