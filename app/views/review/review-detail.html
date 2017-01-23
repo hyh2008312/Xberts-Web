@@ -291,7 +291,7 @@
               <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
                 <span class="c-timeline__item__event">Application Deadline</span>
                 <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD,YYYY' }}</span>
+                <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
               </div>
               <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION' || review.status=='CONFIRMATION'}">
                 <span class="c-timeline__item__event">Announce Reviewers</span>
@@ -306,7 +306,7 @@
               <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='ENDED'}">
                 <span class="c-timeline__item__event">Review Submission Deadline</span>
                 <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD,YYYY' }}</span>
+                <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</span>
               </div>
             </div>
 

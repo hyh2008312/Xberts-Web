@@ -12,7 +12,7 @@
     <div class="review-button-wrap">
       <a class="c-btn c-btn--block c-btn--lg c-btn--blue"
          ui-sref="application.protected.apply({reviewId:review.id})">
-        APPLY NOW
+        JOIN NOW
       </a>
     </div>
 
@@ -31,8 +31,8 @@
       </a>
     </div>
 
-    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM
-      DD,YYYY' }}，please stay tuned!</p>
+    <p>Selection results for all applicants will be announced before
+      {{ review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!</p>
   </div>
   <div ng-switch-when="CONFIRMATION">
     <div class="review-button-wrap">
@@ -41,8 +41,8 @@
       </a>
     </div>
 
-    <p>Selection results for all applicants will be announced on {{ review.applicationEndDate | amDateFormat:'MMM
-      DD,YYYY' }}，please stay tuned!</p>
+    <p>Selection results for all applicants will be announced before
+      {{ review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!</p>
   </div>
   <div ng-switch-when="REVIEW">
     <div class="review-button-wrap">
