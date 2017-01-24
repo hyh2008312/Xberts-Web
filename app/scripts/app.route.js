@@ -414,7 +414,8 @@ angular
             var par = {
               name: 'progressingReview',
               params: {
-                page_size: 12
+                page_size: 12,
+                review_type: 'FREE_SAMPLE'
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
@@ -446,7 +447,8 @@ angular
             var par = {
               name: 'preLaunchReview',
               params: {
-                page_size: 12
+                page_size: 12,
+                review_type: 'FREE_SAMPLE'
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
@@ -468,7 +470,8 @@ angular
               params: {
                 stage: 'READY_FOR_SALE',
                 status: 'APPLICATION',
-                page_size: 12
+                page_size: 12,
+                review_type: 'PAID'
               },
               fetchFunction: function (params) {
                 return ReviewService.getList(params);
