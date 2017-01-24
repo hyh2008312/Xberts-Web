@@ -473,6 +473,18 @@ angular.module('xbertsApp')
       );
     }
 
+    $scope.buyProduct = function() {
+      // Send product id to GTM
+      if (window.dataLayer && report.product_title) {
+        window.dataLayer.push({
+          event: 'buy-product-btn-click',
+          productTitle: report.product_title
+        });
+      }
+
+      window.open(report.buy_url);
+    };
+
     // Send project category to GA
     if (dataLayer) {
       dataLayer.push({
