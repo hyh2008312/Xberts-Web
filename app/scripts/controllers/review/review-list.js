@@ -74,11 +74,12 @@ angular.module('xbertsApp')
         $state.go('application.campaign', {reviewId: id});
       };
     }])
-.controller('CampaignReviewListCtrl', ['$scope', '$rootScope', 'reviewPaginator', '$state',
-  function ($scope, $rootScope, reviewPaginator, $state) {
+.controller('CampaignReviewListCtrl', ['$scope', '$rootScope', 'reviewPaginator', 'topReviewPaginator',
+  function ($scope, $rootScope, reviewPaginator, topReviewPaginator) {
 
     var backgroundColor = 'background-bg-light';
     $rootScope.pageSettings.setBackgroundColor('backgroundColor');
     $scope.reviewPaginator = reviewPaginator;
+    $scope.topReviewPaginator = topReviewPaginator;
     $rootScope.pageSettings.setPage();
   }]);

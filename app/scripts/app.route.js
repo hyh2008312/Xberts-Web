@@ -495,6 +495,19 @@ angular
               }
             };
             return Paginator(par).load();
+          }],
+          topReviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+            var par = {
+              name: 'all_report_list',
+              params: {
+                page_size: 10,
+                order:'TOP'
+              },
+              fetchFunction: function (params) {
+                return AllReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })

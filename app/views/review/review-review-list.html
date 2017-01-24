@@ -5,45 +5,62 @@
 
       <h3>Explore top rated products reviewed by experts</h3>
     </div>
-    <div class="row xb-section-body" infinite-scroll="reviewPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="reviewPaginator.getLoading() || !reviewPaginator.getNext()">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="report in reviewPaginator.items">
-        <div class="xb-card">
-          <div class="xb-card-ratio-wrap"
-               ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">
-            <div class="image-wrap" style="background-image: url({{ report.image }})">
-
-            </div>
+    <div class="row xb-section-body">
+      <div class="col-xs-12 col-md-8" infinite-scroll="reviewPaginator.loadNext()" infinite-scroll-distance='0'
+           infinite-scroll-disabled="reviewPaginator.getLoading() || !reviewPaginator.getNext()">
+        <p class="review-order-title">latest reviews</p>
+        <div class="xcard xcard--image-left" ng-repeat="report in reviewPaginator.items">
+          <div class="xcard__image_wrap"
+               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
+            <img ng-src=" {{ report.image }}"/>
           </div>
 
-          <div class="xb-card-cover">
+          <div class="xcard__block">
+            <p class="report-category"><span ng-repeat="category in report.applicant.review.project.categories">{{ category.name }}<span
+              ng-if="!$last">,</span></span></p>
+            <p class="xcard__title">
+              <a ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
+                {{ report.title }}
+              </a>
+            </p>
 
-            <span class="xb-card-cover-number--block">
-            {{ ( report.cost_performance+report.presentation+report.usability) / 3 | number:1}}/5
-            </span>
-            <span class="xb-card-cover-text--block">RATING</span>
+            <p class="xcard__description p-1">hhadss</p>
+            <div class="report-publisher">
+              <avatar-img src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
+              by {{ report.applicant.reviewer.fullname }}, <span am-time-ago='report.approval_status_changed'></span>
+            </div>
+
 
           </div>
+        </div>
 
-          <div class="xb-card-content">
-            <div class="avatar-text-small-1 margin-bottom">
-              <avatar-img src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"
-                          show-name="true"></avatar-img>
-            </div>
-            <p class="xb-card-title "
-               ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">{{
-              report.title }}</p>
+      </div>
+      <div class="hidden-xs hidden-sm col-md-4">
+        <p class="review-order-title">top rated reviews</p>
+        <div class="xcard xcard--image-left-small xcard--borderless xcard--background-light" ng-repeat="report in topReviewPaginator.items">
+          <div class="xcard__image_wrap"
+               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
+            <img ng-src=" {{ report.image }}"/>
+          </div>
 
-            <div class="xb-card-button">
-              <button class="btn btn-warning btn-block"
-                      ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">LEARN MORE
-              </button>
-            </div>
+          <div class="xcard__block">
+            <p class="report-category report-category--small"><span ng-repeat="category in report.applicant.review.project.categories">{{ category.name }}<span
+              ng-if="!$last">,</span></span></p>
+            <p class="xcard__title">
+              <a ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
+                {{ report.title }}
+              </a>
+            </p>
+            <p class="report-rating">
+            <span uib-rating ng-model="report.score" max="5" read-only="true"
+                  state-on="'font-striking glyphicon-star'"></span>
+            </p>
           </div>
         </div>
 
       </div>
     </div>
+
     <load-more class="row spin-large" ng-if="reviewPaginator.getLoading()"></load-more>
   </div>
 </section>
