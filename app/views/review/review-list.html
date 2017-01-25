@@ -36,7 +36,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="report in recommendedReportsPaginator.items">
         <div class="xb-card">
           <div class="xb-card-ratio-wrap"
-               ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">
+               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
             <div class="image-wrap" style="background-image: url({{ report.image }})">
 
             </div>
@@ -56,12 +56,12 @@
                           show-name="true"></avatar-img>
             </div>
             <p class="xb-card-title "
-               ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">{{
+               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">{{
               report.title }}</p>
 
             <div class="xb-card-button">
               <button class="btn btn-warning btn-block"
-                      ui-sref="application.report({reviewId:report.applicant.review,reportId:report.id})">LEARN MORE
+                      ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">LEARN MORE
               </button>
             </div>
           </div>
