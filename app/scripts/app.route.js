@@ -501,7 +501,7 @@ angular
           }],
           topReviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
             var par = {
-              name: 'all_report_list',
+              name: 'top_report_list',
               params: {
                 page_size: 10,
                 order:'TOP'
