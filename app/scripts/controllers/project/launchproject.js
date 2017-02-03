@@ -36,18 +36,22 @@ angular.module('xbertsApp')
 
         if ($scope.projectData.id !== null) {
           $scope.$emit('backdropOn', 'fetch project');
-          Project.fetch.get({id: $scope.projectData.id}, function (result) {
-            $scope.$emit('backdropOff', 'project get completed');
-            $scope.projectData = result;
-            $scope.projectTemp.tags = Utils.parseCommaStringForTagInput(result.certification_tags);
-            $scope.projectTemp.project_category = result.categories[0].id;
-            //console.log($scope.projectData)
-          }, function (error) {
-            growl.error('Sorry,some error happened.');
-            $scope.$emit('backdropOff', 'project get failed');
-          });
+          Project.getById($scope.projectData.id).then(
+            function (result) {
+              $scope.$emit('backdropOff', 'project get completed');
+              console.log(result);
+              $scope.projectData = result;
+              // $scope.projectTemp.tags = Utils.parseCommaStringForTagInput(result.certification_tags);
+              $scope.projectTemp.project_category = result.categories[0].id;
+              //console.log($scope.projectData)
+            },
+            function (error) {
+              growl.error('Sorry,some error happened.');
+              $scope.$emit('backdropOff', 'project get failed');
+            }
+          );
         } else {
-          $scope.projectData = new Project.fetch();
+          $scope.projectData = Project.create();
         }
 
         //submit
@@ -56,7 +60,7 @@ angular.module('xbertsApp')
           if ($scope.projectData.details) {
             $scope.projectData.details = $scope.projectData.details.replace(/pre-loading/ig, "");
           }
-          $scope.projectData.certification_tags = Utils.convertTagsInputToCommaString($scope.projectTemp.tags);
+          // $scope.projectData.certification_tags = Utils.convertTagsInputToCommaString($scope.projectTemp.tags);
           $scope.projectData.categories = [{
             id: $scope.projectTemp.project_category
           }];
@@ -99,8 +103,8 @@ angular.module('xbertsApp')
         };
         localStorageService.clearAll();
       }])
-  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout','$uibModal','$state',
-    function ($scope, growl, UploadService, $timeout,$uibModal,$state) {
+  .controller('LaunchProjectDetailCtrl', ['$scope', 'growl', 'UploadService', '$timeout', '$uibModal', '$state',
+    function ($scope, growl, UploadService, $timeout, $uibModal, $state) {
       $scope.projectForm.submitted = false;
       var getCurrentRange = function () {
         var sel;

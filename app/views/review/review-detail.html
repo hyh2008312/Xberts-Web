@@ -196,52 +196,6 @@
                 </h4>
                 <div ng-include src="'views/comment/comments.html'"></div>
               </div>
-              <!--<div ng-show="review.reportAmount>0">-->
-              <!--<div class="xb-list" infinite-scroll="reportPaginator.loadNext()" infinite-scroll-distance='0'-->
-              <!--infinite-scroll-disabled="reportPaginator.getLoading() || !reportPaginator.getNext()">-->
-
-              <!--<div ng-if="reportPaginator.items.length === 0">-->
-              <!--<h4 class="empty-state">Reviews are collected after product shipment.</h4>-->
-              <!--</div>-->
-
-              <!--<div class="xb-list-item xb-list-item-left-image" ng-repeat="report in reportPaginator.items">-->
-              <!--<img ng-src="{{ report.image }}" class="xb-list-image">-->
-
-              <!--<p class="xb-list-item-title p-1">{{report.title}}</p>-->
-
-              <!--<p class="xb-list-item-detail p-4" ng-bind-html="report.description |trust"></p>-->
-
-              <!--<div class="xb-list-item-footer">-->
-              <!--<div class="item-avatar-middle-x padding-clear" style="border-bottom: 0;">-->
-              <!--<div class="item-image">-->
-              <!--<avatar-img src="report.applicant.reviewer.avatar"></avatar-img>-->
-              <!--</div>-->
-              <!--<div class="item-body">-->
-              <!--<p class="p-1" style="padding-top: 3px;">-->
-              <!--<a ui-sref="application.expert({ expertId:report.applicant.reviewer.id })">-->
-              <!--{{ report.applicant.reviewer.fullname }}</a>-->
-              <!--</p>-->
-
-              <!--<div class="row" style="margin-top: 10px;">-->
-              <!--<div class="col-xs-6">-->
-
-              <!--<p class="p-1" style="margin-bottom: 0">-->
-              <!--<i class="fa fa-map-marker"></i> {{report.applicant.reviewer.country}}-->
-              <!--</p>-->
-              <!--</div>-->
-              <!--<div class="col-xs-6 xb-align-right"><a class="text-underline xb-link"-->
-              <!--ui-sref="application.report({reviewId:review.id,reportId:report.id})">-->
-              <!--View More</a></div>-->
-              <!--</div>-->
-
-
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--<load-more class="row spin-large" ng-if="reportPaginator.getLoading()"></load-more>-->
-              <!--</div>-->
             </div>
           </div>
         </div>
