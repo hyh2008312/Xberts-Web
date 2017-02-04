@@ -3,23 +3,25 @@
 angular.module('xbertsApp')
   .service('Project', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
 
-    this.getById = function (projectId) {
+    var project = this;
+
+    project.getById = function (projectId) {
       return $resource(API_BASE_URL + '/projects/projects/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}}).get({id: projectId}).$promise;
     };
 
-    this.create = function () {
-      var Pro = $resource(API_BASE_URL + '/projects/projects/:id/', {'patch': {method: 'PATCH'}});
-      return new Pro();
+    project.create = function () {
+      var ProjectResource = $resource(API_BASE_URL + '/projects/projects/:id/', {'patch': {method: 'PATCH'}});
+      return new ProjectResource();
     };
-    this.getDetailById = function (projectId) {
+    project.getDetailById = function (projectId) {
       return $resource(API_BASE_URL + '/projects/projectsonlydetail/:id/').get({id: projectId}).$promise;
     };
-    this.approveById = function (projectId, status) {
-      var project = $resource(API_BASE_URL + '/projects/projects/:id/approve/', {id: projectId});
+    project.approveById = function (projectId, status) {
+      var ProjectResource = $resource(API_BASE_URL + '/projects/projects/:id/approve/', {id: projectId});
       if (status) {
-        return project.save().$promise;
+        return ProjectResource.save().$promise;
       } else {
-        return project.delete().$promise;
+        return ProjectResource.delete().$promise;
       }
     };
   }]);
