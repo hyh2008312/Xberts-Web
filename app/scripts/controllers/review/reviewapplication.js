@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewapplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', 'application',
+  .controller('ReviewApplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', 'application',
     function ($scope, $rootScope, review, reviewer, application) {
 
       $rootScope.pageSettings.setBackgroundColor('background-whitem');

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewreportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal',
+  .controller('ReviewReportCtrl', ['$rootScope', '$timeout', '$interval', '$scope', '$state', '$stateParams', 'growl', 'Configuration', 'UploadService', 'ReviewReport', 'applicant', '$uibModal',
     function ($rootScope, $timeout, $interval, $scope, $state, $stateParams, growl, Configuration, UploadService, ReviewReport, applicant, $uibModal) {
 
       $scope.applicant = applicant;

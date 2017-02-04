@@ -2,11 +2,10 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl', ['$rootScope', '$timeout', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
-    'ShopifyService', 'AnalyticsService', 'Applicantsreview', 'reportPaginator',
+    'ShopifyService', 'AnalyticsService',
     function ($rootScope, $timeout, $scope, $location, $state, $stateParams, $uibModal, review,
-              ShopifyService, AnalyticsService, Applicantsreview, reportPaginator) {
+              ShopifyService, AnalyticsService) {
       $scope.review = review;
-      $scope.reportPaginator = reportPaginator;
 
       if ($scope.review.reviewType == 'FREE_SAMPLE') {
         $scope.isShowReview = $scope.review.status == 'ENDED' && $scope.review.reportAmount > 0;
@@ -14,10 +13,6 @@ angular.module('xbertsApp')
         $scope.isShowReview = $scope.review.reportAmount > 0;
       }
 
-
-      $scope.applicant = {exist: false, isSelected: false, isSubmitReport: false};
-
-      $scope.applicantsSearch = {isSelected: true, isExempted: false};
 
       $scope.percentage = function () {
         if ($scope.review.flashsale) {
@@ -27,20 +22,6 @@ angular.module('xbertsApp')
           return 0;
         }
       };
-
-      if ($rootScope.user.isAuth()) {
-        Applicantsreview.get({
-          review_id: $scope.review.id,
-          reviewer_id: $rootScope.user.getUserId()
-        }, function (data) {
-          if (data.count !== undefined && data.count > 0) {
-            angular.extend($scope.applicant, data.results[0]);
-            $scope.applicant.exist = true;
-          }
-        }, function () {
-
-        })
-      }
 
       $scope.saleInfo = {
         variant: null,
@@ -151,7 +132,7 @@ angular.module('xbertsApp')
         } else {
           $state.go('application.protected.apply', {reviewId: review.id});
         }
-      }
+      };
 
       if ($stateParams.action === 'buy' && $rootScope.user.authRequired()) {
         buyProduct();

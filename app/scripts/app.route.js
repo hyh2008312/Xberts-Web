@@ -147,9 +147,9 @@ angular
           reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
           }],
-          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams',
-            function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
-              return ApplicantsreviewLoad($stateParams);
+          applicant: ['ReviewService', 'protectedAuthCheck', '$stateParams',
+            function (ReviewService, protectedAuthCheck, $stateParams) {
+              return ReviewService.applicantProtect($stateParams.reviewId);
             }]
         }
       })
@@ -178,11 +178,10 @@ angular
       .state('application.protected.apply', {
         url: '/crowdtesting/:reviewId/apply',
         templateUrl: 'views/review/review_application.html',
-        controller: 'ReviewapplicationCtrl',
+        controller: 'ReviewApplicationCtrl',
         resolve: {
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
           }],
           reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
             return ProfileReviewerLoad();
@@ -195,11 +194,11 @@ angular
       .state('application.protected.crowdtestingReport', {
         url: '/crowdtesting/:reviewId/report',
         templateUrl: 'views/review/review_report.html',
-        controller: 'ReviewreportCtrl',
+        controller: 'ReviewReportCtrl',
         resolve: {
-          applicant: ['ApplicantsreviewLoad', 'protectedAuthCheck', '$stateParams',
-            function (ApplicantsreviewLoad, protectedAuthCheck, $stateParams) {
-              return ApplicantsreviewLoad($stateParams);
+          applicant: ['ReviewService', 'protectedAuthCheck', '$stateParams',
+            function (ReviewService, protectedAuthCheck, $stateParams) {
+              return ReviewService.applicantProtect($stateParams.reviewId);
             }]
         }
       })
@@ -377,16 +376,6 @@ angular
         resolve: {
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
-          }],
-          reportPaginator: ['Paginator', 'ReviewReport', '$stateParams', function (Paginator, ReviewReport, $stateParams) {
-            var par = {
-              name: 'report_list_' + $stateParams.reviewId,
-              params: {reviewId: $stateParams.reviewId, is_approved: 'APPROVED'},
-              fetchFunction: function (params) {
-                return ReviewReport.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
           }]
         }
       })
