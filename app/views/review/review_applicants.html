@@ -3,12 +3,12 @@
     <div class="section-title">
       <h2>{{ review.title }}</h2>
 
-      <h3><i class="font-striking">{{ applicants | length }}</i>
-        <span ng-switch="(review.applicants | length)> 1">
+      <h3><i class="font-striking">{{ totalApplicants }}</i>
+        <span ng-switch="totalApplicants > 1">
           <span ng-switch-when="true">applicants</span>
           <span ng-switch-when="false">applicant</span>
         </span>,
-        <i class="font-striking"> {{ applicants | filter:{ is_selected:true }| length }}</i> selected ,
+        <i class="font-striking"> {{ selectedApplicants }}</i> selected ,
         <i class="font-striking"> {{ applicantLeft }}</i> left
       </h3>
     </div>
@@ -47,10 +47,12 @@
         </div>
 
         <div class="list">
-          <p class="padding" ng-show="filterApplicants.length<1">No Applicant</p>
+          <p class="padding" ng-show="applicantPaginator.getCount()<1">No Applicant</p>
 
-          <div class="item-avatar-large item-hover" style="min-height: 150px;"
-               ng-repeat="applicant in filterApplicants">
+          <div infinite-scroll="applicantPaginator.loadNext()" infinite-scroll-distance='0'
+               infinite-scroll-disabled="applicantPaginator.getLoading() || !applicantPaginator.getNext()">
+            <div class="item-avatar-large item-hover" style="min-height: 150px;"
+               ng-repeat="applicant in applicantPaginator.items">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
               <a class="btn btn-xs btn-primary" ng-click="contactUser(applicant.reviewer.id)"  ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">Contact</a>
@@ -117,7 +119,7 @@
                 </div>
               </div>
               <p class="xb-align-right">
-                <a class="xb-link" ng-click="open('lg',$index)">View Detail</a>
+                <a class="xb-link" ng-click="open('lg', applicant)">View Detail</a>
               </p>
               <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
                 <div class="row">
@@ -169,18 +171,20 @@
                 </div>
 
                 <div class="align-right" ng-switch="applicant.is_shipped">
-                  <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="false">Mark as
+                  <button class="btn btn-primary" ng-click="markShipped('', applicant)" ng-switch-when="false">Mark as
                     Shipped
                   </button>
-                  <button class="btn btn-primary" ng-click="markShipped('',$index)" ng-switch-when="true">Edit
+                  <button class="btn btn-primary" ng-click="markShipped('', applicant)" ng-switch-when="true">Edit
                     Tracking Number
                   </button>
                 </div>
               </div>
             </div>
           </div>
-
+          </div>
         </div>
+        <load-more class="row spin-large" ng-show="applicantPaginator.getLoading()"></load-more>
+
         <iframe name="download" style="display: none"></iframe>
         <div class="margin-top clearfix" ng-show="user.isStaff()">
           <button class="btn btn-primary" ng-show="!review.is_publish_applicants_confirmed" ng-click="ConfirmSelectionResult()"

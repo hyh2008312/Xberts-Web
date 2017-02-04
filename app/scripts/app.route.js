@@ -158,9 +158,51 @@ angular
         templateUrl: 'views/review/review_applicants.html',
         controller: 'ReviewApplicantsCtrl',
         resolve: {
-          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
+            return reviewId === null ? {} : ReviewLoad($stateParams);
+          }],
+          pendingApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'pending_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'Unknown'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getApplicants(params);
+              }
+            };
+            return Paginator(par).load();
+          }],
+          selectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'selected_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'True'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getApplicants(params);
+              }
+            };
+            return Paginator(par).load();
+          }],
+          unselectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'unselected_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'False'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getApplicants(params);
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })
@@ -169,9 +211,38 @@ angular
         templateUrl: 'views/review/review_reports.html',
         controller: 'ReviewReportsCtrl',
         resolve: {
-          review: ['ReviewApplicantsLoad', '$stateParams', function (ReviewApplicantsLoad, $stateParams) {
+          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewApplicantsLoad($stateParams);
+            return reviewId === null ? {} : ReviewLoad($stateParams);
+          }],
+          selectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'selected_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'True'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getApplicants(params);
+              }
+            };
+            return Paginator(par).load();
+          }],
+          submittedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'submitted_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'True',
+                has_submitted_report: 'True'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getApplicants(params);
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })

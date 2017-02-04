@@ -23,7 +23,7 @@ angular.module('xbertsApp')
         var next = !(localStorageService.get(this.name + '_next') === false);
         this.minSize = _params.minSize || 0;
         var loading = false;
-        var count = null;
+        var count = localStorageService.get(this.name + '_count') || null;
 
         this.resetPaging = function () {
           currentPage = 0;
@@ -64,6 +64,7 @@ angular.module('xbertsApp')
         localStorageService.set(this.name + '_currentPage', this.getCurrentPage());
         localStorageService.set(this.name + '_items', this.items);
         localStorageService.set(this.name + '_next', this.getNext());
+        localStorageService.set(this.name + '_count', this.getCount());
       },
       _fetch: function (deferred, _process) {
         // when using filter, there is a risk of fetching too many times, even the whole database

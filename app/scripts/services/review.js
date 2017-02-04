@@ -4,9 +4,6 @@ angular.module('xbertsApp')
   .factory('Review', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
     return $resource(API_BASE_URL + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
   }])
-  .factory('ReviewApplicants', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
-    return $resource(API_BASE_URL + '/review/reviews/:id/applicants/', {id: '@id'});
-  }])
   .service('ReviewService', ['$resource', 'API_BASE_URL', '$q', '$rootScope', '$state', 'growl', function ($resource, API_BASE_URL, $q, $rootScope, $state, growl) {
     var review = this;
     review.getSurvey = function (reviewId) {
@@ -52,5 +49,9 @@ angular.module('xbertsApp')
     };
     review.exportAddress = function (reiviewId) {
       return $resource(API_BASE_URL + '/review/reviews/' + reiviewId + '/exportaddress/').save().$promise;
+    };
+
+    review.getApplicants = function(params) {
+      return $resource(API_BASE_URL + '/review/reviews/:id/applicants/', {id: '@id'}).get(params).$promise;
     };
   }]);

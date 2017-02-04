@@ -52,8 +52,12 @@ angular.module('xbertsApp')
         $scope.$broadcast('stepBroadcast', step);
       };
     }])
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review','ReviewService',
-    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review,ReviewService) {
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review','ReviewService', 'pendingApplicantPaginator', 'selectedApplicantPaginator', 'unselectedApplicantPaginator', '$q',
+    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review,ReviewService, pendingApplicantPaginator, selectedApplicantPaginator, unselectedApplicantPaginator, $q) {
+      if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
+        $state.go('application.main')
+      }
+
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.SOCIAL_TYPE = SystemConstant.SOCIAL_TYPE;
@@ -62,11 +66,58 @@ angular.module('xbertsApp')
       $scope.JOB_FUNCTION = SystemConstant.JOB_FUNCTION;
       $scope.INDUSTRY = SystemConstant.INDUSTRY;
       $scope.review = review;
-      $scope.applicants = $filter('orderBy')(review.applicants, ['-is_selected', '+sequence_number']);
-      if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
-        $state.go('application.main')
-      }
-      $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.applicants, {is_selected: true}).length;
+
+      var updateApplicantCount = function() {
+        $scope.totalApplicants = pendingApplicantPaginator.getCount() + selectedApplicantPaginator.getCount() + unselectedApplicantPaginator.getCount();
+        $scope.selectedApplicants = selectedApplicantPaginator.getCount();
+        $scope.applicantLeft = review.quota - $scope.selectedApplicants;
+      };
+
+      var reloadApplicants = function() {
+        $scope.$emit('backdropOn', 'post');
+
+        pendingApplicantPaginator.clear();
+        selectedApplicantPaginator.clear();
+        unselectedApplicantPaginator.clear();
+
+        var promises = [];
+        promises.push(pendingApplicantPaginator.loadNext());
+        promises.push(selectedApplicantPaginator.loadNext());
+        promises.push(unselectedApplicantPaginator.loadNext());
+
+        $q.all(promises)
+          .then(function() {
+            updateApplicantCount();
+
+            $scope.$emit('backdropOff', 'success');
+          })
+          .catch(function() {
+            $scope.$emit('backdropOff', 'error');
+          });
+      };
+
+      updateApplicantCount();
+
+      $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
+      $scope.applicantsFilter = function () {
+        switch ($scope.condition) {
+          case "Dismissed":
+            $scope.applicantPaginator = unselectedApplicantPaginator;
+            break;
+          case "Selected":
+            $scope.applicantPaginator = selectedApplicantPaginator;
+            break;
+          case "Pending":
+            $scope.applicantPaginator = pendingApplicantPaginator;
+            break;
+        }
+      };
+      $scope.applicantsFilter();
+      $scope.ChangeCondition = function (condition) {
+        $scope.condition = condition;
+        $scope.applicantsFilter();
+      };
+
       $scope.publish = function () {
         $scope.$emit('backdropOn', 'post');
         var r = new Review({id: review.id, is_publish_applicants: true});
@@ -94,27 +145,8 @@ angular.module('xbertsApp')
           $scope.$emit('backdropOff', 'success');
         });
       };
-      $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
-      $scope.applicantsFilter = function () {
-        switch ($scope.condition) {
-          case "Dismissed":
-            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: false});
-            break;
-          case "Selected":
-            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: true});
-            break;
-          case "Pending":
-            $scope.filterApplicants = $filter('filter')($scope.applicants, {is_selected: null});
-            break;
-        }
-      };
-      $scope.applicantsFilter();
-      $scope.ChangeCondition = function (condition) {
-        $scope.condition = condition;
-        $scope.applicantsFilter();
-      };
 
-      $scope.markShipped = function (size, index) {
+      $scope.markShipped = function (size, applicant) {
         if (!$rootScope.user.authRequired()) {
           return;
         }
@@ -124,7 +156,7 @@ angular.module('xbertsApp')
           size: size,
           resolve: {
             applicant: function () {
-              return $scope.filterApplicants[index];
+              return applicant;
             },
             review: function () {
               return $scope.review;
@@ -135,14 +167,13 @@ angular.module('xbertsApp')
           }
         });
         modalInstance.result.then(function () {
-          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.applicants, {is_selected: true}).length;
-          $scope.applicantsFilter();
+          // Successfully marked as shipped
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
       };
 
-      $scope.open = function (size, index) {
+      $scope.open = function (size, applicant) {
         if (!$rootScope.user.authRequired()) {
           return;
         }
@@ -152,7 +183,7 @@ angular.module('xbertsApp')
           size: size,
           resolve: {
             applicant: function () {
-              return $scope.filterApplicants[index];
+              return applicant;
             },
             review: function () {
               return $scope.review;
@@ -163,8 +194,7 @@ angular.module('xbertsApp')
           }
         });
         modalInstance.result.then(function () {
-          $scope.applicantLeft = $scope.review.quota - $filter('filter')($scope.review.applicants, {is_selected: true}).length;
-          $scope.applicantsFilter();
+          reloadApplicants();
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
@@ -259,9 +289,13 @@ angular.module('xbertsApp')
         $uibModalInstance.dismiss();
       };
     }])
-  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', function ($scope, $rootScope, review, $state) {
+  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', 'selectedApplicantPaginator', 'submittedApplicantPaginator', function ($scope, $rootScope, review, $state, selectedApplicantPaginator, submittedApplicantPaginator) {
     $rootScope.pageSettings.setBackgroundColor('background-whitem');
     $scope.review = review;
+    $scope.applicantPaginator = selectedApplicantPaginator;
+    $scope.applicantCount = selectedApplicantPaginator.getCount();
+    $scope.submittedApplicantCount = submittedApplicantPaginator.getCount();
+
     if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
       $state.go('application.main')
     }
