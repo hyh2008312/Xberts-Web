@@ -27,14 +27,26 @@ angular.module('xbertsApp')
           $scope.actionBtnText = 'Edit Application';
           break;
         case 'REVIEW_SELECTION_ANNOUNCEMENT':
+          $scope.actionBtnText = 'View More Campaigns';
+          break;
         case 'REVIEW_SELECTION_REVOKE':
           $scope.actionBtnText = 'Review Details';
           break;
         case 'REPORT_CHECK_IN':
         case 'REPORT_REMINDER':
         case 'REPORT_PAST_DUE':
-        case 'SHIPPING_NOTIFICATION':
           $scope.actionBtnText = 'Submit Review';
+          break;
+        case 'SHIPPING_NOTIFICATION':
+          $scope.actionBtnText = 'Check Review Guide';
+          break;
+        case 'REPORT_APPROVED':
+          $scope.actionBtnText = 'View Review';
+          break;
+        case 'REPORT_SUBMISSION':
+        case 'REPORT_DISAPPROVED':
+        case 'REPORT_RESUBMIT_REMINDER':
+          $scope.actionBtnText = 'Edit Review';
           break;
         default:
           $scope.actionBtnText = 'View Details';
