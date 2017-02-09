@@ -16,12 +16,15 @@ html {
 //}
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 80px;
+  /* padding bottom by footer height */
+  padding-bottom: 80px;
+
+  /* overwrite material.css */
+  height: auto;
   background-color: #f1f1f1;
   padding-top: $navbar-height;
   @include xs-screen{
-    margin-bottom: 145px;
+    padding-bottom: 145px;
   }
 }
 

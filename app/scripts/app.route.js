@@ -144,11 +144,11 @@ angular
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
           }],
-          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
+          reviewer: ['ProfileReviewerLoad', function (ProfileReviewerLoad) {
             return ProfileReviewerLoad();
           }],
-          applicant: ['ReviewService', 'protectedAuthCheck', '$stateParams',
-            function (ReviewService, protectedAuthCheck, $stateParams) {
+          applicant: ['ReviewService', '$stateParams',
+            function (ReviewService, $stateParams) {
               return ReviewService.applicantProtect($stateParams.reviewId);
             }]
         }
@@ -243,22 +243,6 @@ angular
               }
             };
             return Paginator(par).load();
-          }]
-        }
-      })
-      .state('application.protected.apply', {
-        url: '/crowdtesting/:reviewId/apply',
-        templateUrl: 'views/review/review_application.html',
-        controller: 'ReviewApplicationCtrl',
-        resolve: {
-          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
-            return ReviewService.getSurvey($stateParams.reviewId);
-          }],
-          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
-            return ProfileReviewerLoad();
-          }],
-          application: ['ReviewApplicant', '$stateParams', 'protectedAuthCheck', function (ReviewApplicant, $stateParams, protectedAuthCheck) {
-            return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
       })
@@ -581,5 +565,38 @@ angular
       .state('application.privacy', {
         url: "/privacy",
         templateUrl: 'views/privacy.html'
+      })
+      .state('application.protected.apply', {
+        url: '/crowdtesting/:reviewId/apply',
+        templateUrl: 'views/review/review_application.html',
+        controller: 'ReviewApplicationCtrl',
+        resolve: {
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
+          }],
+          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
+            return ProfileReviewerLoad();
+          }],
+          application: ['ReviewApplicant', '$stateParams', 'protectedAuthCheck', function (ReviewApplicant, $stateParams, protectedAuthCheck) {
+            return ReviewApplicant.getApplicationPromise($stateParams);
+          }]
+        }
+      })
+      .state('application.protected.apply1', {
+        url: "/:reviewId/apply",
+        templateUrl: 'scripts/feature/review/apply.html',
+        controller: 'ReviewApplyController as apply',
+        resolve: {
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
+          }],
+          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
+            return ReviewService.getCurrentApplier();
+          }],
+          applicant: ['ReviewApplicant', '$stateParams','protectedAuthCheck',
+            function (ReviewApplicant, $stateParams,protectedAuthCheck) {
+              return ReviewApplicant.getApplicationPromise($stateParams);
+            }]
+        }
       });
   }]);

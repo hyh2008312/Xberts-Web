@@ -14,14 +14,14 @@ angular
     $httpProvider.interceptors.push('RequestInterceptor');
     $httpProvider.interceptors.push('AuthInterceptor');
   }])
-  .config(['$urlRouterProvider', function($urlRouterProvider) {
+  .config(['$urlRouterProvider', function ($urlRouterProvider) {
     // Sourced from https://github.com/angular-ui/ui-router/issues/50
-    $urlRouterProvider.rule(function($injector, $location) {
+    $urlRouterProvider.rule(function ($injector, $location) {
       var path = $location.path();
-      var hasTrailingSlash = path[path.length-1] === '/';
+      var hasTrailingSlash = path[path.length - 1] === '/';
 
       // Remove trailing slash, so it will match correct route
-      if(hasTrailingSlash) {
+      if (hasTrailingSlash) {
         var newPath = path.substr(0, path.length - 1);
         return newPath;
       }
@@ -48,11 +48,6 @@ angular
       url: API_BASE_URL + '/accounts/linkedin/token/'
     });
   }])
-  .config(['tagsInputConfigProvider', function (tagsInputConfigProvider) {
-    tagsInputConfigProvider.setDefaults('tagsInput', {
-      minLength: 1
-    });
-  }])
   .config(['IdleProvider', 'KeepaliveProvider', 'ConfigurationProvider',
     function (IdleProvider, KeepaliveProvider, ConfigurationProvider) {
       IdleProvider.idle(ConfigurationProvider.idleTimeout); // seconds
@@ -60,9 +55,3 @@ angular
       IdleProvider.timeout(0);
       KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
     }]);
-  // .config(['$affixProvider',function($affixProvider) {
-  //   angular.extend($affixProvider.defaults, {
-  //     setWidth: false,
-  //     inlineStyles:false
-  //   });
-  // }]);

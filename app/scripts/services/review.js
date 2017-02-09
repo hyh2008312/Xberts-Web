@@ -6,6 +6,11 @@ angular.module('xbertsApp')
   }])
   .service('ReviewService', ['$resource', 'API_BASE_URL', '$q', '$rootScope', '$state', 'growl', function ($resource, API_BASE_URL, $q, $rootScope, $state, growl) {
     var review = this;
+    review.getCurrentApplier= function () {
+      return $resource(API_BASE_URL + '/xberts/reviewers/:id/',
+        {id: $rootScope.user.getUserId()},
+        {'put': {method: 'PUT'}}).get().$promise;
+    };
     review.getSurvey = function (reviewId) {
       return $resource(API_BASE_URL + '/review/reviews/:id/', {id: reviewId}, {'patch': {method: 'PATCH'}}).get().$promise;
     };
@@ -18,7 +23,7 @@ angular.module('xbertsApp')
     };
 
     review.getRecommendedReviewers = function () {
-      return $resource(API_BASE_URL + '/xberts/reviewers_/', {recommended: 'True'}).get().$promise;
+      return $resource(API_BASE_URL + '/xberts/reviewers/', {recommended: 'True'}).get().$promise;
     };
 
     review.getApplicantsForUser = function (reviewId, userId) {
@@ -34,8 +39,8 @@ angular.module('xbertsApp')
           if (data.count !== undefined && data.count > 0) {
             deferred.resolve(data.results[0]);
           } else {
-            growl.error("Sorry, you have not been selected for review review.");
-            deferred.reject(('Unable to fetch Applicantsreview'));
+            growl.error("Sorry, you have not been selected for review.");
+            deferred.reject(('Unable to fetch ApplicantsReview'));
             $rootScope.$emit("backdropInit", 'backdropInit');
             $state.go('application.campaign', {reviewId: reviewId});
           }
