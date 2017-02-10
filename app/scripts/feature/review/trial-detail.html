@@ -37,7 +37,11 @@
                   </li>
                   <li class="c-status c-status--review-detail">
                     <span class="c-status__key">Price</span>
-                    <span class="c-status__value"><span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span> Free</span>
+                    <span class="c-status__value">
+                      <span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span>
+                      <span ng-if="!trial.isPaidTrial(review)">Free</span>
+                      <span ng-if="trial.isPaidTrial(review)">{{ review.flashsale.salePrice.amount }}</span>
+                    </span>
                   </li>
                 </ul>
                 <div class="review-info__button" ng-include="'views/review/review-main-action.html'">
@@ -151,11 +155,13 @@
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Benefits</h4>
                 <ul class="review-ul" ng-if="!trial.isPaidTrial(review)">
-                  <li>Selected reviewer can get a FREE product in exchange for an honest review </li>
+                  <li>Selected reviewer can get a FREE product in exchange for an honest review</li>
                   <li>Become a Key Opinion Leader and share your experience with our community</li>
                 </ul>
                 <ul class="review-ul" ng-if="trial.isPaidTrial(review)">
-                  <li>Selected reviewer can get {{ trial.offPercentage(review) }}% OFF discount in exchange for an honest review </li>
+                  <li>Selected reviewer can get {{ trial.offPercentage(review) }}% OFF discount in exchange for an
+                    honest review
+                  </li>
                   <li>Become a Key Opinion Leader and share your experience with our community</li>
                 </ul>
               </div>
@@ -252,9 +258,11 @@
               <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
                 <span class="c-timeline__item__event">Application Deadline</span>
                 <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
+                <span
+                  class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
               </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION' || review.status=='CONFIRMATION'}">
+              <div
+                ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION' || review.status=='CONFIRMATION'}">
                 <span class="c-timeline__item__event">Announce Reviewers</span>
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">within 7 business days</span>
