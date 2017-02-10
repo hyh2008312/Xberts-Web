@@ -85,7 +85,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       $q.all(promises)
         .then(function () {
           $scope.$emit('backdropOff', 'trial apply success');
-          $state.go('application.campaign', {reviewId: self.review.id});
+          $state.go('application.testingcampaign', {reviewId: self.review.id});
         })
         .catch(function () {
           growl.error('Sorry,some error happened.');
