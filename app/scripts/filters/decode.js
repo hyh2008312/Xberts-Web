@@ -16,16 +16,16 @@ angular.module('xbertsApp')
     };
   })
   .filter('decode_', function () {
-    return function (items, code) {
-      var item = "N/A";
+    return function (code, dicts,_default) {
+      var name = _default || '';
       if (code) {
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].code === code) {
-            item = items[i].name;
+        for (var i = 0; i < dicts.length; i++) {
+          if (dicts[i].code === code) {
+            name = dicts[i].name;
           }
         }
       }
-      return item
+      return name
     };
   })
   .filter('url', function () {

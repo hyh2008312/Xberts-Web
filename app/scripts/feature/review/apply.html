@@ -1,0 +1,194 @@
+<div class="container md-section">
+  <div class="md-section__title">
+    <h2 class="md-headline">{{ apply.review.title }}</h2>
+    <h3 class="md-subhead md-dark-secondary">Please answer the following questions to apply. All the information must be
+      real and
+      accurate.
+      <br/>
+      The more details you provide, the higher chance you can be selected.</h3>
+  </div>
+  <div class="md-section__content">
+    <form name="applierForm" ng-cloak novalidate>
+      <div id="applier_step_1" ng-if="!apply.next">
+        <div class="md-form-section">
+          <p class="md-title md-form-section__title">Personal Information</p>
+          <div class="md-form-section__content">
+            <div layout="row">
+              <md-input-container class="md-block" flex>
+                <label>Gender</label>
+                <md-select ng-model="apply.applier.gender" name="gender" required>
+                  <md-option ng-repeat="gender in apply.genders" ng-value="gender.code">
+                    {{gender.name}}
+                  </md-option>
+                </md-select>
+                <div ng-messages="applierForm.gender.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex>
+                <label>State</label>
+                <md-select ng-model="apply.applier.country" name="country" required>
+                  <md-option ng-repeat="country in apply.countries" ng-value="country.code">
+                    {{country.name}}
+                  </md-option>
+                </md-select>
+                <div ng-messages="applierForm.country.$error">
+                  <div ng-message="required">This is required!</div>
+                </div>
+              </md-input-container>
+            </div>
+            <div layout="row">
+              <md-input-container flex class="md-block">
+                <label>Business Title</label>
+                <input name="position" ng-model="apply.applier.position" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.position.$error">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="maxlength">That's too long!</div>
+                </div>
+              </md-input-container>
+              <md-input-container flex class="md-block">
+                <label>Company Name</label>
+                <input name="company" ng-model="apply.applier.company" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.company.$error">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="maxlength">That's too long!</div>
+                </div>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="md-form-section">
+          <p class="md-title md-form-section__title">Questionnaire</p>
+          <div class="md-form-section__content">
+            <div ng-repeat="survey in apply.review.surveys">
+              <question-input ng-repeat="question in survey.questions" question="question"
+                              form="applierForm"></question-input>
+            </div>
+          </div>
+        </div>
+        <div layout="row">
+          <span flex="40"></span>
+          <md-button flex="20" type="button" class="md-raised md-primary" ng-click="apply.nextStep(applierForm)"
+                     ng-disabled="applierForm.$invalid">Next
+          </md-button>
+        </div>
+      </div>
+      <div id="applier_step_2" ng-if="apply.next">
+        <div class="md-form-section">
+          <p class="md-title md-form-section__title">Agreement and Policy</p>
+          <div class="md-form-section__content">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">REVIEW AGREEMENT</div>
+              <div class="panel-body">
+                <div>
+                  <p><i>If you apply to be a Product Reviewer, you agree to perform the following:</i></p>
+
+                  <p>• Install and use the product for an extended period of time, detailed in Xberts’ Review Guide<br/>
+                    • Communicates with and update Xberts regularly about your progress<br/>
+                    • Consult with the Product Sponsor if you encounter with any technical issues<br/>
+                    • After you receive the product sample, in accordance with Review Guide, write and submit an
+                    unbiased
+                    product review BY THE DESIGNATED
+                    DEADLINE
+                    {{ apply.review.date_end | amDateFormat:'MMM DD, YYYY'}}<br/>
+                    • Inform Xberts ASAP for a grace period if you have difficulty in submitting report on time<br/>
+                    • Share your review on your social networks with the authorization from the Product Sponsor
+                  </p>
+
+                  <p>I understand and agree to perform the above operations as a "{{ apply.review.title }}" Product
+                    Reviewer</p>
+
+                  <p>I grant Xberts.com and Sponsor the right to translate, quote and distribute my review in multiple
+                    languages
+                    for marketing purpose</p>
+
+                  <p>Xberts.com assumes no responsibility for any Product/Service provided by our sponsor or partner in
+                    any
+                    way.
+                    You expressly understand and agree that your use of the Product/Service provided by Xberts.com is at
+                    your
+                    sole responsibility of risk. </p>
+                  <br/>
+
+
+                </div>
+
+
+              </div>
+            </div>
+            <md-input-container class="md-block">
+              <md-checkbox name="accept" ng-model="apply.application.accept" required>
+                I accept all the terms and conditions as outlined above. I am of legal age and I have
+                necessary capacity
+                to
+                execute this agreement.
+              </md-checkbox>
+            </md-input-container>
+          </div>
+          <div class="form-section__content" ng-if="apply.isPaidTrial()">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">Deposit Policy</div>
+              <div class="panel-body">
+                <div>
+                  <p>
+                    Please note if you’re selected as a reviewer, you will be asked
+
+                    to pay <b md-colors="{color: 'accent'}">a {{ apply.review.deposit.deposit_amount.amount }}
+                    deposit</b>
+                    for the product sample. The deposit will
+
+                    be fully refunded within 3 business days after you submit a
+
+                    qualified review as required.<br/>
+
+                    <b>* A qualified review report should match the following
+
+                      criteria:<br/>
+
+                      1. Minimum 1500 characters <br/>
+
+                      2. Include at least 5 photos showcasing how the product works<br/>
+
+                      3. The review content should be original</b>
+                  </p>
+
+                  <p>
+                    All the free and deeply discounted products are offered in
+
+                    exchange for an honest review. Therefore, the deposit policy is
+
+                    designed to make sure all selected applicants will complete
+
+                    their reviews after receiving the product.
+                  </p>
+
+
+                </div>
+
+
+              </div>
+            </div>
+            <md-input-container class="md-block">
+              <md-checkbox name="understand" ng-model="apply.application.understand" required>
+                I understand the deposit policy and agree to pay <b md-colors="{color: 'accent'}">a deposit of {{
+                apply.review.deposit.deposit_amount.amount }}</b> if I was selected as a reviewer.
+              </md-checkbox>
+            </md-input-container>
+          </div>
+        </div>
+        <div layout="row">
+          <span flex="30"></span>
+          <md-button flex="20" type="button" class="md-raised" ng-click="apply.backStep(applierForm)">Back
+          </md-button>
+
+          <md-button flex="20" type="submit" class="md-raised md-primary" ng-click="apply.submitForm(applierForm)"
+                     ng-disabled="applierForm.$invalid">submit
+          </md-button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,57 +1,6 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewApplicationCtrl', ['$scope', '$rootScope', 'review', 'reviewer', 'application',
-    function ($scope, $rootScope, review, reviewer, application) {
-
-      $rootScope.pageSettings.setBackgroundColor('background-whitem');
-      $scope.application = application;
-      // todo:每个人只能填写一份调查问卷
-      $scope.review = review;
-      $scope.profile = reviewer;
-      if ($scope.profile.mail_country == 'ZZ') {
-        $scope.profile.mail_country = ''
-      }
-
-      //padding answer to review.survey
-      if (application.id) {
-        var answer = JSON.parse(application.answer);
-        for (var i = 0; i < $scope.review.surveys.length; i++) {
-          for (var j = 0; j < $scope.review.surveys[i].questions.length; j++) {
-            var questionId = $scope.review.surveys[i].questions[j].id;
-            $scope.review.surveys[i].questions[j]['answer'] = answer['question_' + questionId] || {};
-          }
-        }
-      }
-      if ($scope.profile.birth !== null) {
-        $scope.profile.birth = new Date($scope.profile.birth);
-      }
-      $scope.profile.linkedin = true;
-      $scope.redirect = false;
-      $scope.active = 0;
-      $scope.tabs = [
-        {index: 0, active: true, disable: false},
-        {index: 1, active: false, disable: true},
-        {index: 2, active: false, disable: true},
-        {index: 3, active: false, disable: true}
-      ];
-      $scope.$on('reviewStep', function (e, d) {
-        var step = Number(d);
-        $scope.active = step + 1;
-        $scope.tabs[step + 1].disable = false;
-        $scope.tabs[step + 1].active = true;
-        if (step === 2) {
-          $scope.redirect = true;
-          $scope.tabs[0].disable = true;
-          $scope.tabs[1].disable = true;
-          $scope.tabs[2].disable = true;
-        }
-        e.stopPropagation();
-      });
-      $scope.select = function (step) {
-        $scope.$broadcast('stepBroadcast', step);
-      };
-    }])
   .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review','ReviewService', 'pendingApplicantPaginator', 'selectedApplicantPaginator', 'unselectedApplicantPaginator', '$q',
     function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review,ReviewService, pendingApplicantPaginator, selectedApplicantPaginator, unselectedApplicantPaginator, $q) {
       if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
@@ -179,7 +128,7 @@ angular.module('xbertsApp')
         }
         var modalInstance = $uibModal.open({
           templateUrl: 'views/review/review_applicant_approval.html',
-          controller: 'ReviewApprovalCtrl',
+          controller: 'ApplicantSelectionCtrl',
           size: size,
           resolve: {
             applicant: function () {
@@ -218,8 +167,8 @@ angular.module('xbertsApp')
       };
 
     }])
-  .controller('ReviewApprovalCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ReviewApplicant', 'applicantLeft',
-    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ReviewApplicant, applicantLeft) {
+  .controller('ApplicantSelectionCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ApplicationService', 'applicantLeft',
+    function ($scope, $uibModalInstance, SystemConstant, applicant, review, ApplicationService, applicantLeft) {
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
       $scope.GENDER_TYPE = SystemConstant.GENDER_TYPE;
       $scope.CAREER_STATUS = SystemConstant.CAREER_STATUS;
@@ -234,15 +183,17 @@ angular.module('xbertsApp')
       $scope.applicantLeft = applicantLeft;
       $scope.select = function (isSelected) {
         $scope.$emit('backdropOn', 'post');
-        var applicant;
-        applicant = ReviewApplicant.getApplicationResource({id: $scope.applicant.id, is_selected: isSelected});
-        applicant.$patch(function () {
-          $scope.applicant.is_selected = isSelected;
-          $scope.$emit('backdropOff', 'success');
-          $uibModalInstance.close();
-        }, function () {
-          $scope.$emit('backdropOff', 'success');
-        })
+        ApplicationService
+          .saveApplication({id: $scope.applicant.id, is_selected: isSelected})
+          .then(
+            function () {
+              $scope.applicant.is_selected = isSelected;
+              $scope.$emit('backdropOff', 'success');
+              $uibModalInstance.close();
+            }, function () {
+              $scope.$emit('backdropOff', 'success');
+            }
+          );
       };
       $scope.close = function () {
         $uibModalInstance.dismiss();
@@ -251,38 +202,37 @@ angular.module('xbertsApp')
         $scope.answer = JSON.parse(applicant.answer);
       }
     }])
-  .controller('ReviewMarkShippedCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ReviewApplicant',
-    function ($scope, $uibModalInstance, applicant, review, ReviewApplicant) {
+  .controller('ReviewMarkShippedCtrl', ['$scope', '$uibModalInstance', 'applicant', 'review', 'ApplicationService',
+    function ($scope, $uibModalInstance, applicant, review, ApplicationService) {
       $scope.review = review;
       $scope.backApplicant = applicant;
-      $scope.applicant = ReviewApplicant.getApplicationResource(
-        {
+      $scope.applicant = {
           id: applicant.id,
           is_shipped: true,
           ship: true,
           shipping_code: applicant.shipping_code,
           carrier: applicant.carrier
-        });
+        };
       $scope.save = function () {
         if ($scope.shippingForm.$valid) {
           $scope.$emit('backdropOn', 'post');
-
-          $scope.applicant.$patch(function (data) {
-            applicant.is_shipped = true;
-            applicant.shipping_code = $scope.applicant.shipping_code;
-            applicant.carrier = $scope.applicant.carrier;
-            $scope.$emit('backdropOff', 'success');
-            $uibModalInstance.close();
-          }, function () {
-            $scope.$emit('backdropOff', 'success');
-          })
-
+          ApplicationService
+            .saveApplication($scope.applicant)
+            .then(
+              function () {
+                applicant.is_shipped = true;
+                applicant.shipping_code = $scope.applicant.shipping_code;
+                applicant.carrier = $scope.applicant.carrier;
+                $scope.$emit('backdropOff', 'success');
+                $uibModalInstance.close();
+              }, function () {
+                $scope.$emit('backdropOff', 'success');
+              }
+            );
         } else {
           $scope.shippingForm.submitted = true;
           $scope.shippingForm.$invalid = true;
         }
-
-
       };
 
       $scope.close = function () {

@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
-    'ReviewService', 'Interact', 'expert', 'Applicantsreview', 'Sales', 'SystemConstant',
+    'ReviewService', 'Interact', 'expert', 'ApplicantService', 'Sales', 'SystemConstant',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
-              ReviewService, Interact, expert, Applicantsreview, Sales, SystemConstant) {
+              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
@@ -43,7 +43,7 @@ angular.module('xbertsApp')
                   params: {reviewer_id: $scope.expert.user_id},
                   filter: filter,
                   fetchFunction: function (params) {
-                    return Applicantsreview.get(params).$promise;
+                    return ApplicationService.getApplicationsWithReview(params);
                   }
                 };
                 $scope.reviewApplicantPaginator = Paginator(par3);

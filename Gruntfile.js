@@ -43,6 +43,12 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
+      tpl: {
+        files: ['<%= yeoman.app %>/scripts/{,*/,*/*/,}*.html','<%= yeoman.app %>/views/{,*/,*/*/,}*.html'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/,*/*/,}*.js'],
         tasks: ['newer:jshint:all'],
@@ -302,7 +308,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
+        src: ['views/{,*/}*.html','scripts/{,*/,*/*/,}*.html'],
         dest: '.tmp/templateCache.js'
       }
     },

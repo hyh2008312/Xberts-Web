@@ -26,3 +26,36 @@ $colors: (
     border-bottom: 1px solid $color;
   }
 }
+
+.md-dark-primary{
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.md-dark-secondary{
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.md-dark-third{
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.md-dark-four{
+  color: rgba(0, 0, 0, 0.12);
+}
+
+
+.md-light-primary{
+  color: rgba(255, 255, 255, 1);
+}
+
+.md-light-secondary{
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.md-light-third{
+  color: rgba(255, 255, 255, 0.50);
+}
+
+.md-light-four{
+  color: rgba(255, 255, 255, 0.12);
+}

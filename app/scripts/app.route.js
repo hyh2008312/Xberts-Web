@@ -144,11 +144,11 @@ angular
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
           }],
-          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
+          reviewer: ['ProfileReviewerLoad', function (ProfileReviewerLoad) {
             return ProfileReviewerLoad();
           }],
-          applicant: ['ReviewService', 'protectedAuthCheck', '$stateParams',
-            function (ReviewService, protectedAuthCheck, $stateParams) {
+          applicant: ['ReviewService', '$stateParams',
+            function (ReviewService, $stateParams) {
               return ReviewService.applicantProtect($stateParams.reviewId);
             }]
         }
@@ -243,22 +243,6 @@ angular
               }
             };
             return Paginator(par).load();
-          }]
-        }
-      })
-      .state('application.protected.apply', {
-        url: '/crowdtesting/:reviewId/apply',
-        templateUrl: 'views/review/review_application.html',
-        controller: 'ReviewApplicationCtrl',
-        resolve: {
-          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
-            return ReviewService.getSurvey($stateParams.reviewId);
-          }],
-          reviewer: ['ProfileReviewerLoad', 'protectedAuthCheck', function (ProfileReviewerLoad, protectedAuthCheck) {
-            return ProfileReviewerLoad();
-          }],
-          application: ['ReviewApplicant', '$stateParams', 'protectedAuthCheck', function (ReviewApplicant, $stateParams, protectedAuthCheck) {
-            return ReviewApplicant.getApplicationPromise($stateParams);
           }]
         }
       })
@@ -439,20 +423,50 @@ angular
           }]
         }
       })
-      .state('application.testingcampaign', {
-        url: "/testingcampaign/{reviewId:[0-9]+}?action&tab",
-        templateUrl: 'views/review/review-detail.html',
-        controller: 'ReviewDetailCtrl',
+      .state('application.campaignreviews', {
+        url: "/reviews",
+        templateUrl: 'views/review/review-review-list.html',
+        controller: 'CampaignReviewListCtrl',
         reloadOnSearch: false,
         resolve: {
-          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
-            return ReviewService.getDetail($stateParams.reviewId);
+          reviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+            var par = {
+              name: 'all_report_list',
+              params: {
+                page_size: 12
+              },
+              fetchFunction: function (params) {
+                return AllReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
+          }],
+          topReviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+            var par = {
+              name: 'top_report_list',
+              params: {
+                page_size: 10,
+                order:'TOP'
+              },
+              fetchFunction: function (params) {
+                return AllReport.get(params).$promise;
+              }
+            };
+            return Paginator(par).load();
           }]
         }
       })
+      .state('application.terms', {
+        url: "/terms",
+        templateUrl: 'views/terms.html'
+      })
+      .state('application.privacy', {
+        url: "/privacy",
+        templateUrl: 'views/privacy.html'
+      })
       .state('application.main', {
         url: "/",
-        templateUrl: 'views/review/review-list.html',
+        templateUrl: 'scripts/feature/review/review-list.html',
         controller: 'ReviewListCtrl',
         reloadOnSearch: false,
         resolve: {
@@ -497,15 +511,16 @@ angular
           }]
         }
       })
+
       .state('application.testingcampaigns', {
-        url: "/testingcampaign",
-        templateUrl: 'views/review/review-testcampaign-list.html',
-        controller: 'ReviewPreLaunchListCtrl',
+        url: "/trials",
+        templateUrl: 'scripts/feature/review/trial-list.html',
+        controller: 'TrialListController as trials',
         reloadOnSearch: false,
         resolve: {
-          preLaunchReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+          trialPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
             var par = {
-              name: 'preLaunchReview',
+              name: 'trials',
               params: {
                 page_size: 12,
                 review_type: 'FREE_SAMPLE'
@@ -518,68 +533,32 @@ angular
           }]
         }
       })
-      .state('application.salecampaigns', {
-        url: "/salecampaign",
-        templateUrl: 'views/review/review-salecampaign-list.html',
-        controller: 'SaleCampaignListCtrl',
+      .state('application.testingcampaign', {
+        url: "/trials/{reviewId:[0-9]+}?action&tab",
+        templateUrl: 'scripts/feature/review/trial-detail.html',
+        controller: 'TrialDetailController as trial',
         reloadOnSearch: false,
         resolve: {
-          saleCampaignPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
-            var par = {
-              name: 'saleCampaigns',
-              params: {
-                stage: 'READY_FOR_SALE',
-                status: 'APPLICATION',
-                page_size: 12,
-                review_type: 'PAID'
-              },
-              fetchFunction: function (params) {
-                return ReviewService.getList(params);
-              }
-            };
-            return Paginator(par).load();
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getDetail($stateParams.reviewId);
           }]
         }
       })
-      .state('application.campaignreviews', {
-        url: "/reviews",
-        templateUrl: 'views/review/review-review-list.html',
-        controller: 'CampaignReviewListCtrl',
-        reloadOnSearch: false,
+      .state('application.protected.apply', {
+        url: "/trials/:reviewId/apply",
+        templateUrl: 'scripts/feature/review/apply.html',
+        controller: 'ReviewApplyController as apply',
         resolve: {
-          reviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
-            var par = {
-              name: 'all_report_list',
-              params: {
-                page_size: 12
-              },
-              fetchFunction: function (params) {
-                return AllReport.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
           }],
-          topReviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
-            var par = {
-              name: 'top_report_list',
-              params: {
-                page_size: 10,
-                order:'TOP'
-              },
-              fetchFunction: function (params) {
-                return AllReport.get(params).$promise;
-              }
-            };
-            return Paginator(par).load();
-          }]
+          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
+            return ReviewService.getCurrentApplier();
+          }],
+          application: ['ApplicationService', '$stateParams','protectedAuthCheck',
+            function (ApplicationService, $stateParams,protectedAuthCheck) {
+              return ApplicationService.getApplicationForReviewID($stateParams.reviewId);
+            }]
         }
-      })
-      .state('application.terms', {
-        url: "/terms",
-        templateUrl: 'views/terms.html'
-      })
-      .state('application.privacy', {
-        url: "/privacy",
-        templateUrl: 'views/privacy.html'
       });
   }]);

@@ -93,31 +93,6 @@
                     class="font-gray-light"> {{ applicant.reviewer.userprofile.company }}</span></p>
                 </div>
               </div>
-              <!--<div class="row">-->
-              <!--<div class="col-md-6">-->
-              <!--<p class="item-body-title">Number of connections on LinkedIn: <span class="font-gray-light"> {{ LINKEDIN_CONNECTION | decode_:applicant.reviewer.userprofile.linkedin_connections }}</span>-->
-              <!--</p>-->
-              <!--</div>-->
-              <!--<div class="col-md-6">-->
-              <!--<p class="item-body-title" ng-show="applicant.reviewer.userprofile.other_social_type!='0'">-->
-              <!--Number of connections on {{ SOCIAL_TYPE |-->
-              <!--decode_:applicant.reviewer.userprofile.other_social_type}}:-->
-              <!--<span class="font-gray-light">-->
-              <!--{{ OTHER_CONNECTION | decode_:applicant.reviewer.userprofile.other_social_connections }}-->
-              <!--</span>-->
-              <!--</p>-->
-              <!--</div>-->
-              <!--</div>-->
-              <div class="row">
-                <div class="col-md-6">
-                  <p class="item-body-title">Industry: <span class="font-gray-light">{{ INDUSTRY|decode_:applicant.reviewer.userprofile.industry }}</span>
-                  </p>
-                </div>
-                <div class="col-md-6">
-                  <p class="item-body-title">Job Function: <span class="font-gray-light">{{ JOB_FUNCTION|decode_ : applicant.reviewer.userprofile.job_function }}</span>
-                  </p>
-                </div>
-              </div>
               <p class="xb-align-right">
                 <a class="xb-link" ng-click="open('lg', applicant)">View Detail</a>
               </p>
@@ -144,7 +119,7 @@
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.state }}</span></p>
 
                     <p class="item-body-title">Country: <span
-                      class="font-gray-light"> {{ COUNTRIES | decode_:applicant.reviewer.userprofile.mail_country }}</span>
+                      class="font-gray-light"> {{ applicant.reviewer.userprofile.mail_country | decode_: COUNTRIES}}</span>
 
                     <p class="item-body-title">ZIP/Postal code: <span
                       class="font-gray-light"> {{ applicant.reviewer.userprofile.zip }}</span></p>

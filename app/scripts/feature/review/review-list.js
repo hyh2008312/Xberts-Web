@@ -40,40 +40,7 @@ angular.module('xbertsApp')
         $state.go(slide.url, slide.params);
       };
     }])
-  .controller('ReviewPreLaunchListCtrl', ['$scope', '$rootScope', 'preLaunchReviewPaginator', '$state',
-    function ($scope, $rootScope, preLaunchReviewPaginator, $state) {
-
-
-      var backgroundColor = 'background-bg-light';
-      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
-      $scope.preLaunchReviewPaginator = preLaunchReviewPaginator;
-      $rootScope.pageSettings.setPage();
-
-      $scope.buyNow = function (id, $event) {
-        $state.go('application.campaign', {reviewId: id});
-      };
-
-      $scope.applyNow = function (id, $event) {
-        $state.go('application.campaign', {reviewId: id});
-      };
-    }])
-  .controller('SaleCampaignListCtrl', ['$scope', '$rootScope', 'saleCampaignPaginator', '$state',
-    function ($scope, $rootScope, saleCampaignPaginator, $state) {
-
-
-      var backgroundColor = 'background-bg-light';
-      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
-      $scope.saleCampaignPaginator = saleCampaignPaginator;
-      $rootScope.pageSettings.setPage();
-
-      $scope.buyNow = function (id, $event) {
-        $state.go('application.campaign', {reviewId: id});
-      };
-
-      $scope.applyNow = function (id, $event) {
-        $state.go('application.campaign', {reviewId: id});
-      };
-    }])
+  
 .controller('CampaignReviewListCtrl', ['$scope', '$rootScope', 'reviewPaginator', 'topReviewPaginator',
   function ($scope, $rootScope, reviewPaginator, topReviewPaginator) {
 

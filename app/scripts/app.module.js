@@ -8,10 +8,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
     'ngImgCrop',
     'ngFileUpload',
-    'ngTagsInput',
     'ngIdle',
     'angularMoment',
     'angular-growl',
@@ -28,8 +26,8 @@ angular
     'checklist-model',
     'angularRandomString',
     '720kb.socialshare',
-    'mgcrea.ngStrap',
     'timer',
     'config',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'ngMaterial',
   ]);

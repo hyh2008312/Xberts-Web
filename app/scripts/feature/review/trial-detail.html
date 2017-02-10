@@ -105,7 +105,7 @@
                     </div>
 
                     <p class="c-image-line__item__text">
-                      Join Now
+                      Apply Now
                     </p>
                   </div>
                   <div class="c-image-line__item">
@@ -150,16 +150,19 @@
               </div>
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Benefits</h4>
-                <ul class="review-ul">
-                  <li>Reviewers can keep the product sample for FREE after submitting a review report</li>
-                  <li>Be the first to test the most innovative products and share your opinions to make an impact</li>
+                <ul class="review-ul" ng-if="!trial.isPaidTrial(review)">
+                  <li>Selected reviewer can get a FREE product in exchange for an honest review </li>
+                  <li>Become a Key Opinion Leader and share your experience with our community</li>
+                </ul>
+                <ul class="review-ul" ng-if="trial.isPaidTrial(review)">
+                  <li>Selected reviewer can get {{ trial.offPercentage(review) }}% OFF discount in exchange for an honest review </li>
+                  <li>Become a Key Opinion Leader and share your experience with our community</li>
                 </ul>
               </div>
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Requirements</h4>
                 <ul class="review-ul">
-                  <li>All selected applicants must submit their review reports before deadline, otherwise they will have
-                    to return the products to Xberts
+                  <li>All selected applicants must submit their product reviews to Xberts before deadline
                   </li>
                   <li>
                     A review report should be UNBIASED and match the following criteria:
@@ -235,7 +238,11 @@
               </li>
               <li class="c-status c-status--review-detail">
                 <span class="c-status__key">Price</span>
-                <span class="c-status__value"><span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span> Free</span>
+                <span class="c-status__value">
+                  <span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span>
+                  <span ng-if="!trial.isPaidTrial(review)">Free</span>
+                  <span ng-if="trial.isPaidTrial(review)">{{ review.flashsale.salePrice.amount }}</span>
+                </span>
               </li>
             </ul>
             <div class="review-info__button" ng-include="'views/review/review-main-action.html'">
@@ -253,7 +260,7 @@
                 <span class="c-timeline__item__time">within 7 business days</span>
               </div>
               <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='REVIEW'}">
-                <span class="c-timeline__item__event">Testing Period</span>
+                <span class="c-timeline__item__event">Product Review</span>
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">2 weeks</span>
               </div>
