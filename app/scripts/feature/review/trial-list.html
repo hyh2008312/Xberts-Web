@@ -4,9 +4,9 @@
       <h2><span>Calling For Expert Reviewers </span></h2>
       <h3>Apply to review the latest products for free</h3>
     </div>
-    <div class="row xb-section-body" infinite-scroll="preLaunchReviewPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="preLaunchReviewPaginator.getLoading() || !preLaunchReviewPaginator.getNext()">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in preLaunchReviewPaginator.items">
+    <div class="row xb-section-body" infinite-scroll="trials.trialPaginator.loadNext()" infinite-scroll-distance='0'
+         infinite-scroll-disabled="trials.trialPaginator.getLoading() || !trials.trialPaginator.getNext()">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in trials.trialPaginator.items">
 
         <div class="xcard">
           <div class="xcard__image_wrap"
@@ -24,7 +24,10 @@
                 <span class="c-status__key" ng-show="timeValue<=0">applicants</span>
               </li>
               <li class="c-status">
-                <span class="c-status__value">Free</span>
+                <span class="c-status__value">
+                  <span ng-if="!trials.isPaidTrial(review)">Free</span>
+                  <span ng-if="trials.isPaidTrial(review)">{{ trials.offPercentage(review) }}% <span style="font-size: 18px;">OFF</span></span>
+                </span>
                 <span class="c-status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
               </li>
             </ul>
@@ -37,7 +40,7 @@
 
             <a ng-switch-when="APPLICATION" class="reverse-btn reverse-btn--blue"
                ui-sref="application.testingcampaign({ reviewId:review.id })">
-              JOIN NOW
+              APPLY NOW
             </a>
 
             <a ng-switch-when="SELECTION" class="reverse-btn reverse-btn--gray"
@@ -63,6 +66,6 @@
         </div>
       </div>
     </div>
-    <load-more class="row spin-large" ng-if="preLaunchReviewPaginator.getLoading()"></load-more>
+    <load-more class="row spin-large" ng-if="trials.trialPaginator.getLoading()"></load-more>
   </div>
 </section>

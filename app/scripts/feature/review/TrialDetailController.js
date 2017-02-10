@@ -1,18 +1,32 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewDetailCtrl', ['$rootScope', '$timeout', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
+  .controller('TrialDetailController', ['$rootScope', '$timeout', '$scope', '$location', '$state', '$stateParams', '$uibModal', 'review',
     'ShopifyService', 'AnalyticsService',
     function ($rootScope, $timeout, $scope, $location, $state, $stateParams, $uibModal, review,
               ShopifyService, AnalyticsService) {
+      var self = this;
+
       $scope.review = review;
 
-      if ($scope.review.reviewType == 'FREE_SAMPLE') {
-        $scope.isShowReview = $scope.review.status == 'ENDED' && $scope.review.reportAmount > 0;
-      } else {
-        $scope.isShowReview = $scope.review.reportAmount > 0;
-      }
+      self.isPaidTrial = function(review){
+        var isPaid = false;
+        if(review.flashsale){
+          isPaid = Number(review.flashsale.salePrice.amount) > 0;
+        }
+        return isPaid
+      };
 
+      self.offPercentage = function (review) {
+        if (review.flashsale) {
+          var retailPrice = review.project.retailPrice.amount;
+          var salePrice  = review.flashsale.salePrice.amount;
+          var decimal = (retailPrice - salePrice) / retailPrice;
+          return Math.round(decimal * 100);
+        } else {
+          return 0;
+        }
+      };
 
       $scope.percentage = function () {
         if ($scope.review.flashsale) {
@@ -63,33 +77,6 @@ angular.module('xbertsApp')
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === $scope.review.project.account.id;
-
-      var sendMessage = function () {
-        if (!$rootScope.user.authRequired()) {
-          return;
-        }
-
-        var sendMessageModal = $uibModal.open({
-          templateUrl: 'views/modal/send-message.html',
-          windowClass: 'dialog-vertical-center',
-          controller: 'SendMessageCtrl',
-          resolve: {
-            recipientId: function () {
-              return $scope.review.project.account.id;
-            }
-          }
-        });
-      };
-
-      $scope.contactUser = function () {
-        sendMessage();
-      };
-
-      $scope.clearNoNum = function (obj, attr) {
-        obj[attr] = obj[attr].replace(/[^\d]/g, "");
-        obj[attr] = obj[attr].replace(/^0/g, "");
-      };
-
 
       var buyProduct = function () {
         if (!$rootScope.user.authRequired()) {
