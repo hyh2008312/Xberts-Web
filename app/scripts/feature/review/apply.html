@@ -7,13 +7,13 @@
       <br/>
       The more details you provide, the higher chance you can be selected.</h3>
   </div>
-  <div class="md-section__content">
+  <div class="md-section__content" layout-padding>
     <form name="applierForm" ng-cloak novalidate>
       <div id="applier_step_1" ng-if="!apply.next">
         <div class="md-form-section">
           <p class="md-title md-form-section__title">Personal Information</p>
           <div class="md-form-section__content">
-            <div layout="row">
+            <div layout="column" layout-gt-xs="row">
               <md-input-container class="md-block" flex>
                 <label>Gender</label>
                 <md-select ng-model="apply.applier.gender" name="gender" required>
@@ -37,7 +37,7 @@
                 </div>
               </md-input-container>
             </div>
-            <div layout="row">
+            <div layout="column" layout-gt-xs="row">
               <md-input-container flex class="md-block">
                 <label>Business Title</label>
                 <input name="position" ng-model="apply.applier.position" required ng-maxlength="200"/>
