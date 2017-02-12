@@ -491,8 +491,40 @@ angular
           }]
         }
       })
+      .state('application.testingcampaigns_old', {
+        url: "/testingcampaign",
+        templateUrl: 'scripts/feature/review/trial-list.html',
+        controller: 'TrialListController as trials',
+        reloadOnSearch: false,
+        resolve: {
+          trialPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+            var par = {
+              name: 'trials',
+              params: {
+                page_size: 12,
+                review_type: 'FREE_SAMPLE'
+              },
+              fetchFunction: function (params) {
+                return ReviewService.getList(params);
+              }
+            };
+            return Paginator(par).load();
+          }]
+        }
+      })
       .state('application.testingcampaign', {
         url: "/trials/{reviewId:[0-9]+}?action&tab",
+        templateUrl: 'scripts/feature/review/trial-detail.html',
+        controller: 'TrialDetailController as trial',
+        reloadOnSearch: false,
+        resolve: {
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getDetail($stateParams.reviewId);
+          }]
+        }
+      })
+      .state('application.testingcampaign_old', {
+        url: "/testingcampaign/{reviewId:[0-9]+}?action&tab",
         templateUrl: 'scripts/feature/review/trial-detail.html',
         controller: 'TrialDetailController as trial',
         reloadOnSearch: false,
