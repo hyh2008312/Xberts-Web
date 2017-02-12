@@ -16,7 +16,7 @@
                 name="question_{{ question.id }}"
                 ng-model="question.answer.answer_main"
                 required></textarea>
-      <div ng-messages="form['question_'+ question.id]">
+      <div ng-messages="form['question_'+ question.id].$error">
         <div ng-message="required">This is required!</div>
       </div>
     </md-input-container>
