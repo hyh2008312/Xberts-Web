@@ -44,21 +44,21 @@
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
-                       ui-sref="application.campaign({ reviewId:review.id })">
+                       ui-sref="application.testingcampaign({ reviewId:review.id })">
                     <div class="image-wrap" style="background-image: url({{ review.cover }})">
 
                     </div>
                   </div>
                   <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:review.id })">{{ review.title
+                    <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">{{ review.title
                       }}</p>
 
                     <div class="xb-card-button">
                       <div ng-switch="review.status">
                         <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
-                           ui-sref="application.campaign({ reviewId:review.id })">Coming Soon</a>
+                           ui-sref="application.testingcampaign({ reviewId:review.id })">Coming Soon</a>
                         <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
-                           ui-sref="application.campaign({ reviewId:review.id })">Application Open</a>
+                           ui-sref="application.testingcampaign({ reviewId:review.id })">Application Open</a>
                         <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
                            ui-sref="application.selectApplicants({reviewId:review.id})">Select
                           Applicants</a>
@@ -87,13 +87,13 @@
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
-                       ui-sref="application.campaign({ reviewId:applicant.review.id })">
+                       ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">
                     <div class="image-wrap" style="background-image: url({{ applicant.review.cover }})">
 
                     </div>
                   </div>
                   <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{
+                    <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">{{
                       applicant.review.title }}</p>
 
                     <div class="xb-card-button" ng-if="user.getUserId()==expert.user_id">
@@ -197,13 +197,13 @@
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="order in ordersPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
-                       ui-sref="application.campaign({ reviewId:order.flashSale.review.id })">
+                       ui-sref="application.testingcampaign({ reviewId:order.flashSale.review.id })">
                     <div class="image-wrap" style="background-image: url({{ order.flashSale.review.project.image }})">
 
                     </div>
                   </div>
                   <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.campaign({ reviewId:applicant.review.id })">{{
+                    <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">{{
                       order.flashSale.review.project.title }}</p>
 
                     <p class="font-graym"> Order date: {{ order.orderDate | amDateFormat:'MMM DD, YYYY'}}</p>

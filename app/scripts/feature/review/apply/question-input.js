@@ -3,7 +3,7 @@
 angular.module('xbertsApp')
   .directive('questionInput', function () {
     return {
-      templateUrl: "scripts/feature/review/questiondirect.html",
+      templateUrl: "scripts/feature/review/apply/question-input.html",
       scope: {
         question: "=",
         form:"=",

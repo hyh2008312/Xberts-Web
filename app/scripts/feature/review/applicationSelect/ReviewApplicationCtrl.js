@@ -103,7 +103,7 @@ angular.module('xbertsApp')
           return;
         }
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/review/review_applicant_mark_shipped.html',
+          templateUrl: 'scripts/feature/review/applicationSelect/review_applicant_mark_shipped.html',
           controller: 'ReviewMarkShippedCtrl',
           size: size,
           resolve: {
@@ -130,7 +130,7 @@ angular.module('xbertsApp')
           return;
         }
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/review/review_applicant_approval.html',
+          templateUrl: 'scripts/feature/review/applicationSelect/review_applicant_approval.html',
           controller: 'ApplicantSelectionCtrl',
           size: size,
           resolve: {
@@ -224,15 +224,4 @@ angular.module('xbertsApp')
       $scope.close = function () {
         $uibModalInstance.dismiss();
       };
-    }])
-  .controller('ReviewReportsCtrl', ['$scope', '$rootScope', 'review', '$state', 'selectedApplicantPaginator', 'submittedApplicantPaginator', function ($scope, $rootScope, review, $state, selectedApplicantPaginator, submittedApplicantPaginator) {
-    $rootScope.pageSettings.setBackgroundColor('background-whitem');
-    $scope.review = review;
-    $scope.applicantPaginator = selectedApplicantPaginator;
-    $scope.applicantCount = selectedApplicantPaginator.getCount();
-    $scope.submittedApplicantCount = submittedApplicantPaginator.getCount();
-
-    if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
-      $state.go('application.main')
-    }
-  }]);
+    }]);
