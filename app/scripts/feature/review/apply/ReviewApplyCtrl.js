@@ -97,8 +97,8 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
   self.showTips = function(ev) {
     console.log("dia");
     $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'scripts/feature/review/apply-tips.html',
+        controller: ['$scope', '$mdDialog',DialogController],
+        templateUrl: 'scripts/feature/review/apply/apply-tips.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
