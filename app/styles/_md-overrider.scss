@@ -1,3 +1,10 @@
 md-input-container label:not(.md-no-float):not(.md-container-ignore){
   white-space: normal;
 }
+.md-subhead, b{
+  font-weight: 500;
+}
+
+.list-none-style{
+  list-style: none;
+}

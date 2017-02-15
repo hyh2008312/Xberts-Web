@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'Review', 'review','ReviewService', 'pendingApplicantPaginator', 'selectedApplicantPaginator', 'unselectedApplicantPaginator', '$q',
-    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, Review, review,ReviewService, pendingApplicantPaginator, selectedApplicantPaginator, unselectedApplicantPaginator, $q) {
-      if ($rootScope.user.getUserId() != review.owner_id && !$rootScope.user.isStaff()) {
-        $state.go('application.main')
-      }
+  .controller('ReviewApplicantsCtrl', ['$scope', '$rootScope', '$filter', '$uibModal', 'SystemConstant', '$state', 'review', 'ReviewService', 'pendingApplicantPaginator', 'selectedApplicantPaginator', 'unselectedApplicantPaginator', '$q',
+    function ($scope, $rootScope, $filter, $uibModal, SystemConstant, $state, review, ReviewService, pendingApplicantPaginator, selectedApplicantPaginator, unselectedApplicantPaginator, $q) {
 
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.COUNTRIES = SystemConstant.COUNTRIES;
@@ -16,13 +13,13 @@ angular.module('xbertsApp')
       $scope.INDUSTRY = SystemConstant.INDUSTRY;
       $scope.review = review;
 
-      var updateApplicantCount = function() {
+      var updateApplicantCount = function () {
         $scope.totalApplicants = pendingApplicantPaginator.getCount() + selectedApplicantPaginator.getCount() + unselectedApplicantPaginator.getCount();
         $scope.selectedApplicants = selectedApplicantPaginator.getCount();
         $scope.applicantLeft = review.quota - $scope.selectedApplicants;
       };
 
-      var reloadApplicants = function() {
+      var reloadApplicants = function () {
         $scope.$emit('backdropOn', 'post');
 
         pendingApplicantPaginator.clear();
@@ -35,19 +32,19 @@ angular.module('xbertsApp')
         promises.push(unselectedApplicantPaginator.loadNext());
 
         $q.all(promises)
-          .then(function() {
+          .then(function () {
             updateApplicantCount();
 
             $scope.$emit('backdropOff', 'success');
           })
-          .catch(function() {
+          .catch(function () {
             $scope.$emit('backdropOff', 'error');
           });
       };
 
       updateApplicantCount();
 
-      $scope.condition = $scope.review.is_publish_applicants_confirmed ? 'Selected' : 'Pending';
+      $scope.condition = $scope.review.isPublishApplicantsConfirmed ? 'Selected' : 'Pending';
       $scope.applicantsFilter = function () {
         switch ($scope.condition) {
           case "Dismissed":
@@ -69,28 +66,34 @@ angular.module('xbertsApp')
 
       $scope.publish = function () {
         $scope.$emit('backdropOn', 'post');
-        var r = new Review({id: review.id, is_publish_applicants: true});
-        r.$patch(function () {
-          $scope.review.is_publish_applicants = true;
-          $scope.$emit('backdropOff', 'success');
-        }, function () {
-          $scope.$emit('backdropOff', 'success');
-        })
+        ReviewService
+          .updateReview({id: review.id, isPublishApplicants: true})
+          .then(
+            function () {
+              $scope.review.isPublishApplicants = true;
+              $scope.$emit('backdropOff', 'success');
+            }, function () {
+              $scope.$emit('backdropOff', 'success');
+            }
+          );
       };
       $scope.ConfirmSelectionResult = function () {
         $scope.$emit('backdropOn', 'post');
-        var r = new Review({id: review.id, is_publish_applicants_confirmed: true, confirm: true});
-        r.$patch(function () {
-          $scope.review.is_publish_applicants_confirmed = true;
-          $scope.$emit('backdropOff', 'success');
-        }, function () {
-          $scope.$emit('backdropOff', 'success');
-        })
+        ReviewService
+          .updateReview({id: review.id, isPublishApplicantsConfirmed: true})
+          .then(
+            function () {
+              $scope.review.isPublishApplicantsConfirmed = true;
+              $scope.$emit('backdropOff', 'success');
+            }, function () {
+              $scope.$emit('backdropOff', 'success');
+            }
+          );
       };
 
-      $scope.exportAddress=function(){
+      $scope.exportAddress = function () {
         $scope.$emit('backdropOn', 'post');
-        ReviewService.exportAddress(review.id).then(function(){
+        ReviewService.exportAddress(review.id).then(function () {
           $scope.$emit('backdropOff', 'success');
         });
       };
@@ -149,23 +152,6 @@ angular.module('xbertsApp')
         });
       };
 
-      var sendMessage = function (account_id) {
-        var sendMessageModal = $uibModal.open({
-          templateUrl: 'views/modal/send-message.html',
-          windowClass: 'dialog-vertical-center',
-          controller: 'SendMessageCtrl',
-          resolve: {
-            recipientId: function () {
-              return account_id;
-            }
-          }
-        });
-      };
-
-      $scope.contactUser = function (account_id) {
-        sendMessage(account_id);
-      };
-
     }])
   .controller('ApplicantSelectionCtrl', ['$scope', '$uibModalInstance', 'SystemConstant', 'applicant', 'review', 'ApplicationService', 'applicantLeft',
     function ($scope, $uibModalInstance, SystemConstant, applicant, review, ApplicationService, applicantLeft) {
@@ -207,12 +193,12 @@ angular.module('xbertsApp')
       $scope.review = review;
       $scope.backApplicant = applicant;
       $scope.applicant = {
-          id: applicant.id,
-          is_shipped: true,
-          ship: true,
-          shipping_code: applicant.shipping_code,
-          carrier: applicant.carrier
-        };
+        id: applicant.id,
+        is_shipped: true,
+        ship: true,
+        shipping_code: applicant.shipping_code,
+        carrier: applicant.carrier
+      };
       $scope.save = function () {
         if ($scope.shippingForm.$valid) {
           $scope.$emit('backdropOn', 'post');

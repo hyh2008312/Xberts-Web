@@ -33,7 +33,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-6 align-right" ng-switch="review.is_publish_applicants">
+          <div class="col-md-6 align-right" ng-switch="review.isPublishApplicants">
             <button ng-switch-when="false" class="btn btn-primary clearfix" ng-click="publish();"
                     ng-disabled="applicantLeft != 0">Publish Selection
               Result
@@ -55,7 +55,7 @@
                ng-repeat="applicant in applicantPaginator.items">
             <div class="item-image text-center">
               <avatar-img src="applicant.reviewer.avatar"></avatar-img>
-              <a class="btn btn-xs btn-primary" ng-click="contactUser(applicant.reviewer.id)"  ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">Contact</a>
+              <a class="btn btn-xs btn-primary" ng-click="contactUser(applicant.reviewer.id)"  ng-show="review.isPublishApplicantsConfirmed && applicant.is_selected">Contact</a>
             </div>
             <div class="item-body">
               <span ng-switch="applicant.is_selected" class="pull-right">
@@ -96,7 +96,7 @@
               <p class="xb-align-right">
                 <a class="xb-link" ng-click="open('lg', applicant)">View Detail</a>
               </p>
-              <div ng-show="review.is_publish_applicants_confirmed && applicant.is_selected">
+              <div ng-show="review.isPublishApplicantsConfirmed && applicant.is_selected">
                 <div class="row">
                   <div class="col-md-6">
                     <p class="font-gray-light margin-top"><i>Shipping Address</i></p>
@@ -162,23 +162,23 @@
 
         <iframe name="download" style="display: none"></iframe>
         <div class="margin-top clearfix" ng-show="user.isStaff()">
-          <button class="btn btn-primary" ng-show="!review.is_publish_applicants_confirmed" ng-click="ConfirmSelectionResult()"
-                  ng-disabled="!review.is_publish_applicants">Confirm Selection
+          <button class="btn btn-primary" ng-show="!review.isPublishApplicantsConfirmed" ng-click="ConfirmSelectionResult()"
+                  ng-disabled="!review.isPublishApplicants">Confirm Selection
             Result
           </button>
 
-          <a class="btn btn-primary pull-right" target="download" ng-show="review.applicants_file_url"
-             ng-href="{{ review.applicants_file_url }}">Download
+          <a class="btn btn-primary pull-right" target="download" ng-show="review.applicantsFileUrl"
+             ng-href="{{ review.applicantsFileUrl }}">Download
           </a>
         </div>
 
         <div class="margin-top clearfix" ng-show="user.isStaff()">
-          <button class="btn btn-primary" ng-show="!review.selected_applicants_file_url" ng-click="exportAddress()"
-                  ng-disabled="!review.is_publish_applicants_confirmed">Export Address
+          <button class="btn btn-primary" ng-show="!review.selectedApplicantsFileUrl" ng-click="exportAddress()"
+                  ng-disabled="!review.isPublishApplicantsConfirmed">Export Address
           </button>
 
-          <a class="btn btn-primary pull-right" target="download" ng-show="review.selected_applicants_file_url"
-             ng-href="{{ review.selected_applicants_file_url }}">Download Address
+          <a class="btn btn-primary pull-right" target="download" ng-show="review.selectedApplicantsFileUrl"
+             ng-href="{{ review.selectedApplicantsFileUrl }}">Download Address
           </a>
         </div>
       </div>

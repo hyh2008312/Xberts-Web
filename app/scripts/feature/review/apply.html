@@ -1,4 +1,4 @@
-<div class="container md-section">
+<div class="container md-section" ng-if="!apply.finished">
   <div class="md-section__title">
     <h2 class="md-headline">{{ apply.review.title }}</h2>
     <h3 class="md-subhead md-dark-secondary">Please answer the following questions to apply. All the information must be
@@ -7,7 +7,7 @@
       <br/>
       The more details you provide, the higher chance you can be selected.</h3>
   </div>
-  <div class="md-section__content" layout-padding>
+  <div class="md-section__content md-relative" layout-padding>
     <form name="applierForm" ng-cloak novalidate>
       <div id="applier_step_1" ng-if="!apply.next">
         <div class="md-form-section">
@@ -74,6 +74,13 @@
                      ng-disabled="applierForm.$invalid">Next
           </md-button>
         </div>
+        <md-button class="md-fab md-fab-bottom-right md-mini" ng-click="apply.showTips($event)">
+          <md-tooltip
+            md-direction="bottom">
+            Tips
+          </md-tooltip>
+          ?
+        </md-button>
       </div>
       <div id="applier_step_2" ng-if="apply.next">
         <div class="md-form-section">
@@ -127,7 +134,7 @@
               </md-checkbox>
             </md-input-container>
           </div>
-          <div class="form-section__content" ng-if="apply.isPaidTrial()">
+          <div class="form-section__content" ng-if="apply.isDepositTrial(apply.review)">
             <div class="panel panel-default">
               <div class="panel-heading text-center">Deposit Policy</div>
               <div class="panel-body">
@@ -135,7 +142,7 @@
                   <p>
                     Please note if you’re selected as a reviewer, you will be asked
 
-                    to pay <b md-colors="{color: 'accent'}">a {{ apply.review.deposit.deposit_amount.amount }}
+                    to pay <b md-colors="{color: 'accent'}">a {{ apply.review.deposit.depositAmount.amount }}
                     deposit</b>
                     for the product sample. <b>The deposit will
 
@@ -174,7 +181,7 @@
             <md-input-container class="md-block">
               <md-checkbox name="understand" ng-model="apply.application.understand" required>
                 I understand the deposit policy and agree to pay <b md-colors="{color: 'accent'}">a deposit of {{
-                apply.review.deposit.deposit_amount.amount }}</b> if I was selected as a reviewer. The deposit will be
+                apply.review.deposit.depositAmount.amount }}</b> if I was selected as a reviewer. The deposit will be
                 refunded within 3 business days after review submission and approval.
               </md-checkbox>
             </md-input-container>
@@ -193,4 +200,18 @@
 
     </form>
   </div>
+</div>
+
+<div class="container" ng-if="apply.finished">
+  <div class="message">
+    <h2 class="md-margin-top-0 md-headline message__title">
+      You have successfully submitted your application!
+    </h2>
+    <p class="message__text">Please be noted that you can always come back and revise your application content before <b class="md-subhead">{{ apply.review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</b>
+      <br/>
+      The application results will be announced within 7 business days after application deadline
+    </p>
+    <md-button class="md-primary md-raised md-margin-left-0 message__button" ui-sref="application.testingcampaigns">view more campaigns</md-button>
+  </div>
+
 </div>

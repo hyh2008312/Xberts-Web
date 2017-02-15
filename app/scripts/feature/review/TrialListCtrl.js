@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('TrialListController', ['$scope', '$rootScope', 'trialPaginator',
-    function ($scope, $rootScope, trialPaginator) {
+  .controller('TrialListController', ['$scope', '$rootScope', 'trialPaginator','ReviewService',
+    function ($scope, $rootScope, trialPaginator,ReviewService) {
 
       var self = this;
 
@@ -12,13 +12,9 @@ angular.module('xbertsApp')
 
       self.trialPaginator = trialPaginator;
 
-      self.isPaidTrial = function(review){
-        var isPaid = false;
-        if(review.flashsale){
-          isPaid = Number(review.flashsale.salePrice.amount) > 0;
-        }
-        return isPaid
-      };
+      self.isPaidTrial = ReviewService.isPaidTrial;
+      self.isDepositTrial = ReviewService.isDepositTrial;
+      self.isFlashsale = ReviewService.isFlashsale;
 
       self.offPercentage = function (review) {
         if (review.flashsale) {

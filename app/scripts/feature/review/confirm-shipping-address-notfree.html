@@ -1,0 +1,49 @@
+<h2 class="md-display-1 md-margin-top-3 md-margin-bottom-3 md-align-center"> {{ confirm.review.title}}</h2>
+<p>Congratulations again on being selected as an Xberts reviewer from hundreds of applicants. To receive the product
+  from campaign owner, please provide your shipping address and complete the deposit payment before the deadline:
+  <b md-colors="{color: 'accent'}" class="md-subhead">{{ confirm.review.addressConfirmDeadline | amDateFormat:'MMM DD, YYYY' }}</b></p>
+<div class="md-margin-bottom-3">
+  <h3 class="md-headline margin-top-0 margin-bottom-1">Shipping Policy:</h3>
+  <ul class="md-padding-left-3">
+    <li>The product will be shipped before <b md-colors="{color: 'accent'}" class="md-subhead">{{ confirm.review.addressConfirmDeadline | amAdd : '5' : 'days' |
+      amDateFormat:'MMM DD, YYYY' }}</b>
+    </li>
+    <li>Shipping cost will be covered by product sponsor.</li>
+    <li>You will receive a tracking number via email once the product is shipped.</li>
+  </ul>
+</div>
+<div class="md-margin-bottom-3">
+  <h3 class="md-headline margin-top-0 margin-bottom-1">Payment Policy:</h3>
+  <ul class="md-padding-left-3">
+    <li>The cost of product sample is: <b md-colors="{color: 'accent'}" class="md-subhead">{{ confirm.review.flashsale.salePrice.amount}}</b>
+      <del>{{ confirm.review.retailerPrice.amount }}</del>
+    </li>
+    <li>This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.deposit.depositAmount.amount}}</b> to make
+      sure all applicants will submit their reviews
+      after receiving the product.
+    </li>
+    <li>The deposit will be fully refunded within 3 business days after your review submission and approval.
+    </li>
+    <li>Your payment will be processed securely by Shopify – a leading service provider in the industry. We do not
+      store any of your payment information.
+    </li>
+  </ul>
+</div>
+<div class="md-margin-bottom-3">
+  <h3 class="md-headline margin-top-0 margin-bottom-1">Customer Support:</h3>
+  <ul class="md-padding-left-3">
+    <li>The product is offered at a deep discount, so it cannot be returned or exchanged unless damaged.
+    </li>
+    <li>If your product arrives damaged, please send us a photo of the damage by email to <a>review@xberts.com</a>
+      within 48
+      hours of receiving the shipment, otherwise we may not be able to honor your claim.
+    </li>
+    <li>If you have any other questions or problems during your product review process, please contact us at
+      <a>info@xberts.com.</a>
+    </li>
+  </ul>
+</div>
+
+<div class="md-align-center">
+  <md-button class="md-primary md-raised" ng-click="confirm.pay()">confirm shipping address</md-button>
+</div>

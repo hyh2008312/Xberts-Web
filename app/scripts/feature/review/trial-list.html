@@ -26,7 +26,10 @@
               <li class="c-status">
                 <span class="c-status__value">
                   <span ng-if="!trials.isPaidTrial(review)">Free</span>
-                  <span ng-if="trials.isPaidTrial(review)">{{ trials.offPercentage(review) }}% <span style="font-size: 18px;">OFF</span></span>
+                  <span ng-if="trials.isPaidTrial(review)">
+                    <span ng-if="!trials.isFlashsale(review)">Free</span>
+                    <span ng-if="trials.isFlashsale(review)">{{ trials.offPercentage(review) }}% <span style="font-size: 18px;">OFF</span></span>
+                  </span>
                 </span>
                 <span class="c-status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
               </li>
@@ -60,7 +63,7 @@
 
             <a ng-switch-when="ENDED" class="reverse-btn reverse-btn--yellow"
                ui-sref="application.testingcampaign({ reviewId:review.id })">
-              READ REVIEWS
+              REVIEW ENDED
             </a>
           </div>
         </div>

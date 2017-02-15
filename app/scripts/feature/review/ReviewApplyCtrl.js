@@ -11,14 +11,14 @@ angular
     'ReviewService',
     'ApplicationService',
     '$filter',
-    '$state',
     '$q',
     'growl',
+    '$mdDialog',
     ReviewApplyController
   ]);
 
 
-function ReviewApplyController($scope, SystemConstant, review, applier, application, ReviewService, ApplicationService, $filter, $state, $q, growl) {
+function ReviewApplyController($scope, SystemConstant, review, applier, application, ReviewService, ApplicationService, $filter, $q, growl,$mdDialog) {
   var self = this;
   self.review = review;
   /*todo: remove this transform to service*/
@@ -34,6 +34,8 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
   self.genders = SystemConstant.GENDER_TYPE;
   self.countries = SystemConstant.COUNTRIES;
 
+  self.finished = false;
+
   self.next = false;
 
 
@@ -47,10 +49,8 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
     }
   }
 
-  self.isPaidTrial = function () {
-    var deposit = Number(self.review.deposit.deposit_amount.amount);
-    return (deposit > 0);
-  };
+  self.isPaidTrial = ReviewService.isPaidTrial;
+  self.isDepositTrial = ReviewService.isDepositTrial;
 
   self.nextStep = function (applyForm) {
     if (applyForm.$valid) {
@@ -85,7 +85,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       $q.all(promises)
         .then(function () {
           $scope.$emit('backdropOff', 'trial apply success');
-          $state.go('application.testingcampaign', {reviewId: self.review.id});
+          self.finished = true;
         })
         .catch(function () {
           growl.error('Sorry,some error happened.');
@@ -93,4 +93,23 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
         });
     }
   };
+
+  self.showTips = function(ev) {
+    console.log("dia");
+    $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'scripts/feature/review/apply-tips.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: true
+      });
+  };
+
+  function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+  }
+
 }

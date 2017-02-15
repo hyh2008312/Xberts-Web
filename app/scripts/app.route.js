@@ -136,31 +136,13 @@ angular
           }]
         }
       })
-      .state('application.protected.confirmShipAddress', {
-        url: '/crowdtesting/:reviewId/confirmaddress',
-        templateUrl: 'views/review/review_applicant_shipping_address.html',
-        controller: 'ShipAddressCtrl',
-        resolve: {
-          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
-            return ReviewService.getDetail($stateParams.reviewId);
-          }],
-          reviewer: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
-            return ReviewService.getCurrentApplier();
-          }],
-          applicant: ['ReviewService', '$stateParams','protectedAuthCheck',
-            function (ReviewService, $stateParams,protectedAuthCheck) {
-              return ReviewService.applicantProtect($stateParams.reviewId);
-            }]
-        }
-      })
       .state('application.selectApplicants', {
         url: "/crowdtesting/:reviewId/applicants",
         templateUrl: 'views/review/review_applicants.html',
         controller: 'ReviewApplicantsCtrl',
         resolve: {
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
           }],
           pendingApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -211,9 +193,8 @@ angular
         templateUrl: 'views/review/review_reports.html',
         controller: 'ReviewReportsCtrl',
         resolve: {
-          review: ['ReviewLoad', '$stateParams', function (ReviewLoad, $stateParams) {
-            var reviewId = $stateParams.reviewId || null;
-            return reviewId === null ? {} : ReviewLoad($stateParams);
+          review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getSurvey($stateParams.reviewId);
           }],
           selectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -550,5 +531,40 @@ angular
               return ApplicationService.getApplicationForReviewID($stateParams.reviewId);
             }]
         }
-      });
+      })
+      .state('application.protected.confirmShipAddress_old', {
+        url: '/crowdtesting/:reviewId/confirmaddress',
+        templateUrl: 'scripts/feature/review/confirm-shipping-address.html',
+        controller: 'ConfirmShippingAddressCtrl',
+        resolve: {
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getSurvey($stateParams.reviewId);
+          }],
+          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
+            return ReviewService.getCurrentApplier();
+          }],
+          application: ['ReviewService', '$stateParams','protectedAuthCheck',
+            function (ReviewService, $stateParams,protectedAuthCheck) {
+              return ReviewService.applicantProtect($stateParams.reviewId);
+            }]
+        }
+      })
+      .state('application.protected.confirmShipAddress', {
+        url: '/trials/:reviewId/confirmaddress',
+        templateUrl: 'scripts/feature/review/confirm-shipping-address.html',
+        controller: 'ConfirmShippingAddressCtrl as confirm',
+        resolve: {
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getSurvey($stateParams.reviewId);
+          }],
+          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
+            return ReviewService.getCurrentApplier();
+          }],
+          application: ['ReviewService', '$stateParams','protectedAuthCheck',
+            function (ReviewService, $stateParams,protectedAuthCheck) {
+              return ReviewService.applicantProtect($stateParams.reviewId);
+            }]
+        }
+      })
+    ;
   }]);
