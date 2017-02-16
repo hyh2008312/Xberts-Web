@@ -24,6 +24,7 @@ angular.module('xbertsApp')
             .then(
               function () {
                 $scope.$emit('backdropOff', 'confirm success');
+                $state.go('application.testingcampaigns')
               },
               function () {
                 growl.error('Sorry,some error happened.');

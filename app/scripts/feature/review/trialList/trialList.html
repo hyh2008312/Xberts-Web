@@ -1,0 +1,62 @@
+<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in trials">
+
+  <div class="xcard">
+    <div class="xcard__image_wrap"
+         ui-sref="application.testingcampaign({ reviewId:review.id })">
+      <img ng-src="{{ review.cover }}"/>
+    </div>
+    <div class="xcard__block">
+      <p class="xcard__title align-center" ui-sref="application.testingcampaign({ reviewId:review.id })">{{review.title }}</p>
+
+      <ul class="l-list-inline align-center">
+        <li time-left end-time="review.applicationEndDate" extra-info="review.applicantCount" class="c-status">
+          <span class="c-status__value" ng-show="timeValue>0">{{ timeValue }}</span>
+          <span class="c-status__key" ng-show="timeValue>0"> {{ timeUnit }} Left </span>
+          <span class="c-status__value" ng-show="timeValue<=0">{{ extraInfo }}</span>
+          <span class="c-status__key" ng-show="timeValue<=0">applicants</span>
+        </li>
+        <li class="c-status">
+                <span class="c-status__value">
+                  <span ng-if="!isPaidTrial(review)">Free</span>
+                  <span ng-if="isPaidTrial(review)">
+                    <span ng-if="!isFlashsale(review)">Free</span>
+                    <span ng-if="isFlashsale(review)">{{ offPercentage(review) }}% <span style="font-size: 18px;">OFF</span></span>
+                  </span>
+                </span>
+          <span class="c-status__key line-through">{{ review.project.retailPrice.amount | currency}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="xcard__footer" ng-switch="review.status">
+      <a ng-switch-when="UPCOMING" class="reverse-btn reverse-btn--gray"
+         disabled>
+        Coming Soon
+      </a>
+
+      <a ng-switch-when="APPLICATION" class="reverse-btn reverse-btn--blue"
+         ui-sref="application.testingcampaign({ reviewId:review.id })">
+        APPLY NOW
+      </a>
+
+      <a ng-switch-when="SELECTION" class="reverse-btn reverse-btn--gray"
+         ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+        APPLICANT SCREENING
+      </a>
+
+      <a ng-switch-when="CONFIRMATION" class="reverse-btn reverse-btn--gray"
+         ui-sref="application.testingcampaign({ reviewId:review.id })" disabled>
+        APPLICANT SCREENING
+      </a>
+
+      <a ng-switch-when="REVIEW" class="reverse-btn reverse-btn--green"
+         ui-sref="application.testingcampaign({ reviewId:review.id })">
+        SUBMIT REVIEW
+      </a>
+
+      <a ng-switch-when="ENDED" class="reverse-btn reverse-btn--yellow"
+         ui-sref="application.testingcampaign({ reviewId:review.id })">
+        REVIEW ENDED
+      </a>
+    </div>
+  </div>
+</div>

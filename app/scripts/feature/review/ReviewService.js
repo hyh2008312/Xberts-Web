@@ -46,6 +46,16 @@ angular.module('xbertsApp')
     self.isDepositTrial = function (review) {
       return review.deposit && review.deposit.shopGatewayInventoryId !== '0';
     };
+    self.offPercentage = function (review) {
+      if (review.flashsale) {
+        var retailPrice = review.project.retailPrice.amount;
+        var salePrice  = review.flashsale.salePrice.amount;
+        var decimal = (retailPrice - salePrice) / retailPrice;
+        return Math.round(decimal * 100);
+      } else {
+        return 0;
+      }
+    };
 
     self.getDetail = function (reviewId) {
       return $resource(API_BASE_URL + '/review/reviewdetail/:id/', {id: '@id'}).get({id: reviewId}).$promise;

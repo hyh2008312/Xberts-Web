@@ -204,8 +204,8 @@ angular
 
       .state('application.testingcampaigns', {
         url: "/trials",
-        templateUrl: 'scripts/feature/review/trialList/trial-list.html',
-        controller: 'TrialListController as trials',
+        templateUrl: 'scripts/feature/review/trialList/trialListPage.html',
+        controller: 'TrialListPageController as trials',
         reloadOnSearch: false,
         resolve: {
           trialPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
