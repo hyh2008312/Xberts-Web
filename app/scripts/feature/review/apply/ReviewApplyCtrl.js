@@ -95,7 +95,6 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
   };
 
   self.showTips = function(ev) {
-    console.log("dia");
     $mdDialog.show({
         controller: ['$scope', '$mdDialog',DialogController],
         templateUrl: 'scripts/feature/review/apply/apply-tips.html',
