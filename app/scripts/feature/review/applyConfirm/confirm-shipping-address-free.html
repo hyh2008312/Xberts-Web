@@ -1,110 +1,146 @@
-<h2 class="md-display-1 md-margin-top-3 md-margin-bottom-3 md-align-center"> {{ confirm.review.title}}</h2>
-
-<form class="form-horizontal" name="applierForm" novalidate>
-
-  <md-input-container class="md-block">
-    <label>Recipient Name:</label>
-    <input type="text"
-           name="recipient_name"
-           ng-model="confirm.applier.recipient_name"
-           ng-maxlength="100"
-           required/>
-    <div ng-messages="applierForm.recipient_name.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>Address line 1:</label>
-    <input type="text"
-           name="address1"
-           ng-model="confirm.applier.address_line1"
-           ng-maxlength="200"
-           required/>
-    <div ng-messages="applierForm.address1.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>Address line 2:</label>
-    <input type="text"
-           name="address2"
-           ng-model="confirm.applier.address_line2"
-           ng-maxlength="200"/>
-    <div ng-messages="applierForm.address2.$error">
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>City</label>
-    <input type="text"
-           name="city"
-           ng-model="confirm.applier.city"
-           ng-maxlength="200"
-           required/>
-    <div ng-messages="applierForm.city.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>State/Province/Region: </label>
-    <input type="text"
-           name="state"
-           ng-model="confirm.applier.state"
-           ng-maxlength="50"
-           required/>
-    <div ng-messages="applierForm.state.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>ZIP/Postal code: </label>
-    <input type="text"
-           name="zip"
-           ng-model="confirm.applier.zip"
-           ng-maxlength="20"
-           required/>
-    <div ng-messages="applierForm.zip.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-
-
-  <md-input-container class="md-block">
-    <label>State</label>
-    <md-select ng-model="confirm.applier.mail_country" name="mail_country" required>
-      <md-option ng-repeat="country in confirm.countries" ng-value="country.code">
-        {{country.name}}
-      </md-option>
-    </md-select>
-    <div ng-messages="applierForm.country.$error">
-      <div ng-message="required">This is required!</div>
-    </div>
-  </md-input-container>
-
-  <md-input-container class="md-block">
-    <label>Phone Number: </label>
-    <input type="text"
-           name="phone_number"
-           ng-model="confirm.applier.phone_number"
-           ng-maxlength="50"
-           required/>
-    <div ng-messages="applierForm.phone_number.$error">
-      <div ng-message="required">This is required!</div>
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
-  </md-input-container>
-  <div class="md-align-center">
-    <md-button type="submit" class="md-primary md-raised" ng-click="confirm.applierFormSubmit(applierForm)">confirm shipping address</md-button>
+<div class="container md-section" ng-if="!confirm.finished">
+  <div class="md-section__title">
+    <h2 class="md-headline">{{ confirm.review.title }}</h2>
   </div>
-</form>
+  <div class="md-section__content" layout-padding>
+    <form class="form-horizontal" name="applierForm" novalidate>
+      <div layout="column">
+        <div layout="row">
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>Recipient Name:</label>
+            <input type="text"
+                   name="recipient_name"
+                   ng-model="confirm.applier.recipient_name"
+                   ng-maxlength="100"
+                   required/>
+            <div ng-messages="applierForm.recipient_name.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>Address line 1:</label>
+            <input type="text"
+                   name="address1"
+                   ng-model="confirm.applier.address_line1"
+                   ng-maxlength="200"
+                   required/>
+            <div ng-messages="applierForm.address1.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>Address line 2:</label>
+            <input type="text"
+                   name="address2"
+                   ng-model="confirm.applier.address_line2"
+                   ng-maxlength="200"/>
+            <div ng-messages="applierForm.address2.$error">
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>City</label>
+            <input type="text"
+                   name="city"
+                   ng-model="confirm.applier.city"
+                   ng-maxlength="200"
+                   required/>
+            <div ng-messages="applierForm.city.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>State/Province/Region: </label>
+            <input type="text"
+                   name="state"
+                   ng-model="confirm.applier.state"
+                   ng-maxlength="50"
+                   required/>
+            <div ng-messages="applierForm.state.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>ZIP/Postal code: </label>
+            <input type="text"
+                   name="zip"
+                   ng-model="confirm.applier.zip"
+                   ng-maxlength="20"
+                   required/>
+            <div ng-messages="applierForm.zip.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>State</label>
+            <md-select ng-model="confirm.applier.mail_country" name="mail_country" required>
+              <md-option ng-repeat="country in confirm.countries" ng-value="country.code">
+                {{country.name}}
+              </md-option>
+            </md-select>
+            <div ng-messages="applierForm.country.$error">
+              <div ng-message="required">This is required!</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout>
+          <md-input-container class="md-block" flex-offset-gt-sm="15" flex-gt-sm="70">
+            <label>Phone Number: </label>
+            <input type="text"
+                   name="phone_number"
+                   ng-model="confirm.applier.phone_number"
+                   ng-maxlength="50"
+                   required/>
+            <div ng-messages="applierForm.phone_number.$error">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div class="md-align-center">
+          <md-button type="submit" class="md-primary md-raised" ng-click="confirm.applierFormSubmit(applierForm)">
+            confirm
+            shipping address
+          </md-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" ng-if="confirm.finished">
+  <div class="message">
+    <h2 class="md-margin-top-0 md-headline message__title">
+      Thank you for confirming your shipping address!
+    </h2>
+    <p class="message__text">The product will be shipped before {{ confirm.review.addressConfirmDeadline | amAdd : '5' : 'days' |
+      amDateFormat:'MMM DD, YYYY' }}. You will receive a tracking number
+      via email notification once your product has been shipped.
+    </p>
+    <md-button class="md-primary md-raised md-margin-left-0 message__button" ui-sref="application.testingcampaigns">view
+      more campaigns
+    </md-button>
+  </div>
+
+</div>
+
 

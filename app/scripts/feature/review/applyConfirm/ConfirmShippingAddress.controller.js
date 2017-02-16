@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ConfirmShippingAddressCtrl', ['$scope', 'SystemConstant', 'growl', '$rootScope', 'review', 'applier', 'application', '$state',
+  .controller('ConfirmShippingAddressCtrl', ['$scope', 'SystemConstant', 'growl', '$rootScope', 'review', 'applier', 'application',
     'ReviewService', 'ShopifyService','$q',
-    function ($scope, SystemConstant, growl, $rootScope, review, applier, application, $state, ReviewService, ShopifyService,$q) {
+    function ($scope, SystemConstant, growl, $rootScope, review, applier, application, ReviewService, ShopifyService,$q) {
       var self = this;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
@@ -11,6 +11,7 @@ angular.module('xbertsApp')
       self.review = review;
       self.application = application;
       self.countries = SystemConstant.COUNTRIES;
+      self.finished = false;
 
       self.isPaidTrial = ReviewService.isPaidTrial;
 
@@ -24,7 +25,7 @@ angular.module('xbertsApp')
             .then(
               function () {
                 $scope.$emit('backdropOff', 'confirm success');
-                $state.go('application.testingcampaigns')
+                self.finished = true;
               },
               function () {
                 growl.error('Sorry,some error happened.');
