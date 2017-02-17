@@ -26,8 +26,8 @@ angular.module('xbertsApp')
         {
           id: 0,
           image: 'https://xberts.imgix.net/static/banner/engineer_adjusting_3d_printer.jpg?auto=format%2Cenhance&crop=entropy&fit=crop&h=600&q=60&w=1200&s=c5544734db8e38f9c68e9be878867179',
-          title: 'Discover Creative	Products Through Expert Reviews',
-          subtitle: 'We bring you the best tech and designs that are tested by influential experts',
+          title: 'Discover Perfect and Money-Saving Products <br/>Through Our Expert Community',
+          subtitle: 'We bring you the best products that have been tested by trusted experts',
           buttonShow: !$rootScope.user.isAuth(),
           buttonText: 'Sign Up Now',
           buttonColor: 'btn-primary',
