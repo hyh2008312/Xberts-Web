@@ -10,7 +10,11 @@ angular.module('xbertsApp')
     /*
      * applier
      */
-    var ApplierResource = $resource(API_BASE_URL + '/xberts/reviewers/:id/', {id: '@user_id'}, {'put': {method: 'PUT'}});
+    var ApplierResource = $resource(
+      API_BASE_URL + '/xberts/reviewers/:id/',
+      {id: '@user_id'},
+      {'put': {method: 'PUT'}}
+    );
 
     self.getApplierById = function (userId) {
       return ApplierResource.get({id: userId}).$promise;
@@ -49,7 +53,7 @@ angular.module('xbertsApp')
     self.offPercentage = function (review) {
       if (review.flashsale) {
         var retailPrice = review.project.retailPrice.amount;
-        var salePrice  = review.flashsale.salePrice.amount;
+        var salePrice = review.flashsale.salePrice.amount;
         var decimal = (retailPrice - salePrice) / retailPrice;
         return Math.round(decimal * 100);
       } else {

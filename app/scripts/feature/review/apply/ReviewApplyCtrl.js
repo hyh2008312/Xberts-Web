@@ -14,11 +14,13 @@ angular
     '$q',
     'growl',
     '$mdDialog',
+    'AnalyticsService',
+    '$location',
     ReviewApplyController
   ]);
 
 
-function ReviewApplyController($scope, SystemConstant, review, applier, application, ReviewService, ApplicationService, $filter, $q, growl,$mdDialog) {
+function ReviewApplyController($scope, SystemConstant, review, applier, application, ReviewService, ApplicationService, $filter, $q, growl,$mdDialog,AnalyticsService,$location) {
   var self = this;
   self.review = review;
   /*todo: remove this transform to service*/
@@ -55,6 +57,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
   self.nextStep = function (applyForm) {
     if (applyForm.$valid) {
       self.next = true;
+      AnalyticsService.sendPageView($location.path() + '/survey');
     }
   };
 
@@ -86,6 +89,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
         .then(function () {
           $scope.$emit('backdropOff', 'trial apply success');
           self.finished = true;
+          AnalyticsService.sendPageView($location.path() + '/agreement');
         })
         .catch(function () {
           growl.error('Sorry,some error happened.');

@@ -4,6 +4,7 @@ var WORKERS = process.env.WEB_CONCURRENCY || 1;
 var PORT = process.env.PORT || 5000;
 var ENV = process.env.ENV || 'local';
 
+// support multi http request
 throng({
   workers: WORKERS,
   lifetime: Infinity
