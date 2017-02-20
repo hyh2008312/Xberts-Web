@@ -150,7 +150,7 @@ angular.module('xbertsApp')
               return Interact.Feedback({interact_id: $scope.interact.id}).get(params).$promise;
             }
           };
-          $scope.feedbackPaginator = Paginator(par);
+          $scope.feedbackPaginator = new Paginator(par);
           $scope.feedbackPaginator.clear();
           $scope.feedbackPaginator.loadNext();
         };

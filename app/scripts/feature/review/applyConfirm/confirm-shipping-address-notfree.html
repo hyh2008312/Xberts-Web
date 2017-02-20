@@ -15,10 +15,10 @@
 <div class="md-margin-bottom-3">
   <h3 class="md-headline margin-top-0 margin-bottom-1">Payment Policy:</h3>
   <ul class="md-padding-left-3">
-    <li>The cost of product sample is: <b md-colors="{color: 'accent'}" class="md-subhead">{{ confirm.review.flashsale.salePrice.amount}}</b>
-      <del>{{ confirm.review.retailerPrice.amount }}</del>
+    <li>The cost of product sample is: <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getFlashSale()}}</b>
+      <del>{{ confirm.review.getRetailPrice() }}</del>
     </li>
-    <li>This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.deposit.depositAmount.amount}}</b> to make
+    <li>This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getDeposit()}}</b> to make
       sure all applicants will submit their reviews
       after receiving the product.
     </li>

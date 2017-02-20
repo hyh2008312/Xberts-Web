@@ -45,7 +45,7 @@ angular
                 return ProjectsNoDetail.get(params).$promise;
               }
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -222,7 +222,7 @@ angular
         resolve: {
           messagePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
             function (Paginator, MessageResolver, protectedAuthCheck) {
-              return Paginator({
+              return new Paginator({
                 name: 'message',
                 fetchFunction: MessageResolver.getNotifications
               }).load();

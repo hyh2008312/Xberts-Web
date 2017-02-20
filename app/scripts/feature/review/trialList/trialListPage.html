@@ -5,9 +5,9 @@
       <h3>Review the latest products in exchange for deep discounts</h3>
     </div>
     <div class="row xb-section-body" infinite-scroll="trials.trialPaginator.loadNext()" infinite-scroll-distance='0'
-         infinite-scroll-disabled="trials.trialPaginator.getLoading() || !trials.trialPaginator.getNext()">
+         infinite-scroll-disabled="trials.trialPaginator.loading || !trials.trialPaginator.next">
       <trial-list trials="trials.trialPaginator.items"></trial-list>
     </div>
-    <load-more class="row spin-large" ng-if="trials.trialPaginator.getLoading()"></load-more>
+    <load-more class="row spin-large" ng-if="trials.trialPaginator.loading"></load-more>
   </div>
 </section>

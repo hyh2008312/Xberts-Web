@@ -1,68 +1,21 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('Review', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
-    return $resource(API_BASE_URL + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
-  }])
-  .service('ReviewService', ['$resource', 'API_BASE_URL', '$q', '$rootScope', '$state', 'growl', function ($resource, API_BASE_URL, $q, $rootScope, $state, growl) {
+  .service('ReviewService', ['$resource', 'API_BASE_URL', '$q', '$rootScope', '$state', 'growl', 'Review', function ($resource, API_BASE_URL, $q, $rootScope, $state, growl, Review) {
     var self = this;
 
-    /*
-     * applier
-     */
-    var ApplierResource = $resource(
-      API_BASE_URL + '/xberts/reviewers/:id/',
-      {id: '@user_id'},
-      {'put': {method: 'PUT'}}
-    );
-
-    self.getApplierById = function (userId) {
-      return ApplierResource.get({id: userId}).$promise;
-    };
-    self.getCurrentApplier = function () {
-      return self.getApplierById($rootScope.user.getUserId())
-    };
-
-    self.saveApplier = function (data) {
-      return ApplierResource.put(data).$promise;
-    };
-
-
-    /*
-     review
-     */
     var ReviewResource = $resource(API_BASE_URL + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
 
     self.getSurvey = function (reviewId) {
-      return ReviewResource.get({id: reviewId}).$promise;
+      return ReviewResource.get({id: reviewId}).$promise.then(Review.build);
     };
 
     self.updateReview = function (data) {
       return ReviewResource.patch(data).$promise;
     };
 
-    self.isPaidTrial = function (review) {
-      return self.isFlashsale(review) || self.isDepositTrial(review)
-    };
-    self.isFlashsale = function (review) {
-      return review.flashsale && review.flashsale.shopGatewayInventoryId !== '0';
-    };
-    self.isDepositTrial = function (review) {
-      return review.deposit && review.deposit.shopGatewayInventoryId !== '0';
-    };
-    self.offPercentage = function (review) {
-      if (review.flashsale) {
-        var retailPrice = review.project.retailPrice.amount;
-        var salePrice = review.flashsale.salePrice.amount;
-        var decimal = (retailPrice - salePrice) / retailPrice;
-        return Math.round(decimal * 100);
-      } else {
-        return 0;
-      }
-    };
-
     self.getDetail = function (reviewId) {
-      return $resource(API_BASE_URL + '/review/reviewdetail/:id/', {id: '@id'}).get({id: reviewId}).$promise;
+      return $resource(API_BASE_URL + '/review/reviewdetail/:id/', {id: '@id'}).get({id: reviewId}).$promise.then(Review.build);
     };
 
     self.getList = function (params) {
@@ -95,9 +48,6 @@ angular.module('xbertsApp')
       return deferred.promise;
     };
 
-    self.confirmAddress = function (applicantId) {
-      return $resource(API_BASE_URL + '/review/applicants/' + applicantId + '/confirmaddress/').save().$promise;
-    };
     self.exportAddress = function (reiviewId) {
       return $resource(API_BASE_URL + '/review/reviews/' + reiviewId + '/exportaddress/').save().$promise;
     };

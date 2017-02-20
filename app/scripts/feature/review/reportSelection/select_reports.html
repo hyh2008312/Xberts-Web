@@ -27,7 +27,7 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="list">
           <div infinite-scroll="applicantPaginator.loadNext()" infinite-scroll-distance='0'
-               infinite-scroll-disabled="applicantPaginator.getLoading() || !applicantPaginator.getNext()">
+               infinite-scroll-disabled="applicantPaginator.loading || !applicantPaginator.next">
             <div class="item-avatar-large item-hover" style="min-height: 127px;"
                ng-repeat="applicant in applicantPaginator.items">
             <div class="item-image text-center">
@@ -63,7 +63,7 @@
           </div>
           </div>
         </div>
-        <load-more class="row spin-large" ng-show="applicantPaginator.getLoading()"></load-more>
+        <load-more class="row spin-large" ng-show="applicantPaginator.loading"></load-more>
       </div>
     </div>
   </div>

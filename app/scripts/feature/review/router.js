@@ -25,11 +25,9 @@ angular
                 id: reviewId,
                 is_selected: 'Unknown'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getApplicants(params);
-              }
+              fetchFunction: ReviewService.getApplicants
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
           selectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -39,11 +37,9 @@ angular
                 id: reviewId,
                 is_selected: 'True'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getApplicants(params);
-              }
+              fetchFunction: ReviewService.getApplicants
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
           unselectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -53,11 +49,9 @@ angular
                 id: reviewId,
                 is_selected: 'False'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getApplicants(params);
-              }
+              fetchFunction: ReviewService.getApplicants
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -77,11 +71,9 @@ angular
                 id: reviewId,
                 is_selected: 'True'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getApplicants(params);
-              }
+              fetchFunction: ReviewService.getApplicants
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
           submittedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
             var reviewId = $stateParams.reviewId || null;
@@ -92,11 +84,9 @@ angular
                 is_selected: 'True',
                 has_submitted_report: 'True'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getApplicants(params);
-              }
+              fetchFunction: ReviewService.getApplicants
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -127,30 +117,26 @@ angular
         controller: 'ReportListCtrl',
         reloadOnSearch: false,
         resolve: {
-          reviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+          reviewPaginator: ['Paginator', 'ReportService', function (Paginator, ReportService) {
             var par = {
               name: 'all_report_list',
               params: {
                 page_size: 12
               },
-              fetchFunction: function (params) {
-                return AllReport.get(params).$promise;
-              }
+              fetchFunction: ReportService.getList
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
-          topReviewPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+          topReviewPaginator: ['Paginator', 'ReportService', function (Paginator, ReportService) {
             var par = {
               name: 'top_report_list',
               params: {
                 page_size: 10,
-                order:'TOP'
+                order: 'TOP'
               },
-              fetchFunction: function (params) {
-                return AllReport.get(params).$promise;
-              }
+              fetchFunction: ReportService.getList
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -168,36 +154,31 @@ angular
                 status: 'APPLICATION',
                 page_size: 12
               },
-              fetchFunction: function (params) {
-                return ReviewService.getRecommendedReviewers(params);
-              }
+              fetchFunction:ReviewService.getRecommendedReviewers
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
-          betaReviewPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+          betaReviewPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
               name: 'progressingReview',
+              objClass:Review,
               params: {
                 page_size: 12,
                 review_type: 'FREE_SAMPLE'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getList(params);
-              }
+              fetchFunction: ReviewService.getList
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }],
-          recommendedReportsPaginator: ['Paginator', 'AllReport', function (Paginator, AllReport) {
+          recommendedReportsPaginator: ['Paginator', 'ReportService', function (Paginator, ReportService) {
             var par = {
               name: 'all_report_list',
               params: {
                 page_size: 12
               },
-              fetchFunction: function (params) {
-                return AllReport.get(params).$promise;
-              }
+              fetchFunction: ReportService.getList
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -208,18 +189,17 @@ angular
         controller: 'TrialListPageController as trials',
         reloadOnSearch: false,
         resolve: {
-          trialPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
+          trialPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
               name: 'trials',
+              objClass:Review,
               params: {
                 page_size: 12,
                 review_type: 'FREE_SAMPLE'
               },
-              fetchFunction: function (params) {
-                return ReviewService.getList(params);
-              }
+              fetchFunction: ReviewService.getList
             };
-            return Paginator(par).load();
+            return new Paginator(par).load();
           }]
         }
       })
@@ -242,11 +222,11 @@ angular
           review: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
             return ReviewService.getSurvey($stateParams.reviewId);
           }],
-          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
-            return ReviewService.getCurrentApplier();
+          applier: ['ApplierService', 'protectedAuthCheck', function (ApplierService, protectedAuthCheck) {
+            return ApplierService.getCurrentApplier();
           }],
-          application: ['ApplicationService', '$stateParams','protectedAuthCheck',
-            function (ApplicationService, $stateParams,protectedAuthCheck) {
+          application: ['ApplicationService', '$stateParams', 'protectedAuthCheck',
+            function (ApplicationService, $stateParams, protectedAuthCheck) {
               return ApplicationService.getApplicationForReviewID($stateParams.reviewId);
             }]
         }
@@ -259,11 +239,11 @@ angular
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getSurvey($stateParams.reviewId);
           }],
-          applier: ['ReviewService','protectedAuthCheck', function (ReviewService,protectedAuthCheck) {
-            return ReviewService.getCurrentApplier();
+          applier: ['ApplierService', 'protectedAuthCheck', function (ApplierService, protectedAuthCheck) {
+            return ApplierService.getCurrentApplier();
           }],
-          application: ['ReviewService', '$stateParams','protectedAuthCheck',
-            function (ReviewService, $stateParams,protectedAuthCheck) {
+          application: ['ReviewService', '$stateParams', 'protectedAuthCheck',
+            function (ReviewService, $stateParams, protectedAuthCheck) {
               return ReviewService.applicantProtect($stateParams.reviewId);
             }]
         }

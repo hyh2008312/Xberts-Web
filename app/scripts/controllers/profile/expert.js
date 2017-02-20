@@ -31,7 +31,7 @@ angular.module('xbertsApp')
                     return ReviewService.getList(params);
                   }
                 };
-                $scope.campaignPaginator = Paginator(par);
+                $scope.campaignPaginator = new Paginator(par);
                 break;
               case 2:
                 var filter = '';
@@ -46,7 +46,7 @@ angular.module('xbertsApp')
                     return ApplicationService.getApplicationsWithReview(params);
                   }
                 };
-                $scope.reviewApplicantPaginator = Paginator(par3);
+                $scope.reviewApplicantPaginator = new Paginator(par3);
                 break;
               case 3:
                 var par4 = {
@@ -55,7 +55,7 @@ angular.module('xbertsApp')
                     return Sales.getList(params);
                   }
                 };
-                $scope.ordersPaginator = Paginator(par4);
+                $scope.ordersPaginator = new Paginator(par4);
                 break;
               default:
                 break;

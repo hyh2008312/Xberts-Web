@@ -1,4 +1,4 @@
-<join ng-init="init(review.interact)">
+<join ng-init="init(trial.review.interact)">
   <div id="review-detail" class="review-detail-page">
     <div class="container">
 
@@ -7,29 +7,29 @@
         <div class="col-xs-12 col-sm-12 col-md-8">
           <div class="xcard xcard--borderless">
             <div class="xcard__image_wrap">
-              <img ng-src="{{ review.project.mainImage }}"/>
+              <img ng-src="{{ trial.review.project.mainImage }}"/>
             </div>
             <div class="xcard__block">
               <div class="review-info visible-xs visible-sm">
-                <p class="review-info__title">{{ review.title }}</p>
+                <p class="review-info__title">{{ trial.review.title }}</p>
                 <p class="review-info__category">
             <span class="margin-right">
-              <span ng-repeat="category in review.project.categories">{{ category.name }}<span
+              <span ng-repeat="category in trial.review.project.categories">{{ category.name }}<span
                 ng-if="!$last">,</span></span>
             </span>
                 </p>
                 <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
                   <li class="c-status c-status--review-detail">
                     <span class="c-status__key">Available Units</span>
-                    <ng-pluralize class="c-status__value" count="review.sampleNum"
+                    <ng-pluralize class="c-status__value" count="trial.review.sampleNum"
                                   when="{'0': '0 sample',
                                '1': '1 sample',
-                               'other': '{{review.sampleNum}} samples'}"></ng-pluralize>
+                               'other': '{{trial.review.sampleNum}} samples'}"></ng-pluralize>
                   </li>
                   <li class="c-status c-status--review-detail">
                     <span class="c-status__key">Time Left</span>
               <span class="c-status__value">
-                <timer end-time="review.applicationEndDate">
+                <timer end-time="trial.review.applicationEndDate">
                   {{days|doubleDigit}} day{{daysS}},
                   {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
                 </timer>
@@ -38,9 +38,9 @@
                   <li class="c-status c-status--review-detail">
                     <span class="c-status__key">Price</span>
                     <span class="c-status__value">
-                      <span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span>
-                      <span ng-if="!trial.isPaidTrial(review)">Free</span>
-                      <span ng-if="trial.isPaidTrial(review)">{{ review.flashsale.salePrice.amount }}</span>
+                      <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
+                      <span ng-if="!trial.review.isPaidTrial()">Free</span>
+                      <span ng-if="trial.review.isPaidTrial()">{{ trial.review.getFlashSale() | currency }}</span>
                     </span>
                   </li>
                 </ul>
@@ -154,12 +154,12 @@
               </div>
               <div class="review-section hidden-xs hidden-sm">
                 <h4 class="review-section__title">Benefits</h4>
-                <ul class="review-ul" ng-if="!trial.isPaidTrial(review)">
+                <ul class="review-ul" ng-if="!trial.review.isPaidTrial()">
                   <li>Selected reviewer can get a FREE product in exchange for an honest review</li>
                   <li>Become a Key Opinion Leader and share your experience with our community</li>
                 </ul>
-                <ul class="review-ul" ng-if="trial.isPaidTrial(review)">
-                  <li>Selected reviewer can get {{ trial.offPercentage(review) }}% OFF discount in exchange for an
+                <ul class="review-ul" ng-if="trial.review.isPaidTrial()">
+                  <li>Selected reviewer can get {{ trial.review.offPercentage() }}% OFF discount in exchange for an
                     honest review
                   </li>
                   <li>Become a Key Opinion Leader and share your experience with our community</li>
@@ -195,7 +195,7 @@
             </div>
             <div class="xcard__block">
               <div class="review-section" id="review-description">
-                <div ng-bind-html="review.project.details | trust"></div>
+                <div ng-bind-html="trial.review.project.details | trust"></div>
               </div>
 
 
@@ -210,10 +210,10 @@
         </div>
         <div class="col-md-4 hidden-xs hidden-sm">
           <div class="review-info align-center">
-            <p class="review-info__title">{{ review.title }}</p>
+            <p class="review-info__title">{{ trial.review.title }}</p>
             <p class="review-info__category">
             <span class="margin-right">
-              <span ng-repeat="category in review.project.categories">{{ category.name }}<span
+              <span ng-repeat="category in trial.review.project.categories">{{ category.name }}<span
                 ng-if="!$last">,</span></span>
             </span>
             </p>
@@ -221,22 +221,22 @@
               <avatar-img src="review.project.account.avatar"></avatar-img>
               <p class="c-user__name">
                 <a ui-sref="application.expert({ expertId:review.project.account.id })">{{
-                  review.project.account.fullname }}</a>
+                  trial.review.project.account.fullname }}</a>
               </p>
             </div>
 
             <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
               <li class="c-status c-status--review-detail">
                 <span class="c-status__key">Available Units</span>
-              <span class="c-status__value" ng-pluralize count="review.sampleNum"
+              <span class="c-status__value" ng-pluralize count="trial.review.sampleNum"
                     when="{'0': '0 sample',
                                '1': '1 sample',
-                               'other': '{{ review.sampleNum }} samples'}"></span>
+                               'other': '{{ trial.review.sampleNum }} samples'}"></span>
               </li>
               <li class="c-status c-status--review-detail">
                 <span class="c-status__key">Time Left</span>
               <span class="c-status__value">
-                <timer end-time="review.applicationEndDate">
+                <timer end-time="trial.review.applicationEndDate">
                   {{days|doubleDigit}} day{{daysS}},
                   {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
                 </timer>
@@ -245,9 +245,9 @@
               <li class="c-status c-status--review-detail">
                 <span class="c-status__key">Price</span>
                 <span class="c-status__value">
-                  <span class="line-through font-del-price">{{ review.project.retailPrice.amount | currency}}</span>
-                  <span ng-if="!trial.isPaidTrial(review)">Free</span>
-                  <span ng-if="trial.isPaidTrial(review)">{{ review.flashsale.salePrice.amount }}</span>
+                  <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
+                  <span ng-if="!trial.review.isPaidTrial()">Free</span>
+                  <span ng-if="trial.review.isPaidTrial()">{{ trial.review.getFlashSale() | currency }}</span>
                 </span>
               </li>
             </ul>
@@ -255,27 +255,27 @@
             </div>
 
             <div class="c-timeline">
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='APPLICATION'}">
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='APPLICATION'}">
                 <span class="c-timeline__item__event">Application Deadline</span>
                 <span class="c-timeline__item__point"></span>
                 <span
-                  class="c-timeline__item__time">{{ review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
+                  class="c-timeline__item__time">{{ trial.review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
               </div>
               <div
-                ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='SELECTION' || review.status=='CONFIRMATION'}">
+                ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='SELECTION' || review.status=='CONFIRMATION'}">
                 <span class="c-timeline__item__event">Announce Reviewers</span>
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">within 7 business days</span>
               </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='REVIEW'}">
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='REVIEW'}">
                 <span class="c-timeline__item__event">Product Review</span>
                 <span class="c-timeline__item__point"></span>
                 <span class="c-timeline__item__time">2 weeks</span>
               </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':review.status=='ENDED'}">
+              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='ENDED'}">
                 <span class="c-timeline__item__event">Review Submission Deadline</span>
                 <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">{{ review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</span>
+                <span class="c-timeline__item__time">{{ trial.review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</span>
               </div>
             </div>
 
@@ -286,29 +286,29 @@
               image="{{pageSettings_shareImage }}">
             </share>
 
-            <div ng-if="user.getUserId() == review.project.account.id || user.isStaff()">
-              <div ng-show="review.status === 'SELECTION'">
+            <div ng-if="user.getUserId() == trial.review.project.account.id || user.isStaff()">
+              <div ng-show="trial.review.status === 'SELECTION'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
                      ui-sref="application.selectApplicants({reviewId:review.id})">Select
                     Applicants</a>
                 </div>
               </div>
-              <div ng-show="review.status === 'CONFIRMATION'">
+              <div ng-show="trial.review.status === 'CONFIRMATION'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
                      ui-sref="application.selectApplicants({reviewId:review.id})">View
                     Applicants</a>
                 </div>
               </div>
-              <div ng-show="review.status === 'REVIEW'">
+              <div ng-show="trial.review.status === 'REVIEW'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
                      ui-sref="application.selectApplicants({reviewId:review.id})">View
                     Shipping Address</a>
                 </div>
               </div>
-              <div ng-show="review.status === 'ENDED'">
+              <div ng-show="trial.review.status === 'ENDED'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
                      ui-sref="application.crowdtestingReports({reviewId:review.id})">View

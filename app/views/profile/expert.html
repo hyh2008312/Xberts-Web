@@ -40,7 +40,7 @@
 
           <uib-tab ng-if="user.hasRole('campaign_owner')" heading="My Campaigns" index="1" select="select()">
             <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0'
-                 infinite-scroll-disabled="campaignPaginator.getLoading() || !campaignPaginator.getNext()">
+                 infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
@@ -77,13 +77,13 @@
                 </div>
               </div>
             </div>
-            <load-more class="row spin-large" ng-if="campaignPaginator.getLoading()"></load-more>
+            <load-more class="row spin-large" ng-if="campaignPaginator.loading"></load-more>
           </uib-tab>
 
           <uib-tab heading="My Crowdtesting" index="2" select="select()">
             <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()"
                  infinite-scroll-distance='0'
-                 infinite-scroll-disabled="reviewApplicantPaginator.getLoading() || !reviewApplicantPaginator.getNext()">
+                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
@@ -188,12 +188,12 @@
                 </div>
               </div>
             </div>
-            <load-more class="row spin-large" ng-if="reviewApplicantPaginator.getLoading()"></load-more>
+            <load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
           </uib-tab>
           <uib-tab heading="My Orders" index="3" select="select()" ng-if="user.getUserId()==expert.user_id">
             <div class="row section-body" infinite-scroll="ordersPaginator.loadNext()"
                  infinite-scroll-distance='0'
-                 infinite-scroll-disabled="ordersPaginator.getLoading() || !ordersPaginator.getNext()">
+                 infinite-scroll-disabled="ordersPaginator.loading || !ordersPaginator.next">
               <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="order in ordersPaginator.items">
                 <div class="xb-card">
                   <div class="xb-card-ratio-wrap"
@@ -217,7 +217,7 @@
                 </div>
               </div>
             </div>
-            <load-more class="row spin-large" ng-if="ordersPaginator.getLoading()"></load-more>
+            <load-more class="row spin-large" ng-if="ordersPaginator.loading"></load-more>
           </uib-tab>
         </uib-tabset>
       </div>

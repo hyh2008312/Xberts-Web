@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('ConfirmShippingAddressCtrl', ['$scope', 'SystemConstant', 'growl', '$rootScope', 'review', 'applier', 'application',
-    'ReviewService', 'ShopifyService','$q',
-    function ($scope, SystemConstant, growl, $rootScope, review, applier, application, ReviewService, ShopifyService,$q) {
+    'ApplierService', 'ShopifyService','$q',
+    function ($scope, SystemConstant, growl, $rootScope, review, applier, application, ApplierService, ShopifyService,$q) {
       var self = this;
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
 
@@ -13,15 +13,13 @@ angular.module('xbertsApp')
       self.countries = SystemConstant.COUNTRIES;
       self.finished = false;
 
-      self.isPaidTrial = ReviewService.isPaidTrial;
-
       self.applierFormSubmit = function (applierForm) {
         if (applierForm.$valid) {
-          // identification for applier confirm address
+          // used for update application after confirming address
           self.applier.appid = self.application.id;
           $scope.$emit('backdropOn', 'confirm start');
-          ReviewService
-            .saveApplier(self.applier)
+          ApplierService
+            .updateApplier(self.applier,'confirm')
             .then(
               function () {
                 $scope.$emit('backdropOff', 'confirm success');
@@ -36,8 +34,8 @@ angular.module('xbertsApp')
       };
 
       self.pay = function () {
-        var shouldPaySale = self.review.flashsale && self.review.flashsale.shopGatewayInventoryId !== '0' && !self.application.hasPaidSale;
-        var shouldPayDeposit = self.review.deposit && self.review.deposit.shopGatewayInventoryId !== '0' && !self.application.hasPaidDeposit;
+        var shouldPaySale = self.review.isFlashsale() && !self.application.hasPaidSale;
+        var shouldPayDeposit = self.review.isDepositTrial() && !self.application.hasPaidDeposit;
         var saleVariant;
         var depositVariant;
 

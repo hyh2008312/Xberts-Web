@@ -8,7 +8,7 @@ angular
     'review',
     'applier',
     'application',
-    'ReviewService',
+    'ApplierService',
     'ApplicationService',
     '$filter',
     '$q',
@@ -20,7 +20,7 @@ angular
   ]);
 
 
-function ReviewApplyController($scope, SystemConstant, review, applier, application, ReviewService, ApplicationService, $filter, $q, growl,$mdDialog,AnalyticsService,$location) {
+function ReviewApplyController($scope, SystemConstant, review, applier, application,ApplierService, ApplicationService, $filter, $q, growl,$mdDialog,AnalyticsService,$location) {
   var self = this;
   self.review = review;
   /*todo: remove this transform to service*/
@@ -50,10 +50,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       }
     }
   }
-
-  self.isPaidTrial = ReviewService.isPaidTrial;
-  self.isDepositTrial = ReviewService.isDepositTrial;
-
+  
   self.nextStep = function (applyForm) {
     if (applyForm.$valid) {
       self.next = true;
@@ -80,7 +77,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       var promises = [];
 
       var applicationPromise = ApplicationService.saveApplication(self.application);
-      var applierPromise = ReviewService.saveApplier(self.applier);
+      var applierPromise = ApplierService.updateApplier(self.applier);
 
       promises.push(applicationPromise);
       promises.push(applierPromise);

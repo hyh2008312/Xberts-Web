@@ -70,7 +70,7 @@ angular.module('xbertsApp')
               return Interact.Comment({feedback_id: scope.item.id}).get(params).$promise;
             }
           };
-          scope.commentsPaginator = Paginator(par);
+          scope.commentsPaginator = new Paginator(par);
           scope.commentsPaginator.clear();
           scope.commentsPaginator.loadNext();
         };

@@ -27,11 +27,11 @@
         </div>
       </form>
       <comment-detail ng-repeat="item in commentsPaginator.items" item="item"></comment-detail>
-      <load-more class="row spin-large" ng-if="commentsPaginator.getLoading()"></load-more>
+      <load-more class="row spin-large" ng-if="commentsPaginator.loading"></load-more>
     </div>
-    <div ng-show="commentsActive && !commentsPaginator.getLoading()">
+    <div ng-show="commentsActive && !commentsPaginator.loading">
       <p class="align-right">
-        <a class="a-gray"><i class="fa fa-angle-double-down comment__icon" ng-click="commentsPaginator.loadNext()" ng-show="commentsPaginator.getNext()"></i></a>
+        <a class="a-gray"><i class="fa fa-angle-double-down comment__icon" ng-click="commentsPaginator.loadNext()" ng-show="commentsPaginator.next"></i></a>
         <a class="a-gray"><i class="fa fa-angle-double-up comment__icon" ng-click="commentsToggle()" ng-show="commentsPaginator.items.length>0"></i></a>
       </p>
     </div>

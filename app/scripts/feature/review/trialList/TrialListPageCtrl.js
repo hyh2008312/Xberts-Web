@@ -9,11 +9,6 @@ angular.module('xbertsApp')
       var backgroundColor = 'background-bg-light';
       $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $rootScope.pageSettings.setPage();
-
+      
       self.trialPaginator = trialPaginator;
-
-      self.isPaidTrial = ReviewService.isPaidTrial;
-      self.isDepositTrial = ReviewService.isDepositTrial;
-      self.isFlashsale = ReviewService.isFlashsale;
-      self.offPercentage = ReviewService.offPercentage;
     }]);

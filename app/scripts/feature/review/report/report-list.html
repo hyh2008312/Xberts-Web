@@ -7,7 +7,7 @@
     </div>
     <div class="row xb-section-body">
       <div class="col-xs-12 col-md-8" infinite-scroll="reviewPaginator.loadNext()" infinite-scroll-distance='0'
-           infinite-scroll-disabled="reviewPaginator.getLoading() || !reviewPaginator.getNext()">
+           infinite-scroll-disabled="reviewPaginator.loading || !reviewPaginator.next">
         <p class="review-order-title">latest reviews</p>
         <div class="xcard xcard--image-left" ng-repeat="report in reviewPaginator.items">
           <div class="xcard__image_wrap"
@@ -61,6 +61,6 @@
       </div>
     </div>
 
-    <load-more class="row spin-large" ng-if="reviewPaginator.getLoading()"></load-more>
+    <load-more class="row spin-large" ng-if="reviewPaginator.loading"></load-more>
   </div>
 </section>
