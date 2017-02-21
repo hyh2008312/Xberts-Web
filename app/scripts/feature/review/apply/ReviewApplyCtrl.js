@@ -20,7 +20,7 @@ angular
   ]);
 
 
-function ReviewApplyController($scope, SystemConstant, review, applier, application,ApplierService, ApplicationService, $filter, $q, growl,$mdDialog,AnalyticsService,$location) {
+function ReviewApplyController($scope, SystemConstant, review, applier, application, ApplierService, ApplicationService, $filter, $q, growl, $mdDialog, AnalyticsService, $location) {
   var self = this;
   self.review = review;
   /*todo: remove this transform to service*/
@@ -95,24 +95,25 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
     }
   };
 
-  self.showTips = function(ev) {
+  self.showTips = function (ev) {
     $mdDialog.show({
-        controller: ['$scope', '$mdDialog',DialogController],
-        templateUrl: 'scripts/feature/review/apply/apply-tips.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true,
-        fullscreen: true
-      });
+      controller: ['$scope', '$mdDialog', DialogController],
+      templateUrl: 'scripts/feature/review/apply/apply-tips.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: true
+    });
   };
 
   function DialogController($scope, $mdDialog) {
-    $scope.hide = function() {
+    $scope.hide = function () {
       $mdDialog.hide();
     };
   }
 
-
-  AnalyticsService.sendPageView($location.path() + '/survey');
+  if (dataLayer) {
+    AnalyticsService.sendPageView($location.path() + '/survey');
+  }
 
 }
