@@ -26,7 +26,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-block" flex>
-                <label>State</label>
+                <label>Country</label>
                 <md-select ng-model="apply.applier.country" name="country" required>
                   <md-option ng-repeat="country in apply.countries" ng-value="country.code">
                     {{country.name}}
@@ -74,12 +74,8 @@
                      ng-disabled="applierForm.$invalid">Next
           </md-button>
         </div>
-        <md-button class="md-fab md-fab-bottom-right md-mini" ng-click="apply.showTips($event)">
-          <md-tooltip
-            md-direction="bottom">
-            Tips
-          </md-tooltip>
-          ?
+        <md-button class="md-fab md-fab-bottom-right md-mini xb-fab-fixed" ng-click="apply.showTips($event)">
+          Tips
         </md-button>
       </div>
       <div id="applier_step_2" ng-if="apply.next">
@@ -140,20 +136,18 @@
               <div class="panel-body">
                 <div>
                   <p>
-                    Please note if you’re selected as a reviewer, you will be asked
-
-                    to pay <b md-colors="{color: 'accent'}">a ${{ apply.review.getDeposit() }}
+                    Please note that if you’re selected as a reviewer, you will be asked to pay a <b md-colors="{color: 'accent'}">a ${{ apply.review.getDeposit() }}
                     deposit</b>
-                    for the product sample. <b>The deposit will
+                    for this product sample,which is <b md-colors="{color: 'accent'}">{{ apply.review.deposit.depositPercentage | percentage}}% of its retail price</b>. <b>The deposit is to
 
-                    be fully refunded within 3 business days after you submit a
+                    make sure all selected participants to complete their reviews after receiving the
 
-                    qualified review as required.</b></p>
+                    discounted products and will be <span md-colors="{color: 'accent'}">fully refunded within 3 business days</span> after you
+
+                    submit a qualified review as required.</b></p>
                   <p>
 
-                    * A qualified review report should match the following
-
-                    criteria:<br/>
+                    * A qualified review report should match the following criteria:<br/>
 
                     1. Minimum 1500 characters <br/>
 
@@ -161,17 +155,6 @@
 
                     3. The review content should be original
                   </p>
-
-                  <p>
-                    All the free and deeply discounted products are offered in
-
-                    exchange for an honest review. Therefore, the deposit policy is
-
-                    designed to make sure all selected applicants will complete
-
-                    their reviews after receiving the product.
-                  </p>
-
 
                 </div>
 
@@ -182,7 +165,7 @@
               <md-checkbox name="understand" ng-model="apply.application.understand" required>
                 I understand the deposit policy and agree to pay <b md-colors="{color: 'accent'}">a deposit of ${{
                 apply.review.getDeposit() }}</b> if I was selected as a reviewer. The deposit will be
-                refunded within 3 business days after review submission and approval.
+                <b md-colors="{color: 'accent'}">refunded within 3 business days</b> after your product review submission and approval.
               </md-checkbox>
             </md-input-container>
           </div>

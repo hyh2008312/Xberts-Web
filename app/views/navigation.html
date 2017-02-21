@@ -58,18 +58,8 @@
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
               <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</a>
             </li>
-            <li ng-if="user.hasRole('campaign_owner')" data-toggle="collapse" data-target="#js-navbar-collapse.in">
-              <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'campaigns' })">My Campaigns</a>
-            </li>
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
-              <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'trials' })">My Crowdtesting</a>
-            </li>
-            <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
-              <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'orders' })">My Orders</a>
-            </li>
-
-            <li data-toggle="collapse" data-target="#js-navbar-collapse.in">
-              <a ui-sref="application.protected.profile({ action: 'invite' })">Invite Friends</a>
+              <a ui-sref="application.expert({ expertId: user.getUserId(), tab: 'trials' })">My Trials</a>
             </li>
 
             <li data-toggle="collapse" data-target="#js-navbar-collapse.in">

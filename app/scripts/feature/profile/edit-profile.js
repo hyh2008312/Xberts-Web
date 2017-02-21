@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('EditProfileCtrl', ['$scope', '$rootScope', '$state', '$q', 'SystemConstant', 'userProfile',
-    'UserProfileService', 'ExpertLoad', 'localStorageService', 'stages', 'Configuration', 'UploadAws',
+    'UserProfileService', 'localStorageService', 'stages', 'Configuration', 'UploadAws',
     function ($scope, $rootScope, $state, $q, SystemConstant, userProfile,
-              UserProfileService, ExpertLoad, localStorageService, stages, Configuration, UploadAws) {
+              UserProfileService, localStorageService, stages, Configuration, UploadAws) {
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.stages = stages;
       $scope.userProfile = userProfile;

@@ -56,6 +56,7 @@ angular.module('xbertsApp')
   })
   .filter('percentage', function () {
     return function (number) {
-      return isNaN(number) ? 0 : Math.round(number * 100);
+       var v= Number(number);
+      return isNaN(v) ? 0 : Math.round(number * 100);
     };
   });

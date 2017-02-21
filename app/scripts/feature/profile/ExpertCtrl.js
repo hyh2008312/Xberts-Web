@@ -13,8 +13,7 @@ angular.module('xbertsApp')
       var tabIndexToParam = {
         '0': 'profile',
         '1': 'campaigns',
-        '2': 'trials',
-        '3': 'orders'
+        '2': 'trials'
       };
       var tabParamToIndex = _(tabIndexToParam).invert();
 
@@ -47,15 +46,6 @@ angular.module('xbertsApp')
                   }
                 };
                 $scope.reviewApplicantPaginator = new Paginator(par3);
-                break;
-              case 3:
-                var par4 = {
-                  name: 'orders_' + $scope.expert.user_id,
-                  fetchFunction: function (params) {
-                    return Sales.getList(params);
-                  }
-                };
-                $scope.ordersPaginator = new Paginator(par4);
                 break;
               default:
                 break;
@@ -100,24 +90,11 @@ angular.module('xbertsApp')
         sendMessage();
       };
 
-      var inviteFriend = function () {
-        if (!$rootScope.user.authRequired()) {
-          return;
-        }
 
-        var inviteFriendModal = $uibModal.open({
-          templateUrl: 'views/modal/invite-friend.html',
-          windowClass: 'dialog-vertical-center',
-          controller: 'InviteFriendCtrl'
-        });
-      };
 
       if ($stateParams.action === 'contact' && $rootScope.user.authRequired() &&
         $rootScope.user.getUserId() !== $scope.expert.user_id) {
         sendMessage();
-      } else if ($stateParams.action === 'invite' && $rootScope.user.authRequired() &&
-        $rootScope.user.getUserId() === $scope.expert.user_id) {
-        inviteFriend();
       }
 
       $scope.editProfile = function () {
