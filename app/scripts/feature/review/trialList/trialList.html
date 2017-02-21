@@ -16,13 +16,10 @@
           <span class="c-status__key" ng-show="timeValue<=0">applicants</span>
         </li>
         <li class="c-status">
-                <span class="c-status__value">
-                  <span ng-if="!review.isPaidTrial()">Free</span>
-                  <span ng-if="review.isPaidTrial()">
+          <span class="c-status__value">
                     <span ng-if="!review.isFlashsale()">Free</span>
                     <span ng-if="review.isFlashsale()">{{ review.offPercentage() }}% <span style="font-size: 18px;">OFF</span></span>
-                  </span>
-                </span>
+          </span>
           <span class="c-status__key line-through">{{ review.getRetailPrice() | currency}}</span>
         </li>
       </ul>

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="md-padding">
     <div ng-include src="'scripts/feature/review/applyConfirm/confirm-shipping-address-notfree.html'"
-         ng-if="confirm.review.isPaidTrial()"></div>
+         ng-if="confirm.review.isDepositTrial()"></div>
     <div ng-include src="'scripts/feature/review/applyConfirm/confirm-shipping-address-free.html'"
-         ng-if="!confirm.review.isPaidTrial()"></div>
+         ng-if="!confirm.review.isDepositTrial()"></div>
   </div>
 </div>

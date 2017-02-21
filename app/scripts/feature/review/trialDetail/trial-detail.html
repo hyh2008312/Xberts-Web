@@ -39,12 +39,13 @@
                     <span class="c-status__key">Price</span>
                     <span class="c-status__value">
                       <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
-                      <span ng-if="!trial.review.isPaidTrial()">Free</span>
-                      <span ng-if="trial.review.isPaidTrial()">{{ trial.review.getFlashSale() | currency }}</span>
+                        <span ng-if="!review.isFlashsale()">Free</span>
+                        <span ng-if="review.isFlashsale()">{{ trial.review.getFlashSale() | currency }}</span>
                     </span>
                   </li>
                 </ul>
-                <div class="review-info__button" ng-include="'scripts/feature/review/trialDetail/review-main-action.html'">
+                <div class="review-info__button"
+                     ng-include="'scripts/feature/review/trialDetail/review-main-action.html'">
                 </div>
                 <div class="c-image-line visible-xs visible-sm">
                   <div class="c-image-line__item">
@@ -218,9 +219,9 @@
             </span>
             </p>
             <div class="c-user review-info__reviewer">
-              <avatar-img src="review.project.account.avatar"></avatar-img>
+              <avatar-img src="trial.review.project.account.avatar"></avatar-img>
               <p class="c-user__name">
-                <a ui-sref="application.expert({ expertId:review.project.account.id })">{{
+                <a ui-sref="application.expert({ expertId:trial.review.project.account.id })">{{
                   trial.review.project.account.fullname }}</a>
               </p>
             </div>
@@ -246,8 +247,8 @@
                 <span class="c-status__key">Price</span>
                 <span class="c-status__value">
                   <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
-                  <span ng-if="!trial.review.isPaidTrial()">Free</span>
-                  <span ng-if="trial.review.isPaidTrial()">{{ trial.review.getFlashSale() | currency }}</span>
+                  <span ng-if="!review.isFlashsale()">Free</span>
+                  <span ng-if="review.isFlashsale()">{{ trial.review.getFlashSale() | currency }}</span>
                 </span>
               </li>
             </ul>
