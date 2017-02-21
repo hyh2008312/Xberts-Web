@@ -50,11 +50,11 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       }
     }
   }
-  
+
   self.nextStep = function (applyForm) {
     if (applyForm.$valid) {
       self.next = true;
-      AnalyticsService.sendPageView($location.path() + '/survey');
+      AnalyticsService.sendPageView($location.path() + '/agreement');
     }
   };
 
@@ -86,7 +86,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
         .then(function () {
           $scope.$emit('backdropOff', 'trial apply success');
           self.finished = true;
-          AnalyticsService.sendPageView($location.path() + '/agreement');
+          AnalyticsService.sendPageView($location.path() + '/success');
         })
         .catch(function () {
           growl.error('Sorry,some error happened.');
@@ -111,5 +111,8 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
       $mdDialog.hide();
     };
   }
+
+
+  AnalyticsService.sendPageView($location.path() + '/survey');
 
 }
