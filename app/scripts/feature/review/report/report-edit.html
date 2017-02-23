@@ -174,13 +174,19 @@
               <p class="font-danger" ng-show="reportForm.submitted && presentation_error()">* required</p>
             </div>
           </div>
-          <div class="xb-align-center margin-top-xl">
-            <button type="button" class="button button-primary button-rounded button-mid-width" ng-click="reportSave()">
-              Save Draft
-            </button>
-            <button type="submit" class="button button-primary button-rounded button-mid-width"
-                    ng-disabled="!formCheck()">Publish
-            </button>
+
+
+        </div>
+        <div layout="row">
+          <span flex="10" flex-gt-sm="30"></span>
+          <div flex="40" flex-gt-sm="20" class="md-padding">
+            <md-button type="button" class="md-raised xb-btn-block" ng-click="reportSave()">Save Draft
+            </md-button>
+          </div>
+          <div flex="40" flex-gt-sm="20" class="md-padding">
+            <md-button type="submit" class="md-raised md-primary xb-btn-block"
+                       ng-disabled="!formCheck()">Publish
+            </md-button>
           </div>
         </div>
       </form>
