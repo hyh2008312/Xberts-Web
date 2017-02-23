@@ -9,13 +9,7 @@ angular.module('xbertsApp')
     });
 
     self.getApplications = function (params) {
-      return $resource(API_BASE_URL + '/review/application/').get(params).$promise;
-    };
-    /*
-     return applicants with review info, search field 'reviewer_id', 'review_id','review__review_type'
-     */
-    self.getApplicationsWithReview = function (params) {
-      return $resource(API_BASE_URL + '/review/applicantsreview/').get(params).$promise;
+      return ApplicationResource.get(params).$promise;
     };
 
 

@@ -1,4 +1,4 @@
-<div class="container md-section" ng-if="!apply.finished">
+<div class="container md-section md-padding" ng-if="!apply.finished">
   <div class="md-section__title">
     <h2 class="md-headline">{{ apply.review.title }}</h2>
     <h3 class="md-subhead md-dark-secondary">Please answer the following questions to apply. All the information must be
@@ -7,15 +7,15 @@
       <br/>
       The more details you provide, the higher chance you can be selected.</h3>
   </div>
-  <div class="md-section__content md-relative" layout-padding>
+  <div class="md-section__content md-relative">
     <form name="applierForm" ng-cloak novalidate>
       <div id="applier_step_1" ng-if="!apply.next">
-        <div class="md-form-section">
+        <div>
           <p class="md-title md-form-section__title">Personal Information</p>
-          <div class="md-form-section__content">
+          <div layout="column">
             <div layout="column" layout-gt-xs="row">
               <md-input-container class="md-block" flex>
-                <label>Gender</label>
+                <label class="md-container-ignore md-no-float">Gender</label>
                 <md-select ng-model="apply.applier.gender" name="gender" required>
                   <md-option ng-repeat="gender in apply.genders" ng-value="gender.code">
                     {{gender.name}}
@@ -26,7 +26,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-block" flex>
-                <label>Country</label>
+                <label class="md-container-ignore md-no-float">Country</label>
                 <md-select ng-model="apply.applier.country" name="country" required>
                   <md-option ng-repeat="country in apply.countries" ng-value="country.code">
                     {{country.name}}
@@ -39,7 +39,7 @@
             </div>
             <div layout="column" layout-gt-xs="row">
               <md-input-container flex class="md-block">
-                <label>Business Title</label>
+                <label class="md-container-ignore md-no-float">Business Title</label>
                 <input name="position" ng-model="apply.applier.position" required ng-maxlength="200"/>
                 <div ng-messages="applierForm.position.$error">
                   <div ng-message="required">This is required!</div>
@@ -47,7 +47,7 @@
                 </div>
               </md-input-container>
               <md-input-container flex class="md-block">
-                <label>Company Name</label>
+                <label class="md-container-ignore md-no-float">Company Name</label>
                 <input name="company" ng-model="apply.applier.company" required ng-maxlength="200"/>
                 <div ng-messages="applierForm.company.$error">
                   <div ng-message="required">This is required!</div>
@@ -58,10 +58,9 @@
           </div>
         </div>
 
-
-        <div class="md-form-section">
-          <p class="md-title md-form-section__title">Questionnaire</p>
-          <div class="md-form-section__content">
+        <div>
+          <p class="md-title">Questionnaire</p>
+          <div layout="column">
             <div ng-repeat="survey in apply.review.surveys">
               <question-input ng-repeat="question in survey.questions" question="question"
                               form="applierForm"></question-input>
@@ -69,12 +68,14 @@
           </div>
         </div>
         <div layout="row">
-          <span flex="40"></span>
-          <md-button flex="20" type="button" class="md-raised md-primary" ng-click="apply.nextStep(applierForm)"
-                     ng-disabled="applierForm.$invalid">Next
-          </md-button>
+          <span flex="30" flex-gt-sm="40"></span>
+          <div flex="40" flex-gt-sm="20">
+            <md-button  type="button" class="md-raised md-primary xb-btn-block" ng-click="apply.nextStep(applierForm)"
+                        ng-disabled="applierForm.$invalid">Next
+            </md-button>
+          </div>
         </div>
-        <md-button class="md-fab md-fab-bottom-right md-mini xb-fab-fixed" ng-click="apply.showTips($event)">
+        <md-button hide-xs class="md-fab md-fab-bottom-right md-mini xb-fab-fixed" ng-click="apply.showTips($event)">
           Tips
         </md-button>
       </div>
@@ -171,13 +172,16 @@
           </div>
         </div>
         <div layout="row">
-          <span flex="30"></span>
-          <md-button flex="20" type="button" class="md-raised" ng-click="apply.backStep(applierForm)">Back
-          </md-button>
-
-          <md-button flex="20" type="submit" class="md-raised md-primary" ng-click="apply.submitForm(applierForm)"
-                     ng-disabled="applierForm.$invalid">submit
-          </md-button>
+          <span flex="20" flex-gt-sm="30"></span>
+          <div flex="30" flex-gt-sm="20" class="md-padding">
+            <md-button  type="button" class="md-raised xb-btn-block" ng-click="apply.backStep(applierForm)">Back
+            </md-button>
+          </div>
+          <div flex="30" flex-gt-sm="20" class="md-padding">
+            <md-button type="submit" class="md-raised md-primary xb-btn-block" ng-click="apply.submitForm(applierForm)"
+                       ng-disabled="applierForm.$invalid">submit
+            </md-button>
+          </div>
         </div>
       </div>
 

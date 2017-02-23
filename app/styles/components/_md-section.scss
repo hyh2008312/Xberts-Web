@@ -1,6 +1,7 @@
 .md-section{
   //border: 1px solid #000000;
-  padding:32px 0;
+  padding-top:32px;
+  padding-bottom: 32px;
   &__title{
     text-align: center;
     //border: 1px solid #000000;
@@ -16,11 +17,5 @@
   }
   &__content{
     //border: 1px solid #000000;
-  }
-}
-
-.md-form-section{
-  &__title{
-    margin-bottom: 16px;
   }
 }

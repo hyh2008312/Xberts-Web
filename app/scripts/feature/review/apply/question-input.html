@@ -1,17 +1,17 @@
 <div ng-switch="question.type">
 
-  <div ng-switch-when="1" layout="row">
+  <div ng-switch-when="1">
     <md-input-container flex class="md-block">
-      <label>{{ question.title }}</label>
+      <label class="md-container-ignore md-no-float">{{ question.title }}</label>
       <input type="text" name="question_{{ question.id }}" ng-model="question.answer.answer_main" required/>
       <div ng-messages="form['question_'+ question.id].$error">
         <div ng-message="required">This is required!</div>
       </div>
     </md-input-container>
   </div>
-  <div ng-switch-when="2" layout="row">
-    <md-input-container class="md-block" md-no-float flex>
-      <label class="md-text-wrapper">{{ question.title }}</label>
+  <div ng-switch-when="2">
+    <md-input-container class="md-block" flex>
+      <label class="md-container-ignore md-no-float">{{ question.title }}</label>
       <textarea type="text"
                 name="question_{{ question.id }}"
                 ng-model="question.answer.answer_main"

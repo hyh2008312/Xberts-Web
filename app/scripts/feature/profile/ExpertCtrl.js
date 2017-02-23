@@ -41,9 +41,7 @@ angular.module('xbertsApp')
                   name: 'trials_' + $scope.expert.user_id,
                   params: {reviewer_id: $scope.expert.user_id},
                   filter: filter,
-                  fetchFunction: function (params) {
-                    return ApplicationService.getApplicationsWithReview(params);
-                  }
+                  fetchFunction:ApplicationService.getApplications
                 };
                 $scope.reviewApplicantPaginator = new Paginator(par3);
                 break;

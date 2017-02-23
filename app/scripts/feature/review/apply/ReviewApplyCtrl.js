@@ -32,7 +32,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
     user_id: applier.user_id
   };
 
-  self.application = application || {review: self.review.id, reviewer: self.applier.user_id};
+  self.application = application || {reviewId: self.review.id, reviewerId: self.applier.user_id};
   self.genders = SystemConstant.GENDER_TYPE;
   self.countries = SystemConstant.COUNTRIES;
 
