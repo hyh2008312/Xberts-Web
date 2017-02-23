@@ -291,28 +291,28 @@
               <div ng-show="trial.review.status === 'SELECTION'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">Select
                     Applicants</a>
                 </div>
               </div>
               <div ng-show="trial.review.status === 'CONFIRMATION'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">View
                     Applicants</a>
                 </div>
               </div>
               <div ng-show="trial.review.status === 'REVIEW'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:review.id})">View
+                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">View
                     Shipping Address</a>
                 </div>
               </div>
               <div ng-show="trial.review.status === 'ENDED'">
                 <div class="margin-top">
                   <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                     ui-sref="application.crowdtestingReports({reviewId:trial.review.id})">View
                     Reports</a>
                 </div>
               </div>

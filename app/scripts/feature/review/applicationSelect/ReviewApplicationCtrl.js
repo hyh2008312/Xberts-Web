@@ -14,8 +14,8 @@ angular.module('xbertsApp')
       $scope.review = review;
 
       var updateApplicantCount = function () {
-        $scope.totalApplicants = pendingApplicantPaginator.getCount() + selectedApplicantPaginator.getCount() + unselectedApplicantPaginator.getCount();
-        $scope.selectedApplicants = selectedApplicantPaginator.getCount();
+        $scope.totalApplicants = pendingApplicantPaginator.count + selectedApplicantPaginator.count + unselectedApplicantPaginator.count;
+        $scope.selectedApplicants = selectedApplicantPaginator.count;
         $scope.applicantLeft = review.quota - $scope.selectedApplicants;
       };
 
