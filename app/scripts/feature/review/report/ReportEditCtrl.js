@@ -11,6 +11,34 @@ angular.module('xbertsApp')
       };
       $scope.reportDataTemp = {};
 
+      $scope.finished = false;
+
+      $scope.xbInfo = {};
+
+      function setPublishXbInfo(reportId) {
+        $scope.finished = true;
+        $scope.xbInfo = {
+          title: 'Your review has been submitted for approval!',
+          detail: 'You will receive an email notification from us for the approval result within 5 business days. If you want to preview your post, please click on the button below.',
+          btnName: 'VIEW MY REVIEW',
+          btnAction: function(){
+            $state.go('application.report', {reviewId: $stateParams.reviewId,reportId:reportId})
+          }
+        }
+      }
+
+      function setDraftXbInfo() {
+        $scope.finished = true;
+        $scope.xbInfo = {
+          title: 'Your draft has been saved successfully!',
+          detail: 'If you want to continue editing your draft, please click on the button below.',
+          btnName: 'EDIT MY DRAFT',
+          btnAction: function () {
+            $scope.finished = false;
+          }
+        }
+      }
+
       var preprocessProsAndCons = function () {
         var pros = '';
         if ($scope.reportDataTemp.pro_1) {
@@ -107,7 +135,7 @@ angular.module('xbertsApp')
       $scope.reportFormSubmit = function () {
         $scope.reportForm.submitted = true;
 
-        if($scope.reportData.details){
+        if ($scope.reportData.details) {
           $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
           $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         }
@@ -121,15 +149,7 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              $timeout(function () {
-                growl.success('Your review has been submitted successfully!');
-              }, 0);
-
-              $state.go('application.report', {
-                reviewId: $stateParams.reviewId,
-                reportId: $scope.reportData.id,
-                action: 'share'
-              });
+              setPublishXbInfo($scope.reportData.id);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -140,14 +160,7 @@ angular.module('xbertsApp')
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
 
-              //$timeout(function () {
-              //  growl.success('Your review has been submitted successfully!');
-              //}, 0);
-              $state.go('application.report', {
-                reviewId: $stateParams.reviewId,
-                reportId: $scope.reportData.id,
-                action: 'share'
-              });
+              setPublishXbInfo($scope.reportData.id);
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -160,18 +173,18 @@ angular.module('xbertsApp')
         }
       };
 
-      var reportSave = function () {
+      $scope.reportSave = function () {
 
         preprocessProsAndCons();
 
         //console.log($scope.reportData);
-        if($scope.reportData.details){
+        if ($scope.reportData.details) {
           $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
           $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         }
 
         var report = new ReviewReport($scope.reportData);
-        report.report_status = 'DRAFT';
+
         if ($scope.reportForm.$valid) {
           $scope.reportForm.submitted = true;
           $scope.$emit('backdropOn', 'post');
@@ -179,7 +192,7 @@ angular.module('xbertsApp')
             report.$save({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!');
+              setDraftXbInfo();
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -188,7 +201,7 @@ angular.module('xbertsApp')
             report.$put({reviewId: $stateParams.reviewId}, function (resp) {
               $scope.reportData = resp;
               $scope.$emit('backdropOff', 'success');
-              growl.success('Your review has been saved successfully!');
+              setDraftXbInfo();
             }, function (resp) {
               $scope.$emit('backdropOff', 'error');
               growl.error('Sorry,some error happened.');
@@ -205,7 +218,7 @@ angular.module('xbertsApp')
 
         preprocessProsAndCons();
 
-        if($scope.reportData.details){
+        if ($scope.reportData.details) {
           $scope.reportData.details = $scope.reportData.details.replace(/pre-loading/ig, "");
           $scope.reportData.details = $scope.reportData.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         }
@@ -230,10 +243,6 @@ angular.module('xbertsApp')
 
       };
 
-      $scope.reportSave = function () {
-        reportSave();
-      };
-
 
       // summerNote character amount check
 
@@ -245,9 +254,12 @@ angular.module('xbertsApp')
         $scope.imageCount = angular.isArray(groups) ? groups.length : 0;
         $scope.reportForm.$pristine = true;
 
-        if ($scope.autoSave == null) {
-          $scope.autoSave = $interval(reportAutoSave, 10000);
-        }
+        // if ($scope.autoSave == null) {
+        //   $scope.autoSave = $interval(reportAutoSave, 10000);
+        //   $scope.$on('$stateChangeSuccess', function (e, d) {
+        //     $interval.cancel($scope.autoSave);
+        //   });
+        // }
       };
 
 
@@ -420,4 +432,4 @@ angular.module('xbertsApp')
         });
       };
 
-    }])
+    }]);

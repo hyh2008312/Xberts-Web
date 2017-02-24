@@ -1,195 +1,200 @@
-<section class="background-light-white">
-  <div class="container">
-    <div class="section-title">
-      <h3>{{ applicant.review.title }}</h3>
-    </div>
+<div class="container md-section md-padding" ng-show="!finished">
+  <div class="md-section__title">
+    <h2 class="md-headline">{{ applicant.review.title }}</h2>
+    <h3 class="md-subhead md-dark-secondary">Congratulations on being selected as a Review Pioneer of Xberts. To share
+      your experience with this product, please edit your review here!</h3>
   </div>
-</section>
-<section>
-  <div class="container">
-    <div class="section-body">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Notes
-            </div>
-            <div class="panel-body">
-              <ul>
-                <li> You are encouraged to be creative and write in your personal style.</li>
-                <li> Please include pictures and videos to demonstrate your opinions visually. If you would like to
-                  provide videos, please upload them to Youtube first.
-                </li>
-                <li> Please submit your review post before the deadline:
-                  {{ applicant.review.date_end | amDateFormat:'MMM DD,YYYY'}}.
-                </li>
-                <li> Please feel free to contact us at info@xberts.com if you have any questions or concerns.</li>
-              </ul>
-            </div>
+  <div class="md-section__content md-relative">
+    <form name="reportForm" ng-submit="reportFormSubmit()" class="pr">
+      <md-input-container class="md-block">
+        <label class="md-container-ignore md-no-float">Title</label>
+        <input type="text" name='title' ng-model="reportData.title"
+               required ng-maxlength="200" placeholder="Create an engaging title for your review">
+
+        <div ng-messages="reportForm.title.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That is too long!</div>
+        </div>
+
+      </md-input-container>
+
+      <md-input-container class="md-block md-input-has-value">
+        <label class="md-container-ignore md-no-float">Describe the unboxing & user experience of this product:</label>
+        <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
+                    on-image-upload="imageUpload(files)" editable="editable"
+                    editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
+                    on-keyup="setPrevious(evt)"></summernote>
+        <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
+          <span ng-show="detailCharacterCount<1000"> Please include at least 1000 characters.</span>
+        </p>
+
+        <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
+          <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
+        </p>
+      </md-input-container>
+
+      <div layout="column" layout-gt-xs="row">
+        <div flex>
+          <p class="md-title md-margin-bottom-2">Pros</p>
+          <div layout="column">
+            <md-input-container class="md-block">
+              <label>Pro 1 </label>
+              <input type="text" name='pro_1' ng-model="reportDataTemp.pro_1"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.pro_1.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Pro 2 </label>
+              <input type="text" name='pro_2' ng-model="reportDataTemp.pro_2"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.pro_2.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Pro 3 </label>
+              <input type="text" name='pro_3' ng-model="reportDataTemp.pro_3"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.pro_3.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Pro 4 </label>
+              <input type="text" name='con_4' ng-model="reportDataTemp.pro_4"
+                     ng-maxlength="200">
+
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Pro 5 </label>
+              <input type="text" name='con_5' ng-model="reportDataTemp.pro_5"
+                     ng-maxlength="200">
+
+            </md-input-container>
           </div>
+
+
+        </div>
+        <div flex>
+          <p class="md-title md-margin-bottom-2">Cons</p>
+          <div layout="column">
+            <md-input-container class="md-block">
+              <label>Con 1 </label>
+              <input type="text" name='con_1' ng-model="reportDataTemp.pro_1"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.con_1.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Con 2</label>
+              <input type="text" name='con_2' ng-model="reportDataTemp.con_2"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.con_2.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Con 3 </label>
+              <input type="text" name='con_3' ng-model="reportDataTemp.con_3"
+                     required ng-maxlength="200">
+
+              <div ng-messages="reportForm.con_3.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="maxlength">That is too long!</div>
+              </div>
+
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Con 4 </label>
+              <input type="text" name='con_4' ng-model="reportDataTemp.con_4"
+                     ng-maxlength="200">
+
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Con 5 </label>
+              <input type="text" name='con_5' ng-model="reportDataTemp.con_5"
+                     ng-maxlength="200">
+
+            </md-input-container>
+          </div>
+
         </div>
       </div>
-      <form name="reportForm" ng-submit="reportFormSubmit()" class="pr">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Create an engaging title for your review: </label>
-              <input type="text" class="form-control" name='title' ng-model="reportData.title"
-                     ng-required="true" ng-maxlength="200">
-
-              <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                   ng-messages="reportForm.title.$error">
-                <p class="message-error" ng-message="required">* required.</p>
-
-                <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>List out at least 3 Pros:</label>
-                  <ul class="xb-input-list">
-                    <li><input type="text" class="form-control" name='pro_1' ng-model="reportDataTemp.pro_1"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.pro_1.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='pro_2' ng-model="reportDataTemp.pro_2"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.pro_2.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='pro_3' ng-model="reportDataTemp.pro_3"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.pro_3.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='pro_4' ng-model="reportDataTemp.pro_4"
-                               ng-maxlength="200"></li>
-                    <li><input type="text" class="form-control" name='pro_5' ng-model="reportDataTemp.pro_5"
-                               ng-maxlength="200"></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>List out at least 3 Cons:</label>
-                  <ul class="xb-input-list">
-                    <li><input type="text" class="form-control" name='con_1' ng-model="reportDataTemp.con_1"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.con_1.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='con_2' ng-model="reportDataTemp.con_2"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.con_2.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='con_3' ng-model="reportDataTemp.con_3"
-                               ng-required="true" ng-maxlength="200">
-                      <div class="" ng-show="reportForm.submitted || reportForm.title.$touched"
-                           ng-messages="reportForm.con_3.$error">
-                        <p class="message-error" ng-message="required">* required.</p>
-
-                        <p class="message-error" ng-message="maxlength">* no more than 200 chars..</p>
-                      </div>
-                    </li>
-                    <li><input type="text" class="form-control" name='con_4' ng-model="reportDataTemp.con_4"
-                               ng-maxlength="200"></li>
-                    <li><input type="text" class="form-control" name='con_5' ng-model="reportDataTemp.con_5"
-                               ng-maxlength="200"></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
 
 
-            <div class="form-group">
-              <label>Describe the unboxing & user experience of this product:</label>
-              <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
-                          on-image-upload="imageUpload(files)" editable="editable"
-                          editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)"
-                          on-keyup="setPrevious(evt)"></summernote>
-              <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
-                <span ng-show="detailCharacterCount<1000"> Please include at least 1000 characters.</span>
-              </p>
-
-              <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
-                <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
-              </p>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="margin-bottom">
-              <b>Value for Money: </b>
-              <uib-rating ng-model="reportData.cost_performance" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-on="'font-striking glyphicon-star'"
-                          aria-labelledby="default-rating" ng-required="true"></uib-rating>
-              <span class="font-striking margin-left" ng-show="reportData.cost_performance">{{reportData.cost_performance}}'</span>
-
-              <p class="font-striking" ng-show="reportForm.submitted && cost_performance_error()">* required</p>
-            </div>
-            <div class="margin-bottom">
-              <b>Usability: </b>
-              <uib-rating ng-model="reportData.usability" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-on="'font-striking glyphicon-star'"
-                          aria-labelledby="default-rating"></uib-rating>
-              <span class="font-striking margin-left" ng-show="reportData.usability">{{reportData.usability}}'</span>
-
-              <p class="font-danger" ng-show="reportForm.submitted && usability_error()">* required</p>
-            </div>
-            <div class="margin-bottom">
-              <b>Presentation: </b>
-              <uib-rating ng-model="reportData.presentation" max="5" read-only="false"
-                          titles=" ['one', 'two', 'three', 'four', 'five']" state-off="'glyphicon-star-empty'"
-                          state-on="'font-striking glyphicon-star'"
-                          aria-labelledby="default-rating"></uib-rating>
-              <span class="font-striking margin-left"
-                    ng-show="reportData.presentation">{{reportData.presentation}}'</span>
-
-              <p class="font-danger" ng-show="reportForm.submitted && presentation_error()">* required</p>
-            </div>
-          </div>
-
-
+      <md-input-container class="md-block">
+        <div layout="column" layout-gt-xs="row" layout-align="center center">
+          <span class="md-margin-right-2">Value for Money:</span>
+          <md-slider flex md-discrete required name="cost_performance" ng-model="reportData.cost_performance" step="1" min="1" max="5" aria-label="rating">
+          </md-slider>
         </div>
-        <div layout="row">
-          <span flex="10" flex-gt-sm="30"></span>
-          <div flex="40" flex-gt-sm="20" class="md-padding">
-            <md-button type="button" class="md-raised xb-btn-block" ng-click="reportSave()">Save Draft
-            </md-button>
-          </div>
-          <div flex="40" flex-gt-sm="20" class="md-padding">
-            <md-button type="submit" class="md-raised md-primary xb-btn-block"
-                       ng-disabled="!formCheck()">Publish
-            </md-button>
-          </div>
+        <div ng-messages="reportForm.cost_performance.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That is too long!</div>
         </div>
-      </form>
-    </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+      <div layout="column" layout-gt-xs="row" layout-align="center center">
+        <span class="md-margin-right-2">Usability:</span>
+        <md-slider flex md-discrete required name="usability" ng-model="reportData.usability" step="1" min="1" max="5" aria-label="rating">
+        </md-slider>
+      </div>
+        <div ng-messages="reportForm.usability.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That is too long!</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <div layout="column" layout-gt-xs="row" layout-align="center center">
+          <span class="md-margin-right-2">Presentation:</span>
+          <md-slider flex md-discrete required name="presentation" ng-model="reportData.presentation" step="1" min="1" max="5" aria-label="rating">
+          </md-slider>
+        </div>
+        <div ng-messages="reportForm.presentation.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That is too long!</div>
+        </div>
+      </md-input-container>
+
+
+      <div layout="row">
+        <span flex="10" flex-gt-sm="30"></span>
+        <div flex="40" flex-gt-sm="20" class="md-padding">
+          <md-button type="button" class="md-raised md-primary xb-btn-block" ng-disabled="reportForm.$invalid" ng-click="reportSave()">Save Draft
+          </md-button>
+        </div>
+        <div flex="40" flex-gt-sm="20" class="md-padding">
+          <md-button type="submit" class="md-raised  xb-btn-block"
+                     ng-disabled="!formCheck()">Publish
+          </md-button>
+        </div>
+      </div>
+    </form>
   </div>
-</section>
+</div>
+
+<xb-info info="xbInfo" ng-show="finished"></xb-info>
