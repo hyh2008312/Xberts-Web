@@ -106,8 +106,8 @@ angular
         templateUrl: 'scripts/feature/review/report/report-detail.html',
         controller: 'ReportDetailCtrl',
         resolve: {
-          report: ['ReviewReport', '$stateParams', function (ReviewReport, $stateParams) {
-            return ReviewReport.get({reviewId: $stateParams.reviewId, id: $stateParams.reportId}).$promise;
+          report: ['ReportService', '$stateParams', function (ReportService, $stateParams) {
+            return ReportService.getReport($stateParams.reportId);
           }]
         }
       })

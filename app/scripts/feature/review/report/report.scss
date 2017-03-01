@@ -1,0 +1,110 @@
+.xb2-page-head{
+  >.container{
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    @include md-screen{
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+  &__title{
+    @include font-h2();
+    margin-top: 0;
+    margin-bottom: 8px;
+    @include md-screen{
+      text-align: center;
+    }
+  }
+
+  &__subtitle{
+    @include font-p();
+    margin-bottom: 16px;
+    @include md-screen{
+      text-align: center;
+      margin-bottom: 32px;
+    }
+  }
+  &__info{
+    @include md-screen{
+      padding-left: 56px;
+    }
+  }
+
+  &__author{
+    margin-bottom: 0;
+    @include md-screen{
+      margin-bottom: 24px;
+      padding:0 !important;
+    }
+  }
+
+  &__rating{
+    margin-bottom: 16px;
+    @include md-screen{
+      margin-bottom: 24px;
+      padding:0 !important;
+    }
+  }
+
+  &__rating-detail{
+    margin-bottom: 24px;
+  }
+
+  &__button{
+
+    @include xs-screen{
+      position: fixed;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      z-index: 50;
+      background-color: #FFFFFF;
+      padding: 10px;
+    }
+
+    @include xs-screen{
+
+    }
+  }
+}
+
+.xb2-custom-text{
+  img{
+    max-width: 100% !important;
+  }
+}
+
+.xb2-page-content{
+  //padding-top: 24px;
+  &__section{
+    margin-bottom: 24px;
+  }
+}
+
+.xb2-rating-container{
+  margin-bottom: 16px;
+}
+
+.xb2-rating{
+  position: relative;
+  &__underline {
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+  &__frontline{
+    height: 2px;
+    background-color: #3f51b5;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 50%;
+  }
+}
+
+.xb2-rating-star{
+  &__value{
+    font-size: 24px;
+    margin-left: 16px;
+  }
+}

@@ -8,9 +8,13 @@ angular.module('xbertsApp')
 
     });
   }])
-  .service('ReportService', ['$resource', 'API_BASE_URL', function ($resource, API_BASE_URL) {
+  .service('ReportService', ['$resource', 'API_BASE_URL','Report', function ($resource, API_BASE_URL,Report) {
     var self = this;
+    var ReportResource = $resource(API_BASE_URL + '/review/reports/:id/');
     self.getList = function (params) {
-      return $resource(API_BASE_URL + '/review/reviews/reports/').get(params).$promise;
+      return ReportResource.get(params).$promise;
+    };
+    self.getReport = function (id) {
+      return ReportResource.get({id: id}).$promise.then(Report.build);
     }
   }]);

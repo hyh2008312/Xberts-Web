@@ -25,6 +25,11 @@
 
   <link rel="icon" type="image/png"
         href="https://xberts.imgix.net/static/icon/favicon.png?s=4ad0cff89de078554cb908b847b144c5"/>
+
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
@@ -177,7 +182,6 @@
 <script src="scripts/configs/default-configuration.js"></script>
 
 <script src="scripts/controllers/application.js"></script>
-<script src="scripts/controllers/comment.js"></script>
 <script src="scripts/controllers/leave-prompt.js"></script>
 <script src="scripts/controllers/login/linkedin-login.js"></script>
 <script src="scripts/controllers/login/login.js"></script>
@@ -202,18 +206,20 @@
 <script src="scripts/directives/avatar-img.js"></script>
 <script src="scripts/directives/backdrop.js"></script>
 <script src="scripts/directives/clearformerror.js"></script>
-<script src="scripts/directives/commentdetail.js"></script>
 <script src="scripts/directives/compareto.js"></script>
-<script src="scripts/directives/feedback.js"></script>
-<script src="scripts/directives/feedbackdetail.js"></script>
-<script src="scripts/directives/join.js"></script>
 <script src="scripts/directives/loadmore.js"></script>
 <script src="scripts/directives/messages.js"></script>
 <script src="scripts/directives/message-label.js"></script>
 <script src="scripts/directives/preload.js"></script>
-<script src="scripts/directives/save.js"></script>
-<script src="scripts/directives/saver.js"></script>
 <script src="scripts/directives/time-left.js"></script>
+
+<script src="scripts/components/comments/comment.js"></script>
+<script src="scripts/components/comments/commentdetail.js"></script>
+<script src="scripts/components/comments/feedback.js"></script>
+<script src="scripts/components/comments/feedbackdetail.js"></script>
+<script src="scripts/components/comments/join.js"></script>
+<script src="scripts/components/comments/save.js"></script>
+<script src="scripts/components/comments/saver.js"></script>
 
 <script src="scripts/filters/decode.js"></script>
 <script src="scripts/filters/split.js"></script>
@@ -285,6 +291,7 @@
 <script src="scripts/feature/review/applyConfirm/ConfirmShippingAddress.controller.js"></script>
 <script src="scripts/feature/review/applicationSelect/ReviewApplicationCtrl.js"></script>
 <script src="scripts/feature/review/reportSelection/SelectReportsCtrl.js"></script>
+<script src="scripts/feature/review/report/rating.js"></script>
 <script src="scripts/feature/review/report/ReportEditCtrl.js"></script>
 <script src="scripts/feature/review/report/ReportDetailCtrl.js"></script>
 <script src="scripts/feature/review/report/ReportListCtrl.js"></script>
@@ -292,6 +299,7 @@
 <script src="scripts/feature/review/ApplierService.js"></script>
 <script src="scripts/feature/review/ReviewService.js"></script>
 <script src="scripts/feature/review/ApplicationService.js"></script>
+<script src="scripts/feature/review/Report.js"></script>
 <script src="scripts/feature/review/ReportService.js"></script>
 <script src="scripts/feature/review/ReviewMainCtrl.js"></script>
 

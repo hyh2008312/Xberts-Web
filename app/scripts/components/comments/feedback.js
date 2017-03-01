@@ -3,7 +3,7 @@
 angular.module('xbertsApp')
   .directive('feedback', function () {
     return {
-      templateUrl: 'views/comment/feedback.html',
+      templateUrl: 'scripts/components/comments/feedback.html',
       restrict: 'E',
       require: '^join',
       link: function postLink(scope, element, attrs, joinController) {

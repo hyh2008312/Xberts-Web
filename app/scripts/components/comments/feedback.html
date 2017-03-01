@@ -1,0 +1,12 @@
+<div class="feedback-form">
+  <form name="feedbackForm" ng-submit="feedbackFormSubmit()" class="pr">
+    <div growl reference="interact_{{ interact.id }}"></div>
+    <md-input-container class="md-block" md-no-float>
+      <textarea name='detail' ng-model="feedback.details" required placeholder="write down your comments" rows="3">
+      </textarea>
+      <div class="align-right">
+        <md-button type="submit" class="md-primary">{{ btnText }}</md-button>
+      </div>
+    </md-input-container>
+  </form>
+</div>

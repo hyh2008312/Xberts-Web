@@ -57,14 +57,6 @@ h3.panel-title {
   }
 }
 
-a {
-  color: $primaryColor;
-  &:hover {
-    color: darken($primaryColor, 20%);
-    cursor: pointer;
-  }
-}
-
 a.a-gray {
   color: $lightGrayColor;
   &:hover {

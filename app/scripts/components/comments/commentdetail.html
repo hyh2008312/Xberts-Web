@@ -20,13 +20,15 @@
 
       <form name="commentForm" ng-submit="commentFormSubmit()" class="pr">
         <div growl reference="comment_{{ item.id }}"></div>
-    <textarea name='detail' class="form-control" rows="5"
-              ng-model="comment.details" ng-required="true">
-    </textarea>
+        <md-input-container class="md-block" md-no-float>
+            <textarea name='detail' ng-model="comment.details" required placeholder="write down your comments">
+            </textarea>
+            <div class="align-right">
+              <md-button type="submit" class="md-primary">Reply</md-button>
+            </div>
+        </md-input-container>
 
-        <div class="margin-top align-right">
-          <button type="submit" class="c-btn c-btn--blue c-btn--sm">Reply</button>
-        </div>
+
       </form>
     </div>
   </div>

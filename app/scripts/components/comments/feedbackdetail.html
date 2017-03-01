@@ -17,22 +17,24 @@
 
     <div ng-show="commentsActive">
       <form name="commentForm" ng-submit="commentFormSubmit()" class="pr">
-        <div growl  reference="feedback_{{ item.id }}"></div>
-    <textarea name='detail' class="form-control" rows="5"
-              ng-model="comment.details" ng-required="true">
-    </textarea>
-
-        <div class="margin-top align-right">
-          <button type="submit" class="c-btn c-btn--blue c-btn--sm">Reply</button>
-        </div>
+        <div growl reference="feedback_{{ item.id }}"></div>
+        <md-input-container class="md-block" md-no-float>
+            <textarea name='detail' ng-model="comment.details" required placeholder="write down your comments">
+            </textarea>
+          <div class="align-right">
+            <md-button type="submit" class="md-primary">Reply</md-button>
+          </div>
+        </md-input-container>
       </form>
       <comment-detail ng-repeat="item in commentsPaginator.items" item="item"></comment-detail>
       <load-more class="row spin-large" ng-if="commentsPaginator.loading"></load-more>
     </div>
     <div ng-show="commentsActive && !commentsPaginator.loading">
       <p class="align-right">
-        <a class="a-gray"><i class="fa fa-angle-double-down comment__icon" ng-click="commentsPaginator.loadNext()" ng-show="commentsPaginator.next"></i></a>
-        <a class="a-gray"><i class="fa fa-angle-double-up comment__icon" ng-click="commentsToggle()" ng-show="commentsPaginator.items.length>0"></i></a>
+        <a class="a-gray"><i class="fa fa-angle-double-down comment__icon" ng-click="commentsPaginator.loadNext()"
+                             ng-show="commentsPaginator.next"></i></a>
+        <a class="a-gray"><i class="fa fa-angle-double-up comment__icon" ng-click="commentsToggle()"
+                             ng-show="commentsPaginator.items.length>0"></i></a>
       </p>
     </div>
   </div>
