@@ -65,7 +65,7 @@
       <md-tab label="Review" md-on-select="loadMyBio()">
         <div layout>
           <div flex flex-gt-sm="60">
-            <div class="md-padding">
+            <div class="md-padding" ng-if="report.pros.length>0">
               <div layout="column" layout-gt-xs="row" class="xb2-page-content__section">
                 <div flex-gt-xs="45">
                   <h2 class="xb2-h2">Pros</h2>

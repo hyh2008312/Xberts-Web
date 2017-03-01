@@ -44,9 +44,13 @@ function ReportModel() {
   Report.build = function (data) {
     if (data.pros) {
       data.pros = data.pros.split('##');
+    }else{
+      data.pros=[];
     }
     if (data.cons) {
       data.cons = data.cons.split('##');
+    }else {
+      data.cons=[];
     }
 
     return new Report(data);
