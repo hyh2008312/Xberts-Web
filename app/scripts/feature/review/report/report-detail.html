@@ -1,6 +1,6 @@
 <join ng-init="init(report.interact)">
   <div class="xb2-page-head">
-    <img ng-src="{{report.getProductCover()}}" class="xb2-img-responsible" hide-gt-xs>
+    <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-gt-xs>
     <div class="container">
       <div class="xb2-page-head__title-wrap">
         <h1 class="xb2-page-head__title">{{ report.title }}</h1>
@@ -11,7 +11,7 @@
 
       <div layout-gt-sm="row" layout="column">
         <div flex-gt-sm="60">
-          <img ng-src="{{report.getProductCover()}}" class="xb2-img-responsible" hide-xs>
+          <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-xs>
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
           <div class="xb2-page-head__author" flex-order="2" flex-order-gt-xs="1">
@@ -42,7 +42,7 @@
               <span class="md-margin-left-2">{{report.usability}}</span>
             </div>
             <div layout="row" layout-align="center center" class="xb2-rating-container">
-              <span class="md-margin-right-2">Presentation:</span>
+              <span class="md-margin-right-2">Design:</span>
               <rating-line flex value="{{ report.presentation / 5 }}"></rating-line>
               <span class="md-margin-left-2">{{report.presentation}}</span>
             </div>
@@ -65,8 +65,8 @@
       <md-tab label="Review" md-on-select="loadMyBio()">
         <div layout>
           <div flex flex-gt-sm="60">
-            <div class="md-padding" ng-if="report.pros.length>0">
-              <div layout="column" layout-gt-xs="row" class="xb2-page-content__section">
+            <div class="md-padding">
+              <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
                 <div flex-gt-xs="45">
                   <h2 class="xb2-h2">Pros</h2>
                   <ul class="xb2-ul">
