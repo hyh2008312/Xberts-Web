@@ -18,7 +18,6 @@ angular.module('xbertsApp')
         console.log(scope.join);
         scope.vote = function () {
           interactCtrl.getOrCreateCurrentJoin().then(function (currentJoin) {
-            console.log(currentJoin);
             var join = {id: currentJoin.id, vote: !currentJoin.vote};
             InteractService.vote(join).then(
               function (newJoin) {
