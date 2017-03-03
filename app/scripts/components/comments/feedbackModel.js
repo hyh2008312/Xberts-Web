@@ -1,7 +1,5 @@
 angular.module('xbertsApp')
   .factory('Feedback', ['Comment',FeedbackModel]);
-
-
 function FeedbackModel(Comment) {
 
   var AVATAR_PLACEHOLDER = 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
