@@ -17,7 +17,7 @@ function FeedbackModel(Comment) {
       return this.post.joiner.first_name;
     },
     getPostId: function () {
-      return this.post.joiner.id;
+      return this.post.id;
     }
   };
 

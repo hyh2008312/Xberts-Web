@@ -19,7 +19,7 @@ function CommentModel() {
       return this.post.joiner.first_name
     },
     getPostId: function () {
-      return this.post.joiner.id;
+      return this.post.id;
     },
     getPostToAvatar: function () {
       return this.post_to.joiner.avatar || AVATAR_PLACEHOLDER
@@ -28,7 +28,7 @@ function CommentModel() {
       return this.post_to.joiner.first_name
     },
     getPostToId: function () {
-      return this.post_to.joiner.id;
+      return this.post_to.id;
     }
   };
 
