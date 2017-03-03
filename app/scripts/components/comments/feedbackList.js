@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator','$timeout', function (FeedbackService, Feedback, Paginator,$timeout) {
+  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator', function (FeedbackService, Feedback, Paginator) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
