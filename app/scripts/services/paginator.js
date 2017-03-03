@@ -21,8 +21,13 @@ angular.module('xbertsApp')
 
       this.items = (localStorageService.get(this.name + '_items') || []).map(
         function (item) {
-          var newItem = new objClass();
-          angular.extend(newItem, item);
+          var newItem;
+          if(angular.isFunction(objClass.build)){
+            newItem = objClass.build(item);
+          }else{
+            newItem = new objClass();
+            angular.extend(newItem, item);
+          }
           return newItem;
         }
       );

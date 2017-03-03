@@ -1,4 +1,4 @@
-<join ng-init="init(trial.review.interact)">
+<interact interact="trial.review.interact">
   <div id="review-detail" class="review-detail-page">
     <div class="container">
 
@@ -204,7 +204,7 @@
                 <h4 class="review-section__title">
                   Comments
                 </h4>
-                <div ng-include src="'scripts/components/comments/comments.html'"></div>
+                <feedback-list interact-id="{{trial.review.interact.id}}"></feedback-list>
               </div>
             </div>
           </div>
@@ -327,5 +327,4 @@
 
   </div>
 
-  </div>
-</join>
+</interact>

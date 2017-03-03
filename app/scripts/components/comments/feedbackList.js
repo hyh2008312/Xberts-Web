@@ -3,11 +3,10 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
-      scope: {
-        interactId: '@'
-      },
       require:'^^interact',
       link: function (scope, element, attrs,interactCtrl) {
+        scope.interactId = interactCtrl.getInteract().id;
+        
         var par = {
           name: 'feedback_' + scope.interactId,
           objClass: Feedback,
@@ -16,6 +15,7 @@ angular.module('xbertsApp')
           },
           fetchFunction: FeedbackService.getList
         };
+
         scope.newFeedback = {};
         scope.feedbackPaginator = new Paginator(par);
 
@@ -23,8 +23,8 @@ angular.module('xbertsApp')
 
         scope.leaveFeedback = function (feedbackForm) {
           if (feedbackForm.$valid) {
-            
-            interactCtrl.getCurrentJoin().then(
+
+            interactCtrl.getOrCreateCurrentJoin().then(
               function (currentJoin) {
                 scope.newFeedback.interact = scope.interactId;
                 scope.newFeedback.post = currentJoin.id;

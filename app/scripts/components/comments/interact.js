@@ -8,22 +8,34 @@ angular.module('xbertsApp')
 
       controller: function ($scope) {
 
+        $scope.interact = Interact.build($scope.interact);
 
-        this.loginCheck = function () {
-          return $rootScope.user.isAuth();
-        };
+        $scope.currentJoin = {vote: false};
 
         this.getCurrentJoin = function () {
+          return $scope.currentJoin;
+        };
+
+        this.getInteract = function () {
+          return $scope.interact;
+        };
+
+        this.setCurrentJoin = function (join) {
+          angular.extend($scope.currentJoin, join);
+        };
+
+        this.getOrCreateCurrentJoin = function () {
           var delay = $q.defer();
 
-          if (!$rootScope.user.isAuth()) {
-
+          if (!$rootScope.user.authRequired()) {
+            delay.reject('not login');
           } else {
-            if ($scope.currentJoin) {
+            if ($scope.currentJoin.id) {
               delay.resolve($scope.currentJoin);
             } else {
-              InteractService.create({interact: $scope.interact.id}).then(function (join) {
-                delay.resolve(join);
+              InteractService.createJoin({interact: $scope.interact.id}).then(function (join) {
+                angular.extend($scope.currentJoin, join);
+                delay.resolve($scope.currentJoin);
               });
             }
           }
@@ -33,11 +45,13 @@ angular.module('xbertsApp')
       },
       controllerAs: 'interactCtrl',
       link: function (scope) {
-        scope.interact = Interact.build(scope.interact);
-        scope.currentJoin = null;
-        if (scope.interactCtrl.loginCheck()) {
+
+
+        if ($rootScope.user.isAuth()) {
           InteractService.getJoin(scope.interact.id, $rootScope.user.getUserId()).then(function (join) {
-            scope.currentJoin = join;
+            if (join) {
+              angular.extend(scope.currentJoin, join);
+            }
           });
         }
       }

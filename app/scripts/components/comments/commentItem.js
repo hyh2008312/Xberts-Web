@@ -19,7 +19,7 @@ angular.module('xbertsApp')
 
         scope.leaveComment = function (commentForm) {
           if (commentForm.$valid) {
-            interactCtrl.getCurrentJoin().then(
+            interactCtrl.getOrCreateCurrentJoin().then(
               function (currentJoin) {
                 scope.newComment.post_to_id = scope.comment.getPostId();
                 scope.newComment.post_id = currentJoin.id;
