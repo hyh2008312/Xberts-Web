@@ -1,0 +1,25 @@
+<div class="xb2-comment" layout>
+  <img ng-src="{{comment.getPostAvatar()}}" class="xb2-comment__avatar">
+  <div flex class="xb2-comment__block">
+    <p class="xb2-comment__name">
+      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostId() })">{{
+        comment.getPostName() }}</a>
+      <span class="xb2-comment__secondary">to:</span>
+      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostToId() })">{{
+        comment.getPostToName() }}</a>
+    </p>
+    <p class="xb2-comment__detial">{{ comment.details}}</p>
+    <p class="xb2-comment__button-container"><span am-time-ago='comment.date_published' class="xb2-comment__time"></span>
+      <md-button class="md-primary md-margin-clear" ng-click="replyClick()">reply</md-button>
+    </p>
+    <form name="commentForm" ng-if="replyToggle" novalidate>
+      <md-input-container class="md-block" md-no-float>
+      <textarea name='details' ng-model="newComment.details" required placeholder="write down your comments">
+      </textarea>
+        <div class="xb-align-right">
+          <md-button type="submit" class="md-primary" ng-click="leaveComment(commentForm)">Comment</md-button>
+        </div>
+      </md-input-container>
+    </form>
+  </div>
+</div>

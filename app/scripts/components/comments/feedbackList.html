@@ -1,0 +1,28 @@
+<div class="md-padding">
+  <form name="feedbackForm" novalidate ng-if="formToggle">
+    <md-input-container class="md-block" md-no-float>
+    <textarea name='details' ng-model="newFeedback.details" required placeholder="write down your comments">
+    </textarea>
+      <div class="xb-align-right">
+        <md-button type="submit" class="md-primary" ng-click="leaveFeedback(feedbackForm)">Comment</md-button>
+      </div>
+    </md-input-container>
+  </form>
+
+  <form name="feedbackForm" novalidate ng-if="!formToggle">
+    <md-input-container class="md-block" md-no-float>
+    <textarea name='details' ng-model="newFeedback.details" required placeholder="write down your comments">
+    </textarea>
+      <div class="xb-align-right">
+        <md-button type="submit" class="md-primary" ng-click="leaveFeedback(feedbackForm)">Comment</md-button>
+      </div>
+    </md-input-container>
+  </form>
+
+  <div class="xb2-comment-list" infinite-scroll="feedbackPaginator.loadNext()" infinite-scroll-distance='0'
+       infinite-scroll-disabled="feedbackPaginator.loading || !feedbackPaginator.next">
+    <feedback-item ng-repeat="item in feedbackPaginator.items" feedback="item"></feedback-item>
+    <load-more class="row spin-large" ng-if="feedbackPaginator.loading"></load-more>
+  </div>
+
+</div>

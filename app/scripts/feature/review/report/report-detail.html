@@ -1,4 +1,4 @@
-<join ng-init="init(report.interact)">
+<interact interact="report.interact">
   <div class="xb2-page-head">
     <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-gt-xs>
     <div class="container">
@@ -50,7 +50,8 @@
           <div class="xb2-page-head__button" flex-order="4">
             <div layout="row">
               <span flex hide-gt-xs></span>
-              <md-button class="md-raised md-accent md-margin-clear" ng-href="{{report.getProductStore()}}" target="_blank">check the
+              <md-button class="md-raised md-accent md-margin-clear" ng-href="{{report.getProductStore()}}"
+                         target="_blank">check the
                 price
               </md-button>
             </div>
@@ -92,13 +93,12 @@
       <md-tab label="Comments">
         <div layout>
           <div flex flex-gt-sm="60">
-            <div ng-include src="'scripts/components/comments/comments.html'"></div>
+            <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
           </div>
         </div>
       </md-tab>
     </md-tabs>
   </div>
-  </div>
-</join>
+</interact>
 
 

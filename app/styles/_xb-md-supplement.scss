@@ -28,6 +28,10 @@ button, html, body, input, select, textarea {
   font-family: Roboto,Helvetica Neue,sans-serif;
 }
 
+p{
+  margin-bottom: 8px;
+}
+
 @mixin font-h1(){
   font-size: 34px;
   line-height: 40px;
