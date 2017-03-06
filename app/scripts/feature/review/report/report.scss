@@ -110,13 +110,20 @@
 }
 
 .xb2-price{
+  @include md-screen{
+    margin-bottom: 24px;
+  }
   &__final{
     @include font-h2();
+    display: inline-block;
+    vertical-align: middle;
   }
 
   &__retail{
     @include font-p();
+    display: inline-block;
     text-decoration: line-through;
     color: rgba(0,0,0,0.54);
+    vertical-align: middle;
   }
 }
