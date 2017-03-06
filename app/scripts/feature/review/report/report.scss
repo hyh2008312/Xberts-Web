@@ -108,3 +108,15 @@
     margin-left: 16px;
   }
 }
+
+.xb2-price{
+  &__final{
+    @include font-h2();
+  }
+
+  &__retail{
+    @include font-p();
+    text-decoration: line-through;
+    color: rgba(0,0,0,0.54);
+  }
+}

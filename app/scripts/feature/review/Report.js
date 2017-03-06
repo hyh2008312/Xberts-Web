@@ -14,6 +14,12 @@ function ReportModel() {
     getProductRetailPrice: function () {
       return this.applicant.review.project.retail_price.amount;
     },
+    isHasFinalPrice: function () {
+      return this.applicant.review.project.final_price.amount !== '0.00'
+    },
+    getProductFinalPrice: function () {
+      return this.isHasFinalPrice() ? this.applicant.review.project.final_price.amount : this.getProductRetailPrice();
+    },
     getProductCover: function () {
       return this.applicant.review.project.image;
     },
@@ -36,21 +42,21 @@ function ReportModel() {
       return this.applicant.reviewer.id;
     },
     getScore: function () {
-      var temp =[(this.presentation + this.cost_performance + this.usability) / 3]*10;
-      return Math.round(temp)/10;
+      var temp = [(this.presentation + this.cost_performance + this.usability) / 3] * 10;
+      return Math.round(temp) / 10;
     }
   };
 
   Report.build = function (data) {
     if (data.pros) {
       data.pros = data.pros.split('##');
-    }else{
-      data.pros=[];
+    } else {
+      data.pros = [];
     }
     if (data.cons) {
       data.cons = data.cons.split('##');
-    }else {
-      data.cons=[];
+    } else {
+      data.cons = [];
     }
 
     return new Report(data);

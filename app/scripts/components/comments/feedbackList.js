@@ -4,9 +4,10 @@ angular.module('xbertsApp')
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
       require:'^^interact',
+      scope:{},
       link: function (scope, element, attrs,interactCtrl) {
         scope.interactId = interactCtrl.getInteract().id;
-        
+
         var par = {
           name: 'feedback_' + scope.interactId,
           objClass: Feedback,

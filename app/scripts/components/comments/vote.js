@@ -8,25 +8,14 @@ angular.module('xbertsApp')
       template: '<md-icon ng-class="{\'md-warn\':join.vote}"' +
       'ng-click="vote()">' +
       'thumb_up' +
-      '</md-icon>',
+      '</md-icon> <span>{{interact.vote_amount}}</span>',
       require: '^^interact',
-      replace: true,
+      replace: false,
 
       link: function (scope, element, attrs, interactCtrl) {
         scope.join = interactCtrl.getCurrentJoin();
-
-        console.log(scope.join);
-        scope.vote = function () {
-          interactCtrl.getOrCreateCurrentJoin().then(function (currentJoin) {
-            var join = {id: currentJoin.id, vote: !currentJoin.vote};
-            InteractService.vote(join).then(
-              function (newJoin) {
-                interactCtrl.setCurrentJoin(newJoin);
-                console.log(scope.join);
-              }
-            );
-          });
-        };
+        scope.vote = interactCtrl.vote;
+        scope.interact = interactCtrl.getInteract();
       }
     };
   }]);

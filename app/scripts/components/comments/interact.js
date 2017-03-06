@@ -12,6 +12,8 @@ angular.module('xbertsApp')
 
         $scope.currentJoin = {vote: false};
 
+        var self = this;
+
         this.getCurrentJoin = function () {
           return $scope.currentJoin;
         };
@@ -41,6 +43,23 @@ angular.module('xbertsApp')
           }
 
           return delay.promise;
+        };
+
+        this.vote = function () {
+          self.getOrCreateCurrentJoin().then(function () {
+            var currentJoin = self.getCurrentJoin();
+            var join = {id: currentJoin.id, vote: !currentJoin.vote};
+            InteractService.vote(join).then(
+              function (newJoin) {
+                self.setCurrentJoin(newJoin);
+                if(newJoin.vote){
+                  $scope.interact.vote_amount +=1;
+                }else {
+                  $scope.interact.vote_amount -=1;
+                }
+              }
+            );
+          });
         };
       },
       controllerAs: 'interactCtrl',

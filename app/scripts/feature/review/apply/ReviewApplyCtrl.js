@@ -28,7 +28,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
     country: applier.country,
     gender: applier.gender,
     position: applier.position,
-    company: applier.position,
+    company: applier.company,
     user_id: applier.user_id
   };
 

@@ -48,11 +48,14 @@
             </div>
           </div>
           <div class="xb2-page-head__button" flex-order="4">
-            <div layout="row">
-              <span flex hide-gt-xs></span>
+            <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
+              <p flex class="xb2-price">
+                <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
+                <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
+              </p>
               <md-button class="md-raised md-accent md-margin-clear" ng-href="{{report.getProductStore()}}"
-                         target="_blank">check the
-                price
+                         target="_blank">
+                see product
               </md-button>
             </div>
           </div>
