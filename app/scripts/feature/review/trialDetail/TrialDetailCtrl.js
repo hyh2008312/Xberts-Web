@@ -2,7 +2,7 @@
 
 angular.module('xbertsApp')
   .controller('TrialDetailController', ['$rootScope', 'review',
-    function ($rootScope,review) {
+    function ($rootScope, review) {
       var self = this;
 
       self.review = review;
@@ -16,8 +16,11 @@ angular.module('xbertsApp')
 
       // Send project category to GA
       if (dataLayer) {
-        dataLayer.push({
-          projectCategory: review.project.categories[0].name
-        });
+        if (review.project.categories[0]) {
+          dataLayer.push({
+
+            projectCategory: review.project.categories[0].name
+          });
+        }
       }
     }]);
