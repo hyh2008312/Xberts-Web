@@ -18,6 +18,9 @@ function CommentModel() {
     getPostName: function () {
       return this.post.joiner.first_name
     },
+    getPostUserId: function () {
+      return this.post.join.id;
+    },
     getPostId: function () {
       return this.post.id;
     },
@@ -26,6 +29,9 @@ function CommentModel() {
     },
     getPostToName: function () {
       return this.post_to.joiner.first_name
+    },
+    getPostToUserId: function () {
+      return this.post_to.joiner.id;
     },
     getPostToId: function () {
       return this.post_to.id;

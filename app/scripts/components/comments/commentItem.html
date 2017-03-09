@@ -2,10 +2,10 @@
   <img ng-src="{{comment.getPostAvatar()}}" class="xb2-comment__avatar">
   <div flex class="xb2-comment__block">
     <p class="xb2-comment__name">
-      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostId() })">{{
+      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostUserId() })">{{
         comment.getPostName() }}</a>
       <span class="xb2-comment__secondary">to:</span>
-      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostToId() })">{{
+      <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostToUserId() })">{{
         comment.getPostToName() }}</a>
     </p>
     <p class="xb2-comment__detial">{{ comment.details}}</p>
@@ -14,10 +14,10 @@
     </p>
     <form name="commentForm" ng-if="replyToggle" novalidate>
       <md-input-container class="md-block" md-no-float>
-      <textarea name='details' ng-model="newComment.details" required placeholder="write down your comments">
+      <textarea name='details' ng-model="newComment.details" required placeholder="write a reply">
       </textarea>
         <div class="xb-align-right">
-          <md-button type="submit" class="md-primary" ng-click="leaveComment(commentForm)">Comment</md-button>
+          <md-button type="submit" class="md-primary" ng-click="leaveComment(commentForm)">reply</md-button>
         </div>
       </md-input-container>
     </form>
