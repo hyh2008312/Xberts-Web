@@ -25,7 +25,7 @@
 ### Update production server
   - Push update
   
-        git push prod develop:master
+        git push prod master:master
         
 ## Build
 
