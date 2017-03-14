@@ -1,0 +1,30 @@
+<section class="xb-section">
+  <div class="container">
+    <div class="xb-section__title">
+      <h2><span class="md-display-1">Amazing Finds Curated by Experts</span></h2>
+      <h3><span class="md-body-1 md-dark-secondary">Discover hand-picked products suited to your unique needs</span></h3>
+    </div>
+    <div class="row xb-section-body" layout="row">
+      <div hide-sm hide-xs show-gt-sm class="category" flex="none">
+        <div layout="column" fixed-to-top offset-top="90">
+          <discovery-category categories="productCtrl.categories"></discovery-category>
+        </div>
+      </div>
+      <div layout-fill>
+        <div infinite-scroll="productCtrl.productsPaginator.loadNext()" infinite-scroll-distance='0'
+             infinite-scroll-disabled="productCtrl.productsPaginator.loading || !productCtrl.productsPaginator.next">
+          <share-product-list products="productCtrl.productsPaginator.items"></share-product-list>
+          <load-more class="row spin-large" ng-if="productCtrl.productsPaginator.loading"></load-more>
+        </div>
+      </div>
+      <div flex="none" hide-sm hide-xs hide-gt-sm show-gt-md class="post-form">
+        <div layout="column" fixed-to-top offset-top="90">
+          <share-product-post></share-product-post>
+          <div class="post-form__words md-dark-primary">
+            Found an awesome product? Share it with our community.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

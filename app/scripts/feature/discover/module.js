@@ -2,12 +2,24 @@ angular.module('xbertsApp')
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('application.shareProductList', {
-        url: '/shareProduct',
-        templateUrl: 'scripts/feature/discover/shareProductList.html',
-        controller: 'ShareProductListCtrl as productCtrl',
+        url: '/shareProduct?category',
+        templateUrl: 'scripts/feature/discover/shareProductListPage.html',
+        controller: 'ShareProductListPageCtrl as productCtrl',
         resolve: {
-          products: ['ShareProductService', function (ShareProductService) {
-            return ShareProductService.getList();
+          productsPaginator: ['Paginator', '$stateParams', 'ShareProductService','ShareProduct',function (Paginator, $stateParams, ShareProductService, ShareProduct) {
+            var par = {
+              name: 'share_product_list',
+              objClass: ShareProduct,
+              params: {
+                category: $stateParams.category,
+                page_size: 12
+              },
+              fetchFunction: ShareProductService.getList
+            };
+            return new Paginator(par).load();
+          }],
+          categories: ['ShareProductService',function (ShareProductService) {
+            return ShareProductService.getCategoryList();
           }]
         }
       });

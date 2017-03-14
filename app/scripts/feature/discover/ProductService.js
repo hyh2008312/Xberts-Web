@@ -1,22 +1,18 @@
 angular.module('xbertsApp')
-  .service('ShareProductService', ['$q', '$timeout', function ($q, $timeout) {
-    var products = [
-      {
-        title: 'share product 1',
-        details: 'shahe  dkshak jshdh'
-      }
-    ];
+  .service('ShareProductService', ['$resource','ShareProduct','API_BASE_URL',function ($resource,ShareProduct,API_BASE_URL) {
+    var ShareProductResource = $resource(API_BASE_URL + '/products/:id/', null);
 
-    this.getList = function () {
-      var delay = $q.defer();
+    this.getList = function (params) {
+      return ShareProductResource.get(params).$promise.then(ShareProduct.buildPageList);
+    };
 
-      if (products.length < 1) {
-        delay.reject('no product');
-      } else {
-        $timeout(function () {
-          delay.resolve(products);
-        }, 15)
-      }
-      return delay.promise;
+    this.create = function (feedback) {
+
+    };
+
+    var categoryResource = $resource(API_BASE_URL + '/products/categories/', null);
+
+    this.getCategoryList = function (params) {
+      return categoryResource.query(params).$promise;
     };
   }]);

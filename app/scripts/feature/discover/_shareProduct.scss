@@ -1,5 +1,237 @@
-.product{
-  &__title{
-    color: green;
+$PrimaryINDIGO: #3f51b5;
+
+@mixin small-icon{
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  font-size: 16px;
+}
+.xb-section{
+  &__title {
+    text-align: center;
+    margin-bottom: 32px;
+    @include xs-screen{
+      margin-bottom: 16px;
+    }
+    > h2{
+      margin: 0;
+    }
+    > h3{
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
   }
 }
+.category{
+  margin-top: 8px;
+  margin-right: 16px;
+  width: 190px;
+  .md-button{
+    @include regular();
+    font-size: 16px;
+    margin: 0;
+    padding: 0 4px;
+    text-align: left;
+    width: 190px;
+    &:hover{
+      @include media();
+      color: $PrimaryINDIGO;
+    }
+  }
+  &__fixed{
+    position: fixed;
+    top: 90px;
+    width: 190px
+  }
+}
+.product{
+  margin-bottom: 16px;
+  &__headline{
+    padding: 24px 16px;
+    > span{
+      @include media();
+    }
+  }
+  &__avatar-title{
+    margin-left: 16px;
+  }
+  &__avatar{
+    padding: 0 16px;
+    .md-user-avatar{
+      img{
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+      }
+    }
+    span:nth-child(1) {
+      color: $PrimaryINDIGO;
+      line-height: 14px;
+      margin-bottom: 4px;
+    }
+  }
+  &__card{
+    padding: 24px 16px 16px;
+    @include xs-screen{
+      padding: 16px 0 8px;
+    }
+  }
+  &__content{
+    padding: 0 16px;
+    > p{
+      margin: -8px 0;
+    }
+  }
+  &__action{
+    margin: 0;
+    padding: 8px 16px 16px;
+    .md-subhead{
+      color: $PrimaryINDIGO;
+      @include media();
+    }
+    .md-raised{
+      padding: 0 16px;
+    }
+  }
+  &__action-buttons{
+    margin: 0 16px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    .md-icon-button{
+      padding: 0 !important;
+      margin: 0 !important;
+      > .fa{
+        @include font-h2();
+      }
+    }
+    > p{
+      margin-top: 8px;
+      margin-left: 6px;
+      margin-right: 26px;
+    }
+  }
+  &__interact{
+    background-color: #f9f9f9;
+    .md-padding{
+      padding: 0 16px;
+    }
+  }
+}
+.post-form{
+  width: 366px;
+  margin-left: 16px;
+  &__card{
+    width: 350px;
+    margin: 0;
+    background-color: #f9f9f9;
+  }
+  &__title{
+    margin: 0;
+    height: 56px;
+    padding: 0 16px;
+    line-height: 56px;
+  }
+  &__input-container{
+    background-color: $whiteColor;
+    padding: 8px 16px 0;
+    >md-input-container{
+      margin: 16px 0;
+      >label{
+        @include regular();
+      }
+      .md-char-counter{
+        color: rgba(0, 0, 0, .54);
+      }
+    }
+  }
+  &__footer{
+    margin: 0;
+    padding: 16px 0;
+    >.xb-align-right{
+      margin-right: 16px;
+    }
+  }
+  &__footer-left{
+    margin-left: 16px;
+    .md-button{
+      padding: 0;
+      span{
+        color: $PrimaryINDIGO;
+        margin-left: 8px;
+        margin-right: 16px;
+      }
+
+    }
+  }
+  &__menu{
+    position: relative;
+  }
+  &__menu-tri{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+    margin-left: 86px;
+    margin-right: 86px;
+  }
+  &__menu-popup{
+    position: absolute;
+    left: -40px;
+    top:22px;
+    width: 192px;
+    height: 148px;
+    md-card{
+      position: relative;
+      margin: 0;
+      width: 192px;
+      height: 138px;
+      padding: 32px 16px 16px 16px;
+      >:first-child{
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        @include small-icon();
+      }
+      img{
+        width: 160px;
+        height: 90px;
+      }
+      >.popup-mask{
+        background-color: rgba(0, 0, 0, .38);
+        position: absolute;
+        width: 160px;
+        left: 16px;
+        top: 32px;
+        height: 90px;
+        overflow: hidden;
+        md-icon{
+          position: absolute;
+          right: 8px;
+          top: 8px;
+          @include small-icon();
+          color: #FFF;
+        }
+      }
+    }
+  }
+  &__menu-popup-uploads{
+    width: 160px;
+    height: 90px;
+    md-icon{
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+  }
+  &__words{
+    width: 350px;
+    margin-top: 16px;
+    padding: 0 16px;
+    @include font-p();
+  }
+}
+

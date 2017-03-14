@@ -1,0 +1,53 @@
+<md-card class="product" layout-fill>
+  <md-card-title class="product__headline">
+    <span class="md-headline">{{product.title}}</span>
+  </md-card-title>
+  <md-card-header class="product__avatar">
+    <md-card-avatar>
+      <avatar-Img src="product.reporter.avatar" name="product.reporter.name"  class="md-user-avatar"></avatar-Img>
+    </md-card-avatar>
+    <md-card-header-text class="product__avatar-title">
+      <span class="md-title md-body-2">{{product.reporter.name}}</span>
+      <span class="md-subhead md-body-1 md-dark-secondary">{{product.reporter.time}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <img ng-src="{{product.imagePath}}" class="md-card-image product__card" alt="">
+  <md-card-content class="product__content">
+    <p class="md-body-1">{{product.details}}</p>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="start center" class="product__action">
+    <md-card-icon-actions>
+      <span class="md-subhead">{{product.price}}</span>
+    </md-card-icon-actions>
+    <md-button class="md-primary md-raised">See the product</md-button>
+  </md-card-actions>
+  <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
+    <md-button class="md-icon-button">
+      <md-icon md-font-set="material-icons"> thumb_up </md-icon>
+    </md-button>
+    <p class="md-caption md-dark-third">{{product.thumbUp}}</p>
+    <md-button class="md-icon-button" ng-click="onToggleDown();">
+      <md-icon md-font-set="material-icons"> sms </md-icon>
+    </md-button>
+    <p class="md-caption md-dark-third" ng-click="onToggleDown();">{{product.sms}}</p>
+    <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+      <md-fab-trigger>
+        <md-button class="md-icon-button">
+          <md-icon md-font-set="material-icons"> share </md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList">
+          <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+        </md-button>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </md-card-actions>
+  <interact interact="product.interact" ng-show="commentToggle" class="fold-animation">
+    <div layout class="product__interact">
+      <div flex>
+        <feedback-list interact-id="{{product.id}}"></feedback-list>
+      </div>
+    </div>
+  </interact>
+</md-card>

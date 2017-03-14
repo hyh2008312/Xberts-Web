@@ -1,0 +1,59 @@
+<md-card class="post-form__card">
+  <md-content class="post-form__title md-subhead">Share a Product</md-content>
+  <form name="commentForm" novalidate>
+    <md-content class="post-form__input-container">
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Product name</label>
+        <input name='productName' required />
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Tell us where we can buy the product</label>
+        <input name='productName' required />
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Tell us where we can buy the product</label>
+        <input md-maxlength="500" name="detail" ng-model="user.detail" />
+      </md-input-container>
+    </md-content>
+    <md-card-actions layout="row" layout-align="start center" class="post-form__footer">
+      <md-card-icon-actions class="post-form__footer-left" >
+        <div class="post-form__menu">
+          <md-button ng-click="onPhotoPopup();">
+            <md-icon md-font-set="material-icons"> camera_alt </md-icon>
+            <span>Photo</span>
+          </md-button>
+          <div class="post-form__menu-popup" ng-show="photoPopup">
+            <div class="post-form__menu-tri"></div>
+            <md-card layout="column">
+              <md-icon md-font-set="material-icons" ng-click="offPhotoPopup();">clear</md-icon>
+                <md-content ng-show="!imgLoaded" layout="column" layout-align="center center" class="post-form__menu-popup-uploads"
+                            ngf-select="coverUpload($file)" ng-model="myFiles" accept="image/*" ngf-max-size="'5MB'">
+                  <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
+                  <span class="md-body-1 md-dark-secondary">Upload a picture</span>
+                </md-content>
+                <img flex="auto" ng-show="imgLoaded" ngf-src="file" class="img-responsive" ng-mouseenter="onShowMask();"
+                  ng-mouseleave=""/>
+                <div class="popup-mask" ng-show="showMask" ng-mouseleave="offShowMask();">
+                  <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+                </div>
+              </form>
+            </md-card>
+          </div>
+        </div>
+        <div class="post-form__menu">
+          <md-button ng-click="onVideoPopup();">
+            <md-icon md-font-set="material-icons"> videocam </md-icon>
+            <span>Video</span>
+          </md-button>
+          <md-content ng-show="videoPopup">
+            <span>111</span>
+          </md-content>
+        </div>
+      </md-card-icon-actions>
+      <div class="xb-align-right">
+        <md-button type="submit" class="md-primary md-raised" ng-click="">Post</md-button>
+      </div>
+    </md-card-actions>
+  </form>
+</md-card>
+
