@@ -1,1 +1,1 @@
-<md-button ng-repeat="category in categories" >{{category.name}}</md-button>
+<md-button ng-class="{true:'md-primary',false:''}[category.id == selectedCategoryId]" ng-repeat="category in categories" ng-click="onCategoryChange({categoryId:category.id});selectedCategory(category);" >{{category.name}}</md-button>

@@ -53,9 +53,9 @@ angular.module('xbertsApp')
               function (newJoin) {
                 self.setCurrentJoin(newJoin);
                 if(newJoin.vote){
-                  $scope.interact.vote_amount +=1;
+                  $scope.interact.increaseVote();
                 }else {
-                  $scope.interact.vote_amount -=1;
+                  $scope.interact.reduceVote();
                 }
               }
             );

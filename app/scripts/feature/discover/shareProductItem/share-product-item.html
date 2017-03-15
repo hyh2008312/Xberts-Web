@@ -1,52 +1,57 @@
 <md-card class="product" layout-fill>
   <md-card-title class="product__headline">
-    <span class="md-headline">{{product.title}}</span>
+    <a class="md-headline" ui-sref="application.shareProductDetail({reviewId:product.id})">{{product.title}}</a>
   </md-card-title>
   <md-card-header class="product__avatar">
     <md-card-avatar>
-      <avatar-Img src="product.getShareAvatar()" name="product.reporter.name"  class="md-user-avatar"></avatar-Img>
+      <avatar-Img src="product.getShareAvatar()" name="product.reporter.name"  class="md-user-avatar"
+                  ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
     </md-card-avatar>
     <md-card-header-text class="product__avatar-title">
-      <span class="md-title md-body-2">{{product.getShareName()}}</span>
-      <span class="md-subhead md-body-1 md-dark-secondary">July.12th 2015</span>
+      <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">
+        {{product.getShareName()}}
+      </a>
+      <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
     </md-card-header-text>
   </md-card-header>
-
-  <iframe frameborder="0" ng-if="product.getVideo() != null" ng-src="{{product.getVideo()}}" height="240" class="md-card-image product__card"></iframe>
-  <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
+  <div ng-if="product.getVideo() != null" class="product__video">
+    <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
+  </div>
+  <img ng-if="product.getVideo() == null" ui-sref="application.shareProductDetail({reviewId:product.id})"
+       ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
   <md-card-content class="product__content">
     <p class="md-body-1">{{product.details}}</p>
   </md-card-content>
-  <md-card-actions layout="row" layout-align="start center" class="product__action">
+  <md-card-actions layout="row" layout-align="start center" class="product__action" ng-if="product.getSharePrice()">
     <md-card-icon-actions>
       <span class="md-subhead">{{product.getSharePrice()}}</span>
     </md-card-icon-actions>
-    <md-button class="md-primary md-raised">See the product</md-button>
+    <md-button class="md-primary md-raised" target="_blank" ng-href="{{product.purchaseUrl}}">See product</md-button>
   </md-card-actions>
-  <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
-    <md-button class="md-icon-button">
-      <md-icon md-font-set="material-icons"> thumb_up </md-icon>
-    </md-button>
-    <p class="md-caption md-dark-third">{{product.thumbUp}}</p>
+  <interact interact="product.interact">
+    <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
+    <vote></vote>
     <md-button class="md-icon-button" ng-click="onToggleDown();">
       <md-icon md-font-set="material-icons"> sms </md-icon>
     </md-button>
-    <p class="md-caption md-dark-third" ng-click="onToggleDown();">{{product.sms}}</p>
+    <p class="md-caption md-dark-third" ng-click="onToggleDown();">{{product.getShareInteractLike()}}</p>
     <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
       <md-fab-trigger>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" >
           <md-icon md-font-set="material-icons"> share </md-icon>
         </md-button>
       </md-fab-trigger>
       <md-fab-actions>
-        <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList">
+        <md-button aria-label="{{item.name}}"  class="md-icon-button"  ng-repeat="item in shareList" socialshare
+                   socialshare-provider="{{item.name}}" socialshare-description="{{product.details}}" socialshare-text="{{product.title}}"
+                   socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
+                   socialshare-url="{{shareUrl + '/' + product.id}}" >
           <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
         </md-button>
       </md-fab-actions>
     </md-fab-speed-dial>
   </md-card-actions>
-  <interact interact="product.interact" ng-show="commentToggle" class="fold-animation">
-    <div layout class="product__interact">
+    <div layout class="product__interact" ng-show="commentToggle" >
       <div flex>
         <feedback-list interact-id="{{product.id}}"></feedback-list>
       </div>

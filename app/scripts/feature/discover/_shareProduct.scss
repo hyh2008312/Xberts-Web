@@ -7,6 +7,24 @@ $PrimaryINDIGO: #3f51b5;
   min-height: 16px;
   font-size: 16px;
 }
+@mixin triangleBottom($px1:10px,$px2:10px,$color:#FFF){
+  width: 0;
+  height: 0;
+  border-left: $px1 solid transparent;
+  border-right: $px1 solid transparent;
+  border-bottom: $px2 solid $color;
+}
+@mixin transform($arguments...) {
+  -webkit-transform: $arguments;
+  -moz-transform: $arguments;
+  -o-transform: $arguments;
+  -ms-transform: $arguments;
+  transform: $arguments;
+}
+@mixin resetBorder{
+  @include box-shadow(0px 0 3px 0 rgba(0, 0, 0, 0.12));
+  border: 1px solid rgba(0,0,0,.12);
+}
 .xb-section{
   &__title {
     text-align: center;
@@ -39,18 +57,44 @@ $PrimaryINDIGO: #3f51b5;
       color: $PrimaryINDIGO;
     }
   }
+  .md-button.md-primary{
+    @include media();
+  }
   &__fixed{
     position: fixed;
     top: 90px;
     width: 190px
   }
 }
+.product-order{
+  @include resetBorder();
+  margin: 0 0 16px 0;
+  background-color: $whiteBackground;
+  height: 40px;
+  overflow: hidden;
+  >.md-button{
+    color: $PrimaryINDIGO;
+    height: 40px;
+    >.tab-triangle{
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      @include triangleBottom(10px, 10px, #F1F1F1);
+      @include transform(translateX(-50%));
+    }
+  }
+}
 .product{
+  @include resetBorder();
   margin-bottom: 16px;
   &__headline{
     padding: 24px 16px;
-    > span{
+    >a{
       @include media();
+      color: rgba(0, 0, 0, .87);
+      >:hover{
+        color: rgba(0, 0, 0, .87);
+      }
     }
   }
   &__avatar-title{
@@ -63,6 +107,7 @@ $PrimaryINDIGO: #3f51b5;
         width: 40px;
         height: 40px;
         margin-bottom: 0;
+        cursor: pointer;
       }
     }
     span:nth-child(1) {
@@ -73,8 +118,24 @@ $PrimaryINDIGO: #3f51b5;
   }
   &__card{
     padding: 24px 16px 16px;
+    cursor: pointer;
     @include xs-screen{
       padding: 16px 0 8px;
+    }
+  }
+  &__video{
+    margin: 24px 16px 16px;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 24px;
+    height: 0;
+    overflow: hidden;
+    iframe{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   }
   &__content{
@@ -110,6 +171,11 @@ $PrimaryINDIGO: #3f51b5;
       margin-left: 6px;
       margin-right: 26px;
     }
+    span{
+      margin-left: 6px;
+      margin-right: 26px;
+      color: rgba(0, 0, 0, .38);;
+    }
   }
   &__interact{
     background-color: #f9f9f9;
@@ -122,6 +188,7 @@ $PrimaryINDIGO: #3f51b5;
   width: 366px;
   margin-left: 16px;
   &__card{
+    @include resetBorder();
     width: 350px;
     margin: 0;
     background-color: #f9f9f9;
@@ -168,18 +235,14 @@ $PrimaryINDIGO: #3f51b5;
     position: relative;
   }
   &__menu-tri{
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #FFF;
+    @include triangleBottom();
     margin-left: 86px;
     margin-right: 86px;
   }
   &__menu-popup{
     position: absolute;
     left: -40px;
-    top:22px;
+    top: 29px;
     width: 192px;
     height: 148px;
     md-card{
@@ -194,9 +257,16 @@ $PrimaryINDIGO: #3f51b5;
         top: 8px;
         @include small-icon();
       }
-      img{
+      .img-responsive{
         width: 160px;
         height: 90px;
+        overflow: hidden;
+        text-align: center;
+        vertical-align: middle;
+        >img{
+          max-height: 100%;
+          max-width: 100%;
+        }
       }
       >.popup-mask{
         background-color: rgba(0, 0, 0, .38);
@@ -227,11 +297,140 @@ $PrimaryINDIGO: #3f51b5;
       margin-bottom: 8px;
     }
   }
+  &__menu-popup-larger{
+    left: -100px;
+    width: 300px;
+    height: auto;
+    md-card{
+      width: 300px;
+      height: 170px;
+      md-input-container{
+        margin-top: 24px;
+        margin-bottom: 16px;
+        label{
+          @include regular();
+        }
+      }
+    }
+  }
+  &__menu-popup-larger>&__menu-tri{
+    margin-left: 135px;
+  }
   &__words{
     width: 350px;
     margin-top: 16px;
     padding: 0 16px;
     @include font-p();
+  }
+}
+.product-detail{
+  @include resetBorder();
+  margin-top: 36px;
+  margin-bottom: 32px;
+  @include xs-screen{
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  $product: product;
+  .#{$product}__video{
+    margin: 0;
+  }
+  .#{$product}__card{
+    padding: 0;
+  }
+  .#{$product}__headline{
+    padding: 24px 16px 8px;
+  }
+  .#{$product}__subtitle{
+    padding: 0 16px 16px;
+  }
+  .#{$product}__avatar{
+    padding: 0;
+    .md-subhead{
+      color: rgba(0,0,0,0.54);
+      @include regular();
+    }
+  }
+  .#{$product}__action .md-subhead{
+    margin-right: 16px;
+  }
+}
+.recommend-list{
+  margin-top: 36px;
+  width: 320px;
+  margin-left: 16px;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+  @include resetBorder();
+  @include xs-screen{
+    margin-top: 0;
+  }
+  >.category__fixed{
+    width: 320px;
+  }
+  &__title{
+    height: 56px;
+    padding: 0 16px;
+  }
+  &__body{
+    background-color: $whiteBackground;
+    padding: 0;
+  }
+  $parent:&;
+  &__product-content{
+    background-color: $whiteBackground;
+    padding: 16px 0;
+    margin: 0 16px;
+    width: 288px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    >:last-child{
+      border-bottom: none;
+    }
+    >#{$parent}__image-content{
+      margin: 0!important;
+      padding: 0;
+      width: 288px;
+      height: 162px;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      >img{
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        @include transform(translate(-50%,-50%));
+      }
+    }
+    >#{$parent}__headline{
+      padding: 8px 0;
+      margin: 0;
+      >a{
+        @include media();
+      }
+    }
+  }
+  &__avatar{
+    padding: 0;
+    #{$parent}__avatar-head{
+      margin-left: 0;
+      width: 20px;
+      height: 20px;
+    }
+    >span{
+      margin-left: 8px;
+    }
+    .md-user-avatar{
+      img{
+        width: 20px;
+        height: 20px;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+
   }
 }
 

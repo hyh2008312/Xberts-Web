@@ -17,19 +17,34 @@ function ShareProduct(urlParser, $sce) {
       return this.owner.firstName;
     },
     getImageOriginal: function() {
-      return this.imageGroup.length>0?this.imageGroup[0].image.original:'';
+      return this.imageGroup.length>0?this.imageGroup[0].imageUrls.original:'';
     },
     getImageThumbnail: function() {
-      return this.imageGroup.length>0?this.imageGroup[0].image.thumbnail:'';
+      return this.imageGroup.length>0?this.imageGroup[0].imageUrls.thumbnail:'';
     },
     getVideo: function() {
-      return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + urlParser.parse(this.videoUrl).searchObject.v);
+      var baseUrl = '', baseKey = null;
+      switch(urlParser.parse(this.videoUrl).hostname){
+        case 'www.youtube.com':
+          baseUrl = '//www.youtube.com/embed/';
+          baseKey = urlParser.parse(this.videoUrl).searchObject.v;
+          break;
+        default:
+          break;
+      }
+      return !baseKey?null:$sce.trustAsResourceUrl(baseUrl + urlParser.parse(this.videoUrl).searchObject.v);
     },
     getSharePrice: function () {
-      return '$' + this.salePrice.amount;
+      return this.salePrice.amount != '0.00' ? '$' + this.salePrice.amount : false;
     },
     getShareInteractId: function () {
       return this.interact.id;
+    },
+    getShareInteractLike: function() {
+      return this.interact.voteAmount;
+    },
+    getPostId: function() {
+      return this.owner.id;
     }
   };
 

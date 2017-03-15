@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/discover/shareProductList/share-product-list.html',
       link: function (scope, element, attrs, ctrls) {
         scope.products = scope.products || [];
-        scope.loadMore = true;
+
       }
     }
   });

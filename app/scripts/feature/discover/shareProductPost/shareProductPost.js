@@ -1,48 +1,42 @@
 angular.module('xbertsApp')
-  .directive('shareProductPost',['$rootScope','UploadService',function ($rootScope,UploadService) {
+  .directive('shareProductPost',['ShareProductService','$rootScope','UploadService',function(ShareProductService,$rootScope,UploadService) {
     return {
       restrict: 'E',
+      scope: {
+        onProductPost: '&'
+      },
       templateUrl: 'scripts/feature/discover/shareProductPost/share-product-Post.html',
       link: function (scope, element, attrs, ctrls) {
+        scope.product = {
+          imageGroup:[]
+        };
+        scope.formToggle = true;
         scope.photoPopup = false;
         scope.videoPopup = false;
         scope.showMask = false;
         scope.imgLoaded = false;
         scope.onPhotoPopup = function() {
           scope.videoPopup = false;
-          if(!scope.photoPopup) {
-            scope.photoPopup = true;
-          } else {
-            scope.photoPopup = false;
-          }
-        };
-        scope.offPhotoPopup = function() {
-          scope.photoPopup = false;
+          scope.photoPopup = !scope.photoPopup;
         };
         scope.onVideoPopup = function() {
           scope.photoPopup = false;
-          if(!scope.videoPopup) {
-            scope.videoPopup = true;
-          } else {
-            scope.videoPopup = false;
-          }
-        };
-        scope.offVideoPopup = function() {
-          scope.videoPopup = false;
+          scope.videoPopup = !scope.videoPopup;
         };
         scope.onShowMask = function() {
-          scope.showMask = true;
-        };
-        scope.offShowMask = function() {
-          scope.showMask = false;
+          scope.showMask = !scope.showMask;
         };
         scope.offDeleteImage = function() {
           scope.showMask = false;
           scope.imgLoaded = false;
+          scope.product.imageGroup = [];
         };
         var coverSuccessCallback = function (data) {
-          console.log(data.data);
           scope.imgLoaded = true;
+          scope.product.imageGroup.push({
+            index: 0,
+            image: data.data.id
+          })
         };
         var errorCallback = function (error) {
           // Don't display error when user cancels upload
@@ -60,6 +54,26 @@ angular.module('xbertsApp')
           }
         };
 
+        scope.submitForm = function(product){
+          // post start
+          scope.$emit('backdropOn', 'fetch project');
+          ShareProductService.create(product).then(function (newProduct) {
+            // 清空form
+            scope.product = {
+              imageGroup : []
+            };
+            scope.formToggle = !scope.formToggle;
+            scope.offDeleteImage();
+            scope.$emit('backdropOff', 'project get completed');
+            // 讲 product 加入 list
+            scope.onProductPost(newProduct);
+            // post end
+          }, function () {
+            // tips
+            scope.$emit('backdropOff', 'project get error');
+            // post end
+          });
+        }
       }
     }
   }]);
