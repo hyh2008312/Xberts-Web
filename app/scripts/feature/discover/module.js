@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.shareProductList', {
       url: '/shareProduct?category',
