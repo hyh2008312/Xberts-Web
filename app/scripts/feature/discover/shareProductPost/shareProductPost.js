@@ -5,7 +5,7 @@ angular.module('xbertsApp')
       scope: {
         onProductPost: '&'
       },
-      templateUrl: 'scripts/feature/discover/shareProductPost/share-product-Post.html',
+      templateUrl: 'scripts/feature/discover/shareProductPost/share-product-post.html',
       link: function (scope, element, attrs, ctrls) {
         scope.product = {
           imageGroup:[]
