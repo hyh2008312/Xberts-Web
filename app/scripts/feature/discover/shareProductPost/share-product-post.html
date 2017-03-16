@@ -10,18 +10,18 @@
         </div>
       </md-input-container>
       <md-input-container class="md-block" md-no-float>
-        <label class="md-dark-primary">Tell us why you love it</label>
-        <input ng-model="product.link" type="url" name="link"/>
-        <div ng-messages="productForm.link.$error">
-          <div ng-message="url">https://!</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" md-no-float>
         <label class="md-dark-primary">Description</label>
-        <input md-maxlength="500" required ng-model="product.description" name="description"/>
+        <input md-maxlength="500" required ng-model="product.description" name="description" placeholder="Tell us why you love it"/>
         <div ng-messages="productForm.description.$error">
           <div ng-message="required">This is required!</div>
           <div ng-message="maxlength">That's too long!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Purchase Link</label>
+        <input ng-model="product.link" type="url" name="link"/>
+        <div ng-messages="productForm.link.$error">
+          <div ng-message="url">https://!</div>
         </div>
       </md-input-container>
     </md-content>
@@ -87,18 +87,18 @@
         </div>
       </md-input-container>
       <md-input-container class="md-block" md-no-float>
-        <label class="md-dark-primary">Tell us why you love it</label>
-        <input ng-model="product.link" name="link"/>
-        <div ng-messages="productForm.link.$error">
-          <div ng-message="url">invalid url!</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block" md-no-float>
         <label class="md-dark-primary">Description</label>
-        <input md-maxlength="500" required ng-model="product.description" name="description"/>
+        <input md-maxlength="500" required ng-model="product.description" name="description" placeholder="Tell us why you love it"/>
         <div ng-messages="productForm.description.$error">
           <div ng-message="required">This is required!</div>
           <div ng-message="maxlength">That's too long!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Purchase Link</label>
+        <input ng-model="product.link" type="url" name="link"/>
+        <div ng-messages="productForm.link.$error">
+          <div ng-message="url">https://!</div>
         </div>
       </md-input-container>
     </md-content>
