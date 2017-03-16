@@ -17,10 +17,10 @@ function ShareProduct(urlParser, $sce, $state) {
       return this.owner.firstName;
     },
     getImageOriginal: function() {
-      return this.imageGroup.length>0?this.imageGroup[0].imageUrls.original:'';
+      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:'';
     },
     getImageThumbnail: function() {
-      return this.imageGroup.length>0?this.imageGroup[0].imageUrls.thumbnail:'';
+      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.thumbnail:'';
     },
     getShareUrl: function(id) {
       return $state.href("application.shareProductDetail", {reviewId:id},{absolute:true});

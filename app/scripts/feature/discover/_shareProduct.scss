@@ -394,15 +394,6 @@ $PrimaryINDIGO: #3f51b5;
       height: 162px;
       position: relative;
       overflow: hidden;
-      display: block;
-      >img{
-        padding: 0;
-        position: absolute;
-        width: 100%;
-        left: 50%;
-        top: 50%;
-        @include transform(translate(-50%,-50%));
-      }
     }
     >#{$parent}__headline{
       padding: 8px 0;

@@ -1,6 +1,6 @@
 <div class="recommend-list__product-content">
-  <div ng-if="product.getImageThumbnail() != ''" class="recommend-list__image-content" ui-sref="application.shareProductDetail({reviewId:product.id})">
-    <img ng-src="{{product.getImageThumbnail()}}" class="md-card-image product__card" alt="" />
+  <div ng-if="product.getImageThumbnail() != ''" layout="row" layout-align="center center" class="recommend-list__image-content" ui-sref="application.shareProductDetail({reviewId:product.id})">
+    <img flex="auto" ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="" />
   </div>
   <div class="recommend-list__headline">
     <a class="md-body-1 md-dark-primary" ui-sref="application.shareProductDetail({reviewId:product.id})">{{product.title}}</a>

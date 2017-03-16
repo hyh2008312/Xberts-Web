@@ -118,8 +118,8 @@
                 <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
                 <span class="md-body-1 md-dark-secondary">Upload a product picture</span>
               </md-content>
-              <md-content ng-show="imgLoaded" class="img-responsive" ng-mouseenter="onShowMask();">
-                <img ngf-src="file"/>
+              <md-content ng-show="imgLoaded" class="img-responsive" layout="row" align="center center" ng-mouseenter="onShowMask();">
+                <img layout-fill ngf-src="file"/>
               </md-content>
               <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();">
                 <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
