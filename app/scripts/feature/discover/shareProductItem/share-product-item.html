@@ -20,7 +20,7 @@
   <img ng-if="product.getVideo() == null" ui-sref="application.shareProductDetail({reviewId:product.id})"
        ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
   <md-card-content class="product__content">
-    <p class="md-body-1">{{product.details}}</p>
+    <p class="md-body-1">{{product.description}}</p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" ng-if="product.getSharePrice()">
     <md-card-icon-actions>

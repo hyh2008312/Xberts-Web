@@ -8,7 +8,7 @@
   </md-card-title>
   <span class="md-body-1 product__subtitle">{{product.name}}</span>
   <md-card-content class="product__content">
-    <p class="md-body-1">{{product.details}}</p>
+    <p class="md-body-1">{{product.description}}</p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
     <md-card-icon-actions>
@@ -48,7 +48,7 @@
       </md-fab-trigger>
       <md-fab-actions>
         <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
-                   socialshare-provider="{{item.name}}" socialshare-description="{{product.details}}" socialshare-text="{{product.title}}"
+                   socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}" socialshare-text="{{product.title}}"
                    socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
                    socialshare-url="{{product.getShareUrl(product.id)}}">
           <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>

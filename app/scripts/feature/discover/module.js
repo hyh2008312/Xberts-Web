@@ -2,7 +2,7 @@ angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.shareProductList', {
-      url: '/shareProduct',
+      url: '/discover',
       templateUrl: 'scripts/feature/discover/shareProductListPage.html',
       controller: 'ShareProductListPageCtrl as productCtrl',
       resolve: {
@@ -24,7 +24,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.shareProductDetail', {
-      url: '/shareProduct/:reviewId',
+      url: '/discover/:reviewId',
       templateUrl: 'scripts/feature/discover/shareProductDetail.html',
       controller: 'ShareProductDetailCtrl as productDetailCtrl',
       resolve: {
