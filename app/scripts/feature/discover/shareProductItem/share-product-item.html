@@ -45,7 +45,7 @@
         <md-button aria-label="{{item.name}}"  class="md-icon-button"  ng-repeat="item in shareList" socialshare
                    socialshare-provider="{{item.name}}" socialshare-description="{{product.details}}" socialshare-text="{{product.title}}"
                    socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
-                   socialshare-url="{{shareUrl + '/' + product.id}}" >
+                   socialshare-url="{{product.getShareUrl(product.id)}}" >
           <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
         </md-button>
       </md-fab-actions>

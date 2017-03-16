@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('shareProductItem', ['$location',function ($location) {
+  .directive('shareProductItem', function () {
     return {
       restrict: 'E',
       scope: {
@@ -20,11 +20,10 @@ angular.module('xbertsApp')
         ];
         scope.commentToggle = false;
 
-        scope.shareUrl = $location.absUrl();
-
         scope.onToggleDown = function() {
           scope.commentToggle = !scope.commentToggle;
         };
+
       }
     }
-  }]);
+  });

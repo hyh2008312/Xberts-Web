@@ -2,16 +2,16 @@ angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.shareProductList', {
-      url: '/shareProduct?category',
+      url: '/shareProduct',
       templateUrl: 'scripts/feature/discover/shareProductListPage.html',
       controller: 'ShareProductListPageCtrl as productCtrl',
       resolve: {
-        productsPaginator: ['Paginator', '$stateParams', 'ShareProductService','ShareProduct',function (Paginator, $stateParams, ShareProductService, ShareProduct) {
+        productsPaginator: ['Paginator', 'ShareProductService','ShareProduct',function (Paginator, ShareProductService, ShareProduct) {
           var par = {
             name: 'share_product_list',
             objClass: ShareProduct,
             params: {
-              category: $stateParams.category,
+              category: ShareProductService.categoryId,
               page_size: 12
             },
             fetchFunction: ShareProductService.getList

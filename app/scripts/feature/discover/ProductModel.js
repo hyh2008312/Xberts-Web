@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .factory('ShareProduct', ['urlParser','$sce',ShareProduct]);
-function ShareProduct(urlParser, $sce) {
+  .factory('ShareProduct', ['urlParser','$sce','$state',ShareProduct]);
+function ShareProduct(urlParser, $sce, $state) {
 
   var AVATAR_PLACEHOLDER = 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
 
@@ -21,6 +21,9 @@ function ShareProduct(urlParser, $sce) {
     },
     getImageThumbnail: function() {
       return this.imageGroup.length>0?this.imageGroup[0].imageUrls.thumbnail:'';
+    },
+    getShareUrl: function(id) {
+      return $state.href("application.shareProductDetail", {reviewId:id},{absolute:true});
     },
     getVideo: function() {
       var baseUrl = '', baseKey = null;

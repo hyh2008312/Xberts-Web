@@ -7,7 +7,7 @@
     <div class="row xb-section-body" layout="row" layout-align="start start">
       <div hide-sm hide-xs show-gt-sm class="category" flex="none">
         <div layout="column" fixed-to-top offset-top="90">
-          <discovery-category categories="productCtrl.categories" on-category-change="productCtrl.changeCategory(categoryId);"></discovery-category>
+          <discovery-category categories="productCtrl.categories" category-id="productCtrl.categoryId" on-category-change="productCtrl.changeCategory(categoryId);"></discovery-category>
         </div>
       </div>
       <div layout-fill>

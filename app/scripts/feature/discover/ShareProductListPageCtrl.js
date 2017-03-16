@@ -1,11 +1,12 @@
 angular.module('xbertsApp')
-  .controller('ShareProductListPageCtrl', ['$rootScope','productsPaginator','categories',function ($rootScope, productsPaginator, categories) {
+  .controller('ShareProductListPageCtrl', ['$rootScope','productsPaginator','categories','ShareProductService',function ($rootScope, productsPaginator, categories, ShareProductService) {
     var productCtrl = this;
     productCtrl.productsPaginator = productsPaginator;
-
     productCtrl.categories = categories;
+    productCtrl.categoryId = ShareProductService.categoryId;
 
     productCtrl.changeCategory = function (categoryId) {
+      ShareProductService.categoryId = categoryId;
       productCtrl.productsPaginator.params.category = categoryId || null;
       productCtrl.productsPaginator.clear();
       productCtrl.productsPaginator.load();

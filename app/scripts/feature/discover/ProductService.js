@@ -4,6 +4,8 @@ angular.module('xbertsApp')
     var CategoryResource = $resource(API_BASE_URL + '/products/categories/', null);
     var ShareProductDetail = $resource(API_BASE_URL + '/products/:id/', {id: '@id'});
 
+    this.categoryId = null;
+
     this.getList = function (params) {
       return ShareProductResource.get(params).$promise.then(ShareProduct.buildPageList);
     };
