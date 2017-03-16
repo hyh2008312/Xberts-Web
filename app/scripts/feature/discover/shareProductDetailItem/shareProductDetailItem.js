@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('shareProductDetailItem', ['$location', function ($location) {
+  .directive('shareProductDetailItem', function () {
     return {
       restrict: 'E',
       scope: {
@@ -19,7 +19,6 @@ angular.module('xbertsApp')
           { name: "linkedin"}
         ];
 
-        scope.shareUrl = $location.absUrl();
       }
     }
-  }]);
+  });

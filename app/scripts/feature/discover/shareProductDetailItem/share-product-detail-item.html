@@ -22,8 +22,8 @@
         </md-card-header-text>
       </md-card-header>
     </md-card-icon-actions>
-    <span class="md-subhead" hide-xs ng-if="product.getSharePrice();" >{{product.getSharePrice()}}</span>
-    <md-button hide-xs class="md-primary md-raised" ng-if="product.getSharePrice();" ng-href="{{product.purchaseUrl}}" target="_blank">See product</md-button>
+    <span class="md-subhead" hide-xs ng-if="product.getSharePrice()" >{{product.getSharePrice()}}</span>
+    <md-button hide-xs class="md-primary md-raised" ng-if="product.getSharePrice()" ng-href="{{product.purchaseUrl}}" target="_blank">See product</md-button>
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm>
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
         <p flex>
@@ -42,7 +42,6 @@
       <md-icon flex="none">sms</md-icon>
     </div>
     <comment-amounts layout="row" layout-align="start center"></comment-amounts>
-    <md-button class="md-icon-button">
     <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
       <md-fab-trigger>
         <md-button class="md-icon-button">
