@@ -19,7 +19,7 @@ function CommentModel() {
       return this.post.joiner.first_name
     },
     getPostUserId: function () {
-      return this.post.join.id;
+      return this.post.joiner.id;
     },
     getPostId: function () {
       return this.post.id;
