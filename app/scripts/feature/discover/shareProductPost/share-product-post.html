@@ -1,0 +1,160 @@
+<md-card class="post-form__card">
+  <md-content class="post-form__title md-subhead">Share a Product</md-content>
+  <form name="productForm" novalidate ng-if="formToggle">
+    <md-content class="post-form__input-container">
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Product Title</label>
+        <input required ng-model="product.title" name="title"/>
+        <div ng-messages="productForm.title.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Description</label>
+        <input md-maxlength="500" required ng-model="product.description" name="description" placeholder="Tell us why you love it"/>
+        <div ng-messages="productForm.description.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That's too long!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Purchase Link</label>
+        <input ng-model="product.link" type="url" name="link"/>
+        <div ng-messages="productForm.link.$error">
+          <div ng-message="url">https://!</div>
+        </div>
+      </md-input-container>
+    </md-content>
+    <md-card-actions layout="row" layout-align="start center" class="post-form__footer">
+      <md-card-icon-actions class="post-form__footer-left" >
+        <div class="post-form__menu">
+          <md-button ng-click="onPhotoPopup();">
+            <md-icon md-font-set="material-icons"> camera_alt </md-icon>
+            <span>Photo</span>
+          </md-button>
+          <div class="post-form__menu-popup" ng-show="photoPopup">
+            <div class="post-form__menu-tri"></div>
+            <md-card layout="column">
+              <md-icon md-font-set="material-icons" ng-click="onPhotoPopup();">clear</md-icon>
+              <md-content ng-show="!imgLoaded" layout="column" layout-align="center center" class="post-form__menu-popup-uploads"
+                          ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
+                <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
+                <span class="md-body-1 md-dark-secondary">Upload a product picture</span>
+              </md-content>
+              <md-content ng-show="imgLoaded" layout="row" layout-align="center center" class="img-responsive" flex="flex" ng-mouseenter="onShowMask();">
+                <img ngf-src="file"/>
+              </md-content>
+              <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();">
+                <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+              </div>
+            </md-card>
+          </div>
+        </div>
+        <div class="post-form__menu">
+          <md-button ng-click="onVideoPopup();">
+            <md-icon md-font-set="material-icons"> videocam </md-icon>
+            <span>Video</span>
+          </md-button>
+          <div class="post-form__menu-popup post-form__menu-popup-larger" ng-show="videoPopup">
+            <div class="post-form__menu-tri"></div>
+            <md-card layout="column">
+              <md-icon md-font-set="material-icons" ng-click="onVideoPopup();">clear</md-icon>
+              <md-input-container class="md-block" md-no-float>
+                <label class="md-dark-primary">Upload a product video</label>
+                <input ng-model="product.videoUrl" type="url" name="videoUrl"/>
+                <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
+                <div ng-messages="productForm.videoUrl.$error">
+                  <div ng-message="url">https://!</div>
+                </div>
+              </md-input-container>
+            </md-card>
+          </div>
+        </div>
+        </div>
+      </md-card-icon-actions>
+      <div class="xb-align-right">
+        <md-button type="submit" class="md-primary md-raised" ng-click="submitForm(product);" ng-disabled="productForm.$invalid">Post</md-button>
+      </div>
+    </md-card-actions>
+  </form>
+  <form name="productForm" novalidate ng-if="!formToggle">
+    <md-content class="post-form__input-container">
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Product Title</label>
+        <input required ng-model="product.title" name="title"/>
+        <div ng-messages="productForm.title.$error">
+          <div ng-message="required">This is required!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Description</label>
+        <input md-maxlength="500" required ng-model="product.description" name="description" placeholder="Tell us why you love it"/>
+        <div ng-messages="productForm.description.$error">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="maxlength">That's too long!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">Purchase Link</label>
+        <input ng-model="product.link" type="url" name="link"/>
+        <div ng-messages="productForm.link.$error">
+          <div ng-message="url">https://!</div>
+        </div>
+      </md-input-container>
+    </md-content>
+    <md-card-actions layout="row" layout-align="start center" class="post-form__footer">
+      <md-card-icon-actions class="post-form__footer-left" >
+        <div class="post-form__menu">
+          <md-button ng-click="onPhotoPopup();">
+            <md-icon md-font-set="material-icons"> camera_alt </md-icon>
+            <span>Photo</span>
+          </md-button>
+          <div class="post-form__menu-popup" ng-show="photoPopup">
+            <div class="post-form__menu-tri"></div>
+            <md-card layout="column">
+              <md-icon md-font-set="material-icons" ng-click="onPhotoPopup();">clear</md-icon>
+              <md-content ng-show="!imgLoaded" layout="column" layout-align="center center" class="post-form__menu-popup-uploads"
+                          ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
+                <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
+                <span class="md-body-1 md-dark-secondary">Upload a product picture</span>
+              </md-content>
+              <md-content ng-show="imgLoaded" class="img-responsive" layout="row" align="center center" ng-mouseenter="onShowMask();">
+                <img layout-fill ngf-src="file"/>
+              </md-content>
+              <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();">
+                <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+              </div>
+            </md-card>
+          </div>
+        </div>
+        <div class="post-form__menu">
+          <md-button ng-click="onVideoPopup();">
+            <md-icon md-font-set="material-icons"> videocam </md-icon>
+            <span>Video</span>
+          </md-button>
+          <div class="post-form__menu-popup post-form__menu-popup-larger" ng-show="videoPopup">
+            <div class="post-form__menu-tri"></div>
+            <md-card layout="column">
+              <md-icon md-font-set="material-icons" ng-click="onVideoPopup();">clear</md-icon>
+              <md-input-container class="md-block" md-no-float>
+                <label class="md-dark-primary">Upload a product video</label>
+                <input ng-model="product.videoUrl" type="url" name="videoUrl"/>
+                <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
+                <div ng-messages="productForm.videoUrl.$error">
+                  <div ng-message="url">http://!</div>
+                </div>
+              </md-input-container>
+            </md-card>
+          </div>
+        </div>
+        </div>
+      </md-card-icon-actions>
+      <div class="xb-align-right">
+        <md-button type="submit" class="md-primary md-raised" ng-click="submitForm(product);" ng-disabled="productForm.$invalid">Post</md-button>
+      </div>
+    </md-card-actions>
+  </form>
+</md-card>
+<div class="post-form__words md-dark-primary">
+  Found an awesome product? Share it with our community.
+</div>

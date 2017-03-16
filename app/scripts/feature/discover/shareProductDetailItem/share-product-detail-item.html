@@ -1,0 +1,65 @@
+<md-card class="product-detail" layout-fill>
+  <div ng-if="product.getVideo() != null" class="product__video">
+    <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
+  </div>
+  <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
+  <md-card-title class="product__headline">
+    <span class="md-headline">{{product.title}}</span>
+  </md-card-title>
+  <span class="md-body-1 product__subtitle">{{product.name}}</span>
+  <md-card-content class="product__content">
+    <p class="md-body-1">{{product.description}}</p>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="start center" class="product__action" >
+    <md-card-icon-actions>
+      <md-card-header class="product__avatar">
+        <md-card-avatar>
+          <avatar-Img src="product.getShareAvatar()" name="product.reporter.name"  class="md-user-avatar" ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
+        </md-card-avatar>
+        <md-card-header-text class="product__avatar-title">
+          <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">{{product.getShareName()}}</a>
+          <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
+        </md-card-header-text>
+      </md-card-header>
+    </md-card-icon-actions>
+    <span class="md-subhead" hide-xs ng-if="product.getSharePrice();" >{{product.getSharePrice()}}</span>
+    <md-button hide-xs class="md-primary md-raised" ng-if="product.getSharePrice();" ng-href="{{product.purchaseUrl}}" target="_blank">See product</md-button>
+    <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm>
+      <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
+        <p flex>
+          <span class="md-subhead">{{product.getSharePrice()}}</span>
+        </p>
+        <md-button class="md-primary md-raised" target="_blank" ng-href="{{product.purchaseUrl}}">
+          see product
+        </md-button>
+      </div>
+    </div>
+  </md-card-actions>
+  <interact interact="product.interact">
+    <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
+    <vote></vote>
+    <comment-amounts></comment-amounts>
+    <md-button class="md-icon-button">
+    <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+      <md-fab-trigger>
+        <md-button class="md-icon-button">
+          <md-icon md-font-set="material-icons"> share </md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
+                   socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}" socialshare-text="{{product.title}}"
+                   socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
+                   socialshare-url="{{product.getShareUrl(product.id)}}">
+          <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+        </md-button>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </md-card-actions>
+    <div layout class="product__interact">
+      <div flex>
+        <feedback-list interact-id="{{product.id}}"></feedback-list>
+      </div>
+    </div>
+  </interact>
+</md-card>

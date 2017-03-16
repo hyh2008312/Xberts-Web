@@ -1,0 +1,13 @@
+<div class="recommend-list__product-content">
+  <img ng-src="{{product.getImageOriginal()}}" class="md-card-image recommend-list__image-content" alt="" />
+  <div class="recommend-list__headline">
+    <a class="md-body-1 md-dark-primary" ui-sref="application.shareProductDetail({reviewId:product.id})">{{product.title}}</a>
+  </div>
+  <div class="recommend-list__avatar" layout="row" flex='none' layout-align="start center">
+    <div class="recommend-list__avatar-head">
+      <avatar-Img src="product.getShareAvatar()" name="product.reporter.name"  class="md-user-avatar" ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
+    </div>
+    <span class="md-subhead md-body-1 md-dark-secondary">{{product.getShareName()}}</span>
+    <span class="md-subhead md-body-1 md-dark-secondary">{{product.getShareInteractLike()}}&nbsp;likes</span>
+  </div>
+</div>

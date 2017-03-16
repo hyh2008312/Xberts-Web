@@ -52,10 +52,10 @@ angular.module('xbertsApp')
             InteractService.vote(join).then(
               function (newJoin) {
                 self.setCurrentJoin(newJoin);
-                if (newJoin.vote) {
-                  $scope.interact.vote_amount += 1;
-                } else {
-                  $scope.interact.vote_amount -= 1;
+                if(newJoin.vote){
+                  $scope.interact.increaseVote();
+                }else {
+                  $scope.interact.reduceVote();
                 }
               }
             );

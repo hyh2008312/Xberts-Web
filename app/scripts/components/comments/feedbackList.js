@@ -33,6 +33,7 @@ angular.module('xbertsApp')
                   scope.feedbackPaginator.items.unshift(feedback);
                   scope.formToggle = !scope.formToggle;
                   scope.newFeedback = {};
+                  interactCtrl.getInteract().increaseMessageAmount();
                 }, function (error) {
                   console.log(error);
                 });

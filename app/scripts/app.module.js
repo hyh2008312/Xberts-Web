@@ -30,4 +30,5 @@ angular
     'config',
     'mgcrea.ngStrap',
     'ngMaterial',
+    'ngUrlParser'
   ]);
