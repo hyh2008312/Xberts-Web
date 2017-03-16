@@ -1,5 +1,5 @@
 <div class="recommend-list__product-content">
-  <img ng-src="{{product.getImageOriginal()}}" class="md-card-image recommend-list__image-content" alt="" />
+  <img ng-src="{{product.getImageOriginal()}}" ui-sref="application.shareProductDetail({reviewId:product.id})" class="md-card-image recommend-list__image-content" alt="" />
   <div class="recommend-list__headline">
     <a class="md-body-1 md-dark-primary" ui-sref="application.shareProductDetail({reviewId:product.id})">{{product.title}}</a>
   </div>
