@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       template: '<md-icon ng-class="{\'md-warn\':join.vote}"' +
       'ng-click="vote()">' +
       'thumb_up' +
-      '</md-icon> <span>{{interact.vote_amount || interact.voteAmount}}</span>',
+      '</md-icon> <span>{{interact.vote_amount || interact.voteAmount || " "}}</span>',
       require: '^^interact',
       replace: false,
 

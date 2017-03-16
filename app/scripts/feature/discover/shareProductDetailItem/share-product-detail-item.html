@@ -37,8 +37,11 @@
   </md-card-actions>
   <interact interact="product.interact">
     <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
-    <vote></vote>
-    <comment-amounts></comment-amounts>
+    <vote layout="row" layout-align="start center" ></vote>
+    <div layout="row" layout-align="start center">
+      <md-icon flex="none">sms</md-icon>
+    </div>
+    <comment-amounts layout="row" layout-align="start center"></comment-amounts>
     <md-button class="md-icon-button">
     <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
       <md-fab-trigger>

@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {},
-      template: '<md-icon>sms</md-icon><span>{{interact.feedbackAmount}}</span>',
+      template: '<span>{{interact.feedbackAmount || interact.feedback_amount || " "}}</span>',
       require: '^^interact',
       replace: false,
 
