@@ -18,7 +18,7 @@
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
   <img ng-if="product.getVideo() == null" ui-sref="application.shareProductDetail({reviewId:product.id})"
-       ng-src="{{product.getImageOriginal()}}" class="md-card-image " alt="">
+       ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
   <md-card-content class="product__content">
     <p class="md-body-1">{{product.details}}</p>
   </md-card-content>

@@ -27,15 +27,20 @@ function ShareProduct(urlParser, $sce, $state) {
     },
     getVideo: function() {
       var baseUrl = '', baseKey = null;
+      this.videoUrl = 'https://youtu.be/KJyDwxrW5FA';
       switch(urlParser.parse(this.videoUrl).hostname){
         case 'www.youtube.com':
           baseUrl = '//www.youtube.com/embed/';
           baseKey = urlParser.parse(this.videoUrl).searchObject.v;
+          baseUrl = !baseKey?null:$sce.trustAsResourceUrl(baseUrl + baseKey);
           break;
+        case 'youtu.be':
+          baseUrl = '//www.youtube.com/embed/';
+          baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
         default:
           break;
       }
-      return !baseKey?null:$sce.trustAsResourceUrl(baseUrl + urlParser.parse(this.videoUrl).searchObject.v);
+      return baseUrl;
     },
     getSharePrice: function () {
       return this.salePrice.amount != '0.00' ? '$' + this.salePrice.amount : false;
