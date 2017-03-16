@@ -26,7 +26,7 @@ function ShareProduct(urlParser, $sce, $state) {
       return $state.href("application.shareProductDetail", {reviewId:id},{absolute:true});
     },
     getVideo: function() {
-      var baseUrl = '', baseKey = null;
+      var baseUrl = null, baseKey = null;
       switch(urlParser.parse(this.videoUrl).hostname){
         case 'www.youtube.com':
           baseUrl = '//www.youtube.com/embed/';
