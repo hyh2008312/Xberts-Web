@@ -4,7 +4,9 @@ angular.module('xbertsApp')
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
       require:'^^interact',
-      scope:{},
+      scope:{
+        onHideState: '='
+      },
       link: function (scope, element, attrs,interactCtrl) {
         scope.interactId = interactCtrl.getInteract().id;
 
@@ -16,9 +18,9 @@ angular.module('xbertsApp')
           },
           fetchFunction: FeedbackService.getList
         };
+        scope.feedbackPaginator = new Paginator(par);
 
         scope.newFeedback = {};
-        scope.feedbackPaginator = new Paginator(par);
 
         scope.formToggle = false;
 

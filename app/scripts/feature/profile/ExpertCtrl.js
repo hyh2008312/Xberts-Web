@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
-    'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant',
+    'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant','ShareProductService', 'ShareProduct',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
-              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant) {
+              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant, ShareProductService,ShareProduct) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
@@ -15,7 +15,8 @@ angular.module('xbertsApp')
       var tabIndexToParam = {
         '0': 'profile',
         '1': 'trials',
-        '2': 'campaigns'
+        '2': 'posts',
+        '3': 'campaigns'
       };
       var tabParamToIndex = _(tabIndexToParam).invert();
 
@@ -37,8 +38,6 @@ angular.module('xbertsApp')
       $scope.$on('$locationChangeSuccess', function () {
         updateActiveTabOnSearch();
       });
-
-
 
       $scope.loadMyTrials = function () {
         updateUrl();
@@ -71,8 +70,17 @@ angular.module('xbertsApp')
         updateUrl();
       };
 
+      var par = {
+        name: 'posts_' + $scope.expert.user_id,
+        objClass: ShareProduct,
+        params: {owner: $scope.expert.user_id},
+        fetchFunction: ShareProductService.getList
+      };
+      $scope.postsProductPaginator = new Paginator(par);
 
-
+      $scope.loadMyPosts= function () {
+        updateUrl();
+      };
 
       $scope.contactUser = function () {
         if (!$rootScope.user.authRequired()) {

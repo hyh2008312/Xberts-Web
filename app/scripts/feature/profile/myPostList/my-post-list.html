@@ -1,0 +1,6 @@
+<md-list layout="column" layout-fill>
+  <md-list-item ng-repeat="post in posts" flex="grow" ui-sref="application.shareProductDetail({reviewId:post.id})">
+    <p class="md-subhead md-dark-primary">{{post.title}}</p>
+    <span class="md-body-1 md-dark-third">{{post.created|amDateFormat:'MM.DD.YYYY'}}</span>
+  </md-list-item>
+</md-list>

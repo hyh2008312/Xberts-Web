@@ -183,6 +183,16 @@
         <load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
       </md-tab>
 
+      <md-tab label="My Posts" md-on-select="loadMyPosts()">
+        <div>
+          <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0'
+               infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
+            <my-post-list class="xb-my-posts" posts="postsProductPaginator.items"></my-post-list>
+          </div>
+          <load-more class="row spin-large" ng-if="postsProductPaginator.loading"></load-more>
+        </div>
+      </md-tab>
+
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
         <div class="md-padding">
           <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0'
@@ -225,7 +235,6 @@
           </div>
           <load-more class="row spin-large" ng-if="campaignPaginator.loading"></load-more>
         </div>
-
       </md-tab>
 
     </md-tabs>

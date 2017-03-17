@@ -1,0 +1,11 @@
+.xb-my-posts{
+  >md-list{
+    padding: 0;
+    >md-list-item{
+      height: 48px;
+      >p>a{
+        @include regular();
+      }
+    }
+  }
+}
