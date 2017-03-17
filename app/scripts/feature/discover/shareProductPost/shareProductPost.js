@@ -55,6 +55,9 @@ angular.module('xbertsApp')
         };
 
         scope.submitForm = function(product){
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
           // post start
           scope.$emit('backdropOn', 'fetch project');
           ShareProductService.create(product).then(function (newProduct) {

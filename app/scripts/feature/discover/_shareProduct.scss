@@ -1,11 +1,11 @@
 $PrimaryINDIGO: #3f51b5;
 
-@mixin small-icon{
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
-  min-height: 16px;
-  font-size: 16px;
+@mixin changeMdIcon($arguments...){
+  width: $arguments;
+  height: $arguments;
+  min-width: $arguments;
+  min-height: $arguments;
+  font-size: $arguments;
 }
 @mixin triangleBottom($px1:10px,$px2:10px,$color:#FFF){
   width: 0;
@@ -255,7 +255,7 @@ $PrimaryINDIGO: #3f51b5;
         position: absolute;
         right: 8px;
         top: 8px;
-        @include small-icon();
+        @include changeMdIcon(16px);
       }
       .img-responsive{
         width: 160px;
@@ -280,7 +280,7 @@ $PrimaryINDIGO: #3f51b5;
           position: absolute;
           right: 8px;
           top: 8px;
-          @include small-icon();
+          @include changeMdIcon(16px);
           color: #FFF;
         }
       }
@@ -391,9 +391,20 @@ $PrimaryINDIGO: #3f51b5;
     >#{$parent}__image-content{
       margin: 0!important;
       padding: 0;
-      width: 288px;
+      width: 100%;
       display: block;
       cursor: pointer;
+      position: relative;
+      >img{
+        width: 100%;
+      }
+      >#{$parent}__image-button{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        @include transform(translate(-50%,-50%));
+        @include changeMdIcon(48px);
+      }
     }
     >#{$parent}__headline{
       padding: 8px 0;
