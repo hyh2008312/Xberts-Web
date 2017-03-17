@@ -6,6 +6,9 @@ angular
     $stateProvider
       .state('application.expert', {
         url: '/influencers/:expertId?tab&action',
+        params:{
+          tab:'profile'
+        },
         templateUrl: 'scripts/feature/profile/expert.html',
         controller: 'ExpertCtrl',
         reloadOnSearch: false,
