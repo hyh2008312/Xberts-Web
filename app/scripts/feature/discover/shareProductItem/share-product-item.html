@@ -53,7 +53,7 @@
     </md-card-actions>
     <div layout class="product__interact" ng-show="commentToggle" >
       <div flex>
-        <feedback-list interact-id="{{product.id}}" on-hide-state="commentToggle"></feedback-list>
+        <feedback-list interact-id="{{product.id}}" hide-state="!commentToggle"></feedback-list>
       </div>
     </div>
   </interact>

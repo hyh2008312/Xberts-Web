@@ -5,7 +5,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/components/comments/feedbackList.html',
       require:'^^interact',
       scope:{
-        onHideState: '='
+        hideState: '='
       },
       link: function (scope, element, attrs,interactCtrl) {
         scope.interactId = interactCtrl.getInteract().id;
