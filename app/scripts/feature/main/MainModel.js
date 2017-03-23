@@ -11,6 +11,19 @@ function MainModel() {
   MainModel.prototype = {
     getReviewer: function () {
       return this.applicant.reviewer;
+    },
+    getReview: function() {
+      return this.applicant.review;
+    },
+    offPercentage: function () {
+      if (this.flashsale) {
+        var retailPrice = this.project.retailPrice.amount;
+        var salePrice = this.flashsale.salePrice.amount;
+        var decimal = (retailPrice - salePrice) / retailPrice;
+        return Math.round(decimal * 100);
+      } else {
+        return 0;
+      }
     }
   };
 

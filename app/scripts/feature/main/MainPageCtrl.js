@@ -2,7 +2,6 @@ angular.module('xbertsApp')
   .controller('MainPageCtrl', ['$rootScope','discoverProductsPagination','trialsPagination','reviewsPagination','topReviewersPagination',
     function ($rootScope, discoverProductsPagination, trialsPagination, reviewsPagination, topReviewersPagination) {
       var mainCtrl = this;
-      console.log(trialsPagination);
       mainCtrl.discoverProductsPagination = discoverProductsPagination.items;
       mainCtrl.trialsPagination = trialsPagination.items;
       mainCtrl.reviewsPagination = reviewsPagination.items;

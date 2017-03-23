@@ -1,20 +1,20 @@
 <div layout="row" layout-align="start start">
-  <div class="xb-main-product" flex="grow">
+  <div class="xb-main-product" flex>
     <div ng-if="showProduct.getVideo() != null" class="xb-main-product__video">
-      <iframe flex="grow" frameborder="0" ng-src="{{showProduct.getVideo()}}" ></iframe>
+      <iframe frameborder="0" ng-src="{{showProduct.getVideo()}}" ></iframe>
     </div>
     <img ng-if="showProduct.getVideo() == null" ng-src="{{showProduct.getImageOriginal()}}"
          class="md-card-image product__card" alt="" />
 
     <div class="xb-main-product__headline " ui-sref="application.shareProductDetail({reviewId:showProduct.id})">
-      <a class="md-body-1 md-dark-primary">{{showProduct.title}}</a>
+      <a class="md-subhead md-dark-primary">{{showProduct.title}}</a>
     </div>
 
     <div class="xb-main-product__content md-body-1">{{showProduct.description}}</div>
 
     <div layout="row" layout-align="start center" class="xb-main-product__action">
       <div class="xb-main-product__avatar" layout="row" layout-align="start center" layout-fill>
-        <avatar-Img src="product.getShareAvatar()" name="product.reporter.name"  class="md-user-avatar"
+        <avatar-Img src="showProduct.getShareAvatar()" name="showProduct.reporter.name"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:showProduct.getPostId() })"></avatar-Img>
         <div class="xb-main-product__avatar-title" layout="column" layout-align="start start">
           <a class="md-title md-body-2" ui-sref="application.expert({ expertId:showProduct.getPostId() })">{{showProduct.getShareName()}}</a>

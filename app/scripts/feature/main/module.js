@@ -13,7 +13,7 @@ angular.module('xbertsApp')
               objClass: ShareProduct,
               params: {
                 category: ShareProductService.categoryId,
-                page_size: 12
+                page_size: 5
               },
               fetchFunction: ShareProductService.getList
             };
@@ -42,9 +42,10 @@ angular.module('xbertsApp')
             };
             return new Paginator(par).load();
           }],
-          topReviewersPagination: ['Paginator', 'MainService', function (Paginator, MainService) {
+          topReviewersPagination: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
               name: 'callingReview',
+              objClass:MainModel,
               params: {
                 stage: 'READY_FOR_SALE',
                 status: 'APPLICATION',
@@ -52,28 +53,7 @@ angular.module('xbertsApp')
               },
               fetchFunction:MainService.getRecommendedReviewers
             };
-            //return new Paginator(par).load();
-            return {items:[{
-              avatar: '',
-              first_name: 'John',
-              position: 'expert',
-              company: 'Apple'
-            },{
-              avatar: '',
-              first_name: 'John',
-              position: 'expert',
-              company: 'Apple'
-            },{
-              avatar: '',
-              first_name: 'John',
-              position: 'expert',
-              company: 'Apple'
-            },{
-              avatar: '',
-              first_name: 'John',
-              position: 'expert',
-              company: 'Apple'
-            }]};
+            return new Paginator(par).load();
           }]
         }
       })

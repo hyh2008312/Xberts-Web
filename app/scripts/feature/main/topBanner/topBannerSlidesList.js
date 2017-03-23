@@ -7,7 +7,7 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.active = 0;
         scope.slides = [];
-        for(var i = 0; i < 3; i++) {
+        for(var i = 0; i < 1; i++) {
           scope.slides.push({
             id: i,
             image: 'https://xberts.imgix.net/static/banner/Homepage-banner.jpg?s=497b440c4e63599bf76be61daba40875',

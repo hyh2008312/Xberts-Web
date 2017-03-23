@@ -2,7 +2,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.xb-main-backgroud{
+  background-color: #F1F1F1;
+}
 .xb-top-banner-container{
   position: relative;
   display: block;
@@ -21,6 +23,10 @@
       line-height: 40px;
       &.active {
         color: $PrimaryINDIGO;
+      }
+      @include xs-screen{
+        font-size: 20px;
+        line-height: 30px;
       }
     }
   }
@@ -137,10 +143,10 @@
   }
   &__headline{
     margin: 16px 0 8px;
-    max-height: 24px;
-    @include ellipsisText();
     >a{
-      :hover{
+      max-height: 24px;
+      @include ellipsisText();
+      &:hover{
         color: rgba(0,0,0,.87);
       }
     }
@@ -243,6 +249,7 @@
 }
 .xb-main-review{
   @include resetBorder();
+  background-color: #FFF;
   margin-bottom: 16px;
   &__img-content{
     cursor: pointer;

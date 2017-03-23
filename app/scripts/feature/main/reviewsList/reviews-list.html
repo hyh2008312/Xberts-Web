@@ -1,19 +1,20 @@
 <div class="xb-main-review" ng-repeat="review in reviews" layout="row" layout-align="start center">
   <div class="xb-main-review__img-content" flex="33">
-    <img ui-sref="application.report({reviewId:review.applicant.review.id,reportId:review.id})" ng-src="{{review.image}}"/>
+    <img ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" ng-src="{{review.image}}"/>
   </div>
   <div class="xb-main-review__information-content" flex="66">
-    <p hide-xs class="report-category"><span ng-repeat="category in review.applicant.review.project.categories">{{ category.name }}<span
+    <p hide-xs class="report-category"><span ng-repeat="category in review.getReview().project.categories">{{ category.name }}<span
       ng-if="!$last">,</span></span></p>
-    <p class="xcard__title" flex="grow">
-      <a ui-sref="application.report({reviewId:review.applicant.review.id,reportId:review.id})">
+    <p class="xcard__title" >
+      <a ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})">
         {{ review.title }}
       </a>
     </p>
-    <p hide-xs class="xcard__description p-1" flex="grow">{{ review.description }}</p>
+    <p hide-xs class="xcard__description p-1">{{ review.description }}</p>
     <div class="report-publisher">
-      <avatar-img hide-xs src="review.getReviewer().avatar" name="review.getReviewer().fullname"></avatar-img>
-      by <a hide-gt-xs ui-sref="application.expert({ expertId:review.applicant.review.id })">{{ review.applicant.reviewer.fullname }}</a><span hide-xs>{{ review.applicant.reviewer.fullname }}</span>, <span am-time-ago='review.approval_status_changed'></span>
+      <avatar-img hide-xs src="review.getReviewer().avatar" name="review.getReviewer().fullname"
+                  ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-img>
+      by <a hide-gt-xs ui-sref="application.expert({ expertId:review.getReviewer().id })">{{ review.getReviewer().fullname }}</a><span hide-xs>{{ review.applicant.reviewer.fullname }}</span>, <span am-time-ago='review.approval_status_changed'></span>
     </div>
   </div>
 </div>

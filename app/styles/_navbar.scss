@@ -5,12 +5,38 @@
   font-weight: 400;
   &.active {
     &, &:hover, &:focus, &:active {
-      color: $navbar-default-link-active-color;
+      color: #FFF;
       background-color: $navbar-default-link-active-bg;
     }
   }
   &:focus {
-    color: $navbar-default-link-active-color;
+    color: #FFF;
+  }
+}
+.navbar-default{
+  .navbar-toggle{
+    border-color: #FFF;
+    &:hover{
+     background-color: #FFF;
+    }
+  }
+  .navbar-nav{
+    > .active{
+      > a{
+        color: rgba(255,255,255,1);
+        &:focus{
+          color: rgba(255,255,255,1);
+        }
+        @include xs-screen{
+          color: #222;
+          background-color: rgba(0,0,0,.12);
+          &:focus,&:hover{
+            color: #222;
+            background-color: rgba(0,0,0,.12);
+          }
+        }
+      }
+    }
   }
 }
 .navbar {
@@ -21,6 +47,20 @@
   //  left: 50%;
   //  margin-left: -$navbarBrandWidth / 2 !important;
   //}
+  background-color: #374CAF;
+  @include box-shadow(0 3px 5px rgba(0,0,0,.38));
+  border-bottom: none;
+  .navbar-collapse{
+    border-top: none;
+    @include xs-screen{
+      background-color: #FFF;
+    }
+    >.navbar-nav{
+      @include xs-screen{
+        margin-top: 0;
+      }
+    }
+  }
   .navbar-brand {
     padding: ($navbar-height - 30) / 2 20px ($navbar-height - 30) / 2 15px;
 
@@ -58,9 +98,8 @@
 .nav-tabs > li > a {
   margin-right: 2px;
   line-height: 1.428571429;
-  border: 1px solid transparent;
   border-radius: 0;
-  color: #3d3d3d;
+  color: #FFF;
   padding: 15px 30px;
   @media screen and (max-width: 767px) {
     padding: 15px 10px;
@@ -74,13 +113,23 @@
   background-color: #fff;
   border: 1px solid #ddd;
   border-top: 3px solid $primaryColor;
-  border-bottom-color: transparent;
+  border-bottom: none;
   cursor: default;
 }
 
 .nav.navbar-nav{
   >li{
     >a{
+      &:hover{
+        color: #FFF;
+      }
+      color: rgba(255,255,255,.5);
+      @include xs-screen{
+        &:hover{
+          color: #222;
+        }
+        color: #222;
+      }
       padding-left: 20px;
       padding-right: 20px;
     }
