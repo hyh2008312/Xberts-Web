@@ -1,0 +1,62 @@
+<div layout="row" layout-align="start start">
+  <div class="xb-main-product" flex>
+    <div ng-if="showProduct.getVideo() != null" class="xb-main-product__video">
+      <iframe frameborder="0" ng-src="{{showProduct.getVideo()}}" ></iframe>
+    </div>
+    <img ng-if="showProduct.getVideo() == null" ng-src="{{showProduct.getImageOriginal()}}"
+         class="md-card-image product__card" alt="" />
+
+    <div class="xb-main-product__headline " ui-sref="application.shareProductDetail({reviewId:showProduct.id})">
+      <a class="md-subhead md-dark-primary">{{showProduct.title}}</a>
+    </div>
+
+    <div class="xb-main-product__content md-body-1">{{showProduct.description}}</div>
+
+    <div layout="row" layout-align="start center" class="xb-main-product__action">
+      <div class="xb-main-product__avatar" layout="row" layout-align="start center" layout-fill>
+        <avatar-Img src="showProduct.getShareAvatar()" name="showProduct.reporter.name"  class="md-user-avatar"
+                    ui-sref="application.expert({ expertId:showProduct.getPostId() })"></avatar-Img>
+        <div class="xb-main-product__avatar-title" layout="column" layout-align="start start">
+          <a class="md-title md-body-2" ui-sref="application.expert({ expertId:showProduct.getPostId() })">{{showProduct.getShareName()}}</a>
+          <span class="md-subhead md-body-1 md-dark-secondary">{{showProduct.created|amDateFormat:'MMMM Do,YYYY'}}</span>
+        </div>
+      </div>
+      <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+        <md-fab-trigger>
+          <md-button class="md-icon-button" >
+            <md-icon md-font-set="material-icons"> share </md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <md-button aria-label="{{item.name}}"  class="md-icon-button"  ng-repeat="item in shareList" socialshare
+                     socialshare-provider="{{item.name}}" socialshare-description="{{showProduct.description}}" socialshare-text="{{product.title}}"
+                     socialshare-media="{{showProduct.getImageOriginal()}}"  socialshare-source="{{showProduct.getImageOriginal()}}"
+                     socialshare-url="{{showProduct.getShareUrl(showProduct.id)}}" >
+            <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+    </div>
+  </div>
+  <div class="xb-main-discover" flex="none" hide-sm hide-xs>
+    <div ng-repeat="product in products" layout="row" layout-align="start stretch"
+         ng-click="changeShowProduct(product)">
+      <div class="xb-main-discover__img-content">
+        <img ng-src="{{product.getImageOriginal()}}" layout-fill/>
+        <div class="xb-main-discover__image-button">
+          <md-icon >play_arrow</md-icon>
+        </div>
+      </div>
+      <div class="xb-main-discover__information-content" layout="column" layout-align="start stretch">
+        <p class="xcard__title md-subhead" flex="grow">
+          {{product.title}}
+        </p>
+        <div class="report-publisher">
+          <avatar-img src="product.getShareAvatar()" name="product.reporter.name"></avatar-img>
+          <span class="md-body-1">{{product.getShareName()}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

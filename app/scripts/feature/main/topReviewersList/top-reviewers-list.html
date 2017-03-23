@@ -1,0 +1,13 @@
+<md-list>
+  <md-list-item class="xb-main-reviewer__item" ng-repeat="expert in reviewers" layout="row" layout-align="start center">
+    <avatar-Img src="expert.avatar" class="md-avatar"
+                ui-sref="application.expert({ expertId:expert.user_id })"></avatar-Img>
+    <div class="md-2-line" ng-class="{'md-offset': true }" layout-fill layout="column" layout-align="center start">
+      <a class="md-subhead" ui-sref="application.expert({ expertId:expert.user_id })">{{ expert.first_name }}</a>
+      <p class="md-dark-secondary"> {{ expert.position }} @ {{ expert.company }} </p>
+    </div>
+    <a class="xb-main-reviewer__button" hide>
+      Follow
+    </a>
+  </md-list-item>
+</md-list>

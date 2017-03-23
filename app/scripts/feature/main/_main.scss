@@ -1,0 +1,338 @@
+@mixin ellipsisText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xb-main-backgroud{
+  background-color: #F1F1F1;
+}
+.xb-top-banner-container{
+  position: relative;
+  display: block;
+  div[rn-carousel-indicators]{
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    span{
+      outline: none;
+      margin-left: 5px;
+      margin-right: 5px;
+      color: $whiteColor;
+      font-size: 30px;
+      line-height: 40px;
+      &.active {
+        color: $PrimaryINDIGO;
+      }
+      @include xs-screen{
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+  }
+}
+.xb-top-banner{
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+  height: 600px;
+  &__container{
+    background-size: auto 100%;
+    background-position-x: center;
+    height: 100%;
+    >.md-accent{
+      padding: 0 28px;
+      margin-top: 240px;
+      @include xs-screen{
+        margin-top: 24%;
+      }
+    }
+  }
+}
+.xb-title{
+  margin: 32px 0 16px;
+  >a{
+    @include media();
+    white-space: nowrap;
+  }
+}
+.xb-main-col{
+  &__right-part{
+    >div{
+      cursor: pointer;
+      margin-left: 6px;
+      margin-bottom: 7px;
+    }
+  }
+  &__container{
+    position: relative;
+    cursor: pointer;
+  }
+  &__margin-bottom{
+    margin-bottom: 16px;
+    @include xs-screen{
+      margin-bottom: 8px;
+    }
+  }
+  &__value{
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    border-radius: 2px;
+    padding: 0 8px;
+    background-color: #ff4081;
+    >span{
+      font-size: 14px;
+      line-height: 28px;
+      font-weight: 500;
+      color: #FFF;
+    }
+  }
+  &__top-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 12px;
+    color: #fff;
+    background-color: rgba(0,0,0,.38);
+    line-height: 40px;
+    @include media();
+    font-size: 14px;
+  }
+  &__bottom-title{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 72px;
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,.54) 100%);
+    >span{
+      position: absolute;
+      padding: 0 16px;
+      width: 100%;
+      bottom: 16px;
+      font-size: 16px;
+      line-height: 20px;
+      color: #FFF;
+      max-height: 40px;
+      @include ellipsisText();
+    }
+  }
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+.xb-main-product{
+  border: none;
+  @include box-shadow(none);
+  margin-bottom: 24px;
+  position: relative;
+  &__video{
+    position: relative;
+    display: block;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    iframe{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__headline{
+    margin: 16px 0 8px;
+    >a{
+      max-height: 24px;
+      @include ellipsisText();
+      &:hover{
+        color: rgba(0,0,0,.87);
+      }
+    }
+  }
+  &__content{
+    margin-bottom: 8px;
+    max-height: 48px;
+    @include ellipsisText();
+  }
+  &__action{
+    margin: 0;
+    padding: 0;
+    .md-user-avatar{
+      img{
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+    a:nth-child(1) {
+      color: $PrimaryINDIGO;
+      line-height: 14px;
+      margin-bottom: 4px;
+    }
+    .md-button{
+      margin: 0;
+      padding: 0;
+      > .fa{
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+      }
+    }
+  }
+  &__avatar-title{
+    margin-left: 16px;
+  }
+}
+.xb-main-discover{
+  width: 444px;
+  margin-left: 16px;
+  >div{
+    margin-bottom: 16px;
+  }
+  &__img-content{
+    width: 160px;
+    cursor: pointer;
+    position: relative;
+    img{
+      width: 100%;
+      border: 1px solid rgba(0,0,0,.12);
+    }
+  }
+  &__image-button{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,.65);
+    border-radius: 50%;
+    md-icon{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include transform(translate(-50%,-50%));
+      @include changeMdIcon(32px);
+      color: #FFF;
+    }
+  }
+  &__information-content{
+    padding: 0 0 16px 16px;
+    max-width: 444px - 160px;
+    .xcard__title{
+      margin-bottom: 16px;
+      height: auto;
+      max-height: 40px;
+      text-overflow: ellipsis;
+      -webkit-text-overflow: ellipsis;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .report-publisher{
+      color: rgba(0, 0, 0, .54);
+      @include regular();
+      img{
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+.xb-main-reviews{
+  @include xs-screen{
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+}
+.xb-main-review{
+  @include resetBorder();
+  background-color: #FFF;
+  margin-bottom: 16px;
+  &__img-content{
+    cursor: pointer;
+    overflow: hidden;
+    @include xs-screen{
+      margin-left: 16px;
+    }
+    >img{
+      width: 100%;
+    }
+  }
+  &__information-content{
+    padding: 16px;
+    .xcard__title{
+      margin-bottom: 16px;
+      height: auto;
+      max-height: 50px;
+      @include ellipsisText();
+      @include xs-screen{
+        height: 50px;
+        margin-bottom: auto;
+      }
+    }
+    .report-category, .xcard__description, .report-publisher{
+      color: rgba(0, 0, 0, .54);
+      @include regular();
+    }
+    .report-publisher{
+      font-size: 14px;
+      img{
+        cursor: pointer;
+      }
+    }
+  }
+}
+.xb-main-reviewer{
+  width: 364px;
+  margin-left: 16px;
+  @include resetBorder();
+  md-list{
+    padding: 0;
+    background-color: $whiteBackground;
+  }
+  &__item{
+    height: 70px;
+    padding: 0 !important;
+    margin: 0 16px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    .md-avatar{
+      cursor: pointer;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+  &__title{
+    height: 56px;
+    padding: 0 16px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  .md-avatar{
+    >img{
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+    }
+  }
+  .md-2-line{
+    >a{
+      @include media();
+    }
+    >p{
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+  }
+  &__button{
+    @include media();
+  }
+}
+.xb-main-section{
+  padding-bottom: 60px;
+  overflow: hidden;
+  display: block;
+}

@@ -140,7 +140,7 @@ angular
           }]
         }
       })
-      .state('application.main', {
+      /*.state('application.main', {
         url: "/",
         templateUrl: 'scripts/feature/review/review-main.html',
         controller: 'ReviewMainCtrl',
@@ -181,7 +181,7 @@ angular
             return new Paginator(par).load();
           }]
         }
-      })
+      })*/
 
       .state('application.testingcampaigns', {
         url: "/trials",
