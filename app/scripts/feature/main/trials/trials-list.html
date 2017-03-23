@@ -1,0 +1,66 @@
+<div class="xb-main-col" layout="row" hide-xs hide-sm layout-align="start start">
+  <div class="xb-main-col__container" flex="50" ng-repeat="trial in trials track by $index" ng-if="$index==0"
+       ui-sref="application.testingcampaign({ reviewId:trial.id })">
+    <span class="xb-main-col__value">
+      <span ng-if="!trial.isFlashsale()">Free</span>
+      <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
+    </span>
+    <span class="xb-main-col__top-right" end-time-left end-time="trial.applicationEndDate" extra-info="trial.applicantCount">
+      <span ng-show="timeValue>0">{{ timeUnit }}</span>
+      <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+      <span ng-show="timeValue<=0">applicants</span>
+    </span>
+    <img ng-src="{{trial.cover}}" />
+    <div class="xb-main-col__bottom-title"><span>{{trial.title}}</span></div>
+  </div>
+  <div class="xb-main-col__right-part" flex="25" layout="column" layout-align="start start" layout-wrap>
+    <div class="xb-main-col__container" ng-repeat="trial in trials track by $index" ng-if="$index>0 && $index<3"
+         ui-sref="application.testingcampaign({ reviewId:trial.id })">
+      <span class="xb-main-col__value">
+        <span ng-if="!trial.isFlashsale()">Free</span>
+        <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
+      </span>
+      <span class="xb-main-col__top-right" end-time-left end-time="trial.applicationEndDate" extra-info="trial.applicantCount">
+        <span ng-show="timeValue>0">{{ timeUnit }}</span>
+        <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+        <span ng-show="timeValue<=0">applicants</span>
+      </span>
+      <img ng-src="{{trial.cover}}" />
+      <div class="xb-main-col__bottom-title"><span>{{trial.title}}</span></div>
+    </div>
+  </div>
+  <div class="xb-main-col__right-part" flex="25" layout="column" layout-align="start start" layout-wrap>
+    <div class="xb-main-col__container" ng-repeat="trial in trials track by $index" ng-if="$index>2 && $index<5"
+         ui-sref="application.testingcampaign({ reviewId:trial.id })">
+      <span class="xb-main-col__value">
+        <span ng-if="!trial.isFlashsale()">Free</span>
+        <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
+      </span>
+      <span class="xb-main-col__top-right" end-time-left end-time="trial.applicationEndDate" extra-info="trial.applicantCount">
+        <span ng-show="timeValue>0">{{ timeUnit }}</span>
+        <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+        <span ng-show="timeValue<=0">applicants</span>
+      </span>
+      <img ng-src="{{trial.cover}}" />
+      <div class="xb-main-col__bottom-title"><span>{{trial.title}}</span></div>
+    </div>
+  </div>
+</div>
+<div class="xb-main-col" layout="column" hide-md hide-gt-md layout-align="start start">
+  <div class="xb-main-col__container xb-main-col__margin-bottom" layout-fill ng-repeat="trial in trials"
+       ui-sref="application.testingcampaign({ reviewId:trial.id })" >
+    <span class="xb-main-col__value">
+      <span ng-if="!trial.isFlashsale()">Free</span>
+      <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
+    </span>
+    <span class="xb-main-col__top-right" end-time-left end-time="trial.applicationEndDate" extra-info="trial.applicantCount">
+      <span ng-show="timeValue>0">{{ timeUnit }}</span>
+      <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+      <span ng-show="timeValue<=0">applicants</span>
+    </span>
+    <img ng-src="{{trial.cover}}" />
+    <div class="xb-main-col__bottom-title"><span>{{trial.title}}</span></div>
+  </div>
+</div>
+
+

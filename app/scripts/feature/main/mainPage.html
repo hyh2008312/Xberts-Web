@@ -1,0 +1,37 @@
+<top-banner-slides-list class="xb-top-banner-container"></top-banner-slides-list>
+<div class="background-bg-white">
+  <div class="container">
+    <div class="xb-title" layout="row" layout-align="start end">
+      <h3 class="md-dark-primary" layout-fill>Discover New Tech</h3>
+      <a class="md-body-1" ui-sref="application.shareProductList()">SEE MORE</a>
+    </div>
+    <discover-products-list products="mainCtrl.discoverProductsPagination"></discover-products-list>
+  </div>
+</div>
+<div class="container xb-main-section">
+  <div class="xb-title" layout="row" layout-align="start end">
+    <h3 class="md-dark-primary" layout-fill>Try Latest Gadgets</h3>
+    <a class="md-body-1" ui-sref="application.testingcampaigns()">SEE MORE</a>
+  </div>
+  <trials-list trials="mainCtrl.trialsPagination"></trials-list>
+  <div class="xb-title" layout="row" layout-align="start end">
+    <h3 class="md-dark-primary" layout-fill>Reviews from Tech Insiders</h3>
+    <a class="md-body-1" ui-sref="application.campaignreviews()">SEE MORE</a>
+  </div>
+  <div layout="row" layout-align="start start">
+    <div class="xb-main-reviews" flex="grow">
+      <md-card class="product-order" layout="row" layout-align="start center">
+        <md-button>Latest<div class="tab-triangle"></div></md-button>
+      </md-card>
+      <reviews-list reviews="mainCtrl.reviewsPagination"></reviews-list>
+
+    </div>
+    <div class="xb-main-reviewer" hide-sm hide-xs>
+      <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
+        Top Reviewer
+      </div>
+      <top-reviewers-list reviewers="mainCtrl.topReviewersPagination"></top-reviewers-list>
+    </div>
+  </div>
+</div>
+

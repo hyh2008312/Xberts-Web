@@ -1,0 +1,14 @@
+<ul rn-carousel class="xb-top-banner" rn-carousel-index="active" rn-carousel-pause-on-hover rn-carousel-auto-slide="4"
+    rn-carousel-duration="600" >
+  <li ng-repeat="slide in slides track by slide.id" >
+    <div hide-sm hide-xs class="xb-top-banner__container" layout="column" layout-align="start center" layout-fill
+         style="background-image:url({{slide.image}} );">
+      <md-button class="md-accent md-raised" target="_blank" >Learn More</md-button>
+    </div>
+    <div hide-gt-sm class="xb-top-banner__container" layout="column" layout-align="start center" resize-carousel ratio="480/270"
+         parents="xb-top-banner" element-height="600" style="background-image:url({{slide.smallImage}} );">
+      <md-button class="md-accent md-raised" target="_blank" >Learn More</md-button>
+    </div>
+  </li>
+</ul>
+<div rn-carousel-indicators ng-if="slides.length > 1" slides="slides" rn-carousel-index="active"></div>
