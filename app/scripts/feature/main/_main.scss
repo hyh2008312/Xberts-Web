@@ -8,6 +8,10 @@
 .xb-top-banner-container{
   position: relative;
   display: block;
+  margin-top: -70px;
+  @include xs-screen{
+    margin-top: 0;
+  }
   div[rn-carousel-indicators]{
     display: block;
     width: 100%;
@@ -18,7 +22,7 @@
       outline: none;
       margin-left: 5px;
       margin-right: 5px;
-      color: $whiteColor;
+      color: #DCDCDC;
       font-size: 30px;
       line-height: 40px;
       &.active {
@@ -35,7 +39,7 @@
   display: block;
   position: relative;
   margin-bottom: 0;
-  height: 600px;
+  height: 670px;
   &__container{
     background-size: auto 100%;
     background-position-x: center;
@@ -47,6 +51,95 @@
         margin-top: 24%;
       }
     }
+  }
+  $parant:&;
+  &__button-white{
+    #{$parant}__title{
+      color: #FFF;
+    }
+    #{$parant}__subtitle{
+      color: #FFF;
+    }
+    #{$parant}__button{
+      color: #FFF;
+      border-color: #FFF;
+      &:link,&:hover,&:active,&:visited{
+        background-color: rgba(255,255,255,.7);
+        color: rgba(0,0,0,.87);
+      }
+    }
+  }
+  &__button-black{
+    #{$parant}__title{
+      color: #000;
+    }
+    #{$parant}__subtitle{
+      color: #000;
+    }
+    #{$parant}__button{
+      color: #000;
+      border-color: #000;
+      &:link,&:hover,&:active,&:visited{
+        background-color: rgba(0,0,0,.7);
+        color: rgba(255,255,255,.87);
+      }
+    }
+  }
+  &__content{
+    margin-top: 198px;
+    margin-left: 16px;
+    width: 100%;
+  }
+  &__title{
+    font-size: 54px;
+    @include light();
+    line-height: 72px;
+  }
+  &__subtitle{
+    margin-top: 48px;
+    font-size: 24px;
+    @include light();
+  }
+  &__button{
+    display: block;
+    margin-top: 16px;
+    width: 160px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 24px;
+    @include light();
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  @include sm-screen{
+    &__content{
+      margin-top: 100px;
+    }
+  }
+  @include xs-screen{
+    &__content{
+      margin-top: 0;
+      height: 100%;
+      margin-bottom: 24px;
+    }
+    &__title{
+      font-size: 24px;
+      @include light();
+      line-height: 32px;
+    }
+    &__subtitle{
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    &__button{
+      margin-top: 12px;
+      width: 96px;
+      line-height: 28px;
+      font-size: 14px;
+    }
+  }
+  a:-webkit-any-link{
+    text-decoration: none;
   }
 }
 .xb-title{
@@ -62,11 +155,13 @@
       cursor: pointer;
       margin-left: 6px;
       margin-bottom: 7px;
+      @include resetBorder();
     }
   }
   &__container{
     position: relative;
     cursor: pointer;
+    @include resetBorder();
   }
   &__margin-bottom{
     margin-bottom: 16px;
@@ -325,6 +420,8 @@
     >p{
       font-size: 12px;
       margin-bottom: 0;
+      max-height: 24px;
+      @include ellipsisText();
     }
   }
   &__button{

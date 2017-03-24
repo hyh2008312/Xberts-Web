@@ -4,7 +4,7 @@
   width: 100%;
   line-height: 20px;
   /* Set the fixed height of the footer here */
-  background-color: #1c2429;
+  background-color: #FFF;
   &__block-wrap{
     > * {
       display: inline-block;
@@ -40,8 +40,20 @@
   .list-inline{
     color: #999999;
     li{
-      padding-left: 10px;
-      padding-right: 10px;
+      margin-left: 10px;
+      i{
+        width: 24px;
+        height: 24px;
+        background-color: rgba(0,0,0,.38);
+        border-radius: 50%;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        color: #FFF;
+        &:hover{
+          background-color: rgba(0,0,0,.54);
+        }
+      }
     }
   }
   /* box-shadow: 0 0 3px #888; */

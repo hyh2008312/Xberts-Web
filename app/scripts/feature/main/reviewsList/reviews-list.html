@@ -1,4 +1,4 @@
-<div class="xb-main-review" ng-repeat="review in reviews" layout="row" layout-align="start center">
+<div class="xb-main-review" ng-repeat="review in reviews track by $index" ng-if="$index<6" layout="row" layout-align="start center">
   <div class="xb-main-review__img-content" flex="33">
     <img ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" ng-src="{{review.image}}"/>
   </div>
