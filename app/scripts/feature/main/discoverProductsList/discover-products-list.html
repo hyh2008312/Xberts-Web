@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="xb-main-discover" flex="none" hide-sm hide-xs>
-    <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start stretch"
+    <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start start"
          ng-click="changeShowProduct(product)">
       <div class="xb-main-discover__img-content">
         <img ng-src="{{product.getImageOriginal()}}" />
@@ -47,8 +47,8 @@
           <md-icon >play_arrow</md-icon>
         </div>
       </div>
-      <div class="xb-main-discover__information-content" layout="column" layout-align="start stretch">
-        <p class="xcard__title md-subhead" flex="grow">
+      <div class="xb-main-discover__information-content" layout="column" layout-align="start start">
+        <p class="xcard__title md-subhead" >
           {{product.title}}
         </p>
         <div class="report-publisher">
