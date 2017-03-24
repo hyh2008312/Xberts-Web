@@ -42,12 +42,12 @@
     <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start start"
          ng-click="changeShowProduct(product)">
       <div class="xb-main-discover__img-content">
-        <img ng-src="{{product.getImageOriginal()}}" />
+        <img ng-src="{{product.getImageThumbnail()}}" />
         <div class="xb-main-discover__image-button">
           <md-icon >play_arrow</md-icon>
         </div>
       </div>
-      <div class="xb-main-discover__information-content" layout="column" layout-align="start start">
+      <div class="xb-main-discover__information-content" layout="column" layout-align="space-between stretch">
         <p class="xcard__title md-subhead" >
           {{product.title}}
         </p>
