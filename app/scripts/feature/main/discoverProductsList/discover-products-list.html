@@ -42,7 +42,7 @@
     <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start stretch"
          ng-click="changeShowProduct(product)">
       <div class="xb-main-discover__img-content">
-        <img ng-src="{{product.getImageOriginal()}}" layout-fill/>
+        <img ng-src="{{product.getImageOriginal()}}" />
         <div class="xb-main-discover__image-button">
           <md-icon >play_arrow</md-icon>
         </div>

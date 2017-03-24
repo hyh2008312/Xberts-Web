@@ -24,6 +24,9 @@ function MainModel() {
       } else {
         return 0;
       }
+    },
+    isFlashsale: function () {
+      return this.flashsale && this.flashsale.shopGatewayInventoryId !== '0';
     }
   };
 
