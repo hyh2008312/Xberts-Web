@@ -4,8 +4,10 @@
   </div>
   <div ng-if="product.getImageOriginal() != ''" class="recommend-list__image-content">
     <img ng-src="{{product.getImageOriginal()}}" ui-sref="application.shareProductDetail({reviewId:product.id})" class="md-card-image" alt="" />
-    <div class="recommend-list__image-button" ui-sref="application.shareProductDetail({reviewId:product.id})" >
-      <md-icon>play_arrow</md-icon>
+    <div class="recommend-list__image-button-bg" layout="row" layout-align="center center">
+      <div class="recommend-list__image-button" ui-sref="application.shareProductDetail({reviewId:product.id})" layout="row" layout-align="center center" >
+        <md-icon>play_arrow</md-icon>
+      </div>
     </div>
   </div>
   <div class="recommend-list__headline">

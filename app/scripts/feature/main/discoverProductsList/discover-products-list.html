@@ -43,8 +43,10 @@
          ng-click="changeShowProduct(product)">
       <div class="xb-main-discover__img-content">
         <img ng-src="{{product.getImageThumbnail()}}" />
-        <div class="xb-main-discover__image-button">
-          <md-icon >play_arrow</md-icon>
+        <div class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
         </div>
       </div>
       <div class="xb-main-discover__information-content" layout="column" layout-align="space-between stretch">
