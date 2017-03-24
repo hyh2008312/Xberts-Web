@@ -47,8 +47,8 @@
   </div>
 </div>
 <div class="xb-main-col" layout="column" hide-md hide-gt-md layout-align="start start">
-  <div class="xb-main-col__container xb-main-col__margin-bottom" layout-fill ng-repeat="trial in trials"
-       ui-sref="application.testingcampaign({ reviewId:trial.id })" >
+  <div class="xb-main-col__container xb-main-col__margin-bottom" ng-repeat="trial in trials"
+       ui-sref="application.testingcampaign({ reviewId:trial.id })"  flex>
     <span class="xb-main-col__value">
       <span ng-if="!trial.isFlashsale()">Free</span>
       <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>

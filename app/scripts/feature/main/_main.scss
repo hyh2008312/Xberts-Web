@@ -166,6 +166,7 @@
   &__margin-bottom{
     margin-bottom: 16px;
     @include xs-screen{
+      width: 100%;
       margin-bottom: 8px;
     }
   }
@@ -358,9 +359,9 @@
     }
   }
   &__information-content{
-    padding: 16px;
+    padding: 10px 16px;
     .xcard__title{
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       height: auto;
       max-height: 50px;
       @include ellipsisText();
@@ -368,6 +369,9 @@
         height: 50px;
         margin-bottom: auto;
       }
+    }
+    .xcard__description{
+      margin-bottom: 15px;
     }
     .report-category, .xcard__description, .report-publisher{
       color: rgba(0, 0, 0, .54);
