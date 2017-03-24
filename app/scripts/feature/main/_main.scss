@@ -291,9 +291,10 @@
     width: 160px;
     cursor: pointer;
     position: relative;
+    min-height: 90px;
+    border: 1px solid rgba(0,0,0,.12);
     img{
       width: 100%;
-      border: 1px solid rgba(0,0,0,.12);
     }
   }
   &__image-button{
@@ -315,7 +316,7 @@
     }
   }
   &__information-content{
-    padding: 0 0 16px 16px;
+    padding: 0 0 8px 16px;
     max-width: 444px - 160px;
     .xcard__title{
       margin-bottom: 16px;
