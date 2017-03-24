@@ -30,6 +30,5 @@ angular
     'config',
     'mgcrea.ngStrap',
     'ngMaterial',
-    'ngUrlParser',
-    'angular-carousel'
+    'ngUrlParser'
   ]);
