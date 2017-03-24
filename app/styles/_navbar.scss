@@ -24,7 +24,7 @@
     > .active{
       > a{
         color: rgba(255,255,255,1);
-        &:focus{
+        &:focus,&:hover{
           color: rgba(255,255,255,1);
         }
         @include xs-screen{
@@ -132,6 +132,56 @@
       }
       padding-left: 20px;
       padding-right: 20px;
+    }
+  }
+}
+.nav-main-opacity {
+  @include sm-screen{
+    .navbar{
+      background-color: rgba(0,0,0,.38);
+      @include box-shadow(none);
+    }
+    .nav.navbar-nav{
+      >li{
+        >a{
+          &:hover{
+            color: #FFF;
+          }
+          color: rgba(255,255,255,.7);
+          @include xs-screen{
+            &:hover{
+              color: #222;
+            }
+            color: #222;
+          }
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    }
+  }
+  @include md-screen{
+    .navbar{
+      background-color: rgba(0,0,0,.38);
+      @include box-shadow(none);
+    }
+    .nav.navbar-nav{
+      >li{
+        >a{
+          &:hover{
+            color: #FFF;
+          }
+          color: rgba(255,255,255,.7);
+          @include xs-screen{
+            &:hover{
+              color: #222;
+            }
+            color: #222;
+          }
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
     }
   }
 }

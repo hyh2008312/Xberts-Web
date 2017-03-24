@@ -1,13 +1,23 @@
 <ul rn-carousel class="xb-top-banner" rn-carousel-index="active" rn-carousel-pause-on-hover rn-carousel-auto-slide="4"
     rn-carousel-duration="600" >
-  <li ng-repeat="slide in slides track by slide.id" >
-    <div hide-sm hide-xs class="xb-top-banner__container" layout="column" layout-align="start center" layout-fill
-         style="background-image:url({{slide.image}} );">
-      <md-button class="md-accent md-raised" target="_blank" >Learn More</md-button>
+  <li ng-repeat="slide in slides" >
+    <div hide-xs hide-sm class="xb-top-banner__container" layout="column" layout-align="start center" layout-fill
+         style="background-image:url({{slide.imagePcUrl}} );">
+      <div class="container">
+        <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}">
+          <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
+          <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
+          <a ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+        </div>
+      </div>
     </div>
     <div hide-gt-sm class="xb-top-banner__container" layout="column" layout-align="start center" resize-carousel ratio="480/270"
-         parents="xb-top-banner" element-height="600" style="background-image:url({{slide.smallImage}} );">
-      <md-button class="md-accent md-raised" target="_blank" >Learn More</md-button>
+         parents="xb-top-banner" element-height="670" style="background-image:url({{slide.imageMobileUrl}} );" >
+      <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}" layout="column" layout-align="end start">
+        <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
+        <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
+        <a ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+      </div>
     </div>
   </li>
 </ul>

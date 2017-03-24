@@ -7,7 +7,10 @@ angular.module('xbertsApp')
         controller: 'MainPageCtrl as mainCtrl',
         reloadOnSearch: false,
         resolve: {
-          discoverProductsPagination: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
+          topBanner:['MainService',function(MainService) {
+            return MainService.getBannerList();
+          }],
+          discoverProducts: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
             var par = {
               name: 'share_product_list',
               objClass: ShareProduct,
@@ -19,7 +22,7 @@ angular.module('xbertsApp')
             };
             return new Paginator(par).load();
           }],
-          trialsPagination: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
+          trials: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
               name: 'progressingReview',
               objClass:MainModel,
@@ -31,18 +34,18 @@ angular.module('xbertsApp')
             };
             return new Paginator(par).load();
           }],
-          reviewsPagination: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
+          reviews: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
               name: 'all_report_list',
               objClass:MainModel,
               params: {
-                page_size: 12
+                page_size: 6
               },
               fetchFunction: MainService.getReviewsList
             };
             return new Paginator(par).load();
           }],
-          topReviewersPagination: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
+          topReviewers: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
               name: 'callingReview',
               objClass:MainModel,

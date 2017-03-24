@@ -45,13 +45,12 @@
   <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-class="pageSettings._backgroundColor">
+<body ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main']" data-page="{{$state.current}}" >
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
 <backdrop></backdrop>
 <div growl></div>
 <!--[if lte IE 8]>
@@ -67,7 +66,7 @@
 <footer class="footer">
   <div class="container footer__block-wrap">
     <div class="footer__logo-wrap">
-      <img src="https://xberts.imgix.net/static/logo/xberts_gray.png?s=3a37df7592ec9621e3fee5825afab4b2"
+      <img src="https://xberts.imgix.net/static/logo/logo-grey.png?s=d837ef3e5eea78dbcb2279f302f63f5a"
            class="footer__logo"/>
     </div>
     <div class="footer__text-wrap">
@@ -90,20 +89,23 @@
     <ul class="list-inline">
       <li>
         <a href="https://www.linkedin.com/company/xberts">
-          <img src="https://xberts.imgix.net/static/logo/linkedin_logo.png?s=e49cb618c972eba7d64530c2a4a4f691"
-               width="25" height="25" alt="linkedin">
+          <i class="fa fa-linkedin"></i>
+          <!--<img src="https://xberts.imgix.net/static/logo/linkedin_logo.png?s=e49cb618c972eba7d64530c2a4a4f691"
+               width="25" height="25" alt="linkedin">-->
         </a>
       </li>
       <li>
         <a href="https://twitter.com/HardwareXberts">
-          <img src="https://xberts.imgix.net/static/logo/twitter_logo.png?s=40a2ce3bf67ee4ee92c51c1edccb16f6" width="25"
-               height="25" alt="twitter">
+          <i class="fa fa-twitter"></i>
+          <!--<img src="https://xberts.imgix.net/static/logo/twitter_logo.png?s=40a2ce3bf67ee4ee92c51c1edccb16f6" width="25"
+               height="25" alt="twitter">-->
         </a>
       </li>
       <li>
         <a href="https://www.facebook.com/globalXberts">
-          <img src="https://xberts.imgix.net/static/logo/facebook_logo.png?s=9dd230b2233b6601b06184c9dd9f9ee6"
-               width="25" height="25" alt="facebook">
+          <i class="fa fa-facebook"></i>
+          <!--<img src="https://xberts.imgix.net/static/logo/facebook_logo.png?s=9dd230b2233b6601b06184c9dd9f9ee6"
+               width="25" height="25" alt="facebook">-->
         </a>
       </li>
     </ul>
