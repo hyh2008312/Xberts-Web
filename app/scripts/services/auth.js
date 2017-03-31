@@ -315,9 +315,7 @@ angular.module('xbertsApp')
 
         var token = OAuthToken.getAccessToken();
         OAuthToken.removeToken();
-
-        localStorageService.clearAll();
-
+        
         Idle.unwatch();
 
         // Clear user id from GTM upon logout
