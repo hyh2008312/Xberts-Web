@@ -118,7 +118,6 @@ angular.module('xbertsApp')
       function setUser(user) {
         $rootScope.user = new User(user.id, user.firstName, user.lastName, user.email, user.isStaff, user.avatar,
           user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true, user.inviteToken);
-          localStorageService.clearAll();
       }
 
       function login(credentials) {
