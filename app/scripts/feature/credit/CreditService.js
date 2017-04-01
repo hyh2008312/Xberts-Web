@@ -19,10 +19,10 @@ angular.module('xbertsApp')
     this.topBanner = [{
       buttonColor: "button-white",
       buttonUrl : null,
-      imageMobileUrl : "https://xberts.imgix.net/static/banner/b3d5c1ae-7e01-4d13-88ec-16dce191f0f8.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=2e8626dad9b562accb71ef22c03b7ff5",
-      imagePcUrl : "https://xberts.imgix.net/static/banner/f30a9f3d-2a98-4209-839a-93dd7089d555.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=6673106fd443ea0ece006607731887e6",
+      imageMobileUrl : "https://xberts.imgix.net/static/banner/c0a6e6a7-f07f-43f7-84f2-c3c3415d2c40.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a0c382f6c575cf96efaae2bc321d05db",
+      imagePcUrl : "https://xberts.imgix.net/static/banner/021f95d5-6750-49d3-a723-075ad26a2fa1.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=84d35d6768fabfc4eacf4fdc5740d2a7",
       subtitle : "Earn Points to Win Free Badges & Gifts",
-      title : "Perks of Xberts <br>Tech Insider"
+      title : "Xberts Tech Insider <br>Reward Program"
     }];
 
   }]);
