@@ -20,6 +20,11 @@
         <span class="xb-login-container__line background-bg-gray"></span>
         <div flex="none">
           <form name="signupForm" novalidate ng-submit="signup()" clear-form-error>
+            <div class="form-group has-error">
+              <div class="help-block" ng-messages="loginError">
+                <p ng-messages-include="views/text/login_error.html"></p>
+              </div>
+            </div>
             <div layout="row">
               <md-input-container class="xb-login-container__input" md-no-float>
                 <input required type="text" name="firstName" placeholder="First name" ng-model="firstName"/>

@@ -3,7 +3,18 @@
     <div layout="row" layout-align="end center">
       <md-icon class="xb-login-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
     </div>
-    <form name="loginForm" novalidate ng-submit="signup()" clear-form-error>
+    <form name="signupForm" novalidate ng-submit="signup()" clear-form-error>
+      <div class="form-group has-error">
+        <div class="help-block" ng-messages="loginError">
+          <p ng-messages-include="views/text/login_error.html"></p>
+        </div>
+      </div>
+      <div class="form-group has-error">
+        <div class="help-block" ng-show="signupForm.$submitted" ng-messages="signupForm.serverError">
+          <div ng-message="userExist">An account already exists with that email.</div>
+          <div ng-messages-include="views/text/form_error.html"></div>
+        </div>
+      </div>
       <div layout="row">
         <md-input-container class="xb-login-container__input">
           <input required type="text" name="firstName" placeholder="First name" ng-model="firstName" md-auto-focus/>
@@ -19,7 +30,7 @@
         </md-input-container>
       </div>
       <md-input-container class="md-block">
-        <input required ng-model="username" type="email" name="email" placeholder="Email Address"/>
+        <input required ng-model="email" type="email" name="email" placeholder="Email Address"/>
         <div ng-messages="signupForm.email.$error">
           <div ng-message="required">Please enter your email.</div>
           <div ng-message="email">The email you entered is invalid.</div>
