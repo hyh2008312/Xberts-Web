@@ -45,8 +45,8 @@
   <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main']" data-page="{{$state.current}}" >
-
+<body ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main'] + {true:' xb-login-body',false:''}[state.current.name=='application.login'|| state.current.name=='application.signup']"
+      data-page="{{$state.current}}" layout="column">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -58,59 +58,12 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ui-view></div>
+<div ui-view layout="column" flex></div>
+
 
 <!--<first-pop></first-pop>-->
 <!--<back-to-top></back-to-top>-->
 <!--<back-top button-text="Scroll top"></back-top>-->
-<footer class="footer">
-  <div class="container footer__block-wrap">
-    <div class="footer__logo-wrap">
-      <img src="https://xberts.imgix.net/static/logo/e7a36a9b-01ef-4209-974b-e74d0172359a.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=7a68bb13efe07ed5617ff26ff97ce88d"
-           class="footer__logo"/>
-    </div>
-    <div class="footer__text-wrap">
-      <p class="footer__text">©2016 Xberts, Inc. All rights reserved</p>
-    </div>
-    <div class="footer__text-wrap hidden-xs">
-      <p class="footer__text">|</p>
-    </div>
-    <ul class="list-inline">
-      <li><a ui-sref="application.about">About</a></li>
-      <li><a href="https://xberts.wordpress.com/" target="_blank">Blog</a></li>
-      <li><a ui-sref="application.terms">Terms</a></li>
-      <li><a ui-sref="application.privacy">Privacy</a></li>
-    </ul>
-
-    <div class="footer__text-wrap hidden-xs">
-      <p class="footer__text">|</p>
-    </div>
-
-    <ul class="list-inline">
-      <li>
-        <a href="https://www.linkedin.com/company/xberts">
-          <i class="fa fa-linkedin"></i>
-          <!--<img src="https://xberts.imgix.net/static/logo/linkedin_logo.png?s=e49cb618c972eba7d64530c2a4a4f691"
-               width="25" height="25" alt="linkedin">-->
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/HardwareXberts">
-          <i class="fa fa-twitter"></i>
-          <!--<img src="https://xberts.imgix.net/static/logo/twitter_logo.png?s=40a2ce3bf67ee4ee92c51c1edccb16f6" width="25"
-               height="25" alt="twitter">-->
-        </a>
-      </li>
-      <li>
-        <a href="https://www.facebook.com/globalXberts">
-          <i class="fa fa-facebook"></i>
-          <!--<img src="https://xberts.imgix.net/static/logo/facebook_logo.png?s=9dd230b2233b6601b06184c9dd9f9ee6"
-               width="25" height="25" alt="facebook">-->
-        </a>
-      </li>
-    </ul>
-  </div>
-</footer>
 
 <!-- build:js(.) scripts/util.js -->
 <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -346,6 +299,18 @@
 <script src="scripts/feature/main/reviewsList/reviewsList.js"></script>
 <script src="scripts/feature/main/topReviewersList/topReviewersList.js"></script>
 <script src="scripts/feature/main/resizeCarousel/resizeCarousel.js"></script>
+
+<!--credit-->
+<script src="scripts/feature/credit/module.js"></script>
+<script src="scripts/feature/credit/CreditMainCtrl.js"></script>
+<script src="scripts/feature/credit/RedeemDetailCtrl.js"></script>
+<script src="scripts/feature/credit/CreditService.js"></script>
+<script src="scripts/feature/credit/creditRedeem/creditRedeem.js"></script>
+<script src="scripts/feature/credit/navNextSlideToggle/navNextSlideToggle.js"></script>
+<script src="scripts/feature/credit/redeemAtlas/redeemAtlas.js"></script>
+
+<!--footer-->
+<script src="scripts/feature/footer/footer.js"></script>
 
 <!-- endbuild -->
 

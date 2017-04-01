@@ -12,7 +12,7 @@ angular.module('xbertsApp')
             objClass: ShareProduct,
             params: {
               category: ShareProductService.categoryId,
-              page_size: 12
+              page_size: 5
             },
             fetchFunction: ShareProductService.getList
           };

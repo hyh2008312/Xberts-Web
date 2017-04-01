@@ -140,48 +140,6 @@ angular
           }]
         }
       })
-      /*.state('application.main', {
-        url: "/",
-        templateUrl: 'scripts/feature/review/review-main.html',
-        controller: 'ReviewMainCtrl',
-        reloadOnSearch: false,
-        resolve: {
-          reviewerPaginator: ['Paginator', 'ReviewService', function (Paginator, ReviewService) {
-            var par = {
-              name: 'callingReview',
-              params: {
-                stage: 'READY_FOR_SALE',
-                status: 'APPLICATION',
-                page_size: 12
-              },
-              fetchFunction:ReviewService.getRecommendedReviewers
-            };
-            return new Paginator(par).load();
-          }],
-          betaReviewPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
-            var par = {
-              name: 'progressingReview',
-              objClass:Review,
-              params: {
-                page_size: 12,
-                review_type: 'FREE_SAMPLE'
-              },
-              fetchFunction: ReviewService.getList
-            };
-            return new Paginator(par).load();
-          }],
-          recommendedReportsPaginator: ['Paginator', 'ReportService', function (Paginator, ReportService) {
-            var par = {
-              name: 'all_report_list',
-              params: {
-                page_size: 12
-              },
-              fetchFunction: ReportService.getList
-            };
-            return new Paginator(par).load();
-          }]
-        }
-      })*/
 
       .state('application.testingcampaigns', {
         url: "/trials",

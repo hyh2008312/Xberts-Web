@@ -1,7 +1,7 @@
 <div ng-if="isEmpty">
   <h3 class="margin-none">You have no message</h3>
 </div>
-<div class="list" ng-if="!isEmpty" infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0'
+<div class="list" ng-if="!isEmpty" infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
      infinite-scroll-disabled="messagePaginator.loading || !messagePaginator.next">
   <div class="item-avatar-large item-hover"
        ng-repeat="message in messagePaginator.items" ng-init="contact = showSender ? message.sender : message.recipient"

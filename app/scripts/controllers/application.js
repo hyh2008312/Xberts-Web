@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('ApplicationCtrl', ['$scope', '$rootScope', '$state', '$interval', 'AuthService', 'AnalyticsService',
-    function($scope, $rootScope, $state, $interval, AuthService, AnalyticsService) {
+    '$timeout', '$mdSidenav', '$log',
+    function($scope, $rootScope, $state, $interval, AuthService, AnalyticsService, $timeout, $mdSidenav, $log) {
       $scope.userDropdownStatus = {
         isopen: false
       };
@@ -18,6 +19,8 @@ angular.module('xbertsApp')
       };
 
       $scope.logout = function() {
+        $mdSidenav('left').close();
+        $scope.isPopupOpen = false;
         $scope.userDropdownStatus = false;
 
         AnalyticsService.sendPageView('/logout');
@@ -51,5 +54,40 @@ angular.module('xbertsApp')
               loginError.facebookError = true;
             }
           });
+      };
+
+      $scope.toggleLeft = buildDelayedToggler('left');
+
+      function debounce(func, wait, context) {
+        var timer;
+
+        return function debounced() {
+          var context = $scope,
+            args = Array.prototype.slice.call(arguments);
+          $timeout.cancel(timer);
+          timer = $timeout(function() {
+            timer = undefined;
+            func.apply(context, args);
+          }, wait || 10);
+        };
+      }
+
+      function buildDelayedToggler(navID) {
+        return debounce(function() {
+          // Component lookup should always be available since we are not using `ng-if`
+          $mdSidenav(navID).toggle();
+        }, 200);
+      }
+
+      $scope.close = function () {
+        // Component lookup should always be available since we are not using `ng-if`
+        $mdSidenav('left').close();
+
+      };
+
+      $scope.isPopupOpen = false;
+
+      $scope.onPopup = function() {
+        $scope.isPopupOpen = !$scope.isPopupOpen;
       };
     }]);

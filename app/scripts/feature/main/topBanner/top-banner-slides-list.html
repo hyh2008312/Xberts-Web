@@ -7,7 +7,7 @@
         <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}">
           <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
           <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
-          <a ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+          <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
       <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}" layout="column" layout-align="end start">
         <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
         <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
-        <a ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+        <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
       </div>
     </div>
   </li>

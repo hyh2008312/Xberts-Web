@@ -1,0 +1,14 @@
+<div class="xb-credit-redeem" layout="row" layout-align-gt-xs="space-between start" layout-align-xs="start start" layout-wrap>
+  <div class="background-whitem" ng-repeat="redeem in redeems track by $index" flex-sm="45" flex-gt-sm="30" flex-xs="100"
+       layout="column" >
+    <img ng-src="{{redeem.getImageOriginal()}}" ui-sref="application.redeemDetail({redeemId:redeem.id})"/>
+    <div>
+      <a class="md-subhead md-dark-primary" ui-sref="application.redeemDetail({redeemId:redeem.id})">{{redeem.name}}</a>
+      <div class="xb-credit-redeem__badge" layout="row" layout-align="space-between center">
+        <span class="md-body-1"><img src="https://xberts.imgix.net/static/logo/92d052c6-c2ac-4611-81bd-416f0e0bfbc8.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=e322c94c1f6c742fb7ab1bba2a5d58d7" />&nbsp;&nbsp;{{redeem.points}} Points</span>
+        <span class="md-body-1" ng-if="redeem.amount>1">{{redeem.amount}} Units Left</span>
+        <span class="md-body-1" ng-if="redeem.amount==1">{{redeem.amount}} Unit Left</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -49,7 +49,7 @@
         <div class="list">
           <p class="padding" ng-show="applicantPaginator.getCount()<1">No Applicant</p>
 
-          <div infinite-scroll="applicantPaginator.loadNext()" infinite-scroll-distance='0'
+          <div infinite-scroll="applicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="applicantPaginator.loading || !applicantPaginator.next">
             <div class="item-avatar-large item-hover" style="min-height: 150px;"
                ng-repeat="applicant in applicantPaginator.items">

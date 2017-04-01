@@ -1,0 +1,12 @@
+<div class="xb-redeem-atlas" layout="column" layout-align="start">
+  <div class="xb-redeem-atlas__top" flex>
+    <img ng-src="{{atlasNow.imageUrls.original}}" />
+  </div>
+  <div layout="row" layout-align="start start" flex class="xb-redeem-atlas__bottom" ng-if="atlas.length>1" hide-xs>
+    <div ng-repeat="$value in atlas track by $index" flex="15" ng-click="changePicture($index)">
+      <img ng-src="{{$value.imageUrls.thumbnail}}" />
+    </div>
+    </div>
+    </div>
+  </div>
+</div>

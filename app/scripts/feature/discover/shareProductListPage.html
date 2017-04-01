@@ -6,7 +6,7 @@
     </div>
     <div class="row xb-section-body" layout="row" layout-align="start start">
       <div hide-sm hide-xs show-gt-sm class="category" flex="none">
-        <div layout="column" fixed-to-top offset-top="90">
+        <div layout="column" fixed-to-top offset-top="56" del-top="90">
           <discovery-category categories="productCtrl.categories" category-id="productCtrl.categoryId" on-category-change="productCtrl.changeCategory(categoryId);"></discovery-category>
         </div>
       </div>
@@ -14,14 +14,14 @@
         <md-card class="product-order" layout="row" layout-align="start center">
           <md-button>Latest<div class="tab-triangle"></div></md-button>
         </md-card>
-        <div infinite-scroll="productCtrl.productsPaginator.loadNext()" infinite-scroll-distance='0'
+        <div infinite-scroll="productCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
              infinite-scroll-disabled="productCtrl.productsPaginator.loading || !productCtrl.productsPaginator.next">
           <share-product-list products="productCtrl.productsPaginator.items"></share-product-list>
           <load-more class="row spin-large" ng-if="productCtrl.productsPaginator.loading"></load-more>
         </div>
       </div>
       <div flex="none" hide-sm hide-xs class="post-form">
-        <div layout="column" fixed-to-top offset-top="90">
+        <div layout="column" fixed-to-top offset-top="56" del-top="90">
           <share-product-post on-product-post="productCtrl.changeCategory(categoryId);"></share-product-post>
         </div>
       </div>

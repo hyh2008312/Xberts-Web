@@ -40,7 +40,7 @@
       <md-tab label="My Trials" md-on-select="loadMyTrials()">
         <div class="md-padding">
           <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()"
-               infinite-scroll-distance='0'
+               infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
             <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="applicant in reviewApplicantPaginator.items">
               <div class="xb-card">
@@ -185,7 +185,7 @@
 
       <md-tab label="My Posts" md-on-select="loadMyPosts()">
         <div>
-          <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0'
+          <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
             <my-post-list class="xb-my-posts" posts="postsProductPaginator.items"></my-post-list>
           </div>
@@ -195,7 +195,7 @@
 
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
         <div class="md-padding">
-          <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0'
+          <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
             <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
               <div class="xb-card">
