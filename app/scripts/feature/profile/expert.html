@@ -6,9 +6,9 @@
         <p class="label label-primary" ng-if="isExpert">Verified Expert</p>
       </div>
       <div class="col-sm-8">
-        <div class="section-title">
+        <div class="section-title xb-name-title">
 
-          <h2 ng-bind="expert.short_name"></h2>
+          <h2> {{expert.short_name}}<span class="md-subhead">{{expert.points}} Points</span></h2>
 
           <p><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
 

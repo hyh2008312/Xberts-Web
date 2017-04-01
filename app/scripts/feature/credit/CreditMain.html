@@ -4,7 +4,7 @@
     <div layout="row" layout-align-gt-sm="start start" layout-align-sm="space-around start" layout-wrap>
       <div layout="column" layout-align="start start">
         <span class="xb-credit-container__title">Xberts Tech Insider</span>
-        <div class="xb-credit-container__subtitle md-headline">Inside's points comparison</div>
+        <div class="xb-credit-container__subtitle md-headline">Insider's points comparison</div>
         <div class="xb-credit-container__img-content" layout="row" layout-align="start stretch">
           <div class="xb-column-bg" layout="column" layout-align="end center" >
             <div class="xb-credit-container__img-bg-150">
@@ -50,7 +50,7 @@
           <img ng-src="{{creditCtrl.badges[0]}}"/>
           <div class="md-subhead">Tech Enthusiast</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
-            <span>Privilege to claim 1 free sample</span>
+            <span ng-if="false">Privilege to claim 1 free sample</span>
             <span>Xberts newsletter on latest trials</span>
             <span>An apple badge in your profile</span>
           </div>
@@ -59,7 +59,7 @@
           <img ng-src="{{creditCtrl.badges[1]}}"/>
           <div class="md-subhead">Tech Influencer</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
-            <span>Privilege to claim 2 free sample</span>
+            <span ng-if="false">Privilege to claim 2 free sample</span>
             <span>Early preview of tech gadgets before they release</span>
             <span>A star badge behind your profile picture</span>
           </div>
@@ -68,7 +68,7 @@
           <img ng-src="{{creditCtrl.badges[2]}}"/>
           <div class="md-subhead">Tech Geek</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
-            <span>Privilege to claim 3 free sample</span>
+            <span ng-if="false">Privilege to claim 3 free sample</span>
             <span>A trophy badge showing your status on Xberts</span>
             <span>2-3 members may be eligible to attend CES 2017</span>
           </div>
@@ -145,10 +145,10 @@
           <div class="xb-credit-container__faq-bottom">
             <div class="md-subhead">Is Xberts Legitimate?</div>
             <div>
-              Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free/discounted samples in order to collect authentic feedbacks for both manufacturers and customers, so the customers can make wise purchasing choices.
+              Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic feedbacks for both manufacturers and customers, so our users can make wise purchasing choices.
             </div>
           </div>
-          <div class="xb-credit-container__faq-bottom">
+          <div class="xb-credit-container__faq-bottom" ng-if="false">
             <div class="md-subhead">Can I lose my badge?</div>
             <div>
               It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
@@ -157,28 +157,27 @@
           <div>
             <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
             <div>
-              The maximum points you can win each day is 200 points.
+              The maximum points you can get each day is 100 points.
             </div>
           </div>
         </div>
         <div>
-          <div class="xb-credit-container__faq-bottom">
+          <div class="xb-credit-container__faq-bottom" ng-if="false">
             <div class="md-subhead">Am I guaranteed to claim free samples?</div>
             <div>
               Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
             </div>
           </div>
           <div class="xb-credit-container__faq-bottom">
-            <div class="md-subhead">Do the free gifts?</div>
+            <div class="md-subhead">Will these gifts be changed?</div>
             <div>
-              We will update new free gifts every month, so you can have more options on what to redeem!
+              We will update the free gifts every month, so you can have more options on what to redeem!
             </div>
           </div>
           <div>
             <div class="md-subhead">What kind of product suggestion/review will be featured?</div>
             <div>
-              We do prefer creative contents and self-made videos, and as long as you take your time to write a quality product suggestion/review. We'd love to reward you with more bonus points!
-            </div>
+              We do prefer creative contents and self-made videos. As long as you take your time to write a quality product suggestion/review, we'd love to reward you with more bonus points!</div>
           </div>
         </div>
         <div flex>
@@ -195,7 +194,7 @@
              parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="0" toggle="creditCtrl.isOpen[0]">keyboard_arrow_down</md-icon>
   </div>
   <div class="container xb-credit-mobile__tech">
-    <div class="xb-credit-mobile__title md-headline">Xberts Tech Insider</div>
+    <div class="xb-credit-mobile__title md-headline">Insider's points comparison</div>
     <div layout="row" layout-align="start start">
       <img ng-src="{{creditCtrl.badges[0]}}"/>
       <div class="xb-credit-mobile__tech-bottom">
@@ -229,7 +228,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary" >
           <div class="md-subhead">Tech Enthusiast</div>
-          <div>1 Privilege to claim 1 free sample</div>
+          <div ng-if="false">1 Privilege to claim 1 free sample</div>
           <div>2 Xberts newsletter on latest trials</div>
           <div>3 An apple badge in your profile</div>
         </div>
@@ -240,7 +239,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary">
           <div class="md-subhead">Tech Influencer</div>
-          <div>1 Privilege to claim 2 free sample</div>
+          <div ng-if="false">1 Privilege to claim 2 free sample</div>
           <div>2 Early preview of tech gadgets before they release</div>
           <div>3 A star badge behind your profile picture</div>
         </div>
@@ -251,7 +250,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary">
           <div class="md-subhead">Tech Geek</div>
-          <div>1 Privilege to claim 3 free sample</div>
+          <div ng-if="false">1 Privilege to claim 3 free sample</div>
           <div>2 A trophy badge showing your status on Xberts</div>
           <div>3 2-3 members may be eligible to attend CES 2017</div>
         </div>
@@ -321,10 +320,10 @@
     <div>
       <div class="md-subhead">Is Xberts Legitimate?</div>
       <div>
-        Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free/discounted samples in order to collect authentic feedbacks for both manufacturers and customers, so the customers can make wise purchasing choices.
+        Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic feedbacks for both manufacturers and customers. That way, the manufactures can make improvements on their product and our users can make wise purchasing choices.
       </div>
     </div>
-    <div>
+    <div ng-if="false">
       <div class="md-subhead">Can I lose my badge?</div>
       <div>
         It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
@@ -333,25 +332,25 @@
     <div>
       <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
       <div>
-        The maximum points you can win each day is 200 points.
+        The maximum points you can get each day is 100 points.
       </div>
     </div>
-    <div>
+    <div ng-if="false">
       <div class="md-subhead">Am I guaranteed to claim free samples?</div>
       <div>
         Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
       </div>
     </div>
     <div>
-      <div class="md-subhead">Do the free gifts?</div>
+      <div class="md-subhead">Will these gifts be changed?</div>
       <div>
-        We will update new free gifts every month, so you can have more options on what to redeem!
+        We will update the free gifts every month, so you can have more options on what to redeem!
       </div>
     </div>
     <div>
       <div class="md-subhead">What kind of product suggestion/review will be featured?</div>
       <div>
-        We do prefer creative contents and self-made videos, and as long as you take your time to write a quality product suggestion/review. We'd love to reward you with more bonus points!
+        We do prefer creative contents and self-made videos. As long as you take your time to write a quality product suggestion/review, we'd love to reward you with more bonus points!
       </div>
     </div>
   </div>
