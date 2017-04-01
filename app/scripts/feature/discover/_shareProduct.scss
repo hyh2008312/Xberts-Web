@@ -42,8 +42,8 @@ $PrimaryINDIGO: #3f51b5;
 }
 .xb-mobile-row{
   @include xs-screen{
-    margin-left: -10%;
-    margin-right: -10%;
+    margin-left: -10px;
+    margin-right: -10px;
   }
 }
 .category{
