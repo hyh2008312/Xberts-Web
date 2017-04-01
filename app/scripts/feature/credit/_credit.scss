@@ -1,0 +1,331 @@
+@mixin resetInnerBox{
+  @include box-shadow(0 0 3px rgba(0, 0, 0, 0.12) inset);
+}
+.xb-credit-container{
+  padding: 64px 0;
+  &__title{
+    font-size: 54px;
+    line-height: 54px;
+    padding-bottom: 16px;
+    color: rgba(0,0,0,.87);
+    border-bottom: 4px solid #000;
+  }
+  &__title-1{
+    margin-top: 32px;
+    margin-bottom: 48px;
+  }
+  &__subtitle{
+    margin-top: 16px;
+  }
+  &__content{
+    margin-left: 100px;
+    img{
+      margin-right: 8px;
+    }
+    &-bg{
+      margin-bottom: 48px;
+      >.md-subhead{
+        width: 117px;
+        min-width: 100px;
+        margin-right: 54px;
+      }
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+  &__img-content{
+    margin-top: 24px;
+    width: 100%;
+  }
+  .xb-column-bg{
+    width: 146px;
+  }
+  $marginTops: (1 150) (2 45);
+  @each $marginTop in $marginTops {
+    &__img-bg-#{nth($marginTop, 1)} {
+      margin-top: nth($marginTop, 2) + px;
+    }
+  }
+  $heights: (150 rgba(0,0,0,.38)) (255 rgba(0,0,0,.54)) (300 rgba(0,0,0,.87));
+  @each $height in $heights {
+    &__img-bg-#{nth($height, 1)} {
+      height: nth($height, 1) + px;
+      width: 108px;
+      background-color: nth($height, 2);
+      color: #FFF;
+      text-align: center;
+      padding-top: 16px;
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+  &__badge-bg{
+    margin-top: 16px;
+    >span{
+      font-size: 16px;
+      margin-left: 5px;
+      color: rgba(0,0,0,.87);
+    }
+  }
+  &__faq{
+    >div{
+      width: 368px;
+      margin-right: 40px;
+      margin-top: 40px;
+      &:last-child{
+        margin: 0;
+        width: 478px;
+        >img{
+          width: 100%;
+        }
+      }
+      .md-subhead{
+        margin-bottom: 16px;
+      }
+    }
+    &-bottom{
+      margin-bottom: 40px;
+    }
+  }
+}
+.xb-credit-color-bg{
+  background: linear-gradient(90deg, #3f52b4 0, #3f52b4 50%, white 50%, white 100%);
+  &__title{
+    margin-top: 160px;
+    font-size: 56px;
+    line-height: 72px;
+    color: #fff;
+    border-bottom: 4px solid #fff;
+  }
+  &__subtitle{
+    margin-top: 60px;
+    color: #fff;
+  }
+  .md-button{
+    margin: 16px 0 0;
+    color: #3f52b4;
+  }
+  &__content{
+    padding: 96px 0;
+    >div{
+      margin-left: 40px;
+      margin-bottom: 32px;
+      >span{
+        min-width: 51px;
+        margin-right: 40px;
+      }
+      >a{
+        @include media();
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.xb-credit-redeem{
+  margin-top: 48px;
+  >div{
+    margin-bottom: 24px;
+    @include resetBorder();
+    -webkit-flex: 1 1 318px !important;
+    flex: 1 1 318px !important;
+    @media screen and (min-width:960px){
+      max-width: 32% !important;
+    }
+    @media screen and (max-width:959px) and (min-width:600px){
+      max-width: 48% !important;
+    }
+    >img{
+      width: 100%;
+      cursor: pointer;
+    }
+    >div{
+      padding: 16px;
+      .md-subhead{
+        &:hover{
+          color: rgba(0,0,0,.87);
+        }
+      }
+    }
+  }
+  &__badge{
+    margin-top: 16px;
+    img{
+      margin-top: -5px;
+    }
+  }
+  .md-subhead{
+    height: 48px;
+    overflow: hidden;
+    display: block;
+  }
+}
+.xb-credit-mobile{
+  .container{
+    display: none;
+  }
+  .active{
+    md-icon{
+      @include transform(rotate(180deg));
+    }
+  }
+  .hover{
+    background-color: rgba(0,0,0,.12);
+  }
+  &__nav{
+    width: 100%;
+    padding: 0 16px;
+    height: 64px;
+    background-color: #FFF;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    >md-icon{
+      font-size: 30px;
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+    }
+  }
+  &__title{
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+  &__tech{
+    @include resetInnerBox();
+    img{
+      margin-right: 8px;
+    }
+    .md-subhead{
+      margin-bottom: 16px;
+    }
+    &-bottom{
+      margin-bottom: 24px;
+    }
+  }
+  $widths: (1 100) (2 150) (3 200);
+  @each $width in $widths {
+    &__line-#{nth($width, 1)} {
+      height: 4px;
+      width: nth($width, 2) + px;
+      background-color: #3f51b5;
+      display: block;
+      margin-right: 16px;
+    }
+  }
+  &__content{
+    @include resetInnerBox();
+    padding-top: 32px;
+    .md-button{
+      margin: 8px 0 24px;
+    }
+    .xb-credit-color-bg__content{
+      padding: 0;
+      >div{
+        margin-left: 0;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  &__content-1{
+    @include resetInnerBox();
+  }
+  &__fq{
+    @include resetInnerBox();
+    padding-top: 32px;
+    >div{
+      margin-bottom: 32px;
+      .md-subhead{
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .xb-credit-redeem{
+    margin-top: 16px;
+    >div{
+      margin-bottom: 16px;
+    }
+  }
+}
+.xb-redeem-detail{
+  &__title{
+    margin: 60px 0 40px;
+    text-align: center;
+    @media screen and (max-width: 599px) {
+      text-align: left;
+      margin: 24px 0;
+    }
+  }
+  &__content{
+    margin-left: 56px;
+    @media screen and (max-width: 959px) {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    &-line{
+      width: 384px;
+      height: 4px;
+      background-color: rgba(0,0,0,.12);
+      margin-bottom: 16px;
+      display: block;
+      @include xs-screen{
+        width: 100%;
+      }
+    }
+    &-bottom{
+      margin-bottom: 16px;
+    }
+    .md-dark-secondary{
+      width: 100px;
+      margin-right: 16px;
+    }
+    .md-subhead{
+      margin: 24px 0 8px;
+    }
+  }
+  .md-raised{
+    margin: 24px 0 0;
+    @media screen and (max-width: 599px) {
+      margin: 0;
+    }
+  }
+  &__button{
+    color: #3f51b5;
+  }
+  &__bottom{
+    margin-bottom: 24px;
+  }
+  &__toast{
+    height: 166px;
+    .md-toast-content{
+      margin: 0 10px;
+      padding: 16px 16px 0 16px;
+      .md-toast-text{
+        padding: 0;
+      }
+    }
+  }
+}
+.xb-redeem-atlas{
+  &__top{
+    margin-bottom: 8px;
+    @media screen and (max-width: 599px) {
+      margin-bottom: 0;
+      img{
+        width: 100%;
+      }
+    }
+  }
+  &__bottom{
+    >div{
+      margin-right: 8px;
+      >img{
+        width: 100%;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}

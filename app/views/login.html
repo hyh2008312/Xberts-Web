@@ -1,59 +1,61 @@
-<div class="container">
-  <div class="row">
-    <div class="login-container">
-      <h3 class="text-center margin-top-none">Sign In</h3>
-
-      <div class="form-group has-error">
-        <div class="help-block" ng-messages="loginError">
-          <p ng-messages-include="views/text/login_error.html"></p>
+<section>
+  <div class="container">
+    <div layout="column" layout-align="start center">
+      <img class="xb-login-image" src="https://xberts.imgix.net/static/logo/6fa3a41f-d3ec-44e3-a127-24ce36387c1e.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=182b1f8aff51833ec146c4be2770a5ac" width="240" height="64" alt="xberts">
+      <div class="xb-login-title md-body-1 md-dark-secondary">We bring you the best products that have been tested by trusted experts</div>
+      <div class="xb-login-container background-whitem" layout="row" layout-align="start center" hide-xs>
+        <div class="xb-login-container__button-bg">
+          <div>
+            <a type="button" href="#" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+            <i class="fa fa-facebook"></i>
+            <span>Continue with Facebook</span>
+            </a>
+          </div>
+          <a type="button" href="#" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+          <i class="fa fa-linkedin"></i>
+          <span>Continue with LinkedIn</span>
+          </a>
+        </div>
+        <span class="xb-login-container__line background-bg-gray"></span>
+        <div>
+          <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
+            <md-input-container class="md-block" md-no-float>
+              <input required ng-model="username" type="email" name="email" placeholder="Email Address"/>
+              <div ng-messages="loginForm.email.$error">
+                <div ng-message="required">Please enter your email.</div>
+                <div ng-message="email">The email you entered is invalid.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block" md-no-float>
+              <input required ng-model="password" type="password" name="password" placeholder="Password"/>
+              <div ng-messages="loginForm.password.$error">
+                <div ng-message="required">Please enter your password.</div>
+              </div>
+            </md-input-container>
+            <p class="md-caption md-dark-secondary" ui-sref="application.resetPassword.request">Forget password?</p>
+            <md-button class="xb-login-container__button md-primary md-raised" type="submit">Log in</md-button>
+          </form>
+          <p><span class="md-caption md-dark-secondary">Don't have an account?</span>&nbsp;&nbsp;<a ui-sref="application.signup">Sign up</a></p>
         </div>
       </div>
-
-      <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
-        <div class="form-group has-error">
-          <div class="help-block" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
-            <p ng-message="invalidCredentials">The email or password you entered is incorrect.</p>
-            <p ng-messages-include="views/text/form_error.html"></p>
+      <div class="xb-login-mobile-container" hide-gt-xs>
+        <div class="xb-login-container__button-bg">
+          <div>
+            <a type="button" href="#" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+              <i class="fa fa-facebook"></i>
+              <span>Continue with Facebook</span>
+            </a>
           </div>
+          <a type="button" href="#" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+            <i class="fa fa-linkedin"></i>
+            <span>Continue with LinkedIn</span>
+          </a>
         </div>
+        <div class="xb-login-mobile-container__text-button" layout="row" layout-align="center center">
+          <div ng-click="showLogin();">Log in with Email</div>
 
-        <div class="form-group" ng-class="{'has-error': errorCheck(loginForm, 'email')}">
-          <div class="help-block" ng-show="errorCheck(loginForm, 'email')"
-               ng-messages="loginForm.email.$error">
-            <p ng-message="required">Please enter your email.</p>
-            <p ng-message="email">The email you entered is invalid.</p>
-          </div>
-          <input type="email" id="id_email" name="email" placeholder="Email" class="form-control input-lg"
-                 ng-model="username" required ng-model-options="{ updateOn: 'blur' }">
         </div>
-
-        <div class="form-group" ng-class="{'has-error': errorCheck(loginForm, 'password')}">
-          <div class="help-block" ng-show="errorCheck(loginForm, 'password')"
-               ng-messages="loginForm.password.$error">
-            <p ng-message="required">Please enter your password.</p>
-          </div>
-          <input type="password" id="id_password" name="password" placeholder="Password" class="form-control input-lg"
-                 ng-model="password" required ng-model-options="{ updateOn: 'blur' }">
-        </div>
-
-        <p><a ui-sref="application.resetPassword.request">Forgot your password?</a></p>
-
-        <input type="submit" value="Sign In" class="btn btn-primary btn-lg btn-block">
-      </form>
-
-      <h5 class="header-divider"><span>Or</span></h5>
-
-      <a type="button" href="#" class="btn btn-primary btn-lg btn-block facebook-btn" ng-click="facebookLogin(loginError)">
-        <i class="fa fa-facebook"></i>
-        <span class="linkedin-btn-title">Continue with Facebook</span>
-      </a>
-
-      <a type="button" href="#" class="btn btn-primary btn-lg btn-block linkedin-btn" ng-click="linkedinLogin()">
-        <i class="fa fa-linkedin"></i>
-        <span class="linkedin-btn-title">Continue with LinkedIn</span>
-      </a>
-
-      <p>Don't have an account?&nbsp;&nbsp;<a ui-sref="application.signup">Sign up now.</a></p>
+      </div>
     </div>
   </div>
-</div>
+</section>

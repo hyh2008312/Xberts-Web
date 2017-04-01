@@ -1,27 +1,24 @@
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  line-height: 20px;
-  /* Set the fixed height of the footer here */
-  background-color: #FFF;
-  &__block-wrap{
-    > * {
-      display: inline-block;
-      margin-bottom: 0;
-      @include xs-screen{
-        display: block;
-        margin-bottom: 10px;
-        text-align: center;
-      }
+  .container{
+    height: 56px;
+    @media screen and (min-width: 600px) and (max-width: 750px){
+      height: 92px;
+    }
+    @media screen and (max-width: 600px) {
+      height: 148px;
     }
   }
+  nav{
+    background-color: #FFF;
+  }
+
+  /* Set the fixed height of the footer here */
+  background-color: #FFF;
   &__text-wrap{
-    padding: 30px 10px;
+    padding: 0 10px;
     color: #999999;
-    @include xs-screen{
-      padding: 0;
-    }
+
   }
   &__text{
     margin-bottom: 0;
@@ -31,15 +28,14 @@
     img{
       width: 120px;
       height: 30px;
-      vertical-align: bottom;
-      @include xs-screen{
-        margin-top: 10px;
-      }
     }
   }
   .list-inline{
     color: #999999;
-    li{
+    @media screen and (min-width: 600px) and (max-width: 750px) {
+      padding: 10px 0;
+    }
+    span{
       margin-left: 10px;
       i{
         width: 24px;
@@ -56,34 +52,4 @@
       }
     }
   }
-  /* box-shadow: 0 0 3px #888; */
 }
-
-//footer {
-//  position: absolute;
-//  bottom: 0;
-//  width: 100%;
-//  height: $xb-footer-height;
-//  background-color: $primaryFontColor;
-//  color: $grayLightColor;
-//
-//  @media screen and (max-width: $screen-sm-min) {
-//    height: $xb-footer-height-screen-sm;
-//  }
-//
-//  > .container {
-//    padding-top: 50px;
-//
-//    :first-child {
-//      span, a {
-//        margin-left: 20px;
-//      }
-//    }
-//
-//    .pull-right {
-//      a {
-//        color: transparent;
-//      }
-//    }
-//  }
-//}

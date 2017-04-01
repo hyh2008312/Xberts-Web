@@ -1,0 +1,25 @@
+<md-dialog class="xb-login-dialog">
+  <div class="xb-login-dialog__inner-container background-whitem">
+    <div layout="row" layout-align="end center">
+      <md-icon class="xb-login-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
+    </div>
+    <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
+      <md-input-container class="md-block">
+        <input required ng-model="username" type="email" name="email" placeholder="Email Address" md-auto-focus/>
+        <div ng-messages="loginForm.email.$error">
+          <div ng-message="required">Please enter your email.</div>
+          <div ng-message="email">The email you entered is invalid.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block xb-login-dialog__reset-bottom">
+        <input required ng-model="password" type="password" name="password" placeholder="Password"/>
+        <div ng-messages="loginForm.password.$error">
+          <div ng-message="required">Please enter your password.</div>
+        </div>
+      </md-input-container>
+      <p class="md-caption md-dark-secondary" ui-sref="application.resetPassword.request" ng-click="cancel()">Forget password?</p>
+      <md-button class="xb-login-dialog__button md-primary md-raised" type="submit" flex="none">Log in</md-button>
+    </form>
+    <p><span class="md-caption md-dark-secondary">Already a Member?</span>&nbsp;&nbsp;<a ui-sref="application.signup">Sign up</a></p>
+  </div>
+</md-dialog>

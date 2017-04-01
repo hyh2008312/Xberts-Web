@@ -19,7 +19,7 @@
     </md-input-container>
   </form>
 
-  <div class="xb2-comment-list" infinite-scroll="feedbackPaginator.loadNext()" infinite-scroll-distance='0'
+  <div class="xb2-comment-list" infinite-scroll="feedbackPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
        infinite-scroll-disabled="feedbackPaginator.loading || !feedbackPaginator.next || hideState">
     <feedback-item ng-repeat="item in feedbackPaginator.items" feedback="item"></feedback-item>
     <load-more class="row spin-large" ng-if="feedbackPaginator.loading"></load-more>

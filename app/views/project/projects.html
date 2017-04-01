@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0'
+  <div class="row section-body" infinite-scroll="projectPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="projectPaginator.loading || !projectPaginator.next">
     <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="project in projectPaginator.items">
       <div class="card card-bordless">

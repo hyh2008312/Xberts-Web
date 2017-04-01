@@ -1,0 +1,57 @@
+<redeem-atlas atlas="redeemCtrl.redeemDetail.imageGroup" hide-gt-xs></redeem-atlas>
+<div class="container xb-redeem-detail">
+  <div class="xb-redeem-detail__title">
+    <h2><span class="md-display-1">{{redeemCtrl.redeemDetail.name}}</span></h2>
+  </div>
+  <div layout-gt-sm="row" layout-align="space-between start">
+    <redeem-atlas atlas="redeemCtrl.redeemDetail.imageGroup" hide-xs></redeem-atlas>
+    <div class="xb-redeem-detail__content" layout="column" layout-align="start">
+      <div flex>
+        <div class="xb-redeem-detail__content-line"></div>
+        <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+          <div class="md-dark-secondary">Points Required</div>
+          <div>{{redeemCtrl.redeemDetail.points}} Points</div>
+        </div>
+        <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+          <div class="md-dark-secondary">Units Left</div>
+          <div>{{redeemCtrl.redeemDetail.amount}}</div>
+        </div>
+        <div class="" layout="row" layout-align="start center" end-time-left end-time="redeemCtrl.redeemDetail.dateEnded" extra-info="'Expired'">
+          <div class="md-dark-secondary">Time Left</div>
+          <div ng-show="timeValue>0">{{ timeUnit }}</div>
+          <div ng-show="timeValue<=0">{{ extraInfo }}</div>
+        </div>
+      </div>
+      <div hide-xs>
+        <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeem($event)">Redeem</md-button>
+      </div>
+      <div class="xb2-page-head__button" flex-order="4" hide-gt-xs>
+        <div layout="row" layout-gt-xs="column" layout-align="center center" layout-align-gt-xs="start start">
+          <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeemMobile($event)">Redeem</md-button>
+        </div>
+      </div>
+      <div>
+        <div class="md-subhead">Instructions</div>
+        <div>
+          1. To redeem this gift, please check your Points Balance to ensure you have enough points <br>
+          2. This gift is currently only available to ship to the US and Canada <br>
+          3. The gift is not returnable unless arrived damage <br>
+          4. The product will be shipped eithin 5 working days once you redeem it
+        </div>
+      </div>
+      <div>
+        <div class="md-subhead">Description</div>
+        <div>
+          {{redeemCtrl.redeemDetail.name}} <br>
+          Retail Price : {{redeemCtrl.redeemDetail.getSharePrice()}}
+        </div>
+        <div class="xb-redeem-detail__bottom" ng-if="redeemCtrl.redeemDetail.description">
+          <span ng-show="redeemCtrl.toggle"> {{redeemCtrl.redeemDetail.description}}</span>
+          <span class="xb-redeem-detail__button" ng-show="!redeemCtrl.toggle" ng-click="redeemCtrl.showDescription()">Show More</span>
+          <span class="xb-redeem-detail__button" ng-show="redeemCtrl.toggle" ng-click="redeemCtrl.showDescription()">Show Less</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

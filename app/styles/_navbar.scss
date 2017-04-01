@@ -1,185 +1,177 @@
-
-.navbar-default .navbar-nav > li > a {
-  font-size: $font-size-large;
-  text-transform: capitalize;
-  font-weight: 400;
-  &.active {
-    &, &:hover, &:focus, &:active {
-      color: #FFF;
-      background-color: $navbar-default-link-active-bg;
+.xberts-navbar {
+  width: 100%;
+  height: 56px;
+  background-color: #374CAF;
+  z-index: 2;
+  .container{
+    height: 56px;
+    >img{
+      cursor: pointer;
+      margin: 0 20px;
     }
   }
-  &:focus {
+  @include box-shadow(0 3px 5px rgba(0,0,0,.38));
+  .active{
     color: #FFF;
-  }
-}
-.navbar-default{
-  .navbar-toggle{
-    border-color: #FFF;
-    &:hover{
-     background-color: #FFF;
+    >i{
+      color: #FFF;
     }
   }
-  .navbar-nav{
-    > .active{
-      > a{
+  &__center-container{
+    >div{
+      cursor: pointer;
+      font-size: 18px;
+      color: rgba(255,255,255,.5);
+      padding: 0 20px;
+      &:hover{
         color: rgba(255,255,255,1);
-        &:focus,&:hover{
+      }
+    }
+  }
+  &__right-container{
+    >div{
+      position: relative;
+      cursor: pointer;
+      font-size: 18px;
+      color: rgba(255,255,255,.5);
+      padding: 0 20px;
+      &:hover{
+        color: rgba(255,255,255,1);
+      }
+      >i{
+        color: rgba(255,255,255,.5);
+        font-size: 24px;
+        line-height: 24px;
+        &:hover{
           color: rgba(255,255,255,1);
         }
-        @include xs-screen{
-          color: #222;
-          background-color: rgba(0,0,0,.12);
-          &:focus,&:hover{
-            color: #222;
-            background-color: rgba(0,0,0,.12);
-          }
-        }
+      }
+      .striking-white{
+        font-size: 10px;
+        position: absolute;
+        right: 32px;
+        top: 0;
+        padding: 0 3px;
+        border-radius: 2px;
       }
     }
   }
+  &__right-container-button{
+    width: 64px;
+    height: 56px;
+    padding-top: 16px !important;
+    >avatar-img{
+      width: 24px;
+      height: 24px;
+      >img{
+        width: 100%;
+        height: auto;
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__right-container-popup{
+    background-color: #FFF;
+    position: absolute;
+    left: -50px;
+    top: 56px;
+    width: 120px;
+    @include resetBorder();
+    border-radius: 2px;
+    >div{
+      width: 100%;
+      padding: 0 16px;
+      font-size: 16px;
+      line-height: 48px;
+      color: rgba(0,0,0,.87);
+      &:hover{
+        background-color: rgba(0,0,0,.12);
+      }
+    }
+    .active{
+      background-color: rgba(0,0,0,.12);
+      color: rgba(0,0,0,.87);
+    }
+  }
 }
-.navbar {
-  // Center logo
-  //.navbar-brand {
-  //  padding: $navbarBrandPaddingTop 0px;
-  //  position: absolute;
-  //  left: 50%;
-  //  margin-left: -$navbarBrandWidth / 2 !important;
-  //}
+
+.xberts-navbar-moblie{
+  width: 100%;
   background-color: #374CAF;
   @include box-shadow(0 3px 5px rgba(0,0,0,.38));
-  border-bottom: none;
-  .navbar-collapse{
-    border-top: none;
-    @include xs-screen{
-      background-color: #FFF;
-    }
-    >.navbar-nav{
-      @include xs-screen{
-        margin-top: 0;
-      }
-    }
-  }
-  .navbar-brand {
-    padding: ($navbar-height - 30) / 2 20px ($navbar-height - 30) / 2 15px;
-
-    img {
-      width: 120px;
-      height: 30px;
-    }
-  }
-
-  .avatar-text-smaller-1 {
-    max-width: 130px;
-  }
-
-  // Reduce padding for avatar image
-  .navbar-right {
-    .dropdown {
-      > a {
-        padding-top: $xb-navbar-avatar-padding;
-        padding-bottom: $xb-navbar-avatar-padding;
-      }
-    }
-  }
-
-  .top-right-badge-x {
-    @include topRightBadgeX(10px, $xb-navbar-icon-padding, 5px)
+  h2{
+    @include ellipsisText();
+    height: 24px;
+    width: 70%;
   }
 }
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-  color: #fff;
-  background-color: $primaryColor;
-}
-
-//nav-tab
-.nav-tabs > li > a {
-  margin-right: 2px;
-  line-height: 1.428571429;
-  border-radius: 0;
-  color: #FFF;
-  padding: 15px 30px;
-  @media screen and (max-width: 767px) {
-    padding: 15px 10px;
+.xberts-navbar-moblie-sidenav{
+  max-width: 60%;
+  min-width: 60%;
+  width: 60%;
+  *{
+    outline: none;
   }
-}
-
-
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: $primaryColor;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-top: 3px solid $primaryColor;
-  border-bottom: none;
-  cursor: default;
-}
-
-.nav.navbar-nav{
-  >li{
-    >a{
-      &:hover{
-        color: #FFF;
-      }
-      color: rgba(255,255,255,.5);
-      @include xs-screen{
-        &:hover{
-          color: #222;
-        }
-        color: #222;
-      }
-      padding-left: 20px;
-      padding-right: 20px;
+  .active{
+    background-color: rgba(0, 0, 0, .12);
+  }
+  &__top-container{
+    width: 100%;
+    >div{
+      font-size: 16px;
+      line-height: 56px;
+      padding: 0 16px;
+      @include media();
+      color: rgba(0,0,0,.87);
+    }
+  }
+  &__bottom-container{
+    width: 100%;
+    >div{
+      font-size: 16px;
+      line-height: 56px;
+      padding: 0 16px;
+      @include media();
+      color: rgba(0,0,0,.87);
     }
   }
 }
+
 .nav-main-opacity {
-  @include sm-screen{
-    .navbar{
-      background-color: rgba(0,0,0,.38);
-      @include box-shadow(none);
-    }
-    .nav.navbar-nav{
-      >li{
-        >a{
-          &:hover{
-            color: #FFF;
-          }
-          color: rgba(255,255,255,.7);
-          @include xs-screen{
-            &:hover{
-              color: #222;
-            }
-            color: #222;
-          }
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
+  .xb-body-view{
+    margin-top: -56px;
+    height: 100%;
+    @media screen and (max-width: 600px) {
+      margin-top: 0;
+      height: calc(100% - 56px);
     }
   }
-  @include md-screen{
-    .navbar{
+
+  @media screen and (min-width: 600px) {
+    .xberts-navbar{
       background-color: rgba(0,0,0,.38);
       @include box-shadow(none);
-    }
-    .nav.navbar-nav{
-      >li{
-        >a{
-          &:hover{
-            color: #FFF;
-          }
+      &__center-container{
+        >div{
           color: rgba(255,255,255,.7);
-          @include xs-screen{
-            &:hover{
-              color: #222;
-            }
-            color: #222;
+          &:hover{
+            color: rgba(255,255,255,1);
           }
-          padding-left: 20px;
-          padding-right: 20px;
+        }
+      }
+      &__right-container{
+        >div{
+          color: rgba(255,255,255,.7);
+          &:hover{
+            color: rgba(255,255,255,1);
+          }
+          >i{
+            color: rgba(255,255,255,.7);
+            &:hover{
+              color: rgba(255,255,255,1);
+            }
+          }
         }
       }
     }
