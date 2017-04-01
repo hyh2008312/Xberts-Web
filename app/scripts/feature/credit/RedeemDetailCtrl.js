@@ -10,6 +10,9 @@ angular.module('xbertsApp')
     };
 
     redeemCtrl.redeem = function(ev) {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
       $mdDialog.show(
         $mdDialog.alert()
           .parent(angular.element(document.querySelector('.xb-body-view')))
@@ -21,6 +24,9 @@ angular.module('xbertsApp')
       );
     };
     redeemCtrl.redeemMobile = function(ev) {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
       $mdToast.show({
         hideDelay: 10000000,
         position: 'bottom',
