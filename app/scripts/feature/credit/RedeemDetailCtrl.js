@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .controller('RedeemDetailCtrl', ['$mdDialog', '$mdToast', '$rootScope', 'redeemDetail', function($mdDialog, $mdToast, $rootScope, redeemDetail) {
+  .controller('RedeemDetailCtrl', ['$rootScope', '$mdDialog', '$mdToast', '$rootScope', 'redeemDetail', function($rootScope, $mdDialog, $mdToast, $rootScope, redeemDetail) {
     var redeemCtrl = this;
     redeemCtrl.redeemDetail = redeemDetail;
 
