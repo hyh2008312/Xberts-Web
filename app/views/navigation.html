@@ -75,8 +75,8 @@
     <div ng-click="logout()">Logout</div>
   </div>
 </md-sidenav>
-<md-content class="xb-body-view" md-scroll-y flex>
-  <div class="xb-inner-body" ui-view></div>
-  <xberts-footer></xberts-footer>
+<md-content class="xb-body-view" md-scroll-y flex layout="column">
+  <div class="xb-inner-body" ui-view flex="noshrink"></div>
+  <xberts-footer flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
 </md-content>
 

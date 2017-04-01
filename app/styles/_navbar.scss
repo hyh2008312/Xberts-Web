@@ -141,11 +141,6 @@
 .nav-main-opacity {
   .xb-body-view{
     margin-top: -56px;
-    height: 100%;
-    @media screen and (max-width: 600px) {
-      margin-top: 0;
-      height: calc(100% - 56px);
-    }
   }
 
   @media screen and (min-width: 600px) {

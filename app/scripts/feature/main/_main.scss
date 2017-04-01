@@ -437,15 +437,4 @@
   overflow: hidden;
   display: block;
 }
-.xb-body-view{
-  height: calc(100% - 56px);
-}
-.xb-inner-body{
-  min-height: calc(100% - 56px);
-  @media screen and (min-width: 600px) and (max-width: 750px) {
-    min-height: calc(100% - 92px);
-  }
-  @media screen and (max-width: 600px) {
-    min-height: calc(100% - 148px);
-  }
-}
+

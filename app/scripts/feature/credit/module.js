@@ -2,7 +2,7 @@ angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.creditMain', {
-      url: '/credit',
+      url: '/perks',
       templateUrl: 'scripts/feature/credit/CreditMain.html',
       controller: 'CreditMainCtrl as creditCtrl',
       resolve: {
@@ -23,7 +23,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.redeemDetail', {
-      url: '/credit/:redeemId',
+      url: '/perks/gift/:redeemId',
       templateUrl: 'scripts/feature/credit/RedeemDetail.html',
       controller: 'RedeemDetailCtrl as redeemCtrl',
       resolve: {
