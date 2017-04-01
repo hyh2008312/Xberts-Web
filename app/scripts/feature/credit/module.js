@@ -14,7 +14,7 @@ angular.module('xbertsApp')
             name: 'credit_gift_list',
             objClass: ShareProduct,
             params: {
-              page_size: 4
+              page_size: 6
             },
             fetchFunction: CreditService.getList
           };
