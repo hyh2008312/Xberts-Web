@@ -41,6 +41,12 @@ $PrimaryINDIGO: #3f51b5;
     }
   }
 }
+.xb-mobile-row{
+  @include xs-screen{
+    margin-left: -10%;
+    margin-right: -10%;
+  }
+}
 .category{
   margin-top: 8px;
   margin-right: 16px;
