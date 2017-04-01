@@ -47,8 +47,14 @@
     width: 216px;
     margin: 0;
   }
+  p.md-caption{
+    cursor: pointer;
+    margin-top: -24px;
+    position: relative;
+    z-index: 1;
+  }
   &__button{
-    margin: 0 0 16px;
+    margin: 0 0 8px;
   }
   &__button-bg{
     >div{
@@ -85,12 +91,18 @@
   }
   &__button{
     width: 88px;
-    margin: 0 0 16px;
+    margin: 0 0 8px;
   }
   &__reset-bottom{
     margin-bottom: 0;
   }
   .form-group{
     margin-bottom: 30px;
+  }
+  p.md-caption{
+    cursor: pointer;
+    margin-top: -24px;
+    position: relative;
+    z-index: 1;
   }
 }
