@@ -26,7 +26,7 @@
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</div>
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'trials' })">My Trials</div>
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'posts' })" ng-click="close()">My Posts</div>
-          <div ui-sref-active="active" ui-sref="application.protected.setting">Settings</div>
+          <div ng-if="false" ui-sref-active="active" ui-sref="application.protected.setting">Settings</div>
           <div ng-click="logout()">Logout</div>
         </div>
       </div>
@@ -71,7 +71,7 @@
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container">
     <div ui-sref-active="active" ui-sref="application.protected.message.inbox" >Messages</div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
-    <div ui-sref-active="active" ui-sref="application.protected.setting" ng-click="close()">Settings</div>
+    <div ng-if="false" ui-sref-active="active" ui-sref="application.protected.setting" ng-click="close()">Settings</div>
     <div ng-click="logout()">Logout</div>
   </div>
 </md-sidenav>
