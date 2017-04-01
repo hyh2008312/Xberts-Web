@@ -65,7 +65,6 @@ angular.module('xbertsApp')
                 .catch(
                   function(httpResponse) {
                     $scope.$emit('backdropOff', 'error');
-                    $mdDialog.cancel();
                     if (httpResponse.status === 401 || httpResponse.status === 403) {
                       form.serverError = {invalidCredentials: true};
                     } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {

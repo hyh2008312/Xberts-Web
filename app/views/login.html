@@ -19,6 +19,12 @@
         <span class="xb-login-container__line background-bg-gray"></span>
         <div>
           <form name="loginForm" novalidate ng-submit="login(loginForm)" clear-form-error>
+            <div class="form-group has-error">
+              <div class="help-block" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
+                <p ng-message="invalidCredentials">The email or password you entered is incorrect.</p>
+                <p ng-messages-include="views/text/form_error.html"></p>
+              </div>
+            </div>
             <md-input-container class="md-block" md-no-float>
               <input required ng-model="username" type="email" name="email" placeholder="Email Address"/>
               <div ng-messages="loginForm.email.$error">
