@@ -19,7 +19,7 @@ angular.module('xbertsApp')
 
         $scope.signupForm.serverError = {};
 
-        SignupService.signup($scope.firstName, $scope.lastName, $scope.email, $scope.password, $scope.country.code)
+        SignupService.signup($scope.firstName, $scope.lastName, $scope.email, $scope.password)
           .then(function(value) {
             return AuthService.login({
               username: value.email,

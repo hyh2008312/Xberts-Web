@@ -25,6 +25,12 @@
                 <p ng-messages-include="views/text/login_error.html"></p>
               </div>
             </div>
+            <div class="form-group has-error">
+              <div class="help-block" ng-show="signupForm.$submitted" ng-messages="signupForm.serverError">
+                <div ng-message="userExist">An account already exists with that email.</div>
+                <div ng-messages-include="views/text/form_error.html"></div>
+              </div>
+            </div>
             <div layout="row">
               <md-input-container class="xb-login-container__input" md-no-float>
                 <input required type="text" name="firstName" placeholder="First name" ng-model="firstName"/>
@@ -40,7 +46,7 @@
               </md-input-container>
             </div>
             <md-input-container class="md-block" md-no-float>
-              <input required ng-model="username" type="email" name="email" placeholder="Email Address"/>
+              <input required ng-model="email" type="email" name="email" placeholder="Email Address"/>
               <div ng-messages="signupForm.email.$error">
                 <div ng-message="required">Please enter your email.</div>
                 <div ng-message="email">The email you entered is invalid.</div>
