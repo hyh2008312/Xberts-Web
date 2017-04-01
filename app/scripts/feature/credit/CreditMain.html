@@ -1,4 +1,4 @@
-<top-banner-slides-list class="xb-top-banner-container" slides="creditCtrl.topBanner"></top-banner-slides-list>
+<top-banner-slides-list class="xb-top-banner-container xb-credit-top-banner" slides="creditCtrl.topBanner" ratio="480/192" height="480"></top-banner-slides-list>
 <div hide-xs>
   <div class="container xb-credit-container" >
     <div layout="row" layout-align-gt-sm="start start" layout-align-sm="space-around start" layout-wrap>
@@ -21,7 +21,7 @@
           </div>
           <div class="xb-column-bg" layout="column" layout-align="end center" >
             <div class="xb-credit-container__img-bg-255">
-              <div>450</div>
+              <div>500</div>
               <div>Points</div>
             </div>
             <div class="xb-credit-container__badge-bg">
@@ -34,7 +34,7 @@
           </div>
           <div class="xb-column-bg" layout="column" layout-align="end center" >
             <div class="xb-credit-container__img-bg-300">
-              <div>600</div>
+              <div>800</div>
               <div>Points</div>
             </div>
             <div class="xb-credit-container__badge-bg">
@@ -52,7 +52,7 @@
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 1 free sample</span>
             <span>Xberts newsletter on latest trials</span>
-            <span>An apple badge in your profile</span>
+            <span>An APPLE badge in your profile page</span>
           </div>
         </div>
         <div class="xb-credit-container__content-bg" layout="row" layout-align="start start">
@@ -61,7 +61,7 @@
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 2 free sample</span>
             <span>Early preview of tech gadgets before they release</span>
-            <span>A star badge behind your profile picture</span>
+            <span>A STAR badge in your profile page</span>
           </div>
         </div>
         <div class="xb-credit-container__content-bg" layout="row" layout-align="start start">
@@ -69,8 +69,8 @@
           <div class="md-subhead">Tech Geek</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 3 free sample</span>
-            <span>A trophy badge showing your status on Xberts</span>
-            <span>2-3 members may be eligible to attend CES 2017</span>
+            <span>A TROPHY badge in your profile page</span>
+            <span>3 members will be invited to attend CES 2018</span>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
     <div class="container" layout="row" layout-align="start start">
       <div class="" flex="50" layout="column" layout-align="start start">
         <div class="xb-credit-color-bg__title">Ways to Win Points</div>
-        <div class="xb-credit-color-bg__subtitle md-headline">Earn 10 points by signing up now</div>
+        <div ng-if="!user.isAuth()" class="xb-credit-color-bg__subtitle md-headline">Earn 10 points by signing up now</div>
         <md-button ng-if="!user.isAuth()" class="md-raised" ui-sref="application.signup">sign up</md-button>
       </div>
       <div class="xb-credit-color-bg__content" flex="50">
@@ -145,7 +145,7 @@
           <div class="xb-credit-container__faq-bottom">
             <div class="md-subhead">Is Xberts Legitimate?</div>
             <div>
-              Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic feedbacks for both manufacturers and customers, so our users can make wise purchasing choices.
+              Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
             </div>
           </div>
           <div class="xb-credit-container__faq-bottom" ng-if="false">
@@ -175,9 +175,9 @@
             </div>
           </div>
           <div>
-            <div class="md-subhead">What kind of product suggestion/review will be featured?</div>
+            <div class="md-subhead">What kind of product sharing/review will be featured?</div>
             <div>
-              We do prefer creative contents and self-made videos. As long as you take your time to write a quality product suggestion/review, we'd love to reward you with more bonus points!</div>
+              We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!</div>
           </div>
         </div>
         <div flex>
@@ -209,7 +209,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Influencer</div>
         <div layout="row" layout-align="start center">
-          <div class="xb-credit-mobile__line-2"></div> 450 points
+          <div class="xb-credit-mobile__line-2"></div> 500 points
         </div>
       </div>
     </div>
@@ -218,7 +218,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Geek</div>
         <div layout="row" layout-align="start center">
-          <div class="xb-credit-mobile__line-3"></div> 600 points
+          <div class="xb-credit-mobile__line-3"></div> 800 points
         </div>
       </div>
     </div>
@@ -230,7 +230,7 @@
           <div class="md-subhead">Tech Enthusiast</div>
           <div ng-if="false">1 Privilege to claim 1 free sample</div>
           <div>2 Xberts newsletter on latest trials</div>
-          <div>3 An apple badge in your profile</div>
+          <div>3 An APPLE badge in your profile page</div>
         </div>
       </div>
     </div>
@@ -241,7 +241,7 @@
           <div class="md-subhead">Tech Influencer</div>
           <div ng-if="false">1 Privilege to claim 2 free sample</div>
           <div>2 Early preview of tech gadgets before they release</div>
-          <div>3 A star badge behind your profile picture</div>
+          <div>3 A STAR badge in your profile page</div>
         </div>
       </div>
     </div>
@@ -251,8 +251,8 @@
         <div class="md-body-1 md-dark-primary">
           <div class="md-subhead">Tech Geek</div>
           <div ng-if="false">1 Privilege to claim 3 free sample</div>
-          <div>2 A trophy badge showing your status on Xberts</div>
-          <div>3 2-3 members may be eligible to attend CES 2017</div>
+          <div>2 A TROPHY badge in your profile page</div>
+          <div>3 3 members will be invited to attend CES 2018</div>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@
              parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="1" toggle="creditCtrl.isOpen[1]">keyboard_arrow_down</md-icon>
   </div>
   <div class="container xb-credit-mobile__content">
-    <div class="md-subhead">Earn 10 points by signing up now</div>
+    <div ng-if="!user.isAuth()" class="md-subhead">Earn 10 points by signing up now</div>
     <md-button ng-if="!user.isAuth()" class="md-primary md-raised" ui-sref="application.signup">sign up</md-button>
     <div class="xb-credit-color-bg__content">
       <div layout="row" ng-if="flase">
@@ -320,7 +320,7 @@
     <div>
       <div class="md-subhead">Is Xberts Legitimate?</div>
       <div>
-        Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic feedbacks for both manufacturers and customers. That way, the manufactures can make improvements on their product and our users can make wise purchasing choices.
+        Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
       </div>
     </div>
     <div ng-if="false">
@@ -348,9 +348,9 @@
       </div>
     </div>
     <div>
-      <div class="md-subhead">What kind of product suggestion/review will be featured?</div>
+      <div class="md-subhead">What kind of product sharing/review will be featured?</div>
       <div>
-        We do prefer creative contents and self-made videos. As long as you take your time to write a quality product suggestion/review, we'd love to reward you with more bonus points!
+        We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!
       </div>
     </div>
   </div>

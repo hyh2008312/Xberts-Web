@@ -3,7 +3,9 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        slides: '='
+        slides: '=',
+        ratio: '=',
+        height: '='
       },
       templateUrl: 'scripts/feature/main/topBanner/top-banner-slides-list.html',
       link: function (scope, element, attrs, ctrls) {
