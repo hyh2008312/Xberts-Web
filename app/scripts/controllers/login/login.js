@@ -48,7 +48,7 @@ angular.module('xbertsApp')
               $mdDialog.cancel();
             };
             scope.login = function(form) {
-              if (!$scope.loginForm.$valid) {
+              if (!scope.loginForm.$valid) {
                 return;
               }
               $scope.$emit('backdropOn', 'post');
