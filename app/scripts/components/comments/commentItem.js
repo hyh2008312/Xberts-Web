@@ -21,14 +21,17 @@ angular.module('xbertsApp')
           if (commentForm.$valid) {
             interactCtrl.getOrCreateCurrentJoin().then(
               function (currentJoin) {
-                scope.newComment.post_to_id = scope.comment.getPostId();
-                scope.newComment.post_id = currentJoin.id;
-                feedbackItemCtrl.leaveComment(scope.newComment).then(function () {
-                  scope.replyToggle = false;
-                  scope.newComment = {};
-                }, function (error) {
-                  console.log(error);
-                });
+
+                var comment = {
+                  details: scope.newComment.details,
+                  post_to: scope.comment.post,
+                  post: currentJoin
+                };
+
+                scope.replyToggle = false;
+                scope.newComment = {};
+
+                feedbackItemCtrl.leaveComment(comment);
               }
             );
           }

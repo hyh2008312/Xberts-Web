@@ -49,16 +49,14 @@ angular.module('xbertsApp')
           self.getOrCreateCurrentJoin().then(function () {
             var currentJoin = self.getCurrentJoin();
             var join = {id: currentJoin.id, vote: !currentJoin.vote};
-            InteractService.vote(join).then(
-              function (newJoin) {
-                self.setCurrentJoin(newJoin);
-                if(newJoin.vote){
-                  $scope.interact.increaseVote();
-                }else {
-                  $scope.interact.reduceVote();
-                }
-              }
-            );
+            if (join.vote) {
+              currentJoin.vote = true;
+              $scope.interact.increaseVote();
+            } else {
+              currentJoin.vote = false;
+              $scope.interact.reduceVote();
+            }
+            InteractService.vote(join);
           });
         };
       },

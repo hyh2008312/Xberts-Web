@@ -3,11 +3,11 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
-      require:'^^interact',
-      scope:{
+      require: '^^interact',
+      scope: {
         hideState: '='
       },
-      link: function (scope, element, attrs,interactCtrl) {
+      link: function (scope, element, attrs, interactCtrl) {
         scope.interactId = interactCtrl.getInteract().id;
 
         var par = {
@@ -29,21 +29,33 @@ angular.module('xbertsApp')
 
             interactCtrl.getOrCreateCurrentJoin().then(
               function (currentJoin) {
-                scope.newFeedback.interact = scope.interactId;
-                scope.newFeedback.post = currentJoin.id;
-                FeedbackService.create(scope.newFeedback).then(function (feedback) {
-                  scope.feedbackPaginator.items.unshift(feedback);
-                  scope.formToggle = !scope.formToggle;
-                  scope.newFeedback = {};
-                  interactCtrl.getInteract().increaseMessageAmount();
-                }, function (error) {
-                  console.log(error);
+                var feedback = Feedback.build({
+                  date_published: new Date(),
+                  details: scope.newFeedback.details,
+                  interact: scope.interactId,
+                  post: currentJoin
                 });
+
+                var feedbackData = {
+                  details: scope.newFeedback.details,
+                  interact: scope.interactId,
+                  post: currentJoin.id
+                };
+
+                scope.formToggle = !scope.formToggle;
+                scope.newFeedback = {};
+
+                scope.feedbackPaginator.items.unshift(feedback);
+
+                interactCtrl.getInteract().increaseMessageAmount();
+
+
+                FeedbackService.create(feedbackData);
               }
             );
 
 
-          }else {
+          } else {
             feedbackForm.$submitted = false;
           }
         }
