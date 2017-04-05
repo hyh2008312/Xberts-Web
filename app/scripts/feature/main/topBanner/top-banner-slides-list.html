@@ -6,7 +6,7 @@
       <div class="container">
         <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}">
           <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
-          <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
+          <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
           <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
         </div>
       </div>
@@ -15,7 +15,7 @@
          parents="xb-top-banner" element-height="height" style="background-image:url({{slide.imageMobileUrl}} );" >
       <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}" layout="column" layout-align="end start">
         <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
-        <div class="xb-top-banner__subtitle">{{slide.subtitle}}</div>
+        <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
         <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
       </div>
     </div>
