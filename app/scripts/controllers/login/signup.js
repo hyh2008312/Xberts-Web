@@ -83,10 +83,7 @@ angular.module('xbertsApp')
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
-          disableParenScroll: true,
-          onShowing: function(scope, element) {
-            element.find('[xb-show-keyboard]').triggerHandler('click');
-          }
+          disableParenScroll: true
         });
       }
   }]);

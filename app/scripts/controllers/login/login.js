@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Configuration',
-    'AuthService', 'AnalyticsService', '$mdDialog',
+    'AuthService', 'AnalyticsService', '$mdDialog', '$timeout',
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
-             AuthService, AnalyticsService, $mdDialog) {
+             AuthService, AnalyticsService, $mdDialog, $timeout) {
       if ($stateParams.error === 'linkedin_login') {
         $scope.loginError = {linkedinError: true};
 
@@ -79,10 +79,7 @@ angular.module('xbertsApp')
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
-          disableParenScroll: true,
-          onShowing: function(scope, element) {
-            element.find('[xb-show-keyboard]').triggerHandler('click');
-          }
+          disableParenScroll: true
         });
       }
     }]);
