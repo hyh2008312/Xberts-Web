@@ -7,7 +7,7 @@
     </p>
     <p class="xb2-comment__detial">{{ feedback.details}}</p>
     <p class="xb2-comment__button-container"><span am-time-ago='feedback.date_published' class="xb2-comment__time"></span>
-      <md-button class="md-primary md-margin-clear" ng-click="replyClick()">reply</md-button>
+      <md-button class="md-primary md-margin-clear" ng-click="replyClick()" ng-show="feedback.id">reply</md-button>
     </p>
     <form name="commentForm" ng-if="replyToggle" novalidate>
       <md-input-container class="md-block" md-no-float>

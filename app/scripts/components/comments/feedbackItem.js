@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('feedbackItem', ['CommentService', function (CommentService) {
+  .directive('feedbackItem', ['CommentService', 'Comment', function (CommentService, Comment) {
     return {
       restrict: 'E',
       scope: {
@@ -10,10 +10,15 @@ angular.module('xbertsApp')
 
       controller: function ($scope) {
         this.leaveComment = function (comment) {
-          comment.feedback = $scope.feedback.id;
-          return CommentService.create(comment).then(function (comment) {
-            $scope.feedback.comments.push(comment)
-          });
+          comment.date_published = new Date();
+          var commentData = {
+            feedback: $scope.feedback.id,
+            details: comment.details,
+            post_to_id: comment.post_to.id,
+            post_id: comment.post.id
+          };
+          $scope.feedback.comments.push(Comment.build(comment));
+          return CommentService.create(commentData);
         };
 
       },
@@ -32,15 +37,16 @@ angular.module('xbertsApp')
           if (commentForm.$valid) {
             interactCtrl.getOrCreateCurrentJoin().then(
               function (currentJoin) {
-                scope.newComment.post_to_id = scope.feedback.getPostId();
-                scope.newComment.post_id = currentJoin.id;
-                scope.feedbackItemCtrl.leaveComment(scope.newComment).then(function () {
-                    scope.replyToggle = false;
-                    scope.newComment = {};
-                  }, function (error) {
-                    console.log(error);
-                  }
-                );
+                var comment = {
+                  details: scope.newComment.details,
+                  post_to: scope.feedback.post,
+                  post: currentJoin
+                };
+
+                scope.replyToggle = false;
+                scope.newComment = {};
+
+                scope.feedbackItemCtrl.leaveComment(comment);
               }
             )
 
