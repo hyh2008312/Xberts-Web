@@ -78,6 +78,6 @@
 </md-sidenav>
 <md-content class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ui-view flex="noshrink"></div>
-  <xberts-footer flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
+  <xberts-footer ng-class="{true:'xb-footer-hide',false:''}[state.current.name=='application.login'||state.current.name=='application.signup']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
 </md-content>
 

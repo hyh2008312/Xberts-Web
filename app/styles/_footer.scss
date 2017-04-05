@@ -1,3 +1,8 @@
+.xb-footer-hide{
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}
 .footer {
   align-self: flex-end;
   width: 100%;
