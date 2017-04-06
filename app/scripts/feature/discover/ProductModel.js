@@ -27,7 +27,6 @@ function ShareProduct(urlParser, $sce, $state) {
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;
-      console.log()
       switch(urlParser.parse(this.videoUrl).hostname){
         case 'www.youtube.com':
           baseUrl = '//www.youtube.com/embed/';
