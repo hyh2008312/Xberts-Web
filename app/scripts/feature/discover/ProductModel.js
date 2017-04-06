@@ -27,6 +27,7 @@ function ShareProduct(urlParser, $sce, $state) {
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;
+      console.log()
       switch(urlParser.parse(this.videoUrl).hostname){
         case 'www.youtube.com':
           baseUrl = '//www.youtube.com/embed/';
@@ -36,9 +37,11 @@ function ShareProduct(urlParser, $sce, $state) {
         case 'youtu.be':
           baseUrl = '//www.youtube.com/embed/';
           baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
+          break;
         case 'vimeo.com':
           baseUrl = '//player.vimeo.com/video/';
           baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
+          break;
         default:
           break;
       }
