@@ -9,11 +9,8 @@
   @include resetBorder();
   .container{
     height: 56px;
-    @media screen and (min-width: 600px) and (max-width: 750px){
+    @media screen and (max-width: 750px){
       height: 92px;
-    }
-    @media screen and (max-width: 600px) {
-      height: 148px;
     }
   }
   nav{

@@ -22,7 +22,7 @@
       </div>
       <div class="col-sm-2 text-center expert-profile-btn">
         <md-button class="md-primary md-raised" ng-if="!isCurrentUser" ng-click="contactUser()">Contact</md-button>
-        <md-button class="md-primary md-raised" ng-if="isCurrentUser" ng-click="editProfile()">Edit</md-button>
+        <md-button class="md-primary md-raised" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})">Edit</md-button>
       </div>
     </div>
 

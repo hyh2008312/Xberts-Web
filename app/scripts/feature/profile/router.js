@@ -23,9 +23,13 @@ angular
         controller: 'UserProfileCtrl'
       })
       .state('application.protected.editProfile', {
-        url: '/editprofile',
+        url: '/editprofile?tab&action',
+        params:{
+          tab:'profile'
+        },
         templateUrl: 'scripts/feature/profile/edit-profile.html',
         controller: 'EditProfileCtrl',
+        reloadOnSearch: false,
         resolve: {
           userProfile: ['protectedAuthCheck', 'UserProfileResolver', function (protectedAuthCheck, UserProfileResolver) {
             return UserProfileResolver.resolver();

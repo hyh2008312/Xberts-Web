@@ -144,8 +144,8 @@
   >div{
     margin-bottom: 24px;
     @include resetBorder();
-    -webkit-flex: 1 1 318px !important;
     flex: 1 1 318px !important;
+    -webkit-flex: 1 1 318px !important;
     @media screen and (min-width:960px){
       max-width: 32% !important;
     }

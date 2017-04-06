@@ -1,0 +1,23 @@
+<form class="xb-edit-profile__dialog" name="changeEmailForm" ng-submit="changeEmail()" novalidate clear-form-error>
+  <div layout="row" layout-align="start center">
+    <md-input-container class="md-block" flex>
+      <input type="email" required ng-model="data.email" name="email" placeholder="Email Address"/>
+      <div ng-messages="changeEmailForm.email.$error" ng-show="changeEmailForm.$submitted || changeEmailForm.email.$touched">
+        <div ng-message="required">Please enter your email.</div>
+        <div ng-message="email">The email you entered is invalid.</div>
+      </div>
+    </md-input-container>
+  </div>
+  <div class="xb-account-setting">
+    <div>Password</div>
+    <md-button class="md-primary" ng-click="changePasswordModal()" ng-if="showEditPassword">Change Password</md-button>
+  </div>
+  <div class="xb-account-setting xb-edit-profile__button-bottom">
+    <div>Account</div>
+    <md-button class="md-primary" ng-click="cancelAccountModal()">Deactivate Account</md-button>
+  </div>
+  <div class="xb-edit-profile__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+    <md-button class="md-primary md-raised" type="submit" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+  </div>
+</form>
+

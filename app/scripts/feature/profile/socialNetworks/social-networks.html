@@ -1,0 +1,56 @@
+<form class="xb-edit-profile__dialog" ng-submit="saveChange()" clear-form-error novalidate>
+  <div class="xb-edit-profile__switch-bg" layout="row" layout-align="start center" layout-align-xs="space-between center">
+    <div class="xb-edit-profile__icon xb-edit-profile__icon-color-1" aria-label="Facebook" flex="none" hide-xs>
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+    </div>
+    <md-switch ng-model="data.cb1" aria-label="Connect your Facebook account" class="md-warn" flex-order-xs="1">
+    </md-switch>
+    <div flex-order-xs="0">
+      <div class="md-subtitle" hide-gt-xs>Facebook</div>
+      <div ng-if="data.cb1">
+        Connect your Facebook account
+      </div>
+      <div ng-if="!data.cb1">
+        Disconnect your Facebook account
+      </div>
+    </div>
+  </div>
+  <div  class="xb-edit-profile__switch-bg" layout="row" layout-align="start center" layout-align-xs="space-between center">
+    <div class="xb-edit-profile__icon xb-edit-profile__icon-color-2" aria-label="Linkedin" flex="none" hide-xs>
+      <i class="fa fa-linkedin" aria-hidden="true"></i>
+    </div>
+    <md-switch ng-model="data.cb2" aria-label="Connect your Linkedin account" class="md-warn" flex-order-xs="1">
+    </md-switch>
+    <div flex-order-xs="0">
+      <div class="md-subtitle" hide-gt-xs>Linkedin</div>
+      <div ng-if="data.cb2">
+        Connect your Linkedin account
+      </div>
+      <div ng-if="!data.cb2">
+        Disconnect your Linkedin account
+      </div>
+    </div>
+  </div>
+  <div  class="xb-edit-profile__switch-bg xb-edit-profile__button-bottom" layout="row" layout-align="start center"
+        layout-align-xs="space-between center">
+    <div class="xb-edit-profile__icon xb-edit-profile__icon-color-3" aria-label="Twitter" flex="none" hide-xs>
+      <i class="fa fa-twitter" aria-hidden="true"></i>
+    </div>
+    <md-switch ng-model="data.cb3" aria-label="Connect your Twitter account" class="md-warn" flex-order-xs="1">
+    </md-switch>
+    <div flex-order-xs="0">
+      <div class="md-subtitle" hide-gt-xs>Twitter</div>
+      <div ng-if="data.cb3">
+        Connect your Twitter account
+      </div>
+      <div ng-if="!data.cb3">
+        Disconnect your Twitter account
+      </div>
+    </div>
+  </div>
+  <div class="xb-edit-profile__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+    <md-button class="md-primary md-raised" type="submit" >Save</md-button>
+    <md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+  </div>
+</form>
+

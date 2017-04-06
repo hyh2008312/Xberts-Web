@@ -1,0 +1,52 @@
+<form class="xb-edit-profile__dialog" name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
+  <div layout="row" layout-align="start center">
+    <md-input-container class="md-block xb-edit-profile__margin-right" flex="50">
+      <input required ng-model="data.firstName" type="text" name="firstName" placeholder="First Name"/>
+      <div ng-messages="editProfileForm.firstName.$error">
+        <div ng-message="required">Please enter your first name.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex="50">
+      <input required ng-model="data.lastName" type="text" name="lastName" placeholder="Last Name"/>
+      <div ng-messages="editProfileForm.lastName.$error">
+        <div ng-message="required">Please enter your last name.</div>
+      </div>
+    </md-input-container>
+  </div>
+  <div layout="row" layout-align="start center">
+    <md-input-container class="md-block xb-edit-profile__margin-bottom" flex>
+      <label>Country</label>
+      <md-select ng-model="data.country.code" name="country" >
+        <md-option ng-repeat="option in countryOptions track by option.code" value="{{option.code}}" >
+          {{option.name}}
+        </md-option>
+      </md-select>
+      <div ng-messages="editProfileForm.country.$error">
+        <div ng-message="required">Please select your country.</div>
+      </div>
+    </md-input-container>
+  </div>
+  <div layout="row" layout-align="start center">
+    <md-input-container class="md-block xb-edit-profile__margin-right" flex="50">
+      <input ng-model="data.position" type="text" name="position" placeholder="Business Title"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex="50">
+      <input ng-model="data.company" type="text" name="company" placeholder="Company Name"/>
+    </md-input-container>
+  </div>
+  <md-input-container class="md-block">
+    <input md-maxlength="150" ng-model="data.biography" name="bio" placeholder="Biography"/>
+    <div ng-messages="productForm.description.$error">
+      <div ng-message="maxlength">That's too long!</div>
+    </div>
+  </md-input-container>
+  <div class="md-body-1 xb-edit-profile__label">Picture</div>
+  <div class="xb-edit-profile__upload-bg" layout="low" layout-align="start center">
+    <img class="img-circle avatar-thumb" ngf-src="data.avatar || data.currentAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a'">
+    <md-button type="file" class="md-primary" ngf-select ng-model="data.avatar" name="avatar"
+            accept="image/*">Choose Profile Picture</md-button>
+  </div>
+  <div class="xb-edit-profile__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+    <md-button class="md-primary md-raised" type="submit" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+  </div>
+</form>

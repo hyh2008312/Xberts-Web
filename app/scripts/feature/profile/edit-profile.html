@@ -1,153 +1,19 @@
-<div class="container" style="margin-bottom: 50px">
-  <h2 class="text-center">Edit Profile</h2>
+<div class="container" >
+  <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex" class="xb-edit-profile">
+    <div class="container">
+      <md-tab label="Edit Profile" md-on-select="load()">
+        <edit-profile data="data" country-options="countryOptions"></edit-profile>
+      </md-tab>
 
-  <form name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
-    <div class="row form-group">
-        <img class="img-circle avatar-thumb center-block" ngf-src="data.avatar || data.currentAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a'">
-    </div>
-    <div class="row form-group">
-      <button type="file" class="btn center-block" ngf-select ng-model="data.avatar" name="avatar"
-              accept="image/*"
-              ngf-resize="{width: 400, height: 400, centerCrop: true}">Choose Profile Picture</button>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-6 col-xs-6">
-        <label for="firstNameInput">
-          <span>First Name:</span>
-          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.firstName.$touched"
-                                      ng-messages="editProfileForm.firstName.$error">
-            <span ng-message="required">Please enter your first name.</span>
-          </span>
-        </label>
-        <input type="text" id="firstNameInput" name="firstName" class="form-control" placeholder="First name"
-               ng-model="data.firstName" ng-model-options="{ updateOn: 'blur' }" required>
-      </div>
-      <div class="col-md-6 col-xs-6">
-        <label for="lastNameInput">
-          <span>Last Name:</span>
-          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.lastName.$touched"
-                ng-messages="editProfileForm.lastName.$error">
-            <span ng-message="required">Please enter your last name.</span>
-          </span>
-        </label>
-        <input type="text" id="lastNameInput" name="lastName" class="form-control" placeholder="Last name"
-               ng-model="data.lastName" ng-model-options="{ updateOn: 'blur' }" required>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-6 col-xs-6">
-        <label for="countryInput">
-          <span>Country:</span>
-          <span class="error" ng-show="editProfileForm.$submitted || editProfileForm.country.$touched"
-                ng-messages="editProfileForm.country.$error">
-            <span ng-message="required">Please select your country.</span>
-          </span>
-        </label>
-        <select id="countryInput" name="country" class="form-control"
-                ng-options="option.name for option in countryOptions track by option.code"
-                ng-model="data.country" required>
-          <option value="">Select your country</option>
-        </select>
-      </div>
-      <div class="col-md-6 col-xs-6">
-        <label for="positionInput">
-          <span>Business Title:</span>
-        </label>
-        <p>
-          <input type="text" id="positionInput" name="position" class="form-control" placeholder="Business Title"
-                 ng-model="data.position">
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-xs-6">
-        <label for="companyInput">
-          <span>Company Name:</span>
-        </label>
-        <p>
-          <input type="text" id="companyInput" name="company" class="form-control" placeholder="Company Name"
-                 ng-model="data.company">
-        </p>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.required">
-            *required</p>
+      <md-tab label="Social Networks" md-on-select="load()">
+        <social-networks></social-networks>
+      </md-tab>
 
-          <p class="message-error"
-             ng-show="quoteInquiryForm.submitted && quoteInquiryForm.company_phone.$error.internationalPhoneNumber">
-            *please input correct number</p>
-          <label>Business Contact Number: </label>
-          <input type="text" class="form-control" name="companyPhone" international-phone-number
-                 ng-model="data.companyPhone"/>
-        </div>
-      </div>
+      <md-tab label="Account Settings" md-on-select="load()">
+        <account-setting></account-setting>
+    </md-tab>
     </div>
-    <div class="row">
+  </md-tabs>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Company Website URL: </label>
-          <input type="text" class="form-control" name="companyWeb" placeholder="http://"
-                 ng-model="data.companyWeb"/>
-        </div>
-      </div>
-
-    </div>
-    <div class="row form-group">
-      <div class="col-md-6 col-xs-12">
-        <label for="bioInput">
-          <span>Biography:</span>
-        </label>
-        <p>
-          <textarea id="bioInput" name="bio" class="form-control" rows="10" cols="40"
-                    placeholder="Write a short biography about yourself" ng-model="data.biography"></textarea>
-        </p>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Describe Your Company:</label>
-                <textarea rows="10" class="form-control" placeholder="Optional"
-                          name="companyDetail"
-                          ng-model="data.companyDetail">
-                </textarea>
-        </div>
-      </div>
-    </div>
-    <div class="row form-group" ng-if="userProfile.careerList.length > 0">
-      <div class="col-md-12 col-xs-12">
-        <label>
-          <span>Select your expertise:
-              <span ng-class="{'optional-field': !editProfileForm.expertiseError.exceedLimit, error: editProfileForm.expertiseError.exceedLimit}">
-                Up to five
-              </span>
-          </span>
-        </label>
-        <div class="error" ng-messages="editProfileForm.expertiseError">
-          <p ng-message="required">You need to select at least one expertise.</p>
-        </div>
-        <div class="panel panel-default" ng-repeat="stage in stages">
-          <div class="panel-heading">
-            <label class="panel-title">{{ stage.stage }}</label>
-          </div>
-          <div class="panel-body">
-            <label class="checkbox-inline" ng-repeat="expertise in stage.careers">
-              <input type="checkbox" checklist-model="data.expertiseList" checklist-value="expertise.id"
-                     checklist-change="checkExpertise(editProfileForm)"
-                     ng-disabled="editProfileForm.expertiseError.exceedLimit && !checked"> {{ expertise.career_field }}
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-6 col-xs-8 col-centered">
-        <div class="error text-center" ng-show="editProfileForm.$submitted" ng-messages="editProfileForm.serverError">
-          <div ng-messages-include="views/text/form_error.html"></div>
-        </div>
-        <md-button type="submit" class="md-raised md-primary xb-btn-block">Save</md-button>
-      </div>
-    </div>
-  </form>
 </div>
+

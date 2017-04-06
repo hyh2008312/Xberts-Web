@@ -36,6 +36,9 @@ function ShareProduct(urlParser, $sce, $state) {
         case 'youtu.be':
           baseUrl = '//www.youtube.com/embed/';
           baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
+        case 'vimeo.com':
+          baseUrl = '//player.vimeo.com/video/';
+          baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
         default:
           break;
       }
