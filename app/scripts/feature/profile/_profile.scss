@@ -37,6 +37,9 @@
   }
   &__margin-right{
     margin-right: 32px;
+    @media screen and (max-width: 600px){
+      margin-right: 0;
+    }
   }
   md-input-container{
     margin-bottom: 0;
