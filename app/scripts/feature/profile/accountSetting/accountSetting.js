@@ -26,8 +26,8 @@ angular.module('xbertsApp')
           AccountService.changeEmail(scope.data.email)
             .then(function (value) {
               $rootScope.user.setUserEmail(value.email);
-
               scope.$emit('backdropOff', 'success');
+              $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
             })
             .catch(function (response) {
               scope.$emit('backdropOff', 'error');
