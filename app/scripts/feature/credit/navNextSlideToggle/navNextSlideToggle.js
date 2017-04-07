@@ -17,7 +17,7 @@ angular.module('xbertsApp')
           angular.element(scope.parent+':eq('+scope.index+')').removeClass(scope.touchClass);
         }).bind('click', function() {
           scope.toggle = !scope.toggle;
-          angular.element(scope.parent).removeClass(scope.activeClass);
+          angular.element(scope.parent+':eq('+scope.index+')').removeClass(scope.activeClass);
           if(scope.toggle){
             angular.element(scope.parent+':eq('+scope.index+')').addClass(scope.activeClass);
           } else {

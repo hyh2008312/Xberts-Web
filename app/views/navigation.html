@@ -24,8 +24,6 @@
         <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true" ></avatar-img>
         <div class="xberts-navbar__right-container-popup" ng-show="isPopupOpen" flex="none">
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</div>
-          <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'trials' })">My Trials</div>
-          <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'posts' })" ng-click="close()">My Posts</div>
           <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting'})">Settings</div>
           <div ng-click="logout()">Logout</div>
         </div>
@@ -45,7 +43,8 @@
     <h2 ng-if="state.current.name == 'application.campaignreviews'">Reviews</h2>
     <h2 ng-if="state.current.name == 'application.creditMain'">Perks</h2>
     <h2 ng-if="state.current.name == 'application.signup'">Sign up</h2>
-    <h2 ng-if="state.current.name == 'application.login'">Log in</h2>
+    <h2 ng-if="state.current.name == 'application.login'">Log in
+    <h2 ng-if="state.current.name == 'application.protected.message.inbox'">Messages</h2>
     <h2 ng-if="state.current.name == 'application.expert'">My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
@@ -70,7 +69,7 @@
     <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container">
-    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" >Messages</div>
+    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
     <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting' })" ng-click="close()">Settings</div>
     <div ng-click="logout()">Logout</div>
