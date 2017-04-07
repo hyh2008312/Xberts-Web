@@ -9,14 +9,6 @@
     }
   }
 }
-.xb-name-title{
-  h2{
-    span{
-      margin-left: 24px;
-      font-style: italic;
-    }
-  }
-}
 .xb-edit-profile{
   margin: 0 24px;
   @media screen and (max-width: 600px){
@@ -127,5 +119,87 @@
     padding: 16px 0;
     border-top: 1px solid rgba(0, 0, 0, .12);
     border-bottom: 1px solid rgba(0, 0, 0, .12);
+  }
+}
+.xb-my-profile{
+  background-color: #3f52b4;
+  @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.38));
+  &__content{
+    height: 144px;
+    @media screen and (max-width: 600px){
+      height: auto;
+      margin-top: 16px;
+      margin-bottom: 32px;
+    }
+  }
+  &__head{
+    img{
+      width: 80px;
+      height: 80px;
+      margin: 0;
+    }
+  }
+  &__title{
+    color: #fff;
+    margin-left: 88px;
+    @media screen and (max-width: 600px){
+      margin-left: 8px;
+    }
+    .md-headline{
+      span{
+        margin-left: 24px;
+        font-style: italic;
+      }
+    }
+    &-bottom{
+      margin-top: 8px;
+    }
+  }
+  $margins: (1 8) (2 16);
+  @each $margin in $margins {
+    &__margin-#{nth($margin, 1)} {
+      margin-left: nth($margin, 2) + px;
+      @if nth($margin, 1) == 2 {
+        @media screen and (max-width: 600px){
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  &__points-bg{
+    margin-right: -10px;
+    padding: 0 24px 0 8px;
+    height: 24px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    font-size: 14px;
+    font-family: "Times new Roman";
+    line-height: 24px;
+    background-color: #fff;
+    color: #3f51b5;
+  }
+  &__button-bg{
+    margin-top: -28px;
+    position: relative;
+    z-index: 1;
+  }
+  &__button{
+    margin: 0 56px 0 0;
+    padding: 0;
+    font-size: 40px;
+    line-height: 56px;
+    text-align: center;
+    @media screen and (max-width: 600px){
+      margin-right: 0;
+    }
+
+    md-icon{
+      color: #fff;
+    }
+  }
+  &__padding-top{
+    @media screen and (width: 600px){
+      padding-top: 16px;
+    }
   }
 }

@@ -35,10 +35,7 @@
     </md-input-container>
   </div>
   <md-input-container class="md-block">
-    <input md-maxlength="150" ng-model="data.biography" name="bio" placeholder="Biography"/>
-    <div ng-messages="productForm.description.$error">
-      <div ng-message="maxlength">That's too long!</div>
-    </div>
+    <input ng-model="data.biography" name="bio" placeholder="Biography"/>
   </md-input-container>
   <div class="md-body-1 xb-edit-profile__label">Picture</div>
   <div class="xb-edit-profile__upload-bg" layout="low" layout-align="start center">

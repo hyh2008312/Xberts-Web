@@ -1,36 +1,36 @@
-<section class="background-light-white">
+<div class="xb-my-profile">
   <div class="container">
-    <div row>
-      <div class="col-sm-2 text-center expert-profile">
+    <div layout="row" layout-align="end center">
+      <div class="xb-my-profile__points-bg" hide-gt-xs>{{expert.points}} Points</div>
+    </div>
+    <div class="xb-my-profile__content" layout="row" layout-align="start center">
+      <div class="xb-my-profile__head">
         <avatar-img src="expert.avatar" name="expert.fullname"></avatar-img>
-        <p class="label label-primary" ng-if="isExpert">Verified Expert</p>
       </div>
-      <div class="col-sm-8">
-        <div class="section-title xb-name-title">
-
-          <h2> {{expert.short_name}}<span class="md-subhead">{{expert.points}} Points</span></h2>
-
-          <p><i class="fa fa-map-marker"></i> {{ expert.country }}</p>
-
-          <p>{{ expert.company_title}}</p>
-
-          <p>
-            <span class="label label-default"
-                  ng-repeat="expertise in expert.career_list">{{ expertise.career_field }}</span>
-          </p>
+      <div class="xb-my-profile__title">
+        <div class="md-headline">{{expert.short_name}}<span class="md-subhead" hide-xs>{{expert.points}} Points</span></div>
+        <div class="xb-my-profile__title-bottom" layout="row" layout-align="start center" layout-xs="column"
+          layout-align-xs="start start">
+          <div><i class="fa fa-map-marker"></i><span class="xb-my-profile__margin-1">{{ expert.country }}</span></div>
+          <div class="xb-my-profile__margin-2">{{ expert.company_title}}</div>
         </div>
       </div>
-      <div class="col-sm-2 text-center expert-profile-btn">
-        <md-button class="md-primary md-raised" ng-if="!isCurrentUser" ng-click="contactUser()">Contact</md-button>
-        <md-button class="md-primary md-raised" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})">Edit</md-button>
-      </div>
     </div>
-
-    <md-button class="md-primary md-raised" ng-click="invite();">invite</md-button>
-
   </div>
-</section>
-<section>
+</div>
+<div class="xb-my-profile__button-bg">
+  <div class="container">
+    <div layout="column" layout-align="end end">
+      <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser" ng-click="contactUser()">
+        <md-icon md-font-set="material-icons" aria-label="comment">comment</md-icon>
+      </md-button>
+      <md-button class="xb-my-profile__button md-accent md-fab" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})">
+        <md-icon md-font-set="material-icons" aria-label="edit">mode_edit</md-icon>
+      </md-button>
+    </div>
+  </div>
+</div>
+<section class="xb-my-profile__padding-top">
   <div class="container">
     <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
       <md-tab label="Biography" md-on-select="loadMyBio()">

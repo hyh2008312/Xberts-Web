@@ -105,7 +105,7 @@ angular
           }]
         }
       })
-      
+
       .state('application.login', {
         url: '/login?error',
         templateUrl: 'views/login.html',
@@ -122,7 +122,7 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
-      
+
       .state('application.protected.message', {
         abstract: true,
         templateUrl: 'views/message/message.html',
@@ -189,5 +189,10 @@ angular
       .state('application.privacy', {
         url: "/privacy",
         templateUrl: 'views/privacy.html'
+      })
+      .state('application.test', {
+        url: '/test',
+        templateUrl: 'scripts/feature/test/test.html',
+        controller: 'TestController as test'
       });
   }]);
