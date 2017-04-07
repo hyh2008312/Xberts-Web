@@ -3,8 +3,8 @@ angular.module('xbertsApp')
 
     function inviteFriend() {
       FB.ui({
-        method: 'apprequests',
-        message: 'Your Message diaolog'
+        method: 'send',
+        link: 'https://www.xberts.com'
       });
     }
 
