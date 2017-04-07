@@ -254,10 +254,7 @@ angular.module('xbertsApp')
       function postLogin(token) {
         OAuthToken.setToken(token);
 
-        return loginComplete()
-          .then(function() {
-            return fetchUser();
-          })
+        return fetchUser()
           .then(function(value) {
             setUser(value);
 
@@ -315,7 +312,7 @@ angular.module('xbertsApp')
 
         var token = OAuthToken.getAccessToken();
         OAuthToken.removeToken();
-        
+
         Idle.unwatch();
 
         // Clear user id from GTM upon logout
