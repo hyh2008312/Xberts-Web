@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
-    'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant','ShareProductService', 'ShareProduct',
+    'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct', 'FacebookService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
-              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant, ShareProductService,ShareProduct) {
+              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, FacebookService) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
@@ -78,7 +78,7 @@ angular.module('xbertsApp')
       };
       $scope.postsProductPaginator = new Paginator(par);
 
-      $scope.loadMyPosts= function () {
+      $scope.loadMyPosts = function () {
         updateUrl();
       };
 
@@ -102,4 +102,6 @@ angular.module('xbertsApp')
       $scope.editProfile = function () {
         $state.go('application.protected.editProfile');
       };
+
+      $scope.invite = FacebookService.inviteFriend;
     }]);

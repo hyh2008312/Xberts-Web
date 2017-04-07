@@ -2,11 +2,18 @@
 <html ng-app="xbertsApp" prefix="og: http://ogp.me/ns#">
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5Q6BDP');</script>
+  <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+      'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-5Q6BDP');</script>
   <!-- End Google Tag Manager -->
 
   <base href="/">
@@ -27,29 +34,31 @@
         href="https://xberts.imgix.net/static/icon/favicon.png?s=4ad0cff89de078554cb908b847b144c5"/>
 
 
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css" />
-  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
-  <link rel="stylesheet" href="/bower_components/intl-tel-input/build/css/intlTelInput.css" />
-  <link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.css" />
-  <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
-  <link rel="stylesheet" href="/bower_components/angular-carousel/dist/angular-carousel.css" />
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/bower_components/summernote/dist/summernote.css"/>
+  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css"/>
+  <link rel="stylesheet" href="/bower_components/intl-tel-input/build/css/intlTelInput.css"/>
+  <link rel="stylesheet" href="/bower_components/angular-growl-v2/build/angular-growl.css"/>
+  <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="/bower_components/angular-carousel/dist/angular-carousel.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main'] + {true:' xb-login-body',false:''}[state.current.name=='application.login'|| state.current.name=='application.signup']"
-      data-page="{{$state.current}}" layout="column">
+<body
+  ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main'] + {true:' xb-login-body',false:''}[state.current.name=='application.login'|| state.current.name=='application.signup']"
+  data-page="{{$state.current}}" layout="column">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 <backdrop></backdrop>
 <div growl></div>
@@ -139,6 +148,8 @@
 <script src="scripts/config.js"></script>
 <script src="scripts/configs/configuration.js"></script>
 <script src="scripts/configs/default-configuration.js"></script>
+
+<script src="scripts/services/FaceBookService.js"></script>
 
 <script src="scripts/controllers/application.js"></script>
 <script src="scripts/controllers/leave-prompt.js"></script>
