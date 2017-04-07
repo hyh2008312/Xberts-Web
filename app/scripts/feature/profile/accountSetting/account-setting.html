@@ -1,4 +1,8 @@
 <form class="xb-edit-profile__dialog" name="changeEmailForm" ng-submit="changeEmail()" novalidate clear-form-error>
+  <div class="error" ng-show="changeEmailForm.$submitted" ng-messages="changeEmailForm.serverError">
+    <div ng-message="duplicate">An account already exists with that email.</div>
+    <div ng-messages-include="views/text/form_error.html"></div>
+  </div>
   <div layout="row" layout-align="start center">
     <md-input-container class="md-block" flex>
       <input type="email" required ng-model="data.email" name="email" placeholder="Email Address"/>

@@ -111,6 +111,7 @@ angular.module('xbertsApp')
 
         scope.reset = function() {
           scope.data = angular.copy(oldData,{});
+          scope.changeEmailForm.$submitted = false;
         };
       }
     }
