@@ -1,7 +1,7 @@
 .xberts-navbar {
   width: 100%;
   height: 56px;
-  background-color: #374CAF;
+  background-color: #3f52b4 !important;
   z-index: 2;
   .container{
     height: 56px;
@@ -97,7 +97,7 @@
 
 .xberts-navbar-moblie{
   width: 100%;
-  background-color: #374CAF;
+  background-color: #3f52b4 !important;
   @include box-shadow(0 3px 5px rgba(0,0,0,.38));
   h2{
     @include ellipsisText();
@@ -173,5 +173,10 @@
         }
       }
     }
+  }
+}
+.xb-nav-shadow{
+  .xberts-navbar, .xberts-navbar-moblie{
+    @include box-shadow(none);
   }
 }
