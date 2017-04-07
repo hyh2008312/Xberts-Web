@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('accountSetting', ['$rootScope', '$uibModal', '$mdDialog','AccountService', 'PasswordService', function($rootScope, $uibModal, $mdDialog, AccountService, PasswordService) {
+  .directive('accountSetting', ['$rootScope', '$uibModal', '$mdDialog','AccountService', 'PasswordService', '$state',function($rootScope, $uibModal, $mdDialog, AccountService, PasswordService, $state) {
     return {
       restrict: 'E',
       scope: {
@@ -93,9 +93,11 @@ angular.module('xbertsApp')
                 scope.$emit('backdropOn', 'delete');
 
                 AccountService.deactivate().then(function() {
+                  $mdDialog.cancel();
                   scope.$emit('backdropOff', 'success');
                   $rootScope.$emit('logout', false);
                 }).catch(function() {
+                  $mdDialog.cancel();
                   scope.$emit('backdropOff', 'error');
                   $rootScope.$emit('logout', false);
                 });
