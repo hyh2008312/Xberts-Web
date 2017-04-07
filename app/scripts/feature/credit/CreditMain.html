@@ -106,9 +106,7 @@
           <span>2 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
         </div>
         <div layout="row">
-          <span>2 points</span>
-          <a ng-if="!user.isAuth()" ui-sref="application.login">Upload your profile picture</a>
-          <a ng-if="user.isAuth()" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">Upload your profile picture</a>
+          <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
         </div>
         <div layout="row">
           <span>2 points</span><a ui-sref="application.shareProductList">Comment on a product under Discover page</a>
@@ -288,9 +286,7 @@
         <span>2 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
       </div>
       <div layout="row">
-        <span>2 points</span>
-        <a ng-if="!user.isAuth()" ui-sref="application.login">Upload your profile picture</a>
-        <a ng-if="user.isAuth()" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">Upload your profile picture</a>
+        <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
       </div>
       <div layout="row">
         <span>2 points</span><a ui-sref="application.shareProductList">Comment on a product under Discover page</a>
