@@ -14,7 +14,7 @@ angular.module('xbertsApp')
           break;
         case 'FEEDBACK':
         case 'COMMENT':
-          $scope.actionBtnText = 'Reply to Comment';
+          $scope.actionBtnText = 'Reply';
           break;
         case 'LIKE':
           $scope.actionBtnText = 'View Review';
