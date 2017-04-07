@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('accountSetting', ['$rootScope', '$uibModal', '$mdDialog','AccountService', 'PasswordService', function($rootScope, $uibModal, $mdDialog, AccountService, PasswordService) {
+  .directive('accountSetting', ['$rootScope', '$uibModal', '$mdDialog','AccountService', 'PasswordService', '$state',function($rootScope, $uibModal, $mdDialog, AccountService, PasswordService, $state) {
     return {
       restrict: 'E',
       scope: {
@@ -26,8 +26,8 @@ angular.module('xbertsApp')
           AccountService.changeEmail(scope.data.email)
             .then(function (value) {
               $rootScope.user.setUserEmail(value.email);
-
               scope.$emit('backdropOff', 'success');
+              $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
             })
             .catch(function (response) {
               scope.$emit('backdropOff', 'error');
@@ -93,9 +93,11 @@ angular.module('xbertsApp')
                 scope.$emit('backdropOn', 'delete');
 
                 AccountService.deactivate().then(function() {
+                  $mdDialog.cancel();
                   scope.$emit('backdropOff', 'success');
                   $rootScope.$emit('logout', false);
                 }).catch(function() {
+                  $mdDialog.cancel();
                   scope.$emit('backdropOff', 'error');
                   $rootScope.$emit('logout', false);
                 });
@@ -111,6 +113,7 @@ angular.module('xbertsApp')
 
         scope.reset = function() {
           scope.data = angular.copy(oldData,{});
+          scope.changeEmailForm.$submitted = false;
         };
       }
     }

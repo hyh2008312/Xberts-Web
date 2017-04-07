@@ -37,6 +37,9 @@
   }
   &__margin-right{
     margin-right: 32px;
+    @media screen and (max-width: 600px){
+      margin-right: 0;
+    }
   }
   md-input-container{
     margin-bottom: 0;
@@ -117,7 +120,7 @@
     max-width: 100%;
   }
   .md-button{
-    margin: 0;
+    margin: 8px 0 0;
   }
   &__content{
     margin: 24px 0;
