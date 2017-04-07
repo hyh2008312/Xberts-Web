@@ -29,7 +29,7 @@
         <p flex>
           <span class="md-subhead">{{product.getSharePrice()}}</span>
         </p>
-        <md-button class="md-primary md-raised" target="_blank" ng-href="{{product.purchaseUrl}}">
+        <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('discover-item');">
           Buy Now
         </md-button>
       </div>

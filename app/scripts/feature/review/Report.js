@@ -44,7 +44,19 @@ function ReportModel() {
     getScore: function () {
       var temp = [(this.presentation + this.cost_performance + this.usability) / 3] * 10;
       return Math.round(temp) / 10;
+    },
+    buyNow: function (category) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'buy-product-btn-click',
+          category:category,
+          productTitle: this.title
+        });
+      }
+
+      window.open(this.getProductStore());
     }
+    
   };
 
   Report.build = function (data) {

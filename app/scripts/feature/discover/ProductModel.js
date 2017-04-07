@@ -57,6 +57,17 @@ function ShareProduct(urlParser, $sce, $state) {
     },
     getPostId: function() {
       return this.owner.id;
+    },
+    buyNow: function (category) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'buy-product-btn-click',
+          category:category,
+          productTitle: this.title
+        });
+      }
+
+      window.open(this.purchaseUrl);
     }
   };
 
