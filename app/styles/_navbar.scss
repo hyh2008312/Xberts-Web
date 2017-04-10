@@ -1,7 +1,7 @@
 .xberts-navbar {
   width: 100%;
   height: 56px;
-  background-color: #3f52b4 !important;
+  background-color: #3f52b4;
   z-index: 2;
   .container{
     height: 56px;
@@ -16,6 +16,9 @@
     >i{
       color: #FFF;
     }
+  }
+  &__logo-1{
+    display: none;
   }
   &__center-container{
     >div{
@@ -178,5 +181,41 @@
 .xb-nav-shadow{
   .xberts-navbar, .xberts-navbar-moblie{
     @include box-shadow(none);
+  }
+}
+.xb-nav-white{
+  @media screen and (min-width: 600px) {
+    .xberts-navbar{
+      background-color: transparent;
+      @include box-shadow(none);
+      &__logo-1{
+        display: block;
+      }
+      &__logo-2{
+        display: none;
+      }
+      &__center-container{
+        >div{
+          color: #000;
+          &:hover{
+            color: rgba(0,0,0,.38);
+          }
+        }
+      }
+      &__right-container{
+        >div{
+          color: #000;
+          &:hover{
+            color: rgba(0,0,0,.38);
+          }
+          >i{
+            color: #000;
+            &:hover{
+              color: rgba(0,0,0,.38);
+            }
+          }
+        }
+      }
+    }
   }
 }

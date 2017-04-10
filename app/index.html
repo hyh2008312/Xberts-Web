@@ -47,7 +47,8 @@
 </head>
 <body ng-class="pageSettings._backgroundColor + {true:' nav-main-opacity',false:''}[state.current.name=='application.main']
       + {true:' xb-login-body',false:''}[state.current.name=='application.login'|| state.current.name=='application.signup']
-      + {true:' xb-nav-shadow',false:''}[state.current.name=='application.expert']" data-page="{{$state.current}}" layout="column">
+      + {true:' xb-nav-shadow',false:''}[state.current.name=='application.expert']
+      + {true:' xb-nav-white',false:''}[state.current.name=='application.about'] " data-page="{{$state.current}}" layout="column">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q6BDP"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -151,10 +152,7 @@
 <script src="scripts/controllers/message/notification.js"></script>
 <script src="scripts/controllers/message/notification-detail.js"></script>
 <script src="scripts/controllers/message/thread.js"></script>
-<script src="scripts/controllers/profile/change-email.js"></script>
-<script src="scripts/controllers/profile/change-password.js"></script>
 
-<script src="scripts/controllers/profile/user-profile.js"></script>
 <script src="scripts/controllers/project/launchproject.js"></script>
 <script src="scripts/controllers/project/project.js"></script>
 <script src="scripts/controllers/project/projects.js"></script>
@@ -312,6 +310,10 @@
 <script src="scripts/feature/credit/creditRedeem/creditRedeem.js"></script>
 <script src="scripts/feature/credit/navNextSlideToggle/navNextSlideToggle.js"></script>
 <script src="scripts/feature/credit/redeemAtlas/redeemAtlas.js"></script>
+
+<!--about-->
+<script src="scripts/feature/about/aboutCtrl.js"></script>
+<script src="scripts/feature/about/backgroundScroll.js"></script>
 
 <!--footer-->
 <script src="scripts/feature/footer/footer.js"></script>

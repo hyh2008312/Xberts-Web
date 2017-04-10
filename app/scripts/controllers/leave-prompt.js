@@ -11,9 +11,4 @@ angular.module('xbertsApp')
       $scope.cancel = function () {
         $uibModalInstance.dismiss('NO');
       };
-    }])
-  .controller('AboutCtrl', ['$scope', '$rootScope',
-    function ($scope, $rootScope) {
-      $rootScope.pageSettings.setTitle('About Xberts');
-      $rootScope.pageSettings.setBackgroundColor('background-bg-gray');
     }]);

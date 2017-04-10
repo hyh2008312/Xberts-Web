@@ -26,7 +26,7 @@ angular
       })
       .state('application.about', {
         url: "/about",
-        templateUrl: 'views/about.html',
+        templateUrl: 'scripts/feature/about/about.html',
         controller: 'AboutCtrl'
       })
       .state('application.projects', {
@@ -105,7 +105,7 @@ angular
           }]
         }
       })
-      
+
       .state('application.login', {
         url: '/login?error',
         templateUrl: 'views/login.html',
@@ -122,7 +122,7 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
-      
+
       .state('application.protected.message', {
         abstract: true,
         templateUrl: 'views/message/message.html',
