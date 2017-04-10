@@ -26,7 +26,7 @@ angular
       })
       .state('application.about', {
         url: "/about",
-        templateUrl: 'views/about.html',
+        templateUrl: 'scripts/feature/about/about.html',
         controller: 'AboutCtrl'
       })
       .state('application.projects', {

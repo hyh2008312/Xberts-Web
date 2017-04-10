@@ -5,7 +5,8 @@
 <div class="xberts-navbar" role="navigation" hide-xs >
   <div class="container" layout="row" layout-align="start center">
 
-    <img ui-sref="application.main" src="https://xberts.imgix.net/static/logo/3ef1c2db-9f7f-45cd-8b55-a054723b4ca5.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=ab89a780b24f749d21394844da6bfaad" width="120" height="32" alt="xberts">
+    <img class="xberts-navbar__logo-1" ui-sref="application.main" src="https://xberts.imgix.net/static/logo/59f7e5b8-7590-49f1-baf5-ab95581662cb.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=81cb164665847cc1ea72f8d9f2a1c943" width="120" height="32" alt="xberts">
+    <img class="xberts-navbar__logo-2" ui-sref="application.main" src="https://xberts.imgix.net/static/logo/3ef1c2db-9f7f-45cd-8b55-a054723b4ca5.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=ab89a780b24f749d21394844da6bfaad" width="120" height="32" alt="xberts">
 
     <div class="xberts-navbar__center-container" flex layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.shareProductList">Discover</div>
@@ -47,6 +48,7 @@
     <h2 ng-if="state.current.name == 'application.protected.message.inbox'">Messages</h2>
     <h2 ng-if="state.current.name == 'application.expert'">My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
+    <h2 ng-if="state.current.name == 'application.about'">About us</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail'">{{pageSettings._title}}</h2>
