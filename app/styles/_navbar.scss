@@ -183,39 +183,3 @@
     @include box-shadow(none);
   }
 }
-.xb-nav-white{
-  @media screen and (min-width: 600px) {
-    .xberts-navbar{
-      background-color: transparent;
-      @include box-shadow(none);
-      &__logo-1{
-        display: block;
-      }
-      &__logo-2{
-        display: none;
-      }
-      &__center-container{
-        >div{
-          color: #000;
-          &:hover{
-            color: rgba(0,0,0,.38);
-          }
-        }
-      }
-      &__right-container{
-        >div{
-          color: #000;
-          &:hover{
-            color: rgba(0,0,0,.38);
-          }
-          >i{
-            color: #000;
-            &:hover{
-              color: rgba(0,0,0,.38);
-            }
-          }
-        }
-      }
-    }
-  }
-}
