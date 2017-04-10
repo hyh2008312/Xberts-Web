@@ -6,11 +6,11 @@
       line-height: nth($font, 2) + px;
       @include media();
       color: #000;
-      @media screen and (max-width: 413px){
+      @media screen and (max-width: 400px){
         font-size: nth($font, 3) + px;
         line-height: nth($font, 3) + px;
       }
-      @media screen and (min-width: 414px) and (max-width: 600px){
+      @media screen and (min-width: 400px) and (max-width: 600px){
         font-size: nth($font, 4) + px;
         line-height: nth($font, 4) + px;
       }
