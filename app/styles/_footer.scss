@@ -6,6 +6,7 @@
 .footer {
   align-self: flex-end;
   width: 100%;
+  position: relative;
   @include resetBorder();
   .container{
     height: 240px;
