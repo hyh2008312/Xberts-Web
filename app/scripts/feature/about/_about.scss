@@ -45,7 +45,7 @@
     line-height: 72px;
   }
   &__title-bg{
-    padding: 48px 0 96px;
+    padding: 48px 10px 96px;
     @media screen and (max-width: 600px){
       padding: 24px 8px 16px;
     }
@@ -135,7 +135,7 @@
   }
   &__margin-left{
     margin-left: 88px;
-    @media screen and (min-width: 600px) and (min-width: 960px){
+    @media screen and (min-width: 600px) and (max-width: 960px){
       margin-left: 40px;
     }
     @media screen and (max-width: 960px){
