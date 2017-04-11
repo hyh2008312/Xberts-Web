@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', '_', 'Paginator',
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator',
     'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct', 'FacebookService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, _, Paginator,
               ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, FacebookService) {
@@ -12,13 +12,7 @@ angular.module('xbertsApp')
 
       $scope.selectedIndex = 0;
 
-      var tabIndexToParam = {
-        '0': 'profile',
-        '1': 'trials',
-        '2': 'posts',
-        '3': 'campaigns'
-      };
-      var tabParamToIndex = _(tabIndexToParam).invert();
+      var tabIndexToParam = ['profile', 'trials', 'posts', 'referrals', 'campaigns'];
 
       var updateUrl = function () {
         setTimeout(function () {
@@ -30,7 +24,9 @@ angular.module('xbertsApp')
 
       var updateActiveTabOnSearch = function () {
         var tab = $location.search().tab || 'profile';
-        $scope.selectedIndex = parseInt(tabParamToIndex[tab]);
+        $scope.selectedIndex = parseInt(tabIndexToParam.findIndex(function(x) {
+          return x == tab;
+        }));
       };
 
       updateActiveTabOnSearch();
