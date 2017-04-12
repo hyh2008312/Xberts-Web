@@ -39,6 +39,11 @@ angular
           }]
         }
       })
+      .state('application.protected.invite', {
+        url: '/invite',
+        templateUrl: 'scripts/feature/profile/InviteFriends.html',
+        controller: 'InviteFriendsCtrl'
+      })
       .state('application.resetPassword', {
         abstract: true,
         template: '<div ui-view></div>',

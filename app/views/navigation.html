@@ -11,6 +11,7 @@
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Trials</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
+      <div ui-sref-active="active" ui-sref="application.about">About</div>
     </div>
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
@@ -47,6 +48,7 @@
     <h2 ng-if="state.current.name == 'application.expert'">My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.about'">About us</h2>
+    <h2 ng-if="state.current.name == 'application.protected.invite'">Invite Friends</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail'">{{pageSettings._title}}</h2>
@@ -55,20 +57,21 @@
 <md-sidenav
   class="md-sidenav-left xberts-navbar-moblie-sidenav"
   md-component-id="left"
-  md-whiteframe="3" hide-gt-xs layout="column" layout-align="space-between start">
+  md-whiteframe="3" hide-gt-xs layout="column">
 
-  <div class="xberts-navbar-moblie-sidenav__top-container">
+  <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
     <div ui-sref-active="active" ui-sref="application.shareProductList" ng-click="close()">Discover</div>
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Trials</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>
+    <div ui-sref-active="active" ui-sref="application.about" ng-click="close()">About</div>
   </div>
-  <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container">
+  <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.signup" ng-click="close()">Sign up</div>
     <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
-  <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container">
+  <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
     <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting' })" ng-click="close()">Settings</div>

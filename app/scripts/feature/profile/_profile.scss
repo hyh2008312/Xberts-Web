@@ -1,3 +1,24 @@
+@mixin xb-xs-screen(){
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+@mixin xb-sm-screen(){
+  @media screen and (min-width: 600px) and (max-width: 960px){
+    @content;
+  }
+}
+@mixin xb-md-screen(){
+  @media screen and (min-width: 960px) and (max-width: 1280px){
+    @content;
+  }
+}
+@mixin xb-lg-screen(){
+  @media screen and (min-width: 1280px) and (max-width: 1920px){
+    @content;
+  }
+}
+
 .xb-my-posts{
   >md-list{
     padding: 0;
@@ -8,6 +29,77 @@
       }
     }
   }
+}
+.xb-my-referrals{
+  &__friend-list{
+    padding: 0;
+    >md-list-item{
+      padding: 16px 8px;
+      height: 56px;
+    }
+    avatar-img{
+      margin-right: 16px;
+      .c-user__avatar{
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+      }
+    }
+    i{
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      line-height: 24px;
+      text-align: center;
+      color: rgba(0,0,0,.38);
+    }
+  }
+  &__friend-list-none{
+    padding: 88px 0;
+    text-align: center;
+    md-icon{
+      font-size: 48px;
+      line-height: 48px;
+      width: 48px;
+      height: 48px;
+      color: rgba(0,0,0,.38);
+      margin: 0 0 24px 0;
+    }
+    @include xb-xs-screen{
+      padding: 40px 0;
+    }
+  }
+  &__invite-friends{
+    cursor: pointer;
+    margin-left: 80px;
+    margin-right: 40px;
+    margin-top: 16px;
+    border: 2px dashed rgba(0, 0, 0, .12);
+    padding: 88px 32px;
+    md-icon{
+      font-size: 48px;
+      line-height: 48px;
+      width: 48px;
+      height: 48px;
+      color: rgba(0,0,0,.38);
+      margin: 0 16px 0 0;
+    }
+    .md-headline{
+      @include media();
+    }
+    .md-body-1{
+      text-align: center;
+    }
+    @include xb-sm-screen{
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    @include xb-xs-screen{
+      margin: 0;
+      padding: 56px 32px;
+    }
+  }
+
 }
 .xb-edit-profile{
   margin: 0 24px;
@@ -200,6 +292,128 @@
   &__padding-top{
     @media screen and (width: 600px){
       padding-top: 16px;
+    }
+  }
+}
+.xb-invite-friends{
+  &__title{
+    margin-top: 36px;
+    margin-bottom: 8px;
+    padding: 0 16px;
+  }
+  &__subtitle{
+    margin-bottom: 32px;
+    padding: 0 16px;
+    span{
+      color: #ff4081;
+    }
+    a{
+      border-bottom: 1px solid;
+    }
+  }
+  &__middle{
+    margin-bottom: 40px;
+    @include resetBorder();
+    background-color: #fff;
+    .md-subhead{
+      padding: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+  }
+  $parent: &;
+  &__social-bg{
+    padding: 32px 16px;
+    i{
+      background-color: rgba(0, 0, 0, .38);
+      border-radius: 4px;
+      font-size: 30px;
+      line-height: 36px;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      color: #fff;
+      margin-right: 16px;
+
+    }
+    .fa-envelope{
+      color: rgba(0, 0, 0, .38);
+      background-color: transparent;
+    }
+    $hoverChanges: (1 #3b5998) (2 #0177b5) (3 #1da1f2) (4 #3f51b5);
+    @each $hoverChange in $hoverChanges{
+      #{$parent}__color-#{nth($hoverChange, 1)} {
+        cursor: pointer;
+        outline: none;
+        &:hover{
+          .fa{
+            @if(nth($hoverChange, 1) < 4) {
+              background-color: nth($hoverChange, 2);
+            } @else {
+              color: nth($hoverChange, 2);
+            }
+          }
+          span{
+            color: nth($hoverChange, 2);
+          }
+        }
+      }
+    }
+    @include xb-xs-screen{
+      padding: 8px 0;
+      flex: 1 1 144px !important;
+      -webkit-flex: 1 1 144px !important;
+      >div{
+        padding: 16px 0;
+      }
+      i{
+        margin-right: 0;
+        margin-bottom: 4px;
+      }
+    }
+  }
+  &__bottom{
+    margin-bottom: 40px;
+    @include resetBorder();
+    background-color: #fff;
+    .md-subhead{
+      padding: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+  }
+  &__link{
+    margin: 24px 16px 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background-color: #f9f9f9;
+    padding: 12px 16px;
+  }
+  &__share-bg{
+    margin: 0 16px;
+    padding-bottom: 24px;
+    >div{
+      cursor: pointer;
+      padding: 6px 12px;
+      margin-top: 16px;
+      @include resetBorder();
+      margin-right: 16px;
+      >i{
+        width: 24px;
+        height: 24px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        border-radius: 4px;
+        margin-right: 12px;
+      }
+      $colors: (1 #3b5998) (2 #1da1f2) (3 #0177b5);
+      @each $color in $colors{
+        &:nth-child(#{nth($color, 1)}) {
+          >i{
+            background-color: nth($color, 2);
+          }
+        }
+      }
     }
   }
 }

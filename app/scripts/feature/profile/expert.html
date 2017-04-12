@@ -195,6 +195,10 @@
         </div>
       </md-tab>
 
+      <md-tab label="My Referrals" md-on-select="loadMyReferrals()">
+        <my-referrals></my-referrals>
+      </md-tab>
+
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
         <div class="md-padding">
           <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
@@ -240,5 +244,6 @@
       </md-tab>
 
     </md-tabs>
+
   </div>
 </section>
