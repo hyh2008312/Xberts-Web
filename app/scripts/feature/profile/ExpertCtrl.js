@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator',
-    'ReviewService', 'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct',
-    function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator,
-              ReviewService, Interact, expert, ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct) {
+  .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
+    'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct','ExpertService',
+    function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
+              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService) {
       $rootScope.pageSettings.setBackgroundColor('background-whitem');
       $scope.expert = expert;
-      $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.user_id;
+      $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
 
       $scope.selectedIndex = 0;
@@ -39,12 +39,12 @@ angular.module('xbertsApp')
         updateUrl();
         if ($scope.reviewApplicantPaginator) return;
         var filter = '';
-        if ($rootScope.user.getUserId() != expert.user_id) {
+        if ($rootScope.user.getUserId() != expert.userId) {
           filter = {is_submit_report: true, review: {status: 'ENDED'}};
         }
         var par = {
-          name: 'trials_' + $scope.expert.user_id,
-          params: {reviewer_id: $scope.expert.user_id},
+          name: 'trials_' + $scope.expert.userId,
+          params: {reviewer_id: $scope.expert.userId},
           filter: filter,
           fetchFunction: ApplicationService.getApplications
         };
@@ -55,8 +55,8 @@ angular.module('xbertsApp')
         updateUrl();
         if ($scope.campaignPaginator) return;
         var par = {
-          name: 'campaigns_' + $scope.expert.user_id,
-          params: {owner: $scope.expert.user_id},
+          name: 'campaigns_' + $scope.expert.userId,
+          params: {owner: $scope.expert.userId},
           fetchFunction: ReviewService.getList
         };
         $scope.campaignPaginator = new Paginator(par);
@@ -67,12 +67,16 @@ angular.module('xbertsApp')
       };
 
       var par = {
-        name: 'posts_' + $scope.expert.user_id,
+        name: 'posts_' + $scope.expert.userId,
         objClass: ShareProduct,
-        params: {owner: $scope.expert.user_id},
+        params: {
+          owner: $scope.expert.userId,
+
+        },
         fetchFunction: ShareProductService.getList
       };
       $scope.postsProductPaginator = new Paginator(par);
+
 
       $scope.loadMyPosts = function () {
         updateUrl();
@@ -89,7 +93,7 @@ angular.module('xbertsApp')
           controller: 'SendMessageCtrl',
           resolve: {
             recipientId: function () {
-              return $scope.expert.user_id;
+              return $scope.expert.userId;
             }
           }
         });
@@ -98,6 +102,17 @@ angular.module('xbertsApp')
       $scope.editProfile = function () {
         $state.go('application.protected.editProfile');
       };
+
+      var par = {
+        name: 'myReferrals_' + $scope.expert.userId,
+        objClass: ShareProduct,
+        params: {
+          id: $scope.expert.userId,
+          page_size: 1
+        },
+        fetchFunction: ExpertService.getInviteList
+      };
+      $scope.myReferrals = new Paginator(par);
 
       $scope.loadMyReferrals = function () {
         updateUrl();

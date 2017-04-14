@@ -86,4 +86,10 @@ angular.module('xbertsApp')
           disableParenScroll: true
         });
       }
+
+      var title = 'Xberts – Sign up now to get started';
+      var description = "Join Xberts community so you can try the coolest products for free and stay up-to-date on the latest tech gadgets and deals. Very easy to sign up!";
+      var backgroundColor = 'background-bg-light';
+      var shareImage = '';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);

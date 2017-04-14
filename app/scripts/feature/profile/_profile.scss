@@ -260,7 +260,7 @@
   }
   &__points-bg{
     margin-right: -10px;
-    padding: 0 24px 0 8px;
+    padding: 0 16px 0 8px;
     height: 24px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -269,6 +269,35 @@
     line-height: 24px;
     background-color: #fff;
     color: #3f51b5;
+    img{
+      display: block;
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+    }
+    .material-icons{
+      color: #3f51b5;
+    }
+  }
+  &__cursor{
+    cursor: pointer;
+  }
+  &__points-bg-1{
+    margin-left: 16px;
+    padding: 0 8px;
+    height: 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "Times new Roman";
+    line-height: 24px;
+    background-color: #fff;
+    color: #3f51b5;
+    img{
+      display: block;
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+    }
   }
   &__button-bg{
     margin-top: -28px;

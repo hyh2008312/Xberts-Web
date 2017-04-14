@@ -127,7 +127,7 @@
       margin-left: 40px;
       margin-bottom: 32px;
       >span{
-        min-width: 51px;
+        min-width: 58px;
         margin-right: 40px;
       }
       >a{
@@ -341,5 +341,102 @@
         margin-right: 0;
       }
     }
+  }
+}
+.xb-personal-credit{
+  margin-top: 16px;
+  @include xb-xs-screen{
+    margin-top: 0;
+  }
+  @include box-shadow(none);
+  .container{
+    @include resetBorder();
+    background-color: #fff;
+    padding: 16px;
+  }
+  &__head{
+    margin-right: 80px;
+    @include xb-xs-screen{
+      margin-right: 16px;
+    }
+    .c-user__avatar{
+      margin-bottom: 0;
+    }
+  }
+  &__title{
+    .md-display-1{
+      margin-bottom: 8px;
+      @include xb-xs-screen{
+        font-size: 24px;
+      }
+    }
+    .md-dark-secondary{
+      span{
+        color: #3f51b5;
+      }
+    }
+  }
+  &__points{
+    span{
+      @include media();
+      margin: 0 32px 0 16px;
+    }
+  }
+}
+.xb-personal-container {
+  background-color: #fff;
+  margin-top: 16px;
+  padding: 0;
+  @include resetBorder();
+  >.md-subhead {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    line-height: 56px;
+    padding: 0 16px;
+  }
+  .xb-credit-redeem {
+    margin-top: 0;
+    padding: 16px 16px 48px;
+  }
+  &__margin-bottom {
+    margin-bottom: 16px;
+  }
+  &__bg {
+    padding: 0;
+  }
+  &__margin-right {
+    margin-right: 16px;
+    @include xb-xs-screen {
+      margin-right: 0;
+    }
+  }
+  &__points{
+    width: 400px;
+    @include xb-xs-screen{
+      width: 100%;
+    }
+  }
+}
+.xb-personal-perks{
+  padding: 40px 0;
+  text-align: center;
+  .material-icons{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 40px;
+    margin: 0 0 8px;
+  }
+  img{
+    margin-bottom: 36px;
+    height: 88px;
+    @include xb-xs-screen{
+      margin-bottom: 16px;
+      height: 64px;
+    }
+  }
+  &__wrap{
+    width: 1px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, .12);
   }
 }

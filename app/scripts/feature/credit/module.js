@@ -32,4 +32,28 @@ angular.module('xbertsApp')
         }]
       }
     })
+    .state('application.personalCredit', {
+      url: '/myPoints/:id',
+      templateUrl: 'scripts/feature/credit/PersonalCredit.html',
+      controller: 'PersonalCreditCtrl',
+      resolve: {
+        expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+          return ExpertService.getExpert($stateParams.id);
+        }],
+        creditMain: ['Paginator','CreditService','ShareProduct',function(Paginator, CreditService, ShareProduct) {
+          var par = {
+            name: 'credit_gift_list',
+            objClass: ShareProduct,
+            params: {
+              page_size: 6
+            },
+            fetchFunction: CreditService.getList
+          };
+          return new Paginator(par).load();
+        }],
+        points: ['ExpertService','$stateParams',function(ExpertService, $stateParams) {
+          return ExpertService.getPoints($stateParams.id);
+        }]
+      }
+    });
   }]);

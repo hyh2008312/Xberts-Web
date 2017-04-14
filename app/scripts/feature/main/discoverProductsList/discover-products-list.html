@@ -40,8 +40,8 @@
   </div>
   <div class="xb-main-discover" flex="none" hide-sm hide-xs>
     <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start start"
-         ng-click="changeShowProduct(product)">
-      <div class="xb-main-discover__img-content">
+         ng-click="changeShowProduct($index)" ng-class="{true:'active',false:''}[$index == index]">
+      <div class="xb-main-discover__img-content" >
         <img ng-src="{{product.getImageThumbnail()}}" />
         <div class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">

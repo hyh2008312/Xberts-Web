@@ -8,7 +8,7 @@
         <div class="xb-credit-container__img-content" layout="row" layout-align="start stretch">
           <div class="xb-column-bg" layout="column" layout-align="end center" >
             <div class="xb-credit-container__img-bg-150">
-              <div>300</div>
+              <div>200</div>
               <div>Points</div>
             </div>
             <div class="xb-credit-container__badge-bg">
@@ -84,17 +84,18 @@
         <md-button ng-if="!user.isAuth()" class="md-raised" ui-sref="application.signup">sign up</md-button>
       </div>
       <div class="xb-credit-color-bg__content" flex="50">
-        <div layout="row" ng-if="false">
-          <span>8 points</span><a>Invite a friend to join Xberts</a>
-        </div>
+
         <div layout="row">
-          <span>5 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
+          <span>10 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
         </div>
         <div layout="row" ng-if="false">
           <span>5 points</span><a>Product suggestion is featured on Xberts</a>
         </div>
         <div layout="row">
-          <span>5 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
+          <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
+        </div>
+        <div layout="row">
+          <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
         </div>
         <div layout="row" ng-if="false">
           <span>3 points</span><a>Share a review or product on your social media with an Xberts link</a>
@@ -103,7 +104,7 @@
           <span>3 points</span><a>Connect with your social media account</a>
         </div>
         <div layout="row">
-          <span>2 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
+          <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
         </div>
         <div layout="row">
           <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
@@ -198,7 +199,7 @@
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Enthusiast</div>
         <div layout="row" layout-align="start center">
-          <div class="xb-credit-mobile__line-1"></div> 300 points
+          <div class="xb-credit-mobile__line-1"></div> 200 points
         </div>
       </div>
     </div>
@@ -264,17 +265,17 @@
     <div ng-if="!user.isAuth()" class="md-subhead">Earn 10 points by signing up now</div>
     <md-button ng-if="!user.isAuth()" class="md-primary md-raised" ui-sref="application.signup">sign up</md-button>
     <div class="xb-credit-color-bg__content">
-      <div layout="row" ng-if="flase">
-        <span>8 points</span><a>Invite a friend to join Xberts</a>
-      </div>
       <div layout="row">
-        <span>5 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
+        <span>10 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
       </div>
       <div layout="row" ng-if="false">
         <span>5 points</span><a>Product suggestion is featured on Xberts</a>
       </div>
       <div layout="row">
-        <span>5 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
+        <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
+      </div>
+      <div layout="row">
+        <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
       </div>
       <div layout="row" ng-if="false">
         <span>3 points</span><a>Share a review or product on your social media with an Xberts link</a>
@@ -283,7 +284,7 @@
         <span>3 points</span><a>Connect with your social media account</a>
       </div>
       <div layout="row">
-        <span>2 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
+        <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
       </div>
       <div layout="row">
         <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>

@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Configuration',
-    'AuthService', 'AnalyticsService', '$mdDialog', '$timeout',
+    'AuthService', 'AnalyticsService', '$mdDialog',
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
-             AuthService, AnalyticsService, $mdDialog, $timeout) {
+             AuthService, AnalyticsService, $mdDialog) {
       if ($stateParams.error === 'linkedin_login') {
         $scope.loginError = {linkedinError: true};
 
@@ -82,4 +82,10 @@ angular.module('xbertsApp')
           disableParenScroll: true
         });
       }
+
+      var title = 'Xberts – Login';
+      var description = "Log in to your Xberts account. It's good to have you back!";
+      var backgroundColor = 'background-bg-light';
+      var shareImage = '';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
     }]);

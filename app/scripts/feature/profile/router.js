@@ -40,7 +40,7 @@ angular
         }
       })
       .state('application.protected.invite', {
-        url: '/invite',
+        url: '/inviteFriends',
         templateUrl: 'scripts/feature/profile/InviteFriends.html',
         controller: 'InviteFriendsCtrl'
       })

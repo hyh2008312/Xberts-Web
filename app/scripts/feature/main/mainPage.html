@@ -17,7 +17,6 @@
     <trials-list trials="mainCtrl.trials"></trials-list>
     <div class="xb-title" layout="row" layout-align="start end">
       <h3 class="md-dark-primary" layout-fill>Reviews from Tech Insiders</h3>
-      <a class="md-body-1" ui-sref="application.campaignreviews()">SEE MORE</a>
     </div>
     <div layout="row" layout-align="start start">
       <div class="xb-main-reviews" flex>
@@ -25,7 +24,9 @@
           <md-button>Latest<div class="tab-triangle"></div></md-button>
         </md-card>
         <reviews-list reviews="mainCtrl.reviews"></reviews-list>
-
+        <div layout="row" layout-align="center center">
+          <md-button class="md-primary md-raised" flex ui-sref="application.campaignreviews()">SEE MORE</md-button>
+        </div>
       </div>
       <div class="xb-main-reviewer" hide-sm hide-xs>
         <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">

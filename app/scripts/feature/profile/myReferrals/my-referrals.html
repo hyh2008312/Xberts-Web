@@ -1,12 +1,17 @@
-<div layout-gt-xs="row" layout-xs="column" layout-align="start start" class="xb-my-referrals">
-  <md-list class="xb-my-referrals__friend-list" flex>
-    <md-list-item layout="row" layout-align="start center">
-      <avatar-img></avatar-img>
-      <div flex class="md-body-1">Adam</div>
-      <i class="fa fa-envelope fa-lg"></i>
-    </md-list-item>
-  </md-list>
-  <div class="xb-my-referrals__friend-list-none" layout="column" layout-align="center center" flex hide>
+<div layout-gt-xs="row" layout-xs="column" layout-align-gt-xs="start start" class="xb-my-referrals">
+  <div ng-show="referrals.items.length > 0"
+       flex infinite-scroll="referrals.loadNext()" infinite-scroll-distance='0'
+       infinite-scroll-container='".xb-body-view "' infinite-scroll-disabled="referrals.loading || !referrals.next">
+    <md-list class="xb-my-referrals__friend-list" >
+      <md-list-item layout="row" layout-align="start center" ng-repeat="item in referrals.items track by $index">
+          <avatar-img src="item.invitee.userprofile.avatar"></avatar-img>
+          <div flex class="md-body-1">{{item.invitee.firstName +' '+ item.invitee.lastName}}</div>
+          <i class="fa fa-envelope fa-lg" ng-click="contactUser(item.invitee.id)"></i>
+        </md-list-item>
+    </md-list>
+    <load-more class="row spin-large" ng-if="referrals.loading"></load-more>
+  </div>
+  <div ng-if="referrals.items.length == 0" class="xb-my-referrals__friend-list-none" layout="column" layout-align="center center" flex>
     <md-icon md-font-set="material-icons">mood_bad</md-icon>
     <div class="md-body-1 md-dark-secondary">0 friend have joined Xberts through your inviting.</div>
   </div>

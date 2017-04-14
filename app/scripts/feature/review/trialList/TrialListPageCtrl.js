@@ -6,9 +6,11 @@ angular.module('xbertsApp')
 
       var self = this;
 
+      var title = 'Trials – Try latest gadgets';
+      var description = 'Try the coolest products for Free or with Deep Discount, and share your reviews with our community. ';
       var backgroundColor = 'background-bg-light';
-      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
-      $rootScope.pageSettings.setPage();
-      
+      var shareImage = '';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
+
       self.trialPaginator = trialPaginator;
     }]);

@@ -1,18 +1,39 @@
 <div class="xb-my-profile">
   <div class="container">
     <div layout="row" layout-align="end center">
-      <div class="xb-my-profile__points-bg" hide-gt-xs>{{expert.points}} Points</div>
+      <div class="xb-my-profile__points-bg xb-my-profile__cursor" hide-gt-xs layout="row" layout-align="start center" ng-if="isCurrentUser"
+           ui-sref="application.personalCredit({id:expert.userId})">
+        <credit-badge points="expert.points"></credit-badge>
+        {{expert.points}} Points
+        <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+      </div>
+      <div class="xb-my-profile__points-bg" hide-gt-xs layout="row" layout-align="start center" ng-if="!isCurrentUser">
+        <credit-badge points="expert.points"></credit-badge>
+        {{expert.points}} Points
+        <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+      </div>
     </div>
     <div class="xb-my-profile__content" layout="row" layout-align="start center">
       <div class="xb-my-profile__head">
-        <avatar-img src="expert.avatar" name="expert.fullname"></avatar-img>
+        <avatar-img src="expert.avatar" name="expert.short_name"></avatar-img>
       </div>
       <div class="xb-my-profile__title">
-        <div class="md-headline">{{expert.short_name}}<span class="md-subhead" hide-xs>{{expert.points}} Points</span></div>
+        <div class="md-headline" layout="row" layout-align="start center">
+          {{expert.shortName}}
+          <div class="xb-my-profile__points-bg-1 xb-my-profile__cursor" hide-xs layout="row" layout-align="start center" ng-if="isCurrentUser"
+               ui-sref="application.personalCredit({id:expert.userId})">
+            <credit-badge points="expert.points"></credit-badge>
+            {{expert.points}} Points
+          </div>
+          <div class="xb-my-profile__points-bg-1" hide-xs layout="row" layout-align="start center" ng-if="!isCurrentUser">
+            <credit-badge points="expert.points"></credit-badge>
+            {{expert.points}} Points
+          </div>
+        </div>
         <div class="xb-my-profile__title-bottom" layout="row" layout-align="start center" layout-xs="column"
           layout-align-xs="start start">
-          <div><i class="fa fa-map-marker"></i><span class="xb-my-profile__margin-1">{{ expert.country }}</span></div>
-          <div class="xb-my-profile__margin-2">{{ expert.company_title}}</div>
+          <div><i class="fa fa-map-marker"></i><span class="xb-my-profile__margin-1">{{expert.country}}</span></div>
+          <div class="xb-my-profile__margin-2">{{expert.companyTitle}}</div>
         </div>
       </div>
     </div>
@@ -56,7 +77,7 @@
                   <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">{{
                     applicant.review.title }}</p>
 
-                  <div class="xb-card-button" ng-if="user.getUserId()==expert.user_id">
+                  <div class="xb-card-button" ng-if="user.getUserId()==expert.userId">
                     <div ng-switch="applicant.review.status">
                       <div ng-switch-when="APPLICATION">
                         <md-button  class="md-raised xb-btn-block md-primary"
@@ -169,7 +190,7 @@
                     </div>
 
                   </div>
-                  <div class="xb-card-button" ng-if="user.getUserId()!=expert.user_id">
+                  <div class="xb-card-button" ng-if="user.getUserId()!=expert.userId">
                     <md-button class="md-raised xb-btn-block md-primary"
                             ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
                       View
@@ -196,7 +217,7 @@
       </md-tab>
 
       <md-tab label="My Referrals" md-on-select="loadMyReferrals()">
-        <my-referrals></my-referrals>
+        <my-referrals referrals="myReferrals"></my-referrals>
       </md-tab>
 
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">

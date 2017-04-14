@@ -1,0 +1,11 @@
+<div class="xb-personal-perks" layout="column" layout-align="center center" ng-if="level.length == 0" flex>
+  <md-icon md-font-set="material-icons">mood</md-icon>
+  <div class="md-dark-secondary">Great start! Earn more points to unlock your first perk.</div>
+</div>
+<div class="xb-personal-perks" layout="row" layout-align="space-around center" ng-if="level.length > 0" flex>
+  <div ng-repeat="item in level track by $index" layout="column" layout-align="center center">
+    <img ng-if=item.img != null" ng-src="{{item.img}}">
+    <div>{{item.text}}</div>
+    <div class="xb-personal-perks__wrap" ng-if="item.img == null" hide-xs></div>
+  </div>
+</div>

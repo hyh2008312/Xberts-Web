@@ -7,10 +7,11 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/main/discoverProductsList/discover-products-list.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.showProduct = scope.products[0];
-
-        scope.changeShowProduct = function(product) {
-          scope.showProduct = product;
+        scope.index = 0;
+        scope.showProduct = scope.products[scope.index];
+        scope.changeShowProduct = function(index) {
+          scope.index = index;
+          scope.showProduct = scope.products[index];
         };
 
         // FAB Speed Dial Component

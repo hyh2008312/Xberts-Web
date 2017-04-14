@@ -5,13 +5,10 @@ angular.module('xbertsApp')
     function ($scope, $rootScope, reviewerPaginator, betaReviewPaginator, recommendedReportsPaginator, $state) {
 
 
-      var backgroundColor = 'background-bg-light';
       $scope.value=3;
-      $rootScope.pageSettings.setBackgroundColor('backgroundColor');
       $scope.reviewerPaginator = reviewerPaginator;
       $scope.betaReviewPaginator = betaReviewPaginator;
       $scope.recommendedReportsPaginator = recommendedReportsPaginator;
-      $rootScope.pageSettings.setPage();
 
       $scope.buyNow = function (id, $event) {
         $state.go('application.testcampaign', {reviewId: id});
@@ -35,4 +32,10 @@ angular.module('xbertsApp')
           params: {}
         }
       ];
+
+      var title = 'Reviews – Unbiased product reviews from our community';
+      var description = 'Explore new products reviewed by our community users. Share the good ones with your friends so they can make smarter purchasing decisions.';
+      var backgroundColor = 'background-bg-light';
+      var shareImage = '';
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
     }]);

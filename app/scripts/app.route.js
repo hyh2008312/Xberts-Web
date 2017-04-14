@@ -184,11 +184,13 @@ angular
       })
       .state('application.terms', {
         url: "/terms",
-        templateUrl: 'views/terms.html'
+        templateUrl: 'views/terms.html',
+        controller: 'TermsCtrl'
       })
       .state('application.privacy', {
         url: "/privacy",
-        templateUrl: 'views/privacy.html'
+        templateUrl: 'views/privacy.html',
+        controller: 'PrivacyCtrl'
       })
       .state('application.test', {
         url: '/test',

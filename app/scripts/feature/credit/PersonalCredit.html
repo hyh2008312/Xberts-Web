@@ -1,0 +1,40 @@
+<div class="xb-personal-credit">
+  <div class="container">
+    <div class="xb-personal-credit__content" layout="row" layout-align="start center" layout-align-xs="start start">
+      <div class="xb-personal-credit__head">
+        <avatar-img src="expert.avatar" name="expert.shortName"></avatar-img>
+      </div>
+      <div class="xb-personal-credit__title">
+        <div class="md-display-1" layout="row" layout-align="start center">
+          {{expert.shortName}}
+          <credit-badge points="expert.points"></credit-badge>
+        </div>
+        <div class="xb-personal-credit__title-bottom" layout="row" layout-align="start center" layout-xs="column"
+             layout-align-xs="start start">
+          <div class="xb-personal-credit__points" layout="row" layout-align="start center">My Points <span class="md-headline">{{expert.points}}</span></div>
+          <div class="md-dark-secondary" layout-xs="column" layout-align="start start" perks-level points="expert.points"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container xb-personal-container__bg" layout-gt-xs="row" layout-align-xs="column">
+  <div class="xb-personal-container xb-personal-container__margin-right xb-personal-container__points" flex-xs>
+    <div class="md-subhead">
+      My Points
+    </div>
+    <points-account points="points" total="expert.points"></points-account>
+  </div>
+  <div class="xb-personal-container" flex layout="column">
+    <div class="md-subhead">
+      My Perks
+    </div>
+    <perks points="800" layout="row" flex="noshrink"></perks>
+  </div>
+</div>
+<div class="container xb-personal-container xb-personal-container__margin-bottom">
+  <div class="md-subhead">
+    Gift Shop
+  </div>
+  <credit-redeem redeems="creditMain"></credit-redeem>
+</div>

@@ -1,11 +1,12 @@
 <div class="container xb-invite-friends">
   <div class="md-display-1 xb-invite-friends__title">
-    Invite Friends
+    Invite Friends & Get Rewards
   </div>
-  <div class="xb-invite-friends__subtitle">Invite a friend to join Xberts, you can acquire <span>8</span> credits.
-    <a ui-sref="application.creditMain">Any question, click here </a></div>
+  <div class="xb-invite-friends__subtitle">
+    Earn <span>5</span> points for each friend you refer to join Xberts! Once you have accumulated a certain number of points, you can redeem amazing tech gifts for free!
+    <a ui-sref="application.creditMain">Learn More </a></div>
   <div class="xb-invite-friends__middle">
-    <div class="md-subhead">You can send private messages to your friends through following ways</div>
+    <div class="md-subhead">Send an invitation to your friend through private message:</div>
     <div class="xb-invite-friends__social-bg" layout="row" layout-align="space-around center" layout-wrap>
       <div class="xb-invite-friends__color-1" layout-gt-xs="row" layout-xs="column" layout-align="center center" flex-xs="50"
            socialshare socialshare-via="{{inviteObj.appId}}"
@@ -38,7 +39,7 @@
     </div>
   </div>
   <div class="xb-invite-friends__bottom">
-    <div class="md-subhead">You can also share the link in your social networks</div>
+    <div class="md-subhead">Share the unique invite link on your social media:</div>
     <div class="xb-invite-friends__link" layout="row" layout-align="start center">
       <div>{{inviteObj.url()}}</div>
     </div>

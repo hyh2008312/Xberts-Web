@@ -285,8 +285,15 @@
 .xb-main-discover{
   width: 444px;
   margin-left: 16px;
+  .active{
+    background-color: #F1F1F1;
+  }
   >div{
     margin-bottom: 16px;
+    outline: none;
+    &:hover{
+      background-color: #F1F1F1;
+    }
   }
   &__img-content{
     width: 160px;
@@ -341,6 +348,14 @@
   @include xs-screen{
     margin-right: -10px;
     margin-left: -10px;
+  }
+  .md-raised{
+    margin-left: 0;
+    margin-right: 0;
+    @include xs-screen{
+      margin-left: 16px;
+      margin-right: 16px;
+    }
   }
 }
 .xb-main-review{
@@ -437,4 +452,12 @@
   overflow: hidden;
   display: block;
 }
-
+.xb-inner-section{
+  max-width: 800px;
+  width: 100%;
+  p{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+  }
+}

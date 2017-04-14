@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
   .service('CreditService', ['$resource','ShareProduct','API_BASE_URL',function ($resource,ShareProduct,API_BASE_URL) {
     var CreditResource = $resource(API_BASE_URL + '/gifts/:id/', null);
+    var PointsResource = $resource(API_BASE_URL + '/points/:id/', null);
 
     this.getList = function (params) {
       return CreditResource.get(params).$promise.then(ShareProduct.buildPageList);
