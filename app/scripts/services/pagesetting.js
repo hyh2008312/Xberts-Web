@@ -7,7 +7,7 @@ angular.module('xbertsApp')
         this._title = title || 'Xberts – Explore innovative gadgets and designs';
         this._description = description || 'Xberts is a community for you to discover, try and share the latest tech innovations and creative designs.';
         this._backgroundColor = background || 'background-bg-light';
-        this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts_logo_sqaure_200x200.jpg?s=17eb238192e044bc8909cd83c934da82';
+        this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/38625fa6-80c3-49a4-972a-8d69f49bb3e6.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=db9bb8eda2b7e97e35cb821b704fe912';
         this._hiddenFooter = hiddenFooter && true;
 
         this.setTitle = function (title) {
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
           this._title = title || 'Xberts – Explore innovative gadgets and designs';
           this._description = description || 'Xberts is a community for you to discover, try and share the latest tech innovations and creative designs.';
           this._backgroundColor = background || 'background-bg-light';
-          this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/xberts_logo_sqaure_200x200.jpg?s=17eb238192e044bc8909cd83c934da82';
+          this._shareImage = shareImage || 'https://xberts.imgix.net/static/logo/38625fa6-80c3-49a4-972a-8d69f49bb3e6.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=db9bb8eda2b7e97e35cb821b704fe912';
           this._hiddenFooter = hiddenFooter && true;
         };
         this.getUrl=function(){
