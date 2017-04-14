@@ -12,7 +12,7 @@ angular.module('xbertsApp')
         scope.total = scope.total;
         scope.myPointsList = {
           'Friends Referrals': parseInt(scope.points.inviteFriend),
-          'Product submission':parseInt(scope.points.postProductFeatured),
+          'Product Submission':parseInt(scope.points.postProductFeatured),
           'Trial Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
           'Community Engagement':parseInt(scope.points.commentProduct) + parseInt(scope.points.commentTrial) + parseInt(scope.points.commentReview) + 10,
           'Profile Completeness':parseInt(scope.points.hasAvatar)
