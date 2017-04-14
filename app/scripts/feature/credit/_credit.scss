@@ -55,14 +55,15 @@
   }
   .xb-column-bg{
     width: 150px;
+    max-width: 150px;
   }
-  $marginTops: (1 150) (2 45);
+  $marginTops: (1 150) (2 70);
   @each $marginTop in $marginTops {
     &__img-bg-#{nth($marginTop, 1)} {
       margin-top: nth($marginTop, 2) + px;
     }
   }
-  $heights: (150 rgba(0,0,0,.38)) (255 rgba(0,0,0,.54)) (300 rgba(0,0,0,.87));
+  $heights: (150 rgba(0,0,0,.38)) (225 rgba(0,0,0,.54)) (300 rgba(0,0,0,.87));
   @each $height in $heights {
     &__img-bg-#{nth($height, 1)} {
       height: nth($height, 1) + px;
