@@ -3,10 +3,13 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        referrals : '='
+        referrals : '=',
+        userId : '='
       },
       templateUrl: 'scripts/feature/profile/myReferrals/my-referrals.html',
       link: function (scope, element, attrs, ctrls) {
+
+        scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === scope.userId;
         scope.contactUser = function (id) {
           if (!$rootScope.user.authRequired()) {
             return;

@@ -217,7 +217,7 @@
       </md-tab>
 
       <md-tab label="My Referrals" md-on-select="loadMyReferrals()">
-        <my-referrals referrals="myReferrals"></my-referrals>
+        <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
       </md-tab>
 
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
