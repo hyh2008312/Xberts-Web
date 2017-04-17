@@ -83,4 +83,14 @@ angular
           }]
         }
       })
+      .state('application.protected.editPost', {
+        url: '/editPost/:productId',
+        templateUrl: 'scripts/feature/profile/EditPost.html',
+        controller: 'EditPostCtrl',
+        resolve: {
+          editPost: ['ShareProductService', '$stateParams', function (ShareProductService, $stateParams) {
+            return ShareProductService.getDetail($stateParams.productId);
+          }]
+        }
+      })
   }]);

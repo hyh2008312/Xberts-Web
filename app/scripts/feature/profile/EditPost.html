@@ -1,0 +1,43 @@
+<div class="container xb-edit-post">
+  <div class="xb-edit-post__title md-display-1">Edit My Post</div>
+  <form name="productForm" novalidate>
+    <md-input-container class="md-block" md-no-float>
+      <label class="md-dark-secondary">Product Title</label>
+      <input required ng-model="product.title" name="title" placeholder=" "/>
+      <div ng-messages="productForm.title.$error">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block xb-edit-post__fill" md-no-float>
+      <label class="md-dark-secondary">Description</label>
+      <input md-maxlength="500" required ng-model="product.description" name="description" placeholder="Tell us why you love it"/>
+      <div ng-messages="productForm.description.$error">
+        <div ng-message="required">This is required!</div>
+        <div ng-message="maxlength">That's too long!</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block" md-no-float>
+      <label class="md-dark-secondary">Purchase Link</label>
+      <input ng-model="product.purchaseUrl" type="url" name="link" placeholder="https://"/>
+    </md-input-container>
+    <div class="md-body-1 md-dark-secondary">Upload a product picture</div>
+    <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
+                ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
+      <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
+    </div>
+    <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
+      <img ngf-src="file || product.getImageOriginal()" flex="initial" />
+      <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
+        <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+      </div>
+    </div>
+    <md-input-container class="md-block" md-no-float>
+      <label class="md-dark-secondary">Upload a product video</label>
+      <input ng-model="product.videoUrl" type="url" name="videoUrl" placeholder="https://"/>
+      <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
+    </md-input-container>
+    <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+      <md-button class="md-primary md-raised" type="submit" ng-click="submitForm(product)" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+    </div>
+</form>
+</div>

@@ -6,6 +6,7 @@ $PrimaryINDIGO: #3f51b5;
   min-width: $arguments;
   min-height: $arguments;
   font-size: $arguments;
+  line-height: $arguments;
 }
 @mixin triangleBottom($px1:10px,$px2:10px,$color:#FFF){
   width: 0;

@@ -14,6 +14,10 @@ angular.module('xbertsApp')
       return ShareProductResource.save(data).$promise.then(ShareProduct.build);
     };
 
+    this.save = function (data) {
+      return ShareProductResource.save(data).$promise.then(ShareProduct.build);
+    };
+
     this.getCategoryList = function (params) {
       return CategoryResource.query(params).$promise;
     };
