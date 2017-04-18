@@ -1,8 +1,8 @@
 angular.module('xbertsApp')
-  .factory('Review', ReviewModel);
+  .factory('Review', ['$state',ReviewModel]);
 
 
-function ReviewModel() {
+function ReviewModel($state) {
 
   function Review(data) {
     angular.extend(this, data);
@@ -36,6 +36,9 @@ function ReviewModel() {
       } else {
         return 0;
       }
+    },
+    getShareUrl: function(id) {
+      return $state.href("application.testingcampaign", {reviewId:id},{absolute:true});
     }
   };
   Review.build = function (data) {

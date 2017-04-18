@@ -147,13 +147,26 @@ angular
         controller: 'TrialListPageController as trials',
         reloadOnSearch: false,
         resolve: {
-          trialPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
+          latestPaginater: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
               name: 'trials',
               objClass:Review,
               params: {
                 page_size: 12,
                 review_type: 'FREE_SAMPLE'
+              },
+              fetchFunction: ReviewService.getList
+            };
+            return new Paginator(par).load();
+          }],
+          trialPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
+            var par = {
+              name: 'trials',
+              objClass:Review,
+              params: {
+                page_size: 12,
+                review_type: 'FREE_SAMPLE',
+                status: 'ENDED'
               },
               fetchFunction: ReviewService.getList
             };
