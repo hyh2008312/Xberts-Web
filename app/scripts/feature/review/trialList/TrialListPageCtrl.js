@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('TrialListPageController', ['$scope', '$rootScope', 'trialPaginator','ReviewService',
-    function ($scope, $rootScope, trialPaginator,ReviewService) {
+  .controller('TrialListPageController', ['$scope', '$rootScope', 'trialPaginator','latestPaginater',
+    function ($scope, $rootScope, trialPaginator, latestPaginater) {
 
       var self = this;
 
@@ -12,5 +12,6 @@ angular.module('xbertsApp')
       var shareImage = '';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
+      self.latestPaginater = latestPaginater;
       self.trialPaginator = trialPaginator;
     }]);

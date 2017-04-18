@@ -157,10 +157,31 @@
       @include resetBorder();
     }
   }
+  $parent: &;
   &__container{
     position: relative;
     cursor: pointer;
     @include resetBorder();
+    padding-bottom: 66.66%;
+    overflow: hidden;
+    display: block;
+    z-index: 0;
+    &:hover{
+      @include xb-gt-xs-screen{
+        #{$parent}__mask{
+          display: flex;
+        }
+        i{
+          display: block;
+        }
+      }
+    }
+    >img{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
   }
   &__margin-bottom{
     margin-bottom: 16px;
@@ -170,20 +191,41 @@
     }
   }
   &__value{
+    z-index: 1;
     position: absolute;
     left: 16px;
     top: 16px;
-    border-radius: 2px;
-    padding: 0 8px;
-    background-color: #ff4081;
     >span{
       font-size: 14px;
       line-height: 28px;
       font-weight: 500;
       color: #FFF;
+      border-radius: 2px;
+      padding: 0 8px;
+      background-color: #ff4081;
+    }
+    >i{
+      color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      margin-left: 8px;
+      display: none;
+      @include xb-sm-screen{
+        margin-top: 8px;
+      }
+    }
+    $colors: (0 #3b5998) (1 #1da1f2) (2 #0177b5);
+    @each $color in $colors{
+      #{$parent}__bg-#{nth($color, 1)} {
+        background-color: nth($color, 2);
+      }
     }
   }
   &__top-right{
+    z-index: 1;
     position: absolute;
     right: 0;
     top: 0;
@@ -212,9 +254,59 @@
       @include ellipsisText();
     }
   }
-  img{
+  &__bottom{
+    margin-bottom: 5px;
+    @include xb-xs-screen{
+      margin-bottom: 0;
+    }
+  }
+  &__left{
+    margin-left: 5px;
+    @include xb-xs-screen{
+      margin-left: 0;
+    }
+  }
+  &__container-bottom{
+    @include xs-screen{
+      margin-bottom: 8px;
+    }
+  }
+  &__mask{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    background-color: rgba(0,0,0,.6);
+    a{
+      color: #fff;
+      &:hover{
+        color: #fff;
+      }
+    }
+    &:before{
+      content: '';
+      position: absolute;
+      display: block;
+      top: 15%;
+      left: 65%;
+      height: 30%;
+      width: 1px;
+      background-color: #fff;
+      @include transform(rotate(45deg));
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      display: block;
+      top: 60%;
+      left: 35%;
+      height: 30%;
+      width: 1px;
+      background-color: #fff;
+      @include transform(rotate(45deg));
+    }
   }
 }
 .xb-main-product{
