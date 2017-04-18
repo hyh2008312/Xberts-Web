@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('myPostList', ['$mdDialog',function ($mdDialog) {
+  .directive('myPostList', ['$rootScope','$mdDialog','ShareProductService',function($rootScope,$mdDialog, ShareProductService) {
     return {
       restrict: 'E',
       scope: {
@@ -18,8 +18,25 @@ angular.module('xbertsApp')
             .cancel('Delete');
 
           $mdDialog.show(confirm).then(function() {
+
           }, function() {
-            console.log(id);
+            if(!$rootScope.user.authRequired()) {
+              return;
+            }
+            ShareProductService.delete(id).then(function () {
+              scope.$emit('backdropOff', 'success');
+              var name = 'posts_' + $rootScope.user.getUserId();
+              // clear post list
+              localStorageService.remove(name + '_currentPage');
+              localStorageService.remove(name + '_items');
+              localStorageService.remove(name + '_next');
+              localStorageService.remove(name + '_count');
+
+            }, function () {
+              // tips
+              scope.$emit('backdropOff', 'project get error');
+              // post end
+            });
           });
         }
       }

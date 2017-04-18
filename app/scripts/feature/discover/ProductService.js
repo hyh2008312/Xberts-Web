@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
   .service('ShareProductService', ['$resource','ShareProduct','API_BASE_URL',function ($resource,ShareProduct,API_BASE_URL) {
-    var ShareProductResource = $resource(API_BASE_URL + '/products/:id/', {id:'@id'},{'put': {method: 'PUT'}});
+    var ShareProductResource = $resource(API_BASE_URL + '/products/:id/', {id:'@id'},{'put': {method: 'PUT'},'delete':{method: 'DELETE'}});
     var CategoryResource = $resource(API_BASE_URL + '/products/categories/', null);
     var ShareProductDetail = $resource(API_BASE_URL + '/products/:id/', {id: '@id'});
 
@@ -16,6 +16,10 @@ angular.module('xbertsApp')
 
     this.update = function (data) {
       return ShareProductResource.put(data).$promise.then(ShareProduct.build);
+    };
+
+    this.delete = function (data) {
+      return ShareProductResource.delete(data).$promise.then(ShareProduct.build);
     };
 
     this.getCategoryList = function (params) {

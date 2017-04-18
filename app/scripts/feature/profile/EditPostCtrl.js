@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
-    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state) {
+  .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state', 'localStorageService',
+    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService) {
 
     $scope.product = editPost;
     var oldPost = angular.copy(editPost, {});
@@ -46,6 +46,10 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
+      if (!$scope.productForm.$valid) {
+        return;
+      }
+
       var _product = {
         id: product.id,
         title: product.title,
@@ -59,9 +63,17 @@ angular.module('xbertsApp')
       $scope.$emit('backdropOn', 'fetch project');
       ShareProductService.update(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
+        var name = 'posts_' + $rootScope.user.getUserId();
+        // clear post list
+        localStorageService.remove(name + '_currentPage');
+        localStorageService.remove(name + '_items');
+        localStorageService.remove(name + '_next');
+        localStorageService.remove(name + '_count');
         $state.go('application.expert', {
           tab:'posts',
           expertId: $rootScope.user.getUserId()
+        },{
+          reload:true
         });
       }, function () {
         // tips
@@ -75,6 +87,6 @@ angular.module('xbertsApp')
       $scope.showMask = false;
       $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
       $scope.file = $scope.product.imageGroup.length>0?$scope.product.imageGroup[0].imageUrls.original: false;
-    }
+    };
 
   }]);

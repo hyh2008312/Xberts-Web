@@ -1,6 +1,6 @@
 <div class="container xb-edit-post">
   <div class="xb-edit-post__title md-display-1">Edit My Post</div>
-  <form name="productForm" novalidate>
+  <form name="productForm" novalidate ng-submit="submitForm(product)" lear-form-error>
     <md-input-container class="md-block" md-no-float>
       <label class="md-dark-secondary">Product Title</label>
       <input required ng-model="product.title" name="title" placeholder=" "/>
@@ -37,7 +37,7 @@
       <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
     </md-input-container>
     <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-      <md-button class="md-primary md-raised" type="submit" ng-click="submitForm(product)" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+      <md-button class="md-primary md-raised" type="submit" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
     </div>
 </form>
 </div>
