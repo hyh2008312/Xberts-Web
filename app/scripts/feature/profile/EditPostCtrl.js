@@ -57,7 +57,7 @@ angular.module('xbertsApp')
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
-      ShareProductService.create(_product).then(function () {
+      ShareProductService.update(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         $state.go('application.expert', {
           tab:'posts',
