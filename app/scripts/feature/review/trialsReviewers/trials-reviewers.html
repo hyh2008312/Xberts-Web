@@ -7,7 +7,7 @@
     <div class="report-rating">
       <span uib-rating ng-model="review.score" max="5" read-only="true"
             state-on="'xb-trial-reviewer__star glyphicon-star'"></span>
-      <span>{{review.score}}</span>
+      <span>{{review.score | number:1}}</span>
     </div>
     <div flex="noshrink" layout="row" layout-align="start end">
       <div layout="row" layout-align="start center">
