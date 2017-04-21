@@ -36,7 +36,7 @@
       Free
     </div>
   </div>
-  <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+  <div ng-if="trial.review.status == 'APPLICATION'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
     <div class="md-dark-secondary" flex="none">Time Left</div>
     <div>
       <timer end-time="trial.review.applicationEndDate">
@@ -45,11 +45,23 @@
       </timer>
     </div>
   </div>
-  <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+  <div ng-if="trial.review.status == 'APPLICATION'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
     <div class="md-dark-secondary" flex="none">Available Units</div>
     <div>
       <ng-pluralize count="trial.review.sampleNum"
                     when="{'0': '0 sample', '1': '1 sample', 'other': '{{trial.review.sampleNum}} samples'}"></ng-pluralize>
+    </div>
+  </div>
+  <div ng-if="trial.review.status == 'ENDED'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Applicants</div>
+    <div>
+      {{trial.review.applicantAmount}}
+    </div>
+  </div>
+  <div ng-if="trial.review.status == 'ENDED'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Reviews Submitted</div>
+    <div>
+      {{trial.review.reportAmount}}
     </div>
   </div>
 

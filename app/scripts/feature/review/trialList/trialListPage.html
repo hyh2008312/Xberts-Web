@@ -1,11 +1,11 @@
 <div class="background-whitem">
   <div class="container xb-trials">
-    <div class="md-headline">Try LatestGadgets</div>
+    <div class="md-headline">Try Latest Gadgets</div>
     <latest-trials-list class="xb-trials__bottom" trials="trials.latestPaginater.items"></latest-trials-list>
   </div>
 </div>
 <div class="container xb-trials xb-trials-list__bottom">
-  <div class="md-headline">Review Completed</div>
+  <div class="md-headline">Past Campaigns</div>
   <div infinite-scroll="trials.trialPaginator.loadNext()" infinite-scroll-distance='0'
        infinite-scroll-container='".xb-body-view "' infinite-scroll-disabled="trials.trialPaginator.loading || !trials.trialPaginator.next">
     <trial-list trials="trials.trialPaginator.items"></trial-list>
