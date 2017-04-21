@@ -40,9 +40,6 @@ function ReviewModel($state) {
     getShareUrl: function(id) {
       return $state.href("application.testingcampaign", {reviewId:id},{absolute:true});
     },
-    getReviewScore: function() {
-      return Math.round(this.score * 10) / 10;
-    },
     buyNow: function (category) {
       if (window.dataLayer) {
         window.dataLayer.push({
