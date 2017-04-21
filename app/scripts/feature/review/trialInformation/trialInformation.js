@@ -1,13 +1,17 @@
+'use strict';
+
 angular.module('xbertsApp')
-  .directive('shareProductItem', ['InviteService',function (InviteService) {
+  .directive('trialInformation', ['InviteService', function (InviteService) {
     return {
       restrict: 'E',
       scope: {
-        product: '='
+        trial: '=',
+        pageSettings: '='
       },
-      templateUrl: 'scripts/feature/discover/shareProductItem/share-product-item.html',
+      templateUrl: 'scripts/feature/review/trialInformation/trial-information.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.product = scope.product || {};
+        scope.trial = scope.trial || [];
+
         // FAB Speed Dial Component
         // Set the component to the normal state
         scope.hidden = false;
@@ -20,13 +24,7 @@ angular.module('xbertsApp')
         ];
 
         scope.inviteObj = angular.copy(InviteService, {});
-
-        scope.commentToggle = false;
-
-        scope.onToggleDown = function() {
-          scope.commentToggle = !scope.commentToggle;
-        };
-
       }
     }
   }]);
+

@@ -1,0 +1,76 @@
+<div class="xb-trial-detail__content">
+  <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg">
+    <avatar-img class="xb-trial-detail__avatar" src="trial.review.project.account.avatar"
+                 ui-sref="application.expert({ expertId:trial.review.project.account.id })"></avatar-img>
+    <a ui-sref="application.expert({ expertId:trial.review.project.account.id })" flex>
+      {{ trial.review.project.account.fullname }}</a>
+    <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
+                       ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+      <md-fab-trigger>
+        <md-button class="md-icon-button">
+          <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
+                   socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
+                   socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
+                   socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}" >
+          <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+        </md-button>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </div>
+  <div class="xb-redeem-detail__content-line"></div>
+  <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Price</div>
+    <div>
+      <span ng-if="!trial.review.isFlashsale()">Free</span>
+      <span ng-if="trial.review.isFlashsale()">{{ trial.review.getFlashSale() | currency }}</span>
+    </div>
+    &nbsp;&nbsp;&nbsp;<span class="line-through md-dark-secondary">{{ trial.review.getRetailPrice() | currency}}</span>
+  </div>
+  <div ng-if="trial.review.status == 'APPLICATION'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Shipping charge</div>
+    <div>
+      Free
+    </div>
+  </div>
+  <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Time Left</div>
+    <div>
+      <timer end-time="trial.review.applicationEndDate">
+        {{days|doubleDigit}} day{{daysS}},
+        {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
+      </timer>
+    </div>
+  </div>
+  <div class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
+    <div class="md-dark-secondary" flex="none">Available Units</div>
+    <div>
+      <ng-pluralize count="trial.review.sampleNum"
+                    when="{'0': '0 sample', '1': '1 sample', 'other': '{{trial.review.sampleNum}} samples'}"></ng-pluralize>
+    </div>
+  </div>
+
+  <div class="xb-trial-detail__pop-bg" ng-switch="trial.review.status">
+    <div ng-switch-when="APPLICATION">
+      <div class="xb-trial-detail__pop">
+        Product sponsor will only offer samples to selected reviewers. To apply for this trial, click the "APPLY NOW" button below.
+      </div>
+      <div class="xb-trial-detail__triangle" hide-xs></div>
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+        <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+      </div>
+    </div>
+    <div ng-switch-when="ENDED">
+      <div class="xb-trial-detail__pop">
+        This campaign has ended. If you're interested in this product, you can click on the "BUY NOW" button to make a purchase!
+      </div>
+      <div class="xb-trial-detail__triangle" hide-xs></div>
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+        <md-button tabs-fixed-item class="md-accent md-raised" ng-click="trial.buyNow('trials-detail');" >Buy Now</md-button>
+      </div>
+    </div>
+  </div>
+</div>

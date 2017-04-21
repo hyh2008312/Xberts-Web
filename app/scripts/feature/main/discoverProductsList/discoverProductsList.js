@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('discoverProductsList', function () {
+  .directive('discoverProductsList', ['InviteService',function (InviteService) {
     return {
       restrict: 'E',
       scope: {
@@ -26,9 +26,11 @@ angular.module('xbertsApp')
         ];
         scope.commentToggle = false;
 
+        scope.inviteObj = angular.copy(InviteService, {});
+
         scope.onToggleDown = function() {
           scope.commentToggle = !scope.commentToggle;
         };
       }
     }
-  });
+  }]);

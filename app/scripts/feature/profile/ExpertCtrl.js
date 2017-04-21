@@ -70,8 +70,7 @@ angular.module('xbertsApp')
         name: 'posts_' + $scope.expert.userId,
         objClass: ShareProduct,
         params: {
-          owner: $scope.expert.userId,
-
+          owner: $scope.expert.userId
         },
         fetchFunction: ShareProductService.getList
       };
@@ -108,7 +107,7 @@ angular.module('xbertsApp')
         objClass: ShareProduct,
         params: {
           id: $scope.expert.userId,
-          page_size: 1
+          page_size: 12
         },
         fetchFunction: ExpertService.getInviteList
       };

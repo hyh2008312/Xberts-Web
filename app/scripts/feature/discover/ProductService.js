@@ -22,8 +22,12 @@ angular.module('xbertsApp')
       return ShareProductResource.delete(data).$promise.then(ShareProduct.build);
     };
 
+    this.categoryList = null;
     this.getCategoryList = function (params) {
-      return CategoryResource.query(params).$promise;
+      if(this.categoryList == null) {
+        this.categoryList = CategoryResource.query(params).$promise;
+      }
+      return this.categoryList;
     };
 
     this.getDetail = function (reviewId) {

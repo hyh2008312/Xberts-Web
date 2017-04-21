@@ -24,6 +24,7 @@
         <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true" ></avatar-img>
         <div class="xberts-navbar__right-container-popup" ng-show="isPopupOpen" flex="none">
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</div>
+          <div ui-sref-active="active" ui-sref="application.protected.invite">Invite Friends</div>
           <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting'})">Settings</div>
           <div ng-click="logout()">Logout</div>
         </div>
@@ -77,6 +78,7 @@
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
+    <div ui-sref-active="active" ui-sref="application.protected.invite" ng-click="close()">Invite Friends</div>
     <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting' })" ng-click="close()">Settings</div>
     <div ng-click="logout()">Logout</div>
   </div>

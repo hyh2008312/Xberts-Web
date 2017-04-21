@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('myPostList', ['$rootScope','$mdDialog','ShareProductService',function($rootScope,$mdDialog, ShareProductService) {
+  .directive('myPostList', ['$rootScope','$mdDialog','ShareProductService','localStorageService',
+    function($rootScope,$mdDialog, ShareProductService,localStorageService) {
     return {
       restrict: 'E',
       scope: {
@@ -10,7 +11,7 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.posts = scope.posts || [];
 
-        scope.delete = function(ev, id) {
+        scope.delete = function(ev, id, index) {
           var confirm = $mdDialog.confirm()
             .textContent('Are you sure you want to delete this post?')
             .targetEvent(ev)
@@ -23,7 +24,8 @@ angular.module('xbertsApp')
             if(!$rootScope.user.authRequired()) {
               return;
             }
-            ShareProductService.delete(id).then(function () {
+            scope.posts.splice(index, 1);
+            ShareProductService.delete({id:id}).then(function () {
               scope.$emit('backdropOff', 'success');
               var name = 'posts_' + $rootScope.user.getUserId();
               // clear post list
@@ -31,7 +33,6 @@ angular.module('xbertsApp')
               localStorageService.remove(name + '_items');
               localStorageService.remove(name + '_next');
               localStorageService.remove(name + '_count');
-
             }, function () {
               // tips
               scope.$emit('backdropOff', 'project get error');

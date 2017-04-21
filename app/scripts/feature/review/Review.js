@@ -39,11 +39,29 @@ function ReviewModel($state) {
     },
     getShareUrl: function(id) {
       return $state.href("application.testingcampaign", {reviewId:id},{absolute:true});
+    },
+    buyNow: function (category) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'buy-product-btn-click',
+          category:category,
+          productTitle: this.project.name
+        });
+      }
+
+      window.open(this.project.buyUrl);
     }
   };
   Review.build = function (data) {
     var review = new Review(data);
     return review;
+  };
+  Review.buildPageList = function (data) {
+    data.results = data.results.map(function (item) {
+      return Review.build(item);
+    });
+
+    return data;
   };
 
   return Review;

@@ -1,5 +1,6 @@
 <div class="recommend-list__product-content">
   <div ng-if="product.getImageOriginal() == '' && product.getVideo() != null" class="product__video">
+    <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
   <div ng-if="product.getImageOriginal() != ''" class="recommend-list__image-content">

@@ -1,310 +1,304 @@
-<interact interact="trial.review.interact">
-  <div id="review-detail" class="review-detail-page">
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-xs-12 col-sm-12 col-md-8">
-          <div class="xcard xcard--borderless">
-            <div class="xcard__image_wrap">
-              <img ng-src="{{ trial.review.project.mainImage }}"/>
-            </div>
-            <div class="xcard__block">
-              <div class="review-info visible-xs visible-sm">
-                <p class="review-info__title">{{ trial.review.title }}</p>
-                <p class="review-info__category">
-            <span class="margin-right">
-              <span ng-repeat="category in trial.review.project.categories">{{ category.name }}<span
-                ng-if="!$last">,</span></span>
-            </span>
-                </p>
-                <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
-                  <li class="c-status c-status--review-detail">
-                    <span class="c-status__key">Available Units</span>
-                    <ng-pluralize class="c-status__value" count="trial.review.sampleNum"
-                                  when="{'0': '0 sample',
-                               '1': '1 sample',
-                               'other': '{{trial.review.sampleNum}} samples'}"></ng-pluralize>
-                  </li>
-                  <li class="c-status c-status--review-detail">
-                    <span class="c-status__key">Time Left</span>
-              <span class="c-status__value">
-                <timer end-time="trial.review.applicationEndDate">
-                  {{days|doubleDigit}} day{{daysS}},
-                  {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
-                </timer>
-              </span>
-                  </li>
-                  <li class="c-status c-status--review-detail">
-                    <span class="c-status__key">Price</span>
-                    <span class="c-status__value">
-                      <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
-                        <span ng-if="!trial.review.isFlashsale()">Free</span>
-                        <span ng-if="trial.review.isFlashsale()">{{ trial.review.getFlashSale() | currency }}</span>
-                    </span>
-                  </li>
-                </ul>
-                <div class="review-info__button"
-                     ng-include="'scripts/feature/review/trialDetail/review-main-action.html'">
-                </div>
-                <div class="c-image-line visible-xs visible-sm">
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step1-green.png?s=5dedc19db80f1cc000b92ec473dd84ef">
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Apply<br/> Now
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step2-green.png?s=5b3fce4c449bb1e6621a4f04299959fb"/>
-                    </div>
-                    <p class="c-image-line__item__text">
-                      Get<br/>Selected
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step3-green.png?s=6264a1aa1b3677e6c98a4c49c94fb132"/>
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Receive<br/>Product
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step4-green.png?s=b7760dd8326c6f9aa6363def0904c41c">
-                    </div>
-                    <p class="c-image-line__item__text">
-                      Submit<br/>Review
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step5-green.png?s=341647267eb2e89a6ac2c249177d54c7">
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Review<br/>Ended
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="review-section hidden-xs hidden-sm">
-                <h4 class="review-section__title">
-                  Be a product reviewer and it's yours to keep!
-                </h4>
-                <div class="c-image-line">
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step1-green.png?s=5dedc19db80f1cc000b92ec473dd84ef">
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Apply Now
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step2-green.png?s=5b3fce4c449bb1e6621a4f04299959fb"/>
-                    </div>
-                    <p class="c-image-line__item__text">
-                      Get Selected
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step3-green.png?s=6264a1aa1b3677e6c98a4c49c94fb132"/>
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Receive Product
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step4-green.png?s=b7760dd8326c6f9aa6363def0904c41c">
-                    </div>
-                    <p class="c-image-line__item__text">
-                      Submit Review
-                    </p>
-                  </div>
-                  <div class="c-image-line__item">
-                    <div class="c-image-line__item__image-wrap">
-                      <img
-                        src="https://xberts.imgix.net/static/icon/step5-green.png?s=341647267eb2e89a6ac2c249177d54c7">
-                    </div>
-
-                    <p class="c-image-line__item__text">
-                      Review Ended
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="review-section hidden-xs hidden-sm">
-                <h4 class="review-section__title">Benefits & Requirements</h4>
-                <ul class="review-ul">
-                  <li>Selected reviewer can get 100% OFF discount in exchange for an honest review</li>
-                  <li>Become a Key Opinion Leader and share your experience with our community</li>
-                  <li>All selected applicant must submit a product review to Xberts before deadline</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="xcard xcard--borderless">
-            <div class="xcard__header">
-              <ul class="nav nav-underlines">
-                <li data-target="#review-description" du-scrollspy="review-description">
-                  <a du-smooth-scroll="review-description">Description</a>
-                </li>
-                <li data-target="#review-comment" du-scrollspy="review-comment">
-                  <a du-smooth-scroll="review-comment">Comments</a>
-                </li>
-              </ul>
-            </div>
-            <div class="xcard__block">
-              <div class="review-section" id="review-description">
-                <div ng-bind-html="trial.review.project.details | trust"></div>
-              </div>
-
-
-              <div class="review-section" id="review-comment">
-                <h4 class="review-section__title">
-                  Comments
-                </h4>
-                <feedback-list interact-id="{{trial.review.interact.id}}"></feedback-list>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 hidden-xs hidden-sm">
-          <div class="review-info align-center">
-            <p class="review-info__title">{{ trial.review.title }}</p>
-            <p class="review-info__category">
-            <span class="margin-right">
-              <span ng-repeat="category in trial.review.project.categories">{{ category.name }}<span
-                ng-if="!$last">,</span></span>
-            </span>
-            </p>
-            <div class="c-user review-info__reviewer">
-              <avatar-img src="trial.review.project.account.avatar"></avatar-img>
-              <p class="c-user__name">
-                <a ui-sref="application.expert({ expertId:trial.review.project.account.id })">{{
-                  trial.review.project.account.fullname }}</a>
-              </p>
-            </div>
-
-            <ul class="l-list-inline l-list-inline--strip align-center review-info__status">
-              <li class="c-status c-status--review-detail">
-                <span class="c-status__key">Available Units</span>
-              <span class="c-status__value" ng-pluralize count="trial.review.sampleNum"
-                    when="{'0': '0 sample',
-                               '1': '1 sample',
-                               'other': '{{ trial.review.sampleNum }} samples'}"></span>
-              </li>
-              <li class="c-status c-status--review-detail">
-                <span class="c-status__key">Time Left</span>
-              <span class="c-status__value">
-                <timer end-time="trial.review.applicationEndDate">
-                  {{days|doubleDigit}} day{{daysS}},
-                  {{hours|doubleDigit}}:{{minutes|doubleDigit}}:{{seconds|doubleDigit}}
-                </timer>
-              </span>
-              </li>
-              <li class="c-status c-status--review-detail">
-                <span class="c-status__key">Price</span>
-                <span class="c-status__value">
-                  <span class="line-through font-del-price">{{ trial.review.getRetailPrice() | currency}}</span>
-                  <span ng-if="!trial.review.isFlashsale()">Free</span>
-                  <span ng-if="trial.review.isFlashsale()">{{ trial.review.getFlashSale() | currency }}</span>
-                </span>
-              </li>
-            </ul>
-            <div class="review-info__button" ng-include="'scripts/feature/review/trialDetail/review-main-action.html'">
-            </div>
-
-            <div class="c-timeline">
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='APPLICATION'}">
-                <span class="c-timeline__item__event">Application Deadline</span>
-                <span class="c-timeline__item__point"></span>
-                <span
-                  class="c-timeline__item__time">{{ trial.review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</span>
-              </div>
-              <div
-                ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='SELECTION' || review.status=='CONFIRMATION'}">
-                <span class="c-timeline__item__event">Announce Reviewers</span>
-                <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">within 7 business days</span>
-              </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='REVIEW'}">
-                <span class="c-timeline__item__event">Product Review</span>
-                <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">2 weeks</span>
-              </div>
-              <div ng-class="{'c-timeline__item':true, 'c-timeline__item--active':trial.review.status=='ENDED'}">
-                <span class="c-timeline__item__event">Review Submission Deadline</span>
-                <span class="c-timeline__item__point"></span>
-                <span class="c-timeline__item__time">{{ trial.review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</span>
-              </div>
-            </div>
-
-            <share
-              title="{{ pageSettings._title }}"
-              description="{{ pageSettings._description }}"
-              url="{{pageSettings.getUrl()}}"
-              image="{{pageSettings_shareImage }}">
-            </share>
-
-            <div ng-if="user.getUserId() == trial.review.project.account.id || user.isStaff()">
-              <div ng-show="trial.review.status === 'SELECTION'">
-                <div class="margin-top">
-                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">Select
-                    Applicants</a>
-                </div>
-              </div>
-              <div ng-show="trial.review.status === 'CONFIRMATION'">
-                <div class="margin-top">
-                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">View
-                    Applicants</a>
-                </div>
-              </div>
-              <div ng-show="trial.review.status === 'REVIEW'">
-                <div class="margin-top">
-                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">View
-                    Shipping Address</a>
-                </div>
-              </div>
-              <div ng-show="trial.review.status === 'ENDED'">
-                <div class="margin-top">
-                  <a class="c-btn c-btn--blue c-btn--lg c-btn--block"
-                     ui-sref="application.selectReports({reviewId:trial.review.id})">View
-                    Reports</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
+<div layout="column" class="xb-trials-details-mobile">
+  <div class="xb-trial-detail__atlas" flex hide-gt-xs>
+    <img ng-src="{{ trial.review.project.mainImage }}" />
+  </div>
+  <div class="container xb-trial-detail xb-trial-detail__bottom">
+    <div hide-xs>
+      <div class="md-display-1">{{ trial.review.title }}</div>
+      <div class="xb-trial-detail__subtitle md-dark-secondary">
+        <span ng-repeat="category in trial.review.project.categories">
+          {{ category.name }}<span ng-if="!$last">,</span>
+        </span>
       </div>
     </div>
-
+    <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="space-around start">
+      <div class="xb-trial-detail__atlas" flex-gt-xs="60" hide-xs>
+        <img ng-src="{{ trial.review.project.mainImage }}" />
+      </div>
+      <div hide-gt-xs>
+        <div class="md-display-1">{{ trial.review.title }}</div>
+        <div class="xb-trial-detail__subtitle md-dark-secondary">
+        <span ng-repeat="category in trial.review.project.categories">
+          {{ category.name }}<span ng-if="!$last">,</span>
+        </span>
+        </div>
+      </div>
+      <div flex-gt-xs="40">
+        <trial-information trial="trial" page-settings="pageSettings"></trial-information>
+      </div>
+    </div>
   </div>
+  <div class="background-whitem" hide-xs>
+    <interact interact="trial.review.interact">
+      <div class="xb-trial-tabs">
+        <div class="xb-trial-tabs__inner-content" tabs-fixed-top del-top="56" parent="'background-whitem'" item="'xb-trial-detail__pop-bg'">
+          <div class="container" layout="row">
+            <div class="xb-trial-tabs__left" layout="row" flex="60">
+              <div class="md-subhead active" layout="row" layout-align="start center" xb-tabs xb-scroll-to="'Reviews'"
+                  ng-if="trial.isShowReviews">Reviews<span>{{trial.pendingApplicantPaginator.count}}</span></div>
+              <div class="md-subhead" ng-class="{true:'',false:'active'}[trial.isShowReviews]" layout="row" layout-align="start center" xb-tabs xb-scroll-to="'Description'">Description</div>
+              <div class="md-subhead" layout="row" layout-align="start center" xb-tabs xb-scroll-to="'Comments'">Comments<comment-amounts></comment-amounts></div>
+            </div>
+            <div class="xb-trial-detail__content" layout="row" layout-align="start center" flex="">
+              <div class="xb-trial-detail__pop-bg" ng-switch="trial.review.status">
+                <div ng-switch-when="APPLICATION">
+                  <md-button  class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+                </div>
+                <div ng-switch-when="ENDED">
+                  <md-button class="md-accent md-raised" ng-click="trial.buyNow('trials-detail');">Buy Now</md-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xb-trial-tabs__content">
+        <div class="container" layout="row" layout-align="start start">
+          <div class="" flex="60" layout="column">
+            <div ng-if="trial.isShowReviews">
+            <div class="md-headline" id="Reviews">Reviews</div>
+            <div infinite-scroll="trial.pendingApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="trial.pendingApplicantPaginator.loading || !trial.pendingApplicantPaginator.next">
+              <trials-reviewers reviewers="trial.pendingApplicantPaginator.items"></trials-reviewers>
+            </div>
+            <load-more ng-if="trial.pendingApplicantPaginator.loading"></load-more>
+            </div>
+            <div class="md-headline" id="Description">Description</div>
+            <div class="xb-trial-tabs__description" ng-bind-html="trial.review.project.details | trust"></div>
+            <div class="md-headline" id="Comments">Comments</div>
+              <feedback-list interact-id="{{trial.review.interact.id}}"></feedback-list>
+          </div>
+          <div class="" flex="40">
+            <div class="xb-trial-detail__content">
+              <div class="xb-detail-cards" ng-if="trial.isShowReviews">
+                <div class="md-subhead">
+                  Selected Reviewers <span>{{trial.selectedApplicantPaginator.count}}</span>
+                </div>
+                <div class="xb-detail-cards__padding-2">
+                  <div class="xb-selected-reviewer" infinite-scroll="trial.selectedApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                       infinite-scroll-disabled="trial.selectedApplicantPaginator.loading || !trial.selectedApplicantPaginator.next">
+                    <div ng-repeat="review in trial.selectedApplicantPaginator.items" layout="row" layout-align="start start">
+                      <div>
+                        <avatar-img class="xb-selected-reviewer__avatar" src="review.reviewer.userprofile.avatar"
+                                    name="review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name"
+                                    ui-sref="application.expert({ expertId:review.reviewer.id})"></avatar-img>
+                      </div>
+                      <div layout="column" flex>
+                        <a class="xb-selected-reviewer__name" ui-sref="application.expert({ expertId:review.reviewer.id})">{{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+                        <div class="md-dark-secondary">{{review.reviewer.userprofile.position}} @ {{review.reviewer.userprofile.company}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <load-more ng-if="trial.selectedApplicantPaginator.loading"></load-more>
 
-</interact>
+                </div>
+              </div>
+              <div ng-if="!trial.isShowReviews">
+                <div class="xb-detail-cards">
+                  <div class="md-subhead">
+                    Trial Process
+                  </div>
+                  <div class="xb-detail-cards__padding-1">
+                    <div class="xb-detail-cards__circle-bg" layout="row" layout-align="start center">
+                      <div class="xb-detail-cards__circle">1</div>
+                      <div class="xb-detail-cards__triangle"></div>
+                      <span flex></span>
+                      <div class="xb-detail-cards__circle">2</div>
+                      <div class="xb-detail-cards__triangle"></div>
+                      <span flex></span>
+                      <div class="xb-detail-cards__circle">3</div>
+                      <div class="xb-detail-cards__triangle"></div>
+                      <span flex></span>
+                      <div class="xb-detail-cards__circle">4</div>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                      <div class="md-body-1">Apply<br>Now</div>
+                      <div class="md-body-1">Get<br>Selected</div>
+                      <div class="md-body-1">Receive<br>Product</div>
+                      <div class="md-body-1">Submit<br>Review</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="xb-detail-cards">
+                  <div class="md-subhead">
+                    Benefits and Requirements
+                  </div>
+                  <div class="xb-detail-cards__padding-2">
+                    <ul class="review-ul">
+                      <li>Selected reviewer can get 100% OFF discount in exchange for an honest review</li>
+                      <li>Become a Key Opinion Leader and share your experience with our community</li>
+                      <li>All selected applicant must submit a product review to Xberts before deadline</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="xb-detail-cards">
+                  <div class="md-subhead">
+                    Timeline
+                  </div>
+                  <div class="xb-detail-cards__padding-3">
+                    <div layout="row">
+                      <div class="xb-detail-cards__align-right" layout="column" layout-align="space-between end">
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="end center">Application Deadline</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="end center">Announce Reviewers</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="end center">Product Review</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="end center">Review Submission Deadline</div>
+                      </div>
+                      <div class="xb-detail-cards__time-axis" layout="column" layout-align="start center">
+                        <div class="xb-detail-cards__points-large"></div>
+                        <span flex></span>
+                        <div class="xb-detail-cards__points"></div>
+                        <span flex></span>
+                        <div class="xb-detail-cards__points"></div>
+                        <span flex></span>
+                        <div class="xb-detail-cards__points"></div>
+                      </div>
+                      <div layout="column" layout-align="space-between start">
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="start center">{{ trial.review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="start center">within 7 business days</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="start center">2 weeks</div>
+                        <div class="xb-detail-cards__fixed-height" layout="row" layout-align="start center">{{ trial.review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </interact>
+  </div>
+</div>
+<div hide-gt-xs class="xb-credit-mobile xb-trials-details-mobile">
+  <div ng-hide="!trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Reviews</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="0" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div ng-hide="!trial.isShowReviews" class="container ">
+    <div class="xb-detail-cards__padding-2" infinite-scroll="trial.pendingApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+         infinite-scroll-disabled="trial.pendingApplicantPaginator.loading || !trial.pendingApplicantPaginator.next">
+      <trials-reviewers reviewers="trial.pendingApplicantPaginator.items"></trials-reviewers>
+    </div>
+    <load-more ng-if="trial.pendingApplicantPaginator.loading"></load-more>
+  </div>
+  <div ng-hide="!trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Selected Reviewers</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="1" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div ng-hide="!trial.isShowReviews" class="container">
+    <div class="xb-selected-reviewer xb-detail-cards__padding-2" infinite-scroll="trial.selectedApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+         infinite-scroll-disabled="trial.selectedApplicantPaginator.loading || !trial.selectedApplicantPaginator.next">
+      <div ng-repeat="review in trial.selectedApplicantPaginator.items" layout="row" layout-align="start start">
+        <div>
+          <avatar-img class="xb-selected-reviewer__avatar" src="review.reviewer.userprofile.avatar"
+                      name="review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name"
+                      ui-sref="application.expert({ expertId:review.reviewer.id})"></avatar-img>
+        </div>
+        <div layout="column" flex>
+          <a class="xb-selected-reviewer__name" ui-sref="application.expert({ expertId:review.reviewer.id})">{{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+          <md-truncate class="md-dark-secondary">{{review.reviewer.userprofile.position}} @ {{review.reviewer.userprofile.company}}</md-truncate>
+        </div>
+      </div>
+    </div>
+    <load-more ng-if="trial.selectedApplicantPaginator.loading"></load-more>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Trial Process</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="container">
+    <div class="xb-detail-cards xb-detail-cards__padding-2">
+      <div class="xb-detail-cards__circle-bg" layout="row" layout-align="start center">
+        <div class="xb-detail-cards__circle">1</div>
+        <div class="xb-detail-cards__triangle"></div>
+        <span flex></span>
+        <div class="xb-detail-cards__circle">2</div>
+        <div class="xb-detail-cards__triangle"></div>
+        <span flex></span>
+        <div class="xb-detail-cards__circle">3</div>
+        <div class="xb-detail-cards__triangle"></div>
+        <span flex></span>
+        <div class="xb-detail-cards__circle">4</div>
+      </div>
+      <div layout="row" layout-align="space-between center">
+        <div class="md-body-1">Apply<br>Now</div>
+        <div class="md-body-1">Get<br>Selected</div>
+        <div class="md-body-1">Receive<br>Product</div>
+        <div class="md-body-1">Submit<br>Review</div>
+    </div>
+    </div>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Benefits and Requirements</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="3" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="container ">
+    <div class="xb-detail-cards xb-detail-cards__padding-2">
+      <ul class="review-ul">
+        <li>Selected reviewer can get 100% OFF discount in exchange for an honest review</li>
+        <li>Become a Key Opinion Leader and share your experience with our community</li>
+        <li>All selected applicant must submit a product review to Xberts before deadline</li>
+      </ul>
+    </div>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Timeline</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="4" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div ng-hide="trial.isShowReviews" class="container">
+    <div class="xb-detail-cards xb-detail-cards__padding-2">
+      <div layout="row">
+        <div class="xb-detail-cards__time-axis" layout="column" layout-align="start center">
+          <div class="xb-detail-cards__points-large"></div>
+          <span flex></span>
+          <div class="xb-detail-cards__points"></div>
+          <span flex></span>
+          <div class="xb-detail-cards__points"></div>
+          <span flex></span>
+          <div class="xb-detail-cards__points"></div>
+        </div>
+        <div class="xb-detail-cards__align-right" layout="column" layout-align="space-between start">
+          <div class="xb-detail-cards__fixed-height" layout="column" layout-align="center start">
+            <div flex="noshrink" class="md-subhead">Application Deadline</div>
+            <div flex="noshrink" >{{ trial.review.applicationEndDate | amDateFormat:'MMM DD, YYYY' }}</div>
+          </div>
+          <div class="xb-detail-cards__fixed-height" layout="column" layout-align="center start">
+            <div flex="noshrink" class="md-subhead">Announce Reviewers</div>
+            <div flex="noshrink" >within 7 business days</div>
+          </div>
+          <div class="xb-detail-cards__fixed-height" layout="column" layout-align="center start">
+            <div flex="noshrink" class="md-subhead">Product Review</div>
+            <div flex="noshrink" >2 weeks</div>
+          </div>
+          <div class="xb-detail-cards__fixed-height" layout="column" layout-align="center start">
+            <div flex="noshrink" class="md-subhead">Review Submission Deadline</div>
+            <div flex="noshrink" >{{ trial.review.dateEnd | amDateFormat:'MMM DD, YYYY' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Description</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="5" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div class="container">
+    <div class="xb-trial-tabs__description xb-detail-cards__padding-2" ng-bind-html="trial.review.project.details | trust"></div>
+  </div>
+  <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Comments</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="6" toggle="false">keyboard_arrow_down</md-icon>
+  </div>
+  <div class="container">
+    <interact interact="trial.review.interact" class="xb-trial-tabs__content">
+      <feedback-list interact-id="{{trial.review.interact.id}}"></feedback-list>
+    </interact>
+  </div>
+</div>

@@ -244,3 +244,20 @@ p,.md-body-1{
 .list-none-style{
   list-style: none;
 }
+
+.xb-loading{
+  path{
+    stroke:rgba(0, 0, 0, .38);
+  }
+}
+.xb-loading-top{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  .md-container{
+    height: 4px;
+  }
+}

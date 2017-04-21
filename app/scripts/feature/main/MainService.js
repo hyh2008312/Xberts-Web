@@ -4,8 +4,13 @@ angular.module('xbertsApp')
     var BannerResource = $resource(API_BASE_URL + '/contents/mainPageTopBanners/',null);
     var ReportResource = $resource(API_BASE_URL + '/review/reports/:id/');
 
+    this.bannerList = null;
+
     this.getBannerList = function(params) {
-      return BannerResource.query(params).$promise.then(MainModel.buildList);
+      if(this.bannerList == null) {
+        this.bannerList = BannerResource.query(params).$promise.then(MainModel.buildList);
+      }
+      return this.bannerList;
     };
 
     this.getList = function (params) {

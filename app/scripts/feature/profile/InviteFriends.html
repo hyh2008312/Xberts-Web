@@ -41,7 +41,7 @@
   <div class="xb-invite-friends__bottom">
     <div class="md-subhead">Share the unique invite link on your social media:</div>
     <div class="xb-invite-friends__link" layout="row" layout-align="start center">
-      <div>{{inviteObj.url()}}</div>
+      <div>{{inviteObj.shareUrl()}}</div>
     </div>
     <div class="xb-invite-friends__share-bg" layout="row" layout-align="start start" layout-wrap>
       <div layout="row" layout-align="start center"
@@ -49,14 +49,14 @@
            socialshare-text="{{inviteObj.text()}}"
            socialshare-media="{{inviteObj.source()}}"
            socialshare-source="{{inviteObj.source()}}"
-           socialshare-url="{{inviteObj.url()}}">
+           socialshare-url="{{inviteObj.shareUrl(null, 'facebook')}}">
         <i class="fa fa-facebook"></i>
         Share
       </div>
       <div layout="row" layout-align="start center"
            socialshare socialshare-provider="twitter"
            socialshare-text="{{inviteObj.description()}}"
-           socialshare-url="{{inviteObj.url()}}">
+           socialshare-url="{{inviteObj.shareUrl(null, 'twitter')}}">
         <i class="fa fa-twitter"></i>
         Share
       </div>
@@ -65,7 +65,7 @@
            socialshare-description="{{inviteObj.description()}}"
            socialshare-text="{{inviteObj.text()}}"
            socialshare-source="{{inviteObj.source()}}"
-           socialshare-url="{{inviteObj.url()}}">
+           socialshare-url="{{inviteObj.shareUrl(null, 'linkedin')}}}}">
         <i class="fa fa-linkedin"></i>
         Share
       </div>

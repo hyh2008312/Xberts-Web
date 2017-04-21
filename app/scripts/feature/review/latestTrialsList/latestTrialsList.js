@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('xbertsApp')
-  .directive('latestTrialsList', function () {
+  .directive('latestTrialsList', ['InviteService',function(InviteService) {
     return {
       restrict: 'E',
       scope: {
@@ -13,7 +15,7 @@ angular.module('xbertsApp')
           { name: "twitter"},
           { name: "linkedin"}
         ];
-
+        scope.inviteObj = angular.copy(InviteService, {});
       }
     }
-  });
+  }]);

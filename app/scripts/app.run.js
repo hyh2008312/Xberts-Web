@@ -2,8 +2,8 @@
 
 angular
   .module('xbertsApp')
-  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
-    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService', 'SocialShare', '$location',
+    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService, SocialShare, $location) {
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.unreadDirectMessageCount = 0;
@@ -83,9 +83,15 @@ angular
           ]
         }
       };
+      SocialShare.createSocialShare($location.absUrl());
+
       localStorageService.clearAll();
       // Capture potential campaign/source query param
       SignupService.saveSourceParam();
+
+      $rootScope.$on('$stateChangeStart', function() {
+        angular.element(".xb-body-view").off('scroll');
+      });
 
       $rootScope.$on('$viewContentLoading', function() {
         if(angular.element(".xb-body-view").length>0)

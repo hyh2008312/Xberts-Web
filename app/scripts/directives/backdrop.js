@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('backdrop', ['$rootScope', function ($rootScope) {
+  .directive('backdrop', ['$rootScope', '$interval', function ($rootScope, $interval) {
     return {
-      template: '<div class="backdrop">' +
-      '<div class="spin-large"><i class="fa fa-spinner fa-spin"></i></div> ' +
+      template: '<div class="xb-loading-top" layout="row" flex="noshrink">' +
+      '<md-progress-linear md-mode="determinate" value="{{determinateValue}}"></md-progress-linear>' +
       '</div>',
       restrict: 'E',
       replace: true,
@@ -15,6 +15,19 @@ angular.module('xbertsApp')
 
         element.addClass('hide');
         $rootScope.backdropCount = 0;
+        scope.determinateValue = 10;
+
+        var interval = $interval(function() {
+          scope.determinateValue += 2;
+          if (scope.determinateValue > 100) clearInterval();
+        }, 100, 0, true);
+
+        var clearInterval = function() {
+          $interval.cancel(interval);
+          scope.determinateValue = 0;
+          element.addClass('hide');
+          interval = null;
+        };
 
         var decrementCount = function () {
           if ($rootScope.backdropCount > 0) {
@@ -32,27 +45,37 @@ angular.module('xbertsApp')
           decrementCount();
           if ($rootScope.backdropCount < 1) {
             element.addClass('hide');
+            clearInterval();
           }
         });
         $rootScope.$on('backdropInit', function (e, d) {
           $rootScope.backdropCount = 0;
           element.addClass('hide');
+          clearInterval();
         });
         $rootScope.$on('$stateChangeStart', function (e, d) {
           $rootScope.backdropCount++;
+          if(interval == null) {
+            interval = $interval(function() {
+              scope.determinateValue += 2;
+              if (scope.determinateValue > 100) clearInterval();
+            }, 100, 0, true);
+          }
           if ($rootScope.backdropCount > 0) {
             element.removeClass('hide');
           }
         });
         $rootScope.$on('$stateChangeSuccess', function (e, d) {
           decrementCount();
-          if ($rootScope.backdropCount < 1) {
+          if ($rootScope.backdropCount == 0) {
             element.addClass('hide');
+            clearInterval();
           }
         });
         $rootScope.$on('$stateChangeError', function (e, d) {
           $rootScope.backdropCount = 0;
           element.addClass('hide');
+          clearInterval();
         });
       }
     };

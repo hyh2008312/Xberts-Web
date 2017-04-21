@@ -1,5 +1,6 @@
 <md-card class="product-detail" layout-fill>
-  <div ng-if="product.getVideo() != null" class="product__video">
+  <div ng-if="product.getVideo() != null" class="product__video" iframe-loaded>
+    <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
   <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
@@ -52,7 +53,7 @@
         <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
                    socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}" socialshare-text="{{product.title}}"
                    socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
-                   socialshare-url="{{product.getShareUrl(product.id)}}">
+                   socialshare-url="{{inviteObj.shareUrl(product.getShareUrl(product.id), item.name)}}">
           <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
         </md-button>
       </md-fab-actions>

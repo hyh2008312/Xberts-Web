@@ -6,6 +6,7 @@ angular.module('xbertsApp')
         templateUrl: 'scripts/feature/main/mainPage.html',
         controller: 'MainPageCtrl as mainCtrl',
         reloadOnSearch: false,
+        cache:true,
         resolve: {
           topBanner:['MainService',function(MainService) {
             return MainService.getBannerList();

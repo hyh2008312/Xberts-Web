@@ -1,6 +1,7 @@
 <div layout="row" layout-align="start start">
   <div class="xb-main-product" flex>
-    <div ng-if="showProduct.getVideo() != null" class="xb-main-product__video">
+    <div ng-if="showProduct.getVideo() != null" class="xb-main-product__video" iframe-loaded>
+      <load-more></load-more>
       <iframe frameborder="0" ng-src="{{showProduct.getVideo()}}" ></iframe>
     </div>
     <img ng-if="showProduct.getVideo() == null" ng-src="{{showProduct.getImageOriginal()}}"
@@ -31,7 +32,7 @@
           <md-button aria-label="{{item.name}}"  class="md-icon-button"  ng-repeat="item in shareList" socialshare
                      socialshare-provider="{{item.name}}" socialshare-description="{{showProduct.description}}" socialshare-text="{{product.title}}"
                      socialshare-media="{{showProduct.getImageOriginal()}}"  socialshare-source="{{showProduct.getImageOriginal()}}"
-                     socialshare-url="{{showProduct.getShareUrl(showProduct.id)}}" >
+                     socialshare-url="{{inviteObj.shareUrl(showProduct.getShareUrl(showProduct.id), item.name)}}" >
             <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
           </md-button>
         </md-fab-actions>

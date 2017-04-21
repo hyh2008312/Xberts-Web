@@ -35,6 +35,9 @@ function ReportModel() {
     getReviewerName: function () {
       return this.applicant.reviewer.fullname;
     },
+    getReviewerFullName: function () {
+      return this.applicant.reviewer.userprofile.first_name + " " + this.applicant.reviewer.userprofile.last_name;
+    },
     getReviewerAvatar: function () {
       return this.applicant.reviewer.avatar || AVATAR_PLACEHOLDER;
     },
@@ -56,22 +59,34 @@ function ReportModel() {
 
       window.open(this.getProductStore());
     }
-    
+
   };
 
   Report.build = function (data) {
     if (data.pros) {
-      data.pros = data.pros.split('##');
+      if(!angular.isArray(data.pros)) {
+        data.pros = data.pros.split('##');
+      }
     } else {
       data.pros = [];
     }
     if (data.cons) {
-      data.cons = data.cons.split('##');
+      if(!angular.isArray(data.cons)) {
+        data.cons = data.cons.split('##');
+      }
     } else {
       data.cons = [];
     }
 
     return new Report(data);
+  };
+
+  Report.buildPageList = function (data) {
+    data.results = data.results.map(function (item) {
+      return Report.build(item);
+    });
+
+    return data;
   };
 
   return Report;

@@ -1,14 +1,18 @@
 <div class="xb-trials-list" layout="row" layout-align-gt-xs="space-between start" layout-align-xs="start start" layout-wrap>
-  <div class="background-whitem xb-trials-list__border" ng-repeat="review in trials track by $index" flex-sm="45" flex-gt-sm="30" flex-xs="100"
+  <div class="background-whitem xb-trials-list__border" ng-repeat="review in trials track by $index" flex-sm="45" flex-gt-sm="25" flex-xs="100"
        ng-if="review.status == 'ENDED'">
     <div class="xb-trials-list__img-bg">
       <img ng-src="{{review.cover }}" ui-sref="application.testingcampaign({ reviewId:review.id })"/>
       <div class="xb-trials-list__mask" layout="column" layout-align="center center" hide-xs>
-        <a class="md-headline" ui-sref="application.testingcampaign({ reviewId:trial.id })">Read Review</a>
+        <a class="md-headline" ui-sref="application.testingcampaign({ reviewId:review.id })">Read Review</a>
       </div>
     </div>
     <a class="md-subhead md-dark-primary" ui-sref="application.testingcampaign({ reviewId:review.id })">{{review.title }}</a>
-    <div class="xb-trials-list__header md-dark-secondary" layout="row" layout-align="start center">{{ review.applicantCount }}applicants</div>
+    <div class="xb-trials-list__header md-dark-secondary" layout="row" layout-align="start center">
+      <avatar-img ng-repeat="reviewer in review.appliers track by $index" src="reviewer.reviewer.userprofile.avatar"
+        name="reviewer.reviewer.firstName + ' ' + reviewer.reviewer.lastName "
+        ui-sref="application.expert({ expertId:reviewer.reviewer.id})"></avatar-img>
+      {{ review.applicantCount > 0 ? review.applicantCount + ' applicants': review.applicantCount + ' applicant'}}</div>
   </div>
-  <div class="background-whitem" flex-sm="45" flex-gt-sm="30" flex-xs="100"></div>
+  <div class="background-whitem" flex-sm="45" flex-gt-sm="25" flex-xs="100" ng-repeat="n in [0,1]"></div>
 </div>

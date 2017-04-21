@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('shareProductDetailItem', function () {
+  .directive('shareProductDetailItem', ['InviteService', function (InviteService) {
     return {
       restrict: 'E',
       scope: {
@@ -19,6 +19,7 @@ angular.module('xbertsApp')
           { name: "linkedin"}
         ];
 
+        scope.inviteObj = angular.copy(InviteService, {});
       }
     }
-  });
+  }]);

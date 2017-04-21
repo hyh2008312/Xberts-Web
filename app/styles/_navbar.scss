@@ -23,11 +23,14 @@
   &__center-container{
     >div{
       cursor: pointer;
-      font-size: 18px;
+      font-size: 16px;
       color: rgba(255,255,255,.5);
       padding: 0 20px;
       &:hover{
         color: rgba(255,255,255,1);
+      }
+      @include xb-sm-screen{
+        padding: 0 10px;
       }
     }
   }
@@ -78,7 +81,7 @@
     position: absolute;
     left: -50px;
     top: 56px;
-    width: 120px;
+    width: 140px;
     @include resetBorder();
     border-radius: 2px;
     >div{
@@ -133,6 +136,8 @@
   &__bottom-container{
     width: 100%;
     >div{
+      width: 100%;
+      display: block;
       font-size: 16px;
       line-height: 56px;
       padding: 0 16px;

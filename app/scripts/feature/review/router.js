@@ -152,7 +152,7 @@ angular
               name: 'trials',
               objClass:Review,
               params: {
-                page_size: 12,
+                page_size: 5,
                 review_type: 'FREE_SAMPLE'
               },
               fetchFunction: ReviewService.getList
@@ -161,8 +161,8 @@ angular
           }],
           trialPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
-              name: 'trials',
-              objClass:Review,
+              name: 'end_trials',
+              objClass: Review,
               params: {
                 page_size: 12,
                 review_type: 'FREE_SAMPLE',
@@ -182,6 +182,32 @@ angular
         resolve: {
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
+          }],
+          pendingApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', 'Report',function (Paginator, ReviewService, $stateParams, Report) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'trial_reviews_list_' + reviewId,
+              objClass: Report,
+              params: {
+                id: reviewId,
+                page_size: 12
+              },
+              fetchFunction: ReviewService.getReporters
+            };
+            return new Paginator(par).load();
+          }],
+          selectedApplicantPaginator: ['Paginator', 'ReviewService', '$stateParams', function (Paginator, ReviewService, $stateParams) {
+            var reviewId = $stateParams.reviewId || null;
+            var par = {
+              name: 'selected_applicant_list_' + reviewId,
+              params: {
+                id: reviewId,
+                is_selected: 'True',
+                page_size: 12
+              },
+              fetchFunction: ReviewService.getApplicants
+            };
+            return new Paginator(par).load();
           }]
         }
       })
