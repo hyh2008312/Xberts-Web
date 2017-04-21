@@ -23,7 +23,7 @@ angular.module('xbertsApp')
       return (url || 'https://www.xberts.com/') + '?source=userrefer_' + $rootScope.user._inviteToken;
     };
     var getSource = function(source) {
-      return source || 'https://xberts.imgix.net/static/logo/38625fa6-80c3-49a4-972a-8d69f49bb3e6.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=db9bb8eda2b7e97e35cb821b704fe912';
+      return source || 'https://xberts.imgix.net/static/logo/e30977b4-9f40-4351-8bfd-fd674801f9cc.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=03f2f28893f7a99f5ca72166381a2e28';
     };
     var getShareUrl = function(url, channel) {
       return (url || 'https://www.xberts.com/') + '?share=' + $rootScope.user._inviteToken + (channel? '&channel=' + channel:'');
