@@ -1,9 +1,9 @@
 <div class="xb-trial-reviewer" layout="row" layout-align-xs="start center" ng-repeat="review in reviewers track by $index">
-  <div class="xb-trial-reviewer__left-part" ui-sref="application.report({reviewId:review.id,reportId:review.report})">
+  <div class="xb-trial-reviewer__left-part" ui-sref="application.report({reviewId:review.getReviewId(),reportId:review.id})">
     <img ng-src="{{review.image}}" />
   </div>
   <div layout="column" layout-align="space-between" flex>
-    <md-truncate class="md-subhead" ui-sref="application.report({reviewId:review.id,reportId:review.report})">{{review.title}}</md-truncate>
+    <md-truncate class="md-subhead" ui-sref="application.report({reviewId:review.getReviewId(),reportId:review.id})">{{review.title}}</md-truncate>
     <div class="report-rating">
       <span uib-rating ng-model="review.score" max="5" read-only="true"
             state-on="'xb-trial-reviewer__star glyphicon-star'"></span>

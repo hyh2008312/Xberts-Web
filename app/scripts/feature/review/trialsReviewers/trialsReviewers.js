@@ -10,6 +10,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/review/trialsReviewers/trials-reviewers.html',
       link: function (scope, element, attrs, ctrls) {
         scope.reviewers = scope.reviewers || [];
+        console.log(scope.reviewers )
       }
     }
   }]);
