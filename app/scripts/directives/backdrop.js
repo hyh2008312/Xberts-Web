@@ -67,7 +67,8 @@ angular.module('xbertsApp')
         });
         $rootScope.$on('$stateChangeSuccess', function (e, d) {
           decrementCount();
-          if ($rootScope.backdropCount == 0) {
+          console.log($rootScope.backdropCount)
+          if ($rootScope.backdropCount <= 0) {
             element.addClass('hide');
             clearInterval();
           }
