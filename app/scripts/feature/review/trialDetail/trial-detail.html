@@ -44,6 +44,16 @@
                 <div ng-switch-when="APPLICATION">
                   <md-button  class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
                 </div>
+                <div ng-switch-when="SELECTION">
+                  <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+                </div>
+                <div ng-switch-when="CONFIRMATION">
+                  <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+                </div>
+                <div ng-switch-when="REVIEW">
+                  <md-button tabs-fixed-item class="md-primary md-raised"
+                             ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
+                </div>
                 <div ng-switch-when="ENDED">
                   <md-button class="md-accent md-raised" ng-click="trial.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
