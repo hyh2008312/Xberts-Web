@@ -92,7 +92,7 @@
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
-        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+        <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.confirmShipAddress({reviewId:trial.review.id})">Comfirm Address</md-button>
       </div>
     </div>
     <div ng-switch-when="REVIEW">
