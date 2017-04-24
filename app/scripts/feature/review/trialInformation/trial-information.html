@@ -31,7 +31,7 @@
     &nbsp;&nbsp;&nbsp;<span class="line-through md-dark-secondary">{{ trial.review.getRetailPrice() | currency}}</span>
   </div>
   <div ng-if="trial.review.status == 'APPLICATION'" class="xb-redeem-detail__content-bottom" layout="row" layout-align="start center">
-    <div class="md-dark-secondary" flex="none">Shipping charge</div>
+    <div class="md-dark-secondary" flex="none">Shipping Charge</div>
     <div>
       Free
     </div>
@@ -68,7 +68,7 @@
   <div class="xb-trial-detail__pop-bg" ng-switch="trial.review.status">
     <div ng-switch-when="APPLICATION">
       <div class="xb-trial-detail__pop">
-        Product sponsor will only offer samples to selected reviewers. To apply for this trial, click the "APPLY NOW" button below.
+        Product sponsor will only offer {{!trial.review.isFlashsale()? 'free' : 'discounted'}} samples to selected reviewers. To apply for this trial, click the "APPLY NOW" button below.
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
