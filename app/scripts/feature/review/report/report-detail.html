@@ -14,12 +14,27 @@
           <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-xs>
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
-          <div class="xb2-page-head__author" flex-order="2" flex-order-gt-xs="1">
+          <div class="xb2-page-head__author xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
             <md-list-item class="md-padding-clear">
               <img alt="{{ report.getReviewerName() }}" ng-src="{{ report.getReviewerAvatar() }}" class="md-avatar"/>
               <p><a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:report.getReviewerId() })">{{
                 report.getReviewerName()}}</a></p>
-
+              <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
+                                 ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+                <md-fab-trigger>
+                  <md-button class="md-icon-button">
+                    <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
+                  </md-button>
+                </md-fab-trigger>
+                <md-fab-actions>
+                  <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
+                             socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
+                             socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
+                             socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}" >
+                    <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+                  </md-button>
+                </md-fab-actions>
+              </md-fab-speed-dial>
               <vote></vote>
             </md-list-item>
           </div>

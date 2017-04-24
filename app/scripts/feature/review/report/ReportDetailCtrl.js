@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ReportDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', function ($scope, $rootScope, $stateParams, report, ReviewReport, growl) {
+  .controller('ReportDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService) {
     $scope.report = report;
 
     var title = report.title;
@@ -10,7 +11,18 @@ angular.module('xbertsApp')
     var shareImage = report.image;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
+    // FAB Speed Dial Component
+    // Set the component to the normal state
+    $scope.hidden = false;
+    $scope.isOpen = false;
+    $scope.hover = false;
+    $scope.shareList = [
+      { name: "facebook" },
+      { name: "twitter"},
+      { name: "linkedin"}
+    ];
 
+    $scope.inviteObj = angular.copy(InviteService, {});
 
     $scope.approve = function () {
       $scope.$emit('backdropOn', 'approve project');
