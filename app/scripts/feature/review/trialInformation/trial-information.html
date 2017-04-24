@@ -75,6 +75,32 @@
         <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
       </div>
     </div>
+    <div ng-switch-when="SELECTION">
+      <div class="xb-trial-detail__pop">
+        Selection results for all applicants will be announced before
+        {{ trial.review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!
+      </div>
+      <div class="xb-trial-detail__triangle" hide-xs></div>
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+        <md-button tabs-fixed-item class="md-primary md-raised">APPLICANT SCREENING</md-button>
+      </div>
+    </div>
+    <div ng-switch-when="CONFIRMATION">
+      <div class="xb-trial-detail__pop">
+        Selection results for all applicants will be announced before
+        {{ trial.review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!
+      </div>
+      <div class="xb-trial-detail__triangle" hide-xs></div>
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+        <md-button tabs-fixed-item class="md-primary md-raised">APPLICANT SCREENING</md-button>
+      </div>
+    </div>
+    <div ng-switch-when="REVIEW">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+        <md-button tabs-fixed-item class="md-primary md-raised"
+           ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
+      </div>
+    </div>
     <div ng-switch-when="ENDED">
       <div class="xb-trial-detail__pop">
         This campaign has ended. If you're interested in this product, you can click on the "BUY NOW" button to make a purchase!
