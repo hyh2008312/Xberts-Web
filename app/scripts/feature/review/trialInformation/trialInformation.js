@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('trialInformation', ['InviteService', function (InviteService) {
+  .directive('trialInformation', ['InviteService',function (InviteService) {
     return {
       restrict: 'E',
       scope: {
         trial: '=',
-        pageSettings: '='
+        pageSettings: '=',
+        user: '='
       },
       templateUrl: 'scripts/feature/review/trialInformation/trial-information.html',
       link: function (scope, element, attrs, ctrls) {

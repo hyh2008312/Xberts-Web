@@ -82,7 +82,7 @@
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
-        <md-button tabs-fixed-item class="md-primary md-raised">APPLICANT SCREENING</md-button>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
       </div>
     </div>
     <div ng-switch-when="CONFIRMATION">
@@ -92,7 +92,7 @@
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
-        <md-button tabs-fixed-item class="md-primary md-raised">APPLICANT SCREENING</md-button>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
       </div>
     </div>
     <div ng-switch-when="REVIEW">
@@ -108,6 +108,18 @@
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
         <md-button tabs-fixed-item class="md-accent md-raised" ng-click="trial.review.buyNow('trials-detail');" >Buy Now</md-button>
+      </div>
+    </div>
+    <div class="xb-trial-detail__admin-button" ng-if="user.getUserId() == trial.review.project.account.id || user.isStaff()">
+      <div ng-show="trial.review.status === 'SELECTION'">
+        <md-button tabs-fixed-item class="md-primary md-raised"
+                   ui-sref="application.selectApplicants({reviewId:trial.review.id})">Select Applicants</md-button>
+      </div>
+      <div ng-show="trial.review.status === 'CONFIRMATION'">
+        <div class="margin-top">
+          <md-button tabs-fixed-item class="md-primary md-raised"
+                     ui-sref="application.selectApplicants({reviewId:trial.review.id})">View Applicants</md-button>
+        </div>
       </div>
     </div>
   </div>

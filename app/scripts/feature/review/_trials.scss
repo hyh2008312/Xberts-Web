@@ -217,6 +217,10 @@
     }
     cursor: pointer;
   }
+  &__admin-button{
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
   &__bottom{
     margin-bottom: 56px;
     @include xb-xs-screen{
