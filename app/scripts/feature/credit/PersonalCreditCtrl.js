@@ -5,6 +5,7 @@ angular.module('xbertsApp')
     $scope.expert = expert;
     $scope.creditMain = creditMain.items;
     $scope.points = points;
+    $rootScope.user.setConsumedPoints($scope.points.consumed);
 
     var title = 'Perks – Xberts Tech Insider reward program';
     var description = 'Earn points to win free badges & amazing gifts. Every time you interact with Xberts community or create contents for our community, your contribution will be recognized.';

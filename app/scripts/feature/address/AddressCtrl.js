@@ -94,7 +94,7 @@ angular.module('xbertsApp')
               address_id: data.id,
               gift_id: $stateParams.giftId
             };
-            AddressService.createOrder(params).then(function () {
+            AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
               $state.go('application.redeemDetail', {redeemId: $rootScope.user.getUserId()});
             }, function () {
@@ -112,7 +112,7 @@ angular.module('xbertsApp')
               address_id: data.id,
               gift_id: $stateParams.giftId
             };
-            AddressService.createOrder(params).then(function () {
+            AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
               $state.go('application.redeemDetail', {redeemId: $rootScope.user.getUserId()});
             }, function () {
