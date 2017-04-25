@@ -16,7 +16,7 @@ angular.module('xbertsApp')
           'Community Engagement': parseInt(scope.points.commentProduct) + parseInt(scope.points.commentTrial) + parseInt(scope.points.commentReview) + 10,
           'Profile Completeness': parseInt(scope.points.hasAvatar),
           'Cross-platform Sharing': parseInt(scope.points.share),
-          '': parseInt(scope.points.consumed)
+          'Redeem Gifts': '-' + parseInt(scope.points.consumed)
         };
 
       }
