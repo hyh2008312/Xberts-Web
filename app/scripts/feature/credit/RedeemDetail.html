@@ -22,12 +22,22 @@
           <div ng-show="timeValue<=0">{{ extraInfo }}</div>
         </div>
       </div>
-      <div hide-xs>
-        <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeem($event)">Redeem</md-button>
+      <div hide-xs end-time-left end-time="redeemCtrl.redeemDetail.dateEnded" >
+        <div ng-show="timeValue>0">
+          <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeem($event)">Redeem</md-button>
+        </div>
+        <div ng-show="timeValue<=0">
+          <md-button class="xb-redeem-button md-primary md-raised" ng-disabled="true">Redeem</md-button>
+        </div>
       </div>
       <div class="xb2-page-head__button" flex-order="4" hide-gt-xs>
-        <div layout="row" layout-gt-xs="column" layout-align="center center" layout-align-gt-xs="start start">
-          <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeemMobile($event)">Redeem</md-button>
+        <div layout="row" layout-gt-xs="column" layout-align="center center" layout-align-gt-xs="start start" end-time-left end-time="redeemCtrl.redeemDetail.dateEnded" >
+          <div ng-show="timeValue>0">
+            <md-button class="xb-redeem-button md-primary md-raised" ng-click="redeemCtrl.redeemMobile($event)">Redeem</md-button>
+          </div>
+          <div ng-show="timeValue<=0">
+            <md-button class="xb-redeem-button md-primary md-raised" ng-disabled="true">Redeem</md-button>
+          </div>
         </div>
       </div>
       <div>
