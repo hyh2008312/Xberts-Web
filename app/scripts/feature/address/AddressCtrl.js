@@ -32,40 +32,56 @@ angular.module('xbertsApp')
           });
           return;
         }
-        $scope.$emit('backdropOn', 'fetch project');
-        if ($scope.address.id == null) {
-          AddressService.create(address).then(function (data) {
-            var params = {
-              address_id: data.id,
-              gift_id: $stateParams.giftId
-            };
-            AddressService.createOrder(params).then(function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
-            }, function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-            });
-          }, function () {
-            $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
-            $scope.$emit('backdropOff', 'project get completed');
-          });
-        } else {
-          AddressService.update(address).then(function (data) {
-            var params = {
-              address_id: data.id,
-              gift_id: $stateParams.giftId
-            };
-            AddressService.createOrder(params).then(function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
-            }, function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-            });
-          }, function () {
-            $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
-            $scope.$emit('backdropOff', 'project get completed');
-          });
+
+        if (!$scope.addressForm.$valid) {
+          return;
         }
+
+        $mdDialog.show(
+          $mdDialog.confirm()
+            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .clickOutsideToClose(true)
+            .title("Your redemption request has been submitted.")
+            .textContent("The product will be shipped within 5 working days! If you have any question, please contact us at support@xberts.com!")
+            .ariaLabel('Alert Dialog')
+            .ok('Got it')
+            .targetEvent(ev)
+        ).then(function() {
+          $scope.$emit('backdropOn', 'fetch project');
+          if ($scope.address.id == null) {
+            AddressService.create(address).then(function (data) {
+              var params = {
+                address_id: data.id,
+                gift_id: $stateParams.giftId
+              };
+              AddressService.createOrder(params).then(function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+                $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              }, function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+              });
+            }, function () {
+              $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          } else {
+            AddressService.update(address).then(function (data) {
+              var params = {
+                address_id: data.id,
+                gift_id: $stateParams.giftId
+              };
+              AddressService.createOrder(params).then(function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+                $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              }, function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+              });
+            }, function () {
+              $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          }
+        },function() { });
       };
 
       $scope.submitMobileForm = function(address, ev) {
@@ -90,43 +106,58 @@ angular.module('xbertsApp')
           });
           return;
         }
-        $scope.$emit('backdropOn', 'fetch project');
-        if ($scope.address.id == null) {
-          AddressService.create(address).then(function (data) {
-            var params = {
-              address_id: data.id,
-              gift_id: $stateParams.giftId
-            };
-            AddressService.createOrder(params).then(function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.redeemDetail', {redeemId: $rootScope.user.getUserId()});
-            }, function () {
-              $state.go('application.error');
-              $scope.$emit('backdropOff', 'project get completed');
-            });
-          }, function () {
-            $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
-            $state.go('application.error');
-            $scope.$emit('backdropOff', 'project get completed');
-          });
-        } else {
-          AddressService.update(address).then(function (data) {
-            var params = {
-              address_id: data.id,
-              gift_id: $stateParams.giftId
-            };
-            AddressService.createOrder(params).then(function (data) {
-              $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.redeemDetail', {redeemId: $rootScope.user.getUserId()});
-            }, function () {
-              $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.error');
-            });
-          }, function () {
-            $scope.$emit('backdropOff', 'project get completed');
-            $state.go('application.error');
-          });
+        if (!$scope.addressForm.$valid) {
+          return;
         }
+
+        $mdDialog.show(
+          $mdDialog.confirm()
+            .parent(angular.element(document.body))
+            .clickOutsideToClose(true)
+            .title("Your redemption request has been submitted.")
+            .textContent("The product will be shipped within 5 working days! If you have any question, please contact us at support@xberts.com!")
+            .ariaLabel('Alert Dialog')
+            .ok('Got it')
+            .targetEvent(ev)
+            .disableParentScroll(false)
+        )
+        .then(function() {
+          $scope.$emit('backdropOn', 'fetch project');
+          if ($scope.address.id == null) {
+            AddressService.create(address).then(function (data) {
+              var params = {
+                address_id: data.id,
+                gift_id: $stateParams.giftId
+              };
+              AddressService.createOrder(params).then(function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+                $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              }, function () {
+                $scope.$emit('backdropOff', 'project get completed');
+              });
+            }, function () {
+              $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          } else {
+            AddressService.update(address).then(function (data) {
+              var params = {
+                address_id: data.id,
+                gift_id: $stateParams.giftId
+              };
+              AddressService.createOrder(params).then(function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+                $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              }, function (data) {
+                $scope.$emit('backdropOff', 'project get completed');
+              });
+            }, function () {
+              $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          }
+        },function() {});
+
       };
 
       var title = 'Xberts - Confirm Your Shipping Address';

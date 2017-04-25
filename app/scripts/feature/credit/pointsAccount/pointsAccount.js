@@ -9,6 +9,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/credit/pointsAccount/points-account.html',
       link: function (scope, element, attrs, ctrls) {
         scope.points = scope.points||{};
+        scope.pointsTotal = scope.total - parseInt(scope.points.consumed);
         scope.myPointsList = {
           'Friends Referrals': parseInt(scope.points.inviteFriend),
           'Product Submission': parseInt(scope.points.postProductFeatured),
