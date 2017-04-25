@@ -22,15 +22,22 @@
     </md-input-container>
   </div>
   <div ng-switch-when="4" layout="row">
-    <md-radio-group ng-model="question.answer.answer_main" name="question_{{ question.id }}" layout="column" layout-gt-sm="row">
-      <md-radio-button ng-repeat="item in question.extra|split" ng-value="item" aria-label="{{ item }}">
-        {{ item }}
-      </md-radio-button>
-    </md-radio-group>
+    <md-input-container class="md-block" flex>
+      <label class="md-container-ignore md-no-float">{{ question.title }}</label>
+      <md-radio-group ng-model="question.answer.answer_main" name="question_{{ question.id }}" layout="column"
+                      layout-gt-sm="row">
+        <md-radio-button ng-repeat="item in question.extra|split" ng-value="item" aria-label="{{ item }}">
+          {{ item }}
+        </md-radio-button>
+      </md-radio-group>
+    </md-input-container>
   </div>
   <div ng-switch-when="5" layout="row">
-    <md-checkbox ng-model="item.selected" aria-label="Finished?" ng-repeat="item in items">
-      {{ item.name }}
-    </md-checkbox>
+    <md-input-container class="md-block" flex>
+      <label class="md-container-ignore md-no-float">{{ question.title }}</label>
+      <md-checkbox ng-model="item.selected" aria-label="Finished?" ng-repeat="item in items">
+        {{ item.name }}
+      </md-checkbox>
+    </md-input-container>
   </div>
 </div>
