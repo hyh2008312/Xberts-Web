@@ -1,5 +1,5 @@
 <div class="container xb-edit-post xb-shipping-address">
-  <div class="xb-edit-post__title md-display-1">Shipping address</div>
+  <div class="xb-edit-post__title md-display-1">Confirm Your Shipping Address</div>
   <form name="addressForm" novalidate  lear-form-error>
     <div layout-gt-xs="row" layout-align-gt-xs="start center">
       <md-input-container class="md-block" flex-gt-xs="50">
@@ -36,7 +36,7 @@
       <md-input-container class="md-block xb-edit-post__margin-left xb-shipping-address__padding-bottom" flex-gt-xs="33">
         <label>Country</label>
         <md-select required ng-model="address.shippingCountry" name="shippingCountry" aria-label="">
-          <md-option ng-repeat="option in countryOptions track by option.code" value="{{option.code}}" >
+          <md-option ng-repeat="option in countryOptions | filter:countryFilter" value="{{option.code}}" >
             {{option.name}}
           </md-option>
         </md-select>

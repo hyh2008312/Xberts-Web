@@ -8,6 +8,9 @@ angular.module('xbertsApp')
       }
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.address = address.length > 0 ? address[0]: {};
+      $scope.countryFilter = function(item) {
+        return item.code === 'CA' || item.code === 'US';
+      };
 
       $scope.submitForm = function(address, ev) {
         if(!$rootScope.user.authRequired()) {
@@ -126,7 +129,7 @@ angular.module('xbertsApp')
         }
       };
 
-      var title = 'Address Xberts';
+      var title = 'Xberts - Confirm Your Shipping Address';
       var description = 'Xberts is a Y Combinator funded company located in Silicon Valley and China. Our team is comprised of industry experts who are passionate about new technologies and creative designs.';
       var backgroundColor = 'background-bg-light';
       var shareImage = '';
