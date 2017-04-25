@@ -1,5 +1,8 @@
+'use strict';
+
 angular.module('xbertsApp')
-  .controller('RedeemDetailCtrl', ['$rootScope', '$mdDialog', '$mdToast', 'redeemDetail', function($rootScope, $mdDialog, $mdToast, redeemDetail) {
+  .controller('RedeemDetailCtrl', ['$rootScope', '$scope', '$state', '$mdDialog', '$mdToast', 'redeemDetail', 'ExpertService',
+    function($rootScope, $scope, $state, $mdDialog, $mdToast, redeemDetail, ExpertService) {
     var redeemCtrl = this;
     redeemCtrl.redeemDetail = redeemDetail;
 
@@ -13,31 +16,41 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      $mdDialog.show(
-        $mdDialog.alert()
-          .parent(angular.element(document.querySelector('.xb-body-view')))
-          .clickOutsideToClose(true)
-          .textContent("Oops! You don't have enough points to redeem this gift. Earn more points now!")
-          .ariaLabel('Alert Dialog')
-          .ok('ok')
-          .targetEvent(ev)
-      );
+
+      if($rootScope.user._points - $rootScope.user._consumed < redeemCtrl.redeemDetail.points) {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .clickOutsideToClose(true)
+            .textContent("Oops! You don't have enough points to redeem this gift. Earn more points now!")
+            .ariaLabel('Alert Dialog')
+            .ok('ok')
+            .targetEvent(ev)
+        );
+      } else {
+        $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+      }
+
     };
     redeemCtrl.redeemMobile = function(ev) {
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      $mdToast.show({
-        hideDelay: 10000000,
-        position: 'bottom',
-        controller: function(scope, $mdToast) {
-          scope.cancel = function() {
-            $mdToast.cancel();
-          };
-        },
-        toastClass:'xb-redeem-detail__toast',
-        templateUrl: 'scripts/feature/credit/redeemToast/redeem-toast.html'
-      });
+      if($rootScope.user._points - $rootScope.user._consumed < redeemCtrl.redeemDetail.points) {
+        $mdToast.show({
+          hideDelay: 3000,
+          position: 'bottom',
+          controller: function(scope, $mdToast) {
+            scope.cancel = function() {
+              $mdToast.cancel();
+            };
+          },
+          toastClass:'xb-redeem-detail__toast',
+          templateUrl: 'scripts/feature/credit/redeemToast/redeem-toast.html'
+        });
+      } else {
+        $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+      }
     };
 
     var title = redeemDetail.name;

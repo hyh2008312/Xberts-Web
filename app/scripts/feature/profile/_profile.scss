@@ -531,4 +531,20 @@
     margin-top: 40px;
     margin-bottom: 24px;
   }
+  &__margin-left{
+    margin-left: 24px !important;
+    @include xb-xs-screen{
+      margin-left: 0!important;
+    }
+  }
+}
+.xb-shipping-address{
+  max-width: 792px;
+  .md-button{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  &__padding-bottom{
+    padding-bottom: 24px !important;
+  }
 }
