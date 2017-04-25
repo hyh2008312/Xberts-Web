@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('RedeemDetailCtrl', ['$rootScope', '$scope', '$state', '$mdDialog', '$mdToast', 'redeemDetail', 'ExpertService',
-    function($rootScope, $scope, $state, $mdDialog, $mdToast, redeemDetail, ExpertService) {
+  .controller('RedeemDetailCtrl', ['$rootScope', '$scope', '$state', '$mdDialog', '$mdToast', 'redeemDetail', 'moment',
+    function($rootScope, $scope, $state, $mdDialog, $mdToast, redeemDetail, moment) {
     var redeemCtrl = this;
     redeemCtrl.redeemDetail = redeemDetail;
 
@@ -11,6 +11,9 @@ angular.module('xbertsApp')
     redeemCtrl.showDescription = function() {
       redeemCtrl.toggle = !redeemCtrl.toggle;
     };
+    var endTime = moment(redeemCtrl.redeemDetail.dateEnded);
+    var now = moment();
+    $scope.showButton = endTime.diff(now, 'seconds');
 
     redeemCtrl.redeem = function(ev) {
       if(!$rootScope.user.authRequired()) {
