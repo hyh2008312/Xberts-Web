@@ -4,7 +4,6 @@ angular.module('xbertsApp')
 
 function ReportModel() {
 
-  var AVATAR_PLACEHOLDER = 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
 
   function Report(data) {
     angular.extend(this, data);
@@ -39,7 +38,7 @@ function ReportModel() {
       return this.applicant.reviewer.userprofile.first_name + " " + this.applicant.reviewer.userprofile.last_name;
     },
     getReviewerAvatar: function () {
-      return this.applicant.reviewer.avatar || AVATAR_PLACEHOLDER;
+      return this.applicant.reviewer.avatar;
     },
     getReviewerId: function () {
       return this.applicant.reviewer.id;

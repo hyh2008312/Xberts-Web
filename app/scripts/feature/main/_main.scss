@@ -442,6 +442,10 @@
     .report-publisher{
       color: rgba(0, 0, 0, .54);
       @include regular();
+      avatar-img{
+        width: 24px;
+        height: 24px;
+      }
       img{
         width: 24px;
         height: 24px;

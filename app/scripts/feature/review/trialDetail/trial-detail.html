@@ -89,8 +89,8 @@
                        infinite-scroll-disabled="trial.selectedApplicantPaginator.loading || !trial.selectedApplicantPaginator.next">
                     <div ng-repeat="review in trial.selectedApplicantPaginator.items" layout="row" layout-align="start start">
                       <div>
-                        <avatar-img class="xb-selected-reviewer__avatar" src="review.reviewer.userprofile.avatar"
-                                    name="review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name"
+                        <avatar-img class="xb-selected-reviewer__avatar" src="review.reviewer.avatar"
+                                    name="review.reviewer.fullname"
                                     ui-sref="application.expert({ expertId:review.reviewer.id})"></avatar-img>
                       </div>
                       <div layout="column" flex>

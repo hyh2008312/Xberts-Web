@@ -11,7 +11,7 @@
       </a>
     </p>
     <p hide-xs class="xcard__description p-1">{{ review.description }}</p>
-    <div class="report-publisher">
+    <div class="report-publisher" layout="row" layout-align="start center">
       <avatar-img hide-xs src="review.getReviewer().avatar" name="review.getReviewer().fullname"
                   ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-img>
       by <a hide-gt-xs ui-sref="application.expert({ expertId:review.getReviewer().id })">{{ review.getReviewer().fullname }}</a><span hide-xs>{{ review.applicant.reviewer.fullname }}</span>, <span am-time-ago='review.approval_status_changed'></span>

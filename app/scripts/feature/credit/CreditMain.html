@@ -132,7 +132,12 @@
           Redeem Amazing Gifts with Your Points!
         </div>
       </div>
-      <credit-redeem redeems="creditCtrl.creditMain"></credit-redeem>
+      <div infinite-scroll="creditCtrl.creditMain.loadNext()"
+           infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
+        <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
+        <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
+      </div>
     </div>
   </div>
   <div class="background-whitem">

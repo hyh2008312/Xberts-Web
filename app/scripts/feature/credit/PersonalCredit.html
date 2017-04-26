@@ -36,5 +36,10 @@
   <div class="md-subhead">
     Gift Shop
   </div>
-  <credit-redeem redeems="creditMain"></credit-redeem>
+  <div class="xb-personal-container__padding-bottom" infinite-scroll="creditMain.loadNext()"
+       infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="creditMain.loading || !creditMain.next">
+    <credit-redeem redeems="creditMain.items"></credit-redeem>
+    <load-more ng-if="creditMain.loading"></load-more>
+  </div>
 </div>

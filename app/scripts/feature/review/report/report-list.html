@@ -25,7 +25,7 @@
             </p>
 
             <p class="xcard__description p-1">{{ report.description}}</p>
-            <div class="report-publisher">
+            <div class="report-publisher" layout="row" layout-align="start center">
               <avatar-img src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
               by {{ report.applicant.reviewer.fullname }}, <span am-time-ago='report.approval_status_changed'></span>
             </div>

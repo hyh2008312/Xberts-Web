@@ -3,7 +3,7 @@ angular.module('xbertsApp')
     function($rootScope, expert, creditMain, $scope, points) {
 
     $scope.expert = expert;
-    $scope.creditMain = creditMain.items;
+    $scope.creditMain = creditMain;
     $scope.points = points;
     $rootScope.user.setConsumedPoints($scope.points.consumed);
 

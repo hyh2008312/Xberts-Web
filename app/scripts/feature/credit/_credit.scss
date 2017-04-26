@@ -396,7 +396,7 @@
   }
   .xb-credit-redeem {
     margin-top: 0;
-    padding: 16px 16px 48px;
+    padding: 16px 16px 24px;
   }
   &__margin-bottom {
     margin-bottom: 16px;
@@ -415,6 +415,9 @@
     @include xb-xs-screen{
       width: 100%;
     }
+  }
+  &__padding-bottom{
+    padding-bottom: 24px;
   }
 }
 .xb-personal-perks{

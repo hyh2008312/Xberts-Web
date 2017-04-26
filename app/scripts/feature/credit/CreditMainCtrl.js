@@ -2,7 +2,7 @@ angular.module('xbertsApp')
   .controller('CreditMainCtrl', ['$rootScope', 'creditMain', 'CreditService', function($rootScope, creditMain, CreditService) {
     var creditCtrl = this;
     creditCtrl.topBanner = CreditService.topBanner;
-    creditCtrl.creditMain = creditMain.items;
+    creditCtrl.creditMain = creditMain;
     creditCtrl.badges = CreditService.badges;
     creditCtrl.isOpen = [false,false,false,false];
 
