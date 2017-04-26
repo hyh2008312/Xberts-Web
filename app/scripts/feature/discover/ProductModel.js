@@ -2,16 +2,13 @@ angular.module('xbertsApp')
   .factory('ShareProduct', ['urlParser','$sce','$state',ShareProduct]);
 function ShareProduct(urlParser, $sce, $state) {
 
-  var AVATAR_PLACEHOLDER = 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a';
-
-
   function ShareProduct(data) {
     angular.extend(this, data);
   }
 
   ShareProduct.prototype = {
     getShareAvatar: function () {
-      return this.owner.userprofile.avatar || AVATAR_PLACEHOLDER;
+      return this.owner.userprofile.avatar;
     },
     getShareName: function () {
       return this.owner.firstName;
