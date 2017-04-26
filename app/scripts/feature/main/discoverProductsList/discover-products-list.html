@@ -1,25 +1,25 @@
 <div layout="row" layout-align="start start">
-  <div class="xb-main-product" flex>
-    <div ng-if="showProduct.getVideo() != null" class="xb-main-product__video" iframe-loaded>
+  <div class="xb-main-product" flex ng-repeat="product in products track by $index" ng-if="$index < 5 && $index == index">
+    <div ng-if="product.getVideo() != null" class="xb-main-product__video" iframe-loaded>
       <load-more></load-more>
-      <iframe frameborder="0" ng-src="{{showProduct.getVideo()}}" ></iframe>
+      <iframe frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
     </div>
-    <img ng-if="showProduct.getVideo() == null" ng-src="{{showProduct.getImageOriginal()}}"
+    <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}"
          class="md-card-image product__card" alt="" />
 
-    <div class="xb-main-product__headline " ui-sref="application.shareProductDetail({reviewId:showProduct.id})">
-      <a class="md-subhead md-dark-primary">{{showProduct.title}}</a>
+    <div class="xb-main-product__headline " ui-sref="application.shareProductDetail({reviewId:product.id})">
+      <a class="md-subhead md-dark-primary">{{product.title}}</a>
     </div>
 
-    <div class="xb-main-product__content md-body-1">{{showProduct.description}}</div>
+    <div class="xb-main-product__content md-body-1">{{product.description}}</div>
 
-    <div layout="row" layout-align="start center" class="xb-main-product__action">
+    <div  layout="row" layout-align="start center" class="xb-main-product__action">
       <div class="xb-main-product__avatar" layout="row" layout-align="start center" layout-fill>
-        <avatar-Img src="showProduct.getShareAvatar()" name="showProduct.owner.firstName"  class="md-user-avatar"
-                    ui-sref="application.expert({ expertId:showProduct.getPostId() })"></avatar-Img>
+        <avatar-Img src="product.getShareAvatar()" name="product.owner.firstName"  class="md-user-avatar"
+                    ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
         <div class="xb-main-product__avatar-title" layout="column" layout-align="start start">
-          <a class="md-title md-body-2" ui-sref="application.expert({ expertId:showProduct.getPostId() })">{{showProduct.getShareName()}}</a>
-          <span class="md-subhead md-body-1 md-dark-secondary">{{showProduct.created|amDateFormat:'MMMM Do,YYYY'}}</span>
+          <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">{{product.getShareName()}}</a>
+          <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
         </div>
       </div>
       <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
@@ -55,7 +55,7 @@
           {{product.title}}
         </p>
         <div class="report-publisher" layout="row" layout-align="start center">
-          <avatar-img src="product.getShareAvatar()" name="product.reporter.name"></avatar-img>
+          <avatar-img src="product.getShareAvatar()" name="product.owner.firstName"></avatar-img>
           <span class="md-body-1">{{product.getShareName()}}</span>
         </div>
       </div>

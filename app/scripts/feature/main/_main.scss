@@ -386,6 +386,13 @@
   &__avatar-title{
     margin-left: 16px;
   }
+  &__avatar{
+    avatar-img{
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+  }
 }
 .xb-main-discover{
   width: 444px;

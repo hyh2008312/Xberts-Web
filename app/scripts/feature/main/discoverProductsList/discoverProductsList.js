@@ -8,10 +8,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/main/discoverProductsList/discover-products-list.html',
       link: function (scope, element, attrs, ctrls) {
         scope.index = 0;
-        scope.showProduct = scope.products[scope.index];
         scope.changeShowProduct = function(index) {
           scope.index = index;
-          scope.showProduct = scope.products[index];
         };
 
         // FAB Speed Dial Component
