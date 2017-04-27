@@ -1,11 +1,7 @@
 <div class="container md-section md-padding" ng-if="!apply.finished">
   <div class="md-section__title">
     <h2 class="md-headline">{{ apply.review.title }}</h2>
-    <h3 class="md-subhead md-dark-secondary">Please answer the following questions to apply. All the information must be
-      real and
-      accurate.
-      <br/>
-      The more details you provide, the higher chance you can be selected.</h3>
+    <h3 class="md-subhead md-dark-secondary">Please answer the following questions to apply for this trial. All your information will be kept strictly confidential.</h3>
   </div>
   <div class="md-section__content  md-relative">
     <form name="applierForm" ng-cloak novalidate>
@@ -71,7 +67,7 @@
           <span flex="30" flex-gt-sm="40"></span>
           <div flex="40" flex-gt-sm="20">
             <md-button  type="button" class="md-raised md-primary xb-btn-block" ng-click="apply.nextStep(applierForm)"
-                        ng-disabled="applierForm.$invalid">Next
+                        ng-disabled="applierForm.$invalid">Next (1/2)
             </md-button>
           </div>
         </div>
