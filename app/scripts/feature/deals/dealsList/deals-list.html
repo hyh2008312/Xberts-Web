@@ -1,20 +1,20 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
-  <div ng-repeat="item in deals track by $index" flex>
+  <div ng-repeat="item in deals track by $index" flex ng-click="item.buyNow('deals-list');" >
     <div class="xb-deals-list__img-bg">
-      <img src="{{item.img}}" />
+      <img src="{{item.coverUrl}}" />
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-      <div class="xb-deals-list__tag md-dark-secondary">{{item.from}}</div>
-      <div class="xb-deals-list__price" layout-xs="column" layout-align-xs="start start">
+      <div class="xb-deals-list__tag md-dark-secondary">{{item.tags}}</div>
+      <div class="xb-deals-list__price" layout="column" layout-align="start start">
         <span class="md-headline xb-bold">
-          {{item.sale | currency}}
+          {{item.discountPrice | currency}}
         </span>
         <span>
           <span class="md-dark-secondary">
-            {{item.total | currency}}
+            {{item.originalPrice | currency}}
           </span>
           <span class="xb-deals-list__discount">
-            50% off
+            {{item.discount * 100 | number:0}}% off
           </span>
         </span>
       </div>
@@ -22,18 +22,18 @@
         <a>{{item.title}}</a>
       </div>
       <div class="xb-deals-list__end">
-        {{item.endTime}}
+        <span end-time-left end-time="item.promotionDeadline" extra-info="111">
+          <span ng-show="timeValue>0">Ends in {{ timeUnit }}</span>
+          <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+        </span>
       </div>
       <div flex="noshrink" layout="column" layout-align="end start">
-        <div class="md-dark-secondary" layout="row" layout-align="start center" layout-wrap>
-          <span>{{item.views}} {{item.views>1?'views':'view'}}</span>
-          <span class="xb-bold">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-          <span>{{item.likes}} {{item.likes>1?'likes':'like'}}</span>
-        </div>
-        <md-button class="md-accent md-raised" ng-href="{{item.buyUrl}}" _target="blank" hide-xs>
+        <md-button class="md-accent md-raised" ng-click="item.buyNow('deals-list');" hide-xs>
           Get it Now
         </md-button>
       </div>
     </div>
   </div>
+  <div flex class="xb-deals-list__prefix"></div>
+  <div flex class="xb-deals-list__prefix"></div>
 </div>

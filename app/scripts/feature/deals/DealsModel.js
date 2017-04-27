@@ -7,6 +7,16 @@ function ProductDeals() {
   }
 
   ProductDeals.prototype = {
+    buyNow: function (category) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'deals-product-btn-click',
+          category:category,
+          productTitle: this.title
+        });
+      }
+      window.open(this.buyUrl);
+    }
   };
 
   ProductDeals.build = function (data) {

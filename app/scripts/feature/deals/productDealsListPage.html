@@ -5,12 +5,83 @@
       <h3><span class="md-body-1 md-dark-secondary">Enjoy the best deals on the latest gadgets and designs</span></h3>
     </div>
     <div layout="row" layout-align="start start">
-      <div hide-xs class="category" flex="none">
-        <div layout="column" fixed-to-top offset-top="56" del-top="90">
-          <discovery-category categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId" on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
+      <md-sidenav class="md-sidenav-left xberts-navbar-moblie-sidenav category xb-filter background-whitem"
+        md-component-id="filterLeft" hide-gt-xs layout="column"
+        md-disable-scroll-target=".xb-body-view">
+        <div class="xb-filter__margin-bottom" flex="noshrink">
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Category
+          </div>
+          <discovery-category categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                              on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Price
+          </div>
+          <deals-filter filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+                        on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Discount
+          </div>
+          <deals-filter filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
+                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
+          </deals-filter>
+        </div>
+      </md-sidenav>
+      <div class="category xb-filter" hide-xs flex="none">
+        <div fixed-to-top offset-top="56" del-top="90">
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Category
+            <filter-switcher value="dealsCtrl.switcher[0]"></filter-switcher>
+          </div>
+          <discovery-category ng-show="dealsCtrl.switcher[0]" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                        on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Price
+            <filter-switcher value="dealsCtrl.switcher[1]" ></filter-switcher>
+          </div>
+          <deals-filter ng-show="dealsCtrl.switcher[1]" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+                        on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+            Discount
+            <filter-switcher value="dealsCtrl.switcher[2]"></filter-switcher>
+          </div>
+          <deals-filter ng-show="dealsCtrl.switcher[2]" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
+                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
+          </deals-filter>
         </div>
       </div>
-      <deals-list flex deals="dealsCtrl.productsPaginator"></deals-list>
+      <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex>
+        <div layout="row" layout-align="space-between start" >
+          <div class="xb-filter__tags" layout-gt-xs="row" layout-align-gt-xs="start start"
+            layout-xs="column" layout-align-xs="start start">
+            <div layout="row" layout-align="start center" ng-repeat="category in dealsCtrl.categories" ng-class="'flex-order-'+dealsCtrl.tagOrder[0]"
+                 ng-if="category.id != null && category.id === dealsCtrl.categoryId">
+              {{category.name}}
+              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('categoryId')">close</md-icon>
+            </div>
+            <div layout="row" layout-align="start center" ng-repeat="price in dealsCtrl.price" ng-class="'flex-order-'+dealsCtrl.tagOrder[1]"
+                 ng-if="price.id === dealsCtrl.priceId">
+              {{price.name}}
+              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('priceId')">close</md-icon>
+            </div>
+            <div layout="row" layout-align="start center" ng-repeat="discount in dealsCtrl.discount" ng-class="'flex-order-'+dealsCtrl.tagOrder[2]"
+                 ng-if="discount.id === dealsCtrl.discountId">
+              {{discount.name}}
+              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('discountId')">close</md-icon>
+            </div>
+          </div>
+          <div hide-gt-xs class="xb-filter__filter-bg" layout="row" layout-align="start center">
+            Filter
+            <div ng-click="dealsCtrl.toggleLeft()">
+              <md-icon md-font-set="material-icons"> menu </md-icon>
+            </div>
+          </div>
+        </div>
+        <deals-list flex deals="dealsCtrl.productsPaginator.items"></deals-list>
+        <load-more layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+      </div>
+
     </div>
   </div>
 </section>

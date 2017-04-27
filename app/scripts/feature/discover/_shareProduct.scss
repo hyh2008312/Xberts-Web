@@ -23,7 +23,7 @@ $PrimaryINDIGO: #3f51b5;
   transform: $arguments;
 }
 @mixin resetBorder{
-  @include box-shadow(0 0 1px 1px rgba(0, 0, 0, 0.12));
+  @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.08));
 }
 .xb-section{
   &__title {
