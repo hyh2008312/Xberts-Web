@@ -27,11 +27,23 @@ angular.module('xbertsApp')
             .clickOutsideToClose(true)
             .textContent("Oops! You don't have enough points to redeem this gift. Earn more points now!")
             .ariaLabel('Alert Dialog')
-            .ok('ok')
+            .ok('Ok')
             .targetEvent(ev)
         );
       } else {
-        $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+        $mdDialog.show(
+          $mdDialog.confirm()
+            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .clickOutsideToClose(true)
+            .textContent("Your points balance will be reduced by " + redeemCtrl.redeemDetail.points +
+              (redeemCtrl.redeemDetail.points > 1?" points" : " point") + " for redemption of this gift.")
+            .ariaLabel('Redeem Confirm')
+            .ok('Ok')
+            .cancel('Cancel')
+            .targetEvent(ev)
+        ).then(function() {
+          $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+        }, function() {});
       }
 
     };
@@ -52,7 +64,19 @@ angular.module('xbertsApp')
           templateUrl: 'scripts/feature/credit/redeemToast/redeem-toast.html'
         });
       } else {
-        $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+        $mdDialog.show(
+          $mdDialog.confirm()
+            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .clickOutsideToClose(true)
+            .textContent("Your points balance will be reduced by " + redeemCtrl.redeemDetail.points +
+              (redeemCtrl.redeemDetail.points > 1?" points" : " point") + " for redemption of this gift.")
+            .ariaLabel('Redeem Confirm')
+            .ok('Ok')
+            .cancel('Cancel')
+            .targetEvent(ev)
+        ).then(function() {
+          $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+        }, function() {});
       }
     };
 

@@ -317,7 +317,12 @@
              parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="creditCtrl.isOpen[2]">keyboard_arrow_down</md-icon>
   </div>
   <div class="container xb-credit-mobile__content-1">
-    <credit-redeem redeems="creditCtrl.creditMain"></credit-redeem>
+    <div infinite-scroll="creditCtrl.creditMain.loadNext()"
+         infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+         infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
+      <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
+      <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
+    </div>
   </div>
   <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
     <md-truncate flex class="md-subhead">FAQ</md-truncate>
