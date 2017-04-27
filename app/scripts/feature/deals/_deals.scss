@@ -1,0 +1,95 @@
+.xb-deals-list{
+  >div{
+    margin-bottom: 16px;
+    background-color: #fff;
+    @include resetBorder();
+    flex: 1 1 245px !important;
+    -webkit-flex: 1 1 245px !important;
+    @include xb-lg-screen{
+      max-width: 24% !important;
+    }
+    @include xb-md-screen{
+      max-width: 32% !important;
+    }
+    @include xb-sm-screen{
+      max-width: 48% !important;
+    }
+    @include xb-xs-screen{
+      margin-bottom: 8px;
+      max-width: 49% !important;
+    }
+    .md-button{
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+  }
+  &__img-bg{
+    width: 100%;
+    padding-bottom: 66.66%;
+    overflow: hidden;
+    position: relative;
+    >img{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  &__content{
+    padding: 0 16px 16px;
+    height: 266px;
+    @include xb-xs-screen{
+      padding: 0 8px 16px;
+      height: 186px;
+    }
+  }
+  &__tag{
+    margin-top: 6px;
+    @include xb-xs-screen{
+      font-size: 12px;
+    }
+  }
+  &__price{
+    margin-top: 8px;
+    .md-headline{
+      line-height: 24px;
+      margin-right: 8px;
+      @include xb-xs-screen{
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+    .md-dark-secondary{
+      text-decoration: line-through;
+      margin-right: 8px;
+    }
+  }
+  &__title{
+    margin-top: 8px;
+    margin-bottom: 6px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include xb-xs-screen{
+      @include media();
+      a{
+        color: #000;
+        &:hover{
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  &__discount{
+    color: #ff4081;
+  }
+  .md-dark-secondary{
+    @include xb-xs-screen{
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
+  <div ng-repeat="item in deals track by $index" flex>
+    <div class="xb-deals-list__img-bg">
+      <img src="{{item.img}}" />
+    </div>
+    <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+      <div class="xb-deals-list__tag md-dark-secondary">{{item.from}}</div>
+      <div class="xb-deals-list__price" layout-xs="column" layout-align-xs="start start">
+        <span class="md-headline xb-bold">
+          {{item.sale | currency}}
+        </span>
+        <span>
+          <span class="md-dark-secondary">
+            {{item.total | currency}}
+          </span>
+          <span class="xb-deals-list__discount">
+            50% off
+          </span>
+        </span>
+      </div>
+      <div class="xb-deals-list__title">
+        <a>{{item.title}}</a>
+      </div>
+      <div class="xb-deals-list__end">
+        {{item.endTime}}
+      </div>
+      <div flex="noshrink" layout="column" layout-align="end start">
+        <div class="md-dark-secondary" layout="row" layout-align="start center" layout-wrap>
+          <span>{{item.views}} {{item.views>1?'views':'view'}}</span>
+          <span class="xb-bold">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+          <span>{{item.likes}} {{item.likes>1?'likes':'like'}}</span>
+        </div>
+        <md-button class="md-accent md-raised" ng-href="{{item.buyUrl}}" _target="blank" hide-xs>
+          Get it Now
+        </md-button>
+      </div>
+    </div>
+  </div>
+</div>
