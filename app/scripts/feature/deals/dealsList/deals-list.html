@@ -1,0 +1,39 @@
+<div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
+  <div ng-repeat="item in deals track by $index" flex ng-click="item.buyNow('deals-list');" >
+    <div class="xb-deals-list__img-bg">
+      <img src="{{item.coverUrl}}" />
+    </div>
+    <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+      <div class="xb-deals-list__tag md-dark-secondary">{{item.tags}}</div>
+      <div class="xb-deals-list__price" layout="column" layout-align="start start">
+        <span class="md-headline xb-bold">
+          {{item.discountPrice | currency}}
+        </span>
+        <span>
+          <span class="md-dark-secondary">
+            {{item.originalPrice | currency}}
+          </span>
+          <span class="xb-deals-list__discount">
+            {{item.discount * 100 | number:0}}% off
+          </span>
+        </span>
+      </div>
+      <div class="xb-deals-list__title">
+        <a>{{item.title}}</a>
+      </div>
+      <div class="xb-deals-list__end">
+        <span end-time-left end-time="item.promotionDeadline" extra-info="111">
+          <span ng-show="timeValue>0">Ends in {{ timeUnit }}</span>
+          <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+        </span>
+      </div>
+      <div flex="noshrink" layout="column" layout-align="end start">
+        <md-button class="md-accent md-raised" ng-click="item.buyNow('deals-list');" hide-xs>
+          Get it Now
+        </md-button>
+      </div>
+    </div>
+  </div>
+  <div flex class="xb-deals-list__prefix"></div>
+  <div flex class="xb-deals-list__prefix"></div>
+</div>

@@ -1,5 +1,5 @@
 @mixin xb-xs-screen(){
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 599px) {
     @content;
   }
 }
@@ -9,12 +9,17 @@
   }
 }
 @mixin xb-sm-screen(){
-  @media screen and (min-width: 600px) and (max-width: 960px){
+  @media screen and (min-width: 600px) and (max-width: 959px){
+    @content;
+  }
+}
+@mixin xb-gt-sm-screen(){
+  @media screen and (min-width: 960px) {
     @content;
   }
 }
 @mixin xb-md-screen(){
-  @media screen and (min-width: 960px) and (max-width: 1280px){
+  @media screen and (min-width: 960px) and (max-width: 1279px){
     @content;
   }
 }
