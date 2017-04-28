@@ -38,7 +38,7 @@ angular.module('xbertsApp')
         value2: '50'
       },{
         id: '2',
-        name: '50 to $100',
+        name: '$50 to $100',
         value1: '50',
         value2: '100'
       },{
