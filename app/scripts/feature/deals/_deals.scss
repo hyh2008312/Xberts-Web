@@ -16,9 +16,10 @@
     }
     @include xb-xs-screen{
       margin-bottom: 8px;
+      flex: 1 1 172px !important;
+      -webkit-flex: 1 1 172px !important;
       max-width: 49% !important;
-      flex: 1 1 180px !important;
-      -webkit-flex: 1 1 180px !important;
+
     }
     .md-button{
       width: 100%;
