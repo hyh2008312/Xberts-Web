@@ -272,6 +272,10 @@ hr {
   padding-bottom: $sectionPadding;
   background: no-repeat center;
   background-size: cover;
+  @include xb-xs-screen{
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
 
 .xb-section-about {
