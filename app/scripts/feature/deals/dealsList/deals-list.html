@@ -26,7 +26,7 @@
         </span>
       </div>
       <div flex="noshrink" layout="column" layout-align="end start">
-        <md-button class="md-accent md-raised" ng-click="item.buyNow('deals-list');" hide-xs>
+        <md-button class="md-accent md-raised" ng-click="item.buyNow('deals-list');$event.stopPropagation();" hide-xs>
           Get it Now
         </md-button>
       </div>

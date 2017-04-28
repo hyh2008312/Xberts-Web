@@ -12,7 +12,6 @@
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Trials</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
-      <div ui-sref-active="active" ui-sref="application.about">About</div>
     </div>
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
@@ -62,7 +61,7 @@
   </div>
 </md-toolbar>
 <md-sidenav
-  class="md-sidenav-left xberts-navbar-moblie-sidenav"
+  class="md-sidenav-left xberts-navbar-moblie-sidenav xb-nav-sidenav"
   md-component-id="left"
   md-whiteframe="3" hide-gt-xs layout="column">
 
@@ -73,7 +72,6 @@
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Trials</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>
-    <div ui-sref-active="active" ui-sref="application.about" ng-click="close()">About</div>
   </div>
   <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.signup" ng-click="close()">Sign up</div>
