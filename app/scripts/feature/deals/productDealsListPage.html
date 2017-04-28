@@ -4,25 +4,25 @@
       <h2><span class="md-display-1">Find Great Deals Every Day</span></h2>
       <h3><span class="md-body-1 md-dark-secondary">Enjoy the best deals on the latest gadgets and designs</span></h3>
     </div>
-    <div layout="row" layout-align="start start">
+    <div layout="row">
       <md-sidenav class="md-sidenav-left xberts-navbar-moblie-sidenav category xb-filter background-whitem"
         md-component-id="filterLeft" hide-gt-xs layout="column"
         md-disable-scroll-target=".xb-body-view">
-        <div class="xb-filter__margin-bottom" flex="noshrink">
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+        <div flex="noshrink">
+          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
             Category
           </div>
-          <discovery-category categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+          <discovery-category class="xb-filter__bottom" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
                               on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
             Price
           </div>
-          <deals-filter filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+          <deals-filter class="xb-filter__bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                         on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
+          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
             Discount
           </div>
-          <deals-filter filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
+          <deals-filter class="xb-filter__bottom" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
                         on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
           </deals-filter>
         </div>
@@ -33,25 +33,26 @@
             Category
             <filter-switcher value="dealsCtrl.switcher[0]"></filter-switcher>
           </div>
-          <discovery-category ng-show="dealsCtrl.switcher[0]" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+          <discovery-category class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[0]" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
                         on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Price
             <filter-switcher value="dealsCtrl.switcher[1]" ></filter-switcher>
           </div>
-          <deals-filter ng-show="dealsCtrl.switcher[1]" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+          <deals-filter class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[1]" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                         on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Discount
             <filter-switcher value="dealsCtrl.switcher[2]"></filter-switcher>
           </div>
-          <deals-filter ng-show="dealsCtrl.switcher[2]" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
+          <deals-filter class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[2]" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
                         on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
           </deals-filter>
         </div>
       </div>
       <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
-           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex>
+           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex
+           layout="column">
         <div layout="row" layout-align="space-between start" >
           <div class="xb-filter__tags" layout-gt-xs="row" layout-align-gt-xs="start start"
             layout-xs="column" layout-align-xs="start start">
@@ -78,7 +79,12 @@
             </div>
           </div>
         </div>
-        <deals-list flex deals="dealsCtrl.productsPaginator.items"></deals-list>
+        <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
+        <div ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0"
+             layout="column" layout-align="center center" flex="noshrink">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
+        </div>
         <load-more layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
       </div>
 

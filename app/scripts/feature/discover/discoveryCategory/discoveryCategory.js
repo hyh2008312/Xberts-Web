@@ -15,11 +15,7 @@ angular.module('xbertsApp')
             name:'All'
           });
         }
-        scope.selectedCategoryId = scope.categoryId ? scope.categoryId : null;
 
-        scope.selectedCategory = function(selectedCategory) {
-          scope.selectedCategoryId = selectedCategory.id;
-        }
       }
     }
   });

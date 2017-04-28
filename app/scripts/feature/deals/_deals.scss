@@ -40,10 +40,10 @@
   }
   &__content{
     padding: 0 16px 16px;
-    height: 230px;
+    height: 200px;
     @include xb-xs-screen{
       padding: 0 8px 16px;
-      height: 186px;
+      height: 140px;
     }
   }
   &__tag{
@@ -101,7 +101,6 @@
 .xb-filter{
   margin-top: 0;
   &__title{
-    margin-top: 16px;
     font-size: 16px;
     line-height: 36px;
     padding: 0 4px;
@@ -112,16 +111,30 @@
       @include resetBorder();
       border-radius: 2px;
     }
+    @include xb-xs-screen{
+      width: auto;
+      padding: 0 8px;
+    }
+  }
+  .category-button{
+    @include xb-xs-screen{
+      width: auto;
+      padding: 0 8px;
+    }
   }
   &__button{
     @include regular();
-    font-size: 16px;
+    font-size: 14px;
     margin: 10px 4px 0;
     padding: 0;
     text-align: left;
     width: 190px;
     outline: none;
     position: relative;
+    @include xb-xs-screen{
+      width: auto;
+      margin: 10px 8px 0;
+    }
   }
   &__tags{
     >div{
@@ -129,7 +142,7 @@
       margin-right: 16px;
       margin-bottom: 16px;
       border-radius: 10px;
-      background-color: rgba(0, 0, 0, .38);
+      background-color: rgba(0, 0, 0, .12);
       line-height: 24px;
       .material-icons{
         margin-left: 8px;
@@ -154,6 +167,7 @@
     }
   }
   &__margin-bottom{
+    display: block;
     margin-bottom: 20px;
   }
 }

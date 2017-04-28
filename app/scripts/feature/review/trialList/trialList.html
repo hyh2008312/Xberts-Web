@@ -3,7 +3,7 @@
        ng-if="review.status == 'ENDED'">
     <div class="xb-trials-list__img-bg">
       <img ng-src="{{review.cover }}" ui-sref="application.testingcampaign({ reviewId:review.id })"/>
-      <div class="xb-trials-list__mask" layout="column" layout-align="center center" hide-xs>
+      <div class="xb-trials-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
         <a class="md-headline" ui-sref="application.testingcampaign({ reviewId:review.id })">Read Review</a>
       </div>
     </div>

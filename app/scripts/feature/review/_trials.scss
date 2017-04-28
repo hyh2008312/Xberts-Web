@@ -2,9 +2,7 @@
   .md-headline{
     margin-top: 32px;
     margin-bottom: 16px;
-    @include xb-sm-screen{
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
   &__bottom{
     margin-bottom: 40px;
@@ -19,7 +17,7 @@
   $parent: &;
   >div{
     position: relative;
-
+    border-radius: 2px;
     flex: 1 1 290px !important;
     -webkit-flex: 1 1 290px !important;
     @media screen and (min-width: 960px){
@@ -172,7 +170,7 @@
       padding: 8px 16px;
       border-radius: 8px;
       background-color: #fff;
-      @include box-shadow(0 0 3px 1px rgba(0, 0, 0, 0.19));
+      @include resetBorder();
     }
     @include xb-xs-screen{
       border-top: 1px solid rgba(0, 0, 0, .12);
@@ -234,12 +232,9 @@
   }
   .xb-redeem-detail__content-bottom{
     .md-dark-secondary{
-      width: 120px;
       margin-right: 16px;
-      @include xb-xs-screen{
-        font-size: 12px;
-        width: 102px;
-      }
+      font-size: 12px;
+      width: 102px;
     }
   }
   &__content{
@@ -317,6 +312,7 @@
     .md-headline{
       margin-top: 32px;
       margin-bottom: 16px;
+      font-size: 16px;
     }
     margin-bottom: 24px;
   }

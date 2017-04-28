@@ -193,8 +193,8 @@
   &__value{
     z-index: 2;
     position: absolute;
-    left: 16px;
-    top: 16px;
+    left: 8px;
+    top: 8px;
     >span{
       font-size: 14px;
       line-height: 28px;
@@ -227,14 +227,14 @@
   &__top-right{
     z-index: 1;
     position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0 12px;
-    color: #fff;
-    background-color: rgba(0,0,0,.38);
-    line-height: 40px;
-    @include media();
-    font-size: 14px;
+    right: 8px;
+    top: 8px;
+    padding: 0 8px;
+    color: #000;
+    background-color: #fff;
+    line-height: 28px;
+    font-size: 12px;
+    border-radius: 2px;
   }
   &__bottom-title{
     position: absolute;

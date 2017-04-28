@@ -7,6 +7,7 @@ angular.module('xbertsApp')
 
     productCtrl.changeCategory = function (categoryId) {
       ShareProductService.categoryId = categoryId;
+      productCtrl.categoryId = ShareProductService.categoryId;
       productCtrl.productsPaginator.params.category = categoryId || null;
       productCtrl.productsPaginator.clear();
       productCtrl.productsPaginator.load();

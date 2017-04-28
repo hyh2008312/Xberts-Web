@@ -14,7 +14,7 @@ angular.module('xbertsApp')
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
 
-    dealsCtrl.switcher = [false, false, false, false];
+    dealsCtrl.switcher = [true, true, true, true];
     dealsCtrl.onSwitcherChange = function(value, index) {
       dealsCtrl.switcher[index] = !value;
     };

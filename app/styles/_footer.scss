@@ -8,6 +8,9 @@
   width: 100%;
   position: relative;
   @include resetBorder();
+  @include xb-xs-screen{
+    padding-bottom: 10px;
+  }
   .container{
     height: 240px;
     @media screen and (max-width: 600px){

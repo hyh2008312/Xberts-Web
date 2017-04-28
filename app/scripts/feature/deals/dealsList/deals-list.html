@@ -4,7 +4,6 @@
       <img src="{{item.coverUrl}}" />
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-      <div class="xb-deals-list__tag md-dark-secondary">{{item.tags}}</div>
       <div class="xb-deals-list__price" layout="column" layout-align="start start">
         <span class="md-headline xb-bold">
           {{item.discountPrice | currency}}
@@ -22,9 +21,8 @@
         <a>{{item.title}}</a>
       </div>
       <div class="xb-deals-list__end">
-        <span end-time-left end-time="item.promotionDeadline" extra-info="111">
+        <span end-time-left end-time="item.promotionDeadline">
           <span ng-show="timeValue>0">Ends in {{ timeUnit }}</span>
-          <span ng-show="timeValue<=0">{{ extraInfo }}</span>
         </span>
       </div>
       <div flex="noshrink" layout="column" layout-align="end start">
