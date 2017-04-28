@@ -19,7 +19,10 @@
       flex: 1 1 172px !important;
       -webkit-flex: 1 1 172px !important;
       max-width: 49% !important;
-
+    }
+    @include xb-xxs-screen{
+      flex: 1 1 160px !important;
+      -webkit-flex: 1 1 160px !important;
     }
     .md-button{
       width: 100%;
