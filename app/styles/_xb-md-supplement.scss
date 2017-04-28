@@ -259,5 +259,8 @@ p,.md-body-1{
   z-index: 99999;
   .md-container{
     height: 4px;
+    @include xs-screen{
+      height: 2px;
+    }
   }
 }
