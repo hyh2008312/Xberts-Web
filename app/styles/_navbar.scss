@@ -116,9 +116,7 @@
     width: 70%;
   }
 }
-.xb-nav-sidenav{
-  z-index: 101;
-}
+
 .xberts-navbar-moblie-sidenav{
   max-width: 60%;
   min-width: 60%;
@@ -152,6 +150,15 @@
       @include media();
       color: rgba(0,0,0,.87);
     }
+  }
+}
+
+.xb-nav-sidenav{
+  z-index: 101;
+}
+.xb-background-view{
+  >md-backdrop.md-sidenav-backdrop{
+    z-index: 60;
   }
 }
 

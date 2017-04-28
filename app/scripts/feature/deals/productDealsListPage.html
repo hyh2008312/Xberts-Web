@@ -13,22 +13,22 @@
             Category
           </div>
           <discovery-category class="xb-filter__margin-bottom" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
-                              on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
+                              on-category-change="dealsCtrl.changeCategory(categoryId);dealsCtrl.close();"></discovery-category>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Price
           </div>
           <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
-                        on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
+                        on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Discount
           </div>
           <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
-                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
+                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.discountId">
           </deals-filter>
         </div>
       </md-sidenav>
       <div class="category xb-filter" hide-xs flex="none">
-        <div fixed-to-top offset-top="56" del-top="90">
+        <div>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Category
             <filter-switcher value="dealsCtrl.switcher[0]"></filter-switcher>

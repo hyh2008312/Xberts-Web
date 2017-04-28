@@ -17,6 +17,8 @@
     @include xb-xs-screen{
       margin-bottom: 8px;
       max-width: 49% !important;
+      flex: 1 1 180px !important;
+      -webkit-flex: 1 1 180px !important;
     }
     .md-button{
       width: 100%;
@@ -43,7 +45,7 @@
     height: 200px;
     @include xb-xs-screen{
       padding: 0 8px 16px;
-      height: 140px;
+      height: 130px;
     }
   }
   &__tag{

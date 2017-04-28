@@ -127,7 +127,7 @@ angular.module('xbertsApp')
 
     dealsCtrl.close = function () {
       // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav('left').close();
+      $mdSidenav('filterLeft').close();
 
     };
 

@@ -63,7 +63,7 @@
 <md-sidenav
   class="md-sidenav-left xberts-navbar-moblie-sidenav xb-nav-sidenav"
   md-component-id="left"
-  md-whiteframe="3" hide-gt-xs layout="column">
+  md-whiteframe="3" hide-gt-xs layout="column" ng-click="$event.stopPropagation();">
 
   <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
