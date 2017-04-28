@@ -131,7 +131,7 @@ angular.module('xbertsApp')
 
     };
 
-    var title = 'Deals - Daily deals Offered by Global Maerchants';
+    var title = 'Deals - Daily Deals Offered by Global Merchants';
     var description = 'Explore the best deals worldwide to save big';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
