@@ -2,10 +2,10 @@
   >div{
     margin-bottom: 16px;
     background-color: #fff;
+    flex: 1 1 240px !important;
+    -webkit-flex: 1 1 240px !important;
     @include resetBorder();
     @include xb-lg-screen{
-      flex: 1 1 240px !important;
-      -webkit-flex: 1 1 240px !important;
       max-width: 24% !important;
     }
     @include xb-md-screen{
