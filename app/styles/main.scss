@@ -7,10 +7,10 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 // endbower
 
 @import "xb-md-supplement";
+@import "../scripts/feature/profile/profile";
 @import "../scripts/feature/review/report/report";
 @import "../scripts/components/comments/comment";
 @import "../scripts/feature/discover/shareProduct";
-@import "../scripts/feature/profile/profile";
 @import "../scripts/feature/main/main";
 @import "../scripts/feature/login/login";
 @import "../scripts/feature/credit/credit";

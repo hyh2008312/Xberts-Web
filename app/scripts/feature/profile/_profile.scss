@@ -29,6 +29,19 @@
   }
 }
 
+@mixin resetBorder{
+  @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.08));
+}
+
+@mixin changeMdIcon($arguments...){
+  width: $arguments;
+  height: $arguments;
+  min-width: $arguments;
+  min-height: $arguments;
+  font-size: $arguments;
+  line-height: $arguments;
+}
+
 .xb-my-posts{
   >md-list{
     padding: 0;
