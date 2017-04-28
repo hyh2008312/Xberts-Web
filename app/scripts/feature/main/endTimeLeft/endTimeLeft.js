@@ -23,7 +23,7 @@ angular.module('xbertsApp')
           var leftHours = endTime.diff(now, 'hours') % 24;
 
           $scope.timeValue = endTime.diff(now, 'seconds');
-          $scope.timeUnit = (leftDays > 0 ? leftDays + ' D, ': '') +
+          $scope.timeUnit = (leftDays > 0 ? leftDays + 'D, ': '') +
             (leftHours > 0 ? (leftHours < 10 ? '0' + leftHours : leftHours) + ':': '00:') +
             (leftMinutes > 0 ? (leftMinutes < 10 ? '0' + leftMinutes : leftMinutes) + ':': '00:') +
             (leftSeconds > 0 ? (leftSeconds < 10 ? '0' + leftSeconds : leftSeconds): '00');

@@ -131,8 +131,8 @@ angular.module('xbertsApp')
 
     };
 
-    var title = 'Deals - Find Great Deals Every Day';
-    var description = 'Enjoy the best deals on the latest gadgets and designs';
+    var title = 'Deals - Daily deals Offered by Global Maerchants';
+    var description = 'Explore the best deals worldwide to save big';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

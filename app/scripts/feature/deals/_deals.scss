@@ -46,7 +46,7 @@
   }
   &__content{
     padding: 0 16px 16px;
-    height: 200px;
+    height: 190px;
     @include xb-xs-screen{
       padding: 0 8px 8px;
       height: 130px;
@@ -101,6 +101,9 @@
   &__prefix{
     @include box-shadow(none !important);
     margin: 0;
+  }
+  &__end{
+    font-size: 12px;
   }
 }
 
