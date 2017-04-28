@@ -3,9 +3,9 @@
     margin-bottom: 16px;
     background-color: #fff;
     @include resetBorder();
-    flex: 1 1 245px !important;
-    -webkit-flex: 1 1 245px !important;
     @include xb-lg-screen{
+      flex: 1 1 240px !important;
+      -webkit-flex: 1 1 240px !important;
       max-width: 24% !important;
     }
     @include xb-md-screen{
