@@ -9,20 +9,20 @@
         md-component-id="filterLeft" hide-gt-xs layout="column"
         md-disable-scroll-target=".xb-body-view">
         <div flex="noshrink">
-          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Category
           </div>
-          <discovery-category class="xb-filter__bottom" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+          <discovery-category class="xb-filter__margin-bottom" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
                               on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
-          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Price
           </div>
-          <deals-filter class="xb-filter__bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+          <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                         on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
-          <div class="xb-filter__margin-bottom" layout="row" layout-align="space-between center">
+          <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Discount
           </div>
-          <deals-filter class="xb-filter__bottom" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
+          <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
                         on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
           </deals-filter>
         </div>
