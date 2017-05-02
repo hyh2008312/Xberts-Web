@@ -9,7 +9,7 @@ function FeedbackModel(Comment) {
 
   Feedback.prototype = {
     getPostAvatar: function () {
-      return this.post.joiner.avatar;
+      return this.post.joiner.avatar || false;
     },
     getPostName: function () {
       return this.post.joiner.first_name;

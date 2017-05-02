@@ -489,6 +489,11 @@
   &__name{
     cursor: pointer;
   }
+  &__rating{
+    span{
+      margin-left: 5px;
+    }
+  }
 }
 .xb-selected-reviewer{
   >div{

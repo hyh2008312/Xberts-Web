@@ -445,7 +445,7 @@
     padding: 0 0 8px 16px;
     max-width: 444px - 160px;
     .xcard__title{
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       height: auto;
       max-height: 40px;
       text-overflow: ellipsis;
@@ -487,11 +487,14 @@
   @include resetBorder();
   background-color: #FFF;
   margin-bottom: 16px;
+  @include xb-xs-screen{
+    margin-bottom: 8px;
+  }
   &__img-content{
     cursor: pointer;
     overflow: hidden;
     @include xs-screen{
-      margin-left: 16px;
+      margin-left: 8px;
     }
     >img{
       width: 100%;
@@ -499,13 +502,18 @@
   }
   &__information-content{
     padding: 10px 16px;
+    @include xb-xs-screen{
+      padding: 8px;
+    }
     .xcard__title{
-      margin-bottom: 15px;
+      margin-bottom: 8px;
       height: auto;
-      max-height: 50px;
+      max-height: 40px;
+      font-size: 16px;
+      line-height: 20px;
       @include ellipsisText();
       @include xs-screen{
-        height: 50px;
+        height: 40px;
         margin-bottom: auto;
       }
     }
@@ -584,5 +592,17 @@
     overflow-x: hidden;
     word-wrap: break-word;
     width: 100%;
+  }
+}
+
+.xb-rating-star{
+  .material-icons{
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
   }
 }

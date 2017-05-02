@@ -4,62 +4,26 @@
       <h2><span class="md-display-1">Product Reviews From Our Community</span></h2>
       <h3><span class="md-body-1 md-dark-secondary">Explore top rated products reviewed by our trusted users</span></h3>
     </div>
-    <div class="row xb-section-body">
-      <div class="col-xs-12 col-md-8" infinite-scroll="reviewPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="reviewPaginator.loading || !reviewPaginator.next">
-        <p class="review-order-title">latest reviews</p>
-        <div class="xcard xcard--image-left" ng-repeat="report in reviewPaginator.items">
-          <div class="xcard__image_wrap"
-               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
-            <img ng-src=" {{ report.image }}"/>
-          </div>
-
-          <div class="xcard__block">
-            <p class="report-category"><span ng-repeat="category in report.applicant.review.project.categories">{{ category.name }}<span
-              ng-if="!$last">,</span></span></p>
-            <p class="xcard__title">
-              <a ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
-                {{ report.title }}
-              </a>
-            </p>
-
-            <p class="xcard__description p-1">{{ report.description}}</p>
-            <div class="report-publisher" layout="row" layout-align="start center">
-              <avatar-img src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
-              by {{ report.applicant.reviewer.fullname }}, <span am-time-ago='report.approval_status_changed'></span>
-            </div>
-
-
-          </div>
+    <div layout="row" layout-align="start start">
+      <div class="xb-main-reviews" flex>
+        <md-card class="product-order" layout="row" layout-align="start center">
+          <md-button>Latest<div class="tab-triangle"></div></md-button>
+        </md-card>
+        <div infinite-scroll="reviews.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+             infinite-scroll-disabled="reviews.loading || !reviews.next">
+          <reviews-list reviews="reviews.items"></reviews-list>
+          <load-more layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
         </div>
-
+        <div class="xb-main-reviews__bottom-btn" layout="row" layout-align="center center">
+        </div>
       </div>
-      <div class="hidden-xs hidden-sm col-md-4">
-        <p class="review-order-title">top rated products</p>
-        <div class="xcard xcard--image-left-small xcard--borderless xcard--background-light" ng-repeat="report in topReviewPaginator.items">
-          <div class="xcard__image_wrap"
-               ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
-            <img ng-src=" {{ report.image }}"/>
-          </div>
-
-          <div class="xcard__block">
-            <p class="report-category report-category--small"><span ng-repeat="category in report.applicant.review.project.categories">{{ category.name }}<span
-              ng-if="!$last">,</span></span></p>
-            <p class="xcard__title">
-              <a ui-sref="application.report({reviewId:report.applicant.review.id,reportId:report.id})">
-                {{ report.title }}
-              </a>
-            </p>
-            <p class="report-rating">
-            <span uib-rating ng-model="report.score" max="5" read-only="true"
-                  state-on="'font-striking glyphicon-star'"></span>
-            </p>
-          </div>
+      <div class="xb-main-reviewer" hide-sm hide-xs>
+        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
+          Top Reviewers
         </div>
-
+        <top-reviewers-list reviewers="topReviewers"></top-reviewers-list>
       </div>
     </div>
-
-    <load-more class="row spin-large" ng-if="reviewPaginator.loading"></load-more>
   </div>
 </section>
+
