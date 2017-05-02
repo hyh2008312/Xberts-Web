@@ -45,8 +45,8 @@ angular.module('xbertsApp')
       restrict: 'A',
       scope:{},
       link: function (scope, element, attr, avatarCtrl) {
-        var base = element.width();
-        element.css({
+        var base = element.innerWidth();
+        element.find('div').css({
           fontSize: base * 0.75 + 'px',
           lineHeight: base + 'px'
         })

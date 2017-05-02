@@ -23,15 +23,15 @@ angular.module('xbertsApp')
             };
             return new Paginator(par).load();
           }],
-          trials: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
+          latestPaginater: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
-              name: 'progressingReview',
-              objClass:MainModel,
+              name: 'trials',
+              objClass:Review,
               params: {
                 page_size: 5,
                 review_type: 'FREE_SAMPLE'
               },
-              fetchFunction: MainService.getList
+              fetchFunction: ReviewService.getList
             };
             return new Paginator(par).load();
           }],

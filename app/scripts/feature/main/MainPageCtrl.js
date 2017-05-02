@@ -1,10 +1,10 @@
 angular.module('xbertsApp')
-  .controller('MainPageCtrl', ['$rootScope','topBanner','discoverProducts','trials','reviews','topReviewers',
-    function ($rootScope, topBanner, discoverProducts, trials, reviews, topReviewers) {
+  .controller('MainPageCtrl', ['$rootScope','topBanner','discoverProducts','latestPaginater','reviews','topReviewers',
+    function ($rootScope, topBanner, discoverProducts, latestPaginater, reviews, topReviewers) {
       var mainCtrl = this;
       mainCtrl.topBanner = topBanner;
       mainCtrl.discoverProducts = discoverProducts.items;
-      mainCtrl.trials = trials.items;
+      mainCtrl.latestPaginater = latestPaginater;
       mainCtrl.reviews = reviews.items;
       mainCtrl.topReviewers = topReviewers.items;
 

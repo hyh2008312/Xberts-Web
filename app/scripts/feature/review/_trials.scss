@@ -54,7 +54,17 @@
     &:hover{
       @include xb-gt-xs-screen{
         #{$parent}__mask{
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
           display: flex;
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+          flex: 1;
+          a{
+            height: auto;
+          }
         }
       }
     }
@@ -165,6 +175,7 @@
     }
   }
   &__pop{
+    font-size: 12px;
     @include xb-gt-xs-screen{
       padding: 8px 16px;
       border-radius: 8px;
