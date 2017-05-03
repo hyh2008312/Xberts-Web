@@ -10,7 +10,7 @@ function ProductDeals() {
     buyNow: function (category) {
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'deals-product-btn-click',
+          event: 'buy-product-btn-click',
           category:category,
           productTitle: this.title
         });
