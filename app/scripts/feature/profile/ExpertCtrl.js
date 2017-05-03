@@ -40,7 +40,7 @@ angular.module('xbertsApp')
         if ($scope.reviewApplicantPaginator) return;
         var filter = '';
         if ($rootScope.user.getUserId() != expert.userId) {
-          filter = {is_submit_report: true, review: {status: 'ENDED'}};
+          filter = {is_submit_report: true};
         }
         var par = {
           name: 'trials_' + $scope.expert.userId,

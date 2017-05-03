@@ -123,10 +123,10 @@
     color: #3f52b4;
   }
   &__content{
-    padding: 96px 0;
+    padding: 72px 0;
     >div{
       margin-left: 40px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       >span{
         min-width: 58px;
         margin-right: 40px;
@@ -148,10 +148,10 @@
     flex: 1 1 318px !important;
     -webkit-flex: 1 1 318px !important;
     @media screen and (min-width:960px){
-      max-width: 32% !important;
+      max-width: 24% !important;
     }
     @media screen and (max-width:959px) and (min-width:600px){
-      max-width: 48% !important;
+      max-width: 32% !important;
     }
     >img{
       width: 100%;

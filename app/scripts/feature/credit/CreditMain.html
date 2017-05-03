@@ -1,6 +1,7 @@
 <top-banner-slides-list class="xb-top-banner-container xb-credit-top-banner" slides="creditCtrl.topBanner" ratio="480/192" height="480"></top-banner-slides-list>
 <div hide-xs>
-  <div class="container xb-credit-container" >
+  <div class="background-whitem">
+    <div class="container xb-credit-container" >
     <div layout="row" layout-sm='column' layout-align-gt-sm="start start" layout-align-sm="space-around center" >
       <div layout="column" layout-align="start start">
         <span class="xb-credit-container__title">Xberts Tech Insider</span>
@@ -76,6 +77,23 @@
       </div>
     </div>
   </div>
+  </div>
+  <div class="container">
+    <div class="xb-credit-container">
+      <div layout="row" layout-align="start start">
+        <div class="xb-credit-container__title">
+          Moreover, You Can Instantly <br>
+          Redeem Amazing Gifts with Your Points!
+        </div>
+      </div>
+      <div infinite-scroll="creditCtrl.creditMain.loadNext()"
+           infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
+        <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
+        <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
+      </div>
+    </div>
+  </div>
   <div class="xb-credit-color-bg">
     <div class="container" layout="row" layout-align="start start">
       <div class="" flex="50" layout="column" layout-align="start start">
@@ -124,72 +142,54 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="xb-credit-container">
-      <div layout="row" layout-align="start start">
-        <div class="xb-credit-container__title">
-          Moreover, You Can Instantly <br>
-          Redeem Amazing Gifts with Your Points!
-        </div>
-      </div>
-      <div infinite-scroll="creditCtrl.creditMain.loadNext()"
-           infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
-        <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
-        <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
+  <div class="xb-credit-container container">
+    <div layout="row" layout-align="start start">
+      <div class="xb-credit-container__title">
+        FAQ
       </div>
     </div>
-  </div>
-  <div class="background-whitem">
-    <div class="xb-credit-container container">
-      <div layout="row" layout-align="start start">
-        <div class="xb-credit-container__title">
-          FAQ
+    <div class="xb-credit-container__faq" layout="row" layout-align="start start">
+      <div>
+        <div class="xb-credit-container__faq-bottom">
+          <div class="md-subhead">Is Xberts Legitimate?</div>
+          <div>
+            Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
+          </div>
+        </div>
+        <div class="xb-credit-container__faq-bottom" ng-if="false">
+          <div class="md-subhead">Can I lose my badge?</div>
+          <div>
+            It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
+          </div>
+        </div>
+        <div>
+          <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
+          <div>
+            The maximum points you can get each day is 100 points.
+          </div>
         </div>
       </div>
-      <div class="xb-credit-container__faq" layout="row" layout-align="start start">
-        <div>
-          <div class="xb-credit-container__faq-bottom">
-            <div class="md-subhead">Is Xberts Legitimate?</div>
-            <div>
-              Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
-            </div>
-          </div>
-          <div class="xb-credit-container__faq-bottom" ng-if="false">
-            <div class="md-subhead">Can I lose my badge?</div>
-            <div>
-              It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
-            </div>
-          </div>
+      <div>
+        <div class="xb-credit-container__faq-bottom" ng-if="false">
+          <div class="md-subhead">Am I guaranteed to claim free samples?</div>
           <div>
-            <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
-            <div>
-              The maximum points you can get each day is 100 points.
-            </div>
+            Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
+          </div>
+        </div>
+        <div class="xb-credit-container__faq-bottom">
+          <div class="md-subhead">Will these gifts be changed?</div>
+          <div>
+            We will update the free gifts every month, so you can have more options on what to redeem!
           </div>
         </div>
         <div>
-          <div class="xb-credit-container__faq-bottom" ng-if="false">
-            <div class="md-subhead">Am I guaranteed to claim free samples?</div>
-            <div>
-              Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
-            </div>
-          </div>
-          <div class="xb-credit-container__faq-bottom">
-            <div class="md-subhead">Will these gifts be changed?</div>
-            <div>
-              We will update the free gifts every month, so you can have more options on what to redeem!
-            </div>
-          </div>
+          <div class="md-subhead">What kind of product sharing/review will be featured?</div>
           <div>
-            <div class="md-subhead">What kind of product sharing/review will be featured?</div>
-            <div>
-              We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!</div>
-          </div>
+            We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!</div>
         </div>
-        <div flex>
-          <img ng-src="https://xberts.imgix.net/other/cd6b3d2f-e630-4ce8-b74d-43a7223f2699.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=c717da1356edc463f5e5a9a8cfc5cb51" />
-        </div>
+      </div>
+      <div flex>
+        <img ng-src="https://xberts.imgix.net/other/293b17b7-1bfe-46c5-bda6-42be143f270b.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a1f1672cc5d62ef7f8ca77f5f660c731" />
       </div>
     </div>
   </div>
@@ -264,10 +264,24 @@
       </div>
     </div>
   </div>
+
+  <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+    <md-truncate flex class="md-subhead">Redeem Gifts with Your Points</md-truncate>
+    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="1" toggle="creditCtrl.isOpen[2]">keyboard_arrow_down</md-icon>
+  </div>
+  <div class="container xb-credit-mobile__content-1">
+    <div infinite-scroll="creditCtrl.creditMain.loadNext()"
+         infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+         infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
+      <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
+      <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
+    </div>
+  </div>
   <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
     <md-truncate flex class="md-subhead">Ways to Win Points</md-truncate>
     <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
-             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="1" toggle="creditCtrl.isOpen[1]">keyboard_arrow_down</md-icon>
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="creditCtrl.isOpen[1]">keyboard_arrow_down</md-icon>
   </div>
   <div class="container xb-credit-mobile__content">
     <div ng-if="!user.isAuth()" class="md-subhead">Earn 10 points by signing up now</div>
@@ -309,19 +323,6 @@
       <div layout="row">
         <span>2 points</span><a ui-sref="application.campaignreviews">Comment on a review under Reviews page</a>
       </div>
-    </div>
-  </div>
-  <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
-    <md-truncate flex class="md-subhead">Redeem Gifts with Your Points</md-truncate>
-    <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
-             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="creditCtrl.isOpen[2]">keyboard_arrow_down</md-icon>
-  </div>
-  <div class="container xb-credit-mobile__content-1">
-    <div infinite-scroll="creditCtrl.creditMain.loadNext()"
-         infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-         infinite-scroll-disabled="creditCtrl.creditMain.loading || !creditCtrl.creditMain.next">
-      <credit-redeem redeems="creditCtrl.creditMain.items"></credit-redeem>
-      <load-more ng-if="creditCtrl.creditMain.loading"></load-more>
     </div>
   </div>
   <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
