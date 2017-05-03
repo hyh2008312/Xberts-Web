@@ -576,3 +576,36 @@
     padding-bottom: 24px !important;
   }
 }
+.xb-my-trials{
+  margin-top: 24px;
+  @include xb-xs-screen{
+    margin-top: 16px;
+  }
+  &__img{
+    width: 160px;
+    @include xb-xs-screen{
+      width: 60px;
+    }
+  }
+  &__content{
+    padding: 8px 16px;
+    @include xb-xs-screen{
+      padding: 0 8px;
+    }
+    p{
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+  }
+  .md-caption{
+    line-height: 24px;
+  }
+  .md-button{
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    line-height: 24px;
+    font-size: 14px;
+  }
+}

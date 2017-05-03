@@ -1,0 +1,166 @@
+<div class="xb-my-trials" ng-repeat="applicant in trials" layout="row">
+  <div class="xb-my-trials__img" layout="row" layout-align-gt-xs="center center" layout-align-xs="start start"
+       ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">
+    <img ng-src="{{applicant.review.cover}}" flex/>
+  </div>
+  <div class="xb-my-trials__content" flex layout-gt-xs="row" layout-xs="column">
+    <div layout="column" layout-align-gt-xs="space-between start" layout-align-xs="start start" flex>
+      <p class="xb-my-trials__title md-subhead" ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">{{
+        applicant.review.title }}</p>
+      <div class="md-body-1 md-dark-secondary" ng-switch="applicant.review.status">
+        <div ng-switch-when="APPLICATION">
+          Pending Selection
+        </div>
+        <div ng-switch-when="SELECTION">
+          Pending Selection
+        </div>
+        <div ng-switch-when="CONFIRMATION">
+          Pending Shipment
+        </div>
+        <div ng-switch-when="REVIEW">
+          <div ng-switch="applicant.is_selected">
+            <div ng-switch-when="false" >
+              Pending Shipment
+            </div>
+            <div ng-switch-when="null" >
+              Pending Shipment
+            </div>
+
+            <div ng-switch-when="true" >
+              <div ng-switch="applicant.is_submit_report">
+                <div ng-switch-when="false" >
+                  Pending Review
+                </div>
+                <div ng-switch-when="true" >
+                  Complete
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-switch-when="ENDED">
+          <div ng-switch="applicant.is_selected">
+            Complete
+          </div>
+        </div>
+      </div>
+    </div>
+    <div layout="column" layout-align-gt-xs="space-between end" layout-align-xs="start start">
+      <div class="md-caption md-dark-secondary">{{applicant.review.application_end_date | amDateFormat:'MMMM Do,YYYY'}}</div>
+      <div ng-if="user.getUserId()==expert.userId">
+        <div ng-switch="applicant.review.status">
+          <div ng-switch-when="APPLICATION">
+            <md-button  class="md-primary" ui-sref="application.protected.apply({reviewId:applicant.review.id})">
+              Edit Application
+            </md-button>
+          </div>
+          <div ng-switch-when="SELECTION">
+            <md-button  class="md-primary" disabled>
+              Screening
+            </md-button>
+          </div>
+
+          <div ng-switch-when="CONFIRMATION">
+            <div ng-switch="applicant.is_selected">
+              <div ng-switch-when="false" >
+                <md-button class="md-primary" disabled>
+                  Not
+                  Selected
+                </md-button>
+              </div>
+              <div ng-switch-when="null" >
+                <md-button class="md-primary" disabled>
+                  Not
+                  Selected
+                </md-button>
+              </div>
+
+              <div ng-switch-when="true" >
+                <md-button class="md-primary" ui-sref="application.protected.confirmShipAddress({reviewId:applicant.review.id})">
+                  Confirm
+                  Address
+                </md-button>
+              </div>
+            </div>
+          </div>
+
+          <div ng-switch-when="REVIEW">
+            <div ng-switch="applicant.is_selected">
+              <div ng-switch-when="false" >
+                <md-button class="md-primary" disabled>
+                  Not
+                  Selected
+                </md-button>
+              </div>
+              <div ng-switch-when="null" >
+                <md-button class="md-primary" disabled>
+                  Not
+                  Selected
+                </md-button>
+              </div>
+
+              <div ng-switch-when="true" >
+                <div ng-switch="applicant.is_submit_report">
+                  <div ng-switch-when="false" >
+                    <md-button class="md-primary" ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                      Submit
+                      Review
+                    </md-button>
+                  </div>
+                  <div ng-switch-when="true" >
+                    <md-button class="md-primary" ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                      Edit
+                      Review
+                    </md-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div ng-switch-when="ENDED">
+            <div ng-switch="applicant.is_selected">
+              <div ng-switch-when="false" >
+                <md-button class="md-primary" disabled>
+                  Not Selected
+                </md-button>
+              </div>
+              <div ng-switch-when="null" >
+                <md-button class="md-primary" disabled>
+                  Not Selected
+                </md-button>
+              </div>
+              <div ng-switch-when="true">
+                <div ng-switch="applicant.is_submit_report">
+                  <div ng-switch-when="false">
+                    <md-button class="md-primary" ui-sref="application.protected.crowdtestingReport({reviewId:applicant.review.id})">
+                      Submit
+                      Review
+                    </md-button>
+                  </div>
+
+                  <div ng-switch-when="true">
+                    <md-button class="md-primary" ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
+                      Read Review
+                    </md-button>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div ng-if="user.getUserId()!=expert.userId">
+        <md-button class="md-primary"
+                   ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
+          Read
+          Review
+        </md-button>
+      </div>
+    </div>
+
+  </div>
+</div>

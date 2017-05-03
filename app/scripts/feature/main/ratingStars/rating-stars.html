@@ -1,9 +1,7 @@
 <md-icon ng-class="stateOn" ng-repeat="n in [1,2,3,4,5] track by $index" ng-if="n < rating+1 && n <= rating"
          md-font-set="material-icons" ng-mouseenter="rateStar($index)">star</md-icon>
-<md-icon ng-class="stateOn" ng-repeat="n in [1,2,3,4,5] track by $index" ng-if="n == rating+1"
-         md-font-set="material-icons" ng-mouseenter="rateStar($index)">star</md-icon>
 <md-icon ng-class="stateOn" ng-repeat="n in [1,2,3,4,5] track by $index" ng-if="n < rating+1 && rating < n"
          md-font-set="material-icons" ng-mouseenter="rateStar($index)">star_half</md-icon>
-<md-icon ng-repeat="n in [1,2,3,4,5] track by $index" ng-if="n > rating+1"
+<md-icon ng-repeat="n in [1,2,3,4,5] track by $index" ng-if="n >= rating+1"
          md-font-set="material-icons" ng-mouseenter="rateStar($index)">star_border</md-icon>
 
