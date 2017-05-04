@@ -1,7 +1,9 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
   <div ng-repeat="item in deals track by $index" flex ng-click="item.buyNow('deals-list');" >
     <div class="xb-deals-list__img-bg">
-      <img src="{{item.coverUrl}}" />
+      <div layout="column" layout-align="start center">
+        <img src="{{item.coverUrl}}" />
+      </div>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
       <div class="xb-deals-list__price" layout="column" layout-align="start start">

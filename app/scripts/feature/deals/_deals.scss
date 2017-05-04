@@ -36,12 +36,18 @@
     padding-bottom: 66.66%;
     overflow: hidden;
     position: relative;
-    >img{
+    >div{
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
+      height: 100%;
       cursor: pointer;
+      overflow: hidden;
+      >img{
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
   }
   &__content{
