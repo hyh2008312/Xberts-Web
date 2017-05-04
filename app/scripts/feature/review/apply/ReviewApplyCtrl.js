@@ -91,6 +91,7 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
           $scope.$emit('backdropOff', 'trial apply success');
           self.finished = true;
           AnalyticsService.sendPageView($location.path() + '/success');
+          $scope.$emit('perksPointsOn', 3);
         })
         .catch(function () {
           growl.error('Sorry,some error happened.');

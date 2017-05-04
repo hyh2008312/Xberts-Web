@@ -135,7 +135,7 @@ angular
               params: {
                 stage: 'READY_FOR_SALE',
                 status: 'APPLICATION',
-                page_size: 12
+                page_size: 20
               },
               fetchFunction:MainService.getRecommendedReviewers
             };

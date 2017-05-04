@@ -9,10 +9,12 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/profile/editProfile/edit-profile.html',
       link: function (scope, element, attrs, ctrls) {
         scope.data = scope.data || [];
+        console.log(scope.data);
 
         var oldData = angular.copy(scope.data, {});
 
         scope.saveChange = function () {
+
           if (!scope.editProfileForm.$valid) {
             return;
           }
@@ -30,6 +32,9 @@ angular.module('xbertsApp')
                 });
               })
               .then(function(response) {
+                if(!scope.data.currentAvatar) {
+                  scope.$emit('perksPointsOn', 2);
+                }
                 $rootScope.user.setUserAvatar(response.data.avatar);
               }));
           }

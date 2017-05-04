@@ -46,11 +46,11 @@ angular.module('xbertsApp')
                 scope.newFeedback = {};
 
                 scope.feedbackPaginator.items.unshift(feedback);
-
+                scope.$emit('perksPointsOn', 2);
                 interactCtrl.getInteract().increaseMessageAmount();
 
-
                 FeedbackService.create(feedbackData);
+
               }
             );
 
