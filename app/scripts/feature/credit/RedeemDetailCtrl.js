@@ -23,8 +23,9 @@ angular.module('xbertsApp')
       if($rootScope.user._points - $rootScope.user._consumed < redeemCtrl.redeemDetail.points) {
         $mdDialog.show(
           $mdDialog.alert()
-            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .parent(angular.element(angular.element(document.body)))
             .clickOutsideToClose(true)
+            .disableParentScroll(true)
             .textContent("Oops! You don't have enough points to redeem this gift. Earn more points now!")
             .ariaLabel('Alert Dialog')
             .ok('Ok')
@@ -33,8 +34,9 @@ angular.module('xbertsApp')
       } else {
         $mdDialog.show(
           $mdDialog.confirm()
-            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .parent(angular.element(angular.element(document.body)))
             .clickOutsideToClose(true)
+            .disableParentScroll(true)
             .textContent("Your points balance will be reduced by " + redeemCtrl.redeemDetail.points +
               (redeemCtrl.redeemDetail.points > 1?" points" : " point") + " for redemption of this gift.")
             .ariaLabel('Redeem Confirm')
@@ -66,8 +68,9 @@ angular.module('xbertsApp')
       } else {
         $mdDialog.show(
           $mdDialog.confirm()
-            .parent(angular.element(document.querySelector('.xb-body-view')))
+            .parent(angular.element(angular.element(document.body)))
             .clickOutsideToClose(true)
+            .disableParentScroll(true)
             .textContent("Your points balance will be reduced by " + redeemCtrl.redeemDetail.points +
               (redeemCtrl.redeemDetail.points > 1?" points" : " point") + " for redemption of this gift.")
             .ariaLabel('Redeem Confirm')

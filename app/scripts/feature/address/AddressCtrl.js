@@ -19,12 +19,13 @@ angular.module('xbertsApp')
         if($rootScope.user._points - $rootScope.user._consumed < $stateParams.giftPoints) {
           $mdDialog.show(
             $mdDialog.alert()
-              .parent(angular.element(document.querySelector('.xb-body-view')))
+              .parent(angular.element(angular.element(document.body)))
               .clickOutsideToClose(true)
               .textContent("Oops! You don't have enough points to redeem this gift. Earn more points now!")
               .ariaLabel('Alert Dialog')
               .ok('ok')
               .targetEvent(ev)
+              .disableParentScroll(true)
           ).then(function() {
             $state.go('application.creditMain');
           }, function() {
@@ -109,7 +110,40 @@ angular.module('xbertsApp')
         if (!$scope.addressForm.$valid) {
           return;
         }
-
+        $scope.$emit('backdropOn', 'fetch project');
+        if ($scope.address.id == null) {
+          AddressService.create(address).then(function (data) {
+            var params = {
+              address_id: data.id,
+              gift_id: $stateParams.giftId
+            };
+            AddressService.createOrder(params).then(function (data) {
+              $scope.$emit('backdropOff', 'project get completed');
+              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+            }, function (data) {
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          }, function () {
+            $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+            $scope.$emit('backdropOff', 'project get completed');
+          });
+        } else {
+          AddressService.update(address).then(function (data) {
+            var params = {
+              address_id: data.id,
+              gift_id: $stateParams.giftId
+            };
+            AddressService.createOrder(params).then(function (data) {
+              $scope.$emit('backdropOff', 'project get completed');
+              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+            }, function (data) {
+              $scope.$emit('backdropOff', 'project get completed');
+            });
+          }, function () {
+            $state.go('application.redeemDetail', {redeemId: $stateParams.giftId});
+            $scope.$emit('backdropOff', 'project get completed');
+          });
+        }
         $mdDialog.show(
           $mdDialog.alert()
             .parent(angular.element(document.body))

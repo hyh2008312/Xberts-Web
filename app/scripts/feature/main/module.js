@@ -48,7 +48,7 @@ angular.module('xbertsApp')
           }],
           topReviewers: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
-              name: 'callingReview',
+              name: 'callingReviewMain',
               objClass:MainModel,
               params: {
                 stage: 'READY_FOR_SALE',

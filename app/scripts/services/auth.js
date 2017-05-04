@@ -130,7 +130,7 @@ angular.module('xbertsApp')
 
         this.setConsumedPoints = function(consumed) {
           this._consumed = consumed;
-        }
+        };
       }
 
       function setUser(user) {
@@ -276,6 +276,8 @@ angular.module('xbertsApp')
           .then(function(value) {
             setUser(value);
 
+            $rootScope.$broadcast('perksPointsDaily', 'ready');
+
             Idle.watch();
 
             // Send user id to GTM after login
@@ -370,6 +372,8 @@ angular.module('xbertsApp')
           fetchUser()
             .then(function(value) {
               setUser(value);
+
+              $rootScope.$broadcast('perksPointsDaily', 'ready');
 
               Idle.watch();
 
