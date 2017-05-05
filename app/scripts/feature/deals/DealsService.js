@@ -1,7 +1,9 @@
+'use strict';
+
 angular.module('xbertsApp')
   .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
 
-    var DealsProductResource = $resource(API_BASE_URL + '/deals/');
+    var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'});
 
     this.categoryId = null;
     this.sortId = null;
@@ -10,6 +12,10 @@ angular.module('xbertsApp')
 
     this.getDealsList = function(params) {
       return DealsProductResource.get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
+    this.getDetail = function(dealsId) {
+      return DealsProductResource.get({dealsId:dealsId}).$promise.then(ProductDeals.build);
     };
 
     this.getSort = function() {
@@ -68,6 +74,6 @@ angular.module('xbertsApp')
         name: '70% Off or More',
         value1: '0.7'
       }];
-    }
+    };
 
   }]);

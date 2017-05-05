@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
     '$mdSidenav','$timeout',

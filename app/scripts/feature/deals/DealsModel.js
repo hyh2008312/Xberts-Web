@@ -1,12 +1,17 @@
+'use strict';
+
 angular.module('xbertsApp')
-  .factory('ProductDeals',ProductDeals);
-function ProductDeals() {
+  .factory('ProductDeals',['$state',ProductDeals]);
+function ProductDeals($state) {
 
   function ProductDeals(data) {
     angular.extend(this, data);
   }
 
   ProductDeals.prototype = {
+    getShareUrl: function(id) {
+      return $state.href("application.dealsDetail", {dealsId:id},{absolute:true});
+    },
     buyNow: function (category) {
       if (window.dataLayer) {
         window.dataLayer.push({
@@ -20,7 +25,7 @@ function ProductDeals() {
   };
 
   ProductDeals.build = function (data) {
-    return new ProductDeals(data)
+    return new ProductDeals(data);
   };
 
   ProductDeals.buildPageList = function (data) {

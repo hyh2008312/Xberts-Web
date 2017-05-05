@@ -70,6 +70,10 @@ p{
   @include font-h2();
   margin-top: 0;
   margin-bottom: 16px;
+  @include xs-screen{
+    @include font-h1();
+    margin-bottom: 8px;
+  }
 }
 
 .xb2-h3{

@@ -1,0 +1,109 @@
+<interact interact="productsDetail.interact" layout="column"
+          class="background-whitem xb-trials-details-mobile xb-deals-detail">
+  <div class="xb-trial-detail__atlas" flex hide-gt-xs>
+    <img ng-src="{{productsDetail.coverUrl}}" />
+  </div>
+  <div class="container xb-trial-detail xb-trial-detail__bottom">
+    <div hide-xs>
+      <div class="md-display-1">{{productsDetail.title}}</div>
+      <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary">
+         <span hide>
+           {{productsDetail.tags}}
+         </span>
+      </div>
+    </div>
+    <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="space-around start">
+      <div flex-gt-xs="60" flex-order-xs="2">
+        <div class="xb-deals-detail__atlas" hide-xs>
+          <div layout="column" layout-align="center center">
+            <img ng-src="{{productsDetail.coverUrl}}" alt="productsDetail.title"/>
+          </div>
+        </div>
+        <div>
+          <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">About this Deal</div>
+          <div>
+            Save 50% of retail price
+            Free shipping
+            Extra $4 Off Ends 4/20
+            Buy 2 and get 1 for free
+          </div>
+          <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">Comments</div>
+          <feedback-list interact-id="{{productsDetail.id}}" class="xb-trial-tabs__content"></feedback-list>
+        </div>
+      </div>
+      <div hide-gt-xs flex-order-xs="0">
+        <div class="md-display-1">{{productsDetail.title}}</div>
+        <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg">
+          <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary" flex >
+            <span hide>
+              {{productsDetail.tags}}
+            </span>
+          </div>
+          <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
+                             ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+            <md-fab-trigger>
+              <md-button class="md-icon-button">
+                <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
+              </md-button>
+            </md-fab-trigger>
+            <md-fab-actions>
+              <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
+                         socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
+                         socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
+                         socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}" >
+                <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+              </md-button>
+            </md-fab-actions>
+          </md-fab-speed-dial>
+          <vote></vote>
+        </div>
+      </div>
+      <div flex-gt-xs="40" flex-order-xs="1">
+        <div class="xb-trial-detail__content">
+          <div class="xb-redeem-detail__content-line" hide-xs></div>
+          <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="start center">
+            <div class="xb-deals-detail__price" layout-xs="row" layout-gt-sm="row" layout-sm="column"
+                 layout-align-sm="start start" layout-align-gt-sm="start end" layout-align-xs="start center" flex-xs>
+              <span class="md-display-1 xb-bold">
+                {{productsDetail.discountPrice | currency}}
+              </span>
+              <div>
+                <span class="md-headline md-dark-secondary">
+                  {{productsDetail.originalPrice | currency}}
+                </span>
+                <span class="md-headline xb-deals-list__discount">
+                  {{productsDetail.discount * 100 | number:0}}% off
+                </span>
+              </div>
+            </div>
+            <div class="md-dark-secondary xb-deals-detail__platform" hide-xs>Amazon</div>
+            <md-button class="md-accent md-raised" ng-click="productsDetail.buyNow('deals-list');">
+              Get it Now
+            </md-button>
+          </div>
+          <div hide-xs>
+            <div class="xb-deals-detail__subtitle">Share this deal</div>
+            <div class="xb-deals-detail__share-icon">
+              <i class="fa fa-{{item.name}} md-dark-secondary xb-deals-detail__color-{{$index}}" ng-repeat="item in shareList track by $index"
+                 socialshare socialshare-provider="{{item.name}}" socialshare-description="{{productsDetail.description}}"
+                 socialshare-text="{{productsDetail.title}}" socialshare-media="{{productsDetail.coverUrl}}"
+                 socialshare-source="{{productsDetail.coverUrl}}"
+                 socialshare-url="{{inviteObj.shareUrl(productsDetail.getShareUrl(productsDetail.id), item.name)}}" aria-hidden="true"></i>
+            </div>
+            <div class="xb-deals-detail__subtitle">
+              Was this a great deal for you?
+            </div>
+            <div>
+              <vote></vote>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</interact>
+<div class="container">
+  <div class="xb-deals-detail__title md-headline">Related Deals</div>
+  <deals-list deals="productsPaginator.items"></deals-list>
+</div>
