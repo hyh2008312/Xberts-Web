@@ -11,6 +11,17 @@ angular.module('xbertsApp')
           topBanner:['MainService',function(MainService) {
             return MainService.getBannerList();
           }],
+          dealsPaginator: ['Paginator', 'DealsService','ProductDeals',function (Paginator, DealsService, ProductDeals) {
+            var par = {
+              name: 'deals_main_list',
+              objClass: ProductDeals,
+              params: {
+                page_size: 8
+              },
+              fetchFunction: DealsService.getDealsList
+            };
+            return new Paginator(par).load();
+          }],
           discoverProducts: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
             var par = {
               name: 'share_product_list',

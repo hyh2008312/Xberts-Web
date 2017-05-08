@@ -1,5 +1,23 @@
 <div>
   <top-banner-slides-list class="xb-top-banner-container" slides="mainCtrl.topBanner" ratio="480/270" height="670"></top-banner-slides-list>
+  <div class="container">
+    <div class="xb-title" layout="row" layout-align="start end">
+      <h3 class="md-dark-primary" layout-fill>Today's Hot Deals</h3>
+      <a class="md-body-1" ui-sref="application.productDeals()">SEE MORE</a>
+    </div>
+    <deals-list hide-xs deals="mainCtrl.dealsPaginator"></deals-list>
+    <deals-main-list hide-gt-xs layout="row" class="xb-main-scroll" deals="mainCtrl.dealsPaginator"></deals-main-list>
+  </div>
+  <div class="background-bg-white xb-main-bg">
+    <div class="container">
+      <div class="xb-title" layout="row" layout-align="start end">
+        <h3 class="md-dark-primary" layout-fill>Try Latest Gadgets</h3>
+        <a class="md-body-1" ui-sref="application.testingcampaigns()">SEE MORE</a>
+      </div>
+      <latest-trials-list hide-xs trials="mainCtrl.latestPaginater.items"></latest-trials-list>
+      <trials-main-list hide-gt-xs layout="row" class="xb-main-scroll" trials="mainCtrl.latestPaginater.items"></trials-main-list>
+  </div>
+  </div>
   <div class="background-bg-white">
     <div class="container">
       <div class="xb-title" layout="row" layout-align="start end">
@@ -10,11 +28,6 @@
     </div>
   </div>
   <div class="container xb-main-section">
-    <div class="xb-title" layout="row" layout-align="start end">
-      <h3 class="md-dark-primary" layout-fill>Try Latest Gadgets</h3>
-      <a class="md-body-1" ui-sref="application.testingcampaigns()">SEE MORE</a>
-    </div>
-    <latest-trials-list trials="mainCtrl.latestPaginater.items"></latest-trials-list>
     <div class="xb-title" layout="row" layout-align="start end">
       <h3 class="md-dark-primary" layout-fill>Reviews from Tech Insiders</h3>
     </div>

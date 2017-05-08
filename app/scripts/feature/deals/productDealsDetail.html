@@ -1,7 +1,7 @@
 <interact interact="productsDetail.interact" layout="column"
           class="background-whitem xb-trials-details-mobile xb-deals-detail">
   <div class="xb-trial-detail__atlas" flex hide-gt-xs>
-    <img ng-src="{{productsDetail.coverUrl}}" />
+    <img ng-src="{{productsDetail.bannerUrl}}" />
   </div>
   <div class="container xb-trial-detail xb-trial-detail__bottom">
     <div hide-xs>
@@ -16,19 +16,14 @@
       <div flex-gt-xs="60" flex-order-xs="2">
         <div class="xb-deals-detail__atlas" hide-xs>
           <div layout="column" layout-align="center center">
-            <img ng-src="{{productsDetail.coverUrl}}" alt="productsDetail.title"/>
+            <img ng-src="{{productsDetail.bannerUrl}}" alt="productsDetail.title"/>
           </div>
         </div>
         <div>
           <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">About this Deal</div>
-          <div>
-            Save 50% of retail price
-            Free shipping
-            Extra $4 Off Ends 4/20
-            Buy 2 and get 1 for free
-          </div>
+          <div flex ng-bind-html="productsDetail.description"></div>
           <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">Comments</div>
-          <feedback-list interact-id="{{productsDetail.id}}" class="xb-trial-tabs__content"></feedback-list>
+          <feedback-list interact-id="{{productsDetail.interact.id}}" class="xb-trial-tabs__content"></feedback-list>
         </div>
       </div>
       <div hide-gt-xs flex-order-xs="0">
@@ -93,17 +88,21 @@
             <div class="xb-deals-detail__subtitle">
               Was this a great deal for you?
             </div>
-            <div>
-              <vote></vote>
+            <div layout="row" layout-align="start center" class="xb-deals-detail__vote">
+              <vote layout="row" layout-align="start center"></vote>
+              <div ng-switch="productsDetail.interact.voteAmount">
+                <span ng-switch-when="0"></span>
+                <span ng-switch-when="1">like</span>
+                <span ng-switch-default>likes</span>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </interact>
 <div class="container">
   <div class="xb-deals-detail__title md-headline">Related Deals</div>
-  <deals-list deals="productsPaginator.items"></deals-list>
+  <deals-list deals="productsPaginator"></deals-list>
 </div>

@@ -4,7 +4,7 @@
       <load-more></load-more>
       <iframe frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
     </div>
-    <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}"
+    <img flex="100" ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}"
          class="md-card-image product__card" alt="" />
 
     <div class="xb-main-product__headline " ui-sref="application.shareProductDetail({reviewId:product.id})">
@@ -13,7 +13,7 @@
 
     <div class="xb-main-product__content md-body-1">{{product.description}}</div>
 
-    <div  layout="row" layout-align="start center" class="xb-main-product__action">
+    <div layout="row" layout-align="start center" class="xb-main-product__action">
       <div class="xb-main-product__avatar" layout="row" layout-align="start center" layout-fill>
         <avatar-Img src="product.getShareAvatar()" name="product.owner.firstName"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
@@ -42,7 +42,7 @@
   <div class="xb-main-discover" flex="none" hide-sm hide-xs>
     <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start start"
          ng-click="changeShowProduct($index)" ng-class="{true:'active',false:''}[$index == index]">
-      <div class="xb-main-discover__img-content" >
+      <div class="xb-main-discover__img-content" flex="none" >
         <img ng-src="{{product.getImageThumbnail()}}" />
         <div class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">

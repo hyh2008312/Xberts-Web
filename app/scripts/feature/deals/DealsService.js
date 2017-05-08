@@ -4,6 +4,7 @@ angular.module('xbertsApp')
   .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
 
     var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'});
+    var DealsProductRelatedResource = $resource(API_BASE_URL + '/deals/:id/related',{id:'@id'});
 
     this.categoryId = null;
     this.sortId = null;
@@ -15,7 +16,11 @@ angular.module('xbertsApp')
     };
 
     this.getDetail = function(dealsId) {
-      return DealsProductResource.get({dealsId:dealsId}).$promise.then(ProductDeals.build);
+      return DealsProductResource.get({id:dealsId}).$promise.then(ProductDeals.build);
+    };
+
+    this.getRecommendList = function(id) {
+      return DealsProductRelatedResource.query({id:id}).$promise.then(ProductDeals.buildList);
     };
 
     this.getSort = function() {

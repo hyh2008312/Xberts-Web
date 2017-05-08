@@ -1,5 +1,5 @@
-<div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
-  <div ng-repeat="item in deals track by $index" flex ui-sref="application.dealsDetail({dealsId:item.id})" >
+<div class="xb-main-deals" flex="noshrink" layout="row" layout-align="start start">
+  <div ng-repeat="item in deals track by $index" flex="none" ui-sref="application.dealsDetail({dealsId:item.id})" >
     <div class="xb-deals-list__img-bg">
       <div layout="column" layout-align="start center">
         <img src="{{item.coverUrl}}" />
@@ -27,13 +27,11 @@
           <span ng-show="timeValue>0">Ends in {{ timeUnit }}</span>
         </span>
       </div>
-    </div>
-    <div flex="noshrink" layout="column" layout-align="end start">
-      <md-button class="md-primary" ng-click="item.buyNow('deals-list');$event.stopPropagation();" hide-xs>
-        Get it Now
-      </md-button>
+      <div flex="noshrink" layout="column" layout-align="end start">
+        <md-button class="md-accent md-raised" ng-click="item.buyNow('deals-list');$event.stopPropagation();" hide-xs>
+          Get it Now
+        </md-button>
+      </div>
     </div>
   </div>
-  <div flex class="xb-deals-list__prefix"></div>
-  <div flex class="xb-deals-list__prefix"></div>
 </div>

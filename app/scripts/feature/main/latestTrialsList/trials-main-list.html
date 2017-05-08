@@ -1,0 +1,30 @@
+<div class="xb-main-deals" flex="noshrink" layout="row" layout-align="start start">
+  <div flex="none" ng-repeat="trial in trials track by $index" ng-if="$index < 5">
+    <div class="xb-main-col__value" layout-gt-sm="row" layout-align-gt-sm="start center"
+         layout-sm="column" layout-align-sm="start start">
+          <span>
+            <span ng-if="!trial.isFlashsale()">Free</span>
+            <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
+      </span>
+      <i class="fa fa-{{item.name}} xb-main-col__bg-{{$index}}" aria-hidden="true"
+         ng-repeat="item in shareList track by $index" socialshare
+         socialshare-provider="{{item.name}}" socialshare-description="{{trial.description}}"
+         socialshare-text="{{trial.title}}" socialshare-url="{{inviteObj.shareUrl(trial.getShareUrl(trial.id), item.name)}}" >
+      </i>
+    </div>
+        <span class="xb-main-col__top-right" end-time-left end-time="trial.applicationEndDate" extra-info="trial.applicantCount">
+          <span ng-show="timeValue>0">{{ timeUnit }}</span>
+          <span ng-show="timeValue<=0">{{ extraInfo }}</span>
+          <span ng-show="timeValue<=0">applicants</span>
+        </span>
+    <div class="xb-main-col__img-bg">
+      <img ng-src="{{trial.cover}}" ui-sref="application.testingcampaign({ reviewId:trial.id })"/>
+    </div>
+    <div class="xb-main-deals__bottom-title" ui-sref="application.testingcampaign({ reviewId:trial.id })">{{trial.title}}</div>
+    <div class="xb-main-col__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+      <a class="md-subhead" ui-sref="application.testingcampaign({ reviewId:trial.id })">Apply Now</a>
+    </div>
+  </div>
+</div>
+
+
