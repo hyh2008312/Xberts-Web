@@ -8,6 +8,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/main/dealsList/deals-main-list.html',
       link: function (scope, element, attrs, ctrls) {
         scope.deals = scope.deals || [];
+
+        scope.page = 0;
       }
     }
   });
