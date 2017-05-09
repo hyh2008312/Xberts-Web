@@ -17,8 +17,11 @@
           <div class="xb2-page-head__author xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
             <md-list-item class="md-padding-clear">
               <avatar-img class="md-avatar" src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
-              <p><a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:report.getReviewerId() })">{{
-                report.getReviewerName()}}</a></p>
+              <p layout="row" layout-align="start center">
+                <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:report.getReviewerId() })">{{
+                report.getReviewerName()}}</a>
+                <credit-badge class="credit-badge" points="report.getReviewBadgePoint()"></credit-badge>
+              </p>
               <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
                                  ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
                 <md-fab-trigger>

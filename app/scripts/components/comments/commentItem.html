@@ -1,12 +1,14 @@
 <div class="xb2-comment" layout="row" layout-align="start start">
   <avatar-img class="xb2-comment__avatar" src="comment.getPostAvatar()" name="comment.getPostName()"></avatar-img>
   <div flex class="xb2-comment__block">
-    <p class="xb2-comment__name">
+    <p class="xb2-comment__name" layout="row" layout-align="start center">
       <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostUserId() })">{{
         comment.getPostName() }}</a>
+      <credit-badge class="credit-badge" points="comment.post.joiner.badge_point"></credit-badge>
       <span class="xb2-comment__secondary">to:</span>
       <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:comment.getPostToUserId() })">{{
         comment.getPostToName() }}</a>
+      <credit-badge class="credit-badge" points="comment.post_to.joiner.badge_point"></credit-badge>
     </p>
     <p class="xb2-comment__detial">{{ comment.details}}</p>
     <p class="xb2-comment__button-container"><span am-time-ago='comment.date_published' class="xb2-comment__time"></span>

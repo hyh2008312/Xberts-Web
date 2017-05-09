@@ -12,7 +12,7 @@ angular.module('xbertsApp')
 
     $scope.twitterMessage = function() {
       $window.open('https://twitter.com/messages/compose?&text=' +
-        encodeURIComponent(InviteService.messageBody),InviteService.messageTitle,
+        encodeURIComponent(InviteService.messageBody()),InviteService.messageTitle(),
         'toolbar=no,scrollbars=yes,resizable=yes,width='+($window.innerWidth<600 ? $window.innerWidth:600)+',height='+($window.innerHeight<500 ? $window.innerWidth:500)+',left=500,top=500');
     };
   }]);

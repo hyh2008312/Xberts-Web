@@ -495,3 +495,12 @@
   75%  { opacity: 1;}
   100% { opacity: 0;top:35%;-ms-transform:translateX(-50%) scale(1, 1);display: none;}
 }
+.credit-badge{
+  margin-left: 8px;
+  display: block;
+  img{
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+}

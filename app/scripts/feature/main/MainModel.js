@@ -12,6 +12,9 @@ function MainModel() {
     getReviewer: function () {
       return this.applicant.reviewer;
     },
+    getReviewBadgePoint: function() {
+      return this.applicant.reviewer.badge_point;
+    },
     getReview: function() {
       return this.applicant.review;
     },

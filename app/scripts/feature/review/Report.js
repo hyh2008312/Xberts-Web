@@ -14,7 +14,7 @@ function ReportModel() {
       return this.applicant.review.project.retail_price.amount;
     },
     isHasFinalPrice: function () {
-      return this.applicant.review.project.final_price.amount !== '0.00'
+      return this.applicant.review.project.final_price.amount !== '0.00';
     },
     getProductFinalPrice: function () {
       return this.isHasFinalPrice() ? this.applicant.review.project.final_price.amount : this.getProductRetailPrice();
@@ -46,6 +46,9 @@ function ReportModel() {
     getScore: function () {
       var temp = [(this.presentation + this.cost_performance + this.usability) / 3] * 10;
       return Math.round(temp) / 10;
+    },
+    getReviewBadgePoint: function() {
+      return this.applicant.reviewer.badge_point;
     },
     buyNow: function (category) {
       if (window.dataLayer) {

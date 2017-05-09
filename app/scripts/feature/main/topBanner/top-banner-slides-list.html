@@ -8,7 +8,7 @@
           <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
           <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
           <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
-          <div class="md-body-1">Apply to receive a free sample and is yours to keep</div>
+          <div class="md-body-1" ng-bind-html="slide.buttonTip"></div>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="xb-top-banner__title" flex="noshrink" layout="column" layout-align="end start" ng-bind-html="slide.title | trust"></div>
         <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
         <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
-        <div class="md-body-1">Apply to receive a free sample and is yours to keep</div>
+        <div class="md-body-1" ng-bind-html="slide.buttonTip"></div>
       </div>
     </div>
   </li>

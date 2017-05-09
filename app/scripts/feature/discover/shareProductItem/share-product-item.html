@@ -8,9 +8,12 @@
                   ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
     </md-card-avatar>
     <md-card-header-text class="product__avatar-title">
-      <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">
-        {{product.getShareName()}}
-      </a>
+      <div layout="row" layout-align="start center">
+        <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">
+          {{product.getShareName()}}
+        </a>
+        <credit-badge class="credit-badge" points="product.owner.badgePoint"></credit-badge>
+      </div>
       <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
     </md-card-header-text>
   </md-card-header>

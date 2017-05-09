@@ -1,21 +1,20 @@
 <interact interact="productsDetail.interact" layout="column"
           class="background-whitem xb-trials-details-mobile xb-deals-detail">
   <div class="xb-trial-detail__atlas" flex hide-gt-xs>
-    <img ng-src="{{productsDetail.bannerUrl}}" />
+    <img ng-src="{{productsDetail.bannerUrl || productsDetail.coverUrl}}" alt="{{productsDetail.title}}"/>
   </div>
   <div class="container xb-trial-detail xb-trial-detail__bottom">
     <div hide-xs>
+      <div class="md-display-1">{{productsDetail.title}}</div>
       <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary">
-         <span>
-           {{productsDetail.source}}
-         </span>
+        <span hide>{{productsDetail.tag}}</span>
       </div>
     </div>
     <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="space-around start">
       <div flex-gt-xs="60" flex-order-xs="2">
         <div class="xb-deals-detail__atlas" hide-xs>
           <div layout="column" layout-align="center center">
-            <img ng-src="{{productsDetail.bannerUrl}}" alt="{{productsDetail.title}}"/>
+            <img ng-src="{{productsDetail.bannerUrl || productsDetail.coverUrl}}" alt="{{productsDetail.title}}"/>
           </div>
         </div>
         <div>
@@ -29,8 +28,8 @@
         <div class="md-display-1">{{productsDetail.title}}</div>
         <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg">
           <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary" flex >
-            <span>
-              {{productsDetail.source}}
+            <span hide>
+              {{productsDetail.tag}}
             </span>
           </div>
           <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"

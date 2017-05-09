@@ -15,6 +15,7 @@
                     name="review.getReviewerFullName()"
                     ui-sref="application.expert({ expertId:review.getReviewerId()})"></avatar-img>
         <div class="xb-trial-reviewer__name" ui-sref="application.expert({ expertId:review.getReviewerId()})">{{review.getReviewerFullName()}}</div>
+        <credit-badge class="credit-badge" points="review.getReviewBadgePoint()"></credit-badge>
       </div>
     </div>
   </div>

@@ -118,6 +118,15 @@
     .md-errors-spacer{
       display: none;
     }
+    @include xb-xs-screen{
+      margin: 20px 8px 8px;
+    }
+  }
+  md-checkbox:last-of-type{
+    margin: 0 16px 8px;
+    @include xb-xs-screen{
+      margin: 0 8px 8px;
+    }
   }
 }
 
@@ -205,6 +214,7 @@
   }
   &__subtitle{
     margin-bottom: 12px;
+    @include regular();
   }
   &__margin-top{
     @include xb-xs-screen{

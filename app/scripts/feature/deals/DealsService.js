@@ -3,7 +3,7 @@
 angular.module('xbertsApp')
   .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
 
-    var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'});
+    var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/deals/:id/related',{id:'@id'});
 
     this.categoryId = null;
@@ -21,6 +21,10 @@ angular.module('xbertsApp')
 
     this.getRecommendList = function(id) {
       return DealsProductRelatedResource.query({id:id}).$promise.then(ProductDeals.buildList);
+    };
+
+    this.update = function(data) {
+      return DealsProductResource.patch(data).$promise.then(ProductDeals.build);
     };
 
     this.getSort = function() {

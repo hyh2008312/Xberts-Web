@@ -18,7 +18,10 @@
         <avatar-Img src="product.getShareAvatar()" name="product.owner.firstName"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
         <div class="xb-main-product__avatar-title" layout="column" layout-align="start start">
-          <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">{{product.getShareName()}}</a>
+          <div layout="row" layout-align="start center">
+            <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">{{product.getShareName()}}</a>
+            <credit-badge class="credit-badge" points="product.owner.badgePoint"></credit-badge>
+          </div>
           <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
         </div>
       </div>
@@ -57,6 +60,7 @@
         <div class="report-publisher" layout="row" layout-align="start center">
           <avatar-img src="product.getShareAvatar()" name="product.owner.firstName"></avatar-img>
           <span class="md-body-1">{{product.getShareName()}}</span>
+          <credit-badge class="credit-badge" points="product.owner.badgePoint"></credit-badge>
         </div>
       </div>
     </div>

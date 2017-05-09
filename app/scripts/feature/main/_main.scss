@@ -405,7 +405,6 @@
     a:nth-child(1) {
       color: $PrimaryINDIGO;
       line-height: 14px;
-      margin-bottom: 4px;
     }
     .md-button{
       margin: 0;
@@ -487,10 +486,14 @@
       avatar-img{
         width: 24px;
         height: 24px;
+        img{
+          width: 24px;
+          height: 24px;
+        }
       }
-      img{
-        width: 24px;
-        height: 24px;
+      .credit-badge img{
+        width: 16px;
+        height: 16px;
       }
     }
   }
@@ -554,8 +557,14 @@
     }
     .report-publisher{
       font-size: 14px;
-      img{
+      avatar-img img{
         cursor: pointer;
+      }
+      .credit-badge{
+        img{
+          width: 16px;
+          height: 16px;
+        }
       }
     }
   }

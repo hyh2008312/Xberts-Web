@@ -4,8 +4,11 @@
        infinite-scroll-container='".xb-body-view "' infinite-scroll-disabled="referrals.loading || !referrals.next">
     <md-list class="xb-my-referrals__friend-list" >
       <md-list-item layout="row" layout-align="start center" ng-repeat="item in referrals.items track by $index">
-          <avatar-img src="item.invitee.userprofile.avatar"></avatar-img>
-          <div flex class="md-body-1">{{item.invitee.firstName +' '+ item.invitee.lastName}}</div>
+          <avatar-img src="item.invitee.userprofile.avatar" name="item.invitee.firstName"></avatar-img>
+          <div flex class="md-body-1" layout="row" layout-align="start center">
+            {{item.invitee.firstName +' '+ item.invitee.lastName}}
+            <credit-badge class="credit-badge" points="item.invitee.badgePoint"></credit-badge>
+          </div>
           <i class="fa fa-envelope fa-lg" ng-click="contactUser(item.invitee.id)"></i>
         </md-list-item>
     </md-list>

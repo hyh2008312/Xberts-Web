@@ -94,7 +94,11 @@
                                     ui-sref="application.expert({ expertId:review.reviewer.id})"></avatar-img>
                       </div>
                       <div layout="column" flex>
-                        <a class="xb-selected-reviewer__name" ui-sref="application.expert({ expertId:review.reviewer.id})">{{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+                        <div class="xb-selected-reviewer__name" layout="row" layout-align="start center">
+                          <a ui-sref="application.expert({ expertId:review.reviewer.id})">
+                            {{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+                          <credit-badge class="credit-badge" points="review.reviewer.badge_point"></credit-badge>
+                        </div>
                         <div class="md-dark-secondary">{{review.reviewer.userprofile.position}} @ {{review.reviewer.userprofile.company}}</div>
                       </div>
                     </div>
@@ -207,7 +211,11 @@
                       ui-sref="application.expert({ expertId:review.reviewer.id})"></avatar-img>
         </div>
         <div layout="column" flex>
-          <a class="xb-selected-reviewer__name" ui-sref="application.expert({ expertId:review.reviewer.id})">{{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+          <div class="xb-selected-reviewer__name" layout="row" layout-align="start center">
+            <a ui-sref="application.expert({ expertId:review.reviewer.id})">
+              {{review.reviewer.userprofile.first_name + ' ' +review.reviewer.userprofile.last_name}}</a>
+            <credit-badge class="credit-badge" points="review.reviewer.badge_point"></credit-badge>
+          </div>
           <md-truncate class="md-dark-secondary">{{review.reviewer.userprofile.position}} @ {{review.reviewer.userprofile.company}}</md-truncate>
         </div>
       </div>
