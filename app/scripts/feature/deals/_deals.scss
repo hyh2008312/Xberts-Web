@@ -55,10 +55,10 @@
   }
   &__content{
     padding: 0 16px;
-    height: 135px;
+    height: 155px;
     @include xb-xs-screen{
       padding: 0 8px 8px;
-      height: 130px;
+      height: 140px;
     }
   }
   &__tag{
@@ -111,6 +111,13 @@
   }
   &__end{
     font-size: 12px;
+  }
+  md-input-container{
+    margin: 20px 16px 8px;
+    padding: 2px 0;
+    .md-errors-spacer{
+      display: none;
+    }
   }
 }
 

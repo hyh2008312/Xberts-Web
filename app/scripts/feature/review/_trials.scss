@@ -19,8 +19,8 @@
     border-radius: 2px;
     flex: 1 1 290px !important;
     -webkit-flex: 1 1 290px !important;
+    margin-bottom: 16px;
     @media screen and (min-width: 960px){
-      margin-bottom: 16px;
       max-width: 24% !important;
     }
     @include xb-sm-screen{

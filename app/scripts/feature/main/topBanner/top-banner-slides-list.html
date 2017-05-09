@@ -8,15 +8,17 @@
           <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
           <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
           <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+          <div class="md-body-1">Apply to receive a free sample and is yours to keep</div>
         </div>
       </div>
     </div>
     <div hide-gt-sm class="xb-top-banner__container" layout="column" layout-align="start center" resize-carousel ratio="ratio"
          parents="xb-top-banner" element-height="height" style="background-image:url({{slide.imageMobileUrl}} );" >
-      <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}" layout="column" layout-align="end start">
-        <div class="xb-top-banner__title" ng-bind-html="slide.title | trust"></div>
+      <div class="xb-top-banner__content xb-top-banner__{{slide.buttonColor}}" layout="column" layout-align="center start">
+        <div class="xb-top-banner__title" flex="noshrink" layout="column" layout-align="end start" ng-bind-html="slide.title | trust"></div>
         <div class="xb-top-banner__subtitle" ng-bind-html="slide.subtitle | trust"></div>
         <a ng-if="slide.buttonUrl" ng-href="{{slide.buttonUrl}}"><div class="xb-top-banner__button" >{{slide.buttonTitle}}</div></a>
+        <div class="md-body-1">Apply to receive a free sample and is yours to keep</div>
       </div>
     </div>
   </li>

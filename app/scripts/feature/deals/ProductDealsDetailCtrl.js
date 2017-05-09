@@ -4,7 +4,6 @@ angular.module('xbertsApp')
   .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService',
     function($rootScope,$scope,productsDetail,productsPaginator, InviteService) {
       $scope.productsDetail = productsDetail;
-      console.log(productsDetail)
       $scope.productsPaginator = productsPaginator;
       $scope.inviteObj = angular.copy(InviteService, {});
 

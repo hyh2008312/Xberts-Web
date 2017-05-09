@@ -1,11 +1,12 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
-  <div ng-repeat="item in deals track by $index" flex ui-sref="application.dealsDetail({dealsId:item.id})" >
+  <div ng-repeat="item in deals track by $index" flex >
     <div class="xb-deals-list__img-bg">
-      <div layout="column" layout-align="start center">
+      <div layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" >
         <img src="{{item.coverUrl}}" />
       </div>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+      <div class="md-body-1 md-dark-secondary">{{item.source}}</div>
       <div class="xb-deals-list__price" layout="column" layout-align="start start">
         <span class="md-headline xb-bold">
           {{item.discountPrice | currency}}
@@ -19,7 +20,7 @@
           </span>
         </span>
       </div>
-      <div class="xb-deals-list__title">
+      <div class="xb-deals-list__title" ui-sref="application.dealsDetail({dealsId:item.id})" >
         <a>{{item.title}}</a>
       </div>
       <div class="xb-deals-list__end">
@@ -28,8 +29,23 @@
         </span>
       </div>
     </div>
-    <div flex="noshrink" layout="column" layout-align="end start">
-      <md-button class="md-primary" ng-click="item.buyNow('deals-list');$event.stopPropagation();" hide-xs>
+    <form name="dealsProduct" clear-form-error ng-if="user.isStaff()" >
+      <div layout="row">
+        <md-button class="md-primary" ng-click="item.buyNow('deals-list');" hide-xs>
+          Get it Now
+        </md-button>
+      </div>
+      <md-input-container class="md-block" md-no-float>
+        <label class="md-dark-primary">purchase link</label>
+        <input ng-model="item.buyUrl" type="url" name="link" placeholder="http://" />
+      </md-input-container>
+      <div layout="row" layout-align="space-between center">
+        <md-button class="md-primary">edit link</md-button>
+        <md-button class="md-primary" >Approve</md-button>
+      </div>
+    </form>
+    <div ng-if="!user.isStaff()" flex="noshrink" layout="column" layout-align="end start">
+      <md-button class="md-primary" ng-click="item.buyNow('deals-list');" hide-xs>
         Get it Now
       </md-button>
     </div>

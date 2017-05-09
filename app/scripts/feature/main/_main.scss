@@ -9,7 +9,7 @@
     display: block;
     width: 100%;
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     text-align: center;
     span{
       outline: none;
@@ -65,6 +65,9 @@
         color: rgba(0,0,0,.87);
       }
     }
+    .md-body-1{
+      color: #fff;
+    }
   }
   &__button-black{
     #{$parant}__title{
@@ -80,6 +83,9 @@
         background-color: rgba(0,0,0,.7);
         color: rgba(255,255,255,.87);
       }
+    }
+    .md-body-1{
+      color: #000;
     }
   }
   &__content{
@@ -117,7 +123,7 @@
     &__content{
       margin-top: 0;
       height: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
     &__title{
       font-size: 24px;
@@ -139,6 +145,14 @@
   }
   a:-webkit-any-link{
     text-decoration: none;
+  }
+  .md-body-1{
+    margin-top: 16px;
+    font-weight: 300;
+    @include xb-xs-screen{
+      font-size: 12px;
+      margin-top: 8px;
+    }
   }
 }
 .xb-title{
