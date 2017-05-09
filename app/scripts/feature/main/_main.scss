@@ -644,29 +644,72 @@
 }
 
 .xb-main-scroll{
-  @include xb-xs-screen{
-    overflow: hidden;
-    display: block;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  &__left-arrow{
+    position: absolute;
+    left: 0;
+    top: calc(50% - 24px);
+    z-index: 1;
+  }
+  &__right-arrow{
+    position: absolute;
+    right: 0;
+    top: calc(50% - 24px);
+    z-index: 1;
+  }
+  >i{
+    width: 36px;
+    height: 48px;
+    background-color: rgba(0,0,0,.38);
+    border-radius: 2px;
+    display: none;
+    &:before{
+      text-align: center;
+      font-size: 40px;
+      line-height: 48px;
+      color: #fff;
+    }
+  }
+  &:hover{
+    @include xb-gt-xs-screen{
+      >i{
+        display: block;
+      }
+    }
   }
 }
 .xb-main-bg{
-  @include xb-xs-screen{
-    background-color: transparent !important;
-  }
+  margin-bottom: 16px;
 }
 .xb-main-deals{
   overflow-y: hidden;
   overflow-x: scroll;
   >div{
     position: relative;
-    width: 272px !important;
-    max-width: 272px !important;
-    margin-right: 8px;
+    width: 283px !important;
+    max-width: 283px !important;
+    margin-right: 16px;
     background-color: #fff;
     border: 1px solid rgba(0,0,0,.12);
     border-radius: 2px;
+    @include xb-xs-screen{
+      width: 272px !important;
+      max-width: 272px !important;
+      margin-right: 8px;
+    }
     &:last-child{
       margin-right: 0;
+    }
+    .md-button{
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+      margin-top: 0;
+      border-top: 1px solid rgba(0,0,0,.12);
+      line-height: 40px;
     }
   }
   &__bottom-title{

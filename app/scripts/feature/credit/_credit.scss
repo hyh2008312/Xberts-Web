@@ -495,12 +495,25 @@
   75%  { opacity: 1;}
   100% { opacity: 0;top:35%;-ms-transform:translateX(-50%) scale(1, 1);display: none;}
 }
+
+.icon-star:before {color: #3f4fb0;}
+
+.icon-mark-fruit-:before {color: #2fbe54;}
+
+.icon-money:before {color: #fff;}
+
+.icon-ic_cup:before { color: #ffc996; }
+
 .credit-badge{
   margin-left: 8px;
   display: block;
-  img{
+  i{
     width: 16px;
     height: 16px;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
     display: block;
   }
 }
+
