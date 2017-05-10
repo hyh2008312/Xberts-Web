@@ -175,8 +175,16 @@
   }
   &__badge{
     margin-top: 16px;
-    img{
-      margin-top: -5px;
+    i{
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      &:before{
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        line-height: 20px;
+      }
     }
   }
   .md-subhead{
@@ -455,15 +463,18 @@
   color: #db8f00;
   position: fixed;
   left: 50%;
-  @include transform(translateX(-50%));
   top: -50px;
   z-index: 999;
+  @include transform(translateX(-50%));
+  @include xb-xs-screen{
+    font-size: 24px;
+  }
 }
 .animation-perks-points{
-  -webkit-animation: perks-points-flow 1.12s linear .1s 1 forwards;
-  -moz-animation: perks-points-flow 1.12s linear .1s 1 forwards;
-  -o-animation: perks-points-flow 1.12s linear .1s 1 forwards;
-  animation: perks-points-flow 1.12s linear .1s 1 forwards;
+  -webkit-animation: perks-points-flow 2s linear .1s 1 forwards;
+  -moz-animation: perks-points-flow 2s linear .1s 1 forwards;
+  -o-animation: perks-points-flow 2s linear .1s 1 forwards;
+  animation: perks-points-flow 2s linear .1s 1 forwards;
 }
 @keyframes perks-points-flow {
   0%   { opacity: 0;top:40%;transform:translateX(-50%) scale(.8, .8);}
@@ -500,7 +511,7 @@
 
 .icon-mark-fruit-:before {color: #2fbe54;}
 
-.icon-money:before {color: #fff;}
+.icon-money:before {color: #3f4fb0;}
 
 .icon-ic_cup:before { color: #ffc996; }
 
@@ -514,6 +525,12 @@
     line-height: 16px;
     text-align: center;
     display: block;
+    &:before{
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      line-height: 16px;
+    }
   }
 }
 

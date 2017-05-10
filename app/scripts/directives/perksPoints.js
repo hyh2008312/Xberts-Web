@@ -4,7 +4,7 @@ angular.module('xbertsApp')
   .directive('perksPoints', ['$rootScope', 'ExpertService','localStorageService', 'moment','$mdDialog',
     function ($rootScope, ExpertService, localStorageService, moment, $mdDialog) {
     return {
-      template: '<span class="md-headline xb-perks-points">+ {{points > 1 ? points + " Points": points + " Point"}}</span>',
+      template: '<span class="md-display-1 xb-perks-points">+ {{points > 1 ? points + " Points": points + " Point"}}</span>',
       restrict: 'E',
       replace: true,
       link: function(scope, element, attrs, ctrls) {
@@ -23,7 +23,7 @@ angular.module('xbertsApp')
           var month = moment().month();
           var date = moment().date();
           var day = (month < 10 ? '0' + month : month)+'-'+(date < 10 ? '0' + date : date)+'-'+(year < 10 ? '0' + year : year);
-
+          console.log(scope.daily);
           if(scope.daily + d > 100 && !localStorageService.get('myPerksPointsDaily_' + $rootScope.user.getUserId() + '_' + day)) {
             localStorageService.set('myPerksPointsDaily_' + $rootScope.user.getUserId() + '_' + day,day);
             $mdDialog.show(

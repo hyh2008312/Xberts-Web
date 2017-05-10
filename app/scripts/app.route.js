@@ -178,9 +178,12 @@ angular
       .state('application.error', {
         url: '/error',
         templateUrl: 'views/error.html',
-        controller: function ($rootScope) {
+        controller: ['$window','$state','$rootScope','$scope',function ($window,$state,$rootScope,$scope) {
+          $scope.reload = function() {
+            $window.location.href = $state.href("application.main", {},{absolute:true});
+          };
           $rootScope.pageSettings.setBackgroundColor('');
-        }
+        }]
       })
       .state('application.terms', {
         url: "/terms",
