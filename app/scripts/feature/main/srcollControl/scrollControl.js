@@ -15,7 +15,7 @@ angular.module('xbertsApp')
           if(scope.direction == 1) {
             scope.page++;
             if(scope.page > scope.amount / scope.pageSize - 1) {
-              scope.page--;
+              scope.page=Math.ceil(scope.amount / scope.pageSize) - 1;
             }
             angular.element(scope.scrollElement).animate({
                 scrollLeft:scope.page * scope.pageSize * scope.distance + 'px'
@@ -30,6 +30,10 @@ angular.module('xbertsApp')
             },1000);
           }
         });
-       }
+
+        angular.element(scope.scrollElement).on('scroll', function(e) {
+          scope.page = Math.floor(e.currentTarget.scrollLeft / (scope.pageSize * scope.distance));
+        });
+      }
     }
   }]);
