@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         this._lastName = lastName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
-        this._userAvatar = userAvatar;
+        this._userAvatar = userAvatar || false;
         this._isLinkedinSignup = isLinkedinSignup || false;
         this._isLinkedinConnected = isLinkedinConnected || false;
         this._roles = roles || [];
