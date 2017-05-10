@@ -23,7 +23,6 @@ angular.module('xbertsApp')
           var month = moment().month();
           var date = moment().date();
           var day = (month < 10 ? '0' + month : month)+'-'+(date < 10 ? '0' + date : date)+'-'+(year < 10 ? '0' + year : year);
-          console.log(scope.daily);
           if(scope.daily + d > 100 && !localStorageService.get('myPerksPointsDaily_' + $rootScope.user.getUserId() + '_' + day)) {
             localStorageService.set('myPerksPointsDaily_' + $rootScope.user.getUserId() + '_' + day,day);
             $mdDialog.show(
