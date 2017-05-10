@@ -5,7 +5,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/components/comments/feedbackList.html',
       require: '^^interact',
       scope: {
-        hideState: '='
+        hideState: '=',
+        hidePoints: '='
       },
       link: function (scope, element, attrs, interactCtrl) {
         scope.interactId = interactCtrl.getInteract().id;
@@ -46,7 +47,9 @@ angular.module('xbertsApp')
                 scope.newFeedback = {};
 
                 scope.feedbackPaginator.items.unshift(feedback);
-                scope.$emit('perksPointsOn', 2);
+                if(!scope.hidePoints) {
+                  scope.$emit('perksPointsOn', 2);
+                }
                 interactCtrl.getInteract().increaseMessageAmount();
 
                 FeedbackService.create(feedbackData);
