@@ -192,8 +192,8 @@
     overflow: hidden;
     display: block;
     z-index: 0;
-    &:hover{
-      @include xb-gt-xs-screen{
+    @include xb-gt-xs-screen{
+      &:hover{
         #{$parent}__mask{
           display: -webkit-box;
           display: -moz-box;
@@ -671,8 +671,8 @@
       color: #fff;
     }
   }
-  &:hover{
-    @include xb-gt-xs-screen{
+  @include xb-gt-xs-screen{
+    &:hover{
       >i{
         display: block;
       }
