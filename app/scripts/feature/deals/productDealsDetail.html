@@ -21,7 +21,7 @@
           <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">About this Deal</div>
           <div flex ng-bind-html="productsDetail.description"></div>
           <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">Comments</div>
-          <feedback-list ng-if="productsDetail.interact" interact-id="{{productsDetail.interact.id}}" class="xb-trial-tabs__content" hide-points="true"></feedback-list>
+          <feedback-list ng-if="productsDetail.interact != null" interact-id="{{productsDetail.interact.id}}" class="xb-trial-tabs__content" hide-points="true"></feedback-list>
         </div>
       </div>
       <div hide-gt-xs flex-order-xs="0">
