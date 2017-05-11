@@ -16,7 +16,7 @@
         </md-card>
         <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
-          <share-product-list products="askCtrl.askPaginator.items"></share-product-list>
+          <question-item products="askCtrl.askPaginator.items"></question-item>
           <load-more layout="row" layout-align="center center" ng-if="askCtrl.askPaginator.loading"></load-more>
         </div>
       </div>

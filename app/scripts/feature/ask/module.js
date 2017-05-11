@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       resolve: {
         askPaginator: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
           var par = {
-            name: 'share_product_list',
+            name: 'question_list',
             objClass: ShareProduct,
             params: {
               category: ShareProductService.categoryId,

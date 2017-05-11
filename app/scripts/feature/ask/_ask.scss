@@ -7,3 +7,67 @@
     padding: 0 16px;
   }
 }
+.xb-ask-list{
+  &__item{
+    margin-bottom: 16px;
+    padding: 0 16px;
+    @include resetBorder();
+    @include xb-xs-screen{
+      padding: 0 8px;
+    }
+  }
+  &__margin-top{
+    margin-top: 24px;
+  }
+  &__head-bg{
+    avatar-img{
+      width: 40px;
+      height: 40px;
+      margin-right: 16px;
+      img{
+        width: 40px;
+        height: 40px;
+      }
+      .c-user__name{
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .md-subhead{
+      line-height: 18px;
+    }
+    .md-body-1{
+      line-height: 14px;
+    }
+  }
+  &__title{
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  &__answer-content{
+    margin-top: 12px;
+  }
+  &__img-bg{
+    margin-top: 4px;
+    max-height: 150px;
+    position: relative;
+    overflow: hidden;
+    >img{
+      width: 100%;
+    }
+  }
+  $parent: &;
+  &__actions{
+    margin-top: 16px;
+    height: 56px;
+    border-top: 1px solid rgba(0,0,0,.12);
+    .md-button{
+      padding: 0;
+      margin: 0;
+    }
+    #{$parent}__margin-left{
+      margin-left: 40px;
+    }
+  }
+}
