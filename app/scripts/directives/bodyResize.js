@@ -9,7 +9,7 @@ angular.module('xbertsApp')
       },
       link: function (scope, element, attr, ctrl) {
         var resizeBody = function() {
-          //element.height(angular.element($window).height());
+          element.height(angular.element($window).height());
         };
         angular.element($window).on('resize', resizeBody);
         resizeBody();
