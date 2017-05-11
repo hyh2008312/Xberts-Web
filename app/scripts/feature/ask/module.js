@@ -6,15 +6,14 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionListPage.html',
       controller: 'QuestionListPage as askCtrl',
       resolve: {
-        askPaginator: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
+        askPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
           var par = {
             name: 'question_list',
-            objClass: ShareProduct,
+            objClass: AskModel,
             params: {
-              category: ShareProductService.categoryId,
-              page_size: 5
+              page_size: 12
             },
-            fetchFunction: ShareProductService.getList
+            fetchFunction: AskService.getList
           };
           return new Paginator(par).load();
         }],

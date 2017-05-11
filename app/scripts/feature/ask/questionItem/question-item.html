@@ -2,25 +2,28 @@
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
   <a class="xb-ask-list__title md-headline md-dark-primary" >{{product.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" hide><p>{{product.description}}</p></div>
-  <div class="xb-ask-list__head-bg" layout="row">
-    <avatar-Img src="product.getShareAvatar()" name="product.owner.firstName"></avatar-Img>
-    <div layout="column" layout-align="space-between start">
-      <div class="md-subhead" layout="row" layout-align="start center">
-        {{product.getShareName()}}
-        <credit-badge class="credit-badge" points="product.owner.badgePoint"></credit-badge>
+  <div ng-if="products.answer.length>0">
+    <div class="xb-ask-list__head-bg" layout="row">
+      <avatar-Img src="product.answers[0].owner.userprofile.avatar" name="product.answers[0].owner.firstName"></avatar-Img>
+      <div layout="column" layout-align="space-between start">
+        <div class="md-subhead" layout="row" layout-align="start center">
+          {{product.answers[0].owner.firstName}}
+          <credit-badge class="credit-badge" points="product.answers[0].owner.badgePoint"></credit-badge>
+        </div>
+        <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.answers[0].created'></span></span>
       </div>
-      <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.created'></span></span>
+    </div>
+    <div>{{product.answers[0].productLink.url}}</div>
+    <div hide class="xb-ask-list__answer-content md-body-1" show-more words-length="140" wors-content="product.description">
+      <p>{{wordsContent}}</p>
+    </div>
+    <div hide class="xb-ask-list__img-bg" ng-if="product.imageGroup.length > 0">
+      <img ng-src="{{product.getImageOriginal()}}" hide-xs/>
+      <img ng-src="{{product.getImageThumbnail()}}" hide-gt-xs/>
     </div>
   </div>
-  <div class="xb-ask-list__answer-content md-body-1" show-more words-length="140" wors-content="product.description">
-    <p>{{wordsContent}}</p>
-  </div>
-  <div class="xb-ask-list__img-bg" ng-if="product.imageGroup.length > 0">
-    <img ng-src="{{product.getImageOriginal()}}" hide-xs/>
-    <img ng-src="{{product.getImageThumbnail()}}" hide-gt-xs/>
-  </div>
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
-    <div ng-switch="product.interact.commentAmount">
+    <div ng-switch="product.answerCount">
       <div ng-switch-when="0" >
         <md-button class="md-primary">
           Be the first to answer
@@ -33,10 +36,10 @@
       </div>
       <div ng-switch-default>
         <md-button class="md-primary">
-          Answers {{product.interact.commentAmount}}
+          Answers {{product.answerCount}}
         </md-button>
       </div>
     </div>
-    <md-button class="xb-ask-list__margin-left md-dark-secondary">Follow</md-button>
+    <md-button class="xb-ask-list__margin-left md-dark-secondary">Follow {{followeeCount}}</md-button>
   </div>
 </div>
