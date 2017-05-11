@@ -32,6 +32,7 @@ angular.module('xbertsApp')
         });
 
         angular.element(scope.scrollElement).on('scroll', function(e) {
+          e.preventDefault();
           scope.page = Math.floor(e.currentTarget.scrollLeft / (scope.pageSize * scope.distance));
         });
       }

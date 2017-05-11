@@ -16,7 +16,7 @@ angular.module('xbertsApp')
               name: 'deals_main_list',
               objClass: ProductDeals,
               params: {
-                page_size: 20
+                page_size: 12
               },
               fetchFunction: DealsService.getDealsList
             };
