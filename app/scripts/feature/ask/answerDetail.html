@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="xb-mobile-row xb-section-body" layout="row" layout-align="start start">
+    <div flex>
+      <share-product-detail-item product="productDetailCtrl.productsDetail"></share-product-detail-item>
+    </div>
+    <div class="recommend-list" hide-sm hide-xs>
+      <div class="md-subhead md-dark-primary recommend-list__title" layout="row" layout-align="start center">You may also like</div>
+      <div class="recommend-list__body">
+        <share-recommend-item ng-repeat="product in productDetailCtrl.recommendList" product="product"></share-recommend-item>
+      </div>
+    </div>
+  </div>
+</div>
