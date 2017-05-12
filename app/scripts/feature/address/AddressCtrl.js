@@ -46,7 +46,7 @@ angular.module('xbertsApp')
             };
             AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              $state.go('application.protected.personalCredit', {id: $rootScope.user.getUserId()});
             }, function (data) {
               $scope.$emit('backdropOff', 'project get completed');
             });
@@ -62,7 +62,7 @@ angular.module('xbertsApp')
             };
             AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              $state.go('application.protected.personalCredit', {id: $rootScope.user.getUserId()});
             }, function (data) {
               $scope.$emit('backdropOff', 'project get completed');
             });
@@ -119,7 +119,7 @@ angular.module('xbertsApp')
             };
             AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              $state.go('application.protected.personalCredit', {id: $rootScope.user.getUserId()});
             }, function (data) {
               $scope.$emit('backdropOff', 'project get completed');
             });
@@ -135,7 +135,7 @@ angular.module('xbertsApp')
             };
             AddressService.createOrder(params).then(function (data) {
               $scope.$emit('backdropOff', 'project get completed');
-              $state.go('application.personalCredit', {id: $rootScope.user.getUserId()});
+              $state.go('application.protected.personalCredit', {id: $rootScope.user.getUserId()});
             }, function (data) {
               $scope.$emit('backdropOff', 'project get completed');
             });

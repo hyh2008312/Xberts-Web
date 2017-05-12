@@ -20,6 +20,7 @@ angular
         template: '<div ui-view></div>',
         resolve: {
           protectedAuthCheck: ['authCheck', 'UserResolver', function (authCheck, UserResolver) {
+            // protect router when user does not login
             return UserResolver.protectedResolver();
           }]
         }

@@ -2,7 +2,7 @@
   <div class="container">
     <div layout="row" layout-align="end center">
       <div class="xb-my-profile__points-bg xb-my-profile__cursor" hide-gt-xs layout="row" layout-align="start center" ng-if="isCurrentUser"
-           ui-sref="application.personalCredit({id:expert.userId})">
+           ui-sref="application.protected.personalCredit({id:expert.userId})">
         <credit-badge points="expert.points"></credit-badge>
         {{expert.points}} Points
         <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
@@ -20,7 +20,7 @@
         <div class="md-headline" layout="row" layout-align="start center">
           {{expert.shortName}}
           <div class="xb-my-profile__points-bg-1 xb-my-profile__cursor" hide-xs layout="row" layout-align="start center" ng-if="isCurrentUser"
-               ui-sref="application.personalCredit({id:expert.userId})">
+               ui-sref="application.protected.personalCredit({id:expert.userId})">
             <credit-badge points="expert.points"></credit-badge>
             {{expert.points}} Points
           </div>

@@ -32,7 +32,7 @@ angular.module('xbertsApp')
         }]
       }
     })
-    .state('application.personalCredit', {
+    .state('application.protected.personalCredit', {
       url: '/myPoints/:id',
       templateUrl: 'scripts/feature/credit/PersonalCredit.html',
       controller: 'PersonalCreditCtrl',
@@ -51,7 +51,7 @@ angular.module('xbertsApp')
           };
           return new Paginator(par).load();
         }],
-        points: ['ExpertService','$stateParams',function(ExpertService, $stateParams) {
+        points: ['ExpertService','$stateParams','protectedAuthCheck',function(ExpertService, $stateParams, protectedAuthCheck) {
           return ExpertService.getPoints($stateParams.id);
         }]
       }
