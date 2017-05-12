@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .factory('AskModel', ['urlParser','$sce','$state',AskModel]);
-function AskModel(urlParser, $sce, $state) {
+  .factory('AskModel',AskModel);
+function AskModel() {
 
   function AskModel(data) {
     angular.extend(this, data);
@@ -10,7 +10,7 @@ function AskModel(urlParser, $sce, $state) {
   };
 
   AskModel.build = function (data) {
-    return new ShareProduct(data)
+    return new AskModel(data)
   };
 
   AskModel.buildPageList = function (data) {

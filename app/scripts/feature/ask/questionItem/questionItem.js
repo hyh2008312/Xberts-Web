@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionItem/question-item.html',
       link: function (scope, element, attrs, ctrls) {
         scope.products = scope.products || {};
-
+        console.log(scope.products)
 
       }
     }

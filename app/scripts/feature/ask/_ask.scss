@@ -11,6 +11,8 @@
   &__item{
     margin-bottom: 16px;
     padding: 0 16px;
+    display: block;
+    overflow: hidden;
     @include resetBorder();
     @include xb-xs-screen{
       padding: 0 8px;
@@ -47,6 +49,7 @@
   }
   &__answer-content{
     margin-top: 12px;
+    word-break: break-all;
   }
   &__img-bg{
     margin-top: 4px;
