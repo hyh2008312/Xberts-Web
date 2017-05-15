@@ -54,10 +54,10 @@ angular.module('xbertsApp')
                 scope.newFeedback = {};
 
                 scope.feedbackPaginator.items.unshift(feedback);
-                if(!scope.hidePoints) {
+                feedback.post.feedback_amount++;
+                if(!scope.hidePoints && feedback.post.feedback_amount<=1) {
                   scope.$emit('perksPointsOn', 2);
                 }
-                feedback.post.feedback_amount++;
                 interactCtrl.setCurrentJoin(feedback.post);
                 interactCtrl.getInteract().increaseMessageAmount();
                 FeedbackService.create(feedbackData);
