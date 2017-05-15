@@ -1,3 +1,12 @@
+.xb-ask-bg{
+  @include xb-xs-screen{
+    margin-left: -10px;
+    margin-right: -10px;
+    .xb-ask-title{
+      padding: 0 8px;
+    }
+  }
+}
 .xb-ask-title{
   .xb-section__title{
     text-align: left;
@@ -46,10 +55,20 @@
     margin-top: 12px;
     margin-bottom: 20px;
     display: block;
+    &:hover{
+      color: rgba(0,0,0,.84);
+    }
+    @include xb-xs-screen{
+      margin-top: 8px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      text-decoration: none;
+    }
   }
   &__answer-content{
     margin-top: 12px;
     word-break: break-all;
+    display: block;
   }
   &__img-bg{
     margin-top: 4px;
@@ -68,9 +87,53 @@
     .md-button{
       padding: 0;
       margin: 0;
+      min-width: 0;
     }
     #{$parent}__margin-left{
       margin-left: 40px;
+      @include xb-xs-screen{
+        margin-left: 16px;
+      }
     }
+  }
+  &__color{
+    color: #3f51b5;
+  }
+}
+.xb-question-dialog{
+  padding: 0 16px;
+  max-width: 672px;
+  width: 100%;
+  @include xb-xs-screen{
+    padding: 0 8px;
+    height: 100%;
+    max-height: 100%;
+  }
+  .md-subhead{
+    margin-top: 24px;
+    @include xb-xs-screen{
+      margin-top: 8px;
+    }
+  }
+  md-input-container{
+    margin-top: 24px;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  &__close{
+    margin-top: 8px;
+    margin-left: 0;
+  }
+  &__actions{
+    margin-bottom: 24px;
+    .md-button{
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+.xb-question-detail{
+  &__bg{
+    background-color: #e5e5e5;
   }
 }

@@ -17,16 +17,14 @@ angular.module('xbertsApp')
           };
           return new Paginator(par).load();
         }],
-        topReviewers: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
+        topReviewers: ['Paginator', 'AskService', 'MainModel', function (Paginator, AskService, AskModel) {
           var par = {
-            name: 'callingReviewMain',
-            objClass:MainModel,
+            name: 'answer_leaders_list',
+            objClass:AskModel,
             params: {
-              stage: 'READY_FOR_SALE',
-              status: 'APPLICATION',
               page_size: 12
             },
-            fetchFunction:MainService.getRecommendedReviewers
+            fetchFunction:AskService.getAnswerLeaderList
           };
           return new Paginator(par).load();
         }]

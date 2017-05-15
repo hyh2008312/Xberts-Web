@@ -1,4 +1,4 @@
-<section class="xb-section">
+<section class="xb-section xb-ask-bg">
   <div class="container">
     <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
       <div class="xb-section__title">
@@ -6,7 +6,7 @@
         <h3><span class="md-body-1 md-dark-secondary">Get product recommendations from our global community of savvy-shopper</span></h3>
       </div>
       <div flex="none">
-        <md-button class="md-raised md-primary">Ask Question</md-button>
+        <md-button class="md-raised md-primary" ng-click="askCtrl.addQuestion();">Ask Question</md-button>
       </div>
     </div>
     <div layout="row" layout-align="start start">
@@ -24,7 +24,7 @@
         <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
           Leaderboard
         </div>
-        <top-reviewers-list reviewers="askCtrl.topReviewers"></top-reviewers-list>
+        <answer-leaders leaders="askCtrl.topReviewers"></answer-leaders>
       </div>
     </div>
   </div>
