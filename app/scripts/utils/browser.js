@@ -14,9 +14,8 @@ angular.module('xbertsApp')
       }
     };
     this.isFacebookApp = function() {
-      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      var ua = navigator.userAgent || navigator.vendor || $window.opera;
 
-      alert((ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1));
       return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
     };
   }]);
