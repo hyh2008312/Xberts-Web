@@ -3,7 +3,7 @@
     <md-input-container class="md-block" md-no-float>
       <textarea name='details' ng-model="newFeedback.details" required placeholder="write a comment" minlength="15" ></textarea>
       <div class="help-block" ng-messages="feedbackForm.details.$error">
-        <div ng-message="minlength">The comments </div>
+        <div ng-message="minlength">Minimum 15 characters</div>
       </div>
       <div class="xb-align-right">
         <md-button type="submit" class="md-primary" ng-click="leaveFeedback(feedbackForm)">Comment</md-button>
@@ -15,7 +15,7 @@
     <md-input-container class="md-block" md-no-float>
     <textarea name='details' ng-model="newFeedback.details" required placeholder="write a comment" minlength="15" ></textarea>
       <div class="help-block" ng-messages="feedbackForm.details.$error">
-        <div ng-message="minlength">The comments </div>
+        <div ng-message="minlength">Minimum 15 characters</div>
       </div>
       <div class="xb-align-right">
         <md-button type="submit" class="md-primary" ng-click="leaveFeedback(feedbackForm)">Comment</md-button>

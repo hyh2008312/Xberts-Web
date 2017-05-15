@@ -30,7 +30,7 @@ angular.module('xbertsApp')
           if(interactCtrl.getCurrentJoin().feedback_amount >= 3) {
             scope.formToggle = !scope.formToggle;
             scope.newFeedback = {};
-            growl.error('comments');
+            growl.error("Sorry, you can't post more than 3 comments here");
             return false;
           }
           if (feedbackForm.$valid) {
