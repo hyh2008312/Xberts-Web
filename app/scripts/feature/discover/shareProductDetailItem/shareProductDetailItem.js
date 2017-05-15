@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('shareProductDetailItem', ['InviteService', function (InviteService) {
+  .directive('shareProductDetailItem', ['InviteService','BrowserUtil',function (InviteService,BrowserUtil) {
     return {
       restrict: 'E',
       scope: {
@@ -18,6 +18,8 @@ angular.module('xbertsApp')
           { name: "twitter"},
           { name: "linkedin"}
         ];
+
+        scope.isFacebookApp = BrowserUtil.isFacebookApp();
 
         scope.inviteObj = angular.copy(InviteService, {});
       }

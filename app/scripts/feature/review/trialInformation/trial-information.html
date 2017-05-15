@@ -70,7 +70,10 @@
         applicants in exchange for UNBIASED reviews. Apply now for a chance to TRY & KEEP this product!
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
-      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
+        <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+      </div>
+      <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
       </div>
     </div>
@@ -80,7 +83,10 @@
         {{ trial.review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
-      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+      </div>
+      <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
       </div>
     </div>
@@ -90,14 +96,21 @@
         {{ trial.review.applicationEndDate | amAdd : '7' : 'days' | amDateFormat:'MMM DD, YYYY' }}，please stay tuned!
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
-      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+      </div>
+      <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
       </div>
     </div>
     <div ng-switch-when="REVIEW">
-      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised"
            ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
+      </div>
+      <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
+        <md-button tabs-fixed-item class="md-primary md-raised"
+                   ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
       </div>
     </div>
     <div ng-switch-when="ENDED">
@@ -105,7 +118,10 @@
         This campaign has ended. If you're interested in this product, you can click the "BUY NOW" button to make a purchase!
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
-      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center">
+      <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
+        <md-button tabs-fixed-item class="md-accent md-raised" ng-click="trial.review.buyNow('trials-detail');" >Buy Now</md-button>
+      </div>
+      <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-accent md-raised" ng-click="trial.review.buyNow('trials-detail');" >Buy Now</md-button>
       </div>
     </div>

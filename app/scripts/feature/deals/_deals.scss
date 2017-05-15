@@ -45,6 +45,7 @@
     background-color: rgba(0,0,0,.6);
     a{
       color: #fff;
+      text-decoration: none;
       &:hover{
         color: #fff;
       }
@@ -362,9 +363,14 @@
       margin: 0;
       padding: 0 12px;
     }
-  }
-  .xb-trial-detail__fixed-bottom{
     border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  .xb-trial-detail__fixed-bottom-1{
+    padding-bottom: 0;
+    .md-button{
+      margin: 0;
+      padding: 0 12px;
+    }
   }
   .xb-trial-detail__subtitle{
     @include xb-xs-screen{

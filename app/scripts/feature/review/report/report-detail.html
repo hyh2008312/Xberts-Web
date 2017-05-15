@@ -65,7 +65,7 @@
               <span class="md-margin-left-2">{{report.presentation}}</span>
             </div>
           </div>
-          <div class="xb2-page-head__button" flex-order="4">
+          <div class="xb2-page-head__button" flex-order="4" ng-if="!isFacebookApp">
             <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
               <p flex class="xb2-price">
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
@@ -73,7 +73,15 @@
               </p>
               <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
                          target="_blank">
-                Buy Now
+                See Product
+              </md-button>
+            </div>
+          </div>
+          <div flex-order="4" ng-if="isFacebookApp">
+            <div layout="row" layout-align="start center">
+              <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
+                         target="_blank">
+                See Product
               </md-button>
             </div>
           </div>

@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('ReportDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
-    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService) {
+    'BrowserUtil',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService, BrowserUtil) {
     $scope.report = report;
 
     var title = report.title;
@@ -23,6 +24,8 @@ angular.module('xbertsApp')
     ];
 
     $scope.inviteObj = angular.copy(InviteService, {});
+
+    $scope.isFacebookApp = BrowserUtil.isFacebookApp();
 
     $scope.approve = function () {
       $scope.$emit('backdropOn', 'approve project');

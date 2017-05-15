@@ -74,6 +74,26 @@
               Get it Now
             </md-button>
           </div>
+          <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center">
+            <div class="xb-deals-detail__price" layout-xs="row" layout-gt-sm="row" layout-sm="column"
+                 layout-align-sm="start start" layout-align-gt-sm="start end" layout-align-xs="start center" flex-xs>
+              <span class="md-display-1 xb-bold">
+                {{productsDetail.discountPrice | currency}}
+              </span>
+              <div>
+                <span class="md-headline md-dark-secondary">
+                  {{productsDetail.originalPrice | currency}}
+                </span>
+                <span class="md-headline xb-deals-list__discount">
+                  {{productsDetail.discount * 100 | number:0}}% off
+                </span>
+              </div>
+            </div>
+            <div class="md-dark-secondary xb-deals-detail__platform" hide-xs>{{productsDetail.source}}</div>
+            <md-button class="md-accent md-raised" ng-click="productsDetail.buyNow('deals-list');">
+              Get it Now
+            </md-button>
+          </div>
           <div hide-xs>
             <div class="xb-deals-detail__subtitle">Share this deal</div>
             <div class="xb-deals-detail__share-icon">

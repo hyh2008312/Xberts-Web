@@ -20,8 +20,8 @@ angular.module('xbertsApp')
     this.getReviewsList = function (params) {
       return ReportResource.get(params).$promise.then(MainModel.buildPageList);
     };
-    this.getRecommendedReviewers = function () {
-      return $resource(API_BASE_URL + '/xberts/reviewers/', {recommended: 'True'}).get().$promise.then(MainModel.buildPageList);
+    this.getRecommendedReviewers = function (params) {
+      return $resource(API_BASE_URL + '/xberts/reviewers/').get(params).$promise.then(MainModel.buildPageList);
     };
 
   }]);

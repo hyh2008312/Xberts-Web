@@ -130,11 +130,10 @@ angular
           }],
           topReviewers: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
             var par = {
-              name: 'callingReview',
+              name: 'top_reviewer_list',
               objClass:MainModel,
               params: {
-                stage: 'READY_FOR_SALE',
-                status: 'APPLICATION',
+                recommended:'True',
                 page_size: 20
               },
               fetchFunction:MainService.getRecommendedReviewers

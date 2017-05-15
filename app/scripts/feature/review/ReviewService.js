@@ -23,8 +23,8 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/review/reviews/', {id: '@id'}).get(params).$promise;
     };
 
-    self.getRecommendedReviewers = function () {
-      return $resource(API_BASE_URL + '/xberts/reviewers/', {recommended: 'True'}).get().$promise;
+    self.getRecommendedReviewers = function (params) {
+      return $resource(API_BASE_URL + '/xberts/reviewers/', params).get().$promise;
     };
 
     self.applicantProtect = function (reviewId) {
@@ -58,7 +58,7 @@ angular.module('xbertsApp')
     };
 
     self.getReporters = function (params) {
-      return $resource(API_BASE_URL + '/review/reviews/:id/reports/', {id: '@id'}).get(params).$promise.then(Report.buildPageList);
+      return $resource(API_BASE_URL + '/review/reviews/:id/reports/').get(params).$promise.then(Report.buildPageList);
     };
 
 

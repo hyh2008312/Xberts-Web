@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator', function (FeedbackService, Feedback, Paginator) {
+  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator', 'growl',
+    function (FeedbackService, Feedback, Paginator, growl) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
@@ -26,6 +27,12 @@ angular.module('xbertsApp')
         scope.formToggle = false;
 
         scope.leaveFeedback = function (feedbackForm) {
+          if(interactCtrl.getCurrentJoin().feedback_amount >= 3) {
+            scope.formToggle = !scope.formToggle;
+            scope.newFeedback = {};
+            growl.error('comments');
+            return false;
+          }
           if (feedbackForm.$valid) {
 
             interactCtrl.getOrCreateCurrentJoin().then(
@@ -50,8 +57,9 @@ angular.module('xbertsApp')
                 if(!scope.hidePoints) {
                   scope.$emit('perksPointsOn', 2);
                 }
+                feedback.post.feedback_amount++;
+                interactCtrl.setCurrentJoin(feedback.post);
                 interactCtrl.getInteract().increaseMessageAmount();
-
                 FeedbackService.create(feedbackData);
 
               }

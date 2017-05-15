@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('trialInformation', ['InviteService',function (InviteService) {
+  .directive('trialInformation', ['InviteService','BrowserUtil',function (InviteService,BrowserUtil) {
     return {
       restrict: 'E',
       scope: {
@@ -23,6 +23,8 @@ angular.module('xbertsApp')
           { name: "twitter"},
           { name: "linkedin"}
         ];
+
+        scope.isFacebookApp = BrowserUtil.isFacebookApp();
 
         scope.inviteObj = angular.copy(InviteService, {});
       }

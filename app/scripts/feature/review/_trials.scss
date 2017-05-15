@@ -87,8 +87,10 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,.6);
+    cursor: pointer;
     a{
       color: #fff;
+      text-decoration: none;
       &:hover{
         color: #fff;
       }
@@ -270,6 +272,9 @@
       @include resetBorder();
     }
   }
+  &__fixed-bottom-1{
+    padding: 4px 0 16px;
+  }
   &__avatar-bg{
     .md-button{
       margin: 0;
@@ -282,6 +287,9 @@
         width: 100%;
         height: 100%;
       }
+    }
+    md-fab-speed-dial{
+      z-index: 0;
     }
   }
 }
