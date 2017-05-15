@@ -41,7 +41,10 @@
       </div>
     </div>
   </md-card-actions>
-  <div class="product__action-1" hide-gt-xs ng-if="isFacebookApp">
+  <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
+    <p flex>
+      <span class="md-subhead">{{product.getSharePrice()}}</span>
+    </p>
     <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-href="{{product.purchaseUrl}}"
                target="_blank">See Product</md-button>
   </div>

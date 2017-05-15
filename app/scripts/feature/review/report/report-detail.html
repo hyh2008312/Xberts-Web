@@ -79,6 +79,10 @@
           </div>
           <div flex-order="4" ng-if="isFacebookApp">
             <div layout="row" layout-align="start center">
+              <p flex class="xb2-price">
+                <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
+                <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
+              </p>
               <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
                          target="_blank">
                 See Product
