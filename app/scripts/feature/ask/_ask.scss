@@ -26,6 +26,9 @@
     @include xb-xs-screen{
       padding: 0 8px;
     }
+    .md-padding{
+      padding: 0;
+    }
   }
   &__margin-top{
     margin-top: 24px;
@@ -42,6 +45,9 @@
       .c-user__name{
         width: 40px;
         height: 40px;
+      }
+      @include xb-xs-screen{
+        margin-right: 12px;
       }
     }
     .md-subhead{
@@ -69,6 +75,10 @@
     margin-top: 12px;
     word-break: break-all;
     display: block;
+    span{
+      color: #3f51b5;
+      cursor: pointer;
+    }
   }
   &__img-bg{
     margin-top: 4px;
@@ -94,6 +104,46 @@
       @include xb-xs-screen{
         margin-left: 16px;
       }
+    }
+  }
+  &__actions-1{
+    margin-top: 16px;
+    height: 56px;
+    border-top: 1px solid rgba(0,0,0,.12);
+    .md-button{
+      padding: 0 16px;
+      margin: 0;
+      min-width: 0;
+    }
+    #{$parent}__margin-left{
+      padding: 0;
+      margin-left: 40px;
+      @include xb-xs-screen{
+        margin-left: 8px;
+      }
+    }
+    i{
+      margin-left: 24px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+  &__actions-2{
+    margin-bottom: -16px;
+    .md-button{
+      padding: 0;
+      margin: 0 0 0 16px;
+      min-width: 0;
+      width: 24px;
+      height: 24px;
+      .material-icons{
+        margin: 0;
+      }
+    }
+    i{
+      margin-left: 24px;
+      font-size: 20px;
+      line-height: 20px;
     }
   }
   &__color{
@@ -135,5 +185,138 @@
 .xb-question-detail{
   &__bg{
     background-color: #e5e5e5;
+    padding-top: 28px;
+    padding-bottom: 40px;
+    @include xb-xs-screen{
+      padding-top: 0;
+      padding-bottom: 16px;
+    }
+  }
+  &__pointer{
+    cursor: pointer;
+  }
+  &__inner-content{
+    max-width: 800px;
+    margin: auto;
+    display: block;
+  }
+  &__title{
+    .md-dark-secondary{
+      margin-left: 16px;
+      @include media();
+    }
+    margin-bottom: 32px;
+    @include resetBorder();
+    @include xb-xs-screen{
+      margin-bottom: 16px;
+    }
+  }
+  &__answer-title{
+    margin-top: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  &__dialog{
+    padding: 0 16px;
+    margin-bottom: 32px;
+    @include resetBorder();
+    @include xb-xs-screen{
+      margin-bottom: 0;
+      padding: 0 8px;
+      @include box-shadow(none)
+    }
+    avatar-img{
+      width: 40px;
+      height: 40px;
+      margin-right: 16px;
+      margin-bottom: 0;
+      >img{
+        width: 40px;
+        height: 40px;
+      }
+      .c-user__name{
+        width: 40px;
+        height: 40px;
+      }
+    }
+    &-title{
+      padding-top: 20px;
+      margin-bottom: 12px;
+      @include xb-xs-screen{
+        padding-top: 8px;
+      }
+    }
+    .xb-edit-post md-input-container{
+      width: 100%;
+      margin: 0;
+      max-width: none;
+    }
+    .xb-edit-post .upload-responsive{
+      margin-bottom: 16px;
+    }
+    .md-button{
+      margin: 0;
+    }
+  }
+  &__list{
+    margin-bottom: 24px;
+    position: relative;
+    @include xb-xs-screen{
+      margin-bottom: 8px;
+    }
+    @include resetBorder();
+    .xb-ask-list__head-bg{
+      margin-top: 24px;
+    }
+    .xb-ask-list__item{
+      @include box-shadow(none);
+    }
+    &-actions{
+      border-top: 1px solid rgba(0,0,0,.12);
+    }
+    &-vote{
+      margin-top: 24px;
+      padding-right: 12px;
+      @include xb-gt-sm-screen{
+        position: absolute;
+        top: 16px;
+        right: 100%;
+        padding-right: 16px;
+      }
+      span{
+        margin-top: 4px;
+        line-height: 1em;
+        color: rgba(0,0,0,.54);
+        @include xb-gt-sm-screen{
+          margin-top: 12px;
+        }
+      }
+    }
+    .md-padding{
+      padding: 0 16px 8px;
+      @include xb-xs-screen{
+        padding: 0 8px 8px;
+      }
+    }
+  }
+}
+.xb-ask-order{
+  @include resetBorder();
+  margin: 0 0 16px 0;
+  background-color: $whiteBackground;
+  height: 40px;
+  overflow: hidden;
+  >.md-button{
+    height: 40px;
+    >.tab-triangle{
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      @include triangleBottom(10px, 10px, #F1F1F1);
+      @include transform(translateX(-50%));
+    }
+  }
+  .active{
+    color: $PrimaryINDIGO;
   }
 }

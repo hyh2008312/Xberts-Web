@@ -1,10 +1,10 @@
 <div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary" >{{product.title}}</a>
-  <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer && isAsk">
-    {{product.description | reduceSentence:140}}<span>...  More</span>
+  <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">{{product.title}}</a>
+  <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer">
+    {{product.description | reduceSentence:140}}<span ui-sref="application.answerQuestionDetail({questionId:product.id})">...  More</span>
   </div>
-  <div ng-if="product.latestAnswer && !isAsk">
+  <div ng-if="product.latestAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
       <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"></avatar-Img>
       <div layout="column" layout-align="space-between start">
@@ -15,18 +15,11 @@
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>
     </div>
-    <a class="xb-ask-list__answer-content" ng-href="product.latestAnswer.productLink.url">
-      {{product.latestAnswer.productLink.url | reduceSentence:140}}<span>...  More</span>
+    <a ng-if="" class="xb-ask-list__answer-content" ng-href="product.getProdcutLink()" target="_blank">
+      {{product.getProdcutLink() | reduceSentence:140}}...  <span ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
     </a>
-    <div hide class="xb-ask-list__answer-content md-body-1">
-      <a>{{wordsContent}}</a>
-    </div>
-    <div hide class="xb-ask-list__img-bg" ng-if="product.imageGroup.length > 0">
-      <img ng-src="{{product.getImageOriginal()}}" hide-xs/>
-      <img ng-src="{{product.getImageThumbnail()}}" hide-gt-xs/>
-    </div>
   </div>
-  <div class="xb-ask-list__actions" layout="row" layout-align="start center" ng-if="!isAsk">
+  <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerCount">
       <div ng-switch-when="0" >
         <md-button class="md-primary">
@@ -46,17 +39,6 @@
         <span class="xb-ask-list__color">&nbsp;{{product.answerCount}}</span>
       </div>
     </div>
-    <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Follow</md-button>
-    <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
-    <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Following</md-button>
-    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
-  </div>
-  <div class="xb-ask-list__actions" layout="row" layout-align="start center" ng-if="isAsk">
-    <md-button class="md-primary md-raised">
-      Answer
-    </md-button>
     <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
                ng-click="follow(product)">Follow</md-button>
     <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>

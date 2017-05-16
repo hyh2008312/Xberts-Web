@@ -1,9 +1,23 @@
 <div class="xb-question-detail__bg">
-  <div class="container">
-    <div class="xb-question-detail__title" layout="row" layout-align="space-between center">
-      <div class="md-dark-secondary">Ask >> <span class="md-dark-primary">question</span></div>
-      <md-button class="md-primary">Ask Question</md-button>
+  <div class="xb-question-detail__inner-content">
+    <div class="xb-question-detail__title background-whitem" layout="row" layout-align="space-between center">
+      <div class="md-dark-secondary" layout="row" layout-align="start center">
+        <span ui-sref="application.askQuestionMain()" class="xb-question-detail__pointer">ASK</span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<span class="md-dark-primary">QUESTION</span></div>
+      <md-button class="md-primary" ng-click="answerCtrl.addQuestion()">Ask Question</md-button>
     </div>
-    <question-item products="askCtrl.askPaginator.items"></question-item>
+    <question-detail-item product="answerCtrl.productsDetail"></question-detail-item>
   </div>
+</div>
+<div class="xb-question-detail__answer-title md-dark-secondary">
+  {{answerCtrl.answerPaginator.items.length>1? answerCtrl.answerPaginator.items.length + ' ANSWERS':answerCtrl.answerPaginator.items.length + ' ANSWER'}}
+</div>
+<div>
+  <div class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+  infinite-scroll-disabled="answerCtrl.answerPaginator.loading || !answerCtrl.answerPaginator.next">
+  <answer-item products="answerCtrl.answerPaginator.items"></answer-item>
+  <load-more layout="row" layout-align="center center" ng-if="answerCtrl.productsPaginator.loading"></load-more>
+</div>
+</div>
+<div hide-xs>
+  <answer-post class="xb-question-detail__inner-content" question-id="answerCtrl.productsDetail.id" detail-ctrl="answerCtrl"></answer-post>
 </div>

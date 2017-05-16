@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       resolve: {
         askPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
           var par = {
-            name: 'question_list',
+            name: 'ask_questions_list',
             objClass: AskModel,
             params: {
               page_size: 12
@@ -35,12 +35,22 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerDetail.html',
       controller: 'AnswerDetailCtrl as answerCtrl',
       resolve: {
-        productsDetail: ['ShareProductService','$stateParams',function(ShareProductService, $stateParams) {
-          return ShareProductService.getDetail($stateParams.reviewId);
+        productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
+          return AskService.getQuestionsDetail($stateParams.questionId);
         }],
-        recommendList: ['ShareProductService','$stateParams',function(ShareProductService, $stateParams) {
-            return ShareProductService.getRecommendList($stateParams.reviewId);
-          }]
+        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams',
+          function (Paginator, AskService, AskModel, $stateParams) {
+          var par = {
+            name: 'ask_answers_list',
+            objClass: AskModel,
+            params: {
+              question: $stateParams.questionId,
+              page_size: 12
+            },
+            fetchFunction: AskService.getAnswersList
+          };
+          return new Paginator(par).load();
+        }]
       }
     });
   }]);

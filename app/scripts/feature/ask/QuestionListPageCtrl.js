@@ -5,6 +5,7 @@ angular.module('xbertsApp')
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
     askCtrl.topReviewers = topReviewers.items;
+    askCtrl.order = AskService.order;
 
     askCtrl.addQuestion = function(ev) {
       $mdDialog.show({
@@ -38,6 +39,20 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    askCtrl.changeOrder = function(order) {
+      AskService.order = order;
+      askCtrl.order = AskService.order;
+      var answerAmount = null;
+      switch (askCtrl.order) {
+        case 1:
+          answerAmount = 0;
+              break;
+      }
+      askCtrl.askPaginator.params.answer_amount = answerAmount;
+      askCtrl.askPaginator.clear();
+      askCtrl.askPaginator.load();
     };
 
     var title = 'Ask - Ask Xperts Community & Make Smart Purchasing Decision';

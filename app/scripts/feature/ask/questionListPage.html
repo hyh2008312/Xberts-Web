@@ -11,9 +11,7 @@
     </div>
     <div layout="row" layout-align="start start">
       <div flex>
-        <md-card class="product-order" layout="row" layout-align="start center">
-          <md-button>Latest<div class="tab-triangle"></div></md-button>
-        </md-card>
+        <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
         <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
           <question-item products="askCtrl.askPaginator.items"></question-item>

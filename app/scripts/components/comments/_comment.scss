@@ -53,3 +53,11 @@
     margin-bottom: 16px;
   }
 }
+.xb-vote{
+  outline: none;
+  color: #3f51b5;
+  @include media();
+  &__color{
+    color: rgb(255,87,34);
+  }
+}

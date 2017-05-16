@@ -4,11 +4,10 @@ angular.module('xbertsApp')
   .directive('vote', ['InteractService', function (InteractService) {
     return {
       restrict: 'E',
-      scope: {},
-      template: '<md-icon ng-class="{\'md-warn\':join.vote}"' +
-      'ng-click="vote()">' +
-      'thumb_up' +
-      '</md-icon> <span>{{interact.vote_amount || interact.voteAmount || " "}}</span>',
+      scope: {
+        xbStyle: '='
+      },
+      templateUrl: 'scripts/components/comments/vote.html',
       require: '^^interact',
       replace: false,
 

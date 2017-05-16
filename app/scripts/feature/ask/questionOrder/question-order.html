@@ -1,49 +1,6 @@
-<div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index">
-  <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">{{product.title}}</a>
-  <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer">
-    {{product.description | reduceSentence:140}}<span ui-sref="application.answerQuestionDetail({questionId:product.id})">...  More</span>
-  </div>
-  <div ng-if="product.latestAnswer">
-    <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"></avatar-Img>
-      <div layout="column" layout-align="space-between start">
-        <div class="md-subhead" layout="row" layout-align="start center">
-          {{product.latestAnswer.owner.firstName}}
-          <credit-badge class="credit-badge" points="product.latestAnswer.owner.badgePoint"></credit-badge>
-        </div>
-        <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
-      </div>
-    </div>
-    <a ng-if="" class="xb-ask-list__answer-content" ng-href="product.getProdcutLink()" target="_blank">
-      {{product.getProdcutLink() | reduceSentence:140}}...  <span ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
-    </a>
-  </div>
-  <div class="xb-ask-list__actions" layout="row" layout-align="start center">
-    <div ng-switch="product.answerCount">
-      <div ng-switch-when="0" >
-        <md-button class="md-primary">
-          Be the first to answer
-        </md-button>
-      </div>
-      <div ng-switch-when="1" layout="row" layout-align="start center">
-        <md-button class="md-primary">
-          Answer
-        </md-button>
-        <span class="xb-ask-list__color">&nbsp;1</span>
-      </div>
-      <div ng-switch-default layout="row" layout-align="start center">
-        <md-button class="md-primary">
-          Answers
-        </md-button>
-        <span class="xb-ask-list__color">&nbsp;{{product.answerCount}}</span>
-      </div>
-    </div>
-    <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Follow</md-button>
-    <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
-    <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Following</md-button>
-    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
-  </div>
+<div class="xb-ask-order" layout="row" layout-align="start center">
+  <md-button ng-repeat="order in orderList track by $index" ng-class="{true:'active'}[index == $index]" ng-click="changeOrder($index)">
+    {{order}}
+    <div ng-if="index == $index" class="tab-triangle"></div>
+  </md-button>
 </div>
