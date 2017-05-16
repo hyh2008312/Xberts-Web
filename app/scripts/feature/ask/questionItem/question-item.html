@@ -15,12 +15,12 @@
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>
     </div>
-    <a ng-if="" class="xb-ask-list__answer-content" ng-href="product.getProdcutLink()" target="_blank">
+    <a ng-if="product.latestAnswer.productLink" class="xb-ask-list__answer-content" ng-href="product.getProdcutLink()" target="_blank">
       {{product.getProdcutLink() | reduceSentence:140}}...  <span ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
     </a>
   </div>
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
-    <div ng-switch="product.answerCount">
+    <div ng-switch="product.answerAmount">
       <div ng-switch-when="0" >
         <md-button class="md-primary">
           Be the first to answer
@@ -36,7 +36,7 @@
         <md-button class="md-primary">
           Answers
         </md-button>
-        <span class="xb-ask-list__color">&nbsp;{{product.answerCount}}</span>
+        <span class="xb-ask-list__color">&nbsp;{{product.answerAmount}}</span>
       </div>
     </div>
     <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
