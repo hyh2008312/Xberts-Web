@@ -28,8 +28,8 @@
         <div class="md-display-1">{{productsDetail.title}}</div>
         <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg">
           <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary" flex >
-            <span hide>
-              {{productsDetail.tag}}
+            <span>
+             {{productsDetail.source}}
             </span>
           </div>
           <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
@@ -54,7 +54,7 @@
       <div flex-gt-xs="40" flex-order-xs="1">
         <div class="xb-trial-detail__content">
           <div class="xb-redeem-detail__content-line" hide-xs></div>
-          <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="start center" ng-if="!isFacebookApp">
+          <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="start center" ng-if="!">
             <div class="xb-deals-detail__price" layout-xs="row" layout-gt-sm="row" layout-sm="column"
                  layout-align-sm="start start" layout-align-gt-sm="start end" layout-align-xs="start center" flex-xs>
               <span class="md-display-1 xb-bold">
