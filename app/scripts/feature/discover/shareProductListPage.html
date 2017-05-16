@@ -17,7 +17,7 @@
         <div infinite-scroll="productCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
              infinite-scroll-disabled="productCtrl.productsPaginator.loading || !productCtrl.productsPaginator.next">
           <share-product-list products="productCtrl.productsPaginator.items"></share-product-list>
-          <load-more class="row spin-large" ng-if="productCtrl.productsPaginator.loading"></load-more>
+          <load-more layout="row" layout-align="center center" ng-if="productCtrl.productsPaginator.loading"></load-more>
         </div>
       </div>
       <div flex="none" hide-sm hide-xs class="post-form">

@@ -1,0 +1,6 @@
+<div class="xb-ask-order" layout="row" layout-align="start center">
+  <md-button ng-repeat="order in orderList track by $index" ng-class="{true:'active'}[index == $index]" ng-click="changeOrder($index)">
+    {{order}}
+    <div ng-if="index == $index" class="tab-triangle"></div>
+  </md-button>
+</div>

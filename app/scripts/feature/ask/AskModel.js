@@ -1,23 +1,20 @@
 angular.module('xbertsApp')
-  .factory('ShareProduct', ['urlParser','$sce','$state',ShareProduct]);
-function ShareProduct(urlParser, $sce, $state) {
+  .factory('AskModel',['$state','urlParser','$sce',AskModel]);
+function AskModel($state,urlParser,$sce) {
 
-  function ShareProduct(data) {
+  function AskModel(data) {
     angular.extend(this, data);
   }
 
-  ShareProduct.prototype = {
+  AskModel.prototype = {
     getShareAvatar: function () {
       return this.owner.userprofile.avatar || false;
     },
     getShareName: function () {
       return this.owner.firstName;
     },
-    getImageOriginal: function() {
-      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:'';
-    },
-    getImageThumbnail: function() {
-      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.thumbnail:'';
+    getOwnerBadgePoint: function() {
+      return this.owner.badgePoint;
     },
     getShareUrl: function(id) {
       return $state.href("application.shareProductDetail", {reviewId:id},{absolute:true});
@@ -43,48 +40,28 @@ function ShareProduct(urlParser, $sce, $state) {
       }
       return baseUrl;
     },
-    getSharePrice: function () {
-      return this.salePrice.amount != '0.00' ? '$' + this.salePrice.amount : false;
-    },
-    getShareInteractId: function () {
-      return this.interact.id;
-    },
-    getShareInteractLike: function() {
-      return this.interact.voteAmount;
-    },
-    getPostId: function() {
-      return this.owner.id;
-    },
-    buyNow: function (category) {
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'buy-product-btn-click',
-          category:category,
-          productTitle: this.title
-        });
-      }
-
-      window.open(this.purchaseUrl);
+    getProdcutLink: function() {
+      return this.latestAnswer?this.latestAnswer.productLink.url:false;
     }
   };
 
-  ShareProduct.build = function (data) {
-    return new ShareProduct(data)
+  AskModel.build = function (data) {
+    return new AskModel(data)
   };
 
-  ShareProduct.buildPageList = function (data) {
+  AskModel.buildPageList = function (data) {
     data.results = data.results.map(function (item) {
-      return ShareProduct.build(item);
+      return AskModel.build(item);
     });
 
     return data;
   };
 
-  ShareProduct.buildList = function (data) {
+  AskModel.buildList = function (data) {
     return data.map(function (item) {
-      return ShareProduct.build(item);
+      return AskModel.build(item);
     })
   };
 
-  return ShareProduct;
+  return AskModel;
 }

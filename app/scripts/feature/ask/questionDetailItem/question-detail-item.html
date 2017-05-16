@@ -1,0 +1,47 @@
+<div class="xb-ask-list__item background-whitem">
+  <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
+  <div class="xb-ask-list__title md-headline md-dark-primary">{{product.title}}</div>
+  <div class="xb-ask-list__answer-content md-body-1">
+    {{product.description}}
+  </div>
+  <div class="xb-ask-list__actions-2" layout="row" layout-align="end center" hide-gt-xs >
+    <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
+                       ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+      <md-fab-trigger>
+        <md-button class="md-icon-button">
+          <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <i class="fa fa-{{item.name}} md-dark-third xb-deals-detail__color-{{$index}}" ng-class="{'md-margin-clear':''}[$index==2]" ng-repeat="item in shareList track by $index"
+           socialshare socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}"
+           socialshare-text="{{product.title}}" socialshare-media="{{product.coverUrl}}"
+           socialshare-source="{{product.coverUrl}}"
+           socialshare-url="{{inviteObj.shareUrl(product.getShareUrl(product.id), item.name)}}" aria-hidden="true"></i>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+  </div>
+  <div class="xb-ask-list__actions-1" layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex>
+      <md-button class="md-primary md-raised" xb-tabs xb-scroll-to="'xb-question-detail__dialog'" hide-xs>
+        Answer
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="answerQuestion()" hide-gt-xs>
+        Answer
+      </md-button>
+      <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+                 ng-click="follow(product)">Follow</md-button>
+      <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+      <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+                 ng-click="follow(product)">Following</md-button>
+      <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+    </div>
+    <div layout="row" layout-align="start center" hide-xs>
+      <i class="fa fa-{{item.name}} md-dark-third xb-deals-detail__color-{{$index}}" ng-repeat="item in shareList track by $index"
+         socialshare socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}"
+         socialshare-text="{{product.title}}" socialshare-media="{{product.coverUrl}}"
+         socialshare-source="{{product.coverUrl}}"
+         socialshare-url="{{inviteObj.shareUrl(product.getShareUrl(product.id), item.name)}}" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>

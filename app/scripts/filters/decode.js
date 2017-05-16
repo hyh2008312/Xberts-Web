@@ -59,4 +59,11 @@ angular.module('xbertsApp')
        var v= Number(number);
       return isNaN(v) ? 0 : Math.round(number * 100);
     };
+  })
+  .filter('reduceSentence', function () {
+    var _str;
+    return function (str,length) {
+      _str = str.length < length? str : str.substr(0,length);
+      return _str;
+    };
   });

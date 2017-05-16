@@ -81,7 +81,7 @@ angular.module('xbertsApp')
           clickOutsideToClose: true,
           disableParenScroll: true
         });
-      }
+      };
 
       var title = 'Xberts – Login';
       var description = "Log in to your Xberts account. It's good to have you back!";

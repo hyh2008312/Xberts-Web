@@ -1,0 +1,29 @@
+<section class="xb-section xb-ask-bg">
+  <div class="container">
+    <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
+      <div class="xb-section__title">
+        <h2><span class="md-display-1">Ask Xperts Community & Make Smart Purchasing Decision</span></h2>
+        <h3><span class="md-body-1 md-dark-secondary">Get product recommendations from our global community of savvy-shopper</span></h3>
+      </div>
+      <div flex="none">
+        <md-button class="md-raised md-primary" ng-click="askCtrl.addQuestion();">Ask Question</md-button>
+      </div>
+    </div>
+    <div layout="row" layout-align="start start">
+      <div flex>
+        <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
+        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+             infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
+          <question-item products="askCtrl.askPaginator.items"></question-item>
+          <load-more layout="row" layout-align="center center" ng-if="askCtrl.askPaginator.loading"></load-more>
+        </div>
+      </div>
+      <div class="xb-main-reviewer" hide-sm hide-xs>
+        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
+          Leaderboard
+        </div>
+        <answer-leaders leaders="askCtrl.topReviewers"></answer-leaders>
+      </div>
+    </div>
+  </div>
+</section>

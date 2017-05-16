@@ -1,0 +1,23 @@
+<md-dialog class="xb-question-dialog">
+  <div layout="row" layout-align="start center" hide-gt-xs>
+    <md-icon class="xb-question-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
+  </div>
+  <div class="xb-question-dialog__inner-container background-whitem">
+    <div class="md-subhead">Ask for Recommendations</div>
+    <form name="recommendation" novalidate ng-submit="askQuestion(question)" clear-form-error>
+      <md-input-container class="md-block">
+        <input required ng-model="question.title" type="text" name="question" placeholder="Question"/>
+        <div ng-messages="recommendation.question.$error">
+          <div ng-message="required">Please enter your question.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <input ng-model="question.description" type="text" name="description" placeholder="Add more details"/>
+      </md-input-container>
+      <div class="xb-question-dialog__actions" layout="row" layout-align="end center">
+        <md-button class="md-primary" type="submit">Post</md-button>
+        <md-button class="md-dark-secondary" ng-click="cancel()" >Cancel</md-button>
+      </div>
+    </form>
+  </div>
+</md-dialog>
