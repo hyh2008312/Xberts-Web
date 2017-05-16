@@ -4,10 +4,12 @@
       <div layout="row" layout-align="start start">
         <vote class="xb-question-detail__list-vote" layout="column" layout-align="start center" xb-style="true"></vote>
         <div class="xb-ask-list__head-bg" layout="row">
-          <avatar-Img src="product.getShareAvatar()" name="product.getShareName()"></avatar-Img>
+          <avatar-Img src="product.getAnswerUserAvatar()" name="product.getAnswerUserName()"
+            ui-sref="application.expert({ expertId:product.getAnswerUserId()})"></avatar-Img>
           <div layout="column" layout-align="space-between start">
-            <div class="md-subhead" layout="row" layout-align="start center">
-              {{product.getShareName()}}
+            <div class="md-subhead" layout="row" layout-align="start center"
+                 ui-sref="application.expert({ expertId:product.getAnswerUserId()})">
+              {{product.getAnswerUserName()}}
               <credit-badge class="credit-badge" points="product.getOwnerBadgePoint()"></credit-badge>
             </div>
             <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.created'></span></span>

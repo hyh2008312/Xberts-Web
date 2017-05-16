@@ -7,10 +7,13 @@ function AskModel($state,urlParser,$sce) {
   }
 
   AskModel.prototype = {
-    getShareAvatar: function () {
+    getAnswerUserId: function() {
+      return this.owner.id;
+    },
+    getAnswerUserAvatar: function () {
       return this.owner.userprofile.avatar || false;
     },
-    getShareName: function () {
+    getAnswerUserName: function () {
       return this.owner.firstName;
     },
     getOwnerBadgePoint: function() {
