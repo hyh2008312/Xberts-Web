@@ -48,6 +48,9 @@ angular.module('xbertsApp')
         case 'REPORT_RESUBMIT_REMINDER':
           $scope.actionBtnText = 'Edit Review';
           break;
+        case 'ANSWER':
+          $scope.actionBtnText = 'View More';
+          break;
         default:
           $scope.actionBtnText = 'View Details';
       }
