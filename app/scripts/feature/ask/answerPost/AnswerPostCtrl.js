@@ -3,13 +3,20 @@ angular.module('xbertsApp')
     function ($rootScope,$scope,UploadService,AskService,$stateParams,$state) {
 
       $scope.questionId = $stateParams.questionId;
+      $scope.disabled = false;
       $scope.formToggle = true;
       $scope.options = {
         height: 400,
         toolbar: [
           ['textsize', ['fontsize']],
           ['insert', ['link','video', 'picture']]
-        ]
+        ],
+        icons: {
+          'fontsize': 'fa fa-font',
+          'link': 'fa fa-link',
+          'picture': 'fa fa-picture-o',
+          'video': 'fa fa-youtube-play'
+        }
       };
 
       $scope.paste = function (e) {
@@ -72,6 +79,9 @@ angular.module('xbertsApp')
         }
       };
 
+      $scope.onChange = function (contents) {
+        $scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+      };
 
       $scope.submitForm = function(answer,answerForm){
         if(!$rootScope.user.authRequired()) {
@@ -89,12 +99,13 @@ angular.module('xbertsApp')
           question: $scope.questionId,
           description: answer.description
         };
-
+        $scope.disabled = true;
         // post start
         $scope.$emit('backdropOn', 'fetch project');
-        AskService.createAnswers(_product).then(function (newProduct) {
+        AskService.createAnswers(_product).then(function () {
           $scope.$emit('backdropOff', 'success');
-          $state.go('application.answerQuestionDetail({questionId:questionId})')
+          $state.go('application.answerQuestionDetail({questionId:questionId})');
+          $scope.disabled = false;
         }, function () {
           // tips
           $scope.$emit('backdropOff', 'project get error');

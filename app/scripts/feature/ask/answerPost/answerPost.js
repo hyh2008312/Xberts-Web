@@ -12,6 +12,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.disabled = false;
         scope.paste = function (e) {
           var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
@@ -72,6 +73,9 @@ angular.module('xbertsApp')
           }
         };
 
+        scope.onChange = function (contents) {
+          scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+        };
 
         scope.submitForm = function(answer,answerForm){
           if(!$rootScope.user.authRequired()) {
@@ -85,6 +89,11 @@ angular.module('xbertsApp')
             return;
           }
 
+          if (scope.description) {
+            scope.description = scope.description.replace(/pre-loading/ig, "");
+            scope.description = scope.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+          }
+
           var _product = {
             question: scope.questionId,
             description: answer.description
@@ -92,8 +101,10 @@ angular.module('xbertsApp')
 
           // post start
           scope.$emit('backdropOn', 'fetch project');
+          scope.disabled = true;
           AskService.createAnswers(_product).then(function (newProduct) {
             scope.$emit('backdropOff', 'success');
+            scope.disabled = false;
             scope.answer = {};
             scope.answer.description = null;
             scope.detailCtrl.addProduct(newProduct);

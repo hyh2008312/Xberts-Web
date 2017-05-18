@@ -11,7 +11,14 @@ angular.module('xbertsApp')
         ['textsize', ['fontsize']],
         ['insert', ['link','video', 'picture']],
         ['view', ['fullscreen']]
-      ]
+      ],
+      icons: {
+        'fontsize': 'fa fa-font',
+        'link': 'fa fa-link',
+        'picture': 'fa fa-picture-o',
+        'video': 'fa fa-youtube-play',
+        'fullscreen': 'fa fa-arrows-alt'
+      }
     };
 
     answerCtrl.addQuestion = function(ev) {
