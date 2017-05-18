@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('answerPost',['$rootScope','UploadService','AskService','growl',
-    function ($rootScope,UploadService, AskService,growl) {
+  .directive('answerPost',['$rootScope','UploadService','AskService',
+    function ($rootScope,UploadService, AskService) {
     return {
       restrict: 'E',
       scope: {
@@ -82,18 +82,12 @@ angular.module('xbertsApp')
           }
 
           if(!answer || !answer.description) {
-            growl.error('111');
             return;
           }
 
           var _product = {
             question: scope.questionId,
-            description: answer.description,
-            productLink: {
-              url:answer.productLink
-            },
-            image:answer.image,
-            videoUrl:answer.videoUrl
+            description: answer.description
           };
 
           // post start

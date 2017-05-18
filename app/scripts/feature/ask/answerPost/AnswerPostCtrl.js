@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','growl','$stateParams','$state',
-    function ($rootScope,$scope,UploadService,AskService,growl,$stateParams,$state) {
+  .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state) {
 
       $scope.questionId = $stateParams.questionId;
       $scope.formToggle = true;
@@ -82,18 +82,12 @@ angular.module('xbertsApp')
         }
 
         if(!answer || !answer.description) {
-          growl.error('111');
           return;
         }
 
         var _product = {
           question: $scope.questionId,
-          description: answer.description,
-          productLink: {
-            url:answer.productLink
-          },
-          image:answer.image,
-          videoUrl:answer.videoUrl
+          description: answer.description
         };
 
         // post start
