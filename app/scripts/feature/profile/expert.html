@@ -50,12 +50,12 @@
     </div>
   </div>
 </div>
-<section class="xb-my-profile__padding-top">
+<section class="xb-my-profile__padding-top" hide-xs>
   <div class="container">
-    <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink-bar>
+    <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
       <md-tab label="Biography" md-on-select="loadMyBio()">
         <div class="background-whitem xb-my-profile__margin-top">
-          <div ng-bind-html=" expert.biography | trust"></div>
+          <my-biography biography="expert.biography"></my-biography>
         </div>
       </md-tab>
 
@@ -70,13 +70,31 @@
         </div>
       </md-tab>
 
-      <md-tab label="Posts" md-on-select="loadMyPosts()">
+      <md-tab label="Posts">
         <div class="xb-my-profile__margin-top">
-          <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-               infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
-            <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-            <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
-          </div>
+          <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
+            <md-tab label="Finds" md-on-select="loadMyPosts()">
+              <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
+                <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+                <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+              </div>
+            </md-tab>
+            <md-tab label="Questions" md-on-select="loadMyQuestions()">
+              <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 2">
+                <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
+                <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+              </div>
+            </md-tab>
+            <md-tab label="Answers" md-on-select="loadMyAnswers()">
+              <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
+                <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
+                <load-more layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+              </div>
+            </md-tab>
+          </md-tabs>
         </div>
       </md-tab>
 
@@ -134,3 +152,25 @@
 
   </div>
 </section>
+<div class="xb-my-profile__mobile background-whitem" hide-gt-xs flex="noshrink">
+  <div class="md-subhead" layout="row" layout-align="space-between center"
+       ui-sref="application.protected.biography({expertId:expert.userId})">
+    Biography
+    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+  </div>
+  <div class="md-subhead" layout="row" layout-align="space-between center"
+       ui-sref="application.protected.trials({expertId:expert.userId})">
+    Trials
+    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+  </div>
+  <div class="md-subhead" layout="row" layout-align="space-between center"
+       ui-sref="application.protected.posts({expertId:expert.userId})">
+    Posts
+    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+  </div>
+  <div class="md-subhead" layout="row" layout-align="space-between center"
+       ui-sref="application.protected.referrals({expertId:expert.userId})">
+    Referrals
+    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+  </div>
+</div>

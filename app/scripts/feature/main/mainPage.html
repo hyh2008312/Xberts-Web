@@ -7,13 +7,15 @@
     </div>
     <deals-main-list layout="row" class="xb-main-scroll" deals="mainCtrl.dealsPaginator"></deals-main-list>
   </div>
-  <div class="container xb-main-bg">
-    <div class="xb-title" layout="row" layout-align="start end">
-      <h3 class="md-dark-primary" layout-fill>Try Latest Gadgets</h3>
-      <a class="md-body-1" ui-sref="application.testingcampaigns()">SEE MORE</a>
+  <div class="background-bg-white">
+    <div class="container xb-main-bg">
+      <div class="xb-title" layout="row" layout-align="start end">
+        <h3 class="md-dark-primary" layout-fill>Try Latest Gadgets</h3>
+        <a class="md-body-1" ui-sref="application.testingcampaigns()">SEE MORE</a>
+      </div>
+      <latest-trials-list hide-xs trials="mainCtrl.latestPaginater.items"></latest-trials-list>
+      <trials-main-list hide-gt-xs layout="row" class="xb-main-scroll" trials="mainCtrl.latestPaginater.items"></trials-main-list>
     </div>
-    <latest-trials-list hide-xs trials="mainCtrl.latestPaginater.items"></latest-trials-list>
-    <trials-main-list hide-gt-xs layout="row" class="xb-main-scroll" trials="mainCtrl.latestPaginater.items"></trials-main-list>
   </div>
   <div class="background-bg-white">
     <div class="container">
@@ -23,6 +25,13 @@
       </div>
       <discover-products-list products="mainCtrl.discoverProducts"></discover-products-list>
     </div>
+  </div>
+  <div class="container xb-main-bg">
+    <div class="xb-title" layout="row" layout-align="start end">
+      <h3 class="md-dark-primary" flex>Ask</h3>
+      <a class="md-body-1" ui-sref="application.shareProductList()">SEE MORE</a>
+    </div>
+    <discover-products-list products="mainCtrl.discoverProducts"></discover-products-list>
   </div>
   <div class="container xb-main-section">
     <div class="xb-title" layout="row" layout-align="start end">

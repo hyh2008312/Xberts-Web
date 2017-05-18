@@ -1,0 +1,57 @@
+<div layout="row">
+  <div class="xb-ask-list__item background-whitem">
+    <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='queslatestQuestionstion.created'></span></div>
+    <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:latestQuestions.id})">{{latestQuestions.title}}</a>
+    <div class="xb-ask-list__answer-content md-body-1" ng-if="!latestQuestions.latestAnswer && latestQuestions.description">
+      {{latestQuestions.description | reduceSentence:140}}{{latestQuestions.description.length>140?'...':''}}
+      <span ng-if="latestQuestions.description.length>140" ui-sref="application.answerQuestionDetail({questionId:question.id})">More</span>
+    </div>
+    <div ng-if="latestQuestions.latestAnswer">
+      <div class="xb-ask-list__head-bg" layout="row">
+        <avatar-Img src="latestQuestions.latestAnswer.owner.userprofile.avatar" name="latestQuestions.latestAnswer.owner.firstName"
+                    ui-sref="application.expert({ expertId:latestQuestions.latestAnswer.owner.id})"></avatar-Img>
+        <div layout="column" layout-align="space-between start">
+          <div class="md-subhead" layout="row" layout-align="start center"
+               ui-sref="application.expert({ expertId:product.latestAnswer.owner.id})">
+            {{latestQuestions.latestAnswer.owner.firstName}}
+            <credit-badge class="credit-badge" points="product.latestAnswer.owner.badgePoint"></credit-badge>
+          </div>
+          <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='latestQuestions.latestAnswer.created'></span></span>
+        </div>
+      </div>
+      <div class="xb-ask-list__answer-content xb-ask-list__answer-content-display md-body-1" ng-bind-html="latestQuestions.latestAnswer.description | trust"
+           ui-sref="application.answerQuestionDetail({questionId:latestQuestions.id})"></div>
+    </div>
+  </div>
+  <div class="xb-ask-list__item background-whitem" ng-repeat="question in questions track by $index">
+    <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">{{question.title}}</a>
+    <div class="xb-ask-list__actions" layout="row" layout-align="start center">
+      <div ng-switch="product.answerAmount">
+        <div ng-switch-when="0" >
+          <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">
+            Be the first to answer
+          </md-button>
+        </div>
+        <div ng-switch-when="1" layout="row" layout-align="start center">
+          <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">
+            Answer
+          </md-button>
+          <span class="xb-ask-list__color">&nbsp;1</span>
+        </div>
+        <div ng-switch-default layout="row" layout-align="start center">
+          <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">
+            Answers
+          </md-button>
+          <span class="xb-ask-list__color">&nbsp;{{question.answerAmount}}</span>
+        </div>
+      </div>
+      <md-button ng-if="!question.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+                 ng-click="follow(question)">Follow</md-button>
+      <span class="md-dark-secondary" ng-if="!question.currentUser.follow" >&nbsp;{{question.followeeCount > 0? question.followeeCount:''}}</span>
+      <md-button ng-if="question.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+                 ng-click="follow(question)">Following</md-button>
+      <span class="md-dark-secondary" ng-if="question.currentUser.follow" >&nbsp;{{question.followeeCount > 0? question.followeeCount:''}}</span>
+    </div>
+  </div>
+</div>
+

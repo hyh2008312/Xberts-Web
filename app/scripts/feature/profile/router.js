@@ -93,4 +93,59 @@ angular
           }]
         }
       })
+      .state('application.protected.biography', {
+        url: '/profile/biography?expertId',
+        templateUrl: 'scripts/feature/profile/myBiography/myBiographyCtrl.html',
+        controller: 'MyBiographyCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      })
+      .state('application.protected.trials', {
+        url: '/profile/trials?expertId',
+        templateUrl: 'scripts/feature/profile/myTrials/myTrialsCtrl.html',
+        controller: 'MyTrialsCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          reviewApplicantPaginator: ['Paginator', '$rootScope','ApplicationService', '$stateParams',
+            function (Paginator, $rootScope,ApplicationService, $stateParams) {
+            var filter = '';
+            if ($rootScope.user.getUserId() != $stateParams.expertId) {
+              filter = {is_submit_report: true};
+            }
+            var par = {
+              name: 'trials_' + $stateParams.expertId,
+              params: {reviewer_id: $stateParams.expertId},
+              filter: filter,
+              fetchFunction: ApplicationService.getApplications
+            };
+            return new Paginator(par);
+          }]
+        }
+      })
+      .state('application.protected.posts', {
+        url: '/profile/posts?expertId',
+        templateUrl: 'scripts/feature/profile/myPostList/MyPostCtrl.html',
+        controller: 'MyPostsCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      })
+      .state('application.protected.referrals', {
+        url: '/profile/referrals?expertId',
+        templateUrl: 'scripts/feature/profile/myReferrals/myReferralsCtrl.html',
+        controller: 'MyReferralsCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      })
   }]);

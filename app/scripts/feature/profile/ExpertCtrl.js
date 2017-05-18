@@ -3,14 +3,16 @@
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
     'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct','ExpertService',
+    'AskModel','AskService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
-              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService) {
+              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService,AskModel,AskService) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
 
       $scope.selectedIndex = 0;
+      $scope.selectedIndex1 = 0;
 
       var tabIndexToParam = ['profile', 'trials', 'posts', 'referrals', 'campaigns'];
 
@@ -51,6 +53,8 @@ angular.module('xbertsApp')
         $scope.reviewApplicantPaginator = new Paginator(par);
       };
 
+
+
       $scope.loadMyCampaings = function () {
         updateUrl();
         if ($scope.campaignPaginator) return;
@@ -70,14 +74,44 @@ angular.module('xbertsApp')
         name: 'posts_' + $scope.expert.userId,
         objClass: ShareProduct,
         params: {
-          owner: $scope.expert.userId
+          owner: $scope.expert.userId,
+          page_size:12
         },
         fetchFunction: ShareProductService.getList
       };
       $scope.postsProductPaginator = new Paginator(par);
 
+      var parQuestion = {
+        name: 'questions_list_' + $scope.expert.userId,
+        objClass: AskModel,
+        params: {
+          owner: $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: AskService.getList
+      };
+      $scope.postsQuestionPaginator = new Paginator(parQuestion);
+
+      var parAnswers = {
+        name: 'answers_list_' + $scope.expert.userId,
+        objClass: AskModel,
+        params: {
+          owner: $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: AskService.getAnswersList
+      };
+      $scope.postsAnswerPaginator = new Paginator(parAnswers);
 
       $scope.loadMyPosts = function () {
+        updateUrl();
+      };
+
+      $scope.loadMyQuestions = function() {
+        updateUrl();
+      };
+
+      $scope.loadMyAnswers = function() {
         updateUrl();
       };
 

@@ -1,29 +1,20 @@
 <div class="xb-question-detail__dialog background-whitem" id="xb-question-detail__dialog">
-  <div layout="row" layout-align="start center" hide-gt-xs>
-    <md-icon class="xb-question-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
-  </div>
-  <div class="md-subhead xb-question-detail__dialog-title">Answer</div>
+  <div class="md-subhead xb-question-detail__dialog-title" hide-xs>Answer</div>
   <div class="xb-edit-post" layout="row" layout-align="start start">
     <form name="answerForm" novalidate ng-if="formToggle" clear-form-error flex>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
                   on-paste="paste(evt)" ng-model="answer.description"></summernote>
-      <md-input-container class="md-block" md-no-float>
-        <input ng-model="answer.productLink" type="url" name="link" placeholder="If you want to recommend a product, please paste a purchase link here"/>
-      </md-input-container>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" hide-gt-xs ng-click="cancel()">Cancel</md-button>
+        <md-button class="md-dark-secondary" ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
     <form name="answerForm" novalidate ng-if="!formToggle" clear-form-error flex>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
                   on-paste="paste(evt)" ng-model="answer.description"></summernote>
-      <md-input-container class="md-block" md-no-float>
-        <input ng-model="answer.productLink" type="url" name="link" placeholder="If you want to recommend a product, please paste a purchase link here"/>
-      </md-input-container>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" hide-gt-xs ng-click="cancel()">Cancel</md-button>
+        <md-button class="md-dark-secondary" ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
   </div>

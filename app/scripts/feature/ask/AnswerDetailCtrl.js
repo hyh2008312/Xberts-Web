@@ -9,11 +9,8 @@ angular.module('xbertsApp')
       height: 300,
       toolbar: [
         ['textsize', ['fontsize']],
-        ['insert', ['video', 'picture']],
+        ['insert', ['link','video', 'picture']],
         ['view', ['fullscreen']]
-      ],
-      popover: [
-        ['fontsize',['14px', '16px']]
       ]
     };
 

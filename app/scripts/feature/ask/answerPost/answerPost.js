@@ -12,8 +12,6 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       link: function (scope, element, attrs, ctrls) {
 
-        scope.formToggle = true;
-
         scope.paste = function (e) {
           var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
@@ -39,6 +37,7 @@ angular.module('xbertsApp')
           img.setAttribute('url',url);
           var div = document.createElement('div');
           div.appendChild(img);
+          div.setAttribute('class', 'xb-answer-img-bg');
           element.find('.summernote').summernote('insertNode', div);
 
           img.setAttribute('class', 'pre-loading');
@@ -103,7 +102,6 @@ angular.module('xbertsApp')
             scope.$emit('backdropOff', 'success');
             scope.answer = {};
             scope.answer.description = null;
-            scope.formToggle = !scope.formToggle;
             scope.detailCtrl.addProduct(newProduct);
             var scrollTop = angular.element('.xb-body-view').scrollTop();
             angular.element('.xb-body-view').scrollTop(scrollTop + angular.element('.xb-question-detail__answer-title').offset().top - 20);

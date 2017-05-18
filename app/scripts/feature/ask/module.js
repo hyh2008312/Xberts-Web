@@ -52,5 +52,11 @@ angular.module('xbertsApp')
           return new Paginator(par).load();
         }]
       }
+    })
+    .state('application.answerPost', {
+      url: '/answer?questionId',
+      templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
+      reloadOnSearch: false,
+      controller: 'AnswerPostCtrl'
     });
   }]);

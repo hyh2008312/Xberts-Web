@@ -49,7 +49,11 @@
     <h2 ng-if="state.current.name == 'application.signup'">Sign up</h2>
     <h2 ng-if="state.current.name == 'application.login'">Log in
     <h2 ng-if="state.current.name == 'application.protected.message.inbox'">Messages</h2>
-    <h2 ng-if="state.current.name == 'application.expert'">My Profile</h2>
+    <h2 ng-if="state.current.name == 'application.expert'
+     || state.current.name == 'application.protected.biography'
+     || state.current.name == 'application.protected.trials'
+     || state.current.name == 'application.protected.posts'
+     || state.current.name == 'application.protected.referrals'">My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.about'">About us</h2>
     <h2 ng-if="state.current.name == 'application.protected.invite'">Invite Friends</h2>
@@ -57,6 +61,7 @@
     <h2 ng-if="state.current.name == 'application.terms'">Terms</h2>
     <h2 ng-if="state.current.name == 'application.privacy'">Privacy</h2>
     <h2 ng-if="state.current.name == 'application.shippingAddress'">Shipping Address</h2>
+    <h2 ng-if="state.current.name == 'application.answerPost'">Answer</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'

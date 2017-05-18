@@ -29,6 +29,9 @@
     .md-padding{
       padding: 0;
     }
+    >.md-button{
+      margin: 0;
+    }
   }
   &__margin-top{
     margin-top: 24px;
@@ -248,7 +251,7 @@
     @include resetBorder();
     @include xb-xs-screen{
       margin-bottom: 0;
-      padding: 0 8px;
+      padding: 16px 8px 0;
       @include box-shadow(none)
     }
     avatar-img{
@@ -292,6 +295,10 @@
       border-color: transparent;
     }
     .note-editable img{
+      max-width: 100% !important;
+      width: auto !important;
+    }
+    .note-editable iframe{
       max-width: 100% !important;
       width: auto !important;
     }
@@ -367,4 +374,8 @@
   .active{
     color: $PrimaryINDIGO;
   }
+}
+.xb-answer-img-bg{
+  margin: auto;
+  text-align: center;
 }

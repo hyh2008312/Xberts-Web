@@ -3,10 +3,10 @@
     <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
-  <div ng-if="product.getImageOriginal() != ''" class="recommend-list__image-content">
-    <img ng-src="{{product.getImageOriginal()}}" ui-sref="application.shareProductDetail({reviewId:product.id})" class="md-card-image" alt="" />
+  <div ng-if="product.getImageOriginal() != ''" class="recommend-list__image-content" ui-sref="application.shareProductDetail({reviewId:product.id})" >
+    <img ng-src="{{product.getImageOriginal()}}" class="md-card-image" alt="" />
     <div class="recommend-list__image-button-bg" layout="row" layout-align="center center">
-      <div class="recommend-list__image-button" ui-sref="application.shareProductDetail({reviewId:product.id})" layout="row" layout-align="center center" >
+      <div class="recommend-list__image-button" layout="row" layout-align="center center" >
         <md-icon>play_arrow</md-icon>
       </div>
     </div>

@@ -68,7 +68,18 @@ angular.module('xbertsApp')
               fetchFunction:MainService.getRecommendedReviewers
             };
             return new Paginator(par).load();
-          }]
+          }],
+          askPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
+            var par = {
+              name: 'main_ask_questions_list',
+              objClass: AskModel,
+              params: {
+                page_size: 4
+              },
+              fetchFunction: AskService.getList
+            };
+            return new Paginator(par).load();
+          }],
         }
       })
 
