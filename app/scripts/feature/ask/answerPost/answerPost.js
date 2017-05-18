@@ -89,9 +89,9 @@ angular.module('xbertsApp')
             return;
           }
 
-          if (scope.description) {
-            scope.description = scope.description.replace(/pre-loading/ig, "");
-            scope.description = scope.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+          if (answer.description) {
+            answer.description = answer.description.replace(/pre-loading/ig, "");
+            answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
           }
 
           var _product = {
