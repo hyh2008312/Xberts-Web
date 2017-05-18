@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct','ExpertService',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
               ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService) {
-      $rootScope.pageSettings.setBackgroundColor('background-whitem');
+      $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);

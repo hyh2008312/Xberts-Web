@@ -1,10 +1,21 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    'UploadService','growl',
-    function ($rootScope, productsDetail, answerPaginator, $mdDialog,$state, AskService,UploadService,growl) {
+    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService) {
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
+
+    answerCtrl.options = {
+      height: 300,
+      toolbar: [
+        ['textsize', ['fontsize']],
+        ['insert', ['video', 'picture']],
+        ['view', ['fullscreen']]
+      ],
+      popover: [
+        ['fontsize',['14px', '16px']]
+      ]
+    };
 
     answerCtrl.addQuestion = function(ev) {
       $mdDialog.show({

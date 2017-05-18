@@ -4,69 +4,25 @@
   </div>
   <div class="md-subhead xb-question-detail__dialog-title">Answer</div>
   <div class="xb-edit-post" layout="row" layout-align="start start">
-    <avatar-img src="user.getUserAvatar()" name="user.getUserName()" ng-if="user.getUserAvatar()"></avatar-img>
-    <form name="productForm" novalidate ng-if="formToggle" lear-form-error flex>
+    <form name="answerForm" novalidate ng-if="formToggle" clear-form-error flex>
+      <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
+                  on-paste="paste(evt)" ng-model="answer.description"></summernote>
       <md-input-container class="md-block" md-no-float>
-        <input required ng-model="product.description" name="description" placeholder="Write your answer"/>
-        <div ng-messages="productForm.description.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
+        <input ng-model="answer.productLink" type="url" name="link" placeholder="If you want to recommend a product, please paste a purchase link here"/>
       </md-input-container>
-      <md-input-container class="md-block" md-no-float>
-        <input ng-model="product.productLink" type="url" name="link" placeholder="Paste a product link"/>
-      </md-input-container>
-      <div hide>
-        <div class="md-body-1 md-dark-secondary">Upload a Product Picture</div>
-        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
-             ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
-          <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
-        </div>
-        <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
-          <img ngf-src="file || product.getImageOriginal()" flex="initial" />
-          <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
-            <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
-          </div>
-        </div>
-        <div class="md-body-1 md-dark-secondary">Upload a Product Video</div>
-        <md-input-container class="md-block" md-no-float>
-          <input ng-model="product.videoUrl" type="url" name="videoUrl" placeholder="https://"/>
-          <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
-        </md-input-container>
-      </div>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
-        <md-button class="md-primary" ng-click="submitForm(product, productForm)">Post</md-button><md-button class="md-dark-secondary" hide-gt-xs ng-click="cancel()">Cancel</md-button>
+        <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
+        <md-button class="md-dark-secondary" hide-gt-xs ng-click="cancel()">Cancel</md-button>
       </div>
     </form>
-    <form name="productForm" novalidate ng-submit="submitForm(product)" ng-if="!formToggle" lear-form-error flex>
+    <form name="answerForm" novalidate ng-if="!formToggle" clear-form-error flex>
+      <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
+                  on-paste="paste(evt)" ng-model="answer.description"></summernote>
       <md-input-container class="md-block" md-no-float>
-        <input required ng-model="product.description" name="description" placeholder="Write your answer"/>
-        <div ng-messages="productForm.description.$error">
-          <div ng-message="required">This is required!</div>
-        </div>
+        <input ng-model="answer.productLink" type="url" name="link" placeholder="If you want to recommend a product, please paste a purchase link here"/>
       </md-input-container>
-      <md-input-container class="md-block" md-no-float>
-        <input ng-model="product.productLink" type="url" name="link" placeholder="Paste a product link"/>
-      </md-input-container>
-      <div hide>
-        <div class="md-body-1 md-dark-secondary">Upload a Product Picture</div>
-        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
-             ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
-          <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
-        </div>
-        <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
-          <img ngf-src="file || product.getImageOriginal()" flex="initial" />
-          <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
-            <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
-          </div>
-        </div>
-        <div class="md-body-1 md-dark-secondary">Upload a Product Video</div>
-        <md-input-container class="md-block" md-no-float>
-          <input ng-model="product.videoUrl" type="url" name="videoUrl" placeholder="https://"/>
-          <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
-        </md-input-container>
-      </div>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
-        <md-button class="md-primary" ng-click="submitForm(product, productForm);">Post</md-button>
+        <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
         <md-button class="md-dark-secondary" hide-gt-xs ng-click="cancel()">Cancel</md-button>
       </div>
     </form>

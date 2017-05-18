@@ -35,7 +35,7 @@
       line-height: 24px;
       height: 60px;
       @include ellipsisText();
-      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
     }
 
   }
@@ -207,7 +207,7 @@
       top: -9px;
       height: 13px;
       width: 1px;
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.06);
       @include transform(rotate(-45deg));
     }
     &:after{
@@ -217,7 +217,7 @@
       top: -9px;
       height: 13px;
       width: 1px;
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.06);
       @include transform(rotate(45deg));
     }
   }

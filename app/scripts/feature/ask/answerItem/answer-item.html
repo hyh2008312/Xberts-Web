@@ -16,9 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="xb-ask-list__answer-content md-body-1" >
-        {{product.description}}
-      </div>
+      <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="product.description | trust"></div>
       <a class="xb-ask-list__answer-content" ng-if="product.productLink" ng-href="product.productLink.url" target="_blank">
         {{product.productLink.url}}
       </a>

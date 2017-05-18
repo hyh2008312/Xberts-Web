@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','growl',
-    function ($rootScope,AskService,InviteService,$mdDialog,growl) {
+  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog',
+    function ($rootScope,AskService,InviteService,$mdDialog) {
     return {
       restrict: 'E',
       scope: {
@@ -49,8 +49,7 @@ angular.module('xbertsApp')
                 $mdDialog.cancel();
               };
               scope.user = $rootScope.user;
-              scope.product = {};
-              scope.product.imageGroup = [];
+              scope.answer = {};
               scope.imgLoaded = false;
               scope.showMask = false;
               scope.formToggle = true;
@@ -61,16 +60,13 @@ angular.module('xbertsApp')
               scope.offDeleteImage = function() {
                 scope.showMask = false;
                 scope.imgLoaded = false;
-                scope.product.imageGroup = [];
+                scope.answer.image = null;
               };
 
               var coverSuccessCallback = function (data) {
                 scope.showMask = false;
                 scope.imgLoaded = true;
-                scope.product.imageGroup.push({
-                  index: 0,
-                  image: data.data.id
-                })
+                scope.answer.image = data.data.id;
               };
               var errorCallback = function (error) {
                 // Don't display error when user cancels upload
@@ -88,35 +84,35 @@ angular.module('xbertsApp')
                 }
               };
 
-              scope.submitForm = function(product,productForm){
+              scope.submitForm = function(answer,answerForm){
                 if(!$rootScope.user.authRequired()) {
                   scope.cancel();
                   return;
                 }
-                if (!productForm.$valid) {
+                if (!answerForm.$valid) {
                   return;
                 }
 
                 var _product = {
                   question: scope.questionId,
-                  description: product.description,
+                  description: answer.description,
                   productLink: {
-                    url:product.productLink
-                  }
+                    url:answer.productLink
+                  },
+                  image:answer.image,
+                  videoUrl:answer.videoUrl
                 };
 
                 // post start
                 scope.$emit('backdropOn', 'fetch project');
                 AskService.createAnswers(_product).then(function (newProduct) {
                   scope.$emit('backdropOff', 'success');
-                  scope.product = {
-                    imageGroup : []
-                  };
+                  scope.answer = {};
                   scope.offDeleteImage();
                   scope.formToggle = !scope.formToggle;
                   scope.detailCtrl.addProduct(newProduct);
-                  growl.success('Comment success');
                   scope.cancel();
+                  angular.element('.xb-body-view').scrollTop(angular.element('.xb-question-detail__answer-title').offset().top);
                 }, function () {
                   // tips
                   scope.$emit('backdropOff', 'project get error');

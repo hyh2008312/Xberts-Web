@@ -52,38 +52,42 @@
 </div>
 <section class="xb-my-profile__padding-top">
   <div class="container">
-    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+    <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink-bar>
       <md-tab label="Biography" md-on-select="loadMyBio()">
-        <div class="md-padding">
+        <div class="background-whitem xb-my-profile__margin-top">
           <div ng-bind-html=" expert.biography | trust"></div>
         </div>
       </md-tab>
 
-      <md-tab label="My Trials" md-on-select="loadMyTrials()">
-        <div class="row section-body" infinite-scroll="reviewApplicantPaginator.loadNext()"
-             infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-             infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
-          <my-trials trials="reviewApplicantPaginator.items"></my-trials>
+      <md-tab label="Trials" md-on-select="loadMyTrials()">
+        <div class="background-whitem xb-my-profile__margin-top">
+          <div infinite-scroll="reviewApplicantPaginator.loadNext()"
+               infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+               infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
+            <my-trials trials="reviewApplicantPaginator.items"></my-trials>
+            <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading"></load-more>
+          </div>
         </div>
-        <load-more class="row spin-large" ng-if="reviewApplicantPaginator.loading"></load-more>
       </md-tab>
 
-      <md-tab label="My Posts" md-on-select="loadMyPosts()">
-        <div>
+      <md-tab label="Posts" md-on-select="loadMyPosts()">
+        <div class="xb-my-profile__margin-top">
           <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
             <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+            <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
           </div>
-          <load-more class="row spin-large" ng-if="postsProductPaginator.loading"></load-more>
         </div>
       </md-tab>
 
-      <md-tab label="My Referrals" md-on-select="loadMyReferrals()">
-        <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
+      <md-tab label="Referrals" md-on-select="loadMyReferrals()">
+        <div class="background-whitem xb-my-profile__margin-top">
+         <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
+        </div>
       </md-tab>
 
       <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
-        <div class="md-padding">
+        <div class="background-whitem xb-my-profile__margin-top">
           <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
             <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
