@@ -19,7 +19,8 @@ angular.module('xbertsApp')
         'picture': 'fa fa-picture-o',
         'video': 'fa fa-youtube-play',
         'arrowsAlt': 'fa fa-arrows-alt'
-      }
+      },
+      fontSizes: ['14', '18']
     };
 
     answerCtrl.addQuestion = function(ev) {

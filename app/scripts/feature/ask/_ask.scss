@@ -299,6 +299,7 @@
     .note-editor.note-frame{
       width: 100%;
       border: 1px solid rgba(0,0,0,.08);
+      position: relative;
     }
     .btn-default{
       background: #f5f5f5;
@@ -311,16 +312,6 @@
     .note-editable iframe{
       max-width: 100% !important;
       width: auto !important;
-    }
-    .dropdown-menu{
-      li{
-        $items: 1 2 3 4 5 8 9;
-        @each $item in $items{
-          &:nth-child(#{$item}) {
-            display: none;
-          }
-        }
-      }
     }
   }
   &__list{
@@ -414,4 +405,13 @@
       cursor: pointer;
     }
   }
+}
+body{
+  >.modal-backdrop.in{
+    display: none !important;
+  }
+}
+.modal{
+  top:56px;
+  margin: 10px 15px;
 }

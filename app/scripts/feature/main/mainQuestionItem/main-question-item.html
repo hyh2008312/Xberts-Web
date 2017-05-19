@@ -29,7 +29,7 @@
     <div class="xb-ask-list__item" ng-repeat="question in questions track by $index">
       <a class="xb-ask-list__title md-subhead md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">{{question.title}}</a>
       <div class="xb-ask-list__actions" layout="row" layout-align="start center">
-        <div ng-switch="product.answerAmount">
+        <div ng-switch="question.answerAmount">
           <div ng-switch-when="0" >
             <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">
               Be the first to answer

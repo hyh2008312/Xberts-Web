@@ -3,6 +3,7 @@ angular.module('xbertsApp')
     'localStorageService','growl',
     function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl) {
 
+
       $scope.detailCharacterCount = 0;
       $scope.questionId = $stateParams.questionId;
       $scope.disabled = false;
@@ -18,7 +19,8 @@ angular.module('xbertsApp')
           'link': 'fa fa-link',
           'picture': 'fa fa-picture-o',
           'video': 'fa fa-youtube-play'
-        }
+        },
+        fontSizes: ['14', '18']
       };
 
       $scope.paste = function (e) {
@@ -86,7 +88,7 @@ angular.module('xbertsApp')
           .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
       };
 
-      $scope.submitForm = function(answer,answerForm){
+      $scope.submitForm = function(answer,answerForm) {
         if(!$rootScope.user.authRequired()) {
           return;
         }
