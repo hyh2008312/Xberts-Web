@@ -38,9 +38,14 @@ angular.module('xbertsApp')
         productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
           return AskService.getQuestionsDetail($stateParams.questionId);
         }],
-        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService', function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
+        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService',
+        function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
+          localStorageService.remove('ask_answers_list' + '_currentPage');
+          localStorageService.remove('ask_answers_list' + '_items');
+          localStorageService.remove('ask_answers_list' + '_next');
+          localStorageService.remove('ask_answers_list' + '_count');
           var par = {
-            name: 'ask_answers_list' + $stateParams.questionId,
+            name: 'ask_answers_list',
             objClass: AskModel,
             params: {
               question: $stateParams.questionId,

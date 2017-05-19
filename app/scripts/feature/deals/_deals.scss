@@ -112,10 +112,10 @@
   }
   &__content{
     padding: 0 16px;
-    height: 155px;
+    height: 135px;
     @include xb-xs-screen{
       padding: 0 8px 8px;
-      height: 140px;
+      height: 125px;
     }
   }
   &__tag{

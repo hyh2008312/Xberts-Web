@@ -76,7 +76,8 @@ angular.module('xbertsApp')
         };
 
         scope.onChange = function (contents) {
-          scope.detailCharacterCount = contents.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+          scope.detailCharacterCount = contents.replace("< *iframe(.|/r|/n)+?/iframe *>","")
+            .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
         };
 
         scope.submitForm = function(answer,answerForm){
