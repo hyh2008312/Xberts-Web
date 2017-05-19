@@ -407,10 +407,15 @@
   }
 }
 body{
-  >.modal-backdrop.in{
-    display: none !important;
+  @include xb-xs-screen{
+    >.modal-backdrop.in{
+      display: none !important;
+    }
   }
+
 }
 .modal{
-  padding:70px 15px;
+  @include xb-xs-screen{
+    padding:70px 15px;
+  }
 }
