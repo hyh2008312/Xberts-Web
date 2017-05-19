@@ -1,7 +1,7 @@
 <div class="xb-main-ask-list" layout-gt-xs="row" layout-xs="column">
   <div class="background-whitem" flex-gt-xs="33" hide-xs>
     <div class="xb-ask-list__item" >
-      <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='queslatestQuestionstion.created'></span></div>
+      <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='latestQuestionstion.created'></span></div>
       <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:latestQuestions.id})">{{latestQuestions.title}}</a>
       <div class="xb-ask-list__answer-content md-body-1" ng-if="!latestQuestions.latestAnswer && latestQuestions.description">
         {{latestQuestions.description | reduceSentence:140}}{{latestQuestions.description.length>140?'...':''}}
