@@ -13,11 +13,11 @@ angular.module('xbertsApp')
         ['view', ['fullscreen']]
       ],
       icons: {
-        'fontsize': 'fa fa-font',
+        'caret': 'caret',
         'link': 'fa fa-link',
         'picture': 'fa fa-picture-o',
         'video': 'fa fa-youtube-play',
-        'fullscreen': 'fa fa-arrows-alt'
+        'arrowsAlt': 'fa fa-arrows-alt'
       }
     };
 

@@ -12,7 +12,7 @@ angular.module('xbertsApp')
           ['insert', ['link','video', 'picture']]
         ],
         icons: {
-          'fontsize': 'fa fa-font',
+          'caret': 'caret',
           'link': 'fa fa-link',
           'picture': 'fa fa-picture-o',
           'video': 'fa fa-youtube-play'
