@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
   .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state) {
+    'localStorageService',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService) {
 
       $scope.questionId = $stateParams.questionId;
       $scope.disabled = false;
@@ -72,7 +73,7 @@ angular.module('xbertsApp')
 
       $scope.imageUpload = function (files) {
         for (var i = 0; i < files.length; i++) {
-          UploadService.uploadFile(files[i], 'ANSWER', scope)
+          UploadService.uploadFile(files[i], 'ANSWER', $scope)
             .then(function (data) {
               imageSuccessCallback(data.data);
             }, errorCallback);
@@ -95,6 +96,10 @@ angular.module('xbertsApp')
           return;
         }
 
+        if($scope.detailCharacterCount<150) {
+          return;
+        }
+
         if (answer.description) {
           answer.description = answer.description.replace(/pre-loading/ig, "");
           answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
@@ -109,7 +114,11 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOn', 'fetch project');
         AskService.createAnswers(_product).then(function () {
           $scope.$emit('backdropOff', 'success');
-          $state.go('application.answerQuestionDetail({questionId:questionId})');
+          localStorageService.remove('ask_answers_list' + '_currentPage');
+          localStorageService.remove('ask_answers_list' + '_items');
+          localStorageService.remove('ask_answers_list' + '_next');
+          localStorageService.remove('ask_answers_list' + '_count');
+          $state.go('application.answerQuestionDetail',{questionId:$scope.questionId});
           $scope.disabled = false;
         }, function () {
           // tips

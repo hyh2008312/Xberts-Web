@@ -596,6 +596,14 @@
     &:last-child{
       border-bottom: none;
     }
+    a.md-subhead{
+      color: rgba(0,0,0,.87);
+      font-size: 14px;
+      text-decoration: none;
+      &:hover{
+        color: rgba(0,0,0,.87);
+      }
+    }
   }
   &__title{
     height: 56px;

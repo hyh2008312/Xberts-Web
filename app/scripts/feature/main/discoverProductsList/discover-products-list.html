@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="xb-main-discover" flex="none" hide-sm hide-xs>
-    <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row" layout-align="start start"
+    <div ng-repeat="product in products track by $index" ng-if="$index < 5" layout="row"
          ng-click="changeShowProduct($index)" ng-class="{true:'active',false:''}[$index == index]">
       <div class="xb-main-discover__img-content" flex="none" >
         <img ng-src="{{product.getImageThumbnail()}}" />

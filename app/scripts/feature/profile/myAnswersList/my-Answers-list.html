@@ -7,10 +7,11 @@
   </div>
   <interact class="xb-my-answers__bottom" interact="post.interact">
     <div class="xb-my-answers__actions" layout="row" layout-align="start center">
-      <vote class="xb-my-answers__vote" layout="row" layout-align="start center" xb-style="true"></vote>
-      <div class="xb-my-answers__margin-left md-dark-primary" layout="row" layout-align="start center" ng-click="onToggleDown(post);">
-        COMMENTS<span class="md-dark-secondary">{{post.interact.voteAmount}}</span>
+      <vote layout="row" layout-align="start center" ></vote>
+      <div layout="row" layout-align="start center">
+        <md-icon flex="none" ng-click="onToggleDown(post);">sms</md-icon>
       </div>
+      <comment-amounts layout="row" layout-align="start center"></comment-amounts>
       <div layout="row" layout-align="end center" class="md-dark-secondary" flex>{{post.created|amDateFormat:'MM.DD.YYYY'}}</div>
     </div>
     <div ng-show="post.commentToggle">

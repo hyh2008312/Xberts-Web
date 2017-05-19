@@ -3,11 +3,13 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        products: '='
+        answers: '='
       },
       templateUrl: 'scripts/feature/ask/answerItem/answer-item.html',
       link: function (scope, element, attrs, ctrls) {
-
+        scope.onToggleDown = function(answer) {
+          answer.commentToggle = !answer.commentToggle;
+        }
       }
     }
   });

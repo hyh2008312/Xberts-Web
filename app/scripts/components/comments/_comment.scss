@@ -1,7 +1,15 @@
-
+.xb2-comment-form{
+  md-input-container{
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+  .md-button{
+    margin: 0;
+  }
+}
 .xb2-comment-list{
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 .xb2-comment{
   margin-bottom: 16px;

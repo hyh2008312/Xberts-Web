@@ -89,6 +89,10 @@ angular.module('xbertsApp')
             return;
           }
 
+          if(scope.detailCharacterCount<150) {
+            return;
+          }
+
           if (answer.description) {
             answer.description = answer.description.replace(/pre-loading/ig, "");
             answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");

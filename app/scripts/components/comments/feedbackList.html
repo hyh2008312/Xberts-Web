@@ -1,5 +1,5 @@
 <div class="md-padding">
-  <form name="feedbackForm" novalidate ng-if="formToggle">
+  <form name="feedbackForm" class="xb2-comment-form" novalidate ng-if="formToggle">
     <md-input-container class="md-block" md-no-float>
       <textarea name='details' ng-model="newFeedback.details" required placeholder="write a comment" minlength="15" ></textarea>
       <div class="help-block" ng-messages="feedbackForm.details.$error">
@@ -11,7 +11,7 @@
     </md-input-container>
   </form>
 
-  <form name="feedbackForm" novalidate ng-if="!formToggle">
+  <form name="feedbackForm" class="xb2-comment-form" novalidate ng-if="!formToggle">
     <md-input-container class="md-block" md-no-float>
     <textarea name='details' ng-model="newFeedback.details" required placeholder="write a comment" minlength="15" ></textarea>
       <div class="help-block" ng-messages="feedbackForm.details.$error">

@@ -689,9 +689,11 @@
   }
   &__actions{
     height: 40px;
-    .md-dark-primary{
-      @include media();
+    span{
+      margin-left: 8px;
+      margin-right: 24px;
     }
+
   }
   &__content{
     margin-top: 8px;
