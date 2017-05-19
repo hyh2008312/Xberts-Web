@@ -38,10 +38,9 @@ angular.module('xbertsApp')
         productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
           return AskService.getQuestionsDetail($stateParams.questionId);
         }],
-        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams',
-          function (Paginator, AskService, AskModel, $stateParams) {
+        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService', function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
           var par = {
-            name: 'ask_answers_list',
+            name: 'ask_answers_list' + $stateParams.questionId,
             objClass: AskModel,
             params: {
               question: $stateParams.questionId,

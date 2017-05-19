@@ -1,8 +1,9 @@
 angular.module('xbertsApp')
   .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService) {
+    'localStorageService','growl',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl) {
 
+      $scope.detailCharacterCount = 0;
       $scope.questionId = $stateParams.questionId;
       $scope.disabled = false;
       $scope.formToggle = true;

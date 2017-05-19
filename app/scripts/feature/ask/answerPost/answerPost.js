@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('answerPost',['$rootScope','UploadService','AskService',
-    function ($rootScope,UploadService, AskService) {
+  .directive('answerPost',['$rootScope','UploadService','AskService','growl',
+    function ($rootScope,UploadService, AskService,growl) {
     return {
       restrict: 'E',
       scope: {
@@ -12,6 +12,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.detailCharacterCount = 0;
+        scope.formToggle = true;
         scope.disabled = false;
         scope.paste = function (e) {
           var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
@@ -111,6 +113,7 @@ angular.module('xbertsApp')
             scope.disabled = false;
             scope.answer = {};
             scope.answer.description = null;
+            scope.formToggle = !scope.formToggle;
             scope.detailCtrl.addProduct(newProduct);
             var scrollTop = angular.element('.xb-body-view').scrollTop();
             angular.element('.xb-body-view').scrollTop(scrollTop + angular.element('.xb-question-detail__answer-title').offset().top - 20);
