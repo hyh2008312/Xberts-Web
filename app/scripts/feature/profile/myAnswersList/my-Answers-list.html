@@ -15,7 +15,7 @@
       <div layout="row" layout-align="end center" class="md-dark-secondary" flex>{{post.created|amDateFormat:'MM.DD.YYYY'}}</div>
     </div>
     <div ng-show="post.commentToggle">
-      <feedback-list interact-id="{{post.interact.id}}" hide-state="!post.commentToggle"></feedback-list>
+      <feedback-list interact-id="{{post.interact.id}}" hide-state="!post.commentToggle" hide-points="true"></feedback-list>
     </div>
   </interact>
 </div>

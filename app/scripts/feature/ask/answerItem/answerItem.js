@@ -9,7 +9,9 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.onToggleDown = function(answer) {
           answer.commentToggle = !answer.commentToggle;
-        }
+        };
+
+
       }
     }
   });

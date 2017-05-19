@@ -1,6 +1,5 @@
 angular.module('xbertsApp')
-  .directive('myAnswersList', ['$rootScope','$mdDialog','AskService','localStorageService',
-    function($rootScope,$mdDialog, AskService,localStorageService) {
+  .directive('myAnswersList',function() {
     return {
       restrict: 'E',
       scope: {
@@ -13,8 +12,7 @@ angular.module('xbertsApp')
 
         scope.onToggleDown = function(post) {
           post.commentToggle = !post.commentToggle;
-
-        }
+        };
       }
     }
-  }]);
+  });

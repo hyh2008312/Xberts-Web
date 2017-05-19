@@ -14,7 +14,8 @@
         </div>
       </div>
     </div>
-    <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="answer.description | trust"></div>
+    <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="answer.description | trust"
+         ng-bind-html-unsafe="whatever" add-link-target></div>
   </div>
   <interact class="xb-question-detail__bottom" interact="answer.interact">
     <div class="xb-my-answers__actions" layout="row" layout-align="start center">
@@ -25,7 +26,7 @@
       <comment-amounts layout="row" layout-align="start center"></comment-amounts>
     </div>
     <div ng-show="answer.commentToggle">
-      <feedback-list interact-id="{{answer.interact.id}}" hide-state="!product.commentToggle"></feedback-list>
+      <feedback-list interact-id="{{answer.interact.id}}" hide-state="!product.commentToggle" hide-points="true"></feedback-list>
     </div>
   </interact>
 </div>
