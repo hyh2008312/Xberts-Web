@@ -22,7 +22,12 @@ angular.module('xbertsApp')
         scope.imagesPC = imagesPC[Math.floor(Math.random() * 2)];
         scope.imagesMobile = imagesMobile[Math.floor(Math.random() * 2)];
 
-        scope.latestQuestions = scope.questions[0];
+        for(var i = 0; i < scope.questions.length;i++) {
+          if(scope.questions[i].latestAnswer != null) {
+            scope.latestQuestions = scope.questions[i];
+            break;
+          }
+        }
 
         scope.follow = function(question) {
           if(!$rootScope.user.authRequired()) {
