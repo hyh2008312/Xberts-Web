@@ -6,6 +6,11 @@
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <a class="md-subhead" ui-sref="application.dealsDetail({dealsId:item.id})">Quick Look</a>
         </div>
+        <div class="xb-main-col__top-right">
+          <span end-time-left end-time="item.promotionDeadline">
+            <span ng-show="timeValue>0">{{ timeUnit }}</span>
+          </span>
+        </div>
       </div>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
@@ -25,11 +30,6 @@
       </div>
       <div class="xb-deals-list__title">
         <a>{{item.title}}</a>
-      </div>
-      <div class="xb-deals-list__end">
-        <span end-time-left end-time="item.promotionDeadline">
-          <span ng-show="timeValue>0">Ends in {{ timeUnit }}</span>
-        </span>
       </div>
     </div>
     <div layout="row" layout-align="center start" hide-xs>
