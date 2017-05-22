@@ -26,9 +26,8 @@ angular.module('xbertsApp')
         dialogsInBody: true,
         popover:{
           image:[['imagesize',
-            ['imageSize100','imageSize50','imageSize25']],
             ['remove',['removeMedia']]
-          ]
+          ]]
         }
       };
 
