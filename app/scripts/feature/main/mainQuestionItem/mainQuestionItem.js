@@ -33,18 +33,20 @@ angular.module('xbertsApp')
           if(!$rootScope.user.authRequired()) {
             return;
           }
-          scope.$emit('backdropOn', 'post');
+
           AskService.follow(question.id).then(function(data) {
-            question.currentUser.follow = data.follow;
+            if(question.currentUser) {
+              question.currentUser.follow = data.follow;
+            } else {
+              question.currentUser = {};
+              question.currentUser.follow = data.follow;
+            }
             if(data.follow) {
               question.followeeCount++;
             } else {
               question.followeeCount--;
             }
-            scope.$emit('backdropOff', 'success');
-          }, function() {
-            scope.$emit('backdropOff', 'failure');
-          });
+          }, function() {});
         };
 
         // FAB Speed Dial Component
