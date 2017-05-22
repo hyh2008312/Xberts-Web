@@ -305,10 +305,6 @@
       background: #f5f5f5;
       border-color: transparent;
     }
-    .note-editable img{
-      max-width: 100% !important;
-      width: auto !important;
-    }
     .note-editable iframe{
       max-width: 100% !important;
       width: auto !important;
@@ -408,14 +404,6 @@
       cursor: pointer;
     }
   }
-}
-body{
-  @include xb-xs-screen{
-    >.modal-backdrop.in{
-      display: none !important;
-    }
-  }
-
 }
 .modal{
   @include xb-xs-screen{

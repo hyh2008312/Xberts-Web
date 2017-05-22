@@ -18,9 +18,17 @@ angular.module('xbertsApp')
         'link': 'fa fa-link',
         'picture': 'fa fa-picture-o',
         'video': 'fa fa-youtube-play',
-        'arrowsAlt': 'fa fa-arrows-alt'
+        'arrowsAlt': 'fa fa-arrows-alt',
+        'trash': 'fa fa-trash',
+        'unlink': 'fa fa-chain-broken'
       },
-      fontSizes: ['14', '18']
+      fontSizes: ['14', '18'],
+      popover:{
+        image:[['imagesize',
+          ['imageSize100','imageSize50','imageSize25']],
+          ['remove',['removeMedia']]
+        ]
+      }
     };
 
     answerCtrl.addQuestion = function(ev) {

@@ -18,9 +18,18 @@ angular.module('xbertsApp')
           'caret': 'caret',
           'link': 'fa fa-link',
           'picture': 'fa fa-picture-o',
-          'video': 'fa fa-youtube-play'
+          'video': 'fa fa-youtube-play',
+          'trash': 'fa fa-trash',
+          'unlink': 'fa fa-chain-broken'
         },
-        fontSizes: ['14', '18']
+        fontSizes: ['14', '18'],
+        dialogsInBody: true,
+        popover:{
+          image:[['imagesize',
+            ['imageSize100','imageSize50','imageSize25']],
+            ['remove',['removeMedia']]
+          ]
+        }
       };
 
       $scope.paste = function (e) {
