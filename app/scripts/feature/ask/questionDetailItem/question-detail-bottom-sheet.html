@@ -1,0 +1,9 @@
+<md-bottom-sheet class="xb-bottom-sheet" layout="row" layout-align="center center">
+  <div layout="row" layout-align="space-between center">
+    <i class="fa fa-{{item.name}} md-dark-third xb-deals-detail__color-{{$index}}" ng-class="{'md-margin-clear':''}[$index==2]" ng-repeat="item in shareList track by $index"
+       socialshare socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}"
+       socialshare-text="{{product.title}}" socialshare-media="{{product.coverUrl}}"
+       socialshare-source="{{product.coverUrl}}"
+       socialshare-url="{{inviteObj.shareUrl(product.getShareUrl(product.id), item.name)}}" aria-hidden="true"></i>
+  </div>
+</md-bottom-sheet>

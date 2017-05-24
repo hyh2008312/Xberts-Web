@@ -18,8 +18,10 @@
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>
     </div>
-    <div class="xb-ask-list__answer-content xb-ask-list__answer-content-display md-body-1" ng-bind-html="product.latestAnswer.description | trust"
-         ui-sref="application.answerQuestionDetail({questionId:product.id})"></div>
+    <div class="xb-ask-list__answer-content md-body-1" ng-if="product.latestAnswer.text"  ui-sref="application.answerQuestionDetail({questionId:product.id})">
+      {{product.latestAnswer.text | reduceSentence:140}}{{product.latestAnswer.text.length>140? '...':''}}
+      <span ng-if="product.latestAnswer.text.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})" class="xb-my-answers__color">more</span>
+    </div>
   </div>
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerAmount">

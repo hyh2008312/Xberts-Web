@@ -79,7 +79,7 @@ angular.module('xbertsApp')
               fetchFunction: AskService.getList
             };
             return new Paginator(par).load();
-          }],
+          }]
         }
       })
 

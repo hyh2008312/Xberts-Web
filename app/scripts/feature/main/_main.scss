@@ -157,6 +157,15 @@
 }
 .xb-title{
   margin: 32px 0 16px;
+  @include xb-xs-screen{
+    margin: 24px 0 16px;
+  }
+  h3{
+   margin: 0;
+    @include xb-xs-screen{
+      font-size: 16px;
+    }
+  }
   >a{
     @include media();
     white-space: nowrap;
@@ -587,6 +596,14 @@
     &:last-child{
       border-bottom: none;
     }
+    a.md-subhead{
+      color: rgba(0,0,0,.87);
+      font-size: 14px;
+      text-decoration: none;
+      &:hover{
+        color: rgba(0,0,0,.87);
+      }
+    }
   }
   &__title{
     height: 56px;
@@ -681,7 +698,10 @@
   }
 }
 .xb-main-bg{
-  margin-bottom: 16px;
+  padding-bottom: 32px;
+  @include xb-xs-screen{
+    padding-bottom: 24px;
+  }
 }
 .xb-main-deals{
   overflow-y: hidden;
@@ -721,5 +741,44 @@
     padding: 0 16px;
     height: 20px;
     @include ellipsisText();
+  }
+}
+.xb-main-ask-list{
+  @include xb-xs-screen{
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  >div{
+    @include resetBorder();
+    margin-right: 16px;
+    padding-bottom: 24px;
+    @include xb-xs-screen{
+      margin-right: 0;
+    }
+  }
+  .xb-ask-list__item{
+    border: none;
+    margin-bottom: 0;
+    @include box-shadow(none);
+  }
+  .xb-ask-list__actions{
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top: none;
+  }
+  .xb-ask-list__title.md-subhead{
+    margin-top: 20px;
+    margin-bottom: 0;
+    max-height: 48px;
+    overflow: hidden;
+  }
+  &__image{
+    cursor: pointer;
+    margin-right: 0 !important;
+    padding-bottom: 0 !important;
+    >img{
+      width:100%;
+    }
   }
 }

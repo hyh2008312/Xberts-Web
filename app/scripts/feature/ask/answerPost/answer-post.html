@@ -3,18 +3,20 @@
   <div class="xb-edit-post" layout="row" layout-align="start start">
     <form name="answerForm" novalidate ng-if="formToggle" clear-form-error flex>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
-                  on-paste="paste(evt)" ng-model="answer.description"></summernote>
+                  on-paste="paste(evt)" ng-model="answer.description" on-change="onChange(contents)"></summernote>
+      <div layout="row" layout-align="space-between center">Minimum 150 characters required<span>{{detailCharacterCount}}</span></div>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
-        <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
+        <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>
+        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
     <form name="answerForm" novalidate ng-if="!formToggle" clear-form-error flex>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
-                  on-paste="paste(evt)" ng-model="answer.description"></summernote>
+                  on-paste="paste(evt)" ng-model="answer.description" on-change="onChange(contents)"></summernote>
+      <div>Minimum 150 characters required</div>
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
-        <md-button class="md-primary" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
+        <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>
+        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
   </div>

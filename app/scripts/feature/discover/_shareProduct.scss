@@ -128,8 +128,12 @@ $PrimaryINDIGO: #3f51b5;
       }
     }
     a{
-      color: $PrimaryINDIGO;
+      color: rgba(0,0,0,.87);
       line-height: 14px;
+      text-decoration: none;
+      &:hover{
+        color: rgba(0,0,0,.87);
+      }
     }
   }
   &__card{

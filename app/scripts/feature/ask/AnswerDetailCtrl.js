@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService) {
+    'localStorageService',
+    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService) {
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
@@ -11,7 +12,22 @@ angular.module('xbertsApp')
         ['textsize', ['fontsize']],
         ['insert', ['link','video', 'picture']],
         ['view', ['fullscreen']]
-      ]
+      ],
+      icons: {
+        'caret': 'caret',
+        'link': 'fa fa-link',
+        'picture': 'fa fa-picture-o',
+        'video': 'fa fa-youtube-play',
+        'arrowsAlt': 'fa fa-arrows-alt',
+        'trash': 'fa fa-trash',
+        'unlink': 'fa fa-chain-broken'
+      },
+      fontSizes: ['14', '18'],
+      popover:{
+        image:[['imagesize',
+          ['remove',['removeMedia']]
+        ]]
+      }
     };
 
     answerCtrl.addQuestion = function(ev) {
@@ -33,6 +49,10 @@ angular.module('xbertsApp')
             scope.$emit('backdropOn', 'post');
             AskService.create(question).then(function(data) {
               scope.cancel();
+              localStorageService.remove('ask_questions_list' + '_currentPage');
+              localStorageService.remove('ask_questions_list' + '_items');
+              localStorageService.remove('ask_questions_list' + '_next');
+              localStorageService.remove('ask_questions_list' + '_count');
               $state.go('application.askQuestionMain');
               scope.$emit('backdropOff', 'success');
             },function() {

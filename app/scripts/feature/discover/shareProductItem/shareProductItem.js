@@ -1,9 +1,10 @@
 angular.module('xbertsApp')
-  .directive('shareProductItem', ['InviteService',function (InviteService) {
+  .directive('shareProductItem', ['InviteService','$window',function (InviteService,$window) {
     return {
       restrict: 'E',
       scope: {
-        product: '='
+        product: '=',
+        index: '='
       },
       templateUrl: 'scripts/feature/discover/shareProductItem/share-product-item.html',
       link: function (scope, element, attrs, ctrls) {

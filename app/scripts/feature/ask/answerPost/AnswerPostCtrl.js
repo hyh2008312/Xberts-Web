@@ -1,15 +1,34 @@
 angular.module('xbertsApp')
-  .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','growl','$stateParams','$state',
-    function ($rootScope,$scope,UploadService,AskService,growl,$stateParams,$state) {
+  .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
+    'localStorageService','growl',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl) {
 
+
+      $scope.detailCharacterCount = 0;
       $scope.questionId = $stateParams.questionId;
+      $scope.disabled = false;
       $scope.formToggle = true;
       $scope.options = {
         height: 400,
         toolbar: [
           ['textsize', ['fontsize']],
           ['insert', ['link','video', 'picture']]
-        ]
+        ],
+        icons: {
+          'caret': 'caret',
+          'link': 'fa fa-link',
+          'picture': 'fa fa-picture-o',
+          'video': 'fa fa-youtube-play',
+          'trash': 'fa fa-trash',
+          'unlink': 'fa fa-chain-broken'
+        },
+        fontSizes: ['14', '18'],
+        dialogsInBody: true,
+        popover:{
+          image:[['imagesize',
+            ['remove',['removeMedia']]
+          ]]
+        }
       };
 
       $scope.paste = function (e) {
@@ -65,15 +84,19 @@ angular.module('xbertsApp')
 
       $scope.imageUpload = function (files) {
         for (var i = 0; i < files.length; i++) {
-          UploadService.uploadFile(files[i], 'ANSWER', scope)
+          UploadService.uploadFile(files[i], 'ANSWER', $scope)
             .then(function (data) {
               imageSuccessCallback(data.data);
             }, errorCallback);
         }
       };
 
+      $scope.onChange = function (contents) {
+        $scope.detailCharacterCount = contents.replace("< *iframe(.|/r|/n)+?/iframe *>","")
+          .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+      };
 
-      $scope.submitForm = function(answer,answerForm){
+      $scope.submitForm = function(answer,answerForm) {
         if(!$rootScope.user.authRequired()) {
           return;
         }
@@ -82,25 +105,33 @@ angular.module('xbertsApp')
         }
 
         if(!answer || !answer.description) {
-          growl.error('111');
           return;
+        }
+
+        if($scope.detailCharacterCount<150) {
+          return;
+        }
+
+        if (answer.description) {
+          answer.description = answer.description.replace(/pre-loading/ig, "");
+          answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         }
 
         var _product = {
           question: $scope.questionId,
-          description: answer.description,
-          productLink: {
-            url:answer.productLink
-          },
-          image:answer.image,
-          videoUrl:answer.videoUrl
+          description: answer.description
         };
-
+        $scope.disabled = true;
         // post start
         $scope.$emit('backdropOn', 'fetch project');
-        AskService.createAnswers(_product).then(function (newProduct) {
+        AskService.createAnswers(_product).then(function () {
           $scope.$emit('backdropOff', 'success');
-          $state.go('application.answerQuestionDetail({questionId:questionId})')
+          localStorageService.remove('ask_answers_list' + '_currentPage');
+          localStorageService.remove('ask_answers_list' + '_items');
+          localStorageService.remove('ask_answers_list' + '_next');
+          localStorageService.remove('ask_answers_list' + '_count');
+          $state.go('application.answerQuestionDetail',{questionId:$scope.questionId});
+          $scope.disabled = false;
         }, function () {
           // tips
           $scope.$emit('backdropOff', 'project get error');

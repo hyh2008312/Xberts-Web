@@ -12,6 +12,9 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.detailCharacterCount = 0;
+        scope.formToggle = true;
+        scope.disabled = false;
         scope.paste = function (e) {
           var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
@@ -72,6 +75,10 @@ angular.module('xbertsApp')
           }
         };
 
+        scope.onChange = function (contents) {
+          scope.detailCharacterCount = contents.replace("< *iframe(.|/r|/n)+?/iframe *>","")
+            .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+        };
 
         scope.submitForm = function(answer,answerForm){
           if(!$rootScope.user.authRequired()) {
@@ -82,26 +89,32 @@ angular.module('xbertsApp')
           }
 
           if(!answer || !answer.description) {
-            growl.error('111');
             return;
+          }
+
+          if(scope.detailCharacterCount<150) {
+            return;
+          }
+
+          if (answer.description) {
+            answer.description = answer.description.replace(/pre-loading/ig, "");
+            answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
           }
 
           var _product = {
             question: scope.questionId,
-            description: answer.description,
-            productLink: {
-              url:answer.productLink
-            },
-            image:answer.image,
-            videoUrl:answer.videoUrl
+            description: answer.description
           };
 
           // post start
           scope.$emit('backdropOn', 'fetch project');
+          scope.disabled = true;
           AskService.createAnswers(_product).then(function (newProduct) {
             scope.$emit('backdropOff', 'success');
+            scope.disabled = false;
             scope.answer = {};
             scope.answer.description = null;
+            scope.formToggle = !scope.formToggle;
             scope.detailCtrl.addProduct(newProduct);
             var scrollTop = angular.element('.xb-body-view').scrollTop();
             angular.element('.xb-body-view').scrollTop(scrollTop + angular.element('.xb-question-detail__answer-title').offset().top - 20);
