@@ -130,19 +130,8 @@ angular
         controller: 'MyTrialsCtrl',
         reloadOnSearch: false,
         resolve: {
-          reviewApplicantPaginator: ['Paginator', '$rootScope','ApplicationService', '$stateParams',
-            function (Paginator, $rootScope,ApplicationService, $stateParams) {
-            var filter = '';
-            if ($rootScope.user.getUserId() != $stateParams.expertId) {
-              filter = {is_submit_report: true};
-            }
-            var par = {
-              name: 'trials_' + $stateParams.expertId,
-              params: {reviewer_id: $stateParams.expertId},
-              filter: filter,
-              fetchFunction: ApplicationService.getApplications
-            };
-            return new Paginator(par);
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
           }]
         }
       })

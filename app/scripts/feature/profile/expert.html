@@ -65,8 +65,8 @@
             <div infinite-scroll="reviewApplicantPaginator.loadNext()"
                  infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                  infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
-              <my-trials trials="reviewApplicantPaginator.items"></my-trials>
-              <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading"></load-more>
+              <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
+              <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
             </div>
           </div>
         </md-tab>

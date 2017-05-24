@@ -668,9 +668,13 @@
     margin-top: 16px;
   }
   &__img{
+    cursor: pointer;
     width: 160px;
     @include xb-xs-screen{
       width: 60px;
+    }
+    >img{
+      width: 100%;
     }
   }
   &__content{
