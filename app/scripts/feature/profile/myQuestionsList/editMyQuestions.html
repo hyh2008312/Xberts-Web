@@ -1,0 +1,18 @@
+<div class="container xb-edit-post">
+  <div class="xb-edit-post__title md-display-1">Edit My Question</div>
+  <form name="recommendation" novalidate ng-submit="askQuestion(question)" clear-form-error>
+    <md-input-container class="md-block">
+      <input required ng-model="question.title" type="text" name="question" placeholder="Question"/>
+      <div ng-messages="recommendation.question.$error">
+        <div ng-message="required">Please enter your question.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <textarea ng-model="question.description" type="text" name="description" placeholder="Add more details"></textarea>
+    </md-input-container>
+    <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+      <md-button class="md-primary md-raised" type="submit" >Save</md-button>
+      <md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+    </div>
+  </form>
+</div>

@@ -93,6 +93,26 @@ angular
           }]
         }
       })
+      .state('application.protected.editQuestion', {
+        url: '/editQuestion/:questionId',
+        templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
+        controller: 'EditMyQuestionsCtrl',
+        resolve: {
+          editMyQuestion: ['AskService', '$stateParams', function (AskService, $stateParams) {
+            return AskService.getQuestionsDetail($stateParams.questionId);
+          }]
+        }
+      })
+      .state('application.protected.editAnswer', {
+        url: '/editAnswer/:answerId',
+        templateUrl: 'scripts/feature/profile/myAnswersList/editMyAnswers.html',
+        controller: 'EditMyAnswersCtrl',
+        resolve: {
+          editMyAnswer: ['AskService', '$stateParams', function(AskService, $stateParams) {
+            return AskService.getAnswer({id:$stateParams.answerId});
+          }]
+        }
+      })
       .state('application.protected.biography', {
         url: '/profile/biography?expertId',
         templateUrl: 'scripts/feature/profile/myBiography/myBiographyCtrl.html',

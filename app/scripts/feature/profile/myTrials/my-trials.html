@@ -20,10 +20,10 @@
         <div ng-switch-when="REVIEW">
           <div ng-switch="applicant.is_selected">
             <div ng-switch-when="false" >
-              Pending Shipment
+              Not Selected
             </div>
             <div ng-switch-when="null" >
-              Pending Shipment
+              Not Selected
             </div>
 
             <div ng-switch-when="true" >
@@ -86,19 +86,6 @@
 
           <div ng-switch-when="REVIEW">
             <div ng-switch="applicant.is_selected">
-              <div ng-switch-when="false" >
-                <md-button class="md-primary" disabled>
-                  Not
-                  Selected
-                </md-button>
-              </div>
-              <div ng-switch-when="null" >
-                <md-button class="md-primary" disabled>
-                  Not
-                  Selected
-                </md-button>
-              </div>
-
               <div ng-switch-when="true" >
                 <div ng-switch="applicant.is_submit_report">
                   <div ng-switch-when="false" >

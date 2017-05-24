@@ -51,126 +51,179 @@
   </div>
 </div>
 <section class="xb-my-profile__padding-top" hide-xs>
-  <div class="container">
-    <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
-      <md-tab label="Biography" md-on-select="loadMyBio()">
-        <div class="background-whitem xb-my-profile__margin-top">
-          <my-biography biography="expert.biography"></my-biography>
-        </div>
-      </md-tab>
-
-      <md-tab label="Trials" md-on-select="loadMyTrials()">
-        <div class="background-whitem xb-my-profile__margin-top">
-          <div infinite-scroll="reviewApplicantPaginator.loadNext()"
-               infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-               infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
-            <my-trials trials="reviewApplicantPaginator.items"></my-trials>
-            <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading"></load-more>
+  <div class="container" layout="row" layout-align="start start">
+    <div flex>
+      <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
+        <md-tab label="Biography" md-on-select="loadMyBio()">
+          <div class="background-whitem xb-my-profile__margin-top">
+            <my-biography biography="expert.biography"></my-biography>
           </div>
-        </div>
-      </md-tab>
+        </md-tab>
 
-      <md-tab label="Posts">
-        <div class="xb-my-profile__margin-top">
-          <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
-            <md-tab label="Finds" md-on-select="loadMyPosts()">
-              <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                   infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
-                <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-                <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
-              </div>
-            </md-tab>
-            <md-tab label="Questions" md-on-select="loadMyQuestions()">
-              <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                   infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 2">
-                <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-                <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
-              </div>
-            </md-tab>
-            <md-tab label="Answers" md-on-select="loadMyAnswers()">
-              <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                   infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
-                <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-                <load-more layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
-              </div>
-            </md-tab>
-          </md-tabs>
-        </div>
-      </md-tab>
+        <md-tab label="Trials" md-on-select="loadMyTrials()">
+          <div class="background-whitem xb-my-profile__margin-top">
+            <div infinite-scroll="reviewApplicantPaginator.loadNext()"
+                 infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
+              <my-trials trials="reviewApplicantPaginator.items"></my-trials>
+              <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading"></load-more>
+            </div>
+          </div>
+        </md-tab>
 
-      <md-tab label="Referrals" md-on-select="loadMyReferrals()">
-        <div class="background-whitem xb-my-profile__margin-top">
-         <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
-        </div>
-      </md-tab>
-
-      <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
-        <div class="background-whitem xb-my-profile__margin-top">
-          <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-               infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
-            <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
-              <div class="xb-card">
-                <div class="xb-card-ratio-wrap"
-                     ui-sref="application.testingcampaign({ reviewId:review.id })">
-                  <div class="image-wrap" style="background-image: url({{ review.cover }})">
-
-                  </div>
+        <md-tab label="Posts" md-on-select="loadMyTrials()">
+          <div class="xb-my-profile__margin-top">
+            <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
+              <md-tab label="Finds" md-on-select="loadMyFinds()">
+                <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
+                  <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+                  <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
                 </div>
-                <div class="xb-card-content">
-                  <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">{{ review.title
-                    }}</p>
+              </md-tab>
+              <md-tab label="Questions" md-on-select="loadMyQuestions()">
+                <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 2">
+                  <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
+                  <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+                </div>
+              </md-tab>
+              <md-tab label="Answers" md-on-select="loadMyAnswers()">
+                <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
+                  <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
+                  <load-more layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+                </div>
+              </md-tab>
+            </md-tabs>
+          </div>
+        </md-tab>
 
-                  <div class="xb-card-button">
-                    <div ng-switch="review.status">
-                      <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
-                         ui-sref="application.testingcampaign({ reviewId:review.id })">Coming Soon</a>
-                      <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
-                         ui-sref="application.testingcampaign({ reviewId:review.id })">Application Open</a>
-                      <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
-                         ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                        Applicants</a>
-                      <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-primary"
-                         ui-sref="application.selectApplicants({reviewId:review.id})">View
-                        Applicants</a>
-                      <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
-                         ui-sref="application.selectApplicants({reviewId:review.id})">View
-                        Shipping Address</a>
-                      <a ng-switch-when="ENDED" class="btn btn-block btn-primary"
-                         ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                        Reports</a>
+        <md-tab label="Referrals" md-on-select="loadMyReferrals()">
+          <div class="background-whitem xb-my-profile__margin-top">
+           <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
+          </div>
+        </md-tab>
+
+        <md-tab label="follow" md-on-select="loadMyFollow()">
+          <div class="xb-my-profile__margin-top">
+            <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
+              <md-tab label="Following" md-on-select="">
+
+              </md-tab>
+              <md-tab label="Follower" md-on-select="">
+
+              </md-tab>
+              <md-tab label="Questions" md-on-select="loadMyFollowingQuestions()">
+                <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next || selectedIndex != 4">
+                  <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items" current-user="isCurrentUser" hide-state="true"></my-questions-list>
+                  <load-more layout="row" layout-align="center center" ng-if="followingQuestionsPaginator.loading"></load-more>
+                </div>
+              </md-tab>
+            </md-tabs>
+          </div>
+        </md-tab>
+
+        <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
+          <div class="background-whitem xb-my-profile__margin-top">
+            <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
+              <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
+                <div class="xb-card">
+                  <div class="xb-card-ratio-wrap"
+                       ui-sref="application.testingcampaign({ reviewId:review.id })">
+                    <div class="image-wrap" style="background-image: url({{ review.cover }})">
+
+                    </div>
+                  </div>
+                  <div class="xb-card-content">
+                    <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">
+                      {{ review.title}}</p>
+
+                    <div class="xb-card-button">
+                      <div ng-switch="review.status">
+                        <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
+                           ui-sref="application.testingcampaign({ reviewId:review.id })">Coming Soon</a>
+                        <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
+                           ui-sref="application.testingcampaign({ reviewId:review.id })">Application Open</a>
+                        <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">Select
+                          Applicants</a>
+                        <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">View
+                          Applicants</a>
+                        <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
+                           ui-sref="application.selectApplicants({reviewId:review.id})">View
+                          Shipping Address</a>
+                        <a ng-switch-when="ENDED" class="btn btn-block btn-primary"
+                           ui-sref="application.crowdtestingReports({reviewId:review.id})">View
+                          Reports</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <load-more class="row spin-large" ng-if="campaignPaginator.loading"></load-more>
           </div>
-          <load-more class="row spin-large" ng-if="campaignPaginator.loading"></load-more>
-        </div>
-      </md-tab>
+        </md-tab>
 
-    </md-tabs>
+      </md-tabs>
+    </div>
+    <div>
+      <div class="xb-profile-follow" layout="row" layout-align="center center" hide-sm hide-xs>
+        <div layout="column" layout-align="center center" flex="50">
+          <div class="md-headline">1122</div>
+          <div>Following</div>
+        </div>
+        <span></span>
+        <div layout="column" layout-align="center center" flex="50">
+          <div class="md-headline">120</div>
+          <div>Follower</div>
+        </div>
+      </div>
+      <div class="xb-main-reviewer" hide-sm hide-xs>
+        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
+          Achievements
+        </div>
+
+      </div>
+    </div>
 
   </div>
 </section>
-<div class="xb-my-profile__mobile background-whitem" hide-gt-xs flex="noshrink">
-  <div class="md-subhead" layout="row" layout-align="space-between center"
-       ui-sref="application.protected.biography({expertId:expert.userId})">
-    Biography
-    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+<div class="xb-my-profile__mobile " hide-gt-xs flex="noshrink">
+  <div class="xb-profile-follow" layout="row" layout-align="center center">
+    <div layout="column" layout-align="center center" flex="50">
+      <div class="md-headline">1122</div>
+      <div class="md-dark-secondary">Following</div>
+    </div>
+    <div layout="column" layout-align="center center" flex="50">
+      <div class="md-headline">120</div>
+      <div class="md-dark-secondary">Follower</div>
+    </div>
   </div>
-  <div class="md-subhead" layout="row" layout-align="space-between center"
-       ui-sref="application.protected.trials({expertId:expert.userId})">
-    Trials
-    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
-  </div>
-  <div class="md-subhead" layout="row" layout-align="space-between center"
-       ui-sref="application.protected.posts({expertId:expert.userId})">
-    Posts
-    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
-  </div>
-  <div class="md-subhead" layout="row" layout-align="space-between center"
-       ui-sref="application.protected.referrals({expertId:expert.userId})">
-    Referrals
-    <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+  <div class="background-whitem">
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.biography({expertId:expert.userId})">
+      Biography
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.trials({expertId:expert.userId})">
+      Trials
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.posts({expertId:expert.userId})">
+      Posts
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.referrals({expertId:expert.userId})">
+      Referrals
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
   </div>
 </div>

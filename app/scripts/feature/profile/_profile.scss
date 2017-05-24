@@ -49,33 +49,38 @@
 }
 
 .xb-my-posts{
-  >md-list{
-    padding: 0;
-    >md-list-item{
-      height: 48px;
-      p{
-        max-height: 48px;
-        overflow: hidden;
-        @include regular();
-      }
-      &:hover{
-        .md-icon-button{
-          @include xb-gt-xs-screen{
-            display: block;
-          }
-        }
-      }
-      .md-no-style{
-        @include xb-xs-screen{
-          padding: 0 !important;
-        }
-      }
-    }
-  }
   &__time{
     margin-left: 8px;
     @include xb-xs-screen{
       margin-left: 0;
+    }
+  }
+  &__menu-bg{
+    position: relative;
+  }
+  &__menu{
+    border: 1px solid rgba(0,0,0, .12);
+    border-radius: 2px;
+    background-color: #f8f8f8;
+    position: absolute;
+    left: -66px;
+    bottom: 0;
+    width: 90px;
+    >div{
+      margin: 0;
+      min-width: 80px;
+      height: 24px;
+      outline: none;
+      .material-icons{
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0 8px;
+        text-align: center;
+        outline: none;
+      }
+      &:hover{
+        background-color: rgba(0,0,0,.12);
+      }
     }
   }
   .md-icon-button{
@@ -86,6 +91,10 @@
     @include xb-xs-screen{
       padding: 0;
     }
+  }
+  .material-icons{
+    cursor: pointer;
+    outline: none;
   }
 }
 .xb-my-referrals{
@@ -136,8 +145,8 @@
   }
   &__invite-friends{
     cursor: pointer;
-    margin-left: 80px;
-    margin-right: 40px;
+    margin-left: 16px;
+    margin-right: 16px;
     margin-top: 16px;
     margin-bottom: 16px;
     border: 2px dashed rgba(0, 0, 0, .12);
@@ -453,9 +462,12 @@
   }
   &__mobile{
     margin-top: 16px;
-    padding: 0 8px;
-    >div{
-      height: 48px;
+    .background-whitem{
+      margin-bottom: 16px;
+      >div{
+        height: 48px;
+        padding: 0 8px;
+      }
     }
   }
 }
@@ -584,6 +596,9 @@
 .xb-edit-post{
   &__title{
     margin-top: 40px;
+    @include xb-xs-screen{
+      font-size: 24px;
+    }
   }
   md-input-container{
     margin: 28px 0 0;
@@ -740,5 +755,51 @@
   }
   .md-subhead{
     margin-bottom: 16px;
+  }
+}
+.xb-profile-questions{
+  min-height: 48px;
+  overflow: visible;
+  padding: 0 16px;
+  outline: none;
+  @include xb-xs-screen{
+    padding: 0;
+  }
+  .md-subhead{
+    margin-bottom: 0;
+    max-height: 48px;
+    overflow: hidden;
+  }
+  @include xb-gt-xs-screen{
+    &:hover{
+      background-color: rgba(0,0,0,.12);
+      .md-icon-button{
+        @include xb-gt-xs-screen{
+          display: block;
+        }
+      }
+    }
+  }
+}
+.xb-profile-follow{
+  margin-left: 16px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  padding: 16px 0;
+  @include resetBorder();
+  >span{
+    width: 1px;
+    height: 65px;
+    background-color: rgba(0,0,0,.12);
+  }
+  @include xb-xs-screen{
+    padding: 0 0 8px;
+    margin-left: 0;
+    background-color: transparent;
+    @include box-shadow(none);
+    .md-headline{
+      font-size: 16px;
+      @include media();
+    }
   }
 }

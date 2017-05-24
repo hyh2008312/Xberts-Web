@@ -9,6 +9,9 @@
                ui-sref="application.expert({ expertId:answer.getAnswerUserId()})">
             {{answer.getAnswerUserName()}}
             <credit-badge class="credit-badge" points="answer.getOwnerBadgePoint()"></credit-badge>
+            <div class="md-margin-left-1">
+              {{answer.getAnswerUserPosition()}}
+            </div>
           </div>
           <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='answer.created'></span></span>
         </div>

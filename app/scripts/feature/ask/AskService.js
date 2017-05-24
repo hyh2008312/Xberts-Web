@@ -1,8 +1,9 @@
 angular.module('xbertsApp')
   .service('AskService', ['$resource','AskModel','API_BASE_URL',function ($resource,AskModel,API_BASE_URL) {
-    var AskResource = $resource(API_BASE_URL + '/questions/:id/', {id:'@id'});
-    var AnswersResource = $resource(API_BASE_URL + '/answers/', null);
+    var AskResource = $resource(API_BASE_URL + '/questions/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
+    var AnswersResource = $resource(API_BASE_URL + '/answers/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
     var AnswersLeaderResource = $resource(API_BASE_URL + '/answers/leaders/', null);
+    var FollowerResource = $resource(API_BASE_URL + '/questions/followed/', null);
 
     this.order = 0;
 
@@ -26,12 +27,36 @@ angular.module('xbertsApp')
       return AskResource.get({id:id}).$promise.then(AskModel.build);
     };
 
+    this.updateQuestion = function (data) {
+      return AskResource.patch(data).$promise.then(AskModel.build);
+    };
+
+    this.deleteQuestion = function (data) {
+      return AskResource.delete(data).$promise.then(AskModel.build);
+    };
+
     this.getAnswersList = function(params) {
+      return AnswersResource.get(params).$promise.then(AskModel.buildPageList);
+    };
+
+    this.getAnswer = function(params) {
       return AnswersResource.get(params).$promise.then(AskModel.build);
     };
 
     this.createAnswers = function(params) {
       return AnswersResource.save(params).$promise.then(AskModel.build);
+    };
+
+    this.updateAnswer = function(params) {
+      return AnswersResource.patch(params).$promise.then(AskModel.build);
+    };
+
+    this.deleteAnswer = function (data) {
+      return AnswersResource.delete(data).$promise.then(AskModel.build);
+    };
+
+    this.followList = function(params) {
+      return FollowerResource.get(params).$promise.then(AskModel.buildPageList);
     };
 
   }]);

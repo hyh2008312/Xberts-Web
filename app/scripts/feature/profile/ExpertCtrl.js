@@ -13,8 +13,9 @@ angular.module('xbertsApp')
 
       $scope.selectedIndex = 0;
       $scope.selectedIndex1 = 0;
+      $scope.selectedIndex2 = 0;
 
-      var tabIndexToParam = ['profile', 'trials', 'posts', 'referrals', 'campaigns'];
+      var tabIndexToParam = ['profile', 'trials', 'posts', 'referrals', 'follow','campaigns'];
 
       var updateUrl = function () {
         setTimeout(function () {
@@ -52,8 +53,6 @@ angular.module('xbertsApp')
         };
         $scope.reviewApplicantPaginator = new Paginator(par);
       };
-
-
 
       $scope.loadMyCampaings = function () {
         updateUrl();
@@ -107,11 +106,34 @@ angular.module('xbertsApp')
         updateUrl();
       };
 
+      $scope.loadMyFinds = function () {
+        updateUrl();
+      };
+
       $scope.loadMyQuestions = function() {
         updateUrl();
       };
 
       $scope.loadMyAnswers = function() {
+        updateUrl();
+      };
+
+      $scope.loadMyFollow = function () {
+        updateUrl();
+      };
+
+      var parfollowingQuestions = {
+        name: 'following_answers_list_' + $scope.expert.userId,
+        objClass: AskModel,
+        params: {
+          owner: $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: AskService.followList
+      };
+      $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
+
+      $scope.loadMyFollowingQuestions = function() {
         updateUrl();
       };
 

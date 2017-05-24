@@ -11,6 +11,19 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.posts = scope.posts || [];
 
+        scope.showMenu = function(post) {
+          angular.forEach(scope.posts,function(e, i) {
+            e.showMenu = false;
+          });
+          post.showMenu = !post.showMenu;
+        };
+
+        scope.closeMenu = function() {
+          angular.forEach(scope.posts,function(e, i) {
+            e.showMenu = false;
+          });
+        };
+
         scope.delete = function(ev, id, index) {
           var confirm = $mdDialog.confirm()
             .textContent('Are you sure you want to delete this post?')
@@ -26,7 +39,6 @@ angular.module('xbertsApp')
             }
             scope.posts.splice(index, 1);
             ShareProductService.delete({id:id}).then(function () {
-              scope.$emit('backdropOff', 'success');
               var name = 'posts_' + $rootScope.user.getUserId();
               // clear post list
               localStorageService.remove(name + '_currentPage');
@@ -34,9 +46,7 @@ angular.module('xbertsApp')
               localStorageService.remove(name + '_next');
               localStorageService.remove(name + '_count');
             }, function () {
-              // tips
-              scope.$emit('backdropOff', 'project get error');
-              // post end
+
             });
           });
         }
