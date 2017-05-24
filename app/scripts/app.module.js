@@ -33,3 +33,15 @@ angular
     'ngUrlParser',
     'angular-carousel'
   ]);
+
+angular.element(document).ready(function () {
+  var token = Cookies.getJSON('oauthtoken');
+  if (token) {
+    if (token.expire_date - new Date().getTime() < 600 * 1000) {
+      //todo: refresh token
+      Cookies.remove('oauthtoken');
+      console.log('remove oauthtoken');
+    }
+  }
+  angular.bootstrap(document, ['xbertsApp']);
+});
