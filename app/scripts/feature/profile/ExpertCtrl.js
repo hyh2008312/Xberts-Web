@@ -148,10 +148,10 @@ angular.module('xbertsApp')
         name: 'following_answers_list_' + $scope.expert.userId,
         objClass: AskModel,
         params: {
-          owner: $scope.expert.userId,
+          id: $scope.expert.userId,
           page_size: 12
         },
-        fetchFunction: AskService.followList
+        fetchFunction: ExpertService.getFollowingQuestion
       };
       $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
 

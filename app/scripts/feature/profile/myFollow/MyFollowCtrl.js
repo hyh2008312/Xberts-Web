@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MyFollowCtrl', ['Paginator','$scope', '$rootScope','expert','ExpertService','AskModel','AskService',
-    function (Paginator,$scope, $rootScope,expert,ExpertService,AskModel,AskService) {
+  .controller('MyFollowCtrl', ['Paginator','$scope', '$rootScope','expert','ExpertService','AskModel',
+    function (Paginator,$scope, $rootScope,expert,ExpertService,AskModel) {
 
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
@@ -32,10 +32,10 @@ angular.module('xbertsApp')
         name: 'following_answers_list_' + $scope.expert.userId,
         objClass: AskModel,
         params: {
-          owner: $scope.expert.userId,
+          id: $scope.expert.userId,
           page_size: 12
         },
-        fetchFunction: AskService.followList
+        fetchFunction: ExpertService.followList
       };
       $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
 
