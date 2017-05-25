@@ -109,7 +109,7 @@ angular
           version    : 'v2.5'
         });
       };
-
+      
       // Load the SDK asynchronously
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
