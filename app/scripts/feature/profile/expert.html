@@ -42,12 +42,12 @@
   <div class="container">
     <div layout="column" layout-align="end end">
       <div layout="row" layout-align="start center">
-        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && !expert.currentUser.follow" ng-click="addFollow()"
-          layout="row" layout-align="center center">
+        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && !expert.currentUser.follow"
+                   ng-click="addFollow()" layout="row" layout-align="center center">
           <i class="iconfontXberts icon-ic-follow" aria-label="follow"></i>
         </md-button>
-        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && expert.currentUser.follow" ng-click="addFollow()"
-                   layout="row" layout-align="center center">
+        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && expert.currentUser.follow"
+                   ng-click="addFollow()" layout="row" layout-align="center center">
           <i class="iconfontXberts icon-ic-following" aria-label="follow"></i>
         </md-button>
         <md-button class="xb-my-profile__button xb-my-profile__button-1 md-fab" ng-if="!isCurrentUser" ng-click="contactUser()">
