@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('ExpertService', ['$rootScope','$resource', 'API_BASE_URL', 'ShareProduct','$q',function ($rootScope,$resource, API_BASE_URL,ShareProduct,$q) {
+  .service('ExpertService', ['$rootScope','$resource', 'API_BASE_URL', 'ShareProduct','$q','AskModel',
+    function ($rootScope,$resource, API_BASE_URL,ShareProduct,$q,AskModel) {
     var ExpertResource = $resource(API_BASE_URL + '/xberts/experts/:id/');
     var ExpertAchievementResource = $resource(API_BASE_URL + '/xberts/experts/:id/achievement/');
     var ExpertFollowingQuestionsResource = $resource(API_BASE_URL + '/xberts/experts/:id/followed_questions/');
@@ -38,6 +39,6 @@ angular.module('xbertsApp')
     };
 
     this.getFollowingQuestion = function(params) {
-      return ExpertFollowingQuestionsResource.get(params).$promise.then(ShareProduct.buildPageList);
+      return ExpertFollowingQuestionsResource.get(params).$promise.then(AskModel.buildPageList);
     };
   }]);
