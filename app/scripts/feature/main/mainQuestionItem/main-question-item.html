@@ -9,13 +9,16 @@
       </div>
       <div ng-if="latestQuestions.latestAnswer">
         <div class="xb-ask-list__head-bg" layout="row">
-          <avatar-Img src="latestQuestions.latestAnswer.owner.userprofile.avatar" name="latestQuestions.latestAnswer.owner.firstName"
-                      ui-sref="application.expert({ expertId:latestQuestions.latestAnswer.owner.id})"></avatar-Img>
+          <avatar-Img src="latestQuestions.getAnswerUserAvatar()" name="latestQuestions.getLatestUserName()"
+                      ui-sref="application.expert({ expertId:latestQuestions.getLatestUserId()})"></avatar-Img>
           <div layout="column" layout-align="space-between start">
             <div class="md-subhead" layout="row" layout-align="start center"
-                 ui-sref="application.expert({ expertId:product.latestAnswer.owner.id})">
-              {{latestQuestions.latestAnswer.owner.firstName}}
-              <credit-badge class="credit-badge" points="product.latestAnswer.owner.badgePoint"></credit-badge>
+                 ui-sref="application.expert({ expertId:latestQuestions.getLatestUserId()})">
+              {{latestQuestions.getLatestUserName()}}
+              <credit-badge class="credit-badge" points="latestQuestions.getLatestBadgePoint()"></credit-badge>
+              <div class="md-margin-left-1">
+                {{latestQuestions.getLatestUserPosition()}}
+              </div>
             </div>
             <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='latestQuestions.latestAnswer.created'></span></span>
           </div>

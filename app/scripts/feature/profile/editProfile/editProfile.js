@@ -32,7 +32,7 @@ angular.module('xbertsApp')
               })
               .then(function(response) {
                 if(!scope.data.currentAvatar) {
-                  scope.$emit('perksPointsOn', 2);
+                  scope.$emit('perksPointsOn', 5);
                 }
                 $rootScope.user.setUserAvatar(response.data.avatar);
               }));

@@ -3,11 +3,12 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        trials: '='
+        trials: '=',
+        currentUser: '='
       },
       templateUrl: 'scripts/feature/profile/myTrials/my-trials.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.user = $rootScope.user;
+
       }
     }
   }]);

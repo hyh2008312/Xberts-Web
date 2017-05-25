@@ -1,7 +1,7 @@
-<div class="xb-my-trials" ng-repeat="applicant in trials" layout="row">
+<div class="xb-my-trials" ng-repeat="applicant in trials" layout="row" layout-align-xs="start start">
   <div class="xb-my-trials__img" layout="row" layout-align-gt-xs="center center" layout-align-xs="start start"
        ui-sref="application.testingcampaign({ reviewId:applicant.review.id })">
-    <img ng-src="{{applicant.review.cover}}" flex/>
+    <img ng-src="{{applicant.review.cover}}"/>
   </div>
   <div class="xb-my-trials__content" flex layout-gt-xs="row" layout-xs="column">
     <div layout="column" layout-align-gt-xs="space-between start" layout-align-xs="start start" flex>
@@ -20,10 +20,10 @@
         <div ng-switch-when="REVIEW">
           <div ng-switch="applicant.is_selected">
             <div ng-switch-when="false" >
-              Pending Shipment
+              Not Selected
             </div>
             <div ng-switch-when="null" >
-              Pending Shipment
+              Not Selected
             </div>
 
             <div ng-switch-when="true" >
@@ -40,14 +40,22 @@
         </div>
         <div ng-switch-when="ENDED">
           <div ng-switch="applicant.is_selected">
-            Completed
+            <div ng-switch-when="false" >
+              Not Selected
+            </div>
+            <div ng-switch-when="null" >
+              Not Selected
+            </div>
+            <div ng-switch-when="true">
+              Completed
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div layout="column" layout-align-gt-xs="space-between end" layout-align-xs="start start">
       <div class="md-caption md-dark-secondary">{{applicant.review.application_end_date | amDateFormat:'MMMM Do,YYYY'}}</div>
-      <div ng-if="user.getUserId()==expert.userId">
+      <div ng-if="currentUser">
         <div ng-switch="applicant.review.status">
           <div ng-switch-when="APPLICATION">
             <md-button  class="md-primary" ui-sref="application.protected.apply({reviewId:applicant.review.id})">
@@ -86,19 +94,6 @@
 
           <div ng-switch-when="REVIEW">
             <div ng-switch="applicant.is_selected">
-              <div ng-switch-when="false" >
-                <md-button class="md-primary" disabled>
-                  Not
-                  Selected
-                </md-button>
-              </div>
-              <div ng-switch-when="null" >
-                <md-button class="md-primary" disabled>
-                  Not
-                  Selected
-                </md-button>
-              </div>
-
               <div ng-switch-when="true" >
                 <div ng-switch="applicant.is_submit_report">
                   <div ng-switch-when="false" >
@@ -120,16 +115,6 @@
 
           <div ng-switch-when="ENDED">
             <div ng-switch="applicant.is_selected">
-              <div ng-switch-when="false" >
-                <md-button class="md-primary" disabled>
-                  Not Selected
-                </md-button>
-              </div>
-              <div ng-switch-when="null" >
-                <md-button class="md-primary" disabled>
-                  Not Selected
-                </md-button>
-              </div>
               <div ng-switch-when="true">
                 <div ng-switch="applicant.is_submit_report">
                   <div ng-switch-when="false">
@@ -138,7 +123,6 @@
                       Review
                     </md-button>
                   </div>
-
                   <div ng-switch-when="true">
                     <md-button class="md-primary" ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
                       Read Review
@@ -153,7 +137,7 @@
         </div>
 
       </div>
-      <div ng-if="user.getUserId()!=expert.userId">
+      <div ng-if="!currentUser">
         <md-button class="md-primary"
                    ui-sref="application.report({ reviewId:applicant.review.id,reportId:applicant.report})">
           Read

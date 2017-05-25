@@ -15,6 +15,9 @@ angular
         resolve: {
           expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
             return ExpertService.getExpert($stateParams.expertId);
+          }],
+          achievement: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getAchievement($stateParams.expertId);
           }]
         }
       })
@@ -93,6 +96,26 @@ angular
           }]
         }
       })
+      .state('application.protected.editQuestion', {
+        url: '/editQuestion/:questionId',
+        templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
+        controller: 'EditMyQuestionsCtrl',
+        resolve: {
+          editMyQuestion: ['AskService', '$stateParams', function (AskService, $stateParams) {
+            return AskService.getQuestionsDetail($stateParams.questionId);
+          }]
+        }
+      })
+      .state('application.protected.editAnswer', {
+        url: '/editAnswer/:answerId',
+        templateUrl: 'scripts/feature/profile/myAnswersList/editMyAnswers.html',
+        controller: 'EditMyAnswersCtrl',
+        resolve: {
+          editMyAnswer: ['AskService', '$stateParams', function(AskService, $stateParams) {
+            return AskService.getAnswer({id:$stateParams.answerId});
+          }]
+        }
+      })
       .state('application.protected.biography', {
         url: '/profile/biography?expertId',
         templateUrl: 'scripts/feature/profile/myBiography/myBiographyCtrl.html',
@@ -110,19 +133,8 @@ angular
         controller: 'MyTrialsCtrl',
         reloadOnSearch: false,
         resolve: {
-          reviewApplicantPaginator: ['Paginator', '$rootScope','ApplicationService', '$stateParams',
-            function (Paginator, $rootScope,ApplicationService, $stateParams) {
-            var filter = '';
-            if ($rootScope.user.getUserId() != $stateParams.expertId) {
-              filter = {is_submit_report: true};
-            }
-            var par = {
-              name: 'trials_' + $stateParams.expertId,
-              params: {reviewer_id: $stateParams.expertId},
-              filter: filter,
-              fetchFunction: ApplicationService.getApplications
-            };
-            return new Paginator(par);
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
           }]
         }
       })
@@ -148,4 +160,15 @@ angular
           }]
         }
       })
+      .state('application.protected.follow', {
+        url: '/profile/follow?expertId',
+        templateUrl: 'scripts/feature/profile/myFollow/myFollow.html',
+        controller: 'MyFollowCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      });
   }]);

@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('mainQuestionItem',['$rootScope','AskService',function ($rootScope,AskService) {
+  .directive('mainQuestionItem',['$rootScope','AskService','localStorageService',function ($rootScope,AskService,localStorageService) {
     return {
       restrict: 'E',
       scope: {
@@ -46,6 +46,10 @@ angular.module('xbertsApp')
             } else {
               question.followeeCount--;
             }
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_currentPage');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_items');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_next');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_count');
           }, function() {});
         };
 

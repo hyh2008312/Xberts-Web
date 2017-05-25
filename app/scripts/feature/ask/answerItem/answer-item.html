@@ -1,18 +1,23 @@
 <div class="background-whitem xb-question-detail__list" ng-repeat="answer in answers track by $index">
   <div class="xb-ask-list__item">
-    <div layout="row" layout-align="start start">
-      <div class="xb-ask-list__head-bg" layout="row">
+    <div layout="row" layout-align="start center">
+      <div class="xb-ask-list__head-bg" layout="row" flex>
         <avatar-Img src="answer.getAnswerUserAvatar()" name="answer.getAnswerUserName()"
           ui-sref="application.expert({ expertId:answer.getAnswerUserId()})"></avatar-Img>
-        <div layout="column" layout-align="space-between start">
+        <div layout="column" layout-align="space-between start" flex>
           <div class="md-subhead" layout="row" layout-align="start center"
                ui-sref="application.expert({ expertId:answer.getAnswerUserId()})">
             {{answer.getAnswerUserName()}}
             <credit-badge class="credit-badge" points="answer.getOwnerBadgePoint()"></credit-badge>
+            <div class="md-dark-secondary md-margin-left-1">
+              {{answer.getAnswerUserPosition()}}
+            </div>
           </div>
           <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='answer.created'></span></span>
         </div>
       </div>
+      <md-button class="md-primary md-margin-clear" ng-disabled="answer.disabled" ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && !answer.owner.currentUser.follow" ng-click="addFollow(answer);">Follow</md-button>
+      <md-button class="md-warn md-margin-clear" ng-disabled="answer.disabled" ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && answer.owner.currentUser.follow" ng-click="addFollow(answer);">Following</md-button>
     </div>
     <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="answer.description | trust"
          ng-bind-html-unsafe="whatever" add-link-target></div>

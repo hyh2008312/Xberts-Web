@@ -7,13 +7,16 @@
   </div>
   <div ng-if="product.latestAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"
-                  ui-sref="application.expert({ expertId:product.latestAnswer.owner.id})"></avatar-Img>
+      <avatar-Img src="product.getLatestUserAvatar()" name="product.getLatestUserName()"
+                  ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
       <div layout="column" layout-align="space-between start">
         <div class="md-subhead" layout="row" layout-align="start center"
-             ui-sref="application.expert({ expertId:product.latestAnswer.owner.id})">
-          {{product.latestAnswer.owner.firstName}}
-          <credit-badge class="credit-badge" points="product.latestAnswer.owner.badgePoint"></credit-badge>
+             ui-sref="application.expert({ expertId:product.getLatestUserId()})">
+          {{product.getLatestUserName()}}
+          <credit-badge class="credit-badge" points="product.getLatestBadgePoint()"></credit-badge>
+          <div class="md-dark-secondary md-margin-left-1">
+            {{product.getLatestUserPosition()}}
+          </div>
         </div>
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>

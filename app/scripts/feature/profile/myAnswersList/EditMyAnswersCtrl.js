@@ -1,11 +1,16 @@
+'use strict';
+
 angular.module('xbertsApp')
-  .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService','growl',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl) {
+  .controller('EditMyAnswersCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
+    'localStorageService','growl','editMyAnswer',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer) {
 
-
-      $scope.detailCharacterCount = 0;
-      $scope.questionId = $stateParams.questionId;
+      $scope.answer = editMyAnswer;
+      var oldPost = angular.copy(editMyAnswer, {});
+      var description = editMyAnswer.description;
+      $scope.detailCharacterCount = description.replace("< *iframe(.|/r|/n)+?/iframe *>","")
+        .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;;
+      $scope.answerId = $stateParams.answerId;
       $scope.disabled = false;
       $scope.formToggle = true;
       $scope.options = {
@@ -29,6 +34,10 @@ angular.module('xbertsApp')
             ['remove',['removeMedia']]
           ]]
         }
+      };
+
+      $scope.reset = function() {
+        $scope.answer = angular.copy(oldPost,{});
       };
 
       $scope.paste = function (e) {
@@ -118,19 +127,24 @@ angular.module('xbertsApp')
         }
 
         var _product = {
-          question: $scope.questionId,
+          id: $scope.answerId,
           description: answer.description
         };
         $scope.disabled = true;
         // post start
         $scope.$emit('backdropOn', 'fetch project');
-        AskService.createAnswers(_product).then(function () {
+        AskService.updateAnswer(_product).then(function () {
           $scope.$emit('backdropOff', 'success');
           localStorageService.remove('ask_answers_list' + '_currentPage');
           localStorageService.remove('ask_answers_list' + '_items');
           localStorageService.remove('ask_answers_list' + '_next');
           localStorageService.remove('ask_answers_list' + '_count');
-          $state.go('application.answerQuestionDetail',{questionId:$scope.questionId});
+          $state.go('application.expert', {
+            tab:'posts',
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
           $scope.disabled = false;
         }, function () {
           // tips
@@ -139,8 +153,8 @@ angular.module('xbertsApp')
         });
       };
 
-      var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';
-      var description = 'Get product recommendations from our global community of savvy-shopper';
+      var title = '';
+      var description = '';
       var backgroundColor = 'background-bg-light';
       var shareImage = '';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

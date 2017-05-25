@@ -7,11 +7,20 @@
   </div>
   <interact class="xb-my-answers__bottom" interact="post.interact">
     <div class="xb-my-answers__actions" layout="row" layout-align="start center">
-      <vote layout="row" layout-align="start center" ></vote>
+      <vote ng-if="!currentUser" layout="row" layout-align="start center" ></vote>
+      <div ng-if="currentUser" layout="row" layout-align="start center" ui-sref="application.protected.editAnswer({answerId:post.id})">
+        <md-icon flex="none" >mode_edit</md-icon>
+      </div>
+      <span ng-if="currentUser"></span>
       <div layout="row" layout-align="start center">
         <md-icon flex="none" ng-click="onToggleDown(post);">sms</md-icon>
       </div>
       <comment-amounts layout="row" layout-align="start center"></comment-amounts>
+      <div ng-if="currentUser && post.interact.feedbackAmount < 1 && post.interact.voteAmount < 1" layout="row" layout-align="start center"
+           ng-click="delete($event, post.id, $index);$event.stopPropagation();">
+        <md-icon flex="none" >delete</md-icon>
+      </div>
+      <span ng-if="currentUser && post.interact.feedbackAmount < 1 && post.interact.voteAmount < 1"></span>
       <div layout="row" layout-align="end center" class="md-dark-secondary" flex>{{post.created|amDateFormat:'MM.DD.YYYY'}}</div>
     </div>
     <div ng-show="post.commentToggle">

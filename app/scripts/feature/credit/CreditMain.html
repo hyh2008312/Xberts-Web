@@ -102,12 +102,13 @@
         <md-button ng-if="!user.isAuth()" class="md-raised" ui-sref="application.signup">sign up</md-button>
       </div>
       <div class="xb-credit-color-bg__content" flex="50">
-
         <div layout="row">
-          <span>10 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
+          <span>10 points</span>
+          <a ui-sref="application.askQuestionMain">Answer a question and selected as the Best Answer by users</a>
         </div>
-        <div layout="row" ng-if="false">
-          <span>5 points</span><a>Product suggestion is featured on Xberts</a>
+        <div layout="row">
+          <span>8 points</span>
+          <a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
         </div>
         <div layout="row">
           <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
@@ -116,28 +117,13 @@
           <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
         </div>
         <div layout="row" ng-if="false">
-          <span>3 points</span><a>Connect with your social media account</a>
+          <span>5 points</span><a>Connect with your social media account</a>
+        </div>
+        <div layout="row">
+          <span>5 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
         </div>
         <div layout="row">
           <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.shareProductList">Share a product on your social media with an Xberts link</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.campaignreviews">Share a review on your social media with an Xberts link</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.shareProductList">Comment on a product under Discover page</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.testingcampaigns">Comment on a campaign under Trial page</a>
-        </div>
-        <div layout="row">
-          <span>2 points</span><a ui-sref="application.campaignreviews">Comment on a review under Reviews page</a>
         </div>
       </div>
     </div>
@@ -156,24 +142,10 @@
             Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
           </div>
         </div>
-        <div class="xb-credit-container__faq-bottom" ng-if="false">
-          <div class="md-subhead">Can I lose my badge?</div>
-          <div>
-            It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
-          </div>
-        </div>
-        <div>
+        <div class="xb-credit-container__faq-bottom">
           <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
           <div>
             The maximum points you can get each day is 100 points.
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="xb-credit-container__faq-bottom" ng-if="false">
-          <div class="md-subhead">Am I guaranteed to claim free samples?</div>
-          <div>
-            Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
           </div>
         </div>
         <div class="xb-credit-container__faq-bottom">
@@ -186,6 +158,27 @@
           <div class="md-subhead">What kind of product sharing/review will be featured?</div>
           <div>
             We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!</div>
+        </div>
+
+      </div>
+      <div>
+        <div class="xb-credit-container__faq-bottom">
+          <div class="md-subhead">How can I see how many points I have earned?</div>
+          <div>
+            You can check your total points balance by logging in to Xberts and clicking on “My Profile” page. Your total points will be displayed at the top of your profile page.
+          </div>
+        </div>
+        <div class="xb-credit-container__faq-bottom" >
+          <div class="md-subhead">How long can I receive the product after submitting the gift redemption request? </div>
+          <div>
+            The product will normally be shipped within 5 working days after we receive your redemption request. We will send you a shipping notification and tracking number through email. Please note that the delivery time will depend on the shipping destination.
+          </div>
+        </div>
+        <div >
+          <div class="md-subhead">What kind of contents and behaviors will be treated as spam? </div>
+          <div>
+            If you flood the community with posts, comments, fake user invitations or illegal contents, you may be considered a spammer. Once you’re treated as a spammer, your account may be blocked or removed all the points from your record.
+          </div>
         </div>
       </div>
       <div flex>
@@ -288,10 +281,12 @@
     <md-button ng-if="!user.isAuth()" class="md-primary md-raised" ui-sref="application.signup">sign up</md-button>
     <div class="xb-credit-color-bg__content">
       <div layout="row">
-        <span>10 points</span><a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
+        <span>10 points</span>
+        <a ui-sref="application.askQuestionMain">Answer a question and selected as the Best Answer by users</a>
       </div>
-      <div layout="row" ng-if="false">
-        <span>5 points</span><a>Product suggestion is featured on Xberts</a>
+      <div layout="row">
+        <span>8 points</span>
+        <a ui-sref="application.shareProductList">Share a great product by posting on Discover page and approved by us</a>
       </div>
       <div layout="row">
         <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
@@ -300,28 +295,13 @@
         <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
       </div>
       <div layout="row" ng-if="false">
-        <span>3 points</span><a>Connect with your social media account</a>
+        <span>5 points</span><a>Connect with your social media account</a>
+      </div>
+      <div layout="row">
+        <span>5 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
       </div>
       <div layout="row">
         <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.shareProductList">Share a product on your social media with an Xberts link</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.campaignreviews">Share a review on your social media with an Xberts link</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.shareProductList">Comment on a product under Discover page</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.testingcampaigns">Comment on a campaign under Trial page</a>
-      </div>
-      <div layout="row">
-        <span>2 points</span><a ui-sref="application.campaignreviews">Comment on a review under Reviews page</a>
       </div>
     </div>
   </div>
@@ -337,22 +317,10 @@
         Xberts is a YC-funded company that aims to create a community where tech geeks can share their favorite products, we also give out free or discounted samples in order to collect authentic reviews for both manufacturers and customers. That way, the manufacturers can make improvements on their product and our users can make wise purchasing decision.
       </div>
     </div>
-    <div ng-if="false">
-      <div class="md-subhead">Can I lose my badge?</div>
-      <div>
-        It is possible to lose your badge after you redeem free gifts. Also, every half year, we will assessif you have earned enough points to maintain your badge, or you will be downgraded.
-      </div>
-    </div>
     <div>
       <div class="md-subhead">Is there a daily limit on the points I can win per day?</div>
       <div>
         The maximum points you can get each day is 100 points.
-      </div>
-    </div>
-    <div ng-if="false">
-      <div class="md-subhead">Am I guaranteed to claim free samples?</div>
-      <div>
-        Usually we give out limited number of free samples. priority will be given to those who have higher rank and more points, however, you can always redeem free gifts, and we will deduct your points accordingly.
       </div>
     </div>
     <div>
@@ -364,7 +332,24 @@
     <div>
       <div class="md-subhead">What kind of product sharing/review will be featured?</div>
       <div>
-        We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!
+        We do prefer creative contents and self-made videos. As long as you take your time to write a quality product sharing/review, we'd love to reward you with more bonus points!</div>
+    </div>
+    <div>
+      <div class="md-subhead">How can I see how many points I have earned?</div>
+      <div>
+        You can check your total points balance by logging in to Xberts and clicking on “My Profile” page. Your total points will be displayed at the top of your profile page.
+      </div>
+    </div>
+    <div>
+      <div class="md-subhead">How long can I receive the product after submitting the gift redemption request? </div>
+      <div>
+        The product will normally be shipped within 5 working days after we receive your redemption request. We will send you a shipping notification and tracking number through email. Please note that the delivery time will depend on the shipping destination.
+      </div>
+    </div>
+    <div>
+      <div class="md-subhead">What kind of contents and behaviors will be treated as spam? </div>
+      <div>
+        If you flood the community with posts, comments, fake user invitations or illegal contents, you may be considered a spammer. Once you’re treated as a spammer, your account may be blocked or removed all the points from your record.
       </div>
     </div>
   </div>

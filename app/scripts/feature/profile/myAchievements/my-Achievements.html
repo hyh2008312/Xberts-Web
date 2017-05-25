@@ -1,0 +1,32 @@
+<div class="xb-my-achievement background-whitem">
+  <div ng-if="achievemets.shareProductAmount && achievemets.shareProductAmount > 0" layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['shareProductAmount']" ></i>
+    Share {{achievemets.shareProductAmount>1? achievemets.shareProductAmount + ' products': achievemets.shareProductAmount + ' product'}}
+  </div>
+  <div ng-if="achievemets.voteAmount && achievemets.voteAmount > 0" layout="row" layout-align="start center">
+    <md-icon md-font-set="material-icons">{{icons['voteAmount']}}</md-icon>
+    Received {{achievemets.voteAmount>1? achievemets.voteAmount + ' likes': achievemets.voteAmount + ' like'}}
+  </div>
+  <div ng-if="achievemets.answerAmount && achievemets.answerAmount > 0" layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['answerAmount']" ></i>
+    Answer {{achievemets.answerAmount > 1?achievemets.answerAmount+ ' questions':achievemets.answerAmount+ ' question'}}</div>
+
+  <div ng-if="achievemets.bestAnswerAmount && achievemets.bestAnswerAmount > 0" layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['bestAnswerAmount']" ></i>
+    {{achievemets.bestAnswerAmount > 1?achievemets.bestAnswerAmount+ ' answers are':achievemets.bestAnswerAmount+ ' answer is'}}
+    selected as Best Answer</div>
+  <div ng-if="achievemets.reviewAmount && achievemets.reviewAmount > 0"  layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['reviewAmount']" ></i>
+    Submit {{achievemets.reviewAmount > 1?achievemets.reviewAmount+ ' reviews':achievemets.reviewAmount+ ' review'}}
+  </div>
+  <div ng-if="achievemets.reviewFeaturedAmount && achievemets.reviewFeaturedAmount > 0"  layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['reviewFeaturedAmount']" ></i>
+    {{achievemets.reviewFeaturedAmount > 1?achievemets.reviewFeaturedAmount+ ' reviews':achievemets.reviewFeaturedAmount+ ' review'}}
+    get featured
+  </div>
+  <div ng-if="achievemets.inviteAmount && achievemets.inviteAmount > 0"  layout="row" layout-align="start center">
+    <i class="iconfontXberts" ng-class="icons['inviteAmount']" ></i>
+    Invited {{achievemets.inviteAmount > 1?achievemets.inviteAmount+ ' friends':achievemets.inviteAmount+ ' friend'}}
+    get featured
+  </div>
+</div>

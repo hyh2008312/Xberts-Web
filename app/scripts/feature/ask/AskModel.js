@@ -7,6 +7,29 @@ function AskModel($state,urlParser,$sce) {
   }
 
   AskModel.prototype = {
+    getLatestUserId: function() {
+      return this.latestAnswer.owner.id;
+    },
+    getLatestUserAvatar: function () {
+      return this.latestAnswer.owner.userprofile.avatar || false;
+    },
+    getLatestUserName: function () {
+      return this.latestAnswer.owner.firstName;
+    },
+    getLatestUserPosition: function () {
+      if(this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company) {
+        return this.latestAnswer.owner.userprofile.position +" @ "+ this.latestAnswer.owner.userprofile.company;
+      } else if(this.latestAnswer.owner.userprofile.position && !this.latestAnswer.owner.userprofile.company) {
+        return this.latestAnswer.owner.userprofile.position;
+      } else if(!this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company){
+        return this.latestAnswer.owner.userprofile.company;
+      } else {
+        return "";
+      }
+    },
+    getLatestBadgePoint: function() {
+      return this.latestAnswer.owner.badgePoint;
+    },
     getAnswerUserId: function() {
       return this.owner.id;
     },
@@ -15,6 +38,17 @@ function AskModel($state,urlParser,$sce) {
     },
     getAnswerUserName: function () {
       return this.owner.firstName;
+    },
+    getAnswerUserPosition: function () {
+      if(this.owner.userprofile.position && this.owner.userprofile.company) {
+        return this.owner.userprofile.position +" @ "+ this.owner.userprofile.company;
+      } else if(this.owner.userprofile.position && !this.owner.userprofile.company) {
+        return this.owner.userprofile.position;
+      } else if(!this.owner.userprofile.position && this.owner.userprofile.company){
+        return this.owner.userprofile.company;
+      } else {
+        return "";
+      }
     },
     getOwnerBadgePoint: function() {
       return this.owner.badgePoint;
@@ -42,9 +76,6 @@ function AskModel($state,urlParser,$sce) {
           break;
       }
       return baseUrl;
-    },
-    getProdcutLink: function() {
-      return this.latestAnswer?this.latestAnswer.productLink.url:false;
     }
   };
 
