@@ -17,7 +17,7 @@ angular.module('xbertsApp')
           'Profile Completeness': parseInt(scope.points.hasAvatar),
           'Redeem Gifts': '-' + parseInt(scope.points.consumed),
           'Other': scope.total - parseInt(scope.points.consumed) - parseInt(scope.points.postProductFeatured) -
-          parseInt(scope.points.applyTrial) - parseInt(scope.points.postReviewFeatured) + 10 - parseInt(scope.points.hasAvatar)
+          parseInt(scope.points.applyTrial) - parseInt(scope.points.postReviewFeatured) - parseInt(scope.points.hasAvatar)
         };
 
       }

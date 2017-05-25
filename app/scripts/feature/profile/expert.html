@@ -123,7 +123,7 @@
                 <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followingPaginator.loadNext()"
                      infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 4">
-                  <my-follow class="xb-my-posts" experts="followingPaginator.items" following="true" achievement="achievement"></my-follow>
+                  <my-follow class="xb-my-posts" experts="followingPaginator.items" following="true" achievement="achievement" expert="expert"></my-follow>
                   <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingPaginator.loading"></load-more>
                 </div>
               </md-tab>
@@ -131,7 +131,7 @@
                 <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followerPaginator.loadNext()"
                      infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 4">
-                  <my-follow class="xb-my-posts" experts="followerPaginator.items" achievement="achievement"></my-follow>
+                  <my-follow class="xb-my-posts" experts="followerPaginator.items" achievement="achievement" expert="expert"></my-follow>
                   <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
                 </div>
               </md-tab>
@@ -205,10 +205,7 @@
           <div>Follower</div>
         </div>
       </div>
-      <div class="xb-main-reviewer" hide-sm hide-xs>
-        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
-          Achievements
-        </div>
+      <div hide-sm hide-xs>
         <my-achievements achievemets="achievement"></my-achievements>
       </div>
     </div>

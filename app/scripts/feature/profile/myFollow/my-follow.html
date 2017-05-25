@@ -1,15 +1,15 @@
 <md-list>
-  <md-list-item class="xb-main-reviewer__item" ng-repeat="expert in experts track by $index" layout="row" layout-align="start center">
-    <avatar-Img src="expert.userprofile.avatar" class="md-avatar" ui-sref="application.expert({ expertId:expert.id })"
-                name="expert.firstName"></avatar-Img>
+  <md-list-item class="xb-main-reviewer__item" ng-repeat="xbert in experts track by $index" layout="row" layout-align="start center">
+    <avatar-Img src="xbert.userprofile.avatar" class="md-avatar" ui-sref="application.expert({ expertId:xbert.id })"
+                name="xbert.firstName"></avatar-Img>
     <div class="md-2-line" ng-class="{'md-offset': true }" layout-fill layout="column" layout-align="center start">
       <div layout="row" layout-align="start center">
-        <a class="md-subhead" ui-sref="application.expert({ expertId:expert.id })">{{ expert.firstName }}</a>
-        <credit-badge class="credit-badge" points="expert.badgePoint"></credit-badge>
+        <a class="md-subhead" ui-sref="application.expert({ expertId:xbert.id })">{{ xbert.firstName }}</a>
+        <credit-badge class="credit-badge" points="xbert.badgePoint"></credit-badge>
       </div>
-      <p class="md-dark-secondary"> {{ expert.userprofile.position }} @ {{ expert.userprofile.company }} </p>
+      <p class="md-dark-secondary"> {{ expert.userprofile.position }} @ {{ xbert.userprofile.company }} </p>
     </div>
-    <xb-follow follow="expert.currentUser.follow" user-id="expert.id" experts="experts"
-               index="$index" following="following" achievement="achievement"></xb-follow>
+    <xb-follow follow="xbert.currentUser.follow" user-id="xbert.id" experts="experts"
+               index="$index" following="following" achievement="achievement" expert="expert"></xb-follow>
   </md-list-item>
 </md-list>
