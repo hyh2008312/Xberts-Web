@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet',
-    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet) {
+  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet','localStorageService',
+    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService) {
     return {
       restrict: 'E',
       scope: {
@@ -25,6 +25,10 @@ angular.module('xbertsApp')
             } else {
               product.followeeCount--;
             }
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_currentPage');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_items');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_next');
+            localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_count');
           }, function() {});
         };
 

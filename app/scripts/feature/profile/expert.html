@@ -41,10 +41,21 @@
 <div class="xb-my-profile__button-bg">
   <div class="container">
     <div layout="column" layout-align="end end">
-      <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser" ng-click="contactUser()">
-        <md-icon md-font-set="material-icons" aria-label="comment">comment</md-icon>
-      </md-button>
-      <md-button class="xb-my-profile__button md-accent md-fab" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})">
+      <div layout="row" layout-align="start center">
+        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && !expert.currentUser.follow" ng-click="addFollow()"
+          layout="row" layout-align="center center">
+          <i class="iconfontXberts icon-ic-follow" aria-label="follow"></i>
+        </md-button>
+        <md-button class="xb-my-profile__button md-accent md-fab" ng-if="!isCurrentUser && expert.currentUser.follow" ng-click="addFollow()"
+                   layout="row" layout-align="center center">
+          <i class="iconfontXberts icon-ic-following" aria-label="follow"></i>
+        </md-button>
+        <md-button class="xb-my-profile__button xb-my-profile__button-1 md-fab" ng-if="!isCurrentUser" ng-click="contactUser()">
+          <md-icon md-font-set="material-icons" aria-label="comment">comment</md-icon>
+        </md-button>
+      </div>
+      <md-button class="xb-my-profile__button md-accent md-fab" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})"
+                 layout="row" layout-align="center center">
         <md-icon md-font-set="material-icons" aria-label="edit">mode_edit</md-icon>
       </md-button>
     </div>
@@ -66,7 +77,7 @@
                  infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                  infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
               <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
-              <load-more layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
             </div>
           </div>
         </md-tab>
@@ -78,21 +89,21 @@
                 <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
                   <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-                  <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
                 </div>
               </md-tab>
               <md-tab label="Questions" md-on-select="loadMyQuestions()">
                 <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 2">
                   <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-                  <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
                 </div>
               </md-tab>
               <md-tab label="Answers" md-on-select="loadMyAnswers()">
                 <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
                   <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-                  <load-more layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
                 </div>
               </md-tab>
             </md-tabs>
@@ -107,18 +118,29 @@
 
         <md-tab label="follow" md-on-select="loadMyFollow()">
           <div class="xb-my-profile__margin-top">
-            <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
-              <md-tab label="Following" md-on-select="">
-
+            <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex2" md-border-bottom>
+              <md-tab label="Following" md-on-select="loadMyFollowing()">
+                <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followingPaginator.loadNext()"
+                     infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 4">
+                  <my-follow class="xb-my-posts" experts="followingPaginator.items" following="true" achievement="achievement"></my-follow>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingPaginator.loading"></load-more>
+                </div>
               </md-tab>
-              <md-tab label="Follower" md-on-select="">
-
+              <md-tab label="Follower" md-on-select="loadMyFollower()">
+                <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followerPaginator.loadNext()"
+                     infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                     infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 4">
+                  <my-follow class="xb-my-posts" experts="followerPaginator.items" achievement="achievement"></my-follow>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
+                </div>
               </md-tab>
               <md-tab label="Questions" md-on-select="loadMyFollowingQuestions()">
                 <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next || selectedIndex != 4">
-                  <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items" current-user="isCurrentUser" hide-state="true"></my-questions-list>
-                  <load-more layout="row" layout-align="center center" ng-if="followingQuestionsPaginator.loading"></load-more>
+                  <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items"
+                                     current-user="isCurrentUser" hide-state="true"></my-questions-list>
+                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingQuestionsPaginator.loading"></load-more>
                 </div>
               </md-tab>
             </md-tabs>
@@ -174,12 +196,12 @@
     <div>
       <div class="xb-profile-follow" layout="row" layout-align="center center" hide-sm hide-xs>
         <div layout="column" layout-align="center center" flex="50">
-          <div class="md-headline">1122</div>
+          <div class="md-headline">{{achievement.followeesAmount}}</div>
           <div>Following</div>
         </div>
-        <span></span>
+        <span flex="none"></span>
         <div layout="column" layout-align="center center" flex="50">
-          <div class="md-headline">120</div>
+          <div class="md-headline">{{achievement.followersAmount}}</div>
           <div>Follower</div>
         </div>
       </div>
@@ -187,7 +209,7 @@
         <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
           Achievements
         </div>
-
+        <my-achievements achievemets="achievement"></my-achievements>
       </div>
     </div>
 
@@ -196,11 +218,11 @@
 <div class="xb-my-profile__mobile " hide-gt-xs flex="noshrink">
   <div class="xb-profile-follow" layout="row" layout-align="center center">
     <div layout="column" layout-align="center center" flex="50">
-      <div class="md-headline">1122</div>
+      <div class="md-headline">{{achievement.followeesAmount}}</div>
       <div class="md-dark-secondary">Following</div>
     </div>
     <div layout="column" layout-align="center center" flex="50">
-      <div class="md-headline">120</div>
+      <div class="md-headline">{{achievement.followersAmount}}</div>
       <div class="md-dark-secondary">Follower</div>
     </div>
   </div>
@@ -223,6 +245,11 @@
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.referrals({expertId:expert.userId})">
       Referrals
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.follow({expertId:expert.userId})">
+      Follow
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
   </div>

@@ -3,13 +3,15 @@
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
     'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct','ExpertService',
-    'AskModel','AskService',
+    'AskModel','AskService','localStorageService','achievement',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
-              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService,AskModel,AskService) {
+              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService,AskModel,AskService,
+              localStorageService,achievement) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
+      $scope.achievement = achievement;
 
       $scope.selectedIndex = 0;
       $scope.selectedIndex1 = 0;
@@ -122,6 +124,26 @@ angular.module('xbertsApp')
         updateUrl();
       };
 
+      var parfollowing = {
+        name: 'followings_list_' + $scope.expert.userId,
+        params: {
+          id: $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: ExpertService.followees
+      };
+      $scope.followingPaginator = new Paginator(parfollowing);
+
+      var parfollower = {
+        name: 'followers_list_' + $scope.expert.userId,
+        params: {
+          id: $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: ExpertService.followers
+      };
+      $scope.followerPaginator = new Paginator(parfollower);
+
       var parfollowingQuestions = {
         name: 'following_answers_list_' + $scope.expert.userId,
         objClass: AskModel,
@@ -137,6 +159,17 @@ angular.module('xbertsApp')
         updateUrl();
       };
 
+      $scope.loadMyFollowing = function() {
+        $scope.followingPaginator.clear();
+        $scope.followingPaginator.load();
+      };
+
+      $scope.loadMyFollower = function() {
+        $scope.followerPaginator.clear();
+        $scope.followerPaginator.load();
+      };
+
+
       $scope.contactUser = function () {
         if (!$rootScope.user.authRequired()) {
           return;
@@ -151,6 +184,26 @@ angular.module('xbertsApp')
               return $scope.expert.userId;
             }
           }
+        });
+      };
+
+      $scope.addFollow = function () {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
+
+        ExpertService.follow({id:expert.userId}).then(function(data) {
+          $scope.expert.currentUser.follow = data.follow;
+          localStorageService.remove('followings_list_' + $rootScope.user.getUserId() + '_currentPage');
+          localStorageService.remove('followings_list_' + $rootScope.user.getUserId() + '_items');
+          localStorageService.remove('followings_list_' + $rootScope.user.getUserId() +'_next');
+          localStorageService.remove('followings_list_' + $rootScope.user.getUserId() +'_count');
+          localStorageService.remove('followers_list_' + $rootScope.user.getUserId() + '_currentPage');
+          localStorageService.remove('followers_list_' + $rootScope.user.getUserId() + '_items');
+          localStorageService.remove('followers_list_' + $rootScope.user.getUserId() +'_next');
+          localStorageService.remove('followers_list_' + $rootScope.user.getUserId() +'_count');
+        }, function() {
+
         });
       };
 

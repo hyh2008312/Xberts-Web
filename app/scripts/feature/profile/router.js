@@ -15,6 +15,9 @@ angular
         resolve: {
           expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
             return ExpertService.getExpert($stateParams.expertId);
+          }],
+          achievement: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getAchievement($stateParams.expertId);
           }]
         }
       })
@@ -157,4 +160,15 @@ angular
           }]
         }
       })
+      .state('application.protected.follow', {
+        url: '/profile/follow?expertId',
+        templateUrl: 'scripts/feature/profile/myFollow/myFollow.html',
+        controller: 'MyFollowCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      });
   }]);

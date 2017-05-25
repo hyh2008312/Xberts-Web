@@ -7,14 +7,14 @@
   </div>
   <div ng-if="product.latestAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.getAnswerUserAvatar()" name="product.getLatestUserName()"
+      <avatar-Img src="product.getLatestUserAvatar()" name="product.getLatestUserName()"
                   ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
       <div layout="column" layout-align="space-between start">
         <div class="md-subhead" layout="row" layout-align="start center"
              ui-sref="application.expert({ expertId:product.getLatestUserId()})">
           {{product.getLatestUserName()}}
           <credit-badge class="credit-badge" points="product.getLatestBadgePoint()"></credit-badge>
-          <div class="md-margin-left-1">
+          <div class="md-dark-secondary md-margin-left-1">
             {{product.getLatestUserPosition()}}
           </div>
         </div>

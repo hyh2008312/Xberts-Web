@@ -4,7 +4,7 @@
   <div class="md-secondary" layout-gt-xs="row" layout-align-gt-xs="start center"
        layout="column" layout-align="space-between end">
     <md-button ng-if="currentUser && !hideState" hide-xs class="md-icon-button" ui-sref="application.protected.editQuestion({questionId:post.id})"><md-icon class="md-dark-third" md-font-set="material-icons">mode_edit</md-icon></md-button>
-    <md-button ng-if="currentUser && !post.latestAnswer && !hideState" hide-xs class="md-icon-button" ng-click="delete($event, post.id, $index);$event.stopPropagation();"><md-icon class="md-dark-third" md-font-set="material-icons">delete</md-icon></md-button>
+    <md-button ng-if="currentUser && post.followeeCount< 1 && !post.latestAnswer && !hideState" hide-xs class="md-icon-button" ng-click="delete($event, post.id, $index);$event.stopPropagation();"><md-icon class="md-dark-third" md-font-set="material-icons">delete</md-icon></md-button>
     <span class="md-body-1 md-dark-third xb-my-posts__time">{{post.created|amDateFormat:'MM.DD.YYYY'}}</span>
     <div class="xb-my-posts__menu-bg" hide-gt-xs ng-if="!hideState">
       <md-icon class="md-dark-third" ng-if="currentUser" ng-click="showMenu(post);$event.stopPropagation();" md-font-set="material-icons">more_horiz</md-icon>
@@ -13,7 +13,7 @@
                    layout="row" layout-align="start center">
           <md-icon class="md-dark-third" md-font-set="material-icons">mode_edit</md-icon> Edit
         </div>
-        <div class="md-dark-primary" ng-if="!post.latestAnswer" ng-click="delete($event, post.id, $index);$event.stopPropagation();"
+        <div class="md-dark-primary" ng-if="post.followeeCount< 1 && !post.latestAnswer" ng-click="delete($event, post.id, $index);$event.stopPropagation();"
              layout="row" layout-align="start center">
           <md-icon class="md-dark-third" md-font-set="material-icons">delete</md-icon> Delete
         </div>

@@ -87,7 +87,7 @@
                 <div class="xb-detail-cards__padding-2">
                   <div class="xb-selected-reviewer" infinite-scroll="trial.selectedApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                        infinite-scroll-disabled="trial.selectedApplicantPaginator.loading || !trial.selectedApplicantPaginator.next">
-                    <div ng-repeat="review in trial.selectedApplicantPaginator.items" layout="row" layout-align="start start">
+                    <div ng-repeat="review in trial.selectedApplicantPaginator.items" layout="row" layout-align="start center">
                       <div>
                         <avatar-img class="xb-selected-reviewer__avatar" src="review.reviewer.avatar"
                                     name="review.reviewer.fullname"
@@ -101,6 +101,7 @@
                         </div>
                         <div class="md-dark-secondary">{{review.reviewer.userprofile.position}} @ {{review.reviewer.userprofile.company}}</div>
                       </div>
+                      <xb-follow follow="review.reviewer.currentUser.follow" user-id="review.reviewer.id"></xb-follow>
                     </div>
                   </div>
                   <load-more ng-if="trial.selectedApplicantPaginator.loading"></load-more>
