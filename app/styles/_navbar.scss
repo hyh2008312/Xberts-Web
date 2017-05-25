@@ -35,7 +35,7 @@
       }
       span{
         position: absolute;
-        left:58px;
+        right:-10px;
         top:-2px;
         z-index: 1;
         font-size: 8px;
@@ -46,6 +46,15 @@
         color: #fff;
         padding: 0 4px;
         @include transform(scale(.75, .75))
+      }
+      div{
+        position: absolute;
+        right: 15px;
+        top: 1px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #ff4081;
       }
     }
   }
