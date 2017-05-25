@@ -5,7 +5,8 @@ angular.module('xbertsApp')
       scope: {
         experts: '=',
         following: '=',
-        achievement: '='
+        achievement: '=',
+        expert: '='
       },
       templateUrl: 'scripts/feature/profile/myFollow/my-follow.html',
       link: function (scope, element, attrs, ctrls) {

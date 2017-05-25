@@ -8,7 +8,8 @@ angular.module('xbertsApp')
         experts: '=',
         index: '=',
         following:'=',
-        achievement: '='
+        achievement: '=',
+        expert: '='
       },
       templateUrl: 'scripts/feature/profile/xbFollow/xb-follow.html',
       link: function (scope, element, attrs, ctrls) {
@@ -22,10 +23,10 @@ angular.module('xbertsApp')
           scope.disabled = true;
           ExpertService.follow({id:scope.userId}).then(function(data) {
             scope.disabled = false;
-            if(data.follow == false && scope.achievement) {
+            if(data.follow == false && scope.achievement && $rootScope.user.getUserId() === scope.expert.userId) {
               scope.achievement.followeesAmount--;
             }
-            if(data.follow == true && scope.achievement) {
+            if(data.follow == true && scope.achievement && $rootScope.user.getUserId() === scope.expert.userId) {
               scope.achievement.followeesAmount++;
             }
             if(data.follow == false && scope.following == true) {
