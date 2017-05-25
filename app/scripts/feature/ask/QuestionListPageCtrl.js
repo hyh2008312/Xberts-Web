@@ -23,14 +23,10 @@ angular.module('xbertsApp')
               return;
             }
 
-            scope.$emit('backdropOn', 'post');
             AskService.create(question).then(function(data) {
               scope.cancel();
               askCtrl.askPaginator.items.unshift(data);
-              scope.$emit('backdropOff', 'success');
-            },function() {
-              scope.$emit('backdropOff', 'failure');
-            });
+            },function() {});
           };
         },
         templateUrl: 'scripts/feature/ask/recommendationPost/recommendation-post-dialog.html',
