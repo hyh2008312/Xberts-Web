@@ -65,6 +65,10 @@
     .md-body-1{
       line-height: 14px;
     }
+    .md-margin-left-1{
+      height: 18px;
+      @include ellipsisText();
+    }
   }
   &__title{
     margin-top: 12px;
