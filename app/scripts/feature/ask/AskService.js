@@ -15,8 +15,8 @@ angular.module('xbertsApp')
       return AskResource.save(params).$promise;
     };
 
-    this.getAnswerLeaderList = function() {
-      return AnswersLeaderResource.get().$promise.then(AskModel.buildPageList);
+    this.getAnswerLeaderList = function(params) {
+      return AnswersLeaderResource.get(params).$promise.then(AskModel.buildPageList);
     };
 
     this.follow = function (id) {

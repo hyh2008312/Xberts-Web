@@ -43,10 +43,10 @@ angular.module('xbertsApp')
       var answerAmount = null;
       switch (askCtrl.order) {
         case 1:
-          answerAmount = 0;
+          answerAmount = 'answer_amount';
               break;
       }
-      askCtrl.askPaginator.params.answer_amount = answerAmount;
+      askCtrl.askPaginator.params.ordering = answerAmount;
       askCtrl.askPaginator.clear();
       askCtrl.askPaginator.load();
     };
