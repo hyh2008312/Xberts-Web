@@ -247,5 +247,15 @@ angular
             }]
         }
       })
+      .state('application.reviewGuide', {
+        url: '/trials/:reviewId/guide',
+        templateUrl: 'scripts/feature/review/reviewGuide/reviewGuide.html',
+        controller: 'ReviewGuideCtrl',
+        resolve: {
+          review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
+            return ReviewService.getDetail($stateParams.reviewId);
+          }]
+        }
+      })
     ;
   }]);

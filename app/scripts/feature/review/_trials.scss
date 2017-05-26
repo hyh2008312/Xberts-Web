@@ -546,3 +546,22 @@
     border-bottom: 1px solid rgba(0,0,0,.12);
   }
 }
+.xb-trial-star{
+  width: 110px;
+  display: block;
+  text-align: right;
+  height: 20px;
+  line-height: 20px;
+  .material-icons{
+    width: 16px;
+    height: 16px;
+    min-width: 0;
+    min-height: 0;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 5px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
