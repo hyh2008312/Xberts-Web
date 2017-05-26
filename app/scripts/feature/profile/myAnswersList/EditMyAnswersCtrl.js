@@ -92,6 +92,9 @@ angular.module('xbertsApp')
       };
 
       $scope.imageUpload = function (files) {
+        if(!$rootScope.user.authRequired()) {
+          return;
+        }
         for (var i = 0; i < files.length; i++) {
           UploadService.uploadFile(files[i], 'ANSWER', $scope)
             .then(function (data) {
@@ -118,7 +121,7 @@ angular.module('xbertsApp')
         }
 
         if($scope.detailCharacterCount<150) {
-          return;
+          //return;
         }
 
         if (answer.description) {
