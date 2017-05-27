@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('answerPost',['$rootScope','UploadService','AskService','growl',
-    function ($rootScope,UploadService, AskService,growl) {
+  .directive('answerPost',['$rootScope','UploadService','AskService','growl','$filter',
+    function ($rootScope,UploadService, AskService,growl,$filter) {
     return {
       restrict: 'E',
       scope: {
@@ -24,7 +24,15 @@ angular.module('xbertsApp')
           for (var i = 0; i < paragraphs.length; i++) {
             var pNode = document.createElement('p');
             var textNode = document.createTextNode(paragraphs[i]);
-            pNode.appendChild(textNode);
+            if($filter('isLink')(paragraphs[i])) {
+              var aNode = document.createElement('a');
+              aNode.appendChild(textNode);
+              aNode.setAttribute('href', paragraphs[i]);
+              aNode.setAttribute('target', '_blank');
+              pNode.appendChild(aNode);
+            } else  {
+              pNode.appendChild(textNode);
+            }
             element.find('.summernote').summernote('insertNode', pNode);
           }
         };
