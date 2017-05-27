@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditMyAnswersCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService','growl','editMyAnswer',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer) {
+    'localStorageService','growl','editMyAnswer','$filter',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer,$filter) {
 
       $scope.answer = editMyAnswer;
       var oldPost = angular.copy(editMyAnswer, {});

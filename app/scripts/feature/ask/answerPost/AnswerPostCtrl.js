@@ -1,7 +1,7 @@
 angular.module('xbertsApp')
   .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService','growl',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl) {
+    'localStorageService','growl','$filter',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,$filter) {
 
 
       $scope.detailCharacterCount = 0;
