@@ -106,8 +106,28 @@
       text-decoration: none;
     }
   }
+  &__title-2{
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: block;
+    word-wrap: break-word;
+    max-height: 96px;
+    overflow: hidden;
+    &:hover{
+      color: rgba(0,0,0,.84);
+    }
+    @include media();
+    @include xb-xs-screen{
+      margin-top: 0;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 8px;
+      text-decoration: none;
+      max-height: 72px;
+    }
+  }
   &__answer-content-display{
-    max-height: 200px;
+    max-height: 230px;
     overflow: hidden;
     cursor: pointer;
   }

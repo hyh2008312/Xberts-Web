@@ -4,7 +4,8 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        products: '='
+        products: '=',
+        hideAnswer: '='
       },
       templateUrl: 'scripts/feature/ask/questionItem/question-item.html',
       link: function (scope, element, attrs, ctrls) {
