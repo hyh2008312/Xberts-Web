@@ -5,7 +5,11 @@
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
     <span ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
   </div>
-  <div ng-if="product.latestAnswer">
+  <div class="xb-ask-list__answer-content md-body-1" ng-if="product.description && hideAnswer">
+    {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
+    <span ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+  </div>
+  <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
       <avatar-Img src="product.getLatestUserAvatar()" name="product.getLatestUserName()"
                   ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
