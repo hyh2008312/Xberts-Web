@@ -16,8 +16,10 @@
           <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='answer.created'></span></span>
         </div>
       </div>
-      <md-button class="md-primary md-margin-clear" ng-disabled="answer.disabled" ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && !answer.owner.currentUser.follow" ng-click="addFollow(answer);">Follow</md-button>
-      <md-button class="md-warn md-margin-clear" ng-disabled="answer.disabled" ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && answer.owner.currentUser.follow" ng-click="addFollow(answer);">Following</md-button>
+      <md-button class="md-primary md-margin-clear" ng-disabled="answer.disabled"
+                 ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && !answer.owner.currentUser.follow" ng-click="addFollow(answer);">Follow</md-button>
+      <md-button class="md-warn md-margin-clear" ng-disabled="answer.disabled"
+                 ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && answer.owner.currentUser.follow" ng-click="addFollow(answer);">Following</md-button>
     </div>
     <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="answer.description | trust"
          ng-bind-html-unsafe="whatever" add-link-target></div>
@@ -27,6 +29,11 @@
       <vote layout="row" layout-align="start center" ></vote>
       <div layout="row" layout-align="start center">
         <md-icon flex="none" ng-click="onToggleDown(answer);">sms</md-icon>
+        <span></span>
+      </div>
+      <div ng-if="user.isAuth() && user.getUserId() === answer.getAnswerUserId()" layout="row" layout-align="start center"
+           ui-sref="application.protected.editAnswer({answerId:answer.id})">
+        <md-icon md-font-set="material-icons" ng-click="">mode_edit</md-icon>
       </div>
       <comment-amounts layout="row" layout-align="start center"></comment-amounts>
     </div>
