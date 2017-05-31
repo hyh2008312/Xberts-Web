@@ -3,9 +3,11 @@
 angular.module('xbertsApp')
   .service('InteractService', ['$resource', 'API_BASE_URL', 'Interact', function ($resource, API_BASE_URL, Interact) {
 
-    var JoinResource = $resource(API_BASE_URL + '/interact/joins/:id/', {id:'@id'},
+    var JoinResource = $resource(API_BASE_URL + '/interact/joins/:id/', {id: '@id'},
       {
-        'vote': {method: 'PATCH', params: {action: 'vote'}}
+        'vote': {method: 'PATCH', params: {action: 'vote'}},
+        'upvote': {method: 'PATCH', params: {action: 'upvote'}},
+        'downvote': {method: 'PATCH', params: {action: 'downvote'}}
       });
 
     this.createJoin = function (data) {
