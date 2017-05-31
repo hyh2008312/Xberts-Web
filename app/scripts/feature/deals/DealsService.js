@@ -4,7 +4,7 @@ angular.module('xbertsApp')
   .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
 
     var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
-    var DealsProductRelatedResource = $resource(API_BASE_URL + '/deals/:id/related',{id:'@id'});
+    var DealsProductRelatedResource = $resource(API_BASE_URL + '/deals/:id/related/',{id:'@id'});
 
     this.categoryId = null;
     this.sortId = null;
