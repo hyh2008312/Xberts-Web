@@ -29,13 +29,12 @@
       <vote layout="row" layout-align="start center" ></vote>
       <div layout="row" layout-align="start center">
         <md-icon flex="none" ng-click="onToggleDown(answer);">sms</md-icon>
-        <span></span>
       </div>
+      <comment-amounts layout="row" layout-align="start center"></comment-amounts>
       <div ng-if="user.isAuth() && user.getUserId() === answer.getAnswerUserId()" layout="row" layout-align="start center"
            ui-sref="application.protected.editAnswer({answerId:answer.id})">
         <md-icon md-font-set="material-icons" ng-click="">mode_edit</md-icon>
       </div>
-      <comment-amounts layout="row" layout-align="start center"></comment-amounts>
     </div>
     <div ng-show="answer.commentToggle">
       <feedback-list interact-id="{{answer.interact.id}}" hide-state="!answer.commentToggle" hide-points="true"></feedback-list>
