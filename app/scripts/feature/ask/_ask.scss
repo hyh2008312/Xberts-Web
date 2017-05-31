@@ -90,6 +90,22 @@
       text-decoration: none;
     }
   }
+  &__title-1{
+    margin-top: 12px;
+    margin-bottom: 20px;
+    display: block;
+    &:hover{
+      color: rgba(0,0,0,.84);
+    }
+    @include media();
+    @include xb-xs-screen{
+      margin-top: 0;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 8px;
+      text-decoration: none;
+    }
+  }
   &__answer-content-display{
     max-height: 200px;
     overflow: hidden;
