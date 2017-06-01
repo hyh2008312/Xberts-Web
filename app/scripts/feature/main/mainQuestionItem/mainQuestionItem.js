@@ -22,10 +22,15 @@ angular.module('xbertsApp')
         scope.imagesPC = imagesPC[Math.floor(Math.random() * 2)];
         scope.imagesMobile = imagesMobile[Math.floor(Math.random() * 2)];
 
+        var length = 0;
         for(var i = 0; i < scope.questions.length;i++) {
           if(scope.questions[i].latestAnswer != null) {
-            scope.latestQuestions = scope.questions[i];
-            break;
+            var answerStr = scope.questions[i].latestAnswer.description;
+            var _length = answerStr.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
+            if(length <= _length) {
+              length = _length;
+              scope.latestQuestions = scope.questions[i];
+            }
           }
         }
 
