@@ -8,6 +8,8 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/profile/editProfile/edit-profile.html',
       link: function (scope, element, attrs, ctrls) {
+        scope.disabled = false;
+
         scope.data = scope.data || [];
 
         var oldData = angular.copy(scope.data, {});
@@ -47,6 +49,8 @@ angular.module('xbertsApp')
             biography: scope.data.biography
           };
 
+          scope.disabled = true;
+
           promises.push(UserProfileService.updateProfile(userProfile)
             .then(function(value) {
               $rootScope.user.setFirstName(value.firstName);
@@ -61,6 +65,7 @@ angular.module('xbertsApp')
               scope.$emit('backdropOff', 'success');
 
               $state.go('application.expert', {expertId: $rootScope.user.getUserId()});
+              scope.disabled = false;
             })
             .catch(function(response) {
               scope.editProfileForm.serverError.generic = true;
