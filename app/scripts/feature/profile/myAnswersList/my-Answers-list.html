@@ -7,7 +7,7 @@
   </div>
   <interact class="xb-my-answers__bottom" interact="post.interact">
     <div class="xb-my-answers__actions" layout="row" layout-align="start center">
-      <vote ng-if="!currentUser" layout="row" layout-align="start center" ></vote>
+      <up-and-down-vote ng-if="!currentUser" layout="row" layout-align="start center" ></up-and-down-vote>
       <div ng-if="currentUser" layout="row" layout-align="start center" ui-sref="application.protected.editAnswer({answerId:post.id})">
         <md-icon flex="none" >mode_edit</md-icon>
       </div>
