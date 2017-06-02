@@ -17,6 +17,12 @@ function InteractModel() {
       if(this.vote_amount != undefined) this.vote_amount -= 1;
       if(this.voteAmount != undefined) this.voteAmount -= 1;
     },
+    increaseDownVote:function(){
+      this.downvoteAmount += 1;
+    },
+    reduceDownVote:function(){
+      this.downvoteAmount -= 1;
+    },
     increaseMessageAmount:function(){
       if(this.feedback_amount != undefined) this.feedback_amount -= 1;
       if(this.feedbackAmount != undefined) this.feedbackAmount += 1;

@@ -10,7 +10,7 @@ angular.module('xbertsApp')
 
         $scope.interact = Interact.build($scope.interact);
 
-        $scope.currentJoin = {vote: false};
+        $scope.currentJoin = {vote: null};
 
         var self = this;
 
@@ -54,6 +54,45 @@ angular.module('xbertsApp')
               $scope.interact.increaseVote();
             } else {
               currentJoin.vote = false;
+              $scope.interact.reduceVote();
+            }
+            InteractService.vote(join);
+          });
+        };
+
+        this.upvote = function() {
+          var firstJoin = self.getCurrentJoin().vote;
+          self.getOrCreateCurrentJoin().then(function () {
+            var currentJoin = self.getCurrentJoin();
+
+            var join = {id: currentJoin.id, vote: currentJoin.vote == true? null: true};
+            if (join.vote == true) {
+              currentJoin.vote = true;
+              $scope.interact.increaseVote();
+            } else if(join.vote == null){
+              currentJoin.vote = null;
+              $scope.interact.reduceVote();
+            }
+            if(firstJoin == false) {
+              $scope.interact.reduceDownVote();
+            }
+            InteractService.vote(join);
+          });
+        };
+
+        this.downvote = function() {
+          var firstJoin = self.getCurrentJoin().vote;
+          self.getOrCreateCurrentJoin().then(function () {
+            var currentJoin = self.getCurrentJoin();
+            var join = {id: currentJoin.id, vote: currentJoin.vote == false? null: false};
+            if (join.vote == false) {
+              currentJoin.vote = false;
+              $scope.interact.increaseDownVote();
+            } else if(join.vote == null) {
+              currentJoin.vote = null;
+              $scope.interact.reduceDownVote();
+            }
+            if(firstJoin == true) {
               $scope.interact.reduceVote();
             }
             InteractService.vote(join);
