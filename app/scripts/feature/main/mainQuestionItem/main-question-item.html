@@ -1,5 +1,5 @@
 <div class="xb-main-ask-list" layout-gt-xs="row" layout-xs="column">
-  <div class="background-whitem" flex-sm="50" flex-md="33" flex-lg="33" hide-xs>
+  <div class="background-whitem" flex-sm="50" flex-md="50" flex-lg="33" hide-xs>
     <div class="xb-ask-list__item" >
       <a class="xb-ask-list__title-2 md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:latestQuestions.id})">{{latestQuestions.title}}</a>
       <div class="xb-ask-list__answer-content md-body-1" ng-if="!latestQuestions.latestAnswer && latestQuestions.description">
@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <div class="background-whitem" flex-sm="50" flex-md="33" flex-lg="33" flex-xs>
+  <div class="background-whitem" flex-sm="50" flex-md="50" flex-lg="33" flex-xs>
     <div class="xb-ask-list__item" ng-repeat="question in questions track by $index">
       <a class="xb-ask-list__title md-subhead md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:question.id})">{{question.title}}</a>
       <div class="xb-ask-list__actions" layout="row" layout-align="start center">
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div flex="33" flex-xs hide-sm class="xb-main-ask-list__image" ui-sref="application.askQuestionMain">
+  <div flex="33" flex-xs hide-sm hide-md class="xb-main-ask-list__image" ui-sref="application.askQuestionMain">
     <img ng-src="{{imagesPC}}" hide-xs />
     <img ng-src="{{imagesMobile}}" hide-gt-xs />
   </div>

@@ -760,6 +760,11 @@
         margin-right: 0;
       }
     }
+    @include xb-lg-screen{
+      &:nth-child(2){
+        margin-right: 0;
+      }
+    }
     @include xb-gt-xs-screen{
       height: 430px;
     }
