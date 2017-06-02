@@ -1,6 +1,6 @@
 'use strict';
 angular.module('xbertsApp')
-  .factory('Paginator', ['localStorageService', '$q', '$filter', function (localStorageService, $q, $filter) {
+  .factory('Paginator', ['$rootScope','localStorageService', '$q', '$filter', function($rootScope, localStorageService, $q, $filter) {
     function orderBy(items, ordering) {
       return ordering ? $filter('orderBy')(items, ordering) : items;
     }
@@ -39,6 +39,8 @@ angular.module('xbertsApp')
       this.minSize = _params.minSize || 0;
       this.loading = false;
       this.count = localStorageService.get(this.name + '_count') || null;
+
+      this.isLoaded = false;
     }
 
     Paginator.prototype = {
@@ -82,13 +84,32 @@ angular.module('xbertsApp')
       _load: function (preload) {
         var self = this;
         var deferred = $q.defer();
-        if (!this.next || this.loading) {
-          deferred.resolve(self);
-        } else if (preload && this.items.length > 0) {
-          deferred.resolve(self);
+        if(!$rootScope.user.isAuth()) {
+          if(self.isLoaded) {
+            self.clear();
+            self.isLoaded = true;
+          }
+          if (!this.next || this.loading) {
+            deferred.resolve(self);
+          } else if (preload && this.items.length > 0) {
+            deferred.resolve(self);
+          } else {
+            self.loading = true;
+            self._fetch(deferred);
+          }
         } else {
-          self.loading = true;
-          self._fetch(deferred);
+          if(self.isLoaded) {
+            self.clear();
+            self.isLoaded = true;
+          }
+          if (!this.next || this.loading) {
+            deferred.resolve(self);
+          } else if (preload && this.items.length > 0) {
+            deferred.resolve(self);
+          } else {
+            self.loading = true;
+            self._fetch(deferred);
+          }
         }
         return deferred.promise;
       },

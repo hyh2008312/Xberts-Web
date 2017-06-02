@@ -35,6 +35,9 @@
   margin-top: 72px;
   padding: 32px;
   @include resetBorder();
+  &__clear{
+    margin: 0 0;
+  }
   &__line{
     width: 1px;
     padding-bottom: 50%;

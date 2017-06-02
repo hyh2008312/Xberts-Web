@@ -2,8 +2,38 @@
 
 angular
   .module('xbertsApp')
-  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService', 'SocialShare', '$location',
-    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService, SocialShare, $location) {
+  .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
+    'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService',
+    function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService,
+              SocialShare, $location, OAuthToken, Configuration, AuthService) {
+
+      // to checkout out if token is expire
+      $rootScope.$on('Keepalive', function() {
+        var oauthTokenExpireDate = OAuthToken.getTokenExpireDate();
+        if ($rootScope.user.isAuth() &&
+          oauthTokenExpireDate &&
+          oauthTokenExpireDate - new Date().getTime() < Configuration.tokenRefreshThreshold * 1000) {
+          // Token is about to expire, try to refresh it
+          AuthService.refreshToken();
+        }
+      });
+
+      $rootScope.$on('logout', function(event, shouldMakeApiCall) {
+        $rootScope.$emit('backdropOn', 'delete');
+
+        AuthService.logout(shouldMakeApiCall)
+          .then(function(response) {
+            $rootScope.$emit('backdropOff', 'success');
+
+            $state.go('application.main');
+          })
+          .catch(function(response) {
+            $rootScope.$emit('backdropOff', 'error');
+
+            $state.go('application.main');
+          });
+      });
+
       $rootScope.state = $state;
       $rootScope.stateParams = $stateParams;
       $rootScope.unreadDirectMessageCount = 0;
@@ -109,7 +139,7 @@ angular
           version    : 'v2.5'
         });
       };
-      
+
       // Load the SDK asynchronously
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

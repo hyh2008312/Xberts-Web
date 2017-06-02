@@ -11,7 +11,7 @@
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.getLatestUserAvatar()" name="product.getLatestUserName()"
+      <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.getLatestUserName()"
                   ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
       <div layout="column" layout-align="space-between start">
         <div class="md-subhead" layout="row" layout-align="start center"

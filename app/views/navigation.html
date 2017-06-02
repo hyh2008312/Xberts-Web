@@ -17,12 +17,12 @@
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.signup">Sign up</div>
-      <div ui-sref-active="active" ui-sref="application.login">Log in</div>
+      <div ng-click="login();">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
       <messages></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
-        <avatar-img src="user.getUserAvatar()" name="user.getUserName()" show-name="true" ></avatar-img>
+        <avatar-img src="user._userAvatar" name="user.getUserName()" show-name="true" ></avatar-img>
         <div class="xberts-navbar__right-container-popup" ng-show="isPopupOpen" flex="none">
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</div>
           <div ui-sref-active="active" ui-sref="application.protected.invite">Invite Friends</div>
@@ -86,7 +86,7 @@
   </div>
   <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.signup" ng-click="close()">Sign up</div>
-    <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
+    <div ng-click="login();close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>

@@ -3,10 +3,10 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','Paginator',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,Paginator) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed) {
         this._userId = userId || '';
@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         this._lastName = lastName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
-        this._userAvatar = userAvatar || false;
+        this._userAvatar = userAvatar;
         this._isLinkedinSignup = isLinkedinSignup || false;
         this._isLinkedinConnected = isLinkedinConnected || false;
         this._roles = roles || [];
@@ -49,7 +49,7 @@ angular.module('xbertsApp')
         };
 
         this.getUserAvatar = function() {
-          return this._userAvatar;
+          return this._userAvatar || false;
         };
 
         this.isLinkedinSignup = function() {
@@ -105,13 +105,52 @@ angular.module('xbertsApp')
           this._isResolved = isResolved;
         };
 
-        this.authRequired = function() {
+        this.authRequired = function(obj,ev) {
           if (this.isAuth()) {
             return true;
           } else {
-            $rootScope.postLoginState = $rootScope.next;
+            $mdDialog.show({
+              controller: function(scope, $mdDialog) {
+                $rootScope.postLoginState = $rootScope.next;
+                scope.cancel = function() {
+                  $mdDialog.cancel();
+                };
+                scope.login = function(form) {
+                  if (!scope.loginForm.$valid) {
+                    return;
+                  }
+                  scope.$emit('backdropOn', 'post');
 
-            $state.go('application.login');
+                  AnalyticsService.sendPageView($location.path() + '/confirm');
+
+                  form.serverError = {};
+
+                  login({username: scope.username, password: scope.password})
+                    .then(function(value) {
+                      $mdDialog.cancel();
+                      loginRedirect(obj);
+                      scope.$emit('backdropOff', 'success');
+                    })
+                    .catch(
+                      function(httpResponse) {
+                        scope.$emit('backdropOff', 'error');
+                        if (httpResponse.status === 401 || httpResponse.status === 403) {
+                          form.serverError = {invalidCredentials: true};
+                        } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
+                          form.serverError = {linkedinSignup: true};
+                        } else {
+                          form.serverError = {generic: true};
+                        }
+                      });
+                };
+              },
+              templateUrl: 'scripts/feature/login/login.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose: true,
+              disableParenScroll: true
+            });
+            //$state.go('application.login');
             return false;
           }
         };
@@ -186,7 +225,7 @@ angular.module('xbertsApp')
           }
         }, {
           scope: 'public_profile,email',
-          auth_type: 'rerequest'
+          auth_type: 'https'
         });
 
         return deferred.promise;
@@ -287,17 +326,26 @@ angular.module('xbertsApp')
           });
       }
 
-      function loginRedirect() {
+      function loginRedirect(refresh) {
         $rootScope.$emit('backdropOff', 'success');
 
         if ($rootScope.postLoginState) {
-          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {location: 'replace'});
-
+          if(refresh.reload) {
+            angular.forEach(refresh.func,function(e) {
+              e();
+            });
+          }
+          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
           $rootScope.postLoginState = null;
         } else if ($rootScope.previous && $rootScope.previous.state) {
-          $state.go($rootScope.previous.state, $rootScope.previous.params, {location: 'replace'});
+          if(refresh.reload) {
+            angular.forEach(refresh.func,function(e) {
+              e();
+            });
+          }
+          $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
         } else {
-          $state.go('application.main', {}, {location: 'replace'})
+          $state.go('application.main', {}, {reload: true})
         }
       }
 
