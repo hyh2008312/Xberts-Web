@@ -8,7 +8,7 @@
       </div>
       <div ng-if="latestQuestions.latestAnswer">
         <div class="xb-ask-list__head-bg" layout="row">
-          <avatar-Img src="latestQuestions.getAnswerUserAvatar()" name="latestQuestions.getLatestUserName()"
+          <avatar-Img src="latestQuestions.latestAnswer.owner.userprofile.avatar" name="latestQuestions.getLatestUserName()"
                       ui-sref="application.expert({ expertId:latestQuestions.getLatestUserId()})"></avatar-Img>
           <div layout="column" layout-align="space-between start">
             <div class="md-subhead" layout="row" layout-align="start center"
