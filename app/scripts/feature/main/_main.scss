@@ -751,9 +751,26 @@
   >div{
     @include resetBorder();
     margin-right: 16px;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     @include xb-xs-screen{
       margin-right: 0;
+    }
+    @include xb-sm-screen{
+      &:nth-child(2){
+        margin-right: 0;
+      }
+    }
+    @include xb-gt-xs-screen{
+      height: 430px;
+    }
+    @include xb-gt-sm-screen{
+      min-width: 32%;
+    }
+    &:first-child{
+      .xb-ask-list__item{
+        height: 100%;
+        margin-bottom: 16px;
+      }
     }
   }
   .xb-ask-list__item{
