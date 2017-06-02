@@ -52,7 +52,7 @@ angular.module('xbertsApp')
     };
 
     var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';
-    var description = 'Get product recommendations from our global community of savvy-shopper';
+    var description = 'Get recommendations and tips from our global community of savvy-shoppers';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

@@ -9,7 +9,7 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.icons = {
           shareProductAmount:'icon-paper_edit',
-          voteAmount:'thumb_up',
+          thumbsUpAmount:'thumb_up',
           answerAmount:'icon-pic-answer',
           bestAnswerAmount:'icon-pic-best-answer',
           reviewAmount:'icon-pic-review',

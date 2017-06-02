@@ -1,4 +1,4 @@
-<div ng-if="achievemets && (achievemets.shareProductAmount > 0 || achievemets.voteAmount > 0
+<div ng-if="achievemets && (achievemets.shareProductAmount > 0 || achievemets.thumbsUpAmount > 0
    || achievemets.answerAmount > 0 || achievemets.bestAnswerAmount > 0 || achievemets.reviewAmount > 0
    || achievemets.reviewFeaturedAmount > 0 || achievemets.inviteAmount > 0)"  class="xb-main-reviewer">
   <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
@@ -9,9 +9,9 @@
       <i class="iconfontXberts" ng-class="icons['shareProductAmount']" ></i>
       Share {{achievemets.shareProductAmount>1? achievemets.shareProductAmount + ' products': achievemets.shareProductAmount + ' product'}}
     </div>
-    <div ng-if="achievemets.voteAmount && achievemets.voteAmount > 0" layout="row" layout-align="start center">
-      <md-icon md-font-set="material-icons">{{icons['voteAmount']}}</md-icon>
-      Received {{achievemets.voteAmount>1? achievemets.voteAmount + ' likes': achievemets.voteAmount + ' like'}}
+    <div ng-if="achievemets.thumbsUpAmount && achievemets.thumbsUpAmount > 0" layout="row" layout-align="start center">
+      <div><md-icon class="md-dark-third" md-font-set="material-icons">{{icons['thumbsUpAmount']}}</md-icon></div>
+      Received {{achievemets.thumbsUpAmount>1? achievemets.thumbsUpAmount + ' likes': achievemets.thumbsUpAmount + ' like'}}
     </div>
     <div ng-if="achievemets.answerAmount && achievemets.answerAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['answerAmount']" ></i>

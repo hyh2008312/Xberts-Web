@@ -58,7 +58,7 @@ angular.module('xbertsApp')
           } else  {
             pNode.appendChild(textNode);
           }
-          element.find('.summernote').summernote('insertNode', pNode);
+          angular.element('.summernote').summernote('insertNode', pNode);
         }
       };
 
@@ -150,12 +150,21 @@ angular.module('xbertsApp')
           localStorageService.remove('ask_answers_list' + '_items');
           localStorageService.remove('ask_answers_list' + '_next');
           localStorageService.remove('ask_answers_list' + '_count');
-          $state.go('application.expert', {
-            tab:'posts',
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
+
+          if($stateParams.source == 'answer') {
+            $state.go('application.answerQuestionDetail', {
+              questionId: $stateParams.questionId
+            },{
+              reload:true
+            });
+          } else {
+            $state.go('application.expert', {
+              tab:'posts',
+              expertId: $rootScope.user.getUserId()
+            },{
+              reload:true
+            });
+          }
           $scope.disabled = false;
         }, function () {
           // tips

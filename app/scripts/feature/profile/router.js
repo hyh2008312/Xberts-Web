@@ -107,7 +107,7 @@ angular
         }
       })
       .state('application.protected.editAnswer', {
-        url: '/editAnswer/:answerId',
+        url: '/editAnswer/:answerId?source&questionId',
         templateUrl: 'scripts/feature/profile/myAnswersList/editMyAnswers.html',
         controller: 'EditMyAnswersCtrl',
         resolve: {
