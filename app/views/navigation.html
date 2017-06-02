@@ -17,7 +17,7 @@
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.signup">Sign up</div>
-      <div ng-click="login();">Log in</div>
+      <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
       <messages></messages>
@@ -86,7 +86,7 @@
   </div>
   <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.signup" ng-click="close()">Sign up</div>
-    <div ng-click="login();close()">Log in</div>
+    <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
     <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>

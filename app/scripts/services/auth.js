@@ -3,10 +3,10 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','Paginator',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,Paginator) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed) {
         this._userId = userId || '';
@@ -109,48 +109,80 @@ angular.module('xbertsApp')
           if (this.isAuth()) {
             return true;
           } else {
-            $mdDialog.show({
-              controller: function(scope, $mdDialog) {
-                $rootScope.postLoginState = $rootScope.next;
-                scope.cancel = function() {
-                  $mdDialog.cancel();
-                };
-                scope.login = function(form) {
-                  if (!scope.loginForm.$valid) {
-                    return;
-                  }
-                  scope.$emit('backdropOn', 'post');
+            if(angular.element($window).width() > 600) {
+              $mdDialog.show({
+                controller: function(scope, $mdDialog) {
+                  $rootScope.postLoginState = $rootScope.next;
+                  scope.cancel = function() {
+                    $mdDialog.cancel();
+                  };
+                  scope.login = function(form) {
+                    if (!scope.loginForm.$valid) {
+                      return;
+                    }
+                    scope.$emit('backdropOn', 'post');
 
-                  AnalyticsService.sendPageView($location.path() + '/confirm');
+                    AnalyticsService.sendPageView($location.path() + '/confirm');
 
-                  form.serverError = {};
+                    form.serverError = {};
 
-                  login({username: scope.username, password: scope.password})
-                    .then(function(value) {
-                      $mdDialog.cancel();
-                      loginRedirect(obj);
-                      scope.$emit('backdropOff', 'success');
-                    })
-                    .catch(
-                      function(httpResponse) {
+                    login({username: scope.username, password: scope.password})
+                      .then(function(value) {
+                        $mdDialog.cancel();
+                        loginRedirect(obj);
+                        scope.$emit('backdropOff', 'success');
+                      })
+                      .catch(
+                        function(httpResponse) {
+                          scope.$emit('backdropOff', 'error');
+                          if (httpResponse.status === 401 || httpResponse.status === 403) {
+                            form.serverError = {invalidCredentials: true};
+                          } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
+                            form.serverError = {linkedinSignup: true};
+                          } else {
+                            form.serverError = {generic: true};
+                          }
+                        });
+                  };
+
+                  scope.facebookLogin = function(loginError) {
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView('/facebooklogin');
+
+                    facebookLogin()
+                      .then(function (response) {
+                        $mdDialog.cancel();
+                        loginRedirect();
+                      })
+                      .catch(function (response) {
                         scope.$emit('backdropOff', 'error');
-                        if (httpResponse.status === 401 || httpResponse.status === 403) {
-                          form.serverError = {invalidCredentials: true};
-                        } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
-                          form.serverError = {linkedinSignup: true};
+
+                        if (response === 'missing_permission') {
+                          loginError.facebookPermissionError = true;
                         } else {
-                          form.serverError = {generic: true};
+                          loginError.facebookError = true;
                         }
                       });
-                };
-              },
-              templateUrl: 'scripts/feature/login/login.html',
-              parent: angular.element(document.body),
-              targetEvent: ev,
-              clickOutsideToClose: true,
-              disableParenScroll: true
-            });
-            //$state.go('application.login');
+                  };
+
+                  scope.linkedinLogin = function() {
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView('/linkedinlogin');
+
+                    linkedinLogin();
+                  };
+                },
+                templateUrl: 'scripts/feature/login/login.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                disableParenScroll: true
+              });
+            } else {
+              $state.go('application.login');
+            }
             return false;
           }
         };
@@ -330,19 +362,9 @@ angular.module('xbertsApp')
         $rootScope.$emit('backdropOff', 'success');
 
         if ($rootScope.postLoginState) {
-          if(refresh.reload) {
-            angular.forEach(refresh.func,function(e) {
-              e();
-            });
-          }
           $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
           $rootScope.postLoginState = null;
         } else if ($rootScope.previous && $rootScope.previous.state) {
-          if(refresh.reload) {
-            angular.forEach(refresh.func,function(e) {
-              e();
-            });
-          }
           $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
         } else {
           $state.go('application.main', {}, {reload: true})

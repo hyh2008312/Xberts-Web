@@ -19,7 +19,7 @@ angular.module('xbertsApp')
       };
 
       $scope.login = function() {
-        if(!$rootScope.user.authRequired({reload:true})) {
+        if(!$rootScope.user.authRequired()) {
           return;
         }
       };

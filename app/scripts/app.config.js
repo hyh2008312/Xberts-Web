@@ -27,6 +27,9 @@ angular
       }
     });
   }])
+  .config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+  }])
   .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider
       .setPrefix('xberts')

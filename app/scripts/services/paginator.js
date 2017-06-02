@@ -40,7 +40,8 @@ angular.module('xbertsApp')
       this.loading = false;
       this.count = localStorageService.get(this.name + '_count') || null;
 
-      this.isLoaded = false;
+      this.isNotLoginedLoaded = false;
+      this.isLoginedLoaded = false;
     }
 
     Paginator.prototype = {
@@ -85,9 +86,10 @@ angular.module('xbertsApp')
         var self = this;
         var deferred = $q.defer();
         if(!$rootScope.user.isAuth()) {
-          if(self.isLoaded) {
+          self.isLoginedLoaded = false;
+          if(!self.isNotLoginedLoaded) {
             self.clear();
-            self.isLoaded = true;
+            self.isNotLoginedLoaded = true;
           }
           if (!this.next || this.loading) {
             deferred.resolve(self);
@@ -98,9 +100,10 @@ angular.module('xbertsApp')
             self._fetch(deferred);
           }
         } else {
-          if(self.isLoaded) {
+          self.isNotLoginedLoaded = false;
+          if(!self.isLoginedLoaded) {
             self.clear();
-            self.isLoaded = true;
+            self.isLoginedLoaded = true;
           }
           if (!this.next || this.loading) {
             deferred.resolve(self);

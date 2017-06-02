@@ -25,7 +25,7 @@ angular
           .then(function(response) {
             $rootScope.$emit('backdropOff', 'success');
 
-            $state.go('application.main');
+            $state.go('application.main',{},{reload:true});
           })
           .catch(function(response) {
             $rootScope.$emit('backdropOff', 'error');
