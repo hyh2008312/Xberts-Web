@@ -3,9 +3,6 @@
 angular.module('xbertsApp')
   .controller('AddressCtrl', ['$scope', '$rootScope', 'address', 'SystemConstant', 'AddressService','$stateParams','$state', '$mdDialog','$mdToast',
     function ($scope, $rootScope, address, SystemConstant, AddressService, $stateParams, $state, $mdDialog, $mdToast) {
-      if($stateParams.giftId == null || $stateParams.giftPoints == null) {
-        $state.go('application.main');
-      }
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.address = address.length > 0 ? address[0]: {};
       $scope.countryFilter = function(item) {

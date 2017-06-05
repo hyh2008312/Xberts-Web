@@ -10,7 +10,8 @@ angular.module('xbertsApp')
             $rootScope.$emit('backdropOn', 'login');
 
             var isNotLogin = false;
-            if($rootScope.postLoginState == undefined) {
+            if($rootScope.postLoginState == undefined
+              || S($rootScope.postLoginState).startsWith('application.protected')) {
               isNotLogin = true;
             }
             $rootScope.postLoginState = $rootScope.next;

@@ -44,7 +44,7 @@ angular.module('xbertsApp')
             .cancel('Cancel')
             .targetEvent(ev)
         ).then(function() {
-          $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+          $state.go('application.protected.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
         }, function() {});
       }
 
@@ -78,7 +78,7 @@ angular.module('xbertsApp')
             .cancel('Cancel')
             .targetEvent(ev)
         ).then(function() {
-          $state.go('application.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
+          $state.go('application.protected.shippingAddress', {giftId: redeemCtrl.redeemDetail.id,giftPoints:redeemCtrl.redeemDetail.points});
         }, function() {});
       }
     };
