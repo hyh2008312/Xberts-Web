@@ -115,12 +115,12 @@ angular
       })
       .state('application.linkedinLogin', {
         url: '/linkedinlogin',
-        templateUrl: 'views/login.html',
+        templateUrl: 'scripts/feature/login/linkedinLogin.html',
         controller: 'LinkedinLoginCtrl'
       })
       .state('application.signup', {
         url: '/signup',
-        templateUrl: 'views/signup.html',
+        templateUrl: 'views/login.html',
         controller: 'SignupCtrl'
       })
 

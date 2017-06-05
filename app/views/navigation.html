@@ -47,7 +47,8 @@
     <h2 ng-if="state.current.name == 'application.campaignreviews'">Reviews</h2>
     <h2 ng-if="state.current.name == 'application.creditMain'">Perks</h2>
     <h2 ng-if="state.current.name == 'application.signup'">Sign up</h2>
-    <h2 ng-if="state.current.name == 'application.login'">Log in
+    <h2 ng-if="state.current.name == 'application.login'
+     || state.current.name == 'application.linkedinLogin'">Log in</h2>
     <h2 ng-if="state.current.name == 'application.protected.message.inbox'">Messages</h2>
     <h2 ng-if="state.current.name == 'application.expert'
      || state.current.name == 'application.protected.biography'

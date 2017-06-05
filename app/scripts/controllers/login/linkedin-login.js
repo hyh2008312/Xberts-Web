@@ -2,8 +2,20 @@
 
 angular.module('xbertsApp')
   .controller('LinkedinLoginCtrl', ['$scope', '$rootScope', '$location', '$state', 'localStorageService', 'Configuration', 'AuthService',
-    function($scope, $rootScope, $location, $state, localStorageService, Configuration, AuthService) {
+    '$interval',
+    function($scope, $rootScope, $location, $state, localStorageService, Configuration, AuthService, $interval) {
       $scope.$emit('backdropOn', 'post');
+
+      $scope.loading = true;
+      $scope.determinateValue = 10;
+
+      var stop = $interval(function() {
+        $scope.determinateValue += 5;
+        if($scope.determinateValue >= 100) {
+          $scope.loading = false;
+          $interval.cancel(stop);
+        }
+      }, 100);
 
       var params = $location.search();
       var verified = false;
@@ -31,6 +43,8 @@ angular.module('xbertsApp')
               $rootScope.postLoginState = localStorageService.cookie.get(Configuration.postLoginStateStorageKey);
               localStorageService.cookie.remove(Configuration.postLoginStateStorageKey);
             }
+            $interval.cancel(stop);
+            $scope.determinateValue = 100;
             AuthService.loginRedirect();
           })
           .catch(function(response) {
