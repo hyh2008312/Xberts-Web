@@ -7,11 +7,13 @@ angular.module('xbertsApp')
         .then(function() {
           // Login state has been determined at this point
           if (S($rootScope.next.state).startsWith('application.protected') && !$rootScope.user.isAuth()) {
-            $rootScope.$emit('backdropOn', 'login');
+            $rootScope.$emit('backdropOff', 'login');
 
             var isNotLogin = false;
             if($rootScope.postLoginState == undefined
-              || S($rootScope.postLoginState).startsWith('application.protected')) {
+              || ($rootScope.postLoginState == 'application.login')
+              || ($rootScope.postLoginState == 'application.signup')
+              || S($rootScope.postLoginState.state).startsWith('application.protected')) {
               isNotLogin = true;
             }
             $rootScope.postLoginState = $rootScope.next;
