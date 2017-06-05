@@ -8,6 +8,9 @@ angular.module('xbertsApp')
     askCtrl.order = AskService.order;
 
     askCtrl.addQuestion = function(ev) {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
       $mdDialog.show({
         controller: function(scope, $mdDialog) {
 

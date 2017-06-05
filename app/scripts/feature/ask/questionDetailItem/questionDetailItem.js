@@ -9,6 +9,13 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.user = $rootScope.user;
+
+        scope.answer = function() {
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
+        };
         scope.follow = function(product) {
           if(!$rootScope.user.authRequired()) {
             return;

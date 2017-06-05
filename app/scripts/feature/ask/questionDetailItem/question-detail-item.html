@@ -6,7 +6,10 @@
   </div>
   <div class="xb-ask-list__actions-1" layout="row" layout-align="start center">
     <div layout="row" layout-align="start center" flex>
-      <md-button class="md-primary md-raised" xb-tabs xb-scroll-to="'xb-question-detail__dialog'" hide-xs>
+      <md-button class="md-primary md-raised" ng-click="answer();" ng-if="!user.isAuth();" hide-xs>
+        Answer
+      </md-button>
+      <md-button class="md-primary md-raised" ng-if="user.isAuth()" xb-tabs xb-scroll-to="'xb-question-detail__dialog'" hide-xs>
         Answer
       </md-button>
       <md-button class="md-primary md-raised" ui-sref="application.protected.answerPost({questionId:product.id})" hide-gt-xs>
