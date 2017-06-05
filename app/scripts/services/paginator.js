@@ -1,6 +1,6 @@
 'use strict';
 angular.module('xbertsApp')
-  .factory('Paginator', ['localStorageService', '$q', '$filter', function (localStorageService, $q, $filter) {
+  .factory('Paginator', ['$rootScope','localStorageService', '$q', '$filter', function($rootScope, localStorageService, $q, $filter) {
     function orderBy(items, ordering) {
       return ordering ? $filter('orderBy')(items, ordering) : items;
     }
@@ -39,6 +39,9 @@ angular.module('xbertsApp')
       this.minSize = _params.minSize || 0;
       this.loading = false;
       this.count = localStorageService.get(this.name + '_count') || null;
+
+      this.isNotLoginedLoaded = false;
+      this.isLoginedLoaded = false;
     }
 
     Paginator.prototype = {
@@ -82,13 +85,34 @@ angular.module('xbertsApp')
       _load: function (preload) {
         var self = this;
         var deferred = $q.defer();
-        if (!this.next || this.loading) {
-          deferred.resolve(self);
-        } else if (preload && this.items.length > 0) {
-          deferred.resolve(self);
+        if(!$rootScope.user.isAuth()) {
+          self.isLoginedLoaded = false;
+          if(!self.isNotLoginedLoaded) {
+            self.clear();
+            self.isNotLoginedLoaded = true;
+          }
+          if (!this.next || this.loading) {
+            deferred.resolve(self);
+          } else if (preload && this.items.length > 0) {
+            deferred.resolve(self);
+          } else {
+            self.loading = true;
+            self._fetch(deferred);
+          }
         } else {
-          self.loading = true;
-          self._fetch(deferred);
+          self.isNotLoginedLoaded = false;
+          if(!self.isLoginedLoaded) {
+            self.clear();
+            self.isLoginedLoaded = true;
+          }
+          if (!this.next || this.loading) {
+            deferred.resolve(self);
+          } else if (preload && this.items.length > 0) {
+            deferred.resolve(self);
+          } else {
+            self.loading = true;
+            self._fetch(deferred);
+          }
         }
         return deferred.promise;
       },

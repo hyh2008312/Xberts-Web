@@ -1,0 +1,100 @@
+<div class="xb-login-container background-whitem xb-login-container__clear" ng-show="!signUpDialog" layout="row" layout-align="start center" hide-xs>
+  <div class="xb-login-container__button-bg">
+    <div>
+      <a type="button" href="#" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+        <i class="fa fa-facebook"></i>
+        <span>Continue with Facebook</span>
+      </a>
+    </div>
+    <a type="button" href="#" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+      <i class="fa fa-linkedin"></i>
+      <span>Continue with LinkedIn</span>
+    </a>
+  </div>
+  <span class="xb-login-container__line background-bg-gray"></span>
+  <div>
+    <form name="loginForm" novalidate clear-form-error>
+      <div class="form-group has-error">
+        <div class="help-block" ng-show="loginForm.$submitted" ng-messages="loginForm.serverError">
+          <p ng-message="invalidCredentials">The email or password you entered is incorrect.</p>
+          <p ng-messages-include="views/text/form_error.html"></p>
+        </div>
+      </div>
+      <md-input-container class="md-block" md-no-float>
+        <input required ng-model="username" type="email" name="email" placeholder="Email Address"/>
+        <div ng-messages="loginForm.email.$error">
+          <div ng-message="required">Please enter your email.</div>
+          <div ng-message="email">The email you entered is invalid.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <input required ng-model="password" type="password" name="password" placeholder="Password"/>
+        <div ng-messages="loginForm.password.$error">
+          <div ng-message="required">Please enter your password.</div>
+        </div>
+      </md-input-container>
+      <p class="md-caption md-dark-secondary" ui-sref="application.resetPassword.request">Forgot password?</p>
+      <md-button class="xb-login-container__button md-primary md-raised" ng-click="login(loginForm);">Log in</md-button>
+    </form>
+    <p><span class="md-caption md-dark-secondary">Don't have an account?</span>&nbsp;&nbsp;<a ng-click="changeDialog()" >Sign up</a></p>
+  </div>
+</div>
+<div class="xb-login-container background-whitem xb-login-container__clear" ng-show="signUpDialog" layout="row" layout-align="start center" hide-xs>
+  <div class="xb-login-container__button-bg">
+    <div>
+      <a type="button" href="#" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+        <i class="fa fa-facebook"></i>
+        <span>Continue with Facebook</span>
+      </a>
+    </div>
+    <a type="button" href="#" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+      <i class="fa fa-linkedin"></i>
+      <span>Continue with LinkedIn</span>
+    </a>
+  </div>
+  <span class="xb-login-container__line background-bg-gray"></span>
+  <div flex="none">
+    <form name="signupForm" novalidate clear-form-error>
+      <div class="form-group has-error">
+        <div class="help-block" ng-messages="loginError">
+          <p ng-messages-include="views/text/login_error.html"></p>
+        </div>
+      </div>
+      <div class="form-group has-error">
+        <div class="help-block" ng-show="signupForm.$submitted" ng-messages="signupForm.serverError">
+          <div ng-message="userExist">An account already exists with that email.</div>
+          <div ng-messages-include="views/text/form_error.html"></div>
+        </div>
+      </div>
+      <div layout="row">
+        <md-input-container class="xb-login-container__input" md-no-float>
+          <input required type="text" name="firstName" placeholder="First name" ng-model="firstName"/>
+          <div ng-messages="signupForm.firstName.$error">
+            <div ng-message="required">Please enter your first name.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="xb-login-container__input" md-no-float>
+          <input required type="text" name="lastName" placeholder="Last name" ng-model="lastName"/>
+          <div ng-messages="signupForm.firstName.$error">
+            <div ng-message="required">Please enter your last name.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <md-input-container class="md-block" md-no-float>
+        <input required ng-model="email" type="email" name="email" placeholder="Email Address"/>
+        <div ng-messages="signupForm.email.$error">
+          <div ng-message="required">Please enter your email.</div>
+          <div ng-message="email">The email you entered is invalid.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" md-no-float>
+        <input required ng-model="password" type="password" name="password" placeholder="Password"/>
+        <div ng-messages="signupForm.password.$error">
+          <div ng-message="required">Please enter your password.</div>
+        </div>
+      </md-input-container>
+      <md-button class="xb-login-container__button md-primary md-raised" ng-click="signup(signupForm)">Sign Up</md-button>
+    </form>
+    <p><span class="md-caption md-dark-secondary">Already a Member?</span>&nbsp;&nbsp;<a ng-click="changeDialog()">Log in</a></p>
+  </div>
+</div>

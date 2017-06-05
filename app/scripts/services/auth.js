@@ -3,10 +3,10 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed) {
         this._userId = userId || '';
@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         this._lastName = lastName || '';
         this._userEmail = userEmail || '';
         this._userType = userType || false;
-        this._userAvatar = userAvatar || false;
+        this._userAvatar = userAvatar;
         this._isLinkedinSignup = isLinkedinSignup || false;
         this._isLinkedinConnected = isLinkedinConnected || false;
         this._roles = roles || [];
@@ -49,7 +49,7 @@ angular.module('xbertsApp')
         };
 
         this.getUserAvatar = function() {
-          return this._userAvatar;
+          return this._userAvatar || false;
         };
 
         this.isLinkedinSignup = function() {
@@ -105,13 +105,127 @@ angular.module('xbertsApp')
           this._isResolved = isResolved;
         };
 
-        this.authRequired = function() {
+        this.authRequired = function(obj,ev) {
           if (this.isAuth()) {
             return true;
           } else {
-            $rootScope.postLoginState = $rootScope.next;
+            if(angular.element($window).width() > 600) {
+              $mdDialog.show({
+                controller: function(scope, $mdDialog) {
+                  $rootScope.postLoginState = $rootScope.next;
 
-            $state.go('application.login');
+                  scope.signUpDialog = false;
+
+                  scope.changeDialog = function() {
+                    scope.signUpDialog = !scope.signUpDialog;
+                  };
+
+                  scope.cancel = function() {
+                    $mdDialog.cancel();
+                  };
+                  scope.login = function(loginForm) {
+                    if (!scope.loginForm.$valid) {
+                      return;
+                    }
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView($location.path() + '/confirm');
+
+                    scope.loginForm.serverError = {};
+
+                    login({username: scope.username, password: scope.password})
+                      .then(function(value) {
+                        $mdDialog.cancel();
+                        loginRedirect(obj);
+                        scope.$emit('backdropOff', 'success');
+                      })
+                      .catch(
+                        function(httpResponse) {
+                          scope.$emit('backdropOff', 'error');
+                          if (httpResponse.status === 401 || httpResponse.status === 403) {
+                            scope.loginForm.serverError = {invalidCredentials: true};
+                          } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
+                            scope.loginForm.serverError = {linkedinSignup: true};
+                          } else {
+                            scope.loginForm.serverError = {generic: true};
+                          }
+                        });
+                  };
+
+                  scope.signup = function(signupForm) {
+                    if (!scope.signupForm.$valid) {
+                      return;
+                    }
+
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView($location.path() + '/confirm');
+
+                    scope.signupForm.serverError = {};
+
+                    SignupService.signup(scope.firstName, scope.lastName, scope.email, scope.password)
+                      .then(function(value) {
+                        return login({
+                          username: value.email,
+                          password: scope.password
+                        });
+                      })
+                      .then(function(value) {
+                        $mdDialog.cancel();
+                        loginRedirect();
+                        scope.$emit('backdropOff', 'success');
+                      })
+                      .catch(function(httpResponse) {
+                        scope.$emit('backdropOff', 'error');
+
+                        if (httpResponse.status === 409) {
+                          scope.signupForm.serverError.userExist = true;
+                        } else {
+                          scope.signupForm.serverError.generic = true;
+                        }
+                      });
+                  };
+
+                  scope.facebookLogin = function(loginError) {
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView('/facebooklogin');
+
+                    facebookLogin()
+                      .then(function (response) {
+                        $mdDialog.cancel();
+                        loginRedirect();
+                      })
+                      .catch(function (response) {
+                        scope.$emit('backdropOff', 'error');
+
+                        if (response === 'missing_permission') {
+                          loginError.facebookPermissionError = true;
+                        } else {
+                          loginError.facebookError = true;
+                        }
+                      });
+                  };
+
+                  scope.linkedinLogin = function() {
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView('/linkedinlogin');
+
+                    linkedinLogin();
+                  };
+
+
+                },
+                templateUrl: 'scripts/feature/login/login.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                disableParenScroll: true
+              });
+            } else {
+              $state.go('application.login');
+            }
             return false;
           }
         };
@@ -186,7 +300,7 @@ angular.module('xbertsApp')
           }
         }, {
           scope: 'public_profile,email',
-          auth_type: 'rerequest'
+          auth_type: 'https'
         });
 
         return deferred.promise;
@@ -287,17 +401,16 @@ angular.module('xbertsApp')
           });
       }
 
-      function loginRedirect() {
+      function loginRedirect(refresh) {
         $rootScope.$emit('backdropOff', 'success');
 
         if ($rootScope.postLoginState) {
-          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {location: 'replace'});
-
+          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
           $rootScope.postLoginState = null;
         } else if ($rootScope.previous && $rootScope.previous.state) {
-          $state.go($rootScope.previous.state, $rootScope.previous.params, {location: 'replace'});
+          $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
         } else {
-          $state.go('application.main', {}, {location: 'replace'})
+          $state.go('application.main', {}, {reload: true})
         }
       }
 

@@ -592,6 +592,10 @@
     margin: 0 16px;
     .md-avatar{
       cursor: pointer;
+      .c-user__name{
+        width: 40px;
+        height: 40px;
+      }
     }
     &:last-child{
       border-bottom: none;

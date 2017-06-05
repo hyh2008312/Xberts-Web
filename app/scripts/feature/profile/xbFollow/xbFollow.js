@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('xbFollow', ['$rootScope','ExpertService',function($rootScope,ExpertService) {
+  .directive('xbFollow', ['$rootScope','ExpertService','localStorageService',
+    function($rootScope,ExpertService,localStorageService) {
     return {
       restrict: 'E',
       scope: {
@@ -23,6 +24,7 @@ angular.module('xbertsApp')
           scope.disabled = true;
           ExpertService.follow({id:scope.userId}).then(function(data) {
             scope.disabled = false;
+
             if(data.follow == false && scope.achievement && $rootScope.user.getUserId() === scope.expert.userId) {
               scope.achievement.followeesAmount--;
             }
@@ -34,6 +36,7 @@ angular.module('xbertsApp')
               return false;
             }
             scope.follow = data.follow;
+            localStorageService.clearAll();
           }, function() {
 
           });
