@@ -71,10 +71,10 @@
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
-        <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">Apply Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center" ng-if="isFacebookApp">
-        <md-button tabs-fixed-item class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">Apply Now</md-button>
       </div>
     </div>
     <div ng-switch-when="SELECTION">

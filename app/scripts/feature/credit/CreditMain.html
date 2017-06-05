@@ -114,13 +114,13 @@
           <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
         </div>
         <div layout="row">
-          <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
+          <span>5 points</span><a class="default" ng-click="creditCtrl.inviteFriends()">Invite a friend to join Xberts</a>
         </div>
         <div layout="row" ng-if="false">
           <span>5 points</span><a>Connect with your social media account</a>
         </div>
         <div layout="row">
-          <span>5 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
+          <span>5 points</span><a class="default" ng-click="creditCtrl.uploadFile()">Upload your profile picture</a>
         </div>
         <div layout="row">
           <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>
@@ -292,13 +292,13 @@
         <span>8 points</span><a ui-sref="application.campaignreviews">Submit a good review for your Trial and featured on our page</a>
       </div>
       <div layout="row">
-        <span>5 points</span><a ui-sref="application.protected.invite">Invite a friend to join Xberts</a>
+        <span>5 points</span><a class="default" ng-click="creditCtrl.inviteFriends()">Invite a friend to join Xberts</a>
       </div>
       <div layout="row" ng-if="false">
         <span>5 points</span><a>Connect with your social media account</a>
       </div>
       <div layout="row">
-        <span>5 points</span><a ui-sref="application.protected.editProfile({tab: 'profile' })">Upload your profile picture</a>
+        <span>5 points</span><a class="default" ng-click="creditCtrl.uploadFile()">Upload your profile picture</a>
       </div>
       <div layout="row">
         <span>3 points</span><a ui-sref="application.testingcampaigns">Apply for a trial campaign</a>

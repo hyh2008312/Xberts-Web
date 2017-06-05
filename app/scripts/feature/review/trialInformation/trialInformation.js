@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('trialInformation', ['InviteService','BrowserUtil',function (InviteService,BrowserUtil) {
+  .directive('trialInformation', ['InviteService','BrowserUtil','$rootScope','$state',
+    function (InviteService,BrowserUtil,$rootScope,$state) {
     return {
       restrict: 'E',
       scope: {
@@ -27,6 +28,13 @@ angular.module('xbertsApp')
         scope.isFacebookApp = BrowserUtil.isFacebookApp();
 
         scope.inviteObj = angular.copy(InviteService, {});
+
+        scope.applyNow = function(id) {
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
+          $state.go('application.protected.apply', {reviewId:id});
+        }
       }
     }
   }]);
