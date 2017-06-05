@@ -57,7 +57,7 @@ angular.module('xbertsApp')
         }]
       }
     })
-    .state('application.answerPost', {
+    .state('application.protected.answerPost', {
       url: '/answer?questionId',
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       reloadOnSearch: false,

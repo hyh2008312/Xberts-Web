@@ -3,10 +3,10 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed) {
         this._userId = userId || '';
@@ -113,10 +113,17 @@ angular.module('xbertsApp')
               $mdDialog.show({
                 controller: function(scope, $mdDialog) {
                   $rootScope.postLoginState = $rootScope.next;
+
+                  scope.signUpDialog = false;
+
+                  scope.changeDialog = function() {
+                    scope.signUpDialog = !scope.signUpDialog;
+                  };
+
                   scope.cancel = function() {
                     $mdDialog.cancel();
                   };
-                  scope.login = function(form) {
+                  scope.login = function(loginForm) {
                     if (!scope.loginForm.$valid) {
                       return;
                     }
@@ -124,7 +131,7 @@ angular.module('xbertsApp')
 
                     AnalyticsService.sendPageView($location.path() + '/confirm');
 
-                    form.serverError = {};
+                    scope.loginForm.serverError = {};
 
                     login({username: scope.username, password: scope.password})
                       .then(function(value) {
@@ -136,13 +143,47 @@ angular.module('xbertsApp')
                         function(httpResponse) {
                           scope.$emit('backdropOff', 'error');
                           if (httpResponse.status === 401 || httpResponse.status === 403) {
-                            form.serverError = {invalidCredentials: true};
+                            scope.loginForm.serverError = {invalidCredentials: true};
                           } else if (httpResponse.status === 400 && httpResponse.data.error === 'linkedin_signup') {
-                            form.serverError = {linkedinSignup: true};
+                            scope.loginForm.serverError = {linkedinSignup: true};
                           } else {
-                            form.serverError = {generic: true};
+                            scope.loginForm.serverError = {generic: true};
                           }
                         });
+                  };
+
+                  scope.signup = function(signupForm) {
+                    if (!scope.signupForm.$valid) {
+                      return;
+                    }
+
+                    scope.$emit('backdropOn', 'post');
+
+                    AnalyticsService.sendPageView($location.path() + '/confirm');
+
+                    scope.signupForm.serverError = {};
+
+                    SignupService.signup(scope.firstName, scope.lastName, scope.email, scope.password)
+                      .then(function(value) {
+                        return login({
+                          username: value.email,
+                          password: scope.password
+                        });
+                      })
+                      .then(function(value) {
+                        $mdDialog.cancel();
+                        loginRedirect();
+                        scope.$emit('backdropOff', 'success');
+                      })
+                      .catch(function(httpResponse) {
+                        scope.$emit('backdropOff', 'error');
+
+                        if (httpResponse.status === 409) {
+                          scope.signupForm.serverError.userExist = true;
+                        } else {
+                          scope.signupForm.serverError.generic = true;
+                        }
+                      });
                   };
 
                   scope.facebookLogin = function(loginError) {
@@ -173,6 +214,8 @@ angular.module('xbertsApp')
 
                     linkedinLogin();
                   };
+
+
                 },
                 templateUrl: 'scripts/feature/login/login.html',
                 parent: angular.element(document.body),

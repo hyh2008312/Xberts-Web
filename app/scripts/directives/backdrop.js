@@ -31,7 +31,7 @@ angular.module('xbertsApp')
 
         var decrementCount = function () {
           if ($rootScope.backdropCount > 0) {
-            $rootScope.backdropCount--;
+            $rootScope.backdropCount=100;
           }
         };
 
@@ -43,7 +43,7 @@ angular.module('xbertsApp')
         });
         $rootScope.$on('backdropOff', function (e, d) {
           decrementCount();
-          if ($rootScope.backdropCount < 1) {
+          if ($rootScope.backdropCount == 100) {
             element.addClass('hide');
             clearInterval();
           }
@@ -67,12 +67,13 @@ angular.module('xbertsApp')
         });
         $rootScope.$on('$stateChangeSuccess', function (e, d) {
           decrementCount();
-          if ($rootScope.backdropCount <= 0) {
+          if ($rootScope.backdropCount == 100) {
+            element.addClass('hide');
             clearInterval();
           }
         });
         $rootScope.$on('$stateChangeError', function (e, d) {
-          $rootScope.backdropCount = 0;
+          $rootScope.backdropCount = 100;
           element.addClass('hide');
           clearInterval();
         });

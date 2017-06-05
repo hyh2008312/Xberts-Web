@@ -38,7 +38,7 @@ angular.module('xbertsApp')
               $scope.signupForm.serverError.generic = true;
             }
           });
-    };
+      };
 
       $scope.showSignup = function(ev) {
         $mdDialog.show({
@@ -85,7 +85,7 @@ angular.module('xbertsApp')
           clickOutsideToClose: true,
           disableParenScroll: true
         });
-      }
+      };
 
       var title = 'Xberts – Sign up now to get started';
       var description = "Join Xberts community so you can try the coolest products for free and stay up-to-date on the latest tech gadgets and deals. Very easy to sign up!";
