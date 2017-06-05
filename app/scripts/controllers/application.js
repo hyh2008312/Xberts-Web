@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('ApplicationCtrl', ['$scope', '$rootScope',
-    '$timeout', '$mdSidenav',
-    function($scope, $rootScope, $timeout, $mdSidenav) {
+    '$timeout', '$mdSidenav','AnalyticsService',
+    function($scope, $rootScope, $timeout, $mdSidenav, AnalyticsService) {
       $scope.userDropdownStatus = {
         isopen: false
       };
