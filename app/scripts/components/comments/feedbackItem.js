@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('feedbackItem', ['CommentService', 'Comment', function (CommentService, Comment) {
+  .directive('feedbackItem', ['CommentService', 'Comment', '$rootScope',
+    function (CommentService, Comment, $rootScope) {
     return {
       restrict: 'E',
       scope: {
@@ -30,6 +31,9 @@ angular.module('xbertsApp')
         scope.newComment = {};
 
         scope.replyClick = function () {
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
           scope.replyToggle = !scope.replyToggle;
         };
 

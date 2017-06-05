@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator', 'growl',
-    function (FeedbackService, Feedback, Paginator, growl) {
+  .directive('feedbackList', ['FeedbackService', 'Feedback', 'Paginator', 'growl', '$rootScope',
+    function (FeedbackService, Feedback, Paginator, growl, $rootScope) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/components/comments/feedbackList.html',
@@ -25,6 +25,12 @@ angular.module('xbertsApp')
         scope.newFeedback = {};
 
         scope.formToggle = false;
+
+        scope.autofocus = function() {
+          if(!$rootScope.user.authRequired()) {
+            return false;
+          }
+        };
 
         scope.leaveFeedback = function (feedbackForm) {
           if(interactCtrl.getCurrentJoin().feedback_amount >= 3) {
