@@ -2,9 +2,11 @@ angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
     'localStorageService',
     function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService) {
+
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
+    answerCtrl.user = $rootScope.user;
 
     answerCtrl.options = {
       height: 300,

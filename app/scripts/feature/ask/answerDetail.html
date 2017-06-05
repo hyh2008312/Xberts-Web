@@ -18,6 +18,6 @@
     <load-more layout="row" layout-align="center center" ng-if="answerCtrl.productsPaginator.loading"></load-more>
   </div>
 </div>
-<div hide-xs>
+<div ng-if="user.isAuth()" hide-xs>
   <answer-post class="xb-question-detail__inner-content" options="answerCtrl.options" question-id="answerCtrl.productsDetail.id" detail-ctrl="answerCtrl"></answer-post>
 </div>
