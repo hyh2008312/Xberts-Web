@@ -30,7 +30,7 @@
 <div class="xb-main-col xb-main-col__margin-top" layout-gt-xs="row">
   <div class="xb-main-col__container-bottom" ng-repeat="trial in trials track by $index"
        ng-class="{true:'xb-main-col__left',false:''}[$index>2 && $index<6]"
-       ng-if="$index > 1 && $index < 6" flex="25">
+       ng-if="$index > 1 && $index < 6" flex-gt-xs="25" flex-xs>
     <div class="xb-main-col__container">
       <div class="xb-main-col__value" layout-gt-sm="row" layout-align-gt-sm="start center"
            layout-sm="column" layout-align-sm="start start">
