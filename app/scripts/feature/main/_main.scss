@@ -226,7 +226,9 @@
     }
   }
   &__container-1{
-    padding-bottom: 56.25%;
+    @include xb-gt-xs-screen{
+      padding-bottom: 56.25%;
+    }
   }
   &__margin-bottom{
     margin-bottom: 16px;
