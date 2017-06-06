@@ -225,12 +225,18 @@
       width: 100%;
     }
   }
+  &__container-1{
+    padding-bottom: 56.25%;
+  }
   &__margin-bottom{
     margin-bottom: 16px;
     @include xs-screen{
       width: 100%;
       margin-bottom: 8px;
     }
+  }
+  &__margin-top{
+    margin-top: 5px;
   }
   &__value{
     z-index: 2;

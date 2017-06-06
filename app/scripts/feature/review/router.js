@@ -154,7 +154,7 @@ angular
               name: 'trials',
               objClass:Review,
               params: {
-                page_size: 5,
+                page_size: 6,
                 review_type: 'FREE_SAMPLE'
               },
               fetchFunction: ReviewService.getList
