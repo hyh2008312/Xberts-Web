@@ -177,11 +177,11 @@ angular.module('xbertsApp')
                       })
                       .catch(function(httpResponse) {
                         scope.$emit('backdropOff', 'error');
-
+                        console.log(httpResponse)
                         if (httpResponse.status === 409) {
-                          scope.signupForm.serverError.userExist = true;
+                          signupForm.serverError.userExist = true;
                         } else {
-                          scope.signupForm.serverError.generic = true;
+                          signupForm.serverError.generic = true;
                         }
                       });
                   };
