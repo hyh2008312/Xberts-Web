@@ -177,7 +177,6 @@ angular.module('xbertsApp')
                       })
                       .catch(function(httpResponse) {
                         scope.$emit('backdropOff', 'error');
-                        console.log(httpResponse)
                         if (httpResponse.status === 409) {
                           signupForm.serverError.userExist = true;
                         } else {
