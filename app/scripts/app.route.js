@@ -120,7 +120,7 @@ angular
       })
       .state('application.signup', {
         url: '/signup',
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
 
