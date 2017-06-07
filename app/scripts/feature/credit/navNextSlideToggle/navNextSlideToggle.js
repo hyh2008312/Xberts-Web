@@ -11,6 +11,10 @@ angular.module('xbertsApp')
         index: '='
       },
       link: function (scope, element, attrs, ctrls) {
+        if(scope.toggle){
+          angular.element(scope.parent+':eq('+scope.index+')').addClass(scope.activeClass);
+          angular.element(scope.toggleElement).eq(scope.index).stop().slideToggle();
+        }
         angular.element(scope.parent ? scope.parent + ':eq('+scope.index+')': element).bind('touchstart', function() {
           angular.element(scope.parent+':eq('+scope.index+')').addClass(scope.touchClass);
         }).bind('touchend', function() {
