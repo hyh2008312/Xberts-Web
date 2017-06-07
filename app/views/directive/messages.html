@@ -1,6 +1,6 @@
 <div ui-sref-active="active" ui-sref="application.protected.message.inbox" >
-  <i class="fa fa-envelope fa-lg"></i>
+  <md-icon md-font-set="material-icons">question_answer</md-icon>
   <span class="top-right-badge striking-white" ng-if="unreadMessageCount > 0"
-        ng-bind="unreadMessageCount"></span>
+        ng-bind="unreadMessageCount > 99? '99+':unreadMessageCount"></span>
 </div>
 

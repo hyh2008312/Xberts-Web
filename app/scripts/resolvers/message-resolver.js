@@ -22,6 +22,14 @@ angular.module('xbertsApp')
       return MessageService.getMessages(param);
     };
 
+    this.getUnreadNotifications = function(param) {
+      param.page_size = 3;
+      param.category = Configuration.notificationCategories;
+      param.direction = 'incoming';
+      param.unread = 'True';
+      return MessageService.getMessages(param);
+    };
+
     this.viewNotification = function($stateParams) {
       return MessageService.getMessage($stateParams['messageId']);
     };

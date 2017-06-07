@@ -20,6 +20,7 @@
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
+      <xb-notification></xb-notification>
       <messages></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
         <avatar-img src="user._userAvatar" name="user.getUserName()" show-name="true" ></avatar-img>
