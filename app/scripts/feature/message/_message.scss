@@ -20,6 +20,7 @@
       margin-right: 8px;
       width: 40px;
       height: 40px;
+      cursor: pointer;
       .c-user__avatar{
         width: 40px;
         height: 40px;
@@ -42,6 +43,9 @@
       display: block;
       margin-right: 12px;
       background-color: #ff4081;
+    }
+    .md-button{
+      min-width: 0;
     }
   }
   &__left{

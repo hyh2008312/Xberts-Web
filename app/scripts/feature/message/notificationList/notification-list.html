@@ -7,13 +7,13 @@
   <div>
     <div ng-if="showSender">
       <span class="md-dark-secondary">from&nbsp;</span>
-      <span class="md-dark-primary xb-bold" ui-sref="application.expert({expertId:message.sender.id})">{{ message.sender.firstName}}</span>
+      <a class="md-dark-primary xb-bold" ui-sref="application.expert({expertId:message.sender.id})">{{ message.sender.firstName}}</a>
     </div>
     <div ng-if="showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
       {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
     </div>
-    <div class="md-body-1 md-dark-primary xb-bold" ng-bind-html="message.subject"></div>
-    <p ng-if="showSender" class="md-body-1 md-dark-primary" ng-bind-html="message.body"></p>
+    <div class="md-dark-primary xb-bold" ng-bind-html="message.subject"></div>
+    <p ng-if="showSender" class="md-body-1 md-dark-primary md-margin-top-1" ng-bind-html="message.body"></p>
     <div ng-if="!showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
       {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
     </div>
