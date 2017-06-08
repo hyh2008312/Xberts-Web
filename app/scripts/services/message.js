@@ -111,4 +111,6 @@ angular.module('xbertsApp')
       this.readThread = function(threadId) {
         return $resource(API_BASE_URL + '/messages/threads/' + threadId + '/read/').save().$promise;
       };
+
+      this.notificationCategories = 0;
   }]);

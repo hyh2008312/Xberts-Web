@@ -156,10 +156,24 @@ angular
         templateUrl: 'views/message/notification.html',
         controller: 'MessageNotificationCtrl',
         resolve: {
-          messagePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+          mePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
             function (Paginator, MessageResolver, protectedAuthCheck) {
               return new Paginator({
-                name: 'message',
+                name: 'xb_notification_me_list',
+                fetchFunction: MessageResolver.getNotifications
+              }).load();
+            }],
+          systemPaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+            function (Paginator, MessageResolver, protectedAuthCheck) {
+              return new Paginator({
+                name: 'xb_notification_system_list',
+                fetchFunction: MessageResolver.getNotifications
+              }).load();
+            }],
+          followPaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+            function (Paginator, MessageResolver, protectedAuthCheck) {
+              return new Paginator({
+                name: 'xb_notification_follow_list',
                 fetchFunction: MessageResolver.getNotifications
               }).load();
             }]

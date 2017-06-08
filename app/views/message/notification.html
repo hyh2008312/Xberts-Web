@@ -1,35 +1,35 @@
 <div layout="row">
   <div class="xb-messages__left">
     <div class="xb-messages__category md-margin-top-4 md-dark-secondary" ng-class="{'active':order==0}"
-         ng-click="changeMeNotification()">Feeds about Me
+         ng-click="changeOrder(0)">Feeds about Me
       <span ng-if="unreadNotificationMessageCount> 0" >
         {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
     <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==1}"
-         ng-click="changeSystemNotification()">System Notification
+         ng-click="changeOrder(1)">System Notification
       <span ng-if="unreadNotificationMessageCount> 0">
         {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
     <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==2}"
-         ng-click="changeFollowNotification()">Feeds about Following
+         ng-click="changeOrder(2)">Feeds about Following
       <span ng-if="unreadNotificationMessageCount> 0">
         {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
   </div>
-  <div ng-if="order==0" flex infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-       infinite-scroll-disabled="messagePaginator.loading || !messagePaginator.next">
-    <notification-list notifications="messagePaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
+  <div ng-if="order==0" flex infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="mePaginator.loading || !mePaginator.next">
+    <notification-list notifications="mePaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-               ng-if="messagePaginator.loading"></load-more>
+               ng-if="mePaginator.loading"></load-more>
   </div>
-  <div ng-if="order==1" flex infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-       infinite-scroll-disabled="messagePaginator.loading || !messagePaginator.next">
-    <notification-list notifications="messagePaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
+  <div ng-if="order==1" flex infinite-scroll="systemPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="systemPaginator.loading || !systemPaginator.next">
+    <notification-list notifications="systemPaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-               ng-if="messagePaginator.loading"></load-more>
+               ng-if="systemPaginator.loading"></load-more>
   </div>
-  <div ng-if="order==2" flex infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-       infinite-scroll-disabled="messagePaginator.loading || !messagePaginator.next">
-    <notification-list notifications="messagePaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
+  <div ng-if="order==2" flex infinite-scroll="followPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="followPaginator.loading || !followPaginator.next">
+    <notification-list notifications="followPaginator.items" show-sender="showSender[order]" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-               ng-if="messagePaginator.loading"></load-more>
+               ng-if="followPaginator.loading"></load-more>
   </div>
 </div>
 

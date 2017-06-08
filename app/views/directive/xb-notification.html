@@ -10,7 +10,7 @@
         <md-tab-body>
           <notification-list notifications="mePaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
-            <md-button class="md-primary" ui-sref="application.protected.message.notification">See All</md-button>
+            <md-button class="md-primary" ng-click="jumpToNotification(0)">See All</md-button>
           </div>
         </md-tab-body>
       </md-tab>
@@ -21,7 +21,7 @@
         <md-tab-body>
           <notification-list notifications="systemPaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
-            <md-button class="md-primary" ui-sref="application.protected.message.notification">See All</md-button>
+            <md-button class="md-primary" ng-click="jumpToNotification(1)">See All</md-button>
           </div>
         </md-tab-body>
       </md-tab>
@@ -32,7 +32,7 @@
         <md-tab-body>
           <notification-list notifications="followPaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
-            <md-button class="md-primary" ui-sref="application.protected.message.notification">See All</md-button>
+            <md-button class="md-primary" ng-click="jumpToNotification(2)">See All</md-button>
           </div>
         </md-tab-body>
       </md-tab>

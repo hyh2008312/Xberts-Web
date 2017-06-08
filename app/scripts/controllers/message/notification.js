@@ -1,26 +1,20 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MessageNotificationCtrl', ['$scope', '$state', '$stateParams', 'messagePaginator',
-    function($scope, $state, $stateParams, messagePaginator) {
-      $scope.messagePaginator = messagePaginator;
-      $scope.order = 0;
+  .controller('MessageNotificationCtrl', ['$scope', '$state', '$stateParams', 'mePaginator','systemPaginator',
+    'followPaginator', 'MessageService',
+    function($scope, $state, $stateParams, mePaginator, systemPaginator, followPaginator, MessageService) {
+      $scope.mePaginator = mePaginator;
+      $scope.systemPaginator = systemPaginator;
+      $scope.followPaginator = followPaginator;
+      $scope.order = MessageService.notificationCategories;
       $scope.showSender = [false, true, false];
 
-      $scope.viewThread = function (threadId) {
-        $state.go('application.protected.message.notificationDetail', {messageId: threadId});
-        $scope.$parent.category = '';
+      $scope.changeOrder = function($index) {
+        $scope.order = $index;
+        MessageService.notificationCategories = $scope.order;
       };
 
-      $scope.changeMeNotification = function() {
-        $scope.order = 0;
-      };
-      $scope.changeSystemNotification = function() {
-        $scope.order = 1;
-      };
-      $scope.changeFollowNotification = function() {
-        $scope.order = 2;
-      };
     }]);
 
 

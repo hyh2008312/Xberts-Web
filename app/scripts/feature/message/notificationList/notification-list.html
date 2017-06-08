@@ -12,13 +12,15 @@
     <div ng-if="showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
       {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
     </div>
-    <div class="md-dark-primary xb-bold" ng-bind-html="message.subject"></div>
+    <a ng-if="!showSender" class="md-dark-primary xb-bold default" ng-bind-html="message.subject"
+       ng-click="viewThread(message)"></a>
+    <span ng-if="showSender" class="md-dark-primary xb-bold" ng-bind-html="message.subject"></span>
     <p ng-if="showSender" class="md-body-1 md-dark-primary md-margin-top-1" ng-bind-html="message.body"></p>
     <div ng-if="!showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
       {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
     </div>
-    <md-button class="md-primary md-margin-clear md-padding-clear"
-               ng-if="showSender" ng-href="{{ message.actionUrl }}">{{ message.category }}</md-button>
+    <md-button class="md-primary md-margin-clear md-padding-clear" ng-if="showSender"
+               ng-click="viewThread(message)">{{ message.category | buttonText}}</md-button>
   </div>
 </div>
 
