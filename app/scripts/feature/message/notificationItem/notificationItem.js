@@ -1,17 +1,14 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('notificationList',['MessageService', '$location', 'urlParser',
+  .directive('notificationItem',['MessageService', '$location', 'urlParser',
     function(MessageService,$location,urlParser) {
     return {
       restrict: 'E',
       scope: {
-        notifications:'=',
-        showSender: '=',
-        redPoint: '=',
-        system: '='
+        notification:'='
       },
-      templateUrl: 'scripts/feature/message/notificationList/notification-list.html',
+      templateUrl: 'scripts/feature/message/notificationItem/notification-item.html',
       link: function (scope, element, attrs, ctrls) {
         scope.viewThread = function (message) {
           if(!message.readAt) {

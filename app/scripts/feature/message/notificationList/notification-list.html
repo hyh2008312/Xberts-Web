@@ -6,7 +6,7 @@
               ui-sref="application.expert({expertId:message.sender.id})"></avatar-img>
   <div>
     <div ng-if="showSender">
-      <span class="md-dark-secondary">from&nbsp;</span>
+      <span class="md-dark-secondary" hide-xs>from&nbsp;</span>
       <a class="md-dark-primary xb-bold" ui-sref="application.expert({expertId:message.sender.id})">{{ message.sender.firstName}}</a>
     </div>
     <div ng-if="showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
@@ -14,12 +14,14 @@
     </div>
     <a ng-if="!showSender" class="md-dark-primary xb-bold default" ng-bind-html="message.subject"
        ng-click="viewThread(message)"></a>
-    <span ng-if="showSender" class="md-dark-primary xb-bold" ng-bind-html="message.subject"></span>
-    <p ng-if="showSender" class="md-body-1 md-dark-primary md-margin-top-1" ng-bind-html="message.body"></p>
-    <div ng-if="!showSender" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
+    <span ng-if="showSender && !system" class="md-dark-primary xb-bold" ng-bind-html="message.subject"></span>
+    <a ng-if="showSender && system" class="md-dark-primary xb-bold" ng-bind-html="message.subject"
+        ui-sref="application.protected.message.notificationDetail({messageId:message.id})"></a>
+    <p ng-if="showSender" hide-xs class="md-body-1 md-dark-primary md-margin-top-1" ng-bind-html="message.body"></p>
+    <div ng-if="!showSender && !system" class="md-caption md-dark-secondary md-margin-top-1 md-margin-bottom-1">
       {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
     </div>
-    <md-button class="md-primary md-margin-clear md-padding-clear" ng-if="showSender"
+    <md-button hide-xs class="md-primary md-margin-clear md-padding-clear" ng-if="showSender"
                ng-click="viewThread(message)">{{ message.category | buttonText}}</md-button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="xb-trial-tabs xb-messages-tabs">
+<div class="xb-trial-tabs xb-messages-tabs" hide-xs>
   <div class="xb-trial-tabs__inner-content" fixed-to-top del-top="56" offset-top="56">
     <div class="container" layout="row">
       <div class="xb-trial-tabs__left" layout="row" flex="60">
@@ -7,11 +7,10 @@
         <div class="md-subhead" ng-class="{'active':category === 'incoming'}" layout="row"
              layout-align="start center" ng-click="filterMessage('incoming')">Message</div>
       </div>
-      <div>{{category}}</div>
     </div>
   </div>
 </div>
-<div class="container">
+<div>
   <div ui-view></div>
 </div>
 

@@ -1,0 +1,21 @@
+<div class="xb-messages__list xb-messages__list-1">
+  <div layout="row" layout-align="start start">
+    <avatar-img src="notification.sender.userprofile.avatar" name="notification.sender.firstName"
+                ui-sref="application.expert({expertId:notification.sender.id})"></avatar-img>
+    <div layout="column" layout-align="space-between start">
+      <a class="md-dark-primary xb-bold" ui-sref="application.expert({expertId:notification.sender.id})">
+        {{notification.sender.firstName}}</a>
+      <div class="md-caption md-dark-secondary md-margin-top-1">
+        {{ notification.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
+      </div>
+    </div>
+  </div>
+  <div>
+    <span class="md-dark-primary xb-bold" ng-bind-html="notification.subject"></span>
+    <p class="md-body-1 md-dark-primary md-margin-top-1" ng-bind-html="notification.body"></p>
+    <md-button class="md-primary md-margin-clear md-padding-clear" ng-click="viewThread(notification)">
+      {{ notification.category | buttonText}}
+    </md-button>
+  </div>
+</div>
+

@@ -14,10 +14,7 @@ angular.module('xbertsApp')
         $scope.showSender = true;
       }
 
-      $scope.viewThread = function (threadId) {
-        $state.go('application.protected.message.thread', {threadId: threadId});
-        $scope.$parent.category = '';
-      };
+
 
       $scope.viewContact = function (userId, $event) {
         $state.go('application.expert', {expertId: userId});

@@ -1,22 +1,7 @@
-<div class="list-title align-center">
-  <h3 class="margin-none wordwrap">{{ message.subject }}</h3>
-  <message-label category="message.category"></message-label>
+<div class="xb-messages__tabs" layout="row" layout-align="start center">
+  <span class="md-margin-right-1" ui-sref="application.protected.message.notification">System</span>
+  >><span class="xb-bold md-margin-left-1"> {{message.sender.firstName}}</span>
 </div>
-
-<div class="list">
-  <div class="item-avatar-large">
-    <div class="item-image text-center">
-      <avatar-img src="message.sender.userProfile.avatar" name="message.sender.shortName"></avatar-img>
-    </div>
-    <div class="item-body">
-      <p class="item-body-header">
-        <span class="xb-bold xb-dark-font">{{ message.sender.shortName }}</span>
-        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
-      </p>
-      <p class="item-body-detail" ng-bind-html="message.body"></p>
-      <p class="margin-top-l">
-        <a class="btn btn-primary" ng-href="{{ message.actionUrl }}">{{ actionBtnText }}</a>
-      </p>
-    </div>
-  </div>
+<div class="container">
+  <notification-item notification="message"></notification-item>
 </div>

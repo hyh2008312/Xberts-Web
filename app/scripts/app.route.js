@@ -140,7 +140,7 @@ angular
             }]
         }
       })
-      .state('application.protected.message.thread', {
+      .state('application.protected.message.inbox.thread', {
         url: '/message/thread/{threadId:[0-9]+}',
         templateUrl: 'views/message/thread.html',
         controller: 'MessageThreadCtrl',
