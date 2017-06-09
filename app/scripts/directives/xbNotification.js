@@ -22,18 +22,27 @@ angular.module('xbertsApp')
 
         var par = {
           name: 'xb_notification_me',
+          params: {
+            type: 'Me'
+          },
           fetchFunction: MessageResolver.getUnreadNotifications
         };
         scope.mePaginator = new Paginator(par);
 
         var par = {
           name: 'xb_notification_system',
+          params: {
+            type: 'System'
+          },
           fetchFunction: MessageResolver.getUnreadNotifications
         };
         scope.systemPaginator = new Paginator(par);
 
         var par = {
           name: 'xb_notification_following',
+          params: {
+            type: 'Feeds'
+          },
           fetchFunction: MessageResolver.getUnreadNotifications
         };
         scope.followPaginator = new Paginator(par);

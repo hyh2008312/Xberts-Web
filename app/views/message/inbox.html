@@ -1,8 +1,8 @@
 <div class="container" layout="row">
-  <div class="xb-messages__left-1">
-   <message-list messages="messages"></message-list>
+  <div class="xb-messages__left" ng-if="!closeTab">
+   <message-list messages="messages" mobile="screenIsSmall"></message-list>
   </div>
-  <div flex ui-view></div>
+  <div flex ui-view ng-if="!screenIsSmall"></div>
 </div>
 
 

@@ -50,7 +50,9 @@
     <h2 ng-if="state.current.name == 'application.signup'">Sign up</h2>
     <h2 ng-if="state.current.name == 'application.login'
      || state.current.name == 'application.linkedinLogin'">Log in</h2>
-    <h2 ng-if="state.current.name == 'application.protected.message.inbox'">Messages</h2>
+    <h2 ng-if="state.current.name == 'application.protected.message.inbox'
+     || state.current.name == 'application.protected.message.inbox.thread'
+     || state.current.name == 'application.protected.thread'">Messages</h2>
     <h2 ng-if="state.current.name == 'application.protected.message.notification'
       || state.current.name == 'application.protected.message.notificationDetail'">Notification</h2>
     <h2 ng-if="state.current.name == 'application.expert'
@@ -93,8 +95,8 @@
     <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
-    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
     <div ui-sref-active="active" ui-sref="application.protected.message.notification" ng-click="close()">Notification</div>
+    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
     <div ui-sref-active="active" ui-sref="application.protected.invite" ng-click="close()">Invite Friends</div>
     <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting' })" ng-click="close()">Settings</div>
@@ -103,6 +105,9 @@
 </md-sidenav>
 <md-content class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ui-view flex="noshrink"></div>
-  <xberts-footer ng-class="{true:'xb-footer-hide',false:''}[state.current.name=='application.login'||state.current.name=='application.signup']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
+  <xberts-footer ng-class="{true:'xb-footer-hide',false:''}[state.current.name=='application.login'
+  ||state.current.name=='application.signup'
+  ||state.current.name=='application.protected.thread'
+  ||state.current.name=='application.answerQuestionDetail']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
 </md-content>
 

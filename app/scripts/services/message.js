@@ -44,24 +44,38 @@ angular.module('xbertsApp')
 
         var directParam = {};
         angular.copy(param, directParam);
-        directParam.category = ['DIRECT'];
+        directParam.type = ['DIRECT'];
 
-        var notificationParam = {};
-        angular.copy(param, notificationParam);
-        notificationParam.category = Configuration.notificationCategories;
+        var meParam = {};
+        angular.copy(param, meParam);
+        meParam.type = 'Me';
+        var systemParam = {};
+        angular.copy(param, systemParam);
+        systemParam.type = 'System';
+        var feedsParam = {};
+        angular.copy(param, feedsParam);
+        feedsParam.type = 'Feeds';
 
         return this.getMessageCount(directParam)
           .then(function(count) {
             $rootScope.unreadDirectMessageCount = count;
 
-            return this.getMessageCount(notificationParam);
+            return this.getMessageCount(meParam);
           }.bind(this))
           .then(function(count) {
-            $rootScope.unreadNotificationMessageCount = count;
-            $rootScope.unreadMessageCount = $rootScope.unreadDirectMessageCount +
-              $rootScope.unreadNotificationMessageCount;
+            $rootScope.unreadNotificationMeCount = count;
+
+            return this.getMessageCount(systemParam);
+          }.bind(this))
+          .then(function(count) {
+            $rootScope.unreadNotificationSystemCount = count;
+
+            return this.getMessageCount(feedsParam);
+          }.bind(this))
+          .then(function(count) {
+            $rootScope.unreadNotificationFeedsCount = count;
           });
-      };
+        };
 
       this.readMessage = function(messageId) {
         return $resource(API_BASE_URL + '/messages/messages/' + messageId + '/read/').save().$promise;
@@ -71,8 +85,8 @@ angular.module('xbertsApp')
         var params = {
           sender: senderId,
           recipient: recipientId,
-          subject: subject,
-          body: body
+          body: body,
+          type: 'Message'
         };
 
         if (threadId) {
@@ -85,9 +99,7 @@ angular.module('xbertsApp')
         return $resource(API_BASE_URL + '/messages/messages/').save(params).$promise;
       };
 
-      this.getThreads = function (params, direction) {
-        params['direction'] = direction;
-
+      this.getThreads = function (params) {
         return $resource(API_BASE_URL + '/messages/threads/').query(params).$promise;
       };
 

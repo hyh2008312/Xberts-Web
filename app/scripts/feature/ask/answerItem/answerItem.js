@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('answerItem',['$rootScope','ExpertService',function($rootScope,ExpertService) {
+  .directive('answerItem',['$rootScope','ExpertService','$mdDialog','AskService','$mdToast',
+    function($rootScope,ExpertService,$mdDialog,AskService,$mdToast) {
     return {
       restrict: 'E',
       scope: {
@@ -30,6 +31,42 @@ angular.module('xbertsApp')
           });
         };
 
+        scope.showMenu = function(answer) {
+          answer.showMenu = !answer.showMenu;
+        };
+
+        scope.report = function(id, ev) {
+          if (!$rootScope.user.authRequired()) {
+            return;
+          }
+          $mdDialog.show({
+            controller: function(scope, $mdDialog) {
+              scope.cancel = function() {
+                $mdDialog.cancel();
+              };
+              scope.report = function() {
+                if (!scope.reportForm.$valid) {
+                  return;
+                }
+                AskService.report({reason: scope.reason == 'Other'? scope.other:scope.reason,id:id})
+                  .then(function() {
+                    scope.cancel();
+                    $mdToast.show({
+                      hideDelay: 3000,
+                      position: 'top',
+                      toastClass:'xb-ask-dialog__toast',
+                      templateUrl: 'scripts/feature/ask/answerItem/report-toast.html'
+                    });
+                  });
+              };
+            },
+            templateUrl: 'scripts/feature/ask/answerItem/report.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            disableParenScroll: true
+          });
+        }
       }
     }
   }]);

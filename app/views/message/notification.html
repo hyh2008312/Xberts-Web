@@ -3,16 +3,16 @@
     <div fixed-to-top del-top="112" offset-top="112">
       <div class="xb-messages__category md-margin-top-4 md-dark-secondary" ng-class="{'active':order==0}"
            ng-click="changeOrder(0)">Feeds about Me
-        <span ng-if="unreadNotificationMessageCount> 0" >
-          {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
+        <span ng-if="unreadNotificationMeCount> 0" >
+          {{unreadNotificationMeCount>99? '99+':unreadNotificationMeCount}}</span></div>
       <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==1}"
            ng-click="changeOrder(1)">System Notification
-        <span ng-if="unreadNotificationMessageCount> 0">
-          {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
+        <span ng-if="unreadNotificationSystemCount> 0">
+          {{unreadNotificationSystemCount>99? '99+':unreadNotificationSystemCount}}</span></div>
       <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==2}"
            ng-click="changeOrder(2)">Feeds about Following
-        <span ng-if="unreadNotificationMessageCount> 0">
-          {{unreadNotificationMessageCount>99? '99+':unreadNotificationMessageCount}}</span></div>
+        <span ng-if="unreadNotificationFeedsCount> 0">
+          {{unreadNotificationFeedsCount>99? '99+':unreadNotificationFeedsCount}}</span></div>
     </div>
   </div>
   <div ng-if="order==0" flex infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'

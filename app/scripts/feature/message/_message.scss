@@ -65,10 +65,11 @@
     width: 320px;
     border-right: 1px solid rgba(0,0,0,.12);
     margin-right: 16px;
-  }
-  &__left-1{
-    width: 320px;
-    border-right: 1px solid rgba(0,0,0,.12);
+    @include xb-xs-screen{
+      width: 100%;
+      border-right: none;
+      margin-right: 0;
+    }
   }
   &__category{
     padding: 12px 0;
@@ -93,8 +94,14 @@
     padding: 0 16px 0 24px;
     outline: none;
     @include text-overflow();
+    @include xb-xs-screen{
+      padding: 0 0 0 12px;
+    }
     &:hover{
       background-color: rgba(0,0,0,.12);
+      @include xb-xs-screen{
+        background-color: transparent;
+      }
     }
     avatar-img{
       margin-right: 8px;
@@ -131,5 +138,92 @@
   }
   &__message.active{
     background-color: rgba(0,0,0,.12);
+    @include xb-xs-screen{
+      background-color: transparent;
+    }
+  }
+  &__chat-box{
+    margin-top: 20px;
+    &-bg{
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: rgba(0,0,0,.08);
+      .md-caption{
+        font-size: 10px;
+      }
+    }
+    avatar-img{
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      .c-user__avatar{
+        width: 40px;
+        height: 40px;
+      }
+      .c-user__name{
+        width: 40px;
+        height: 40px;
+      }
+    }
+    &-reply{
+      margin-top: 20px;
+      border-top: 1px solid rgba(0,0,0,.06);
+      avatar-img{
+        margin-top: 20px;
+        margin-right: 12px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        .c-user__avatar{
+          width: 40px;
+          height: 40px;
+        }
+        .c-user__name{
+          width: 40px;
+          height: 40px;
+        }
+      }
+      @include xb-xs-screen{
+        border-top:none;
+      }
+    }
+    @include xb-xs-screen{
+      padding: 0 8px;
+    }
+  }
+  &__left-avatar{
+    margin-left: 12px;
+  }
+  &__right-avatar{
+    margin-right: 12px;
+  }
+  &__fixed-bottom{
+    @include xb-xs-screen{
+
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 56px;
+      background-color: #fff;
+      z-index: 20;
+      padding: 0 8px;
+      @include resetBorder();
+      md-input-container{
+        margin: 0;
+        padding: 0;
+        textarea{
+          margin-top: 20px;
+          border-bottom: none;
+        }
+      }
+      .md-button{
+        margin: 0;
+        padding: 0;
+      }
+      >div{
+        height: 56px;
+      }
+    }
   }
 }

@@ -30,7 +30,7 @@ angular.module('xbertsApp')
         $scope.$emit('backdropOn', 'replyMessage');
         $scope.replyForm.serverError = {};
 
-        MessageService.sendMessage($rootScope.user.getUserId(), recipientId, $scope.firstMessage.subject,
+        MessageService.sendMessage($rootScope.user.getUserId(), recipientId, null,
           $scope.data.body, $scope.firstMessage.thread, parentId)
           .then(function() {
             $scope.$emit('backdropOff', 'replyMessageSuccess');

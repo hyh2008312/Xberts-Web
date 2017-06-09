@@ -1,0 +1,25 @@
+<md-dialog class="xb-ask-dialog">
+  <div class="background-whitem">
+    <div class="md-margin-top-2" hide-gt-xs=""><md-icon md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon></div>
+    <div class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="space-between center">
+      <div class="md-subhead" flex>Report Answer</div>
+      <md-icon hide-xs md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
+    </div>
+    <form name="reportForm" novalidate ng-submit="report(reportForm)" clear-form-error>
+      <md-radio-group ng-model="reason">
+        <md-radio-button value="Spam">Spam</md-radio-button>
+        <md-radio-button value="Plagiarism">Plagiarism</md-radio-button>
+        <md-radio-button value="Inappropriate Contents">Inappropriate Contents</md-radio-button>
+        <md-radio-button value="Self Promotion">Self Promotion</md-radio-button>
+        <md-radio-button value="Other">Other</md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-block">
+        <input ng-model="other" ng-value="reason != 'Other'? '': other" type="text" name="other" placeholder="Please explain your issue"/>
+      </md-input-container>
+      <div layout="row" layout-align="end start">
+        <md-button class="md-dark-secondary" ng-click="cancel()">Cancel</md-button>
+        <md-button class="md-primary" type="submit" >Submit</md-button>
+      </div>
+    </form>
+  </div>
+</md-dialog>
