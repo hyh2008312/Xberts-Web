@@ -6,19 +6,19 @@
       <md-icon hide-xs md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
     </div>
     <form name="reportForm" novalidate ng-submit="report(reportForm)" clear-form-error>
-      <md-radio-group ng-model="reason">
+      <md-radio-group ng-model="reason" required>
         <md-radio-button value="Spam">Spam</md-radio-button>
         <md-radio-button value="Plagiarism">Plagiarism</md-radio-button>
         <md-radio-button value="Inappropriate Contents">Inappropriate Contents</md-radio-button>
         <md-radio-button value="Self Promotion">Self Promotion</md-radio-button>
         <md-radio-button value="Other">Other</md-radio-button>
       </md-radio-group>
-      <md-input-container class="md-block">
+      <md-input-container class="md-block" ng-if="reason == 'Other'">
         <input ng-model="other" ng-value="reason != 'Other'? '': other" type="text" name="other" placeholder="Please explain your issue"/>
       </md-input-container>
       <div layout="row" layout-align="end start">
-        <md-button class="md-dark-secondary" ng-click="cancel()">Cancel</md-button>
-        <md-button class="md-primary" type="submit" >Submit</md-button>
+        <md-button class="md-dark-third" ng-click="cancel()">Cancel</md-button>
+        <md-button class="md-primary" type="submit" ng-disabled="!reportForm.$valid">Submit</md-button>
       </div>
     </form>
   </div>
