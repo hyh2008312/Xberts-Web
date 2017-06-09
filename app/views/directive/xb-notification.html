@@ -5,9 +5,13 @@
     <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-border-bottom>
       <md-tab label="Me" md-on-select="me();">
         <md-tab-label>
-          Me <span ng-if="mePaginator.count>0"></span>
+          Contents <span ng-if="mePaginator.count>0"></span>
         </md-tab-label>
         <md-tab-body>
+          <div class="container md-margin-top-4 md-margin-bottom-4" layout="column" ng-if="mePaginator.items.length<=0" layout-align="center center" >
+            <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+            <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
+          </div>
           <notification-list notifications="mePaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(0)">See All</md-button>
@@ -19,6 +23,10 @@
           System <span ng-if="systemPaginator.count>0"></span>
         </md-tab-label>
         <md-tab-body>
+          <div class="container md-margin-top-4 md-margin-bottom-4" layout="column" ng-if="systemPaginator.items.length<=0" layout-align="center center" >
+            <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+            <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
+          </div>
           <notification-list notifications="systemPaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(1)">See All</md-button>
@@ -30,6 +38,10 @@
           Following <span ng-if="followPaginator.count>0"></span>
         </md-tab-label>
         <md-tab-body>
+          <div class="container md-margin-top-4 md-margin-bottom-4" layout="column" ng-if="followPaginator.items.length<=0" layout-align="center center" >
+            <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+            <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
+          </div>
           <notification-list notifications="followPaginator.items" show-sender="false"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(2)">See All</md-button>

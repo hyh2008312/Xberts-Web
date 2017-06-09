@@ -2,33 +2,51 @@
   <div class="xb-messages__left" flex="none">
     <div fixed-to-top del-top="112" offset-top="112">
       <div class="xb-messages__category md-margin-top-4 md-dark-secondary" ng-class="{'active':order==0}"
-           ng-click="changeOrder(0)">Feeds about Me
+           ng-click="changeOrder(0)" layout="row" layout-align="start center">
+        <img src="https://xberts.imgix.net/static/icon/58abeed4-c4ca-4ca3-a31b-b03463170c8e.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=9b3f60174c3cf4a94e5e50d9d0b09a54" />
+        My Contents
         <span ng-if="unreadNotificationMeCount> 0" >
           {{unreadNotificationMeCount>99? '99+':unreadNotificationMeCount}}</span></div>
       <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==1}"
-           ng-click="changeOrder(1)">System Notification
+           ng-click="changeOrder(1)">
+        <img src="https://xberts.imgix.net/static/logo/853b617c-f543-4e48-bc94-e024b1553910.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=c72e830ee747bfddc0de4a320d530d89" />
+        System Notification
         <span ng-if="unreadNotificationSystemCount> 0">
           {{unreadNotificationSystemCount>99? '99+':unreadNotificationSystemCount}}</span></div>
       <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==2}"
-           ng-click="changeOrder(2)">Feeds about Following
+           ng-click="changeOrder(2)">
+        <img src="https://xberts.imgix.net/static/icon/13765d25-88ec-449a-a27e-700b648a357c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=d845a81cd719874b058784016411a20b" />
+        My Following
         <span ng-if="unreadNotificationFeedsCount> 0">
           {{unreadNotificationFeedsCount>99? '99+':unreadNotificationFeedsCount}}</span></div>
     </div>
   </div>
   <div ng-if="order==0" flex infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="mePaginator.loading || !mePaginator.next">
+    <div class="container xb-messages__top" layout="column" ng-if="mePaginator.items.length<=0" layout-align="center center" >
+      <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+      <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+    </div>
     <notification-list notifications="mePaginator.items" show-sender="false" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                ng-if="mePaginator.loading"></load-more>
   </div>
   <div ng-if="order==1" flex infinite-scroll="systemPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="systemPaginator.loading || !systemPaginator.next">
+    <div class="container xb-messages__top" layout="column" ng-if="systemPaginator.items.length<=0" layout-align="center center" >
+      <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+      <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+    </div>
     <notification-list notifications="systemPaginator.items" show-sender="true" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                ng-if="systemPaginator.loading"></load-more>
   </div>
   <div ng-if="order==2" flex infinite-scroll="followPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="followPaginator.loading || !followPaginator.next">
+    <div class="container xb-messages__top" layout="column" ng-if="followPaginator.items.length<=0" layout-align="center center" >
+      <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+      <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+    </div>
     <notification-list notifications="followPaginator.items" show-sender="false" red-point="true"></notification-list>
     <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                ng-if="followPaginator.loading"></load-more>
@@ -36,9 +54,13 @@
 </div>
 <div ng-if="screenIsSmall">
   <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-border-bottom md-selected="order">
-    <md-tab label="Me" md-on-select="changeOrder(0)">
+    <md-tab label="Contents" md-on-select="changeOrder(0)">
       <div class="container" infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="mePaginator.loading || !mePaginator.next || order != 0">
+        <div class="container xb-messages__top" layout="column" ng-if="mePaginator.items.length<=0" layout-align="center center" >
+          <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+          <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+        </div>
         <notification-list notifications="mePaginator.items" show-sender="false" red-point="true"></notification-list>
         <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                    ng-if="mePaginator.loading"></load-more>
@@ -47,6 +69,10 @@
     <md-tab label="System" md-on-select="changeOrder(1)">
       <div class="container" infinite-scroll="systemPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="systemPaginator.loading || !systemPaginator.next || order != 1">
+        <div class="container xb-messages__top" layout="column" ng-if="systemPaginator.items.length<=0" layout-align="center center" >
+          <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+          <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+        </div>
         <notification-list notifications="systemPaginator.items" show-sender="true" red-point="true" system="true"></notification-list>
         <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                    ng-if="systemPaginator.loading"></load-more>
@@ -55,6 +81,10 @@
     <md-tab label="Following" md-on-select="changeOrder(2)">
       <div class="container" infinite-scroll="followPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="followPaginator.loading || !followPaginator.next || order != 2">
+        <div class="container xb-messages__top" layout="column" ng-if="followPaginator.items.length<=0" layout-align="center center" >
+          <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+          <div class="md-dark-third md-margin-top-1">You don't have any notifications</div>
+        </div>
         <notification-list notifications="followPaginator.items" show-sender="false" red-point="true"></notification-list>
         <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                    ng-if="followPaginator.loading"></load-more>

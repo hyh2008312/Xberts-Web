@@ -132,9 +132,9 @@
   &__right-container-notification{
     background-color: #FFF;
     position: absolute;
-    left: -150px;
+    left: -180px;
     top: 56px;
-    width: 320px;
+    width: 380px;
     @include resetBorder();
     border-radius: 2px;
     md-tabs-canvas{
@@ -161,7 +161,7 @@
   }
   &__triangle{
     position: absolute;
-    left: 170px;
+    left: 200px;
     bottom: 100%;
     width: 0;
     height: 0;

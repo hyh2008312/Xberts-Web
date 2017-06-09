@@ -74,6 +74,10 @@
   &__category{
     padding: 12px 0;
     outline: none;
+    img{
+      width: 24px;
+      margin-right: 8px;
+    }
     >span{
       font-size: 10px;
       line-height: 16px;
@@ -228,5 +232,6 @@
   }
   &__top{
     margin-top: 100px;
+    margin-bottom: 100px;
   }
 }
