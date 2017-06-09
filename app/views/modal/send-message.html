@@ -7,23 +7,6 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-12">
-            <label for="subjectInput">
-              <span>Subject:</span>
-              <span class="error" ng-show="sendMessageForm.$submitted || sendMessageForm.subject.$touched">
-                <span ng-show="sendMessageForm.subject.$error.required">Please enter a subject.</span>
-              </span>
-            </label>
-          </div>
-        </div>
-        <div class="row bottom-buffer-sm">
-          <div class="col-md-12">
-            <input type="text" id="subjectInput" class="form-control" name="subject"
-                   ng-model="data.subject" ng-model-options="{ updateOn: 'blur' }"
-                   required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
             <label for="bodyInput">
               <span>Message:</span>
               <span class="error" ng-show="sendMessageForm.$submitted || sendMessageForm.body.$touched">

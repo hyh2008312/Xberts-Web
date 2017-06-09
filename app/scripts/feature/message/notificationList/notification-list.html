@@ -1,7 +1,7 @@
 <div class="xb-messages__list"
      ng-repeat="message in notifications track by $index"
      layout="row" layout-align="start start">
-  <span class="xb-messages__list-point" ng-if="!message.readAt && redPoint && message.sender.id != user.getUserId()"></span>
+  <span class="xb-messages__list-point" ng-if="!message.readAt && redPoint"></span>
   <avatar-img src="message.sender.userprofile.avatar" name="message.sender.firstName"
               ui-sref="application.expert({expertId:message.sender.id})"></avatar-img>
   <div>

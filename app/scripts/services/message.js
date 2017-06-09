@@ -44,7 +44,7 @@ angular.module('xbertsApp')
 
         var directParam = {};
         angular.copy(param, directParam);
-        directParam.type = ['DIRECT'];
+        directParam.type = 'Message';
 
         var meParam = {};
         angular.copy(param, meParam);
