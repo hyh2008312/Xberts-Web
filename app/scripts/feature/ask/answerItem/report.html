@@ -14,7 +14,7 @@
         <md-radio-button value="Other">Other</md-radio-button>
       </md-radio-group>
       <md-input-container class="md-block" ng-if="reason == 'Other'">
-        <input ng-model="other" ng-value="reason != 'Other'? '': other" type="text" name="other" placeholder="Please explain your issue"/>
+        <input ng-model="other" required ng-value="reason != 'Other'? '': other" type="text" name="other" placeholder="Please explain your issue"/>
       </md-input-container>
       <div layout="row" layout-align="end start">
         <md-button class="md-dark-third" ng-click="cancel()">Cancel</md-button>
