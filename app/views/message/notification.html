@@ -1,25 +1,66 @@
-<div ng-if="isEmpty">
-  <h3 class="margin-none">You have no message</h3>
-</div>
-<div class="list" ng-if="!isEmpty" infinite-scroll="messagePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-     infinite-scroll-disabled="messagePaginator.loading || !messagePaginator.next">
-  <div class="item-avatar-large item-hover"
-       ng-repeat="message in messagePaginator.items" ng-init="contact = showSender ? message.sender : message.recipient"
-       ng-class="{'item-new': !message.readAt && showSender}">
-    <div class="item-image text-center">
-      <avatar-img src="contact.userProfile.avatar" name="contact.shortName"></avatar-img>
-    </div>
-    <div class="item-body" ng-click="viewThread(message.thread)">
-      <p class="item-body-header">
-        <span ng-if="showSender">from&nbsp;</span>
-        <span ng-if="!showSender">to&nbsp;</span>
-        <span><a ng-click="viewContact(contact.id, $event)">{{ contact.shortName }}</a></span>
-        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
-      </p>
-      <p class="item-body-title p-1-max">{{ message.subject }}</p>
-      <message-label category="message.category"></message-label>
-      <p class="item-body-detail p-3-max" ng-bind-html="message.body"></p>
+<div class="container" layout-gt-xs="row" ng-if="!screenIsSmall">
+  <div class="xb-messages__left" flex="none">
+    <div fixed-to-top del-top="112" offset-top="112">
+      <div class="xb-messages__category md-margin-top-4 md-dark-secondary" ng-class="{'active':order==0}"
+           ng-click="changeOrder(0)">Feeds about Me
+        <span ng-if="unreadNotificationMeCount> 0" >
+          {{unreadNotificationMeCount>99? '99+':unreadNotificationMeCount}}</span></div>
+      <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==1}"
+           ng-click="changeOrder(1)">System Notification
+        <span ng-if="unreadNotificationSystemCount> 0">
+          {{unreadNotificationSystemCount>99? '99+':unreadNotificationSystemCount}}</span></div>
+      <div class="xb-messages__category md-dark-secondary" ng-class="{'active':order==2}"
+           ng-click="changeOrder(2)">Feeds about Following
+        <span ng-if="unreadNotificationFeedsCount> 0">
+          {{unreadNotificationFeedsCount>99? '99+':unreadNotificationFeedsCount}}</span></div>
     </div>
   </div>
+  <div ng-if="order==0" flex infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="mePaginator.loading || !mePaginator.next">
+    <notification-list notifications="mePaginator.items" show-sender="false" red-point="true"></notification-list>
+    <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+               ng-if="mePaginator.loading"></load-more>
+  </div>
+  <div ng-if="order==1" flex infinite-scroll="systemPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="systemPaginator.loading || !systemPaginator.next">
+    <notification-list notifications="systemPaginator.items" show-sender="true" red-point="true"></notification-list>
+    <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+               ng-if="systemPaginator.loading"></load-more>
+  </div>
+  <div ng-if="order==2" flex infinite-scroll="followPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="followPaginator.loading || !followPaginator.next">
+    <notification-list notifications="followPaginator.items" show-sender="false" red-point="true"></notification-list>
+    <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+               ng-if="followPaginator.loading"></load-more>
+  </div>
 </div>
-<load-more class="row spin-large" ng-show="messagePaginator.loading"></load-more>
+<div ng-if="screenIsSmall">
+  <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-border-bottom md-selected="order">
+    <md-tab label="Me" md-on-select="changeOrder(0)">
+      <div class="container" infinite-scroll="mePaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="mePaginator.loading || !mePaginator.next || order != 0">
+        <notification-list notifications="mePaginator.items" show-sender="false" red-point="true"></notification-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                   ng-if="mePaginator.loading"></load-more>
+      </div>
+    </md-tab>
+    <md-tab label="System" md-on-select="changeOrder(1)">
+      <div class="container" infinite-scroll="systemPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="systemPaginator.loading || !systemPaginator.next || order != 1">
+        <notification-list notifications="systemPaginator.items" show-sender="true" red-point="true" system="true"></notification-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                   ng-if="systemPaginator.loading"></load-more>
+      </div>
+    </md-tab>
+    <md-tab label="Following" md-on-select="changeOrder(2)">
+      <div class="container" infinite-scroll="followPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="followPaginator.loading || !followPaginator.next || order != 2">
+        <notification-list notifications="followPaginator.items" show-sender="false" red-point="true"></notification-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                   ng-if="followPaginator.loading"></load-more>
+      </div>
+    </md-tab>
+  </md-tabs>
+</div>
+
+

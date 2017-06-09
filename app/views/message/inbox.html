@@ -1,23 +1,9 @@
-<div ng-if="isEmpty">
-  <h3 class="margin-none">You have no message</h3>
-</div>
-<div class="list" ng-if="!isEmpty">
-  <div class="item-avatar-large item-hover"
-       ng-repeat="message in messages" ng-init="contact = showSender ? message.sender : message.recipient"
-       ng-class="{'item-new': !message.readAt && showSender}">
-    <div class="item-image text-center">
-      <avatar-img src="contact.userProfile.avatar" name="contact.shortName"></avatar-img>
-    </div>
-    <div class="item-body" ng-click="viewThread(message.thread)">
-      <p class="item-body-header">
-        <span ng-if="showSender">from&nbsp;</span>
-        <span ng-if="!showSender">to&nbsp;</span>
-        <span><a ng-click="viewContact(contact.id, $event)">{{ contact.shortName }}</a></span>
-        <span class="pull-right">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</span>
-      </p>
-      <p class="item-body-title p-1-max">{{ message.subject }}</p>
-      <message-label category="message.category"></message-label>
-      <p class="item-body-detail p-3-max" ng-bind-html="message.body"></p>
-    </div>
+<div class="container" layout="row">
+  <div class="xb-messages__left" ng-if="!closeTab">
+   <message-list messages="messages" mobile="screenIsSmall"></message-list>
   </div>
+  <div flex ui-view ng-if="!screenIsSmall"></div>
 </div>
+
+
+

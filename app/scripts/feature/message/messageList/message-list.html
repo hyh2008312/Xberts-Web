@@ -1,0 +1,27 @@
+<div class="xb-messages__message" ng-class="{'active': $index == index}" ng-repeat="message in messages track by $index"
+     layout="row" layout-align="start center" ng-click="viewThread(message, $index)">
+  <span class="xb-messages__message-point"
+        ng-if="$index > 0 && !message.readAt && user.getUserId() != message.sender.id"></span>
+  <avatar-img ng-if="user.getUserId() != message.sender.id" src="message.sender.userprofile.avatar"
+              name="message.sender.firstName"
+              ui-sref="application.expert({expertId:message.sender.id})"></avatar-img>
+
+  <avatar-img ng-if="user.getUserId() == message.sender.id" src="message.recipient.userprofile.avatar"
+              name="message.recipient.firstName"
+              ui-sref="application.expert({expertId:message.recipient.id})"></avatar-img>
+  <div flex>
+    <div layout="row" layout-align="space-between center">
+      <a ng-if="user.getUserId() != message.sender.id"  class="md-dark-primary xb-bold"
+         ui-sref="application.expert({expertId:message.sender.id})">
+        {{message.sender.firstName}}</a>
+      <a ng-if="user.getUserId() == message.sender.id"  class="md-dark-primary xb-bold"
+         ui-sref="application.expert({expertId:message.recipient.id})">
+        {{ message.recipient.firstName}}</a>
+      <div class="md-caption md-dark-secondary">
+        {{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}
+      </div>
+    </div>
+    <div class="xb-messages__message-body md-dark-secondary" ng-bind-html="message.body"></div>
+  </div>
+</div>
+

@@ -34,6 +34,13 @@
       <div ng-if="user.isAuth() && user.getUserId() === answer.getAnswerUserId()" layout="row" layout-align="start center"
            ui-sref="application.protected.editAnswer({answerId:answer.id,questionId:answer.question,source:'answer'})">
         <md-icon md-font-set="material-icons" ng-click="">mode_edit</md-icon>
+        <span></span>
+      </div>
+      <div class="xb-ask-list__menu-bg">
+        <md-icon class="md-dark-third" ng-click="showMenu(answer);$event.stopPropagation();" md-font-set="material-icons">more_horiz</md-icon>
+        <div class="xb-ask-list__menu background-whitem" ng-if="answer.showMenu" ng-mouseleave="showMenu(answer);">
+          <div ng-click="report(answer.id)">Report</div>
+        </div>
       </div>
     </div>
     <div ng-show="answer.commentToggle">

@@ -130,7 +130,7 @@ angular
         controller: 'MessageCtrl'
       })
       .state('application.protected.message.inbox', {
-        url: '/message/inbox?direction&category',
+        url: '/message/inbox',
         templateUrl: 'views/message/inbox.html',
         controller: 'MessageInboxCtrl',
         resolve: {
@@ -140,7 +140,18 @@ angular
             }]
         }
       })
-      .state('application.protected.message.thread', {
+      .state('application.protected.message.inbox.thread', {
+        url: '/thread/{threadId:[0-9]+}',
+        templateUrl: 'views/message/thread.html',
+        controller: 'MessageThreadCtrl',
+        resolve: {
+          messages: ['$stateParams', 'MessageResolver', 'protectedAuthCheck',
+            function ($stateParams, MessageResolver, protectedAuthCheck) {
+              return MessageResolver.viewThread($stateParams);
+            }]
+        }
+      })
+      .state('application.protected.thread', {
         url: '/message/thread/{threadId:[0-9]+}',
         templateUrl: 'views/message/thread.html',
         controller: 'MessageThreadCtrl',
@@ -156,10 +167,33 @@ angular
         templateUrl: 'views/message/notification.html',
         controller: 'MessageNotificationCtrl',
         resolve: {
-          messagePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+          mePaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
             function (Paginator, MessageResolver, protectedAuthCheck) {
               return new Paginator({
-                name: 'message',
+                name: 'xb_notification_me_list',
+                params: {
+                  type: 'Me'
+                },
+                fetchFunction: MessageResolver.getNotifications
+              }).load();
+            }],
+          systemPaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+            function (Paginator, MessageResolver, protectedAuthCheck) {
+              return new Paginator({
+                name: 'xb_notification_system_list',
+                params: {
+                  type: 'System'
+                },
+                fetchFunction: MessageResolver.getNotifications
+              }).load();
+            }],
+          followPaginator: ['Paginator', 'MessageResolver', 'protectedAuthCheck',
+            function (Paginator, MessageResolver, protectedAuthCheck) {
+              return new Paginator({
+                name: 'xb_notification_follow_list',
+                params: {
+                  type: 'Feeds'
+                },
                 fetchFunction: MessageResolver.getNotifications
               }).load();
             }]

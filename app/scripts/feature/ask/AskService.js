@@ -59,4 +59,8 @@ angular.module('xbertsApp')
       return FollowerResource.get(params).$promise.then(AskModel.buildPageList);
     };
 
+    this.report = function(params) {
+      return $resource(API_BASE_URL + '/answers/'+params.id+'/report/').save(params).$promise;
+    };
+
   }]);

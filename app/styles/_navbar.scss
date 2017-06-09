@@ -68,21 +68,22 @@
       &:hover{
         color: rgba(255,255,255,1);
       }
-      >i{
+      .material-icons{
         color: rgba(255,255,255,.5);
-        font-size: 24px;
-        line-height: 24px;
         &:hover{
           color: rgba(255,255,255,1);
         }
       }
-      .striking-white{
+      .top-right-badge{
         font-size: 10px;
         position: absolute;
-        right: 32px;
-        top: 0;
-        padding: 0 3px;
+        right: 5%;
+        top: -2px;
+        line-height: 16px;
         border-radius: 2px;
+        padding: 0 3px;
+        background-color: #ff4081;
+        @include transform(scale(.75,.75));
       }
     }
   }
@@ -127,6 +128,46 @@
       background-color: rgba(0,0,0,.12);
       color: rgba(0,0,0,.87);
     }
+  }
+  &__right-container-notification{
+    background-color: #FFF;
+    position: absolute;
+    left: -150px;
+    top: 56px;
+    width: 320px;
+    @include resetBorder();
+    border-radius: 2px;
+    md-tabs-canvas{
+      height: 40px;
+    }
+    md-pagination-wrapper{
+      height: 40px;
+    }
+    md-tab-item{
+      span{
+        background-color: #ff4081;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        right: 22px;
+        top: 10px;
+      }
+    }
+    .md-tab{
+      padding: 8px 28px;
+    }
+  }
+  &__triangle{
+    position: absolute;
+    left: 170px;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #FFF;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
   }
 }
 
@@ -213,7 +254,7 @@
           &:hover{
             color: rgba(255,255,255,1);
           }
-          >i{
+          .material-icons{
             color: rgba(255,255,255,.7);
             &:hover{
               color: rgba(255,255,255,1);

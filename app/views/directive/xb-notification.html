@@ -1,0 +1,42 @@
+<div class="xberts-navbar__right-container-button" ng-mouseenter="onNotificationUp()" ng-mouseleave="onNotificationUp()">
+  <md-icon md-font-set="material-icons">notifications</md-icon>
+  <div class="xberts-navbar__right-container-notification" ng-show="isNotificationOpen" flex="none">
+    <div class="xberts-navbar__triangle"></div>
+    <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-border-bottom>
+      <md-tab label="Me" md-on-select="me();">
+        <md-tab-label>
+          Me <span ng-if="mePaginator.count>0"></span>
+        </md-tab-label>
+        <md-tab-body>
+          <notification-list notifications="mePaginator.items" show-sender="false"></notification-list>
+          <div layout="row" layout-align="end start">
+            <md-button class="md-primary" ng-click="jumpToNotification(0)">See All</md-button>
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab label="System" md-on-select="system();">
+        <md-tab-label>
+          System <span ng-if="systemPaginator.count>0"></span>
+        </md-tab-label>
+        <md-tab-body>
+          <notification-list notifications="systemPaginator.items" show-sender="false"></notification-list>
+          <div layout="row" layout-align="end start">
+            <md-button class="md-primary" ng-click="jumpToNotification(1)">See All</md-button>
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab label="Following" md-on-select="follow();">
+        <md-tab-label>
+          Following <span ng-if="followPaginator.count>0"></span>
+        </md-tab-label>
+        <md-tab-body>
+          <notification-list notifications="followPaginator.items" show-sender="false"></notification-list>
+          <div layout="row" layout-align="end start">
+            <md-button class="md-primary" ng-click="jumpToNotification(2)">See All</md-button>
+          </div>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </div>
+</div>
+
