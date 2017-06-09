@@ -4,6 +4,7 @@ angular.module('xbertsApp')
   .controller('MessageInboxCtrl', ['_', '$scope', '$state', '$stateParams', 'messages','$mdMedia',
     function(_, $scope, $state, $stateParams, messages,$mdMedia) {
       $scope.messages = messages;
+      $scope.isEmpty = _(messages).isEmpty();
 
       $scope.$parent.category = 'incoming';
 

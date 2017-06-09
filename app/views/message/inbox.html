@@ -1,9 +1,10 @@
+<div class="container xb-messages__top" layout="column" ng-if="isEmpty" layout-align="center center" >
+  <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
+  <div class="md-dark-third md-margin-top-1">You have no message</div>
+</div>
 <div class="container" layout="row">
-  <div class="xb-messages__left" ng-if="!closeTab">
-   <message-list messages="messages" mobile="screenIsSmall"></message-list>
+  <div class="xb-messages__left">
+    <message-list messages="messages" mobile="screenIsSmall"></message-list>
   </div>
   <div flex ui-view ng-if="!screenIsSmall"></div>
 </div>
-
-
-
