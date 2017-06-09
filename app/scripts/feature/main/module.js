@@ -79,6 +79,18 @@ angular.module('xbertsApp')
               fetchFunction: AskService.getList
             };
             return new Paginator(par).load();
+          }],
+          answerPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
+            var par = {
+              name: 'main_ask_answer',
+              objClass: AskModel,
+              params: {
+                ordering: 'answer_amount-',
+                page_size: 8
+              },
+              fetchFunction: AskService.getList
+            };
+            return new Paginator(par).load();
           }]
         }
       })

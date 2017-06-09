@@ -3,7 +3,8 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        questions: '='
+        questions: '=',
+        answer: '='
       },
       templateUrl: 'scripts/feature/main/mainQuestionItem/main-question-item.html',
       link: function (scope, element, attrs, ctrls) {
@@ -23,13 +24,13 @@ angular.module('xbertsApp')
         scope.imagesMobile = imagesMobile[Math.floor(Math.random() * 2)];
 
         var length = 0;
-        for(var i = 0; i < scope.questions.length;i++) {
-          if(scope.questions[i].latestAnswer != null) {
-            var answerStr = scope.questions[i].latestAnswer.description;
+        for(var i = 0; i < scope.answer.length;i++) {
+          if(scope.answer[i].latestAnswer != null) {
+            var answerStr = scope.answer[i].latestAnswer.description;
             var _length = answerStr.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
             if(length <= _length) {
               length = _length;
-              scope.latestQuestions = scope.questions[i];
+              scope.latestQuestions = scope.answer[i];
             }
           }
         }

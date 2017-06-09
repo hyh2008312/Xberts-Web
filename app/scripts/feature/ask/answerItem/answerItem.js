@@ -44,15 +44,15 @@ angular.module('xbertsApp')
               scope.cancel = function() {
                 $mdDialog.cancel();
               };
+              scope.disabled = false;
               scope.report = function() {
                 if (!scope.reportForm.$valid) {
                   return;
                 }
-                if(scope.reason == 'Other' && !scope.other) {
-                  return;
-                }
+                scope.disabled = true;
                 AskService.report({reason: scope.reason == 'Other'? scope.other:scope.reason,id:id})
                   .then(function() {
+                    scope.disabled = false;
                     scope.cancel();
                     $mdToast.show({
                       hideDelay: 3000,

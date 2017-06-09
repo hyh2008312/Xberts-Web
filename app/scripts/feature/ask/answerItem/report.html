@@ -18,7 +18,7 @@
       </md-input-container>
       <div layout="row" layout-align="end start">
         <md-button class="md-dark-third" ng-click="cancel()">Cancel</md-button>
-        <md-button class="md-primary" type="submit" ng-disabled="!reportForm.$valid">Submit</md-button>
+        <md-button class="md-primary" type="submit" ng-disabled="!reportForm.$valid && !disabled">Submit</md-button>
       </div>
     </form>
   </div>
