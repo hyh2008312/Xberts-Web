@@ -48,6 +48,9 @@ angular.module('xbertsApp')
                 if (!scope.reportForm.$valid) {
                   return;
                 }
+                if(scope.reason == 'Other' && scope.other == '') {
+                  return;
+                }
                 AskService.report({reason: scope.reason == 'Other'? scope.other:scope.reason,id:id})
                   .then(function() {
                     scope.cancel();
