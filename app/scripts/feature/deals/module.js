@@ -8,12 +8,16 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
       resolve: {
-        productsPaginator: ['Paginator', 'DealsService','ProductDeals',function (Paginator, DealsService, ProductDeals) {
+        productsPaginator: ['Paginator', 'DealsService','ProductDeals',
+          function (Paginator, DealsService, ProductDeals) {
           var par = {
             name: 'deals_product_list',
             objClass: ProductDeals,
             params: {
               category: DealsService.categoryId,
+              min_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value1: null,
+              max_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value2: null,
+              min_discount: DealsService.discountId != null ?DealsService.getDiscount()[DealsService.discountId].value1: null,
               page_size: 12
             },
             fetchFunction: DealsService.getDealsList

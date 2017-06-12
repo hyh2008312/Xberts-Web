@@ -169,6 +169,15 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
   }
+  &__red-point{
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ff4081;
+  }
 }
 
 .xberts-navbar-moblie{

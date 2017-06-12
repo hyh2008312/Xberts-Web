@@ -1,6 +1,9 @@
 <div class="xberts-navbar__right-container-button" ng-mouseenter="onNotificationUp()" ng-mouseleave="onNotificationUp()">
   <md-icon md-font-set="material-icons">notifications</md-icon>
-  <div class="xberts-navbar__right-container-notification" ng-show="isNotificationOpen" flex="none">
+  <span class="xberts-navbar__red-point" ng-if="unreadNotificationMeCount > 0
+    || unreadNotificationSystemCount > 0
+    || unreadNotificationFeedsCount > 0"></span>
+  <div class="xberts-navbar__right-container-notification" ng-if="isNotificationOpen" flex="none">
     <div class="xberts-navbar__triangle"></div>
     <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-border-bottom>
       <md-tab label="Me" md-on-select="me();">
@@ -12,7 +15,8 @@
             <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
             <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
           </div>
-          <notification-list notifications="mePaginator.items" show-sender="false"></notification-list>
+          <notification-list notifications="mePaginator.items" show-sender="false"
+                             on-menu-close="closeMenu(0)"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(0)">See All</md-button>
           </div>
@@ -27,7 +31,8 @@
             <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
             <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
           </div>
-          <notification-list notifications="systemPaginator.items" show-sender="false"></notification-list>
+          <notification-list notifications="systemPaginator.items" show-sender="false"
+                             on-menu-close="closeMenu(1)"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(1)">See All</md-button>
           </div>
@@ -42,7 +47,8 @@
             <img src="https://xberts.imgix.net/static/icon/e9d5e260-3259-4b51-b90e-f8e72e2ed9ad.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=a977ceb1cbcdcf516ec50bd26ff4e21f" />
             <div class="md-dark-third md-margin-top-1">You don't have any new notifications</div>
           </div>
-          <notification-list notifications="followPaginator.items" show-sender="false"></notification-list>
+          <notification-list notifications="followPaginator.items" show-sender="false"
+                             on-menu-close="closeMenu(2)"></notification-list>
           <div layout="row" layout-align="end start">
             <md-button class="md-primary" ng-click="jumpToNotification(2)">See All</md-button>
           </div>

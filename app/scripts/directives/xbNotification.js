@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('xbNotification', ['$rootScope', 'MessageResolver', 'Paginator','MessageService','$state',
-    function($rootScope, MessageResolver,Paginator,MessageService,$state) {
+  .directive('xbNotification', ['$rootScope', 'MessageResolver', 'Paginator','MessageService','$state','localStorageService',
+    function($rootScope, MessageResolver,Paginator,MessageService,$state,localStorageService) {
     return {
       templateUrl: 'views/directive/xb-notification.html',
       replace: true,
@@ -62,10 +62,25 @@ angular.module('xbertsApp')
           scope.followPaginator.load();
         };
 
+        scope.closeMenu = function(index) {
+          scope.isNotificationOpen = false;
+          switch (index) {
+            case 0:
+              scope.mePaginator.clear();
+              break;
+            case 1:
+              scope.systemPaginator.clear();
+              break;
+            case 2:
+              scope.followPaginator.clear();
+              break;
+          }
+        };
+
         scope.jumpToNotification = function($index) {
+          scope.isNotificationOpen = false;
           MessageService.notificationCategories = $index;
           $state.go('application.protected.message.notification',{},{reload:true});
-          scope.isNotificationOpen = false;
         };
       }
     };
