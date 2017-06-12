@@ -84,8 +84,10 @@
   <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
     <div ui-sref-active="active" ui-sref="application.shareProductList" ng-click="close()">Discover</div>
-    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()">Ask</div>
-    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()">Deals</div>
+    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()"
+         layout="row" layout-align="start start">Ask<span></span></div>
+    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()"
+         layout="row" layout-align="start start">Deals<span></span></div>
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Trials</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>
@@ -95,8 +97,12 @@
     <div ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
-    <div ui-sref-active="active" ui-sref="application.protected.message.notification" ng-click="close()">Notification</div>
-    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()">Messages</div>
+    <div ui-sref-active="active" ui-sref="application.protected.message.notification" ng-click="close()"
+         layout="row" layout-align="start start">Notification
+      <span ng-if="unreadNotificationMeCount > 0 || unreadNotificationSystemCount > 0 || unreadNotificationFeedsCount > 0"></span></div>
+    <div ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()"
+         layout="row" layout-align="start start">Messages
+      <span ng-if="unreadDirectMessageCount > 0"></span></div>
     <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
     <div ui-sref-active="active" ui-sref="application.protected.invite" ng-click="close()">Invite Friends</div>
     <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting' })" ng-click="close()">Settings</div>
