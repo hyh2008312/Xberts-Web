@@ -35,7 +35,7 @@ angular.module('xbertsApp')
           id: $scope.expert.userId,
           page_size: 12
         },
-        fetchFunction: ExpertService.followList
+        fetchFunction: ExpertService.getFollowingQuestion
       };
       $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
 

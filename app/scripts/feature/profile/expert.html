@@ -29,10 +29,39 @@
             {{expert.points}} Points
           </div>
         </div>
-        <div class="xb-my-profile__title-bottom" layout="row" layout-align="start center" layout-xs="column"
-          layout-align-xs="start start">
-          <div><i class="fa fa-map-marker"></i><span class="xb-my-profile__margin-1">{{expert.country}}</span></div>
-          <div class="xb-my-profile__margin-2">{{expert.companyTitle}}</div>
+        <div hide-xs>
+          <div class="xb-my-profile__title-bottom" ng-if="!showBio" layout="row" layout-align="start center" layout-xs="column"
+            layout-align-xs="start start">
+            <div layout="row" layout-align="start start">
+              <div ng-if="expert.country"><md-icon class="md-dark-third" md-font-set="material-icons">location_on</md-icon></div>
+              <div class="xb-my-profile__margin-1">{{expert.country}}</div></div>
+            <div class="xb-my-profile__margin-2 md-margin-right-4">{{expert.companyTitle}}</div>
+            <span class="xb-my-profile__title-bottom-color" ng-click="openBio();" >More
+              <md-icon md-font-set="material-icons">keyboard_arrow_down</md-icon></span>
+          </div>
+          <div class="xb-my-profile__title-bottom" ng-if="showBio" layout="column" layout-align="start start">
+            <div ng-if="expert.country" layout="row" layout-align="start start">
+              <div><md-icon class="md-dark-third" md-font-set="material-icons">location_on</md-icon></div>
+              <div class="xb-my-profile__margin-1">{{expert.country}}</div></div>
+            <div ng-if="expert.companyTitle" class="md-margin-top-2" layout="row" layout-align="start start">
+              <div><md-icon md-font-set="material-icons">work</md-icon></div>
+              <div class="xb-my-profile__margin-1">{{expert.companyTitle}}</div></div>
+            <div ng-if="expert.biography" class="md-margin-top-2" layout="row" layout-align="start start">
+              <div><md-icon md-font-set="material-icons">assignment_ind</md-icon></div>
+              <div class="xb-my-profile__margin-1" ng-bind-html="expert.biography | trust"></div></div>
+            <span ng-click="openBio();" class="md-margin-left-3 md-margin-bottom-3 md-margin-top-2 xb-my-profile__title-bottom-color">
+              Less <md-icon md-font-set="material-icons">keyboard_arrow_up</md-icon></span>
+          </div>
+        </div>
+        <div hide-gt-xs>
+          <div class="xb-my-profile__title-bottom">
+            <div layout="row" layout-align="start start">
+              <div ng-if="expert.country"><md-icon class="md-dark-third" md-font-set="material-icons">location_on</md-icon></div>
+              <div class="xb-my-profile__margin-1">{{expert.country}}</div></div>
+            <div class="xb-my-profile__margin-2 md-margin-right-4">{{expert.companyTitle}}</div>
+            <span class="xb-my-profile__title-bottom-color" ui-sref="application.protected.biography({expertId:expert.userId})">
+              More <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon></span>
+          </div>
         </div>
       </div>
     </div>
@@ -65,11 +94,6 @@
   <div class="container" layout="row" layout-align="start start">
     <div flex>
       <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
-        <md-tab label="Biography" md-on-select="loadMyBio()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <my-biography biography="expert.biography"></my-biography>
-          </div>
-        </md-tab>
 
         <md-tab label="Trials" md-on-select="loadMyTrials()">
           <div class="background-whitem xb-my-profile__margin-top">
@@ -82,37 +106,33 @@
           </div>
         </md-tab>
 
-        <md-tab label="Posts" md-on-select="loadMyTrials()">
-          <div class="xb-my-profile__margin-top">
-            <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex1" md-border-bottom>
-              <md-tab label="Finds" md-on-select="loadMyFinds()">
-                <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                     infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 2">
-                  <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
-                </div>
-              </md-tab>
-              <md-tab label="Questions" md-on-select="loadMyQuestions()">
-                <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                     infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 2">
-                  <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
-                </div>
-              </md-tab>
-              <md-tab label="Answers" md-on-select="loadMyAnswers()">
-                <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                     infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
-                  <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-                  <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
-                </div>
-              </md-tab>
-            </md-tabs>
+        <md-tab label="Questions" md-on-select="loadMyQuestions()">
+          <div class="background-whitem xb-my-profile__margin-top">
+            <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 1">
+              <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+            </div>
           </div>
         </md-tab>
 
-        <md-tab label="Referrals" md-on-select="loadMyReferrals()">
+        <md-tab label="Answers" md-on-select="loadMyAnswers()">
           <div class="background-whitem xb-my-profile__margin-top">
-           <my-referrals referrals="myReferrals" user-id="expert.userId"></my-referrals>
+            <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
+              <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+            </div>
+          </div>
+        </md-tab>
+
+        <md-tab label="Share" md-on-select="loadMyFinds()">
+          <div class="background-whitem xb-my-profile__margin-top">
+            <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
+              <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+            </div>
           </div>
         </md-tab>
 
@@ -225,23 +245,23 @@
   </div>
   <div class="background-whitem">
     <div class="md-subhead" layout="row" layout-align="space-between center"
-         ui-sref="application.protected.biography({expertId:expert.userId})">
-      Biography
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
-    </div>
-    <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.trials({expertId:expert.userId})">
       Trials
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
-         ui-sref="application.protected.posts({expertId:expert.userId})">
-      Posts
+         ui-sref="application.protected.questions({expertId:expert.userId})">
+      Questions
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
-         ui-sref="application.protected.referrals({expertId:expert.userId})">
-      Referrals
+         ui-sref="application.protected.answers({expertId:expert.userId})">
+      Answers
+      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+    </div>
+    <div class="md-subhead" layout="row" layout-align="space-between center"
+         ui-sref="application.protected.posts({expertId:expert.userId})">
+      Share
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"

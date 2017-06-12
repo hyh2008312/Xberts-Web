@@ -1,0 +1,9 @@
+<div class="xb-my-biography">
+  <div class="md-subhead">Questions</div>
+  <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next">
+    <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
+    <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+  </div>
+</div>
+
