@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('notificationList',['MessageService', '$location', 'urlParser','$rootScope',
-    function(MessageService,$location,urlParser,$rootScope) {
+  .directive('notificationList',['MessageService', '$location', 'urlParser','$rootScope','$state',
+    function(MessageService,$location,urlParser,$rootScope,$state) {
     return {
       restrict: 'E',
       scope: {
@@ -10,13 +10,14 @@ angular.module('xbertsApp')
         showSender: '=',
         redPoint: '=',
         system: '=',
-        onMenuClose: '&'
+        onMenuClose: '&',
+        unread: '='
       },
       templateUrl: 'scripts/feature/message/notificationList/notification-list.html',
       link: function (scope, element, attrs, ctrls) {
         scope.user = $rootScope.user;
         scope.viewThread = function (message) {
-          if(!message.readAt) {
+          if(!message.readAt && !scope.unread) {
             message.readAt = true;
             MessageService.getMessage(message.id);
           }
@@ -25,7 +26,12 @@ angular.module('xbertsApp')
             scope.onMenuClose();
           }
 
-          $location.path(urlParser.parse(message.actionUrl).pathname);
+          if(!scope.unread) {
+            $location.path(urlParser.parse(message.actionUrl).pathname);
+          } else {
+            $state.go('application.protected.message.notification',{},{reload:true});
+          }
+
         };
       }
     }

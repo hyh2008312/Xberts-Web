@@ -28,6 +28,7 @@
       margin-right: 8px;
       width: 40px;
       height: 40px;
+      min-width: 40px;
       cursor: pointer;
       .c-user__avatar{
         width: 40px;
@@ -80,12 +81,13 @@
     }
     >span{
       font-size: 10px;
-      line-height: 16px;
+      line-height: 12px;
       border-radius: 2px;
       background-color: #ff4081;
       color: #fff;
       padding: 0 3px;
-      @include transform(scale(.75,.75))
+      margin-left: 8px;
+      font-weight: 400 !important;
     }
   }
   &__category.active{
