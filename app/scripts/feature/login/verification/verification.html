@@ -1,0 +1,12 @@
+<div class="xb-verification" ng-if="showBg" layout="row" layout-align="start center">
+  <div ng-if="showLine" flex>
+    Please verify your email address in order to unlock your Xberts points and perks! If you haven’t received anything, you can
+    <span class="text-underline" ng-click="closeLine()">resend verification email</span>.
+  </div>
+  <div ng-if="!showLine" flex>
+    Success! You should receive a new verification email soon.
+  </div>
+  <div class="md-margin-bottom-2">
+    <md-icon md-font-set="material-icons" ng-click="cancel()">close</md-icon>
+  </div>
+</div>
