@@ -87,4 +87,10 @@ angular.module('xbertsApp')
       _str = str.length < length? str : str.substr(0,length);
       return _str;
     };
+  })
+  .filter('isEmail', function() {
+    return function (email) {
+      var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      return reg.test(email);
+    };
   });

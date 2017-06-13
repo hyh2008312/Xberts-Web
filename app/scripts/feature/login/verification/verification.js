@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('verification', ['$rootScope','$state','VerificationEmailService',
-    function ($rootScope,$state,VerificationEmailService) {
+  .directive('verification', ['$rootScope','$state','VerificationEmailService','$filter',
+    function ($rootScope,$state,VerificationEmailService, $filter) {
     return {
       restrict: 'E',
       scope: {
@@ -15,7 +15,7 @@ angular.module('xbertsApp')
 
         scope.showLine = true;
         scope.closeLine = function() {
-          if(!$rootScope.user.getUserEmail()) {
+          if(!$rootScope.user.getUserEmail() || !$filter('isEmail')($rootScope.user.getUserEmail())) {
             $state.go('application.protected.editProfile',{tab:'setting'});
             return;
           }
