@@ -4,8 +4,10 @@ angular.module('xbertsApp')
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
              AuthService, AnalyticsService, $mdDialog,VerificationEmailService,growl) {
 
-      VerificationEmailService.VerificationEmailService($stateParams)
-      .then(function(value) {})
+      VerificationEmailService.validateEmail($stateParams)
+      .then(function() {
+        $rootScope.user.setEmailVerification(false);
+      })
       .catch(
         function(httpResponse) {
           if (httpResponse.status === 403) {

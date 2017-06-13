@@ -250,6 +250,10 @@ angular.module('xbertsApp')
         this.getEmailVerification = function() {
           return this._isEmailVerified;
         };
+
+        this.setEmailVerification = function(isEmailVerified) {
+          this._isEmailVerified = _isEmailVerified;
+        };
       }
 
       function setUser(user) {
