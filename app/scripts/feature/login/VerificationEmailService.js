@@ -10,7 +10,7 @@ angular.module('xbertsApp')
     };
 
     this.validateEmail = function (params) {
-      return $resource(API_BASE_URL + '/accounts/verify/email/'+params.uid+'/' + params.token+'／').get().$promise;
+      return $resource(API_BASE_URL + '/accounts/verify/email/'+params.uid+'/' + params.token+'/').get().$promise;
     };
 
   }]);

@@ -252,7 +252,7 @@ angular.module('xbertsApp')
         };
 
         this.setEmailVerification = function(isEmailVerified) {
-          this._isEmailVerified = _isEmailVerified;
+          this._isEmailVerified = isEmailVerified;
         };
       }
 

@@ -4,14 +4,13 @@ angular.module('xbertsApp')
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
              AuthService, AnalyticsService, $mdDialog,VerificationEmailService,growl) {
 
+      $rootScope.user.setEmailVerification(true);
       VerificationEmailService.validateEmail($stateParams)
-      .then(function() {
-        $rootScope.user.setEmailVerification(false);
-      })
+      .then(function() {})
       .catch(
         function(httpResponse) {
-          if (httpResponse.status === 403) {
-            growl.error('');
+          if (httpResponse.status === 404) {
+            growl.error('Oops! The email verification link has expired. You can log in to resend a new confirmation!');
           }
         });
 
