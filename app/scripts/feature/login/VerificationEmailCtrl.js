@@ -9,7 +9,7 @@ angular.module('xbertsApp')
       .then(function() {})
       .catch(
         function(httpResponse) {
-          if (httpResponse.status === 404) {
+          if (httpResponse.status === 400 || httpResponse.status === 404) {
             growl.error('Oops! The email verification link has expired. You can log in to resend a new confirmation!');
           }
         });
