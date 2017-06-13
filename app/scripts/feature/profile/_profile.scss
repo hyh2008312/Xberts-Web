@@ -191,6 +191,16 @@
     color: #3f51b5;
     background-color: #3f51b5;
   }
+  &__title{
+    width: 112px;
+    min-width: 112px;
+    text-align: right;
+    margin-bottom: 8px;
+    @include media();
+    @include xb-xs-screen{
+      text-align: left;
+    }
+  }
   &__dialog{
     margin-top: 32px;
   }
@@ -201,7 +211,17 @@
     }
   }
   md-input-container{
+    padding: 0;
     margin-bottom: 0;
+    label{
+      padding: 0 !important;
+    }
+    input{
+      padding: 0;
+    }
+  }
+  md-radio-button{
+    margin-bottom: 8px !important;
   }
   &__margin-bottom{
     margin-bottom: 24px !important;
@@ -210,7 +230,6 @@
     @include media();
   }
   &__upload-bg{
-    margin-left: 42px;
     margin-top: 8px;
     margin-bottom: 72px;
     >img{

@@ -1,5 +1,6 @@
 <form class="xb-edit-profile__dialog" name="editProfileForm" ng-submit="saveChange()" novalidate clear-form-error>
   <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4">Name</div>
     <md-input-container class="md-block xb-edit-profile__margin-right" flex-gt-xs="50" flex>
       <input required ng-model="data.firstName" type="text" name="firstName" placeholder="First Name"/>
       <div ng-messages="editProfileForm.firstName.$error">
@@ -13,7 +14,16 @@
       </div>
     </md-input-container>
   </div>
-  <div layout="row" layout-align="start center">
+  <div class="md-margin-bottom-2" layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4">Gender</div>
+    <md-radio-group ng-model="data.gender" required layout="row" layout-xs="column">
+      <md-radio-button value="Male">Male</md-radio-button>
+      <md-radio-button value="Female">Female</md-radio-button>
+      <md-radio-button value="Undisclosed">Undisclosed</md-radio-button>
+    </md-radio-group>
+  </div>
+  <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4">Country</div>
     <md-input-container class="md-block xb-edit-profile__margin-bottom" flex>
       <label>Country</label>
       <md-select ng-model="data.country.code" name="country" >
@@ -27,6 +37,7 @@
     </md-input-container>
   </div>
   <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4">Current Position</div>
     <md-input-container class="md-block xb-edit-profile__margin-right" flex-gt-xs="50">
       <input ng-model="data.position" type="text" name="position" placeholder="Business Title"/>
     </md-input-container>
@@ -34,14 +45,19 @@
       <input ng-model="data.company" type="text" name="company" placeholder="Company Name"/>
     </md-input-container>
   </div>
-  <md-input-container class="md-block">
-    <input ng-model="data.biography" name="bio" placeholder="Biography"/>
-  </md-input-container>
-  <div class="md-body-1 xb-edit-profile__label">Picture</div>
-  <div class="xb-edit-profile__upload-bg" layout="low" layout-align="start center">
-    <img class="img-circle avatar-thumb" ngf-src="data.avatar || data.currentAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a'">
-    <md-button type="file" class="md-primary" ngf-select ng-model="data.avatar" name="avatar"
-            accept="image/*">Choose a Picture</md-button>
+  <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4">Biography</div>
+    <md-input-container class="md-block" flex>
+      <input ng-model="data.biography" name="bio" placeholder="Biography"/>
+    </md-input-container>
+  </div>
+  <div layout="row" layout-align="start start" layout-xs="column" layout-align-xs="start stretch">
+    <div class="xb-edit-profile__title md-margin-right-4" flex="none">Picture</div>
+    <div class="xb-edit-profile__upload-bg" layout="low" layout-align="start center">
+      <img class="img-circle avatar-thumb" ngf-src="data.avatar || data.currentAvatar || 'https://xberts.imgix.net/static/icon/avatar_empty.gif?s=5b6b11a25bfa12e3a94966eb077ef16a'">
+      <md-button type="file" class="md-primary" ngf-select ng-model="data.avatar" name="avatar"
+              accept="image/*">Choose a Picture</md-button>
+    </div>
   </div>
   <div class="error" ng-show="editProfileForm.$submitted" ng-messages="editProfileForm.serverError">
     <div ng-messages-include="views/text/form_error.html"></div>
