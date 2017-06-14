@@ -61,6 +61,9 @@ angular.module('xbertsApp')
         };
 
         this.upvote = function(disabled) {
+          if(disabled == true) {
+            return;
+          }
           var firstJoin = self.getCurrentJoin().vote;
           disabled = true;
           self.getOrCreateCurrentJoin().then(function () {
@@ -83,6 +86,9 @@ angular.module('xbertsApp')
         };
 
         this.downvote = function(disabled) {
+          if(disabled == true) {
+            return;
+          }
           var firstJoin = self.getCurrentJoin().vote;
           disabled = true;
           self.getOrCreateCurrentJoin().then(function () {
