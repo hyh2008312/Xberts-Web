@@ -729,7 +729,12 @@
       margin-left: 8px;
       margin-right: 24px;
     }
-
+    .md-button{
+      padding: 0;
+      margin: 0;
+      min-height: 0;
+      min-width: 0;
+    }
   }
   &__content{
     margin-top: 8px;

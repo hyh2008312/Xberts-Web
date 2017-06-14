@@ -10,6 +10,7 @@ angular.module('xbertsApp')
       replace: false,
 
       link: function (scope, element, attrs, interactCtrl) {
+        scope.disabled = false;
         scope.join = interactCtrl.getCurrentJoin();
         scope.upvote = interactCtrl.upvote;
         scope.downvote = interactCtrl.downvote;

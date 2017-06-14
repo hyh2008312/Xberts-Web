@@ -1,4 +1,8 @@
-<md-icon ng-class="{'md-warn':join.vote==true}" ng-click="upvote()">thumb_up</md-icon>
+<md-button ng-disabled="disabled" ng-click="upvote(disabled)">
+  <md-icon ng-class="{'md-warn':join.vote==true}">thumb_up</md-icon>
+</md-button>
 <span>{{interact.vote_amount || interact.voteAmount || " "}}</span>
-<md-icon ng-class="{'md-warn':join.vote==false}" ng-click="downvote()">thumb_down</md-icon>
+<md-button ng-disabled="disabled" ng-click="downvote(disabled)">
+  <md-icon ng-class="{'md-warn':join.vote==false}">thumb_down</md-icon>
+</md-button>
 <span>{{interact.downvoteAmount>0?interact.downvoteAmount:''}}</span>

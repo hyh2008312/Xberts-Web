@@ -60,8 +60,9 @@ angular.module('xbertsApp')
           });
         };
 
-        this.upvote = function() {
+        this.upvote = function(disabled) {
           var firstJoin = self.getCurrentJoin().vote;
+          disabled = true;
           self.getOrCreateCurrentJoin().then(function () {
             var currentJoin = self.getCurrentJoin();
 
@@ -77,11 +78,13 @@ angular.module('xbertsApp')
               $scope.interact.reduceDownVote();
             }
             InteractService.vote(join);
+            disabled = false;
           });
         };
 
-        this.downvote = function() {
+        this.downvote = function(disabled) {
           var firstJoin = self.getCurrentJoin().vote;
+          disabled = true;
           self.getOrCreateCurrentJoin().then(function () {
             var currentJoin = self.getCurrentJoin();
             var join = {id: currentJoin.id, vote: currentJoin.vote == false? null: false};
@@ -96,6 +99,7 @@ angular.module('xbertsApp')
               $scope.interact.reduceVote();
             }
             InteractService.vote(join);
+            disabled = false;
           });
         };
       },
