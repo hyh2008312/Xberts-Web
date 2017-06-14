@@ -118,12 +118,6 @@ angular
         templateUrl: 'scripts/feature/login/linkedinLogin.html',
         controller: 'LinkedinLoginCtrl'
       })
-      .state('application.activeEmail', {
-        url: '/login/:uid/:token',
-        templateUrl: 'views/login.html',
-        controller: 'VerificationEmailCtrl',
-        reloadOnSearch: false
-      })
       .state('application.signup', {
         url: '/signup',
         templateUrl: 'views/signup.html',

@@ -3,12 +3,12 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService','VerificationEmailService','growl',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService,VerificationEmailService,growl) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
-                    roles, isResolved, inviteToken, points, consumed, isEmailVerified) {
+                    roles, isResolved, inviteToken, points, consumed, isEmailVerified,isInvited) {
         this._userId = userId || '';
         this._firstName = firstName || '';
         this._lastName = lastName || '';
@@ -23,8 +23,8 @@ angular.module('xbertsApp')
         this._inviteToken = inviteToken || '';
         this._points = points || '';
         this._consumed = consumed || '';
-
         this._isEmailVerified = isEmailVerified;
+        this._isInvited = isInvited;
 
         this.isAuth = function() {
           return this._userId ? true : false;
@@ -254,12 +254,20 @@ angular.module('xbertsApp')
         this.setEmailVerification = function(isEmailVerified) {
           this._isEmailVerified = isEmailVerified;
         };
+
+        this.getInvited = function() {
+          return this._isInvited;
+        };
+
+        this.setInvited = function(isInvited) {
+          this._isInvited = isInvited;
+        };
       }
 
       function setUser(user) {
         $rootScope.user = new User(user.id, user.firstName, user.lastName, user.email, user.isStaff, user.avatar,
           user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true, user.inviteToken, user.points,
-          user.consumed, user.isEmailVerified);
+          user.consumed, user.isEmailVerified, user.isInvited);
       }
 
       function login(credentials) {
@@ -518,6 +526,17 @@ angular.module('xbertsApp')
         return deferred.promise;
       }
 
+      function veridateEmail($stateParams) {
+        $rootScope.user.setEmailVerification(true);
+        VerificationEmailService.validateEmail($stateParams)
+        .then(function() {})
+        .catch(function(httpResponse) {
+          if (httpResponse.status === 400 || httpResponse.status === 404) {
+            growl.error('Oops! The email verification link has expired. You can log in to resend a new confirmation!');
+          }
+        });
+      }
+
       $rootScope.user = new User();
 
       return {
@@ -530,6 +549,7 @@ angular.module('xbertsApp')
         setUser: setUser,
         loginRedirect: loginRedirect,
         logout: logout,
-        refreshToken: refreshToken
+        refreshToken: refreshToken,
+        veridateEmail: veridateEmail
       };
     }]);

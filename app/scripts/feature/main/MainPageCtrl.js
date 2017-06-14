@@ -1,8 +1,13 @@
 angular.module('xbertsApp')
   .controller('MainPageCtrl', ['$rootScope','topBanner','dealsPaginator','discoverProducts','latestPaginater','reviews',
-    'topReviewers','askPaginator','answerPaginator',
+    'topReviewers','askPaginator','answerPaginator','$stateParams','AuthService',
     function ($rootScope, topBanner, dealsPaginator, discoverProducts, latestPaginater, reviews, topReviewers,
-              askPaginator,answerPaginator) {
+              askPaginator,answerPaginator,$stateParams,AuthService) {
+
+      if($stateParams.uid && $stateParams.token) {
+        AuthService.veridateEmail($stateParams);
+      }
+
       var mainCtrl = this;
       mainCtrl.topBanner = topBanner;
       mainCtrl.dealsPaginator = dealsPaginator.items;
