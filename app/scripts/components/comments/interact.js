@@ -26,16 +26,22 @@ angular.module('xbertsApp')
           angular.extend($scope.currentJoin, join);
         };
 
-        this.getOrCreateCurrentJoin = function () {
+        this.getOrCreateCurrentJoin = function (disabled) {
           var delay = $q.defer();
 
           if (!$rootScope.user.authRequired()) {
             delay.reject('not login');
+            self.upVoteDisabled  = false;
+            self.downVoteDisabled  = false;
           } else {
             if ($scope.currentJoin.id) {
+              self.upVoteDisabled  = false;
+              self.downVoteDisabled  = false;
               delay.resolve($scope.currentJoin);
             } else {
               InteractService.createJoin({interact: $scope.interact.id}).then(function (join) {
+                self.upVoteDisabled  = false;
+                self.downVoteDisabled  = false;
                 angular.extend($scope.currentJoin, join);
                 delay.resolve($scope.currentJoin);
               });
@@ -61,11 +67,15 @@ angular.module('xbertsApp')
         };
 
 
-        this.upvote = function(disabled) {
-          self.getOrCreateCurrentJoin().then(function () {
+        this.upVoteDisabled = false;
+        this.upvote = function() {
+          if(self.upVoteDisabled == true) {
+            return;
+          }
+          self.upVoteDisabled = true;
+          var firstJoin = self.getCurrentJoin().vote;
+          self.getOrCreateCurrentJoin(self.upVoteDisabled).then(function () {
             var currentJoin = self.getCurrentJoin();
-            var firstJoin = currentJoin.vote;
-
             var join = {id: currentJoin.id, vote: currentJoin.vote == true? null: true};
             if (join.vote == true) {
               currentJoin.vote = true;
@@ -81,10 +91,15 @@ angular.module('xbertsApp')
           });
         };
 
+        self.downVoteDisabled = false;
         this.downvote = function() {
-          self.getOrCreateCurrentJoin().then(function () {
+          if(self.downVoteDisabled == true) {
+            return;
+          }
+          self.downVoteDisabled = true;
+          var firstJoin = self.getCurrentJoin().vote;
+          self.getOrCreateCurrentJoin(self.downVoteDisabled).then(function () {
             var currentJoin = self.getCurrentJoin();
-            var firstJoin = currentJoin.vote;
 
             var join = {id: currentJoin.id, vote: currentJoin.vote == false? null: false};
             if (join.vote == false) {
