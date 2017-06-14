@@ -95,7 +95,7 @@ angular.module('xbertsApp')
         }
       })
       .state('application.verificationEmail', {
-        url: "/:uid/:token",
+        url: '/accounts/verify/email/:uid/:token',
         templateUrl: 'scripts/feature/main/mainPage.html',
         controller: 'MainPageCtrl as mainCtrl',
         reloadOnSearch: false,

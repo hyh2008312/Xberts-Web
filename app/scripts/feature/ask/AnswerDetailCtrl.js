@@ -12,10 +12,12 @@ angular.module('xbertsApp')
       height: 300,
       toolbar: [
         ['textsize', ['fontsize']],
+        ['style', ['bold']],
         ['insert', ['link','video', 'picture']],
         ['view', ['fullscreen']]
       ],
       icons: {
+        'bold': 'fa fa-bold',
         'caret': 'caret',
         'link': 'fa fa-link',
         'picture': 'fa fa-picture-o',
