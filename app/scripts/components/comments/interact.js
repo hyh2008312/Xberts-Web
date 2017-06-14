@@ -26,7 +26,7 @@ angular.module('xbertsApp')
           angular.extend($scope.currentJoin, join);
         };
 
-        this.getOrCreateCurrentJoin = function (disabled) {
+        this.getOrCreateCurrentJoin = function () {
           var delay = $q.defer();
 
           if (!$rootScope.user.authRequired()) {
@@ -52,6 +52,10 @@ angular.module('xbertsApp')
         };
 
         this.vote = function () {
+          if(self.upVoteDisabled == true) {
+            return;
+          }
+          self.upVoteDisabled = true;
           self.getOrCreateCurrentJoin().then(function () {
             var currentJoin = self.getCurrentJoin();
             var join = {id: currentJoin.id, vote: !currentJoin.vote};
