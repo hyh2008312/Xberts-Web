@@ -88,7 +88,7 @@ angular.module('xbertsApp')
               currentJoin.vote = null;
               $scope.interact.reduceVote();
             }
-            if(firstJoin.vote == false) {
+            if(firstJoin == false) {
               $scope.interact.reduceDownVote();
             }
             InteractService.vote(join);
