@@ -78,7 +78,7 @@ angular.module('xbertsApp')
           });
         } else {
           $state.go('application.expert', {
-            tab:'share',
+            tab:'posts',
             expertId: $rootScope.user.getUserId()
           },{
             reload:true

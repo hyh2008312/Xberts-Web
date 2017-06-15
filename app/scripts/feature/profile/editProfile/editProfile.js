@@ -10,7 +10,7 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.disabled = false;
 
-        scope.data = scope.data || [];
+        console.log(scope.data.gender)
 
         var oldData = angular.copy(scope.data, {});
 
@@ -46,7 +46,8 @@ angular.module('xbertsApp')
             country: scope.data.country.code,
             company: scope.data.company,
             position: scope.data.position,
-            biography: scope.data.biography
+            biography: scope.data.biography,
+            gender: scope.data.gender
           };
 
           scope.disabled = true;

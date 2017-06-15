@@ -23,7 +23,7 @@ angular.module('xbertsApp')
       $scope.selectedIndex1 = 0;
       $scope.selectedIndex2 = 0;
 
-      var tabIndexToParam = ['profile', 'questions', 'answers', 'share', 'follow','campaigns'];
+      var tabIndexToParam = ['profile', 'questions', 'answers', 'posts', 'follow','campaigns'];
 
       var updateUrl = function () {
         setTimeout(function () {
