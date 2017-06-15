@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditMyAnswersCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService','growl','editMyAnswer','$filter',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer,$filter) {
+    'localStorageService','growl','editMyAnswer','$filter','$mdMedia',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer,$filter,$mdMedia) {
 
       $scope.answer = editMyAnswer;
       var oldPost = angular.copy(editMyAnswer, {});
@@ -158,12 +158,21 @@ angular.module('xbertsApp')
               reload:true
             });
           } else {
-            $state.go('application.expert', {
-              tab:'posts',
-              expertId: $rootScope.user.getUserId()
-            },{
-              reload:true
-            });
+            if($mdMedia('xs')) {
+              $state.go('application.protected.answers', {
+                expertId: $rootScope.user.getUserId()
+              },{
+                reload:true
+              });
+            } else {
+              $state.go('application.expert', {
+                tab:'answers',
+                expertId: $rootScope.user.getUserId()
+              },{
+                reload:true
+              });
+            }
+
           }
           $scope.disabled = false;
         }, function () {

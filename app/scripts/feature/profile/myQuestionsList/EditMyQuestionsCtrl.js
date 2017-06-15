@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditMyQuestionsCtrl', ['$rootScope', '$scope', 'editMyQuestion', 'AskService', '$state', 'localStorageService',
-    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService) {
+    '$mdMedia',
+    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia) {
 
       $scope.question = editMyQuestion;
       var oldPost = angular.copy(editMyQuestion, {});
@@ -21,12 +22,20 @@ angular.module('xbertsApp')
           localStorageService.remove('ask_questions_list' + '_items');
           localStorageService.remove('ask_questions_list' + '_next');
           localStorageService.remove('ask_questions_list' + '_count');
-          $state.go('application.expert', {
-            tab:'posts',
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
+          if($mdMedia('xs')) {
+            $state.go('application.protected.questions', {
+              expertId: $rootScope.user.getUserId()
+            },{
+              reload:true
+            });
+          } else {
+            $state.go('application.expert', {
+              tab:'questions',
+              expertId: $rootScope.user.getUserId()
+            },{
+              reload:true
+            });
+          }
           $scope.$emit('backdropOff', 'success');
         },function() {
           $scope.$emit('backdropOff', 'failure');

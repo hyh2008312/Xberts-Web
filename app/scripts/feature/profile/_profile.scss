@@ -311,12 +311,8 @@
   background-color: #3f52b4;
   @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.38));
   &__content{
-    min-height: 144px;
-    @media screen and (max-width: 600px){
-      height: auto;
-      margin-top: 16px;
-      margin-bottom: 32px;
-    }
+    margin-top: 16px;
+    margin-bottom: 32px;
   }
   &__head{
     width: 80px;
