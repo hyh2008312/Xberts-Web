@@ -96,39 +96,50 @@
   </div>
   <div class="container xb2-page-content">
     <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-      <md-tab label="Review" md-on-select="loadMyBio()">
-        <div layout>
-          <div flex flex-gt-sm="60">
-            <div class="md-padding">
-              <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
-                <div flex-gt-xs="45">
-                  <h2 class="xb2-h2">Pros</h2>
-                  <ul class="xb2-ul">
-                    <li ng-repeat="pro in report.pros track by $index">{{ pro }}</li>
-                  </ul>
-                </div>
-                <div flex-gt-xs="10"></div>
 
-                <div flex-gt-xs="45">
-                  <h2 class="xb2-h2">Cons</h2>
-                  <ul class="xb2-ul">
-                    <li ng-repeat="con in report.cons track by $index">{{ con }}</li>
-                  </ul>
-                </div>
+      <md-tab md-on-select="loadMyBio()">
+        <md-tab-label>
+          Review
+        </md-tab-label>
+        <md-tab-body>
+          <div layout>
+            <div flex flex-gt-sm="60">
+              <div class="md-padding">
+                <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
+                  <div flex-gt-xs="45">
+                    <h2 class="xb2-h2">Pros</h2>
+                    <ul class="xb2-ul">
+                      <li ng-repeat="pro in report.pros track by $index">{{ pro }}</li>
+                    </ul>
+                  </div>
+                  <div flex-gt-xs="10"></div>
 
+                  <div flex-gt-xs="45">
+                    <h2 class="xb2-h2">Cons</h2>
+                    <ul class="xb2-ul">
+                      <li ng-repeat="con in report.cons track by $index">{{ con }}</li>
+                    </ul>
+                  </div>
+
+                </div>
+                <div ng-bind-html="report.details | trust" class="xb2-custom-text xb2-page-content__section"></div>
               </div>
-              <div ng-bind-html="report.details | trust" class="xb2-custom-text xb2-page-content__section"></div>
             </div>
           </div>
-        </div>
+        </md-tab-body>
       </md-tab>
 
       <md-tab label="Comments">
-        <div layout>
-          <div flex flex-gt-sm="60">
-            <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
+        <md-tab-label>
+          Comments <comment-amounts></comment-amounts>
+        </md-tab-label>
+        <md-tab-body>
+          <div layout>
+            <div flex flex-gt-sm="60">
+              <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
+            </div>
           </div>
-        </div>
+        </md-tab-body>
       </md-tab>
     </md-tabs>
   </div>

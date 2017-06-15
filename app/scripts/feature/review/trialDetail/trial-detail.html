@@ -311,7 +311,7 @@
     <div class="xb-trial-tabs__description xb-detail-cards__padding-2" ng-bind-html="trial.review.project.details | trust"></div>
   </div>
   <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
-    <md-truncate flex class="md-subhead">Comments</md-truncate>
+    <md-truncate flex class="md-subhead">Comments<span>{{trial.review.interact.feedbackAmount}}</span></md-truncate>
     <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
              parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="6" toggle="false">keyboard_arrow_down</md-icon>
   </div>
