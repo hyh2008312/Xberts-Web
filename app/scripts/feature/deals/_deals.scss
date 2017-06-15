@@ -1,21 +1,25 @@
 .xb-deals-list{
   >div{
-    margin-bottom: 16px;
-    background-color: #fff;
     flex: 1 1 240px !important;
     -webkit-flex: 1 1 240px !important;
-    @include resetBorder();
+    >div{
+      margin-bottom: 16px;
+      background-color: #fff;
+      @include resetBorder();
+    }
     @include xb-lg-screen{
       max-width: 24% !important;
     }
     @include xb-md-screen{
-      max-width: 32% !important;
+      max-width: 24% !important;
     }
     @include xb-sm-screen{
-      max-width: 48% !important;
+      max-width: 32% !important;
     }
     @include xb-xs-screen{
-      margin-bottom: 8px;
+      >div{
+        margin-bottom: 8px;
+      }
       flex: 1 1 172px !important;
       -webkit-flex: 1 1 172px !important;
       max-width: 49% !important;
@@ -43,7 +47,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,.6);
-    a{
+    .md-subhead{
       color: #fff;
       text-decoration: none;
       &:hover{
@@ -75,17 +79,11 @@
   }
   &__img-bg{
     width: 100%;
-    padding-bottom: 66.66%;
     overflow: hidden;
     position: relative;
-    >div{
-      position: absolute;
-      left: 0;
-      top: 0;
+    >a{
       width: 100%;
-      height: 100%;
       cursor: pointer;
-      overflow: hidden;
       >img{
         max-width: 100%;
         max-height: 100%;
@@ -112,10 +110,8 @@
   }
   &__content{
     padding: 0 16px;
-    height: 135px;
     @include xb-xs-screen{
       padding: 0 8px 8px;
-      height: 125px;
     }
   }
   &__tag{
@@ -142,9 +138,6 @@
   &__title{
     margin-top: 8px;
     margin-bottom: 6px;
-    height: 40px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: pointer;
     a{
       color: #000;
@@ -156,6 +149,8 @@
   }
   &__discount{
     color: #ff4081;
+    border:1px solid rgba(255,64,129,.38);
+    padding: 0 8px;
   }
   .md-dark-secondary{
     @include xb-xs-screen{
@@ -183,6 +178,44 @@
     margin: 0 16px 8px;
     @include xb-xs-screen{
       margin: 0 8px 8px;
+    }
+  }
+  &__top-left{
+    z-index: 1;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    >span{
+      font-size: 14px;
+      line-height: 28px;
+      font-weight: 500;
+      color: #FFF;
+      border-radius: 2px;
+      padding: 0 8px;
+      background-color: #ff4081;
+      display: block;
+      @include xb-xs-screen{
+        padding: 0 4px;
+        font-size: 10px;
+        line-height: 18px;
+      }
+    }
+  }
+  &__top-right{
+    z-index: 1;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    padding: 0 8px;
+    color: #000;
+    background-color: #fff;
+    line-height: 28px;
+    font-size: 12px;
+    border-radius: 2px;
+    @include xb-xs-screen{
+      padding: 0 4px;
+      font-size: 10px;
+      line-height: 18px;
     }
   }
 }
@@ -226,6 +259,8 @@
     }
   }
   &__tags{
+    min-height: 40px;
+    padding-top: 8px;
     >div{
       padding: 0 8px 0 16px;
       margin-right: 16px;
@@ -247,7 +282,7 @@
     }
   }
   &__filter-bg{
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     div{
       outline: none;
     }
@@ -376,5 +411,92 @@
     @include xb-xs-screen{
       margin-top: 0;
     }
+  }
+}
+.xb-deals-title{
+  padding: 60px 0 40px;
+  @include xb-xs-screen{
+    padding: 24px 0 0;
+  }
+  .xb-ask-title .md-button{
+    margin-bottom: 8px;
+  }
+}
+.xb-deals-category{
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  height: 40px;
+  .material-icons{
+    margin-left: 4px;
+    margin-right: 8px;
+  }
+  span{
+    width: 1px;
+    height: 20px;
+    display: block;
+    background-color: rgba(0,0,0,.12);
+  }
+  &__bg{
+    max-width: none;
+    position: absolute;
+    width: 170px;
+    left: 0;
+    top: 40px;
+    text-align: left;
+    padding: 8px 0;
+    z-index: 2;
+    background-color: #fff;
+    @include resetBorder();
+  }
+  .category-button{
+    padding: 0 16px;
+    height: 40px;
+    width: 170px;
+    outline: none;
+    font-size: 14px;
+    &:hover{
+      background-color: rgba(0,0,0,.12);
+    }
+  }
+  &__bg-1{
+    max-width: none;
+    position: absolute;
+    width: 170px;
+    right: 0;
+    top: 40px;
+    text-align: left;
+    padding: 16px 0;
+    z-index: 2;
+    background-color: #fff;
+    font-size: 16px;
+    @include resetBorder();
+  }
+  .filter-button{
+    margin: 0 16px;
+    padding: 8px 0;
+    width: 138px;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+  }
+  .sort-button{
+    outline: none;
+    margin: 0 24px;
+    height: 40px;
+    font-size: 16px;
+    @include xb-sm-screen{
+      margin: 0 16px;
+    }
+  }
+  .sort-button.active{
+    color: #3f51b5;
+    border-bottom: 2px solid #ff4081;
+  }
+}
+.xb-deals-sort{
+  md-select{
+    margin-top: 0;
+    margin-bottom: 8px;
   }
 }

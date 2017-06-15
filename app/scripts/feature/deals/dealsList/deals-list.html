@@ -1,57 +1,146 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
-  <div ng-repeat="item in deals track by $index" flex >
-    <div class="xb-deals-list__img-bg">
-      <div layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" >
-        <img src="{{item.coverUrl}}" />
-        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
-          <a class="md-subhead">Quick Look</a>
-        </div>
-        <div class="xb-main-col__top-right">
+  <div hide-xs hide-sm ng-repeat="value in [0,1,2,3]">
+    <div ng-repeat="item in deals track by $index" ng-if="$index % 4 == value">
+      <div class="xb-deals-list__img-bg">
+        <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+          <img src="{{item.coverUrl}}" />
+          <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+            <div class="md-subhead">Quick Look</div>
+          </div>
+          <div class="xb-deals-list__top-left">
+            <span>
+              {{item.discount * 100 | number:0}}% off
+            </span>
+          </div>
+          <div class="xb-deals-list__top-right">
           <span end-time-left end-time="item.promotionDeadline">
             <span ng-show="timeValue>0">{{ timeUnit }}</span>
           </span>
-        </div>
+          </div>
+        </a>
       </div>
-    </div>
-    <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-      <div class="md-body-1 md-dark-secondary">{{item.source}}</div>
-      <div class="xb-deals-list__price" layout="column" layout-align="start start">
-        <span class="md-headline xb-bold">
-          {{item.discountPrice | currency}}
-        </span>
-        <span>
+      <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+        <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+          {{item.title}}
+        </a>
+        <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center">
           <span class="md-dark-secondary">
             {{item.originalPrice | currency}}
           </span>
-          <span class="xb-deals-list__discount">
-            {{item.discount * 100 | number:0}}% off
+          <span class="md-headline xb-bold">
+            {{item.discountPrice | currency}}
           </span>
-        </span>
+        </div>
       </div>
-      <div class="xb-deals-list__title" ui-sref="application.dealsDetail({dealsId:item.id})" >
-        <a>{{item.title}}</a>
-      </div>
+      <form name="dealsProduct" ng-submit="submitForm(item)" clear-form-error ng-if="user.isStaff()" >
+        <md-input-container class="md-block" md-no-float>
+          <label class="md-dark-primary">purchase link</label>
+          <input ng-model="item.buyUrl" type="url" name="link" placeholder="http://" />
+        </md-input-container>
+        <md-checkbox class="md-primary" ng-model="item.isApproved" flex>
+          is approved
+        </md-checkbox>
+        <div layout="row" layout-align="space-between center">
+          <md-button class="md-primary" type="submit">Save</md-button>
+        </div>
+      </form>
 
     </div>
-    <div layout="column" layout-align="end start">
-      <md-button class="md-primary" ng-click="item.buyNow('deals-list');">
-        Get it Now
-      </md-button>
-    </div>
-    <form name="dealsProduct" ng-submit="submitForm(item)" clear-form-error ng-if="user.isStaff()" >
-      <md-input-container class="md-block" md-no-float>
-        <label class="md-dark-primary">purchase link</label>
-        <input ng-model="item.buyUrl" type="url" name="link" placeholder="http://" />
-      </md-input-container>
-      <md-checkbox class="md-primary" ng-model="item.isApproved" flex>
-        is approved
-      </md-checkbox>
-      <div layout="row" layout-align="space-between center">
-        <md-button class="md-primary" type="submit">Save</md-button>
-      </div>
-    </form>
-
   </div>
-  <div flex class="xb-deals-list__prefix"></div>
-  <div flex class="xb-deals-list__prefix"></div>
+  <div hide-xs hide-gt-sm ng-repeat="value in [0,1,2]">
+    <div ng-repeat="item in deals track by $index" ng-if="$index % 3 == value">
+      <div class="xb-deals-list__img-bg">
+        <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+          <img src="{{item.coverUrl}}" />
+          <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+            <div class="md-subhead">Quick Look</div>
+          </div>
+          <div class="xb-deals-list__top-left">
+            <span>
+              {{item.discount * 100 | number:0}}% off
+            </span>
+          </div>
+          <div class="xb-deals-list__top-right">
+            <span end-time-left end-time="item.promotionDeadline">
+              <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+        <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+          {{item.title}}
+        </a>
+        <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center">
+          <span class="md-dark-secondary">
+            {{item.originalPrice | currency}}
+          </span>
+          <span class="md-headline xb-bold">
+            {{item.discountPrice | currency}}
+          </span>
+        </div>
+      </div>
+      <form name="dealsProduct" ng-submit="submitForm(item)" clear-form-error ng-if="user.isStaff()" >
+        <md-input-container class="md-block" md-no-float>
+          <label class="md-dark-primary">purchase link</label>
+          <input ng-model="item.buyUrl" type="url" name="link" placeholder="http://" />
+        </md-input-container>
+        <md-checkbox class="md-primary" ng-model="item.isApproved" flex>
+          is approved
+        </md-checkbox>
+        <div layout="row" layout-align="space-between center">
+          <md-button class="md-primary" type="submit">Save</md-button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <div hide-gt-xs ng-repeat="value in [0,1]">
+    <div ng-repeat="item in deals track by $index" ng-if="$index % 2 == value">
+      <div class="xb-deals-list__img-bg">
+        <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})">
+          <img src="{{item.coverUrl}}" />
+          <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+            <div class="md-subhead">Quick Look</div>
+          </div>
+          <div class="xb-deals-list__top-left">
+            <span>
+              {{item.discount * 100 | number:0}}% off
+            </span>
+          </div>
+          <div class="xb-deals-list__top-right">
+            <span end-time-left end-time="item.promotionDeadline">
+              <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
+        <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})">
+          {{item.title}}
+        </a>
+        <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center">
+          <span class="md-dark-secondary">
+            {{item.originalPrice | currency}}
+          </span>
+          <span class="md-headline xb-bold">
+            {{item.discountPrice | currency}}
+          </span>
+        </div>
+      </div>
+      <form name="dealsProduct" ng-submit="submitForm(item)" clear-form-error ng-if="user.isStaff()" >
+        <md-input-container class="md-block" md-no-float>
+          <label class="md-dark-primary">purchase link</label>
+          <input ng-model="item.buyUrl" type="url" name="link" placeholder="http://" />
+        </md-input-container>
+        <md-checkbox class="md-primary" ng-model="item.isApproved" flex>
+          is approved
+        </md-checkbox>
+        <div layout="row" layout-align="space-between center">
+          <md-button class="md-primary" type="submit">Save</md-button>
+        </div>
+      </form>
+
+    </div>
+  </div>
 </div>

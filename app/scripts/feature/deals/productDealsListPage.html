@@ -1,9 +1,34 @@
-<section class="xb-section">
+<div class="background-whitem">
   <div class="container">
-    <div class="xb-section__title">
-      <h2><span class="md-display-1">Daily Deals Offered by Global Merchants</span></h2>
-      <h3><span class="md-body-1 md-dark-secondary">Explore the best deals worldwide to save big</span></h3>
+    <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
+      <div class="xb-section__title">
+        <h2><span class="md-display-1">Ask Xberts Community & Make Smart Purchasing Decision</span></h2>
+        <h3><span class="md-body-1 md-dark-secondary">Enjoy the best deals on thelatest gadgets and designs</span></h3>
+      </div>
+      <div flex="none">
+        <md-button class="md-raised md-primary" ng-click="">Post</md-button>
+      </div>
     </div>
+    <div layout="row" layout-align="start center">
+      <deals-category hide-xs categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                          on-category-change="dealsCtrl.changeCategory(categoryId);"></deals-category>
+      <deals-sort sort="dealsCtrl.sort" sort-id="dealsCtrl.sortId"
+                  on-sort-change="dealsCtrl.changeSort(sortId);"></deals-sort>
+      <div flex layout="row" layout-align="end center" hide-xs>
+        <deals-filter filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+                    on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
+      </div>
+      <div hide-gt-xs flex class="xb-filter__filter-bg" layout="row" layout-align="end center">
+        Filter
+        <div ng-click="dealsCtrl.toggleLeft()">
+          <md-icon md-font-set="material-icons"> menu </md-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="container">
     <div layout="row">
       <md-sidenav class="md-sidenav-left xberts-navbar-moblie-sidenav category xb-filter background-whitem"
         md-component-id="filterLeft" hide-gt-xs layout="column"
@@ -19,15 +44,9 @@
           </div>
           <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                         on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Discount
-          </div>
-          <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
-                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.discountId">
-          </deals-filter>
         </div>
       </md-sidenav>
-      <div class="category xb-filter" hide-xs flex="none">
+      <div class="category xb-filter" hide flex="none">
         <div>
           <div class="xb-filter__title" layout="row" layout-align="space-between center">
             Category
@@ -41,13 +60,6 @@
           </div>
           <deals-filter class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[1]" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                         on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Discount
-            <filter-switcher value="dealsCtrl.switcher[2]"></filter-switcher>
-          </div>
-          <deals-filter class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[2]" filter="dealsCtrl.discount" group="dealsCtrl.discountGroup"
-                        on-filter-change="dealsCtrl.changeDiscount(filterIndex);" filter-id="dealsCtrl.discountId">
-          </deals-filter>
         </div>
       </div>
       <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
@@ -56,26 +68,15 @@
         <div layout="row" layout-align="space-between start" >
           <div class="xb-filter__tags" layout-gt-xs="row" layout-align-gt-xs="start start"
             layout-xs="column" layout-align-xs="start start">
-            <div layout="row" layout-align="start center" ng-repeat="category in dealsCtrl.categories" ng-class="'flex-order-'+dealsCtrl.tagOrder[0]"
+            <div layout="row" layout-align="start center" hide-gt-xs ng-repeat="category in dealsCtrl.categories" ng-class="'flex-order-'+dealsCtrl.tagOrder[0]"
                  ng-if="category.id != null && category.id === dealsCtrl.categoryId">
               {{category.name}}
               <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('categoryId')">close</md-icon>
             </div>
-            <div layout="row" layout-align="start center" ng-repeat="price in dealsCtrl.price" ng-class="'flex-order-'+dealsCtrl.tagOrder[1]"
+            <div layout="row" layout-align="start center" hide-gt-xs ng-repeat="price in dealsCtrl.price" ng-class="'flex-order-'+dealsCtrl.tagOrder[1]"
                  ng-if="price.id === dealsCtrl.priceId">
               {{price.name}}
               <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('priceId')">close</md-icon>
-            </div>
-            <div layout="row" layout-align="start center" ng-repeat="discount in dealsCtrl.discount" ng-class="'flex-order-'+dealsCtrl.tagOrder[2]"
-                 ng-if="discount.id === dealsCtrl.discountId">
-              {{discount.name}}
-              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('discountId')">close</md-icon>
-            </div>
-          </div>
-          <div hide-gt-xs class="xb-filter__filter-bg" layout="row" layout-align="start center">
-            Filter
-            <div ng-click="dealsCtrl.toggleLeft()">
-              <md-icon md-font-set="material-icons"> menu </md-icon>
             </div>
           </div>
         </div>
@@ -85,9 +86,9 @@
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
         </div>
-        <load-more layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+        <load-more class="md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
       </div>
 
     </div>
   </div>
-</section>
+</div>

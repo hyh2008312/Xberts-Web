@@ -3,13 +3,13 @@
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
     '$mdSidenav','$timeout',
-    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,$timeout) {
+    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
+              $timeout) {
     var dealsCtrl = this;
 
     dealsCtrl.categories = categories;
     dealsCtrl.sort = sort;
     dealsCtrl.price = DealsService.getPrice();
-    dealsCtrl.discount = DealsService.getDiscount();
     dealsCtrl.productsPaginator = productsPaginator;
     dealsCtrl.categoryId = ShareProductService.categoryId;
     dealsCtrl.sortId = DealsService.sortId;
@@ -85,21 +85,6 @@ angular.module('xbertsApp')
       dealsCtrl.priceId = DealsService.priceId;
       dealsCtrl.productsPaginator.params.min_price = item.value1;
       dealsCtrl.productsPaginator.params.max_price = item.value2;
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
-
-    dealsCtrl.changeDiscount = function(filterIndex) {
-      dealsCtrl.tagOrder[2]=numberMax(dealsCtrl.tagOrder) + 1;
-      if(dealsCtrl.tagOrder[2] >= 20) {
-        dealsCtrl.tagOrder[0] -= 20;
-        dealsCtrl.tagOrder[1] -= 20;
-        dealsCtrl.tagOrder[2] -= 20;
-      }
-      var item = dealsCtrl.discount[filterIndex];
-      DealsService.discountId = item.id;
-      dealsCtrl.discountId = DealsService.discountId;
-      dealsCtrl.productsPaginator.params.min_discount = item.value1;
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
     };

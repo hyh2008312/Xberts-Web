@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsFilter', function () {
+  .directive('dealsFilter', ['DealsService',function (DealsService) {
     return {
       restrict: 'E',
       scope: {
@@ -10,6 +10,18 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/deals/dealsFilter/deals-filter.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.open = function() {
+          scope.categoryOpen = !scope.categoryOpen;
+        };
+
+        scope.filterPrice = function(e) {
+          for(var i = 0; i < e.length;i++) {
+            if(e[i].id == scope.filterId) {
+              return e[i].name;
+            }
+          }
+          return false;
+        };
       }
     }
-  });
+  }]);

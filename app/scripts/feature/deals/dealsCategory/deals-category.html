@@ -1,0 +1,12 @@
+<div class="xb-deals-category" ng-click="open()" layout="row" layout-align="start center" ng-mouseleave="open()">
+  {{filterCatergoy(categories)}}
+  <div layout="row" layout-align="start center">
+    <md-icon md-font-set="material-icons">arrow_drop_down</md-icon>
+    <span></span>
+  </div>
+  <div class="xb-deals-category__bg" ng-if="categoryOpen">
+    <div class="category-button" ng-repeat="category in categories" layout="row" layout-align="start center"
+         ng-click="onCategoryChange({categoryId:category.id});" >{{category.name}}</div>
+  </div>
+</div>
+
