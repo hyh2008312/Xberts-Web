@@ -1,5 +1,19 @@
 <div class="xb-my-biography">
-  <div class="md-subhead">biography</div>
-  <div ng-bind-html="biography | trust"></div>
+  <div class="md-subhead" layout="row" layout-align="space-between center">
+    biography
+    <md-button class="md-primary md-margin-clear" ng-if="isCurrentUser" ui-sref="application.protected.editProfile({tab:'profile'})">Edit</md-button>
+  </div>
+  <div ng-if="expert.country" layout="row" layout-align="start start">
+    <div><md-icon class="md-dark-third" md-font-set="material-icons">location_on</md-icon></div>
+    <div class="xb-my-profile__margin-1">{{expert.country}}</div>
+  </div>
+  <div ng-if="expert.companyTitle" class="md-margin-top-2" layout="row" layout-align="start start">
+    <div><md-icon class="md-dark-third" md-font-set="material-icons">work</md-icon></div>
+    <div class="xb-my-profile__margin-1">{{expert.companyTitle}}</div>
+  </div>
+  <div ng-if="expert.biography" class="md-margin-top-2" layout="row" layout-align="start start">
+    <div><md-icon class="md-dark-third" md-font-set="material-icons">assignment_ind</md-icon></div>
+    <div class="xb-my-profile__margin-1" ng-bind-html="expert.biography | trust"></div>
+  </div>
 </div>
 

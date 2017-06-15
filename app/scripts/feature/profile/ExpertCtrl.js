@@ -13,11 +13,17 @@ angular.module('xbertsApp')
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
       $scope.achievement = achievement;
 
+      $scope.showBio = false;
+
+      $scope.openBio = function() {
+        $scope.showBio = !$scope.showBio;
+      };
+
       $scope.selectedIndex = 0;
       $scope.selectedIndex1 = 0;
       $scope.selectedIndex2 = 0;
 
-      var tabIndexToParam = ['profile', 'trials', 'posts', 'referrals', 'follow','campaigns'];
+      var tabIndexToParam = ['profile', 'questions', 'answers', 'posts', 'follow','campaigns'];
 
       var updateUrl = function () {
         setTimeout(function () {

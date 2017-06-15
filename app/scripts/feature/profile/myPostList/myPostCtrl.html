@@ -1,28 +1,9 @@
 <div class="xb-my-biography">
-  <div class="md-subhead">Posts</div>
-  <md-tabs class="xb-my-profile__tabs" md-dynamic-height
-           md-border-bottom>
-    <md-tab label="Finds">
-      <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next">
-        <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-        <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
-      </div>
-    </md-tab>
-    <md-tab label="Questions">
-      <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next">
-        <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-        <load-more layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
-      </div>
-    </md-tab>
-    <md-tab label="Answers">
-      <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next">
-        <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-        <load-more layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
-      </div>
-    </md-tab>
-  </md-tabs>
+  <div class="md-subhead">Share</div>
+  <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+       infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next">
+    <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+    <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+  </div>
 </div>
 

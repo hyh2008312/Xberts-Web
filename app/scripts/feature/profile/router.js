@@ -149,6 +149,28 @@ angular
           }]
         }
       })
+      .state('application.protected.questions', {
+        url: '/profile/questions?expertId',
+        templateUrl: 'scripts/feature/profile/myQuestionsList/myQuestionsCtrl.html',
+        controller: 'MyQuestionsCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      })
+      .state('application.protected.answers', {
+        url: '/profile/answers?expertId',
+        templateUrl: 'scripts/feature/profile/myAnswersList/myAnswersCtrl.html',
+        controller: 'MyAnswersCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
+      })
       .state('application.protected.referrals', {
         url: '/profile/referrals?expertId',
         templateUrl: 'scripts/feature/profile/myReferrals/myReferralsCtrl.html',

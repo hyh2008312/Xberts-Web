@@ -18,6 +18,7 @@ angular.module('xbertsApp')
       $scope.data.company = userProfile.company;
       $scope.data.position = userProfile.position;
       $scope.data.biography = userProfile.biography;
+      $scope.data.gender = userProfile.gender;
 
       $scope.selectedIndex = 0;
 

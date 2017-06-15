@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state', 'localStorageService',
-    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService) {
+  .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
+    'localStorageService','$mdMedia',
+    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService,$mdMedia) {
 
     $scope.product = editPost;
     var oldPost = angular.copy(editPost, {});
@@ -69,12 +70,20 @@ angular.module('xbertsApp')
         localStorageService.remove(name + '_items');
         localStorageService.remove(name + '_next');
         localStorageService.remove(name + '_count');
-        $state.go('application.expert', {
-          tab:'posts',
-          expertId: $rootScope.user.getUserId()
-        },{
-          reload:true
-        });
+        if($mdMedia('xs')) {
+          $state.go('application.protected.posts', {
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        } else {
+          $state.go('application.expert', {
+            tab:'posts',
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        }
       }, function () {
         // tips
         $scope.$emit('backdropOff', 'project get error');

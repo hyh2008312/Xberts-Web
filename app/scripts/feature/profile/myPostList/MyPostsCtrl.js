@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MyPostsCtrl', ['$scope', '$rootScope','expert','Paginator','ShareProduct','ShareProductService','AskModel','AskService','$stateParams',
-    function ($scope, $rootScope,expert,Paginator,ShareProduct,ShareProductService,AskModel,AskService, $stateParams) {
+  .controller('MyPostsCtrl', ['$scope', '$rootScope','expert','Paginator','ShareProduct','ShareProductService','$stateParams',
+    function ($scope, $rootScope,expert,Paginator,ShareProduct,ShareProductService, $stateParams) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
@@ -17,27 +17,5 @@ angular.module('xbertsApp')
         fetchFunction: ShareProductService.getList
       };
       $scope.postsProductPaginator = new Paginator(par);
-
-      var parQuestion = {
-        name: 'questions_list_posts_' + $stateParams.expertId,
-        objClass: AskModel,
-        params: {
-          owner: $stateParams.expertId,
-          page_size: 12
-        },
-        fetchFunction: AskService.getList
-      };
-      $scope.postsQuestionPaginator = new Paginator(parQuestion);
-
-      var parAnswers = {
-        name: 'answers_list_posts_' + $stateParams.expertId,
-        objClass: AskModel,
-        params: {
-          owner: $stateParams.expertId,
-          page_size: 12
-        },
-        fetchFunction: AskService.getAnswersList
-      };
-      $scope.postsAnswerPaginator = new Paginator(parAnswers);
 
     }]);
