@@ -78,7 +78,7 @@
     padding-bottom: 66.66%;
     overflow: hidden;
     position: relative;
-    >div{
+    >a{
       position: absolute;
       left: 0;
       top: 0;
@@ -89,6 +89,9 @@
       >img{
         max-width: 100%;
         max-height: 100%;
+      }
+      .md-subhead{
+        color: #fff;
       }
     }
     @include xb-gt-xs-screen{
