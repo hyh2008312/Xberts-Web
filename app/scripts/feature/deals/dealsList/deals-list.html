@@ -1,7 +1,7 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
   <div ng-repeat="item in deals track by $index" flex >
     <div class="xb-deals-list__img-bg">
-      <div layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" >
+      <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
         <img src="{{item.coverUrl}}" />
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <a class="md-subhead">Quick Look</a>
@@ -11,7 +11,7 @@
             <span ng-show="timeValue>0">{{ timeUnit }}</span>
           </span>
         </div>
-      </div>
+      </a>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
       <div class="md-body-1 md-dark-secondary">{{item.source}}</div>
