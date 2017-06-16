@@ -14,6 +14,10 @@ angular.module('xbertsApp')
           scope.categoryOpen = !scope.categoryOpen;
         };
 
+        scope.close = function() {
+          scope.categoryOpen = false;
+        };
+
         scope.filterPrice = function(e) {
           for(var i = 0; i < e.length;i++) {
             if(e[i].id == scope.filterId) {

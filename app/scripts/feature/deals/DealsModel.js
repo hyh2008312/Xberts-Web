@@ -9,8 +9,47 @@ function ProductDeals($state) {
   }
 
   ProductDeals.prototype = {
-    getShareUrl: function(id) {
-      return $state.href("application.dealsDetail", {dealsId:id},{absolute:true});
+    getDealsAvatar: function () {
+      return this.owner != null?this.owner.userprofile.avatar : '';
+    },
+    getDealsName: function () {
+      return this.owner != null?this.owner.firstName : "Editors' Pick";
+    },
+    getImageUrl: function() {
+      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrl:this.imageUrl;
+    },
+    getVideo: function() {
+      var baseUrl = null, baseKey = null;
+      switch(urlParser.parse(this.videoUrl).hostname){
+        case 'www.youtube.com':
+          baseUrl = '//www.youtube.com/embed/';
+          baseKey = urlParser.parse(this.videoUrl).searchObject.v;
+          baseUrl = !baseKey?null:$sce.trustAsResourceUrl(baseUrl + baseKey);
+          break;
+        case 'youtu.be':
+          baseUrl = '//www.youtube.com/embed/';
+          baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
+          break;
+        case 'vimeo.com':
+          baseUrl = '//player.vimeo.com/video/';
+          baseUrl = $sce.trustAsResourceUrl(baseUrl +urlParser.parse(this.videoUrl).pathname.split('/')[1]);
+          break;
+        default:
+          break;
+      }
+      return baseUrl;
+    },
+    getSharePrice: function () {
+      return this.salePrice.amount != '0.00' ? '$' + this.salePrice.amount : false;
+    },
+    getShareInteractId: function () {
+      return this.interact.id;
+    },
+    getShareInteractLike: function() {
+      return this.interact.voteAmount;
+    },
+    getPostId: function() {
+      return this.owner.id;
     },
     buyNow: function (category) {
       if (window.dataLayer) {
@@ -20,7 +59,11 @@ function ProductDeals($state) {
           productTitle: this.title
         });
       }
-      window.open(this.buyUrl);
+
+      window.open(this.purchaseUrl);
+    },
+    getShareUrl: function(id) {
+      return $state.href("application.dealsDetail", {dealsId:id},{absolute:true});
     }
   };
 
