@@ -7,15 +7,45 @@ angular.module('xbertsApp')
       controller: 'QuestionListPage as askCtrl',
       resolve: {
         askPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
-          var par = {
-            name: 'ask_questions_list',
-            objClass: AskModel,
-            params: {
-              page_size: 12
-            },
-            fetchFunction: AskService.getList
-          };
-          return new Paginator(par).load();
+          var par = null;
+          switch (AskService.order) {
+            case 0:
+              var par = {
+                name: 'ask_questions_list',
+                objClass: AskModel,
+                params: {
+                  ordering: 'answer_amount',
+                  page_size: 12
+                },
+                fetchFunction: AskService.getList
+              };
+              par = new Paginator(par).load();
+              break;
+            case 1:
+              var par = {
+                name: 'ask_questions_list_amount',
+                objClass: AskModel,
+                params: {
+                  ordering: 'answer_amount',
+                  page_size: 12
+                },
+                fetchFunction: AskService.getList
+              };
+              par = new Paginator(par).load();
+              break;
+            case 2:
+              var par = {
+                name: 'ask_questions_list_popular',
+                objClass: AskModel,
+                params: {
+                  page_size: 12
+                },
+                fetchFunction: AskService.getPopularList
+              };
+              par = new Paginator(par).load();
+              break;
+          }
+          return par;
         }],
         topReviewers: ['Paginator', 'AskService', 'MainModel', function (Paginator, AskService, AskModel) {
           var par = {

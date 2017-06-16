@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService',
-    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService) {
+  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator',
+    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator) {
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
@@ -43,15 +43,49 @@ angular.module('xbertsApp')
     askCtrl.changeOrder = function(order) {
       AskService.order = order;
       askCtrl.order = AskService.order;
-      var answerAmount = null;
       switch (askCtrl.order) {
+        case 0:
+          var par = {
+            name: 'ask_questions_list',
+            objClass: AskModel,
+            params: {
+              ordering: 'answer_amount',
+              page_size: 12
+            },
+            fetchFunction: AskService.getList
+          };
+          askCtrl.askPaginator = new Paginator(par);
+          askCtrl.askPaginator.clear();
+          askCtrl.askPaginator.load();
+          break;
         case 1:
-          answerAmount = 'answer_amount';
-              break;
+          var par = {
+            name: 'ask_questions_list_amount',
+            objClass: AskModel,
+            params: {
+              ordering: 'answer_amount',
+              page_size: 12
+            },
+            fetchFunction: AskService.getList
+          };
+          askCtrl.askPaginator = new Paginator(par);
+          askCtrl.askPaginator.clear();
+          askCtrl.askPaginator.load();
+          break;
+        case 2:
+          var par = {
+            name: 'ask_questions_list_popular',
+            objClass: AskModel,
+            params: {
+              page_size: 12
+            },
+            fetchFunction: AskService.getPopularList
+          };
+          askCtrl.askPaginator = new Paginator(par);
+          askCtrl.askPaginator.clear();
+          askCtrl.askPaginator.load();
+          break;
       }
-      askCtrl.askPaginator.params.ordering = answerAmount;
-      askCtrl.askPaginator.clear();
-      askCtrl.askPaginator.load();
     };
 
     var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';

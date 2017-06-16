@@ -4,11 +4,16 @@ angular.module('xbertsApp')
     var AnswersResource = $resource(API_BASE_URL + '/answers/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
     var AnswersLeaderResource = $resource(API_BASE_URL + '/answers/leaders/', null);
     var FollowerResource = $resource(API_BASE_URL + '/questions/followed/', null);
+    var PopularResource = $resource(API_BASE_URL + '/questions/popular/');
 
     this.order = 0;
 
     this.getList = function (params) {
       return AskResource.get(params).$promise.then(AskModel.buildPageList);
+    };
+
+    this.getPopularList = function(params) {
+      return PopularResource.get(params).$promise.then(AskModel.buildPageList);
     };
 
     this.create = function (params) {

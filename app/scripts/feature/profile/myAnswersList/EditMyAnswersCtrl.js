@@ -168,7 +168,7 @@ angular.module('xbertsApp')
               });
             } else {
               $state.go('application.expert', {
-                tab:'answers',
+                tab:'profile',
                 expertId: $rootScope.user.getUserId()
               },{
                 reload:true

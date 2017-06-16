@@ -95,13 +95,12 @@
     <div flex>
       <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
 
-        <md-tab label="Trials" md-on-select="loadMyTrials()">
+        <md-tab label="Answers" md-on-select="loadMyAnswers()">
           <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="reviewApplicantPaginator.loadNext()"
-                 infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
-              <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
-              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
+            <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
+              <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
             </div>
           </div>
         </md-tab>
@@ -116,12 +115,13 @@
           </div>
         </md-tab>
 
-        <md-tab label="Answers" md-on-select="loadMyAnswers()">
+        <md-tab label="Trials" md-on-select="loadMyTrials()">
           <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
-              <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+            <div infinite-scroll="reviewApplicantPaginator.loadNext()"
+                 infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
+              <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
+              <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
             </div>
           </div>
         </md-tab>
@@ -245,8 +245,8 @@
   </div>
   <div class="background-whitem">
     <div class="md-subhead" layout="row" layout-align="space-between center"
-         ui-sref="application.protected.trials({expertId:expert.userId})">
-      Trials
+         ui-sref="application.protected.answers({expertId:expert.userId})">
+      Answers
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
@@ -255,8 +255,8 @@
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
-         ui-sref="application.protected.answers({expertId:expert.userId})">
-      Answers
+         ui-sref="application.protected.trials({expertId:expert.userId})">
+      Trials
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
