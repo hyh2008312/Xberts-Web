@@ -121,7 +121,6 @@
     }
   }
   &__price{
-    margin-top: 8px;
     .md-headline{
       line-height: 24px;
       margin-right: 8px;
@@ -234,6 +233,9 @@
       .c-user__name{
         width: 40px;
         height: 40px;
+      }
+      @include xb-xs-screen{
+        margin-right: 8px;
       }
     }
   }
@@ -406,6 +408,40 @@
     margin-top: 16px;
     margin-bottom: 8px;
   }
+  &__head{
+    padding: 16px 16px;
+    @include xb-xs-screen{
+      margin-top:8px;
+      padding: 24px 8px 16px;
+    }
+    avatar-img{
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+      >img{
+        width: 40px;
+        height: 40px;
+      }
+      .c-user__name{
+        width: 40px;
+        height: 40px;
+      }
+      @include xb-xs-screen{
+        margin-right: 8px;
+      }
+    }
+  }
+  &__head-bottom{
+    margin-top: 16px;
+    >span{
+      width: 1px;
+      height: 30px;
+      display: block;
+      margin-left: 32px;
+      margin-right: 24px;
+      background-color: rgba(0,0,0,.12);
+    }
+  }
   .xb-trial-detail__fixed-bottom{
     padding-bottom: 14px;
     margin-bottom: 12px;
@@ -521,4 +557,140 @@
 }
 .xb-pointer{
   cursor: pointer;
+}
+.xb-deals-post{
+  padding: 16px 0 16px 16px;
+  position: relative;
+  &__head{
+    margin-right: 16px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    >img{
+      width: 100%;
+    }
+  }
+  .md-subhead{
+    max-height: 48px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .md-button{
+    margin: 0;
+    padding: 0;
+  }
+  &:after{
+    content:'';
+    position: absolute;
+    left: 16px;
+    bottom:0;
+    width: calc(100% - 32px);
+    height: 1px;
+    background-color: rgba(0,0,0,.06);
+  }
+  &:last-child{
+    &:after{
+      display: none;
+    }
+  }
+  &__posts-top{
+    margin-top:16px;
+    @include xb-xs-screen{
+      margin-top: 8px;
+    }
+    .md-button{
+      margin: 0;
+    }
+  }
+}
+.recommend-list{
+  margin-top: 36px;
+  margin-left: 16px;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+  @include resetBorder();
+  @include xs-screen{
+    margin-top: 0;
+    margin-left: 0;
+  }
+  >.category__fixed{
+    width: 320px;
+  }
+  &__title{
+    height: 56px;
+    padding: 0 16px;
+    background-color: #f9f9f9;
+  }
+  &__body{
+    background-color: $whiteBackground;
+    padding: 0;
+  }
+  $parent:&;
+  &__product-content{
+    background-color: $whiteBackground;
+    padding: 16px 0;
+    margin: 0 16px;
+    width: 288px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    >:last-child{
+      border-bottom: none;
+    }
+    >#{$parent}__image-content{
+      margin: 0!important;
+      padding: 0;
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      position: relative;
+      >img{
+        width: 100%;
+        min-height: 162px;
+      }
+      >#{$parent}__image-button-bg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #{$parent}__image-button{
+        width: 48px;
+        height: 48px;
+        background-color: rgba(0,0,0,.65);
+        border-radius: 50%;
+        md-icon{
+          @include changeMdIcon(36px);
+          color: #FFF;
+        }
+      }
+    }
+    >#{$parent}__headline{
+      padding: 8px 0;
+      margin: 0;
+      >a{
+        @include media();
+      }
+    }
+  }
+  &__avatar{
+    padding: 0;
+    #{$parent}__avatar-head{
+      margin-left: 0;
+      width: 20px;
+      height: 20px;
+    }
+    >span{
+      margin-left: 8px;
+    }
+    .md-user-avatar{
+      img{
+        width: 20px;
+        height: 20px;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+
+  }
 }

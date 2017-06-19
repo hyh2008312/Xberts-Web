@@ -93,6 +93,9 @@ angular
         resolve: {
           editPost: ['ShareProductService', '$stateParams', function (ShareProductService, $stateParams) {
             return ShareProductService.getDetail($stateParams.productId);
+          }],
+          category: ['ShareProductService', function (ShareProductService) {
+            return ShareProductService.getCategoryList();
           }]
         }
       })

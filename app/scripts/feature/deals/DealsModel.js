@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ProductDeals',['$state',ProductDeals]);
-function ProductDeals($state) {
+  .factory('ProductDeals',['$state','urlParser','$sce',ProductDeals]);
+function ProductDeals($state,urlParser,$sce) {
 
   function ProductDeals(data) {
     angular.extend(this, data);
@@ -17,6 +17,9 @@ function ProductDeals($state) {
     },
     getImageUrl: function() {
       return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrl:this.imageUrl;
+    },
+    getPostId: function() {
+      return this.owner != null?this.owner.id : false;
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;
@@ -42,14 +45,18 @@ function ProductDeals($state) {
     getSharePrice: function () {
       return this.salePrice.amount != '0.00' ? '$' + this.salePrice.amount : false;
     },
-    getShareInteractId: function () {
-      return this.interact.id;
-    },
-    getShareInteractLike: function() {
-      return this.interact.voteAmount;
-    },
-    getPostId: function() {
-      return this.owner.id;
+    getDomain: function() {
+      var baseUrl = this.purchaseUrl;
+      if(baseUrl == '') {
+        return '';
+      }
+      var host = urlParser.parse(baseUrl).hostname.split('.');
+      if(host.length == 2) {
+        return host[0];
+      } else if(host.length == 3) {
+        return host[1];
+      }
+      return '';
     },
     buyNow: function (category) {
       if (window.dataLayer) {

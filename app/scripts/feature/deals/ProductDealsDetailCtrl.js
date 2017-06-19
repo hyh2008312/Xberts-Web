@@ -1,10 +1,31 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService','BrowserUtil',
-    function($rootScope,$scope,productsDetail,productsPaginator, InviteService,BrowserUtil) {
+  .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService',
+    'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService',
+    function($rootScope,$scope,productsDetail,productsPaginator, InviteService,BrowserUtil,ExpertService,Paginator,
+             ProductDeals,DealsService) {
       $scope.productsDetail = productsDetail;
       $scope.productsPaginator = productsPaginator;
+
+      if(productsDetail.owner != null) {
+        ExpertService.getAchievement(productsDetail.owner.id).then(function(data) {
+           $scope.achievement = data;
+        });
+
+        var par = {
+          name: 'other_posts_' + productsDetail.owner.id,
+          objClass: ProductDeals,
+          params: {
+            owner: productsDetail.owner.id,
+            page_size:12
+          },
+          fetchFunction: DealsService.getDealsList
+        };
+        $scope.postsProductPaginator = new Paginator(par);
+        $scope.postsProductPaginator.load();
+      }
+
       $scope.inviteObj = angular.copy(InviteService, {});
 
       $scope.isFacebookApp = BrowserUtil.isFacebookApp();

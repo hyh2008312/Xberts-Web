@@ -12,7 +12,7 @@ angular.module('xbertsApp')
         scope.categories = scope.categories || [];
         if(scope.categories[0].name != 'All') {
           scope.categories.unshift({
-            name:'All'
+            name:'All Categories'
           });
         }
 
