@@ -2,11 +2,12 @@
 
 angular.module('xbertsApp')
   .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
-    'localStorageService','$mdMedia',
-    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService,$mdMedia) {
+    'localStorageService','category','$mdMedia',
+    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService, category,$mdMedia) {
 
     $scope.product = editPost;
-    var oldPost = angular.copy(editPost, {});
+    $scope.categoryoptions = category;
+
     $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
     $scope.showMask = false;
     $scope.onShowMask = function() {
@@ -57,7 +58,13 @@ angular.module('xbertsApp')
         description: product.description,
         purchaseUrl: product.purchaseUrl,
         imageGroup: product.imageGroup,
-        videoUrl: product.videoUrl
+        videoUrl: product.videoUrl,
+        salePrice: {
+          amount: product.salePrice.amount
+        },
+        originalPrice: {
+          amount: product.originalPrice.amount
+        }
       };
 
       // post start
@@ -92,10 +99,12 @@ angular.module('xbertsApp')
     };
 
     $scope.reset = function() {
-      $scope.product = angular.copy(oldPost,{});
-      $scope.showMask = false;
-      $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
-      $scope.file = $scope.product.imageGroup.length>0?$scope.product.imageGroup[0].imageUrls.original: false;
+      $state.go('application.expert', {
+        tab:'posts',
+        expertId: $rootScope.user.getUserId()
+      },{
+        reload:true
+      });
     };
 
   }]);

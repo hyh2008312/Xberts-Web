@@ -3,11 +3,11 @@
 angular.module('xbertsApp')
   .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
 
-    var DealsProductResource = $resource(API_BASE_URL + '/deals/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
-    var DealsProductRelatedResource = $resource(API_BASE_URL + '/deals/:id/related/',{id:'@id'});
+    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
+    var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'});
 
     this.categoryId = null;
-    this.sortId = null;
+    this.sortId = 0;
     this.priceId = null;
     this.discountId = null;
 
@@ -27,16 +27,29 @@ angular.module('xbertsApp')
       return DealsProductResource.patch(data).$promise.then(ProductDeals.build);
     };
 
+    this.getMaxNumber = function(arr) {
+      var number = 0;
+      angular.forEach(arr, function(e, i) {
+        if(number < e) {
+          number = e;
+        }
+      });
+      return number;
+    };
+
     this.getSort = function() {
       return [{
         id: '0',
-        name: 'Latest'
+        name: 'Everything'
       },{
         id: '1',
-        name: 'Most Popular'
+        name: 'Deep Discount'
       },{
         id: '2',
-        name: 'Ending Soon'
+        name: 'Cool Inventions'
+      },{
+        id: '3',
+        name: "Editors' Picks"
       }]
     };
 

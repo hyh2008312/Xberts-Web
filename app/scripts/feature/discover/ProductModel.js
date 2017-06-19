@@ -13,6 +13,9 @@ function ShareProduct(urlParser, $sce, $state) {
     getShareName: function () {
       return this.owner.firstName;
     },
+    getImageUrl: function() {
+      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrl:this.imageUrl;
+    },
     getImageOriginal: function() {
       return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:'';
     },

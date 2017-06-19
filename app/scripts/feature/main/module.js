@@ -22,18 +22,6 @@ angular.module('xbertsApp')
             };
             return new Paginator(par).load();
           }],
-          discoverProducts: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
-            var par = {
-              name: 'share_product_list',
-              objClass: ShareProduct,
-              params: {
-                category: ShareProductService.categoryId,
-                page_size: 5
-              },
-              fetchFunction: ShareProductService.getList
-            };
-            return new Paginator(par).load();
-          }],
           latestPaginater: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
             var par = {
               name: 'trials',
@@ -112,18 +100,6 @@ angular.module('xbertsApp')
                 page_size: 12
               },
               fetchFunction: DealsService.getDealsList
-            };
-            return new Paginator(par).load();
-          }],
-          discoverProducts: ['Paginator', 'ShareProductService', 'ShareProduct', function (Paginator, ShareProductService, ShareProduct) {
-            var par = {
-              name: 'share_product_list',
-              objClass: ShareProduct,
-              params: {
-                category: ShareProductService.categoryId,
-                page_size: 5
-              },
-              fetchFunction: ShareProductService.getList
             };
             return new Paginator(par).load();
           }],

@@ -3,55 +3,63 @@
     <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
-  <img ng-if="product.getVideo() == null" ng-src="{{product.getImageOriginal()}}" class="md-card-image product__card" alt="">
+  <div class="xb-deals-detail__atlas" hide-xs>
+    <div layout="column" layout-align="center center">
+      <img ng-if="product.getVideo() == null" ng-src="{{product.getImageUrl()}}" alt="{{productsDetail.title}}">
+    </div>
+  </div>
   <md-card-title class="product__headline">
     <span class="md-headline">{{product.title}}</span>
   </md-card-title>
   <span class="md-body-1 product__subtitle">{{product.name}}</span>
   <md-card-content class="product__content">
-    <p class="md-body-1">{{product.description}}</p>
+    <p class="md-body-1" ng-bind-html="product.description"></p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
-    <md-card-icon-actions>
-      <md-card-header class="product__avatar">
-        <md-card-avatar>
-          <avatar-Img src="product.getShareAvatar()" name="product.owner.firstName"  class="md-user-avatar" ui-sref="application.expert({ expertId:product.getPostId() })"></avatar-Img>
-        </md-card-avatar>
-        <md-card-header-text class="product__avatar-title">
-          <div layout="row" layout-align="start center">
-            <a class="md-title md-body-2" ui-sref="application.expert({ expertId:product.getPostId() })">{{product.getShareName()}}</a>
-            <credit-badge class="credit-badge" points="product.owner.badgePoint"></credit-badge>
-          </div>
-          <span class="md-subhead md-body-1 md-dark-secondary">{{product.created|amDateFormat:'MMMM Do,YYYY'}}</span>
-        </md-card-header-text>
-      </md-card-header>
-    </md-card-icon-actions>
-    <span class="md-subhead" hide-xs ng-if="product.getSharePrice()" >{{product.getSharePrice()}}</span>
-    <md-button hide-xs class="md-primary md-raised" ng-if="product.getSharePrice()" ng-href="{{product.purchaseUrl}}"
+    <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex hide-xs>
+      <span class="md-dark-secondary">
+        {{product.originalPrice.amount | currency}}
+      </span>
+      <span class="md-headline xb-bold">
+        {{product.salePrice.amount | currency}}
+      </span>
+    </div>
+    <div class="md-margin-right-2">{{product.getDomain()}}</div>
+    <md-button hide-xs class="md-primary md-raised" ng-click="product.buyNow('deals-item');"
                target="_blank">See Product</md-button>
 
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
-        <p flex>
-          <span class="md-subhead">{{product.getSharePrice()}}</span>
-        </p>
-        <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('discover-item');">
+        <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
+          <span class="md-dark-secondary">
+            {{product.originalPrice.amount | currency}}
+          </span>
+          <span class="md-headline xb-bold">
+            {{product.salePrice.amount | currency}}
+          </span>
+        </div>
+        <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('deals-item');">
           See Product
         </md-button>
       </div>
     </div>
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
-    <p flex>
-      <span class="md-subhead">{{product.getSharePrice()}}</span>
-    </p>
-    <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-href="{{product.purchaseUrl}}"
+    <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex>
+      <span class="md-dark-secondary">
+        {{product.originalPrice.amount | currency}}
+      </span>
+      <span class="md-headline xb-bold">
+        {{product.salePrice.amount | currency}}
+      </span>
+    </div>
+    <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-click="product.buyNow('deals-item');"
                target="_blank">See Product</md-button>
   </div>
   <interact interact="product.interact">
     <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
     <vote layout="row" layout-align="start center" ></vote>
-    <div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" ng-click="onToggleDown();">
       <md-icon flex="none">sms</md-icon>
     </div>
     <comment-amounts layout="row" layout-align="start center"></comment-amounts>
@@ -71,9 +79,9 @@
       </md-fab-actions>
     </md-fab-speed-dial>
   </md-card-actions>
-    <div layout class="product__interact">
+    <div layout class="product__interact" ng-show="commentToggle" >
       <div flex>
-        <feedback-list interact-id="{{product.interact.id}}"></feedback-list>
+        <feedback-list interact-id="{{product.interact.id}}" hide-state="!commentToggle"></feedback-list>
       </div>
     </div>
   </interact>

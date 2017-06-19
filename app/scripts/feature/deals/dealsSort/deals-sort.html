@@ -1,2 +1,10 @@
-<div ng-class="{true:'category-button active',false:'category-button'}[category.id == selectedSortId]" ng-repeat="category in sort"
-     ng-click="onCategoryChange({categoryId:category.id});selectedSort(category);" >{{category.name}}</div>
+<div class="xb-deals-category" layout="row" layout-align="start center" hide-xs>
+  <div class="sort-button" ng-class="{true:'active',false:''}[category.id == selectedSortId]" ng-repeat="category in sort"
+       layout="row" layout-align="center center"
+       ng-click="onSortChange({sortId:category.id});selectedSort(category);" >{{category.name}}</div>
+</div>
+<div class="xb-deals-sort" hide-gt-xs>
+  <md-select ng-model="selectedSortId" placeholder="{{sort[selectedSortId].name}}" class="md-no-underline" md-on-close="onSortChange({sortId:selectedSortId});">
+    <md-option ng-value="category.id" ng-repeat="category in sort">{{category.name}}</md-option>
+  </md-select>
+</div>

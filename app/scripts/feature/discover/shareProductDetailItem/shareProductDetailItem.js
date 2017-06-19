@@ -22,6 +22,12 @@ angular.module('xbertsApp')
         scope.isFacebookApp = BrowserUtil.isFacebookApp();
 
         scope.inviteObj = angular.copy(InviteService, {});
+
+        scope.commentToggle = false;
+
+        scope.onToggleDown = function() {
+          scope.commentToggle = !scope.commentToggle;
+        };
       }
     }
   }]);

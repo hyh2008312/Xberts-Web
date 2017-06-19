@@ -113,10 +113,10 @@
 </md-sidenav>
 <verification ng-if="user.isAuth() && user.getInvited() && !user.getEmailVerification() && user.getUserEmail()"></verification>
 <md-content class="xb-body-view" md-scroll-y flex layout="column">
-  <div class="xb-inner-body" ui-view flex="noshrink"></div>
-  <xberts-footer ng-class="{true:'xb-footer-hide',false:''}[state.current.name=='application.login'
-  ||state.current.name=='application.signup'
-  ||state.current.name=='application.protected.thread'
-  ||state.current.name=='application.answerQuestionDetail']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
+  <div class="xb-inner-body" ng-class="{true:'xb-footer-padding',false:''}[state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
+    || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
+    || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
+    || state.current.name == 'application.answerQuestionDetail']" ui-view flex="noshrink"></div>
+  <xberts-footer ng-class="{true:'',false:'xb-footer-hide'}[state.current.name=='application.main']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
 </md-content>
 

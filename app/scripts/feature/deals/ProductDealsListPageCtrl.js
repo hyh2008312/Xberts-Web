@@ -3,13 +3,13 @@
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
     '$mdSidenav','$timeout',
-    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,$timeout) {
+    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
+              $timeout) {
     var dealsCtrl = this;
 
     dealsCtrl.categories = categories;
     dealsCtrl.sort = sort;
     dealsCtrl.price = DealsService.getPrice();
-    dealsCtrl.discount = DealsService.getDiscount();
     dealsCtrl.productsPaginator = productsPaginator;
     dealsCtrl.categoryId = ShareProductService.categoryId;
     dealsCtrl.sortId = DealsService.sortId;
@@ -21,16 +21,8 @@ angular.module('xbertsApp')
       dealsCtrl.switcher[index] = !value;
     };
 
-    dealsCtrl.tagOrder = [1, 1, 1];
-    var numberMax = function(arr) {
-      var number = 0;
-      angular.forEach(arr, function(e, i) {
-        if(number < e) {
-          number = e;
-        }
-      });
-      return number;
-    };
+    dealsCtrl.tagOrder = [1, 1];
+
     dealsCtrl.removeTag = function(name) {
       dealsCtrl[name] = null;
       switch (name) {
@@ -53,11 +45,10 @@ angular.module('xbertsApp')
     };
 
     dealsCtrl.changeCategory = function (categoryId) {
-      dealsCtrl.tagOrder[0]= numberMax(dealsCtrl.tagOrder) + 1;
+      dealsCtrl.tagOrder[0]= DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
       if(dealsCtrl.tagOrder[0] >= 20) {
         dealsCtrl.tagOrder[0] -= 20;
         dealsCtrl.tagOrder[1] -= 20;
-        dealsCtrl.tagOrder[2] -= 20;
       }
       ShareProductService.categoryId = categoryId;
       dealsCtrl.categoryId = ShareProductService.categoryId;
@@ -74,32 +65,23 @@ angular.module('xbertsApp')
     };
 
     dealsCtrl.changePrice = function(filterIndex) {
-      dealsCtrl.tagOrder[1]=numberMax(dealsCtrl.tagOrder) + 1;
-      if(dealsCtrl.tagOrder[1] >= 20) {
-        dealsCtrl.tagOrder[0] -= 20;
-        dealsCtrl.tagOrder[1] -= 20;
-        dealsCtrl.tagOrder[2] -= 20;
+      if(filterIndex != null) {
+        dealsCtrl.tagOrder[1] = DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
+        if(dealsCtrl.tagOrder[1] >= 20) {
+          dealsCtrl.tagOrder[0] -= 20;
+          dealsCtrl.tagOrder[1] -= 20;
+        }
+        var item = dealsCtrl.price[filterIndex];
+        DealsService.priceId = item.id;
+        dealsCtrl.priceId = DealsService.priceId;
+        dealsCtrl.productsPaginator.params.min_price = item.value1;
+        dealsCtrl.productsPaginator.params.max_price = item.value2;
+      } else {
+        DealsService.priceId = null;
+        dealsCtrl.priceId = DealsService.priceId;
+        dealsCtrl.productsPaginator.params.min_price = null;
+        dealsCtrl.productsPaginator.params.max_price = null;
       }
-      var item = dealsCtrl.price[filterIndex];
-      DealsService.priceId = item.id;
-      dealsCtrl.priceId = DealsService.priceId;
-      dealsCtrl.productsPaginator.params.min_price = item.value1;
-      dealsCtrl.productsPaginator.params.max_price = item.value2;
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
-
-    dealsCtrl.changeDiscount = function(filterIndex) {
-      dealsCtrl.tagOrder[2]=numberMax(dealsCtrl.tagOrder) + 1;
-      if(dealsCtrl.tagOrder[2] >= 20) {
-        dealsCtrl.tagOrder[0] -= 20;
-        dealsCtrl.tagOrder[1] -= 20;
-        dealsCtrl.tagOrder[2] -= 20;
-      }
-      var item = dealsCtrl.discount[filterIndex];
-      DealsService.discountId = item.id;
-      dealsCtrl.discountId = DealsService.discountId;
-      dealsCtrl.productsPaginator.params.min_discount = item.value1;
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
     };

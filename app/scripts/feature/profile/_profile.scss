@@ -699,6 +699,15 @@
       margin-left: 0!important;
     }
   }
+  &__margin-left-1{
+    margin-left: 32px !important;
+    @include xb-xs-screen{
+      margin-left: 8px!important;
+    }
+  }
+  .xb-detail-cards{
+    margin-left: 16px;
+  }
 }
 .xb-shipping-address{
   max-width: 792px;

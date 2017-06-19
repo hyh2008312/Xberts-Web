@@ -1,7 +1,7 @@
 angular.module('xbertsApp')
-  .controller('MainPageCtrl', ['$rootScope','topBanner','dealsPaginator','discoverProducts','latestPaginater','reviews',
+  .controller('MainPageCtrl', ['$rootScope','topBanner','dealsPaginator','latestPaginater','reviews',
     'topReviewers','askPaginator','answerPaginator','$stateParams','AuthService',
-    function ($rootScope, topBanner, dealsPaginator, discoverProducts, latestPaginater, reviews, topReviewers,
+    function ($rootScope, topBanner, dealsPaginator, latestPaginater, reviews, topReviewers,
               askPaginator,answerPaginator,$stateParams,AuthService) {
 
       if($stateParams.uid && $stateParams.token) {
@@ -11,7 +11,6 @@ angular.module('xbertsApp')
       var mainCtrl = this;
       mainCtrl.topBanner = topBanner;
       mainCtrl.dealsPaginator = dealsPaginator.items;
-      mainCtrl.discoverProducts = discoverProducts.items;
       mainCtrl.latestPaginater = latestPaginater;
       mainCtrl.reviews = reviews.items;
       mainCtrl.topReviewers = topReviewers.items;

@@ -1,126 +1,64 @@
-<interact interact="productsDetail.interact" layout="column"
-          class="background-whitem xb-trials-details-mobile xb-deals-detail">
-  <div class="xb-trial-detail__atlas" flex hide-gt-xs>
-    <img ng-src="{{productsDetail.bannerUrl || productsDetail.coverUrl}}" alt="{{productsDetail.title}}"/>
-  </div>
-  <div class="container xb-trial-detail">
-    <div hide-xs>
-      <div class="md-display-1">{{productsDetail.title}}</div>
-      <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary">
-        <span hide>{{productsDetail.tag}}</span>
-      </div>
-    </div>
-    <div layout-xs="column" layout-gt-xs="row" layout-align-gt-xs="space-around start">
-      <div flex-gt-xs="60" flex-order-xs="2">
-        <div class="xb-deals-detail__atlas" hide-xs>
-          <div layout="column" layout-align="center center">
-            <img ng-src="{{productsDetail.bannerUrl || productsDetail.coverUrl}}" alt="{{productsDetail.title}}"/>
-          </div>
-        </div>
-        <div>
-          <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">About this Deal</div>
-          <div flex ng-bind-html="productsDetail.description"></div>
-          <div class="xb-deals-detail__title md-headline xb-deals-detail__margin-top">Comments</div>
-          <feedback-list ng-if="productsDetail.interact != null" interact-id="{{productsDetail.interact.id}}" class="xb-trial-tabs__content" hide-points="true"></feedback-list>
-        </div>
-      </div>
-      <div hide-gt-xs flex-order-xs="0">
-        <div class="md-display-1">{{productsDetail.title}}</div>
-        <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg">
-          <div class="xb-trial-detail__subtitle md-subhead md-dark-secondary" flex >
-            <span>
-             {{productsDetail.source}}
-            </span>
-          </div>
-          <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
-                             ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
-            <md-fab-trigger>
-              <md-button class="md-icon-button">
-                <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
-              </md-button>
-            </md-fab-trigger>
-            <md-fab-actions>
-              <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
-                         socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
-                         socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
-                         socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}" >
-                <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
-              </md-button>
-            </md-fab-actions>
-          </md-fab-speed-dial>
-          <vote></vote>
-        </div>
-      </div>
-      <div flex-gt-xs="40" flex-order-xs="1">
-        <div class="xb-trial-detail__content">
-          <div class="xb-redeem-detail__content-line" hide-xs></div>
-          <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="start center" ng-if="!isFacebookApp">
-            <div class="xb-deals-detail__price" layout-xs="row" layout-gt-sm="row" layout-sm="column"
-                 layout-align-sm="start start" layout-align-gt-sm="start end" layout-align-xs="start center" flex-xs>
-              <span class="md-display-1 xb-bold">
-                {{productsDetail.discountPrice | currency}}
-              </span>
-              <div>
-                <span class="md-headline md-dark-secondary">
-                  {{productsDetail.originalPrice | currency}}
-                </span>
-                <span class="md-headline xb-deals-list__discount">
-                  {{productsDetail.discount * 100 | number:0}}% off
-                </span>
-              </div>
-            </div>
-            <div class="md-dark-secondary xb-deals-detail__platform" hide-xs>{{productsDetail.source}}</div>
-            <md-button class="md-accent md-raised" ng-click="productsDetail.buyNow('deals-list');">
-              Get it Now
-            </md-button>
-          </div>
-          <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center" ng-if="isFacebookApp">
-            <div class="xb-deals-detail__price" layout-xs="row" layout-gt-sm="row" layout-sm="column"
-                 layout-align-sm="start start" layout-align-gt-sm="start end" layout-align-xs="start center" flex-xs>
-              <span class="md-display-1 xb-bold">
-                {{productsDetail.discountPrice | currency}}
-              </span>
-              <div>
-                <span class="md-headline md-dark-secondary">
-                  {{productsDetail.originalPrice | currency}}
-                </span>
-                <span class="md-headline xb-deals-list__discount">
-                  {{productsDetail.discount * 100 | number:0}}% off
-                </span>
-              </div>
-            </div>
-            <div class="md-dark-secondary xb-deals-detail__platform" hide-xs>{{productsDetail.source}}</div>
-            <md-button class="md-accent md-raised" ng-click="productsDetail.buyNow('deals-list');">
-              Get it Now
-            </md-button>
-          </div>
-          <div hide-xs>
-            <div class="xb-deals-detail__subtitle">Share this deal</div>
-            <div class="xb-deals-detail__share-icon">
-              <i class="fa fa-{{item.name}} md-dark-secondary xb-deals-detail__color-{{$index}}" ng-repeat="item in shareList track by $index"
-                 socialshare socialshare-provider="{{item.name}}" socialshare-description="{{productsDetail.description}}"
-                 socialshare-text="{{productsDetail.title}}" socialshare-media="{{productsDetail.coverUrl}}"
-                 socialshare-source="{{productsDetail.coverUrl}}"
-                 socialshare-url="{{inviteObj.shareUrl(productsDetail.getShareUrl(productsDetail.id), item.name)}}" aria-hidden="true"></i>
-            </div>
-            <div class="xb-deals-detail__subtitle">
-              Was this a great deal for you?
-            </div>
-            <div layout="row" layout-align="start center" class="xb-deals-detail__vote">
-              <vote layout="row" layout-align="start center"></vote>
-              <div ng-switch="productsDetail.interact.voteAmount">
-                <span ng-switch-when="0"></span>
-                <span ng-switch-when="1">like</span>
-                <span ng-switch-default>likes</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</interact>
 <div class="container">
-  <div class="xb-deals-detail__title md-headline" ng-if="productsPaginator!=null && productsPaginator.length>0">Related Deals</div>
+  <div class="xb-mobile-row xb-section-body" layout="row" layout-align-gt-xs="start start" layout-xs="column">
+    <div flex-gt-xs="75" flex-xs>
+      <share-product-detail-item product="productsDetail"></share-product-detail-item>
+    </div>
+    <div flex-gt-xs="35" flex-xs>
+      <div class="recommend-list">
+        <div class="md-subhead md-dark-primary recommend-list__title" hide-xs layout="row" layout-align="start center">POSTED BY</div>
+        <div class="background-whitem">
+          <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner != null">
+            <avatar-Img class="xb-pointer" flex="none" src="productsDetail.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar"
+                        ui-sref="application.expert({ expertId:productsDetail.getPostId() })"></avatar-Img>
+            <div layout="column" layout-align="start start" flex>
+              <div layout="row" layout-align="start center">
+                <div>
+                  <div layout="row" layout-align="start center">
+                    <a class="md-dark-primary" ui-sref="application.expert({expertId:productsDetail.getPostId()})">{{productsDetail.getDealsName()}}</a>
+                    <credit-badge class="credit-badge" points="productsDetail.owner.badgePoint"></credit-badge></div>
+                  <div class="md-dark-secondary">Post <span am-time-ago='productsDetail.created'></span></div>
+                </div>
+                <xb-follow follow="productsDetail.owner.currentUser.follow" user-id="productsDetail.owner.id"></xb-follow>
+              </div>
+              <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" ng-if="productsDetail.owner != null">
+                <div layout="column" layout-align="center start" flex="50">
+                  <div class="xb-bold">{{postsProductPaginator.count}}</div>
+                  <div>Posts</div>
+                </div>
+                <span flex="none"></span>
+                <div layout="column" layout-align="center start" flex="50">
+                  <div class="xb-bold">{{achievement.followersAmount}}</div>
+                  <div>Follower</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner == null">
+            <avatar-Img flex="none" src="item.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar">
+            </avatar-Img>
+            <div layout="column" layout-align="space-between start">
+              <div layout="row" layout-align="start center">
+                <span class="md-dark-primary">{{productsDetail.getDealsName()}}</span>
+              </div>
+              <div class="md-dark-secondary">Post <span am-time-ago='productsDetail.created'></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recommend-list xb-deals-post__posts-top" ng-if="postsProductPaginator.items.length>0" ng-show="productsDetail.owner != null">
+        <div class="md-subhead md-dark-primary recommend-list__title" layout="row" layout-align="space-between center">
+          OTHER POSTS
+          <md-button class="md-primary" ui-sref="application.expert({ expertId:productsDetail.getPostId(),tab:'posts'})">VIEW MORE</md-button>
+        </div>
+        <div class="background-whitem" >
+          <other-post-list posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="xb-deals-detail__title md-subhead" ng-if="productsPaginator!=null && productsPaginator.length>0">YOU MAY ALSO LIKE</div>
   <deals-list deals="productsPaginator"></deals-list>
 </div>
