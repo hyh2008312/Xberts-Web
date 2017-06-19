@@ -98,7 +98,7 @@
         <md-tab label="Answers" md-on-select="loadMyAnswers()">
           <div class="background-whitem xb-my-profile__margin-top">
             <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 2">
+                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 0">
               <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
               <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
             </div>
