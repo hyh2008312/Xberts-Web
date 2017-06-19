@@ -15,7 +15,7 @@ angular.module('xbertsApp')
     };
 
     $scope.offDeleteImage = function() {
-      $scope.showMask = false
+      $scope.showMask = false;
       $scope.imgLoaded = false;
       $scope.product.imageGroup = [];
     };
