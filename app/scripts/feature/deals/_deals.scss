@@ -287,6 +287,9 @@
   &__tags{
     min-height: 40px;
     padding-top: 8px;
+    @include xb-xs-screen{
+      max-height: 8px;
+    }
     >div{
       padding: 0 8px 0 16px;
       margin-right: 16px;
