@@ -123,4 +123,10 @@ angular.module('xbertsApp')
         disableParenScroll: true
       });
     };
+
+    var title = 'Share an Offer';
+    var description = 'Help others save big by finding the best deals and the lowest price!';
+    var backgroundColor = 'background-bg-light';
+    var shareImage = '';
+    $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);
