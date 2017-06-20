@@ -618,9 +618,9 @@
     }
   }
   &__posts-top{
-    margin-top:16px;
+    margin-top:16px !important;
     @include xb-xs-screen{
-      margin-top: 8px;
+      margin-top: 8px !important;
     }
     .md-button{
       margin: 0;
@@ -716,5 +716,11 @@
       }
     }
 
+  }
+  &__margin-top{
+    margin-top: 16px;
+    @include xb-xs-screen{
+      margin-top: 0;
+    }
   }
 }
