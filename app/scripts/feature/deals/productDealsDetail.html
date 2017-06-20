@@ -10,8 +10,8 @@
           <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner != null">
             <avatar-Img class="xb-pointer" flex="none" src="productsDetail.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar"
                         ui-sref="application.expert({ expertId:productsDetail.getPostId() })"></avatar-Img>
-            <div layout="column" layout-align="start start" flex>
-              <div layout="row" layout-align="space-between center" flex>
+            <div layout="column" layout-align="start stretch" flex>
+              <div layout="row" layout-align="space-between center">
                 <div>
                   <div layout="row" layout-align="start center">
                     <a class="md-dark-primary" ui-sref="application.expert({expertId:productsDetail.getPostId()})">{{productsDetail.getDealsName()}}</a>
