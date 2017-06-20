@@ -24,7 +24,7 @@ angular.module('xbertsApp')
           };
           switch (DealsService.sortId) {
             case 'discount':
-              par.params.min_discount = 0.7;
+              par.params.min_discount = 0.5;
               break;
             case 'search':
               par.params.search = 'cool';

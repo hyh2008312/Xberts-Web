@@ -67,7 +67,7 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.params.owner = null;
       switch (sortId) {
         case 'discount':
-          dealsCtrl.productsPaginator.params.min_discount = 0.7;
+          dealsCtrl.productsPaginator.params.min_discount = 0.5;
               break;
         case 'search':
           dealsCtrl.productsPaginator.params.search = 'cool';

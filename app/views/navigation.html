@@ -7,8 +7,8 @@
     <img ui-sref="application.main" src="https://xberts.imgix.net/static/logo/b26747af-9403-4b96-bd44-5431625d526c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=4a117ac0f1603262af3a454a1a974915" width="120" height="32" alt="xberts">
 
     <div class="xberts-navbar__center-container" flex layout="row" layout-align="start center">
+      <div ui-sref-active="active" ui-sref="application.productDeals">Discover<span>NEW</span></div>
       <div ui-sref-active="active" ui-sref="application.askQuestionMain">Ask<div></div></div>
-      <div ui-sref-active="active" ui-sref="application.productDeals">Deals<span>NEW</span></div>
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Trials</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
@@ -40,8 +40,8 @@
       <md-icon md-font-set="material-icons"> menu </md-icon>
     </md-button>
     <h2 ng-if="state.current.name == 'application.main'">Home</h2>
+    <h2 ng-if="state.current.name == 'application.productDeals'">Discover</h2>
     <h2 ng-if="state.current.name == 'application.askQuestionMain'">Ask</h2>
-    <h2 ng-if="state.current.name == 'application.productDeals'">Deals</h2>
     <h2 ng-if="state.current.name == 'application.testingcampaigns'">Trials</h2>
     <h2 ng-if="state.current.name == 'application.campaignreviews'">Reviews</h2>
     <h2 ng-if="state.current.name == 'application.creditMain'">Perks</h2>
@@ -84,10 +84,10 @@
 
   <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
+    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()"
+         layout="row" layout-align="start start">Discover<span></span></div>
     <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()"
          layout="row" layout-align="start start">Ask<span></span></div>
-    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()"
-         layout="row" layout-align="start start">Deals<span></span></div>
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Trials</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>

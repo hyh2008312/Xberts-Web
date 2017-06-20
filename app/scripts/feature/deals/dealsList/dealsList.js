@@ -7,8 +7,9 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/deals/dealsList/deals-list.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.deals = scope.deals || [];
         scope.user = $rootScope.user;
+
+        scope.headImage = DealsService.headImage;
 
         scope.submitForm = function(item){
           if(!$rootScope.user.authRequired()) {

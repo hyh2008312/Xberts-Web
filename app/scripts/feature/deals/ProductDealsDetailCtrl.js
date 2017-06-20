@@ -7,6 +7,7 @@ angular.module('xbertsApp')
              ProductDeals,DealsService) {
       $scope.productsDetail = productsDetail;
       $scope.productsPaginator = productsPaginator;
+      $scope.headImage = DealsService.headImage;
 
       if(productsDetail.owner != null) {
         ExpertService.getAchievement(productsDetail.owner.id).then(function(data) {

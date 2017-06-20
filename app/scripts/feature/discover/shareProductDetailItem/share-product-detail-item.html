@@ -13,7 +13,8 @@
   </md-card-title>
   <span class="md-body-1 product__subtitle">{{product.name}}</span>
   <md-card-content class="product__content">
-    <p class="md-body-1" ng-bind-html="product.description"></p>
+    <pre class="md-body-1" ng-if="product.owner != null" ng-bind-html="product.description"></pre>
+    <p class="md-body-1" ng-if="product.owner == null" ng-bind-html="product.description"></p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
     <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex hide-xs>

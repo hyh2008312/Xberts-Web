@@ -98,4 +98,6 @@ angular.module('xbertsApp')
       }];
     };
 
+    this.headImage = 'https://xberts.imgix.net/static/logo/2de5d639-3fd6-4d95-b711-8fbc837244a6.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=5f80b68fa3d73f229fde39024a386aee';
+
   }]);
