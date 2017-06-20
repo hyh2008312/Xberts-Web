@@ -29,7 +29,7 @@
           {{item.title}}
         </a>
         <div class="xb-deals-list__price md-margin-top-1 md-margin-bottom-2" layout="row" layout-align="start center">
-          <span class="md-dark-secondary">
+          <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | currency}}
           </span>
           <span class="md-headline xb-bold">
@@ -90,7 +90,7 @@
           {{item.title}}
         </a>
         <div class="xb-deals-list__price md-margin-top-1 md-margin-bottom-2" layout="row" layout-align="start center">
-          <span class="md-dark-secondary">
+          <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | currency}}
           </span>
           <span class="md-headline xb-bold">
@@ -150,7 +150,7 @@
           {{item.title}}
         </a>
         <div class="xb-deals-list__price md-margin-top-1 md-margin-bottom-2" layout="row" layout-align="start center">
-          <span class="md-dark-secondary">
+          <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | currency}}
           </span>
           <span class="md-headline xb-bold">
