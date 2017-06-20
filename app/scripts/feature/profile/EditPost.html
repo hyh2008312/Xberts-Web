@@ -17,7 +17,7 @@
             <div ng-message="required">This is required!</div>
           </div>
         </md-input-container>
-        <div class="md-caption md-dark-secondary xb-bold">Upload a product picture</div>
+        <div class="md-caption md-dark-secondary xb-bold">Upload a product picture *</div>
         <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
              ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
@@ -30,7 +30,7 @@
         </div>
         <md-input-container class="md-block xb-edit-post__fixed-width xb-edit-profile__margin-bottom" >
           <label>Category</label>
-          <md-select ng-model="product.category" name="category" >
+          <md-select ng-model="product.category" name="category" required >
             <md-option ng-repeat="option in categoryoptions" ng-value="option" >
               {{option.name}}
             </md-option>

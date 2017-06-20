@@ -29,7 +29,7 @@
     @include xb-xs-screen{
       margin-bottom: 8px;
     }
-    a{
+    >a{
       padding: 6px 16px;
       display: block;
       line-height: 24px;
@@ -88,12 +88,10 @@
     height: 100%;
     background-color: rgba(0,0,0,.6);
     cursor: pointer;
-    a{
+    color: #fff;
+    text-decoration: none;
+    &:hover{
       color: #fff;
-      text-decoration: none;
-      &:hover{
-        color: #fff;
-      }
     }
     &:before{
       content: '';

@@ -6,7 +6,10 @@
     <p hide-xs class="report-category"><span ng-repeat="category in review.getReview().project.categories">{{ category.name }}<span
       ng-if="!$last">,</span></span></p>
     <p class="xcard__title" >
-      <a ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})">
+      <a hide-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" target="_blank">
+        {{ review.title }}
+      </a>
+      <a hide-gt-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})">
         {{ review.title }}
       </a>
     </p>

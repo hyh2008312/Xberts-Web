@@ -3,12 +3,15 @@
        ng-if="review.status == 'ENDED'">
     <div class="xb-trials-list__img-bg">
       <img ng-src="{{review.cover }}" ui-sref="application.testingcampaign({ reviewId:review.id })"/>
-      <div class="xb-trials-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs
-           ui-sref="application.testingcampaign({ reviewId:review.id })">
-        <a class="md-subhead">Read Review</a>
-      </div>
+      <a class="xb-trials-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs
+           ui-sref="application.testingcampaign({ reviewId:review.id })" target="_blank">
+        <span class="md-subhead">Read Review</span>
+      </a>
     </div>
-    <a class="md-subhead md-dark-primary" ui-sref="application.testingcampaign({ reviewId:review.id })">{{review.title }}</a>
+    <a class="md-subhead md-dark-primary" ui-sref="application.testingcampaign({ reviewId:review.id })"
+       hide-xs target="_blank">{{review.title }}</a>
+    <a class="md-subhead md-dark-primary" ui-sref="application.testingcampaign({ reviewId:review.id })"
+       hide-gt-xs>{{review.title }}</a>
     <div class="xb-trials-list__header md-dark-secondary" layout="row" layout-align="start center">
       <avatar-img ng-repeat="reviewer in review.appliers track by $index" src="reviewer.reviewer.userprofile.avatar"
         name="reviewer.reviewer.firstName + ' ' + reviewer.reviewer.lastName "
