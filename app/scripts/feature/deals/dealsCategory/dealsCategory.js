@@ -26,6 +26,10 @@ angular.module('xbertsApp')
         scope.open = function() {
           scope.categoryOpen = !scope.categoryOpen;
         };
+
+        scope.close = function() {
+          scope.categoryOpen = false;
+        };
       }
     }
   }]);

@@ -48,7 +48,7 @@ angular.module('xbertsApp')
         value: "search",
         name: 'Cool Inventions'
       },{
-        value: 'owner',
+        value: 'editor',
         name: "Editors' Picks"
       }]
     };

@@ -216,6 +216,9 @@
         i{
           display: block;
         }
+        .xb-main-discover__image-button-bg{
+          display: none !important;
+        }
       }
     }
     >img{
@@ -481,6 +484,13 @@
     md-icon{
       @include changeMdIcon(32px);
       color: #FFF;
+    }
+    @include xb-xs-screen{
+      width: 30px;
+      height: 30px;
+      md-icon{
+        @include changeMdIcon(24px);
+      }
     }
   }
   &__information-content{

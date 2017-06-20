@@ -2,8 +2,8 @@
   <div class="container">
     <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
       <div class="xb-section__title">
-        <h2><span class="md-display-1">Ask Xberts Community & Make Smart Purchasing Decision</span></h2>
-        <h3><span class="md-body-1 md-dark-secondary">Enjoy the best deals on thelatest gadgets and designs</span></h3>
+        <h2><span class="md-display-1">Exclusive Offers by Xberts Community</span></h2>
+        <h3><span class="md-body-1 md-dark-secondary">Discover the latest products and deals for a better life</span></h3>
       </div>
       <div flex="none">
         <md-button class="md-raised md-primary" ui-sref="application.protected.post()">Post</md-button>
@@ -81,12 +81,12 @@
           </div>
         </div>
         <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
+        <load-more class="md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
         <div ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0"
              layout="column" layout-align="center center" flex="noshrink">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
         </div>
-        <load-more class="md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
       </div>
 
     </div>

@@ -11,26 +11,6 @@ angular.module('xbertsApp')
 
         scope.headImage = DealsService.headImage;
 
-        scope.submitForm = function(item){
-          if(!$rootScope.user.authRequired()) {
-            return;
-          }
-          // post start
-          scope.$emit('backdropOn', 'fetch project');
-          var _item = {
-            id: item.id,
-            buyUrl : item.buyUrl,
-            isApproved : item.isApproved
-          };
-          DealsService.update(_item).then(function (newProduct) {
-            scope.$emit('backdropOff', 'project get completed');
-            // post end
-          }, function () {
-            // tips
-            scope.$emit('backdropOff', 'project get error');
-            // post end
-          });
-        };
       }
     }
   }]);

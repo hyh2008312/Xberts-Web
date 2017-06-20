@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService',
-    'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService',
+    'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService','$mdMedia','$state',
     function($rootScope,$scope,productsDetail,productsPaginator, InviteService,BrowserUtil,ExpertService,Paginator,
-             ProductDeals,DealsService) {
+             ProductDeals,DealsService,$mdMedia,$state) {
       $scope.productsDetail = productsDetail;
       $scope.productsPaginator = productsPaginator;
       $scope.headImage = DealsService.headImage;
@@ -25,6 +25,23 @@ angular.module('xbertsApp')
         };
         $scope.postsProductPaginator = new Paginator(par);
         $scope.postsProductPaginator.load();
+      }
+
+      $scope.seeMore = function() {
+        if($mdMedia('xs')) {
+          $state.go('application.protected.posts', {
+            expertId: productsDetail.owner.id
+          },{
+            reload:true
+          });
+        } else {
+          $state.go('application.expert', {
+            tab:'posts',
+            expertId: productsDetail.owner.id
+          },{
+            reload:true
+          });
+        }
       }
 
       $scope.inviteObj = angular.copy(InviteService, {});

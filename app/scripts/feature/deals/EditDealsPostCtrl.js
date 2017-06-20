@@ -2,13 +2,14 @@
 
 angular.module('xbertsApp')
   .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category) {
+    'localStorageService','category','$mdDialog',
+    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,$mdDialog) {
 
     $scope.product = {};
     $scope.product.imageGroup = [];
     $scope.product.salePrice = {};
     $scope.product.originalPrice = {};
+    $scope.product.category = {};
     $scope.categoryoptions = category;
 
     $scope.imgLoaded = false;
@@ -91,6 +92,21 @@ angular.module('xbertsApp')
 
     $scope.reset = function() {
       $state.go('application.productDeals');
+    };
+
+    $scope.helpTips = function(ev) {
+      $mdDialog.show({
+        controller: function(scope, $mdDialog) {
+          scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+        },
+        templateUrl: 'scripts/feature/profile/myPostList/myPostTips.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        disableParenScroll: true
+      });
     };
 
   }]);

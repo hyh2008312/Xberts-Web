@@ -16,7 +16,7 @@ function ProductDeals($state,urlParser,$sce) {
       return this.owner != null?this.owner.firstName : "Editors' Pick";
     },
     getImageUrl: function() {
-      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrl:this.imageUrl;
+      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:this.imageUrl;
     },
     getPostId: function() {
       return this.owner != null?this.owner.id : false;

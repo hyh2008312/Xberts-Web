@@ -3,9 +3,9 @@
     <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
-  <div class="xb-deals-detail__atlas" hide-xs>
+  <div ng-if="product.getVideo() == null && product.getImageUrl()" class="xb-deals-detail__atlas" hide-xs>
     <div layout="column" layout-align="center center">
-      <img ng-if="product.getVideo() == null" ng-src="{{product.getImageUrl()}}" alt="{{productsDetail.title}}">
+      <img ng-src="{{product.getImageUrl()}}" alt="{{productsDetail.title}}">
     </div>
   </div>
   <md-card-title class="product__headline">

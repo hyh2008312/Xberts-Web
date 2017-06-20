@@ -9,13 +9,13 @@
   </div>
 </div>
 <div class="xb-question-detail__answer-title md-dark-secondary">
-  {{answerCtrl.answerPaginator.items.length>1? answerCtrl.answerPaginator.items.length + ' ANSWERS':answerCtrl.answerPaginator.items.length + ' ANSWER'}}
+  {{answerCtrl.answerPaginator.count>1? answerCtrl.answerPaginator.count+ ' ANSWERS':answerCtrl.answerPaginator.count + ' ANSWER'}}
 </div>
 <div>
   <div class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
     infinite-scroll-disabled="answerCtrl.answerPaginator.loading || !answerCtrl.answerPaginator.next">
     <answer-item answers="answerCtrl.answerPaginator.items"></answer-item>
-    <load-more layout="row" layout-align="center center" ng-if="answerCtrl.productsPaginator.loading"></load-more>
+    <load-more class="md-margin-bottom-2" layout="row" layout-align="center center" ng-if="answerCtrl.answerPaginator.loading"></load-more>
   </div>
 </div>
 <div ng-if="user.isAuth()" hide-xs>

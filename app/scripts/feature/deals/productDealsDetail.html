@@ -11,7 +11,7 @@
             <avatar-Img class="xb-pointer" flex="none" src="productsDetail.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar"
                         ui-sref="application.expert({ expertId:productsDetail.getPostId() })"></avatar-Img>
             <div layout="column" layout-align="start start" flex>
-              <div layout="row" layout-align="start center">
+              <div layout="row" layout-align="space-between center">
                 <div>
                   <div layout="row" layout-align="start center">
                     <a class="md-dark-primary" ui-sref="application.expert({expertId:productsDetail.getPostId()})">{{productsDetail.getDealsName()}}</a>
@@ -46,10 +46,10 @@
           </div>
         </div>
       </div>
-      <div class="recommend-list xb-deals-post__posts-top" ng-if="postsProductPaginator.items.length>0" ng-show="productsDetail.owner != null">
+      <div class="recommend-list xb-deals-post__posts-top" ng-if="postsProductPaginator.items.length>1" ng-show="productsDetail.owner != null">
         <div class="md-subhead md-dark-primary recommend-list__title" layout="row" layout-align="space-between center">
           OTHER POSTS
-          <md-button class="md-primary" ui-sref="application.expert({ expertId:productsDetail.getPostId(),tab:'posts'})">VIEW MORE</md-button>
+          <md-button class="md-primary" ng-click="seeMore()">VIEW MORE</md-button>
         </div>
         <div class="background-whitem" >
           <other-post-list posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>

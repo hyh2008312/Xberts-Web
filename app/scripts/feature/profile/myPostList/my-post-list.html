@@ -1,6 +1,6 @@
 <div class="xb-profile-questions" ng-repeat="post in posts track by $index" layout="row"
      layout-align="space-between center" ng-click="closeMenu();">
-  <p class="md-subhead md-dark-primary" ui-sref="application.shareProductDetail({reviewId:post.id})" >{{post.title}}</p>
+  <p class="md-subhead md-dark-primary" ui-sref="application.dealsDetail({dealsId:post.id})" >{{post.title}}</p>
   <div class="md-secondary" layout-gt-xs="row" layout-align-gt-xs="start center"
        layout="column" layout-align="space-between end">
     <md-button ng-if="currentUser" hide-xs class="md-icon-button" ui-sref="application.protected.editPost({productId:post.id})" ng-click="$event.stopPropagation();"><md-icon class="md-dark-third" md-font-set="material-icons">mode_edit</md-icon></md-button>

@@ -49,6 +49,10 @@
 }
 
 .xb-my-posts{
+  &__bg{
+    padding: 24px 16px 0 16px;
+    border-radius: 2px;
+  }
   &__time{
     margin-left: 8px;
     @include xb-xs-screen{
@@ -648,6 +652,16 @@
       font-size: 24px;
     }
   }
+  &__tips{
+    >img{
+      width: 20px;
+      margin-right: 12px;
+    }
+    span{
+      color: #3f51b5;
+      outline: none;
+    }
+  }
   md-input-container{
     margin: 28px 0 0;
     padding: 0;
@@ -667,6 +681,7 @@
     height: 120px;
     border: 1px dashed rgba(0,0,0,.12);
     margin-top: 8px;
+    overflow: hidden;
     .material-icons{
       width: 40px;
       height: 40px;

@@ -3,6 +3,11 @@
     <div class="xb-deals-list__img-bg">
       <a layout="column" layout-align="start center"  ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
         <img src="{{item.getImageUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <div class="md-subhead">Quick Look</div>
         </div>
@@ -19,8 +24,10 @@
       </a>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-      <div class="md-body-1 md-dark-secondary">{{item.source}}</div>
-      <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center">
+      <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+        {{item.title}}
+      </a>
+      <div class="xb-deals-list__price md-margin-top-1 md-margin-bottom-2" layout="row" layout-align="start center">
           <span class="md-dark-secondary">
             {{item.originalPrice.amount | currency}}
           </span>
@@ -28,14 +35,27 @@
             {{item.salePrice.amount | currency}}
           </span>
       </div>
-      <div class="xb-deals-list__title">
-        <a ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">{{item.title}}</a>
+    </div>
+    <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null">
+      <avatar-Img class="xb-pointer" flex="none" src="item.getDealsAvatar()" name="item.getDealsName()"  class="md-user-avatar"
+                  ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
+      <div layout="column" layout-align="space-between start">
+        <div layout="row" layout-align="start center">
+          <a class="md-dark-primary" ui-sref="application.expert({expertId:item.getPostId()})">{{item.getDealsName()}}</a>
+          <credit-badge class="credit-badge" points="item.owner.badgePoint"></credit-badge>
+        </div>
+        <div class="md-dark-secondary">Post <span am-time-ago='item.created'></span></div>
       </div>
     </div>
-    <div layout="row" layout-align="center start" hide-xs>
-      <md-button class="md-primary" ng-click="item.buyNow('deals-list');">
-        Get it Now
-      </md-button>
+    <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null">
+      <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
+      </avatar-Img>
+      <div layout="column" layout-align="space-between start">
+        <div layout="row" layout-align="start center">
+          <span class="md-dark-primary">{{item.getDealsName()}}</span>
+        </div>
+        <div class="md-dark-secondary">Post <span am-time-ago='item.created'></span></div>
+      </div>
     </div>
   </div>
 </div>

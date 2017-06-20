@@ -138,7 +138,7 @@ angular.module('xbertsApp')
                     login({username: scope.username, password: scope.password})
                       .then(function(value) {
                         $mdDialog.cancel();
-                        loginRedirect(obj);
+                        loginRedirect();
                         scope.$emit('backdropOff', 'success');
                       })
                       .catch(
@@ -419,13 +419,13 @@ angular.module('xbertsApp')
           });
       }
 
-      function loginRedirect(refresh) {
+      function loginRedirect() {
         $rootScope.$emit('backdropOff', 'success');
-
         if ($rootScope.postLoginState) {
           $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
           $rootScope.postLoginState = null;
         } else if ($rootScope.previous && $rootScope.previous.state) {
+          localStorageService.clearAll();
           $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
         } else {
           $state.go('application.main', {}, {reload: true})

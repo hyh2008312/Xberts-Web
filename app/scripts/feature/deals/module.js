@@ -4,7 +4,7 @@ angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.productDeals', {
-      url: '/deals',
+      url: '/discover',
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
       resolve: {
@@ -29,8 +29,8 @@ angular.module('xbertsApp')
             case 'search':
               par.params.search = 'cool';
               break;
-            case 'owner':
-              par.params.owner = 0;
+            case 'editor':
+              par.params.search = 'editor';
               break;
           }
           return new Paginator(par).load();
@@ -44,7 +44,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.dealsDetail', {
-      url: '/deals/:dealsId',
+      url: '/discover/:dealsId',
       templateUrl: 'scripts/feature/deals/productDealsDetail.html',
       controller: 'ProductDealsDetailCtrl',
       resolve: {
@@ -57,7 +57,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.protected.post', {
-      url: '/post/edit',
+      url: '/discover/post/edit',
       templateUrl: 'scripts/feature/profile/EditPost.html',
       controller: 'EditDealsPostCtrl',
       resolve: {

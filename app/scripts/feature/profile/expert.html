@@ -119,7 +119,7 @@
           <div class="background-whitem xb-my-profile__margin-top">
             <div infinite-scroll="reviewApplicantPaginator.loadNext()"
                  infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next">
+                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">
               <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
               <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
             </div>
@@ -136,7 +136,7 @@
           </div>
         </md-tab>
 
-        <md-tab label="follow" md-on-select="loadMyFollow()">
+        <md-tab label="follow" md-on-select="">
           <div class="xb-my-profile__margin-top">
             <md-tabs class="xb-my-profile__tabs-none" md-dynamic-height md-selected="selectedIndex2" md-border-bottom>
               <md-tab label="Following" md-on-select="loadMyFollowing()">

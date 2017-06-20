@@ -375,7 +375,7 @@ $PrimaryINDIGO: #3f51b5;
   @include resetBorder();
   margin-top: 36px;
   margin-bottom: 32px;
-  @include xs-screen{
+  @include xb-xs-screen{
     margin-top: 0;
     margin-bottom: 16px;
   }

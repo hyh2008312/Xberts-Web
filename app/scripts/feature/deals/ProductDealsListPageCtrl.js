@@ -64,7 +64,6 @@ angular.module('xbertsApp')
       dealsCtrl.sortId = sortId;
       dealsCtrl.productsPaginator.params.min_discount = null;
       dealsCtrl.productsPaginator.params.search = null;
-      dealsCtrl.productsPaginator.params.owner = null;
       switch (sortId) {
         case 'discount':
           dealsCtrl.productsPaginator.params.min_discount = 0.5;
@@ -72,8 +71,8 @@ angular.module('xbertsApp')
         case 'search':
           dealsCtrl.productsPaginator.params.search = 'cool';
               break;
-        case 'owner':
-          dealsCtrl.productsPaginator.params.owner = 0;
+        case 'editor':
+          dealsCtrl.productsPaginator.params.search = 'editor';
           break;
       }
       dealsCtrl.productsPaginator.clear();
@@ -131,8 +130,8 @@ angular.module('xbertsApp')
 
     };
 
-    var title = 'Deals - Daily Deals Offered by Global Merchants';
-    var description = 'Explore the best deals worldwide to save big';
+    var title = 'Discover - Exclusive Offers by Xberts Community';
+    var description = 'Discover the latest products and deals for a better life';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

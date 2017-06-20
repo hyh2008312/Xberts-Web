@@ -87,7 +87,7 @@ angular.module('xbertsApp')
         var deferred = $q.defer();
         if(!$rootScope.user.isAuth()) {
           self.isLoginedLoaded = false;
-          if(!self.isNotLoginedLoaded) {
+          if(!self.isNotLoginedLoaded && preload) {
             self.clear();
             self.isNotLoginedLoaded = true;
           }
@@ -101,7 +101,7 @@ angular.module('xbertsApp')
           }
         } else {
           self.isNotLoginedLoaded = false;
-          if(!self.isLoginedLoaded) {
+          if(!self.isLoginedLoaded && preload) {
             self.clear();
             self.isLoginedLoaded = true;
           }
