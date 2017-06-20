@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
-    '$mdSidenav','$timeout',
+    '$mdSidenav','$timeout','$state',
     function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
-              $timeout) {
+              $timeout,$state) {
     var dealsCtrl = this;
 
     dealsCtrl.categories = [];
@@ -22,6 +22,13 @@ angular.module('xbertsApp')
     dealsCtrl.switcher = [true, true, true, true];
     dealsCtrl.onSwitcherChange = function(value, index) {
       dealsCtrl.switcher[index] = !value;
+    };
+
+    dealsCtrl.post = function() {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
+      $state.go('application.protected.post');
     };
 
     dealsCtrl.tagOrder = [1, 1];
