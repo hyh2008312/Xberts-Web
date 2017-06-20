@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsMainList', function () {
+  .directive('dealsMainList', ['DealsService',function (DealsService) {
     return {
       restrict: 'E',
       scope: {
@@ -9,7 +9,9 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.deals = scope.deals || [];
 
+        scope.headImage = DealsService.headImage;
+
         scope.page = 0;
       }
     }
-  });
+  }]);
