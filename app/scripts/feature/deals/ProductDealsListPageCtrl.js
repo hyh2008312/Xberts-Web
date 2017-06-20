@@ -7,7 +7,10 @@ angular.module('xbertsApp')
               $timeout) {
     var dealsCtrl = this;
 
-    dealsCtrl.categories = categories;
+    dealsCtrl.categories = [];
+    angular.forEach(categories,function(e) {
+      dealsCtrl.categories.push(e);
+    });
     dealsCtrl.sort = sort;
     dealsCtrl.price = DealsService.getPrice();
     dealsCtrl.productsPaginator = productsPaginator;
@@ -58,8 +61,21 @@ angular.module('xbertsApp')
     };
 
     dealsCtrl.changeSort = function (sortId) {
-      DealsService.sortId = sortId;
-      dealsCtrl.productsPaginator.params.sortId = sortId || null;
+      dealsCtrl.sortId = sortId;
+      dealsCtrl.productsPaginator.params.min_discount = null;
+      dealsCtrl.productsPaginator.params.search = null;
+      dealsCtrl.productsPaginator.params.owner = null;
+      switch (sortId) {
+        case 'discount':
+          dealsCtrl.productsPaginator.params.min_discount = 0.7;
+              break;
+        case 'search':
+          dealsCtrl.productsPaginator.params.search = 'cool';
+              break;
+        case 'owner':
+          dealsCtrl.productsPaginator.params.owner = 0;
+          break;
+      }
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
     };

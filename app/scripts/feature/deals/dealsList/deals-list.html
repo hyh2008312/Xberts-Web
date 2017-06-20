@@ -1,14 +1,4 @@
 <div layout="row" layout-align="space-between start" layout-wrap class="xb-deals-list">
-<<<<<<< HEAD
-  <div ng-repeat="item in deals track by $index" flex >
-    <div class="xb-deals-list__img-bg">
-      <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
-        <img src="{{item.coverUrl}}" />
-        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
-          <div class="md-subhead">Quick Look</div>
-        </div>
-        <div class="xb-main-col__top-right">
-=======
   <div hide-xs hide-sm ng-repeat="value in [0,1,2,3]">
     <div ng-repeat="item in deals track by $index" ng-if="$index % 4 == value">
       <div class="xb-deals-list__img-bg">
@@ -23,10 +13,9 @@
             </span>
           </div>
           <div class="xb-deals-list__top-right">
->>>>>>> feature/deals
-          <span end-time-left end-time="item.promotionDeadline">
-            <span ng-show="timeValue>0">{{ timeUnit }}</span>
-          </span>
+            <span end-time-left end-time="item.promotionDeadline">
+              <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            </span>
           </div>
         </a>
       </div>
@@ -63,9 +52,6 @@
           </div>
           <div class="md-dark-secondary">Post <span am-time-ago='item.created'></span></div>
         </div>
-<<<<<<< HEAD
-      </a>
-=======
       </div>
       <form name="dealsProduct" ng-submit="submitForm(item)" clear-form-error ng-if="user.isStaff()" >
         <md-input-container class="md-block" md-no-float>
@@ -79,8 +65,6 @@
           <md-button class="md-primary" type="submit">Save</md-button>
         </div>
       </form>
-
->>>>>>> feature/deals
     </div>
   </div>
   <div hide-xs hide-gt-sm ng-repeat="value in [0,1,2]">
@@ -116,10 +100,6 @@
           </span>
         </div>
       </div>
-<<<<<<< HEAD
-      <div class="xb-deals-list__title" >
-        <a ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">{{item.title}}</a>
-=======
       <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null">
         <avatar-Img class="xb-pointer" flex="none" src="item.getDealsAvatar()" name="item.getDealsName()"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
@@ -129,7 +109,6 @@
             <credit-badge class="credit-badge" points="item.owner.badgePoint"></credit-badge></div>
           <div class="md-dark-secondary">Post <span am-time-ago='item.created'></span></div>
         </div>
->>>>>>> feature/deals
       </div>
       <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null">
         <avatar-Img flex="none" src="item.getDealsAvatar()" name="item.getDealsName()"  class="md-user-avatar">

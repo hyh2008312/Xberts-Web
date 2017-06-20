@@ -10,11 +10,11 @@ angular.module('xbertsApp')
       resolve: {
         productsPaginator: ['Paginator', 'DealsService','ProductDeals',
           function (Paginator, DealsService, ProductDeals) {
+
           var par = {
             name: 'deals_product_list',
             objClass: ProductDeals,
             params: {
-              sortId:DealsService.sortId,
               category: DealsService.categoryId,
               min_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value1: null,
               max_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value2: null,
@@ -22,6 +22,17 @@ angular.module('xbertsApp')
             },
             fetchFunction: DealsService.getDealsList
           };
+          switch (DealsService.sortId) {
+            case 'discount':
+              par.params.min_discount = 0.7;
+              break;
+            case 'search':
+              par.params.search = 'cool';
+              break;
+            case 'owner':
+              par.params.owner = 0;
+              break;
+          }
           return new Paginator(par).load();
         }],
         categories: ['ShareProductService',function(ShareProductService) {
@@ -42,6 +53,16 @@ angular.module('xbertsApp')
         }],
         productsPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
           return DealsService.getRecommendList($stateParams.dealsId);
+        }]
+      }
+    })
+    .state('application.protected.post', {
+      url: '/post/edit',
+      templateUrl: 'scripts/feature/profile/EditPost.html',
+      controller: 'EditDealsPostCtrl',
+      resolve: {
+        category: ['ShareProductService', function (ShareProductService) {
+          return ShareProductService.getCategoryList();
         }]
       }
     });

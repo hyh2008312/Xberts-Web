@@ -702,8 +702,11 @@
   &__margin-left-1{
     margin-left: 32px !important;
     @include xb-xs-screen{
-      margin-left: 8px!important;
+      margin-left: 0!important;
     }
+  }
+  &__fixed-width{
+    max-width: 270px !important;
   }
   .xb-detail-cards{
     margin-left: 16px;

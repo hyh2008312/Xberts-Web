@@ -1,14 +1,17 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdMedia',
-    function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService, category,$mdMedia) {
+  .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
+    'localStorageService','category',
+    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category) {
 
-    $scope.product = editPost;
+    $scope.product = {};
+    $scope.product.imageGroup = [];
+    $scope.product.salePrice = {};
+    $scope.product.originalPrice = {};
     $scope.categoryoptions = category;
 
-    $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
+    $scope.imgLoaded = false;
     $scope.showMask = false;
     $scope.onShowMask = function() {
       $scope.showMask = !$scope.showMask;
@@ -65,12 +68,12 @@ angular.module('xbertsApp')
         originalPrice: {
           amount: product.originalPrice.amount
         },
-        category: product.category
+        category:product.category
       };
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
-      ShareProductService.update(_product).then(function () {
+      ShareProductService.create(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         var name = 'posts_' + $rootScope.user.getUserId();
         // clear post list
@@ -78,20 +81,7 @@ angular.module('xbertsApp')
         localStorageService.remove(name + '_items');
         localStorageService.remove(name + '_next');
         localStorageService.remove(name + '_count');
-        if($mdMedia('xs')) {
-          $state.go('application.protected.posts', {
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
-        } else {
-          $state.go('application.expert', {
-            tab:'posts',
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
-        }
+        $state.go('application.productDeals');
       }, function () {
         // tips
         $scope.$emit('backdropOff', 'project get error');
@@ -100,12 +90,7 @@ angular.module('xbertsApp')
     };
 
     $scope.reset = function() {
-      $state.go('application.expert', {
-        tab:'posts',
-        expertId: $rootScope.user.getUserId()
-      },{
-        reload:true
-      });
+      $state.go('application.productDeals');
     };
 
   }]);

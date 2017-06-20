@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         scope.selectedSortId = scope.sortId;
 
         scope.selectedSort = function(selectedSort) {
-          scope.selectedSortId = selectedSort.id;
+          scope.selectedSortId = selectedSort.value;
         }
       }
     }

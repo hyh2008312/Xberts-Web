@@ -32,8 +32,8 @@ angular.module('xbertsApp')
           return ShareProductService.getDetail($stateParams.reviewId);
         }],
         recommendList: ['ShareProductService','$stateParams',function(ShareProductService, $stateParams) {
-            return ShareProductService.getRecommendList($stateParams.reviewId);
-          }]
+          return ShareProductService.getRecommendList($stateParams.reviewId);
+        }]
       }
     });
   }]);

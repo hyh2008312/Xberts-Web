@@ -10,8 +10,6 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.disabled = false;
 
-        console.log(scope.data.gender)
-
         var oldData = angular.copy(scope.data, {});
 
         scope.saveChange = function () {

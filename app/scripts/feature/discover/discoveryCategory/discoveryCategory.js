@@ -10,9 +10,9 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/discover/discoveryCategory/discovery-category.html',
       link: function (scope, element, attrs, ctrls) {
         scope.categories = scope.categories || [];
-        if(scope.categories[0].name != 'All') {
+        if(scope.categories[0].name != 'All Categories') {
           scope.categories.unshift({
-            name:'All'
+            name:'All Categories'
           });
         }
 

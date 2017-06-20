@@ -1,13 +1,8 @@
 <div class="xb-main-deals" flex="noshrink" layout="row" layout-align="start start">
   <div ng-repeat="item in deals track by $index" flex="none">
     <div class="xb-deals-list__img-bg">
-<<<<<<< HEAD
-      <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
-        <img src="{{item.coverUrl}}" />
-=======
-      <div layout="column" layout-align="start center">
+      <a layout="column" layout-align="start center"  ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
         <img src="{{item.getImageUrl()}}" title="{{item.title}}"/>
->>>>>>> feature/deals
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <div class="md-subhead">Quick Look</div>
         </div>

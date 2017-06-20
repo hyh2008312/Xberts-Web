@@ -12,7 +12,7 @@
         </md-input-container>
         <md-input-container class="md-block xb-edit-post__fill" md-no-float>
           <label class="md-dark-secondary">Recommended reason</label>
-          <textarea required ng-model="product.description" name="description" placeholder=""/></md-input-container>
+          <textarea required ng-model="product.description" name="description" placeholder=""></textarea>
           <div ng-messages="productForm.description.$error">
             <div ng-message="required">This is required!</div>
           </div>
@@ -28,9 +28,9 @@
             <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
           </div>
         </div>
-        <md-input-container class="md-block xb-edit-profile__margin-bottom">
+        <md-input-container class="md-block xb-edit-post__fixed-width xb-edit-profile__margin-bottom" >
           <label>Category</label>
-          <md-select ng-model="product.category" required name="category" >
+          <md-select ng-model="product.category" name="category" >
             <md-option ng-repeat="option in categoryoptions" ng-value="option" >
               {{option.name}}
             </md-option>
@@ -39,13 +39,13 @@
             <div ng-message="required">Please select category.</div>
           </div>
         </md-input-container>
-        <div layout="row" layout-align="start center">
+        <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start start">
           <md-input-container class="md-block" md-no-float>
             <label class="md-dark-secondary">Actual sale price(USD)</label>
             <input ng-model="product.salePrice.amount" name="salePrice" placeholder=""/>
           </md-input-container>
           <md-input-container class="md-block xb-edit-post__margin-left-1" md-no-float>
-            <label class="md-dark-secondary">Actual sale price(USD)</label>
+            <label class="md-dark-secondary">Original price(USD)</label>
             <input ng-model="product.originalPrice.amount" name="originalPrice" placeholder=""/>
           </md-input-container>
         </div>
@@ -69,11 +69,12 @@
           Helpful Posting Tips
         </div>
         <div class="xb-detail-cards__padding-2 background-whitem">
-          <div class="md-margin-bottom-2">Please follow these tips to increase the chance of your Posts being featured.</div>
+          <div class="md-margin-bottom-2">Please follow these tips to increase the chance of your posts being featured.</div>
           <ul class="review-ul">
-            <li>Selected reviewer can get {{trial.review.offPercentage() + '%'}} OFF discount in exchange for an honest review</li>
-            <li>Become a Key Opinion Leader and share your experience with our community</li>
-            <li>All selected applicant must submit a product review to Xberts before deadline</li>
+            <li>The product you share should be available to ship</li>
+            <li>Available product rating should be above 3.5 stars</li>
+            <li>Upload a clear picture and provide more details</li>
+            <li>Make sure the product has not been posted</li>
           </ul>
         </div>
       </div>
