@@ -18,7 +18,7 @@
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
     <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex hide-xs>
-      <span class="md-dark-secondary">
+      <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
         {{product.originalPrice.amount | currency}}
       </span>
       <span class="md-headline xb-bold">
@@ -32,7 +32,7 @@
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
         <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
-          <span class="md-dark-secondary">
+          <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{product.originalPrice.amount | currency}}
           </span>
           <span class="md-headline xb-bold">
@@ -47,7 +47,7 @@
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
     <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex>
-      <span class="md-dark-secondary">
+      <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
         {{product.originalPrice.amount | currency}}
       </span>
       <span class="md-headline xb-bold">
