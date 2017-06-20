@@ -61,8 +61,9 @@
      || state.current.name == 'application.protected.follow'
      || state.current.name == 'application.protected.questions'
      || state.current.name == 'application.protected.answers'">My Profile</h2>
-    <h2 ng-if="state.current.name == 'application.protected.editProfile'
-     || state.current.name == 'application.protected.post'">Edit Profile</h2>
+    <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
+    <h2 ng-if="state.current.name == 'application.protected.editPost'
+     || state.current.name == 'application.protected.post'">Edit Post</h2>
     <h2 ng-if="state.current.name == 'application.about'">About us</h2>
     <h2 ng-if="state.current.name == 'application.protected.invite'">Invite Friends</h2>
     <h2 ng-if="state.current.name == 'application.personalCredit'">My Points</h2>
