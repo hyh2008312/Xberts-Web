@@ -25,7 +25,7 @@ angular.module('xbertsApp')
                 name: 'ask_questions_list_amount',
                 objClass: AskModel,
                 params: {
-                  ordering: 'answer_amount',
+                  ordering: 'answer_amount,-new_answer_arrived',
                   page_size: 12
                 },
                 fetchFunction: AskService.getList
