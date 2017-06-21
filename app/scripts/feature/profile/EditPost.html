@@ -26,7 +26,7 @@
             <div ng-message="required">This is required!</div>
           </div>
         </md-input-container>
-        <div class="md-caption md-dark-secondary xb-bold">Upload a product picture *</div>
+        <div class="md-caption md-dark-secondary xb-bold">Upload a Product Picture *</div>
         <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
              ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
@@ -50,11 +50,11 @@
         </md-input-container>
         <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start start">
           <md-input-container class="md-block" md-no-float>
-            <label class="md-dark-secondary">Actual sale price (USD)</label>
+            <label class="md-dark-secondary">Actual Sale Price (USD)</label>
             <input ng-model="product.salePrice.amount" name="salePrice" placeholder=""/>
           </md-input-container>
           <md-input-container class="md-block xb-edit-post__margin-left-1" md-no-float>
-            <label class="md-dark-secondary">Original price (USD)</label>
+            <label class="md-dark-secondary">Original Price (USD)</label>
             <input ng-model="product.originalPrice.amount" name="originalPrice" placeholder=""/>
           </md-input-container>
         </div>
