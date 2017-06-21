@@ -11,13 +11,16 @@
   <md-card-title class="product__headline">
     <span class="md-headline">{{product.title}}</span>
   </md-card-title>
-  <span class="md-body-1 product__subtitle">{{product.name}}</span>
+  <span class="md-body-1 product__subtitle" ng-if="product.name">{{product.name}}</span>
+  <div class="product__tags" layout="row" layout-align="start center">
+    <span ng-repeat="value in product.tags">{{value}}</span>
+  </div>
   <md-card-content class="product__content">
     <pre class="md-body-1" ng-if="product.owner != null" ng-bind-html="product.description"></pre>
     <p class="md-body-1" ng-if="product.owner == null" ng-bind-html="product.description"></p>
   </md-card-content>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
-    <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex hide-xs>
+    <div class="xb-deals-list__price" layout="row" layout-align="start center" flex hide-xs>
       <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
         {{product.originalPrice.amount | currency}}
       </span>
@@ -25,7 +28,7 @@
         {{product.salePrice.amount | currency}}
       </span>
     </div>
-    <div class="md-margin-right-2">{{product.getDomain()}}</div>
+    <div class="md-margin-right-2" hide-xs>{{product.getDomain()}}</div>
     <md-button hide-xs class="md-primary md-raised" ng-click="product.buyNow('deals-item');"
                target="_blank">Get It Now</md-button>
 
@@ -46,7 +49,7 @@
     </div>
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
-    <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" flex>
+    <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
       <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
         {{product.originalPrice.amount | currency}}
       </span>

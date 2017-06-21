@@ -8,6 +8,9 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/discover/shareProductDetailItem/share-product-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.product.tags = scope.product.tags.split(',');
+        console.log(scope.product.tags)
+
         // FAB Speed Dial Component
         // Set the component to the normal state
         scope.hidden = false;

@@ -577,8 +577,8 @@
     margin-right: 16px;
     width: 72px;
     height: 72px;
-    border-radius: 2px;
     position: relative;
+    border-radius: 2px;
     overflow: hidden;
     >div{
       position: absolute;
@@ -593,8 +593,8 @@
         @include transform(translate(-50%, -50%));
         min-width: 100%;
         min-height: 100%;
-        max-width: 200%;
-        max-height: 200%;
+        max-width: 120%;
+        max-height: 120%;
       }
     }
   }
@@ -619,6 +619,13 @@
   &:last-child{
     &:after{
       display: none;
+    }
+  }
+  @include xb-xs-screen{
+    padding: 16px 0 16px 8px;
+    &:after{
+      left: 8px;
+      width: calc(100% - 16px);
     }
   }
   &__posts-top{

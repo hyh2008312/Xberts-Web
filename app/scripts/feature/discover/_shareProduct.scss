@@ -173,6 +173,9 @@ $PrimaryINDIGO: #3f51b5;
   }
   &__content{
     padding: 0 16px 8px;
+    @include xb-xs-screen{
+      padding: 0 8px 8px;
+    }
     > p{
       margin: -8px 0;
     }
@@ -182,7 +185,7 @@ $PrimaryINDIGO: #3f51b5;
       color: rgba(0,0,0,.87);
       border: none;
       background-color: transparent;
-      font: initial;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       white-space: normal;
       word-break: normal;
     }
@@ -190,6 +193,9 @@ $PrimaryINDIGO: #3f51b5;
   &__action{
     margin: 0;
     padding: 8px 16px 16px;
+    @include xb-xs-screen{
+      padding: 0;
+    }
     .md-subhead{
       color: $PrimaryINDIGO;
       @include media();
@@ -209,6 +215,9 @@ $PrimaryINDIGO: #3f51b5;
     margin: 0 16px;
     padding: 8px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
+    @include xb-xs-screen{
+      margin: 0 8px;
+    }
     .md-icon-button{
       padding: 0 !important;
       margin: 0 !important;
@@ -231,6 +240,20 @@ $PrimaryINDIGO: #3f51b5;
     background-color: #f9f9f9;
     .md-padding{
       padding: 0 16px;
+    }
+  }
+  &__tags{
+    padding: 0 16px 16px;
+    @include xb-xs-screen{
+      padding: 0 8px 16px;
+    }
+    span{
+      padding: 0 12px;
+      background-color: rgba(0,0,0,.12);
+      border-radius: 2px;
+      margin-right: 12px;
+      line-height: 24px;
+      display: block;
     }
   }
 }
@@ -376,10 +399,8 @@ $PrimaryINDIGO: #3f51b5;
 .product-detail{
   @include resetBorder();
   margin-top: 36px;
-  margin-bottom: 32px;
   @include xb-xs-screen{
     margin-top: 0;
-    margin-bottom: 16px;
   }
   $product: product;
   .#{$product}__video{
@@ -389,10 +410,16 @@ $PrimaryINDIGO: #3f51b5;
     padding: 0;
   }
   .#{$product}__headline{
-    padding: 24px 16px 8px;
+    padding: 24px 16px 4px;
+    @include xb-xs-screen{
+      padding: 16px 8px 4px;
+    }
   }
   .#{$product}__subtitle{
-    padding: 0 16px 16px;
+    padding: 0 16px 12px;
+    @include xb-xs-screen{
+      padding: 0 8px 8px;
+    }
   }
   .#{$product}__avatar{
     padding: 0;
