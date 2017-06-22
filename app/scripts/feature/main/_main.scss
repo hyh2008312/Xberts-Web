@@ -762,6 +762,20 @@
     height: 20px;
     @include ellipsisText();
   }
+  &__img-bg{
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    >a{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      overflow: hidden;
+    }
+  }
 }
 .xb-main-ask-list{
   @include xb-xs-screen{
