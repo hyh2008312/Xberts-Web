@@ -37,6 +37,8 @@ angular.module('xbertsApp')
         $rootScope.$on('uploadCancel', function (event, canceledFile) {
           if (canceledFile === file) {
             upload.abort();
+          } else {
+            upload.pause();
           }
         });
 

@@ -9,7 +9,6 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
 
         scope.product.tags = scope.product.tags.split(',');
-        console.log(scope.product.tags)
 
         // FAB Speed Dial Component
         // Set the component to the normal state

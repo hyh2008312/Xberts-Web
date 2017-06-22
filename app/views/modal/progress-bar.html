@@ -2,8 +2,8 @@
   <h3 class="dialog-header margin-none">Uploading {{fileName}}</h3>
 </div>
 <div class="modal-body">
-  <uib-progressbar value="progress" class="progress-striped active margin-bottom-none">{{progress}}%</uib-progressbar>
+  <md-progress-linear ng-if="show" md-mode="determinate" value="{{progress}}"></md-progress-linear>
 </div>
-<div class="modal-footer">
-  <input type="button" value="Cancel" class="btn btn-default btn-fixed-sm" ng-click="$dismiss()">
+<div layout="row" layout-align="end start">
+  <md-button class="md-dark-secondary" ng-click="cancel()">Cancel</md-button>
 </div>

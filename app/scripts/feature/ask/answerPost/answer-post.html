@@ -2,8 +2,10 @@
   <div class="md-subhead xb-question-detail__dialog-title" hide-xs>Answer</div>
   <div class="xb-edit-post" layout="row" layout-align="start start">
     <form name="answerForm" novalidate ng-if="formToggle" clear-form-error flex>
+      <div></div>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
-                  on-paste="paste(evt)" ng-model="answer.description" on-change="onChange(contents)"></summernote>
+                  on-paste="paste(evt)" ng-model="answer.description" on-focus="onFocus(evt)" on-keyup="setPreviousRange(evt)"
+                  on-change="onChange(contents)"></summernote>
       <!--<div layout="row" layout-align="space-between center">Minimum 150 characters required<span>{{detailCharacterCount}}</span></div>-->
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>
@@ -12,7 +14,8 @@
     </form>
     <form name="answerForm" novalidate ng-if="!formToggle" clear-form-error flex>
       <summernote config="options" on-image-upload="imageUpload(files)" editor="editor" editable="editable"
-                  on-paste="paste(evt)" ng-model="answer.description" on-change="onChange(contents)"></summernote>
+                  on-paste="paste(evt)" ng-model="answer.description" on-focus="onFocus(evt)" on-keyup="setPreviousRange(evt)"
+                  on-change="onChange(contents)"></summernote>
       <!--<div layout="row" layout-align="space-between center">Minimum 150 characters required<span>{{detailCharacterCount}}</span></div>-->
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>

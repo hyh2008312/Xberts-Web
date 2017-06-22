@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UploadService', ['$q', '$rootScope', 'UploadAws', 'FileUtil', 'Asset', 'ProgressBarModal',
-    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal) {
+  .service('UploadService', ['$q', '$rootScope', 'UploadAws', 'FileUtil', 'Asset', 'ProgressBarModal','$mdDialog',
+    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal,$mdDialog) {
       this.uploadFile = function (file, domain, scope) {
+
         scope.progress = 0;
-        var progressModel = ProgressBarModal.open({
-          scope: scope
-        }, file.name);
+        var progressModel = ProgressBarModal;
 
         var type;
         if (FileUtil.isVideo(file)) {
@@ -36,7 +35,9 @@ angular.module('xbertsApp')
             return $q.reject(error);
           });
 
-        progressModel.result.catch(function () {
+        progressModel.open({
+          scope: scope
+        }, file.name).catch(function() {
           $rootScope.$emit('uploadCancel', file);
         });
 

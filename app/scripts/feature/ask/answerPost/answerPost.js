@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('answerPost',['$rootScope','UploadService','AskService','growl','$filter',
-    function ($rootScope,UploadService, AskService,growl,$filter) {
+  .directive('answerPost',['$rootScope','UploadService','AskService','growl','$filter','$timeout',
+    function ($rootScope,UploadService, AskService,growl,$filter, $timeout) {
     return {
       restrict: 'E',
       scope: {
@@ -15,10 +15,49 @@ angular.module('xbertsApp')
         scope.detailCharacterCount = 0;
         scope.formToggle = true;
         scope.disabled = false;
+
+        scope.previousRange = null;
+
+        var getCurrentRange = function () {
+          var sel;
+          if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+              return sel.getRangeAt(0);
+            }
+          } else if (document.selection && document.selection.createRange) {
+            return document.selection.createRange();
+          }
+          return null;
+        };
+
+        var setCurrentRange = function (range) {
+          var sel;
+          if (range) {
+            if (window.getSelection) {
+              sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            } else if (document.selection && range.select) {
+              //document.select is a legacy problem.
+              range.select();
+            }
+          }
+        };
+
+        scope.setPreviousRange = function (evt) {
+          scope.previousRange = getCurrentRange();
+        };
+
+        scope.onFocus = function (evt) {
+          evt.target.addEventListener('mouseup', scope.setPreviousRange);
+        };
+
         scope.paste = function (e) {
           var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
 
           e.preventDefault();
+          scope.setPreviousRange();
 
           var paragraphs = bufferText.split('\n');
           for (var i = 0; i < paragraphs.length; i++) {
@@ -38,6 +77,7 @@ angular.module('xbertsApp')
         };
 
         var insertImage = function (src, id, url) {
+          setCurrentRange(scope.previousRange);
 
           src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
           id = id || 1;
@@ -58,6 +98,10 @@ angular.module('xbertsApp')
           img.onerror = function () {
             this.setAttribute('class', '');
           };
+
+          $timeout(function () {
+            scope.setPreviousRange();
+          }, 100);
 
         };
 
