@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdDialog',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,$mdDialog) {
+    'localStorageService','category','$mdDialog','$mdToast',
+    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,$mdDialog,$mdToast) {
 
     $scope.product = {};
     $scope.product.imageGroup = [];
@@ -82,6 +82,12 @@ angular.module('xbertsApp')
         localStorageService.remove(name + '_items');
         localStorageService.remove(name + '_next');
         localStorageService.remove(name + '_count');
+        $mdToast.show({
+          hideDelay: 3000,
+          position: 'top',
+          toastClass:'xb-deals-dialog__toast',
+          templateUrl: 'scripts/feature/deals/editPost/post-toast.html'
+        });
         $state.go('application.productDeals');
       }, function () {
         // tips

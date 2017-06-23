@@ -481,7 +481,7 @@
   }
 }
 .xb-deals-title{
-  padding: 60px 0 40px;
+  padding: 60px 0 0;
   @include xb-xs-screen{
     padding: 24px 0 0;
   }
@@ -732,6 +732,21 @@
     margin-top: 16px;
     @include xb-xs-screen{
       margin-top: 0;
+    }
+  }
+}
+.xb-deals-dialog{
+  &__toast{
+    height: 112px;
+    width: 100%;
+    padding: 0;
+    .md-toast-content{
+      margin: 56px 0;
+      padding: 0 16px;
+      @include xb-xs-screen{
+        margin: 36px 0;
+        padding: 8px;
+      }
     }
   }
 }
