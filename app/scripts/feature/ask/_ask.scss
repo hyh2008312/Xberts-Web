@@ -466,6 +466,7 @@
   overflow: hidden;
   >.md-button{
     height: 40px;
+    text-align: center;
     >.tab-triangle{
       position: absolute;
       left: 50%;
@@ -474,7 +475,6 @@
       @include transform(translateX(-50%));
     }
     img{
-      width: 16px;
       margin-left: 8px;
       height: auto;
       display: block;
@@ -482,6 +482,12 @@
   }
   .active{
     color: $PrimaryINDIGO;
+  }
+  &__img-1{
+    width: 20px;
+  }
+  &__img-2{
+    width: 16px;
   }
 }
 .xb-answer-img-bg{
