@@ -49,12 +49,15 @@
       }
       div{
         position: absolute;
-        right: 15px;
+        right: 15%;
         top: 1px;
         width: 6px;
         height: 6px;
         border-radius: 50%;
         background-color: #ff4081;
+        @include xb-sm-screen{
+          right: 10%;
+        }
       }
     }
   }

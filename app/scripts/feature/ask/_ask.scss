@@ -6,6 +6,33 @@
       padding: 0 8px;
     }
   }
+  &__tips{
+    width: 364px;
+    margin-left: 16px;
+    margin-top: 16px;
+    position: relative;
+    background-color: #fff;
+    padding: 0 16px 16px;
+    overflow: hidden;
+    @include resetBorder();
+    .md-subhead{
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+    i{
+      width: 96px;
+      height: 96px;
+      line-height: 96px;
+      font-size: 96px;
+      position: absolute;
+      right: -8px;
+      top:-13px;
+      color: rgba(0,0,0,.12);
+    }
+    a{
+      color: rgba(0,0,0,.87);
+    }
+  }
 }
 .xb-ask-title{
   .xb-section__title{
@@ -219,6 +246,20 @@
   }
   &__color{
     color: #3f51b5;
+  }
+  &__best-answer{
+    margin-top: 16px;
+    @include xb-xs-screen{
+      margin-top: 8px;
+    }
+    i{
+      color: #ff9800;
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      line-height: 24px;
+      text-align: center;
+    }
   }
   &__menu-bg{
     position: relative;
@@ -434,6 +475,10 @@
       bottom: 0;
       @include triangleBottom(10px, 10px, #EEE);
       @include transform(translateX(-50%));
+    }
+    >img{
+      width: 16px;
+      margin-left: 8px;
     }
   }
   .active{
