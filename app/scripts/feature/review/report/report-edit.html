@@ -1,8 +1,21 @@
 <div class="container md-section md-padding" ng-show="!finished">
-  <div class="md-section__title">
-    <h2 class="md-headline">{{ applicant.review.title }}</h2>
-    <h3 class="md-subhead md-dark-secondary">Congratulations on being selected as a Review Pioneer of Xberts. To share
-      your experience with this product, please edit your review here!</h3>
+  <div class="xb-ask-title">
+    <div class="xb-section__title">
+      <h2 class="md-headline">{{ applicant.review.title }}</h2>
+      <h3 class="md-body-1">
+        Congratulations on being selected as a Review Pioneer of Xberts. To share
+        your experience with this product, please edit your review here!
+      </h3>
+    </div>
+  </div>
+  <div>
+    <img class="xb-review-report__image" src="https://xberts.imgix.net/static/logo/e3092ed0-7337-4665-b636-0bc19e87df3f.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=79f4f5762b81cacb9768a5db68555bee" />
+    <div class="md-subhead">Submit a good review to earn more benefits for you:</div>
+    <ul class="review-ul">
+      <li>Earn <span class="xb-trial-reviewer__star xb-bold">8</span>
+        <a class="xb-trial-reviewer__star text-underline" ui-sref="application.creditMain">points</a> if your review gets featured on our page</li>
+      <li>Have the privilege to be selected for other trials</li>
+    </ul>
   </div>
   <div class="md-section__content md-relative">
     <form name="reportForm" ng-submit="reportFormSubmit()" class="pr">

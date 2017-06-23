@@ -1,9 +1,13 @@
 <div class="container md-section md-padding" ng-if="!apply.finished">
-  <div class="md-section__title">
-    <h2 class="md-headline">{{ apply.review.title }}</h2>
-    <h3 class="md-subhead md-dark-secondary">
-      Please answer the following questions to apply for this trial. All your information will only be used for applicant selection and will be kept strictly confidential.
-    </h3>
+  <div class="xb-ask-title">
+    <div class="xb-section__title">
+      <h2 class="md-headline">{{ apply.review.title }}</h2>
+      <h3 class="md-body-1">
+        Please answer the following questions to apply for this trial. All your information will only be used for applicant selection and will be kept strictly confidential.
+      </h3>
+      <div class="md-body-1">Each applicant can earn <span class="xb-trial-reviewer__star xb-bold">3</span>
+        <a class="xb-trial-reviewer__star text-underline" ui-sref="application.creditMain">points</a>!</div>
+    </div>
   </div>
   <div class="md-section__content  md-relative">
     <form name="applierForm" ng-cloak novalidate>
