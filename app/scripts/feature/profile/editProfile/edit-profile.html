@@ -18,10 +18,13 @@
   </div>
   <div class="md-margin-bottom-2" layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">
     <div class="xb-edit-profile__title md-margin-right-4">Gender</div>
-    <md-radio-group ng-model="data.gender" required layout="row" layout-xs="column">
+    <md-radio-group ng-model="data.gender" required layout="row" layout-xs="column" name="gender">
       <md-radio-button value="M">Male</md-radio-button>
       <md-radio-button value="F">Female</md-radio-button>
       <md-radio-button value="I">Undisclosed</md-radio-button>
+      <div ng-messages="gender.country.$error">
+        <div ng-message="required">Please select your gender.</div>
+      </div>
     </md-radio-group>
   </div>
   <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start stretch">

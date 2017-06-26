@@ -9,6 +9,9 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/profile/editProfile/edit-profile.html',
       link: function (scope, element, attrs, ctrls) {
         scope.disabled = false;
+        if(scope.data.gender == '') {
+          scope.data.gender = 'I';
+        }
 
         var oldData = angular.copy(scope.data, {});
 
