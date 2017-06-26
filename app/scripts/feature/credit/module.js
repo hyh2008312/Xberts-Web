@@ -33,7 +33,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.protected.personalCredit', {
-      url: '/myPoints/:id',
+      url: '/myPoint/:id',
       templateUrl: 'scripts/feature/credit/PersonalCredit.html',
       controller: 'PersonalCreditCtrl',
       resolve: {
