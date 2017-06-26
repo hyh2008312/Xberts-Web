@@ -206,7 +206,11 @@
   }
   &__fixed-bottom{
     @include xb-xs-screen{
-
+      .md-resize-wrapper{
+        height: 20px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
       position: fixed;
       left: 0;
       bottom: 0;
@@ -220,7 +224,7 @@
         margin: 0;
         padding: 0;
         textarea{
-          margin-top: 20px;
+          padding: 0;
           border-bottom: none;
         }
       }
