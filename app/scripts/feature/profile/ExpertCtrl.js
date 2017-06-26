@@ -81,10 +81,10 @@ angular.module('xbertsApp')
         name: 'posts_' + $scope.expert.userId,
         objClass: ShareProduct,
         params: {
-          owner: $scope.expert.userId,
+          id: $scope.expert.userId,
           page_size:12
         },
-        fetchFunction: ShareProductService.getList
+        fetchFunction: ExpertService.getPostList
       };
       $scope.postsProductPaginator = new Paginator(par);
 

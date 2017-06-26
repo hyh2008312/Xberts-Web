@@ -148,7 +148,7 @@ angular
         reloadOnSearch: false,
         resolve: {
           expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
-            return ExpertService.getExpert($stateParams.expertId);
+            return ExpertService.getPostList({id:$stateParams.expertId});
           }]
         }
       })

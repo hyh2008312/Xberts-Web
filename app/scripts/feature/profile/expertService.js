@@ -6,10 +6,16 @@ angular.module('xbertsApp')
     var ExpertResource = $resource(API_BASE_URL + '/xberts/experts/:id/');
     var ExpertAchievementResource = $resource(API_BASE_URL + '/xberts/experts/:id/achievement/');
     var ExpertFollowingQuestionsResource = $resource(API_BASE_URL + '/xberts/experts/:id/followed_questions/');
+    var ExpertPostResource = $resource(API_BASE_URL + '/xberts/experts/:id/products/',{id: '@id'});
 
     this.getExpert = function (id) {
       return ExpertResource.get({id: id}).$promise;
     };
+
+    this.getPostList = function (params) {
+      return ExpertPostResource.get(params).$promise.then(ShareProduct.buildPageList);
+    };
+
     this.getInviteList = function (params) {
       return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/invitees/').get(params).$promise.then(ShareProduct.buildPageList);
     };

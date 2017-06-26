@@ -3,9 +3,9 @@
 angular
   .module('xbertsApp')
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
-    'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService',
+    'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService','ExchangeRateService',
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService,
-              SocialShare, $location, OAuthToken, Configuration, AuthService) {
+              SocialShare, $location, OAuthToken, Configuration, AuthService,ExchangeRateService) {
 
       // to checkout out if token is expire
       $rootScope.$on('Keepalive', function() {
@@ -114,6 +114,8 @@ angular
         }
       };
       SocialShare.createSocialShare($location.absUrl());
+
+      ExchangeRateService.getRate();
 
       localStorageService.clearAll();
       // Capture potential campaign/source query param
