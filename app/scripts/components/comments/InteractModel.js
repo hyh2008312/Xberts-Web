@@ -24,7 +24,7 @@ function InteractModel() {
       this.downvoteAmount -= 1;
     },
     increaseMessageAmount:function(){
-      if(this.feedback_amount != undefined) this.feedback_amount -= 1;
+      if(this.feedback_amount != undefined) this.feedback_amount += 1;
       if(this.feedbackAmount != undefined) this.feedbackAmount += 1;
     }
   };
