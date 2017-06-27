@@ -10,6 +10,7 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
+      reloadOnSearch: false,
       resolve: {
         productsPaginator: ['Paginator', 'DealsService','ProductDeals','$stateParams',
           function (Paginator, DealsService, ProductDeals,$stateParams) {
