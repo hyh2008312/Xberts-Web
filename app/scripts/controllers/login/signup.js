@@ -8,6 +8,34 @@ angular.module('xbertsApp')
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.loginError = {};
 
+      $scope.linkedinLogin = function() {
+        $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView('/linkedinlogin');
+
+        AuthService.linkedinLogin();
+      };
+
+      $scope.facebookLogin = function(loginError) {
+        $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView('/facebooklogin');
+
+        AuthService.facebookLogin()
+          .then(function (response) {
+            AuthService.loginRedirect();
+          })
+          .catch(function (response) {
+            $scope.$emit('backdropOff', 'error');
+
+            if (response === 'missing_permission') {
+              loginError.facebookPermissionError = true;
+            } else {
+              loginError.facebookError = true;
+            }
+          });
+      };
+
       $scope.signup = function() {
         if (!$scope.signupForm.$valid) {
           return;
