@@ -11,7 +11,7 @@ angular.module('xbertsApp')
         scope.points = scope.points||{};
         scope.pointsTotal = scope.total - parseInt(scope.points.consumed);
         scope.myPointsList = {
-          'Best Answer': 0,
+          'Top Answer': 0,
           'Product Submission': parseInt(scope.points.postProductFeatured),
           'Trial Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
           'Profile Completeness': parseInt(scope.points.hasAvatar),
