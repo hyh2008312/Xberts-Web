@@ -42,7 +42,7 @@ angular.module('xbertsApp')
             reload:true
           });
         }
-      }
+      };
 
       $scope.inviteObj = angular.copy(InviteService, {});
 

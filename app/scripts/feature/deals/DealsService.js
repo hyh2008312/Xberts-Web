@@ -7,7 +7,6 @@ angular.module('xbertsApp')
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'});
 
     this.categoryId = null;
-    this.sortId = '';
     this.priceId = null;
     this.discountId = null;
 
@@ -39,13 +38,13 @@ angular.module('xbertsApp')
 
     this.getSort = function() {
       return [{
-        value: '',
+        value: 'everything',
         name: 'Everything'
       },{
         value: 'discount',
         name: 'Deep Discount'
       },{
-        value: "search",
+        value: "cool",
         name: 'Cool Inventions'
       },{
         value: 'editor',

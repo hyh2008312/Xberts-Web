@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
-    '$mdSidenav','$timeout','$state',
+    '$mdSidenav','$timeout','$state','DealsFactory','$scope',
     function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
-              $timeout,$state) {
+              $timeout,$state,DealsFactory,$scope) {
     var dealsCtrl = this;
 
     dealsCtrl.categories = [];
@@ -15,14 +15,11 @@ angular.module('xbertsApp')
     dealsCtrl.price = DealsService.getPrice();
     dealsCtrl.productsPaginator = productsPaginator;
     dealsCtrl.categoryId = ShareProductService.categoryId;
-    dealsCtrl.sortId = DealsService.sortId;
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
 
-    dealsCtrl.switcher = [true, true, true, true];
-    dealsCtrl.onSwitcherChange = function(value, index) {
-      dealsCtrl.switcher[index] = !value;
-    };
+    $scope.selectedIndex = 0;
+    DealsFactory.updateActiveTabOnSearch($scope,sort);
 
     dealsCtrl.post = function() {
       if(!$rootScope.user.authRequired()) {
@@ -73,15 +70,22 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.params.search = null;
       switch (sortId) {
         case 'discount':
+          $scope.selectedIndex = 1;
           dealsCtrl.productsPaginator.params.min_discount = 0.5;
               break;
-        case 'search':
+        case 'cool':
+          $scope.selectedIndex = 2;
           dealsCtrl.productsPaginator.params.search = 'cool';
               break;
         case 'editor':
+          $scope.selectedIndex = 3;
           dealsCtrl.productsPaginator.params.search = 'editor';
-          break;
+              break;
+        default:
+          $scope.selectedIndex = 0;
+              break;
       }
+      DealsFactory.updateUrl($scope,sort);
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
     };
@@ -108,33 +112,12 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.load();
     };
 
-    dealsCtrl.toggleLeft = buildDelayedToggler('filterLeft');
-
-    function debounce(func, wait, context) {
-      var timer;
-
-      return function debounced() {
-        var context = dealsCtrl,
-          args = Array.prototype.slice.call(arguments);
-        $timeout.cancel(timer);
-        timer = $timeout(function() {
-          timer = undefined;
-          func.apply(context, args);
-        }, wait || 10);
-      };
-    }
-
-    function buildDelayedToggler(navID) {
-      return debounce(function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID).toggle();
-      }, 200);
-    }
+    // mobile sidenav toggle from left
+    dealsCtrl.toggleLeft = DealsFactory.buildDelayedToggler('filterLeft', dealsCtrl);
 
     dealsCtrl.close = function () {
       // Component lookup should always be available since we are not using `ng-if`
       $mdSidenav('filterLeft').close();
-
     };
 
     var title = 'Discover - Exclusive Offers by Xberts Community';

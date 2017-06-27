@@ -115,7 +115,7 @@ angular
       };
       SocialShare.createSocialShare($location.absUrl());
 
-      ExchangeRateService.getRate();
+      // ExchangeRateService.getRate();
 
       localStorageService.clearAll();
       // Capture potential campaign/source query param

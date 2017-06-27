@@ -4,12 +4,15 @@ angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('application.productDeals', {
-      url: '/discover',
+      url: '/discover?tab',
+      params:{
+        tab:'everything'
+      },
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
       resolve: {
-        productsPaginator: ['Paginator', 'DealsService','ProductDeals',
-          function (Paginator, DealsService, ProductDeals) {
+        productsPaginator: ['Paginator', 'DealsService','ProductDeals','$stateParams',
+          function (Paginator, DealsService, ProductDeals,$stateParams) {
 
           var par = {
             name: 'deals_product_list',
@@ -22,11 +25,11 @@ angular.module('xbertsApp')
             },
             fetchFunction: DealsService.getDealsList
           };
-          switch (DealsService.sortId) {
+          switch ($stateParams.tab) {
             case 'discount':
               par.params.min_discount = 0.5;
               break;
-            case 'search':
+            case 'cool':
               par.params.search = 'cool';
               break;
             case 'editor':

@@ -14,7 +14,7 @@
     <div layout="row" layout-align="start center">
       <deals-category hide-xs categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
                           on-category-change="dealsCtrl.changeCategory(categoryId);"></deals-category>
-      <deals-sort sort="dealsCtrl.sort" sort-id="dealsCtrl.sortId"
+      <deals-sort sort="dealsCtrl.sort" sort-id="selectedIndex"
                   on-sort-change="dealsCtrl.changeSort(sortId);"></deals-sort>
       <div flex layout="row" layout-align="end center" hide-xs>
         <deals-filter filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
@@ -48,22 +48,6 @@
                         on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
         </div>
       </md-sidenav>
-      <div class="category xb-filter" hide flex="none">
-        <div>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Category
-            <filter-switcher value="dealsCtrl.switcher[0]"></filter-switcher>
-          </div>
-          <discovery-category class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[0]" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
-                        on-category-change="dealsCtrl.changeCategory(categoryId);"></discovery-category>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Price
-            <filter-switcher value="dealsCtrl.switcher[1]" ></filter-switcher>
-          </div>
-          <deals-filter class="xb-filter__margin-bottom" ng-show="dealsCtrl.switcher[1]" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
-                        on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
-        </div>
-      </div>
       <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
            infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex
            layout="column">

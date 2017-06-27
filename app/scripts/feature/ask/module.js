@@ -77,6 +77,7 @@ angular.module('xbertsApp')
             name: 'ask_answers_list',
             objClass: AskModel,
             params: {
+              ordering: '-is_best_answer,-approve_at',
               question: $stateParams.questionId,
               page_size: 12
             },

@@ -11,10 +11,8 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.sort = scope.sort || [];
 
-        scope.selectedSortId = scope.sortId;
-
         scope.selectedSort = function(selectedSort) {
-          scope.selectedSortId = selectedSort.value;
+          scope.sortId = selectedSort.value;
         }
       }
     }
