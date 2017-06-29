@@ -22,10 +22,10 @@
   </div>
   <div ng-if="post.approvalStatus == 'approved'" class="md-secondary" layout-gt-xs="row" layout-align-gt-xs="start center"
        layout="column" layout-align="space-between end">
-    <div class="xb-my-posts__color">Featured</div>
+    <div class="xb-my-posts__color" ng-if="currentUser" hide-xs>Featured</div>
     <span class="md-body-1 md-dark-third xb-my-posts__time">{{post.created|amDateFormat:'MM.DD.YYYY'}}</span>
     <div class="xb-my-posts__menu-bg" hide-gt-xs>
-      <div class="xb-my-posts__color">Featured</div>
+      <div class="xb-my-posts__color" ng-if="currentUser">Featured</div>
     </div>
   </div>
 </div>
