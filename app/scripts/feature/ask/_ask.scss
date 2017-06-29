@@ -177,10 +177,19 @@
   &__answer-image-bg{
     margin-left: 16px;
     margin-top: 12px;
-    height:125px;
+    height: 125px;
     >img{
       height: 125px;
       width: auto;
+    }
+    @include xb-xs-screen{
+      margin-left: 8px;
+      margin-top: 20px;
+      height: 60px;
+      >img{
+        height: 60px;
+        width: auto;
+      }
     }
   }
   &__img-bg{

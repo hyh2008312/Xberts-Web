@@ -89,7 +89,7 @@ angular.module('xbertsApp')
           } else  {
             pNode.appendChild(textNode);
           }
-          element.find('.summernote').summernote('insertNode', pNode);
+          angular.element('.summernote').summernote('insertNode', pNode);
         }
       };
 

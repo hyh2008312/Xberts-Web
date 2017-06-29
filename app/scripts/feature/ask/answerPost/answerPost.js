@@ -72,7 +72,7 @@ angular.module('xbertsApp')
             } else  {
               pNode.appendChild(textNode);
             }
-            element.find('.summernote').summernote('insertNode', pNode);
+            angular.element('.summernote').summernote('insertNode', pNode);
           }
         };
 
@@ -89,7 +89,7 @@ angular.module('xbertsApp')
           var div = document.createElement('div');
           div.appendChild(img);
           div.setAttribute('class', 'xb-answer-img-bg');
-          element.find('.summernote').summernote('insertNode', div);
+          angular.element('.summernote').summernote('insertNode', div);
 
           img.setAttribute('class', 'pre-loading');
           img.onload = function () {

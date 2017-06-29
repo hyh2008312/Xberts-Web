@@ -25,12 +25,19 @@
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>
     </div>
-    <div layout-gt-xs="row" layout-align-gt-xs="start start" layout-xs="column" layout-align="start start">
-      <div flex class="xb-ask-list__answer-content md-body-1" ng-if="product.latestAnswer.text"  ui-sref="application.answerQuestionDetail({questionId:product.id})">
+    <div layout="row" layout-align="start start">
+      <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
+           ui-sref="application.answerQuestionDetail({questionId:product.id})">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>400" ui-sref="application.answerQuestionDetail({questionId:product.id})" class="xb-ask-list__color">more</span>
+        <span ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer">more</span>
       </div>
-      <div class="xb-ask-list__answer-image-bg" flex="none" ng-if="product.latestAnswer.preImage">
+      <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
+           ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        {{product.latestAnswer.text | reduceSentence:75}}{{product.latestAnswer.text.length>75? '...':''}}
+        <span ng-if="product.latestAnswer.text.length>75" class="xb-ask-list__color xb-pointer">more</span>
+      </div>
+      <div class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+           flex="none" ng-if="product.latestAnswer.preImage">
         <img src="{{product.latestAnswer.preImage}}" />
       </div>
     </div>
