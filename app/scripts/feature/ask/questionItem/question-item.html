@@ -25,7 +25,7 @@
         <span class="md-body-1 md-dark-secondary">Answered <span am-time-ago='product.latestAnswer.created'></span></span>
       </div>
     </div>
-    <div layout="row" layout-align="start start">
+    <div layout-gt-xs="row" layout-align-gt-xs="start start" layout-xs="column" layout-align="start start">
       <div flex class="xb-ask-list__answer-content md-body-1" ng-if="product.latestAnswer.text"  ui-sref="application.answerQuestionDetail({questionId:product.id})">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
         <span ng-if="product.latestAnswer.text.length>400" ui-sref="application.answerQuestionDetail({questionId:product.id})" class="xb-ask-list__color">more</span>
