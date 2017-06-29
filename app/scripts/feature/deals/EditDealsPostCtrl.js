@@ -9,7 +9,7 @@ angular.module('xbertsApp')
     $scope.product = {};
     $scope.product.imageGroup = [];
     $scope.product.salePrice = {};
-    $scope.product.salePrice.currency = $rootScope.country == 'IN'? 'Rs':'USD';
+    $scope.product.salePrice.currency = $rootScope.country == 'IN'? 'INR':'USD';
     $scope.product.originalPrice = {};
     $scope.product.category = {};
     $scope.categoryoptions = category;
