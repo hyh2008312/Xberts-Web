@@ -68,4 +68,13 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/answers/'+params.id+'/report/').save(params).$promise;
     };
 
+    this.getSort = function() {
+      return [{
+        value: 0,
+        name: 'Weekly'
+      },{
+        value: 1,
+        name: 'Overall'
+      }];
+    };
   }]);

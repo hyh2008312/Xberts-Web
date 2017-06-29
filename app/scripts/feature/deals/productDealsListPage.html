@@ -67,8 +67,8 @@
           </div>
         </div>
         <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
-        <load-more class="md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
-        <div ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0"
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+        <div class="md-margin-top-4" ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0"
              layout="column" layout-align="center center" flex="noshrink">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>

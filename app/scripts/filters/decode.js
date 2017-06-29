@@ -93,4 +93,16 @@ angular.module('xbertsApp')
       var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
       return reg.test(email);
     };
-  });
+  })
+  .filter('worldCurrency', ['$rootScope','$filter',function($rootScope,$filter) {
+    return function (money, currency) {
+      if($rootScope.country == 'INR') {
+        if(currency != 'INR') {
+          return money = $filter('currency')(Math.round(money / $rootScope.exchangeRate * 100) / 100,'₹');
+        } else {
+          return money = $filter('currency')(money,'₹');
+        }
+      }
+      return money = $filter('currency')(money);
+    };
+  }]);

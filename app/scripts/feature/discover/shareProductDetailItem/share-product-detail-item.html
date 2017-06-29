@@ -22,10 +22,10 @@
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
     <div class="xb-deals-list__price" layout="row" layout-align="start center" flex hide-xs>
       <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
-        {{product.originalPrice.amount | currency}}
+        {{product.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
       </span>
       <span class="md-headline xb-bold">
-        {{product.salePrice.amount | currency}}
+        {{product.salePrice.amount | worldCurrency:item.originalPrice.currency}}
       </span>
     </div>
     <div class="md-margin-right-2" hide-xs>{{product.getDomain()}}</div>
@@ -36,10 +36,10 @@
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
         <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
           <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
-            {{product.originalPrice.amount | currency}}
+            {{product.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
           </span>
           <span class="md-headline xb-bold">
-            {{product.salePrice.amount | currency}}
+            {{product.salePrice.amount | worldCurrency:item.originalPrice.currency}}
           </span>
         </div>
         <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('deals-item');">
@@ -51,10 +51,10 @@
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
     <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
       <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
-        {{product.originalPrice.amount | currency}}
+        {{product.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
       </span>
       <span class="md-headline xb-bold">
-        {{product.salePrice.amount | currency}}
+        {{product.salePrice.amount | worldCurrency:item.originalPrice.currency}}
       </span>
     </div>
     <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-click="product.buyNow('deals-item');"

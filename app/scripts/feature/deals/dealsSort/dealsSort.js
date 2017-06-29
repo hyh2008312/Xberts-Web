@@ -12,7 +12,7 @@ angular.module('xbertsApp')
         scope.sort = scope.sort || [];
 
         scope.selectedSort = function(selectedSort) {
-          scope.sortId = selectedSort.value;
+          scope.sortId = selectedSort;
         }
       }
     }

@@ -27,8 +27,11 @@ angular.module('xbertsApp')
         AnalyticsService.sendPageView('/facebooklogin');
 
         AuthService.facebookLogin()
-          .then(function (response) {
-            AuthService.loginRedirect();
+          .then(function () {
+            $scope.$emit('backdropOff', 'success');
+            if($rootScope.user.getUserEmail()) {
+              AuthService.loginRedirect();
+            }
           })
           .catch(function (response) {
             $scope.$emit('backdropOff', 'error');

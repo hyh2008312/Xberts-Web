@@ -266,6 +266,12 @@ angular.module('xbertsApp')
       {code: '7', name: '5001-10,000'},
       {code: '8', name: '10,000+'}
     ];
+
+    var CURRENCY = [
+      {code: 'USD', name: 'USD'},
+      {code: 'INR', name: 'RS'}
+    ];
+
     var JOB_FUNCTION = [
       {code: '1', name: 'Accounting'},
       {code: '2', name: 'Administrative'},
@@ -371,6 +377,7 @@ angular.module('xbertsApp')
 
     var systemConstant = {};
     systemConstant.COUNTRIES = COUNTRIES;
+    systemConstant.CURRENCY = CURRENCY;
     systemConstant.GENDER_TYPE = GENDER_TYPE;
     systemConstant.CAREER_STATUS = CAREER_STATUS;
     systemConstant.COMPANY_SIZE = COMPANY_SIZE;

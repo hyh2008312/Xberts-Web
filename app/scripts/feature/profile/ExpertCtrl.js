@@ -2,10 +2,10 @@
 
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
-    'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ShareProductService', 'ShareProduct','ExpertService',
+    'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ProductDeals','ExpertService',
     'AskModel','AskService','localStorageService','achievement',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
-              ApplicationService, Sales, SystemConstant, ShareProductService, ShareProduct, ExpertService,AskModel,AskService,
+              ApplicationService, Sales, SystemConstant, ProductDeals, ExpertService,AskModel,AskService,
               localStorageService,achievement) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
@@ -28,13 +28,13 @@ angular.module('xbertsApp')
       var updateUrl = function () {
         setTimeout(function () {
           $scope.$apply(function () {
-            $location.search('tab', tabIndexToParam[$scope.selectedIndex.toString()]);
+            $location.search('tab', $scope.selectedIndex >= 0?tabIndexToParam[$scope.selectedIndex.toString()]:null);
           });
         }, 0);
       };
 
       var updateActiveTabOnSearch = function () {
-        var tab = $location.search().tab || 'profile';
+        var tab = $location.search().tab;
         $scope.selectedIndex = parseInt(tabIndexToParam.findIndex(function(x) {
           return x == tab;
         }));
@@ -79,7 +79,7 @@ angular.module('xbertsApp')
 
       var par = {
         name: 'posts_' + $scope.expert.userId,
-        objClass: ShareProduct,
+        objClass: ProductDeals,
         params: {
           id: $scope.expert.userId,
           page_size:12

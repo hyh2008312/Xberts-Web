@@ -3,9 +3,11 @@
 angular
   .module('xbertsApp')
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
-    'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService','ExchangeRateService',
+    'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService','ExchangeRateService','$timeout','$mdDialog',
+    'LoginDialogFactory','$mdMedia',
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService,
-              SocialShare, $location, OAuthToken, Configuration, AuthService,ExchangeRateService) {
+              SocialShare, $location, OAuthToken, Configuration, AuthService,ExchangeRateService,$timeout,$mdDialog,
+              LoginDialogFactory,$mdMedia) {
 
       // to checkout out if token is expire
       $rootScope.$on('Keepalive', function() {
@@ -115,7 +117,7 @@ angular
       };
       SocialShare.createSocialShare($location.absUrl());
 
-      // ExchangeRateService.getRate();
+      ExchangeRateService.getRate();
 
       localStorageService.clearAll();
       // Capture potential campaign/source query param
@@ -123,6 +125,53 @@ angular
 
       $rootScope.$on('$stateChangeStart', function() {
         angular.element(".xb-body-view").off('scroll');
+        if($rootScope.state.current.name == 'application.productDeals') {
+          $timeout.cancel(LoginDialogFactory.timer);
+          $mdDialog.cancel();
+        }
+      });
+
+      $rootScope.$on('$stateChangeSuccess', function() {
+        if(!LoginDialogFactory.signUpDialog) {
+          if(!LoginDialogFactory.dialogfirstTime) {
+            if($rootScope.state.current.name == 'application.productDeals') {
+              if(!$rootScope.user.isAuth()) {
+                LoginDialogFactory.timer = $timeout(function() {
+                  if(!$mdMedia('xs') && !$rootScope.user.authRequired(true)) {
+                    return;
+                  }
+                }, 10000);
+              } else {
+                $timeout.cancel(LoginDialogFactory.timer);
+                $mdDialog.cancel();
+              }
+            } else {
+              $timeout.cancel(LoginDialogFactory.timer);
+              $mdDialog.cancel();
+            }
+          } else {
+            if($rootScope.state.current.name == 'application.productDeals') {
+              if(!$rootScope.user.isAuth()) {
+                LoginDialogFactory.timer = $timeout(function() {
+                  if(!$mdMedia('xs') && !$rootScope.user.authRequired(true)) {
+                    LoginDialogFactory.signUpDialog = true;
+                    return;
+                  }
+                }, 30000);
+              } else {
+                $timeout.cancel(LoginDialogFactory.timer);
+                $mdDialog.cancel();
+              }
+            } else {
+              $timeout.cancel(LoginDialogFactory.timer);
+              $mdDialog.cancel();
+            }
+          }
+
+        } else {
+          $timeout.cancel(LoginDialogFactory.timer);
+          $mdDialog.cancel();
+        }
       });
 
       $rootScope.$on('$viewContentLoading', function() {

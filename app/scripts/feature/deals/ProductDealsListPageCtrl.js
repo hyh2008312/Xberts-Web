@@ -20,6 +20,12 @@ angular.module('xbertsApp')
 
     $scope.selectedIndex = 0;
     DealsFactory.updateActiveTabOnSearch($scope,sort);
+    $scope.$on('$locationChangeSuccess', function () {
+      DealsFactory.updateActiveTabOnSearch($scope,sort);
+      if(sort[$scope.selectedIndex]) {
+        dealsCtrl.changeSort(sort[$scope.selectedIndex].value);
+      }
+    });
 
     dealsCtrl.post = function() {
       if(!$rootScope.user.authRequired()) {

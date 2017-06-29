@@ -732,6 +732,11 @@
   .xb-detail-cards{
     margin-left: 16px;
   }
+  &__select{
+    md-select{
+      margin-top: 28px;
+    }
+  }
 }
 .xb-shipping-address{
   max-width: 792px;
@@ -856,6 +861,7 @@
     margin-bottom: 0;
     max-height: 48px;
     overflow: hidden;
+
   }
   @include xb-gt-xs-screen{
     &:hover{

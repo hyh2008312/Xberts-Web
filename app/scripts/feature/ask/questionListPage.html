@@ -23,8 +23,11 @@
         <div class="xb-main-reviewer">
           <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="space-between center">
             Leaderboard
+            <deals-sort sort="askCtrl.sort" sort-id="askCtrl.selectedIndex" hide
+                        on-sort-change="askCtrl.changeSort(sortId);"></deals-sort>
           </div>
-          <answer-leaders leaders="askCtrl.topReviewers"></answer-leaders>
+          <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
+          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center" ng-if="askCtrl.topReviewers.loading"></load-more>
         </div>
         <div class="xb-ask-bg__tips">
           <i class="iconfontXberts icon-pic-best-answer1"></i>

@@ -3,10 +3,12 @@
 angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
-    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService','VerificationEmailService','growl',
+    'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService','VerificationEmailService','growl','$timeout',
+    '$mdMedia','LoginDialogFactory','AccountService','$filter',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
-             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService,VerificationEmailService,growl) {
+             OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService,VerificationEmailService,growl,$timeout,
+             $mdMedia,LoginDialogFactory,AccountService,$filter) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed, isEmailVerified,isInvited) {
         this._userId = userId || '';
@@ -111,12 +113,18 @@ angular.module('xbertsApp')
           if (this.isAuth()) {
             return true;
           } else {
-            if(angular.element($window).width() > 600) {
+            if(!$mdMedia('xs')) {
+              if(!obj) {
+                $timeout.cancel(LoginDialogFactory.timer);
+                $mdDialog.cancel();
+              }
               $mdDialog.show({
                 controller: function(scope, $mdDialog) {
                   $rootScope.postLoginState = $rootScope.next;
 
-                  scope.signUpDialog = false;
+                  scope.showTitle = obj;
+
+                  scope.signUpDialog = !obj?false:true;
 
                   scope.changeDialog = function() {
                     scope.signUpDialog = !scope.signUpDialog;
@@ -125,18 +133,18 @@ angular.module('xbertsApp')
                   scope.cancel = function() {
                     $mdDialog.cancel();
                   };
-                  scope.login = function(loginForm) {
+                  scope.login = function() {
                     if (!scope.loginForm.$valid) {
                       return;
                     }
                     scope.$emit('backdropOn', 'post');
 
-                    AnalyticsService.sendPageView($location.path() + '/confirm');
+                    AnalyticsService.sendPageView($state.href("application.login",{},{absolute:true}) + '/confirm');
 
                     scope.loginForm.serverError = {};
 
                     login({username: scope.username, password: scope.password})
-                      .then(function(value) {
+                      .then(function() {
                         $mdDialog.cancel();
                         loginRedirect();
                         scope.$emit('backdropOff', 'success');
@@ -154,14 +162,15 @@ angular.module('xbertsApp')
                         });
                   };
 
-                  scope.signup = function(signupForm) {
+                  scope.signup = function() {
                     if (!scope.signupForm.$valid) {
                       return;
                     }
 
                     scope.$emit('backdropOn', 'post');
 
-                    AnalyticsService.sendPageView($location.path() + '/confirm');
+
+                    AnalyticsService.sendPageView($state.href("application.signup",{},{absolute:true}) + '/confirm');
 
                     scope.signupForm.serverError = {};
 
@@ -172,7 +181,7 @@ angular.module('xbertsApp')
                           password: scope.password
                         });
                       })
-                      .then(function(value) {
+                      .then(function() {
                         $mdDialog.cancel();
                         loginRedirect();
                         scope.$emit('backdropOff', 'success');
@@ -180,9 +189,9 @@ angular.module('xbertsApp')
                       .catch(function(httpResponse) {
                         scope.$emit('backdropOff', 'error');
                         if (httpResponse.status === 409) {
-                          signupForm.serverError.userExist = true;
+                          scope.signupForm.serverError.userExist = true;
                         } else {
-                          signupForm.serverError.generic = true;
+                          scope.signupForm.serverError.generic = true;
                         }
                       });
                   };
@@ -193,9 +202,12 @@ angular.module('xbertsApp')
                     AnalyticsService.sendPageView('/facebooklogin');
 
                     facebookLogin()
-                      .then(function (response) {
-                        $mdDialog.cancel();
-                        loginRedirect();
+                      .then(function () {
+                        scope.$emit('backdropOff', 'success');
+                        if($rootScope.user.getUserEmail()) {
+                          $mdDialog.cancel();
+                          loginRedirect();
+                        }
                       })
                       .catch(function (response) {
                         scope.$emit('backdropOff', 'error');
@@ -216,13 +228,34 @@ angular.module('xbertsApp')
                     linkedinLogin();
                   };
 
-
                 },
                 templateUrl: 'scripts/feature/login/login.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
-                disableParenScroll: true
+                disableParenScroll: true,
+                onRemoving: function() {
+                  if(!LoginDialogFactory.signUpDialog) {
+                    $timeout.cancel(LoginDialogFactory.timer);
+                    LoginDialogFactory.dialogfirstTime = true;
+                    if($rootScope.state.current.name == 'application.productDeals') {
+                      if(!$rootScope.user.isAuth()) {
+                        LoginDialogFactory.timer = $timeout(function() {
+                          if(!$mdMedia('xs') && !$rootScope.user.authRequired(true)) {
+                            LoginDialogFactory.signUpDialog = true;
+                            return;
+                          }
+                        }, 30000);
+                      } else {
+                        $timeout.cancel(LoginDialogFactory.timer);
+                        $mdDialog.cancel();
+                      }
+                    } else {
+                      $timeout.cancel(LoginDialogFactory.timer);
+                      $mdDialog.cancel();
+                    }
+                  }
+                }
               });
             } else {
               $state.go('application.login');
@@ -305,7 +338,7 @@ angular.module('xbertsApp')
                 deferred.reject('missing_permission');
               } else {
                 exchangeToken(accessToken, 'facebook')
-                  .then(function (response) {
+                  .then(function () {
                     deferred.resolve();
                   })
                   .catch(function (response) {
@@ -406,17 +439,81 @@ angular.module('xbertsApp')
 
         return fetchUser()
           .then(function(value) {
-            setUser(value);
+            if(!$filter('isEmail')(value.email)) {
+              $mdDialog.show({
+                controller: function(scope, $mdDialog) {
+                  scope.data = {};
 
-            $rootScope.$broadcast('perksPointsDaily', 'ready');
+                  scope.data.email = value.email;
 
-            Idle.watch();
+                  scope.cancel = function() {
+                    $mdDialog.cancel();
 
-            // Send user id to GTM after login
-            dataLayer.push({
-              userId: value.id
-            });
+                    fetchSetUser(value);
+
+                    loginRedirect();
+                  };
+
+                  scope.changeEmail = function() {
+                    if (!scope.changeEmailForm.$valid) {
+                      return;
+                    }
+
+                    scope.$emit('backdropOn', 'put');
+
+                    scope.changeEmailForm.serverError = {};
+
+                    AccountService.changeEmail(scope.data.email)
+                      .then(function (value) {
+                        $rootScope.user.setUserEmail(value.email);
+                        scope.$emit('backdropOff', 'success');
+                        $state.go('application.expert', {expertId: value.userId});
+                        loginRedirect();
+                      })
+                      .catch(function (response) {
+                        scope.$emit('backdropOff', 'error');
+
+                        if (response.status === 409) {
+                          scope.changeEmailForm.serverError.duplicate = true;
+                        } else {
+                          scope.changeEmailForm.serverError.generic = true;
+                        }
+                      });
+                  };
+                },
+                templateUrl: 'scripts/feature/login/emailAddress/emailAddress.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: false,
+                disableParenScroll: true,
+                multiple:true,
+                openFrom:{
+                  left:200,
+                  top: 200,
+                  width:561,
+                  height:312.5
+                },
+                onShowing: function() {
+                  angular.element('md-dialog.md-transition-in:eq(0)').animate({opacity:0},0);
+                }
+              });
+              return;
+            }
+            fetchSetUser(value)
+
           });
+      }
+
+      function fetchSetUser(value) {
+        setUser(value);
+
+        $rootScope.$broadcast('perksPointsDaily', 'ready');
+
+        Idle.watch();
+
+        // Send user id to GTM after login
+        dataLayer.push({
+          userId: value.id
+        });
       }
 
       function loginRedirect() {
@@ -503,6 +600,8 @@ angular.module('xbertsApp')
           fetchUser()
             .then(function(value) {
               setUser(value);
+
+              if(value.email)
 
               $rootScope.$broadcast('perksPointsDaily', 'ready');
 

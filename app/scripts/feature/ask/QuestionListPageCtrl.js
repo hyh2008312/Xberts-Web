@@ -4,8 +4,15 @@ angular.module('xbertsApp')
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
-    askCtrl.topReviewers = topReviewers.items;
+    askCtrl.topReviewers = topReviewers;
     askCtrl.order = AskService.order;
+    askCtrl.sort = AskService.getSort();
+
+    askCtrl.selectedIndex = 0;
+    askCtrl.changeSort = function() {
+      askCtrl.topReviewers.clear();
+      askCtrl.topReviewers.load();
+    };
 
     askCtrl.addQuestion = function(ev) {
       if(!$rootScope.user.authRequired()) {

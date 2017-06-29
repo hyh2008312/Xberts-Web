@@ -1,18 +1,27 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('ExchangeRateService', ['$http','$sce','$rootScope',
-    function ($http,$sce,$rootScope) {
+  .service('ExchangeRateService', ['$http','$sce','$rootScope','$resource','API_BASE_URL',
+    function ($http,$sce,$rootScope,$resource,API_BASE_URL) {
       var self = this;
+
+      var IpResource = $resource(API_BASE_URL + '/ip/');
 
       var url = $sce.trustAsResourceUrl("https://query.yahooapis.com/v1/public/yql");
 
       // @params ('CNYUSD','EURUSD','INRUSD')
-      this.country = 'INRUSD';
+      this.country = '';
+
+      self.getIp = function() {
+        return IpResource.get().$promise;
+      };
 
       self.getRate = function () {
+        self.getIp().then(function(data) {
+          $rootScope.country = data.country;
+        });
         $http.jsonp(url,{params:{
-          q:'select * from yahoo.finance.xchange where pair in ("'+self.country+'")',
+          q:'select * from yahoo.finance.xchange where pair in ("INRUSD")',
           format:'json',
           diagnostics:true,
           env:'store://datatables.org/alltableswithkeys'

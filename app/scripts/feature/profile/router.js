@@ -91,8 +91,8 @@ angular
         templateUrl: 'scripts/feature/profile/EditPost.html',
         controller: 'EditPostCtrl',
         resolve: {
-          editPost: ['ShareProductService', '$stateParams', function (ShareProductService, $stateParams) {
-            return ShareProductService.getDetail($stateParams.productId);
+          editPost: ['DealsService', '$stateParams', function (DealsService, $stateParams) {
+            return DealsService.getDetail($stateParams.productId);
           }],
           category: ['ShareProductService', function (ShareProductService) {
             return ShareProductService.getCategoryList();
@@ -148,7 +148,7 @@ angular
         reloadOnSearch: false,
         resolve: {
           expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
-            return ExpertService.getPostList({id:$stateParams.expertId});
+            return ExpertService.getExpert($stateParams.expertId);
           }]
         }
       })

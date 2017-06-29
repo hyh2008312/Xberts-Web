@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('messageList',['MessageService', '$state','$rootScope','$mdMedia',
-    function(MessageService, $state,$rootScope,$mdMedia) {
+  .directive('messageList',['MessageService', '$state','$rootScope',
+    function(MessageService, $state,$rootScope) {
     return {
       restrict: 'E',
       scope: {

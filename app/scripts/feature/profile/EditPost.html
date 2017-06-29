@@ -48,15 +48,29 @@
             <div ng-message="required">Please select category.</div>
           </div>
         </md-input-container>
-        <div layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start start">
-          <md-input-container class="md-block" md-no-float>
-            <label class="md-dark-secondary">Actual Sale Price (USD)</label>
-            <input ng-model="product.salePrice.amount" name="salePrice" placeholder=""/>
-          </md-input-container>
-          <md-input-container class="md-block xb-edit-post__margin-left-1" md-no-float>
-            <label class="md-dark-secondary">Original Price (USD)</label>
-            <input ng-model="product.originalPrice.amount" name="originalPrice" placeholder=""/>
-          </md-input-container>
+        <div class="xb-edit-post__select" layout="row" layout-align="start center" layout-xs="column" layout-align-xs="start start">
+          <div layout="row" layout-align="start start">
+            <md-input-container class="md-block" md-no-float>
+              <label class="md-dark-secondary">Actual Sale Price</label>
+              <input ng-model="product.salePrice.amount" name="salePrice" placeholder=""/>
+            </md-input-container>
+            <md-select class="md-margin-left-2" aria-label="salePrice" ng-model="product.salePrice.currency" name="salePriceCurrency" required >
+              <md-option ng-repeat="option in currency" ng-value="option.code" >
+                {{option.name}}
+              </md-option>
+            </md-select>
+          </div>
+          <div layout="row" layout-align="start start">
+            <md-input-container class="md-block xb-edit-post__margin-left-1" md-no-float>
+              <label class="md-dark-secondary">Original Price</label>
+              <input ng-model="product.originalPrice.amount" name="originalPrice" placeholder=""/>
+            </md-input-container>
+            <md-select class="md-margin-left-2" aria-label="originalPrice" ng-model="product.salePrice.currency" name="originalPriceCurrency" required >
+              <md-option ng-repeat="option in currency" ng-value="option.code" >
+                {{option.name}}
+              </md-option>
+            </md-select>
+          </div>
         </div>
         <md-input-container class="md-block" md-no-float>
           <label class="md-dark-secondary">Purchase Link</label>

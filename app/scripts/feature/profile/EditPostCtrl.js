@@ -2,12 +2,13 @@
 
 angular.module('xbertsApp')
   .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdMedia','$mdDialog',
+    'localStorageService','category','$mdMedia','$mdDialog','SystemConstant',
     function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService,
-              category,$mdMedia,$mdDialog) {
+              category,$mdMedia,$mdDialog,SystemConstant) {
 
     $scope.product = editPost;
     $scope.categoryoptions = category;
+    $scope.currency = SystemConstant.CURRENCY;
 
     $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
     $scope.showMask = false;
@@ -61,9 +62,11 @@ angular.module('xbertsApp')
         imageGroup: product.imageGroup,
         videoUrl: product.videoUrl,
         salePrice: {
+          currency: product.salePrice.currency,
           amount: product.salePrice.amount
         },
         originalPrice: {
+          currency: product.salePrice.currency,
           amount: product.originalPrice.amount
         },
         category: product.category

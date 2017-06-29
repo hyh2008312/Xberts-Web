@@ -119,7 +119,7 @@ angular
         controller: 'LinkedinLoginCtrl'
       })
       .state('application.signup', {
-        url: '/signup',
+        url: '/signup?tab',
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
