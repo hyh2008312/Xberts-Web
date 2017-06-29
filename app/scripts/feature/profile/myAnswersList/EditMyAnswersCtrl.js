@@ -6,7 +6,6 @@ angular.module('xbertsApp')
     function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,editMyAnswer,$filter,$mdMedia) {
 
       $scope.answer = editMyAnswer;
-      var oldPost = angular.copy(editMyAnswer, {});
       var description = editMyAnswer.description;
       $scope.detailCharacterCount = description.replace("< *iframe(.|/r|/n)+?/iframe *>","")
         .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;;
@@ -39,7 +38,28 @@ angular.module('xbertsApp')
       };
 
       $scope.reset = function() {
-        $scope.answer = angular.copy(oldPost,{});
+        if($stateParams.source == 'answer') {
+          $state.go('application.answerQuestionDetail', {
+            questionId: $stateParams.questionId
+          },{
+            reload:true
+          });
+        } else {
+          if($mdMedia('xs')) {
+            $state.go('application.protected.answers', {
+              expertId: $rootScope.user.getUserId()
+            },{
+              reload:true
+            });
+          } else {
+            $state.go('application.expert', {
+              tab:'profile',
+              expertId: $rootScope.user.getUserId()
+            },{
+              reload:true
+            });
+          }
+        }
       };
 
       $scope.paste = function (e) {

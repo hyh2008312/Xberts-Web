@@ -23,12 +23,12 @@
               <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" ng-if="productsDetail.owner != null">
                 <div layout="column" layout-align="center start">
                   <div class="xb-bold">{{postsProductPaginator.count}}</div>
-                  <div>Posts</div>
+                  <div>{{postsProductPaginator.count > 1? 'Posts':'Post'}}</div>
                 </div>
                 <span flex="none"></span>
                 <div layout="column" layout-align="center start">
                   <div class="xb-bold">{{achievement.followersAmount}}</div>
-                  <div>Followers</div>
+                  <div>{{achievement.followersAmount > 1? 'Followers':'Follower'}}</div>
                 </div>
               </div>
             </div>
