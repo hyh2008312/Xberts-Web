@@ -104,7 +104,7 @@ angular.module('xbertsApp')
         }
       } else {
         if(currency == 'INR') {
-          return money = $filter('currency')(Math.round(money * $rootScope.exchangeRate * 100) / 100,'₹');
+          return money = $filter('currency')(Math.round(money * $rootScope.exchangeRate * 100) / 100);
         }
       }
       return money = $filter('currency')(money);
