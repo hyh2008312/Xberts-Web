@@ -33,8 +33,8 @@
       </div>
       <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
            ui-sref="application.answerQuestionDetail({questionId:product.id})">
-        {{product.latestAnswer.text | reduceSentence:75}}{{product.latestAnswer.text.length>75? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>75" class="xb-ask-list__color xb-pointer">more</span>
+        {{product.latestAnswer.text | reduceSentence:100}}{{product.latestAnswer.text.length>100? '...':''}}
+        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer">more</span>
       </div>
       <div class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
            flex="none" ng-if="product.latestAnswer.preImage">
