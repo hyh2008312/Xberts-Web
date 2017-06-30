@@ -62,7 +62,7 @@ angular.module('xbertsApp')
       var title = productsDetail.title;
       var description = productsDetail.description;
       var backgroundColor = 'background-bg-light';
-      var shareImage = productsDetail.coverUrl;
+      var shareImage = productsDetail.getImageUrl();
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);
 
