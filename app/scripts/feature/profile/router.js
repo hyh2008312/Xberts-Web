@@ -143,7 +143,7 @@ angular
       })
       .state('application.protected.posts', {
         url: '/profile/posts?expertId',
-        templateUrl: 'scripts/feature/profile/myPostList/MyPostCtrl.html',
+        templateUrl: 'scripts/feature/profile/myPostList/myPostCtrl.html',
         controller: 'MyPostsCtrl',
         reloadOnSearch: false,
         resolve: {
