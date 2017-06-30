@@ -102,6 +102,10 @@ angular.module('xbertsApp')
         } else {
           return money = $filter('currency')(money,'₹');
         }
+      } else {
+        if(currency == 'INR') {
+          return money = $filter('currency')(Math.round(money * $rootScope.exchangeRate * 100) / 100,'₹');
+        }
       }
       return money = $filter('currency')(money);
     };
