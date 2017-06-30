@@ -60,7 +60,7 @@ angular.module('xbertsApp')
       ];
 
       var title = productsDetail.title;
-      var description = productsDetail.description;
+      var description = productsDetail.description.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "");
       var backgroundColor = 'background-bg-light';
       var shareImage = productsDetail.getImageUrl();
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
