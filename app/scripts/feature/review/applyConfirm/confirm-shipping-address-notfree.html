@@ -18,11 +18,11 @@
     <li>The cost of product sample is: <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getFlashSale()}}</b>
       <del>{{ confirm.review.getRetailPrice() }}</del>
     </li>
-    <li>This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getDeposit()}}</b> to make
+    <li ng-if="confirm.review.getDeposit()">This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getDeposit()}}</b> to make
       sure all applicants will submit their reviews
       after receiving the product.
     </li>
-    <li>The deposit will be fully refunded within 3 business days after your review submission and approval.
+    <li ng-if="confirm.review.getDeposit()">The deposit will be fully refunded within 3 business days after your review submission and approval.
     </li>
     <li>Your payment will be processed securely by Shopify – a leading service provider in the industry. We do not
       store any of your payment information.
