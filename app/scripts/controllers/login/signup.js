@@ -79,7 +79,7 @@ angular.module('xbertsApp')
             scope.cancel = function() {
               $mdDialog.cancel();
               if(scope.showTitle) {
-                $state.go('application.productDeals');
+                $state.go('application.dealsDetail',{dealsId:$stateParams.tab});
               }
             };
 
