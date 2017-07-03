@@ -222,7 +222,7 @@
         <span flex="none"></span>
         <div layout="column" layout-align="center center" flex="50">
           <div class="md-headline">{{achievement.followersAmount}}</div>
-          <div>Follower</div>
+          <div>{{achievement.followersAmount>1?'Followers':'Follower'}}</div>
         </div>
       </div>
       <div hide-sm hide-xs>
@@ -240,7 +240,7 @@
     </div>
     <div layout="column" layout-align="center center" flex="50">
       <div class="md-headline">{{achievement.followersAmount}}</div>
-      <div class="md-dark-secondary">{{achievement.followersAmount>1?achievement.followersAmount+' Followers':achievement.followersAmount+' Follower'}}</div>
+      <div class="md-dark-secondary">{{achievement.followersAmount>1?'Followers':'Follower'}}</div>
     </div>
   </div>
   <div class="background-whitem">
