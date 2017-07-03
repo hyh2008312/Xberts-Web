@@ -12,8 +12,8 @@
               <div>200</div>
               <div>Points</div>
             </div>
-            <div class="xb-credit-container__badge-bg">
-              <img ng-src="{{creditCtrl.badges[0]}}"/>
+            <div class="xb-credit-container__badge-bg" layout="row" layout-align="start start">
+              <credit-badge class="credit-badge" points="200"></credit-badge>
               <span>Tech Enthusiast</span>
             </div>
           </div>
@@ -25,8 +25,8 @@
               <div>500</div>
               <div>Points</div>
             </div>
-            <div class="xb-credit-container__badge-bg">
-              <img ng-src="{{creditCtrl.badges[1]}}"/>
+            <div class="xb-credit-container__badge-bg" layout="row" layout-align="start start">
+              <credit-badge class="credit-badge" points="500"></credit-badge>
               <span>Tech Influencer</span>
             </div>
           </div>
@@ -38,8 +38,8 @@
               <div>800</div>
               <div>Points</div>
             </div>
-            <div class="xb-credit-container__badge-bg">
-              <img ng-src="{{creditCtrl.badges[2]}}"/>
+            <div class="xb-credit-container__badge-bg " layout="row" layout-align="start start">
+              <credit-badge class="credit-badge" points="800"></credit-badge>
               <span>Tech Geek</span>
             </div>
           </div>
@@ -48,25 +48,25 @@
       <div class="xb-credit-container__content">
         <div class="xb-credit-container__title-1 md-headline">Perks of Tech Insider</div>
         <div class="xb-credit-container__content-bg" layout="row" layout-align="start start">
-          <img ng-src="{{creditCtrl.badges[0]}}"/>
+          <credit-badge class="credit-badge" points="200"></credit-badge>
           <div class="md-subhead">Tech Enthusiast</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 1 free sample</span>
             <span>Xberts newsletter on latest trials</span>
-            <span>An APPLE badge in your profile page</span>
+            <span>An STAR badge in your profile page</span>
           </div>
         </div>
         <div class="xb-credit-container__content-bg" layout="row" layout-align="start start">
-          <img ng-src="{{creditCtrl.badges[1]}}"/>
+          <credit-badge class="credit-badge" points="500"></credit-badge>
           <div class="md-subhead">Tech Influencer</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 2 free sample</span>
             <span>Early preview of tech gadgets before they release</span>
-            <span>A STAR badge in your profile page</span>
+            <span>A APPLE badge in your profile page</span>
           </div>
         </div>
         <div class="xb-credit-container__content-bg" layout="row" layout-align="start start">
-          <img ng-src="{{creditCtrl.badges[2]}}"/>
+          <credit-badge class="credit-badge" points="800"></credit-badge>
           <div class="md-subhead">Tech Geek</div>
           <div class="md-body-1 md-dark-primary" layout="column" layout-align="start start">
             <span ng-if="false">Privilege to claim 3 free sample</span>
@@ -199,7 +199,7 @@
   <div class="container xb-credit-mobile__tech">
     <div class="xb-credit-mobile__title md-headline">Insider's points comparison</div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[0]}}"/>
+      <credit-badge class="credit-badge" points="200"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Enthusiast</div>
         <div layout="row" layout-align="start center">
@@ -208,7 +208,7 @@
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[1]}}"/>
+      <credit-badge class="credit-badge" points="500"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Influencer</div>
         <div layout="row" layout-align="start center">
@@ -217,7 +217,7 @@
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[2]}}"/>
+      <credit-badge class="credit-badge" points="800"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-subhead">Tech Geek</div>
         <div layout="row" layout-align="start center">
@@ -227,29 +227,29 @@
     </div>
     <div class="xb-credit-mobile__title md-headline">Perks of Tech Insider</div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[0]}}"/>
+      <credit-badge class="credit-badge" points="200"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary" >
           <div class="md-subhead">Tech Enthusiast</div>
           <div ng-if="false">1 Privilege to claim 1 free sample</div>
           <div>Xberts newsletter on latest trials</div>
-          <div>An APPLE badge in your profile page</div>
+          <div>An STAR badge in your profile page</div>
         </div>
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[1]}}"/>
+      <credit-badge class="credit-badge" points="500"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary">
           <div class="md-subhead">Tech Influencer</div>
           <div ng-if="false">Privilege to claim 2 free sample</div>
           <div>Early preview of tech gadgets before they release</div>
-          <div>A STAR badge in your profile page</div>
+          <div>A APPLE badge in your profile page</div>
         </div>
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <img ng-src="{{creditCtrl.badges[2]}}"/>
+      <credit-badge class="credit-badge" points="800"></credit-badge>
       <div class="xb-credit-mobile__tech-bottom">
         <div class="md-body-1 md-dark-primary">
           <div class="md-subhead">Tech Geek</div>

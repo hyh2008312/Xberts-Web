@@ -30,7 +30,7 @@
   }
   &__content{
     margin-left: 100px;
-    img{
+    .credit-badge{
       margin-right: 8px;
     }
     &-bg{
@@ -102,6 +102,15 @@
     }
     &-bottom{
       margin-bottom: 32px;
+    }
+  }
+  .credit-badge{
+    margin-left: 0;
+    i{
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 24px;
     }
   }
 }
@@ -231,7 +240,7 @@
   }
   &__tech{
     @include resetInnerBox();
-    img{
+    .credit-badge{
       margin-right: 8px;
     }
     .md-subhead{
@@ -282,6 +291,15 @@
     margin-top: 16px;
     >div{
       margin-bottom: 16px;
+    }
+  }
+  .credit-badge{
+    margin-left: 0;
+    i{
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 24px;
     }
   }
 }
