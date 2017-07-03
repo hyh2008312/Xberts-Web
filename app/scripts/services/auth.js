@@ -304,12 +304,17 @@ angular.module('xbertsApp')
       }
 
       function login(credentials) {
-        return $resource(API_BASE_URL + '/oauth2/token/').save({
-          grant_type: 'password',
-          client_id: OAUTH_CLIENT_ID,
-          username: credentials.username,
-          password: credentials.password
-        }).$promise.then(function(value) {
+        return $resource(API_BASE_URL + '/oauth2/token/', {}, {
+          getToken: {
+            method: 'POST',
+            params: {
+              grant_type: 'password',
+              client_id: OAUTH_CLIENT_ID,
+              username: credentials.username,
+              password: credentials.password
+            }
+          }
+        }).getToken().$promise.then(function(value) {
           return postLogin(value);
         });
       }
@@ -406,7 +411,12 @@ angular.module('xbertsApp')
           params['source'] = localStorageService.cookie.get(Configuration.signupSourceStorageKey);
         }
 
-        return $resource(API_BASE_URL + '/oauth2/convert-token/').save(params).$promise
+        return $resource(API_BASE_URL + '/oauth2/convert-token/', {}, {
+          exchangeToken: {
+            method: 'POST',
+            params: params
+          }
+        }).exchangeToken().$promise
           .then(function(value) {
             return postLogin(value);
           });
@@ -530,11 +540,16 @@ angular.module('xbertsApp')
           return deferred.promise;
         }
 
-        return $resource(API_BASE_URL + '/oauth2/token/').save({
-          grant_type: 'refresh_token',
-          client_id: OAUTH_CLIENT_ID,
-          refresh_token: refreshToken
-        }).$promise.then(function(value) {
+        return $resource(API_BASE_URL + '/oauth2/token/', {}, {
+          refresh: {
+            method: 'POST',
+            params: {
+              grant_type: 'refresh_token',
+              client_id: OAUTH_CLIENT_ID,
+              refresh_token: refreshToken
+            }
+          }
+        }).refresh().$promise.then(function(value) {
           OAuthToken.setToken(value);
         });
       }
@@ -560,10 +575,15 @@ angular.module('xbertsApp')
 
           return deferred.promise;
         } else {
-          return $resource(API_BASE_URL + '/oauth2/revoke-token/').save({
-            client_id: OAUTH_CLIENT_ID,
-            token: token
-          }).$promise
+          return $resource(API_BASE_URL + '/oauth2/revoke-token/', {}, {
+            revokeToken: {
+              method: 'POST',
+              params: {
+                client_id: OAUTH_CLIENT_ID,
+                token: token
+              }
+            }
+          }).revokeToken().$promise
         }
       }
 
