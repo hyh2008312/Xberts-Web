@@ -71,7 +71,7 @@
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
-              <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
+              <md-button tabs-fixed-item class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
                          target="_blank">
                 See Product
               </md-button>
@@ -94,54 +94,92 @@
       </div>
     </div>
   </div>
-  <div class="container xb2-page-content">
-    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
 
-      <md-tab md-on-select="loadMyBio()">
-        <md-tab-label>
-          Review
-        </md-tab-label>
-        <md-tab-body>
-          <div layout>
-            <div flex flex-gt-sm="60">
-              <div class="md-padding">
-                <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
-                  <div flex-gt-xs="45">
-                    <h2 class="xb2-h2">Pros</h2>
-                    <ul class="xb2-ul">
-                      <li ng-repeat="pro in report.pros track by $index">{{ pro }}</li>
-                    </ul>
-                  </div>
-                  <div flex-gt-xs="10"></div>
-
-                  <div flex-gt-xs="45">
-                    <h2 class="xb2-h2">Cons</h2>
-                    <ul class="xb2-ul">
-                      <li ng-repeat="con in report.cons track by $index">{{ con }}</li>
-                    </ul>
-                  </div>
-
-                </div>
-                <div ng-bind-html="report.details | trust" class="xb2-custom-text xb2-page-content__section"></div>
+  <div class="background-whitem" hide-xs>
+    <div class="xb-trial-tabs">
+      <div class="xb-trial-tabs__inner-content" tabs-fixed-top del-top="56" parent="'background-whitem'" item="'xb-trial-detail__pop-bg'">
+        <div class="container" layout="row">
+          <div class="xb-trial-tabs__left" layout="row" flex="60">
+            <div class="md-subhead active" layout="row" layout-align="start center" xb-tabs xb-scroll-to="'Reviews'">Reviews</div>
+            <div class="md-subhead" layout="row" layout-align="start center" xb-tabs xb-scroll-to="'Comments'">Comments<comment-amounts></comment-amounts></div>
+          </div>
+          <div class="xb-trial-detail__content" layout="row" layout-align="start center" flex="">
+            <div class="xb-trial-detail__pop-bg">
+              <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
+                         target="_blank">
+                See Product
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="xb-trial-tabs__content">
+      <div class="container" layout="row" layout-align="start start">
+        <div class="" flex="60" layout="column">
+          <div class="md-headline" id="Reviews">Reviews</div>
+          <div class="md-padding">
+            <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
+              <div flex-gt-xs="45">
+                <h2 class="xb2-h2">Pros</h2>
+                <ul class="xb2-ul">
+                  <li ng-repeat="pro in report.pros track by $index">{{ pro }}</li>
+                </ul>
               </div>
-            </div>
-          </div>
-        </md-tab-body>
-      </md-tab>
+              <div flex-gt-xs="10"></div>
 
-      <md-tab label="Comments">
-        <md-tab-label>
-          Comments <comment-amounts></comment-amounts>
-        </md-tab-label>
-        <md-tab-body>
-          <div layout>
-            <div flex flex-gt-sm="60">
-              <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
+              <div flex-gt-xs="45">
+                <h2 class="xb2-h2">Cons</h2>
+                <ul class="xb2-ul">
+                  <li ng-repeat="con in report.cons track by $index">{{ con }}</li>
+                </ul>
+              </div>
+
             </div>
+            <div ng-bind-html="report.details | trust" class="xb2-custom-text xb2-page-content__section"></div>
           </div>
-        </md-tab-body>
-      </md-tab>
-    </md-tabs>
+          <div class="md-headline" id="Comments">Comments</div>
+          <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div hide-gt-xs class="xb-credit-mobile xb-trials-details-mobile">
+    <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+      <md-truncate flex class="md-subhead">Reviews</md-truncate>
+      <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+               parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="0" toggle="true">keyboard_arrow_down</md-icon>
+    </div>
+    <div class="container">
+      <div class="md-padding">
+        <div layout="column" layout-gt-xs="row" class="xb2-page-content__section" ng-if="report.pros.length>0">
+          <div flex-gt-xs="45">
+            <h2 class="xb2-h2">Pros</h2>
+            <ul class="xb2-ul">
+              <li ng-repeat="pro in report.pros track by $index">{{ pro }}</li>
+            </ul>
+          </div>
+          <div flex-gt-xs="10"></div>
+
+          <div flex-gt-xs="45">
+            <h2 class="xb2-h2">Cons</h2>
+            <ul class="xb2-ul">
+              <li ng-repeat="con in report.cons track by $index">{{ con }}</li>
+            </ul>
+          </div>
+
+        </div>
+        <div ng-bind-html="report.details | trust" class="xb2-custom-text xb2-page-content__section"></div>
+      </div>
+    </div>
+    <div class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+      <md-truncate flex class="md-subhead">Comments<span><comment-amounts></comment-amounts></span></md-truncate>
+      <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
+               parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="1" toggle="false">keyboard_arrow_down</md-icon>
+    </div>
+    <div class="container">
+      <feedback-list interact-id="{{report.interact.id}}"></feedback-list>
+    </div>
   </div>
 </interact>
 
