@@ -23,12 +23,12 @@
       selected as Best Answer</div>
     <div ng-if="achievemets.reviewAmount && achievemets.reviewAmount > 0"  layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['reviewAmount']" ></i>
-      Submit {{achievemets.reviewAmount > 1?achievemets.reviewAmount+ ' reviews':achievemets.reviewAmount+ ' review'}}
+      Submitted {{achievemets.reviewAmount > 1?achievemets.reviewAmount+ ' reviews':achievemets.reviewAmount+ ' review'}}
     </div>
     <div ng-if="achievemets.reviewFeaturedAmount && achievemets.reviewFeaturedAmount > 0"  layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['reviewFeaturedAmount']" ></i>
-      {{achievemets.reviewFeaturedAmount > 1?achievemets.reviewFeaturedAmount+ ' reviews':achievemets.reviewFeaturedAmount+ ' review'}}
-      get featured
+      {{achievemets.reviewFeaturedAmount > 1?achievemets.reviewFeaturedAmount+ ' reviews get ':achievemets.reviewFeaturedAmount+ ' review gets '}}
+      featured
     </div>
     <div ng-if="achievemets.inviteAmount && achievemets.inviteAmount > 0"  layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['inviteAmount']" ></i>
