@@ -6,7 +6,7 @@ angular.module('xbertsApp')
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.address = address.length > 0 ? address[0]: {};
       $scope.countryFilter = function(item) {
-        return item.code === 'CA' || item.code === 'US';
+        return item.code === 'CA' || item.code === 'US' || item.code === 'IN';
       };
 
       $scope.submitForm = function(address, ev) {
