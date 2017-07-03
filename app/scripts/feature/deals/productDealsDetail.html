@@ -18,7 +18,8 @@
                     <credit-badge class="credit-badge" points="productsDetail.owner.badgePoint"></credit-badge></div>
                   <div class="md-dark-secondary">Posted <span am-time-ago='productsDetail.created'></span></div>
                 </div>
-                <xb-follow follow="productsDetail.owner.currentUser.follow" user-id="productsDetail.owner.id"></xb-follow>
+                <xb-follow follow="productsDetail.owner.currentUser.follow" user-id="productsDetail.owner.id"
+                           expert="expert" achievement="achievement"></xb-follow>
               </div>
               <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" ng-if="productsDetail.owner != null">
                 <div layout="column" layout-align="center start">

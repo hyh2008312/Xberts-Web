@@ -200,6 +200,12 @@ angular.module('xbertsApp')
 
         ExpertService.follow({id:expert.userId}).then(function(data) {
           $scope.expert.currentUser.follow = data.follow;
+          if(data.follow == false && $scope.achievement && $rootScope.user.getUserId() != $scope.expert.userId) {
+            $scope.achievement.followersAmount--;
+          }
+          if(data.follow == true && $scope.achievement && $rootScope.user.getUserId() != $scope.expert.userId) {
+            $scope.achievement.followersAmount++;
+          }
           localStorageService.remove('followings_list_' + $rootScope.user.getUserId() + '_currentPage');
           localStorageService.remove('followings_list_' + $rootScope.user.getUserId() + '_items');
           localStorageService.remove('followings_list_' + $rootScope.user.getUserId() +'_next');
