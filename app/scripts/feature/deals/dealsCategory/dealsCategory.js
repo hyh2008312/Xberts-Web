@@ -18,7 +18,7 @@ angular.module('xbertsApp')
         scope.filterCatergoy = function(e) {
           for(var i = 0; i < e.length;i++) {
             if(e[i].id == scope.categoryId) {
-              return e[i].name;
+              return e[i].name != 'All Categories' ? e[i].name: 'Categories';
             }
           }
         };

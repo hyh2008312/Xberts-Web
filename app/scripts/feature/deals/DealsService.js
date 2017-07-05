@@ -39,16 +39,13 @@ angular.module('xbertsApp')
     this.getSort = function() {
       return [{
         value: 'everything',
-        name: 'Everything'
+        name: 'All'
       },{
         value: 'discount',
         name: 'Deep Discount'
       },{
         value: "cool",
-        name: 'Cool Inventions'
-      },{
-        value: 'editor',
-        name: "Editors' Picks"
+        name: 'Lifestyle'
       }]
     };
 

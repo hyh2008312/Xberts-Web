@@ -167,50 +167,6 @@
           </div>
         </md-tab>
 
-        <md-tab label="My Campaigns" ng-if="user.hasRole('campaign_owner')" md-on-select="loadMyCampaings()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <div class="row section-body" infinite-scroll="campaignPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="campaignPaginator.loading || !campaignPaginator.next">
-              <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="review in campaignPaginator.items">
-                <div class="xb-card">
-                  <div class="xb-card-ratio-wrap"
-                       ui-sref="application.testingcampaign({ reviewId:review.id })">
-                    <div class="image-wrap" style="background-image: url({{ review.cover }})">
-
-                    </div>
-                  </div>
-                  <div class="xb-card-content">
-                    <p class="xb-card-title " ui-sref="application.testingcampaign({ reviewId:review.id })">
-                      {{ review.title}}</p>
-
-                    <div class="xb-card-button">
-                      <div ng-switch="review.status">
-                        <a ng-switch-when="UPCOMING" class="btn btn-block btn-success-disabled"
-                           ui-sref="application.testingcampaign({ reviewId:review.id })">Coming Soon</a>
-                        <a ng-switch-when="APPLICATION" class="btn btn-block btn-primary"
-                           ui-sref="application.testingcampaign({ reviewId:review.id })">Application Open</a>
-                        <a ng-switch-when="SELECTION" class="btn btn-block btn-primary"
-                           ui-sref="application.selectApplicants({reviewId:review.id})">Select
-                          Applicants</a>
-                        <a ng-switch-when="CONFIRMATION" class="btn btn-block btn-primary"
-                           ui-sref="application.selectApplicants({reviewId:review.id})">View
-                          Applicants</a>
-                        <a ng-switch-when="REVIEW" class="btn btn-block btn-primary"
-                           ui-sref="application.selectApplicants({reviewId:review.id})">View
-                          Shipping Address</a>
-                        <a ng-switch-when="ENDED" class="btn btn-block btn-primary"
-                           ui-sref="application.crowdtestingReports({reviewId:review.id})">View
-                          Reports</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <load-more class="row spin-large" ng-if="campaignPaginator.loading"></load-more>
-          </div>
-        </md-tab>
-
       </md-tabs>
     </div>
     <div>
