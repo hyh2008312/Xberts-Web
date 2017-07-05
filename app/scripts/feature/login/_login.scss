@@ -168,3 +168,16 @@
     width: 100%;
   }
 }
+.md-button{
+  &.md-raised{
+    &.md-facebook-btn{
+      width: 220px;
+      margin: 0;
+      text-transform: capitalize;
+    }
+    &.md-linkedin-btn{
+      @extend .md-facebook-btn;
+      background-color: #0177b5;
+    }
+  }
+}

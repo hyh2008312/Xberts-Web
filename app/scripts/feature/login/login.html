@@ -1,15 +1,15 @@
 <div class="xb-login-container background-whitem xb-login-container__clear" ng-show="!signUpDialog" layout="row" layout-align="start center" hide-xs>
   <div class="xb-login-container__button-bg">
     <div>
-      <a type="button" href="#" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+      <md-button href="#" class="md-primary md-raised md-facebook-btn" ng-click="facebookLogin(loginError)">
         <i class="fa fa-facebook"></i>
-        <span>Continue with Facebook</span>
-      </a>
+        <span class="md-margin-left-1">Continue with Facebook</span>
+      </md-button>
     </div>
-    <a type="button" href="#" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+    <md-button href="#" class="md-primary md-raised md-linkedin-btn" ng-click="linkedinLogin()">
       <i class="fa fa-linkedin"></i>
-      <span>Continue with LinkedIn</span>
-    </a>
+      <span class="md-margin-left-1">Continue with LinkedIn</span>
+    </md-button>
   </div>
   <span class="xb-login-container__line background-bg-gray"></span>
   <div>
@@ -48,15 +48,15 @@
   <div layout="row" layout-align="start center">
     <div class="xb-login-container__button-bg">
       <div>
-        <a type="button" class="btn btn-primary btn-block facebook-btn" ng-click="facebookLogin(loginError)">
+        <md-button href="#" class="md-primary md-raised md-facebook-btn" ng-click="facebookLogin(loginError)">
           <i class="fa fa-facebook"></i>
-          <span>Continue with Facebook</span>
-        </a>
+          <span class="md-margin-left-1">Continue with Facebook</span>
+        </md-button>
       </div>
-      <a type="button" ng-if="!showTitle" class="btn btn-primary btn-block linkedin-btn" ng-click="linkedinLogin()">
+      <md-button href="#" class="md-primary md-raised md-linkedin-btn" ng-click="linkedinLogin()">
         <i class="fa fa-linkedin"></i>
-        <span>Continue with LinkedIn</span>
-      </a>
+        <span class="md-margin-left-1">Continue with LinkedIn</span>
+      </md-button>
     </div>
     <span class="xb-login-container__line background-bg-gray"></span>
     <div flex="none">
