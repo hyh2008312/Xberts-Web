@@ -1,8 +1,8 @@
-$primaryColor: #059ddc;
-$dangerColor: #a94442;
-$strikingColor: #e5910d;
-$successColor: #00cc52;
-$orangeColor: #ff9900;
+$primaryColor: #3f51b5;
+$dangerColor: #ff5722;
+$strikingColor: #ff4081;
+$successColor: #4caf50;
+$orangeColor: #ff9800;
 
 $blackColor: #222222;
 $darkColor: #333;
@@ -28,24 +28,3 @@ $bgGray: #f2f5f7;
 
 $whiteBackground: $whiteColor;
 $lightGrayBackground: $lightGrayColor;
-
-.striking-white {
-  background-color: $strikingColor;
-  color: $whiteColor;
-}
-
-.white-success {
-  background-color: $whiteColor;
-  color: $successColor;
-}
-
-.white-danger {
-  background-color: $whiteColor;
-  color: $dangerColor;
-}
-
-.nav > li.disabled {
-  > a:hover, > a:focus, > a {
-    color: $grayLightColor;
-  }
-}

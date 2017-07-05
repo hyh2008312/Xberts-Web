@@ -1,11 +1,13 @@
 <md-dialog class="xb-login-dialog">
   <div class="xb-login-dialog__inner-container background-whitem">
-    <div ng-if="showTitle">
-      <div class="md-headline">Sign up to see more exclusive offers</div>
-      <div>Join us to get the latest offers and deals exclusive to you!</div>
-    </div>
-    <div layout="row" layout-align="end center">
-      <md-icon class="xb-login-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
+    <div layout="row" layout-align="start start">
+      <div ng-if="showTitle" flex>
+        <div class="md-headline">Sign up to see more exclusive offers</div>
+        <div>Join us to get the latest offers and deals exclusive to you!</div>
+      </div>
+      <div layout="row" layout-align="end center">
+        <md-icon class="xb-login-dialog__close" md-font-set="material-icons" aria-label="Close dialog" ng-click="cancel()">close</md-icon>
+      </div>
     </div>
     <form name="signupForm" novalidate ng-submit="signup()" clear-form-error>
       <div class="form-group has-error">
