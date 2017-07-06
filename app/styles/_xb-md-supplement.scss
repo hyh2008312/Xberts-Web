@@ -215,16 +215,13 @@ $sizes: 0 1 2 3 4;
     }
   }
 }
-.md-align-center{
-  text-align: center;
-}
 
-.md-align-right{
-  text-align: right;
-}
+$aligns: left right center justify;
 
-.md-align-left{
-  text-align: left;
+@each $align in $aligns {
+  .md-align-#{$align} {
+    text-align: $align;
+  }
 }
 
 .md-margin-clear{

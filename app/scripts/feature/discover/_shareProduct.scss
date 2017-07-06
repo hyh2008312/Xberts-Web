@@ -1,8 +1,6 @@
-$PrimaryINDIGO: #3f51b5;
-
 .xb-section{
   &__title {
-    text-align: center;
+    @extend .md-align-center;
     margin-bottom: 32px;
     @include xb-xs-screen{
       >h2{
@@ -53,7 +51,7 @@ $PrimaryINDIGO: #3f51b5;
     outline: none;
     &.active,&:hover{
       @include media();
-      color: $PrimaryINDIGO;
+      color: $primaryColor;
     }
     &:hover{
       background-color: rgba(158,158,158,.2);
@@ -75,13 +73,13 @@ $PrimaryINDIGO: #3f51b5;
   height: 40px;
   overflow: hidden;
   >.md-button{
-    color: $PrimaryINDIGO;
+    color: $primaryColor;
     height: 40px;
     >.tab-triangle{
       position: absolute;
       left: 50%;
       bottom: 0;
-      @include triangleBottom(10px, 10px, #F1F1F1);
+      @include triangleBottom(10px, 10px, $lightWhiteColor);
       @include transform(translateX(-50%));
     }
   }
@@ -151,7 +149,7 @@ $PrimaryINDIGO: #3f51b5;
       height: 100%;
       md-progress-circular{
         path{
-          stroke:#fff;
+          stroke:$whiteColor;
         }
       }
     }
@@ -182,7 +180,7 @@ $PrimaryINDIGO: #3f51b5;
       padding: 0;
     }
     .md-subhead{
-      color: $PrimaryINDIGO;
+      color: $primaryColor;
       @include media();
     }
     .md-raised{
@@ -222,7 +220,7 @@ $PrimaryINDIGO: #3f51b5;
     }
   }
   &__interact{
-    background-color: #f9f9f9;
+    background-color: $lightGrayColor;
     .md-padding{
       padding: 0 16px;
     }
@@ -249,7 +247,7 @@ $PrimaryINDIGO: #3f51b5;
     @include resetBorder();
     width: 350px;
     margin: 0;
-    background-color: #f9f9f9;
+    background-color: $lightGrayColor;
   }
   &__title{
     margin: 0;
@@ -266,7 +264,7 @@ $PrimaryINDIGO: #3f51b5;
         @include regular();
       }
       .md-char-counter{
-        color: rgba(0, 0, 0, .54);
+        @extend .md-dark-secondary;
       }
     }
   }
@@ -282,7 +280,7 @@ $PrimaryINDIGO: #3f51b5;
     .md-button{
       padding: 0;
       span{
-        color: $PrimaryINDIGO;
+        color: $primaryColor;
         margin-left: 8px;
         margin-right: 16px;
       }
@@ -339,7 +337,7 @@ $PrimaryINDIGO: #3f51b5;
           right: 8px;
           top: 8px;
           @include changeMdIcon(16px);
-          color: #FFF;
+          color: $whiteColor;
         }
       }
     }
@@ -409,7 +407,7 @@ $PrimaryINDIGO: #3f51b5;
   .#{$product}__avatar{
     padding: 0;
     .md-subhead{
-      color: rgba(0,0,0,0.54);
+      @extend .md-dark-secondary;
       @include regular();
     }
   }

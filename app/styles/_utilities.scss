@@ -14,10 +14,3 @@
   text-decoration: underline;
 }
 
-$aligns: left right center justify;
-
-@each $align in $aligns {
-  .md-align-#{$align} {
-    text-align: $align;
-  }
-}

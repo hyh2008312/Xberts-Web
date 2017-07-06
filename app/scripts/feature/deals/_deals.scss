@@ -4,7 +4,7 @@
     -webkit-flex: 1 1 240px !important;
     >div{
       margin-bottom: 16px;
-      background-color: #fff;
+      background-color: $whiteColor;
       @include resetBorder();
     }
     @include xb-lg-screen{
@@ -52,9 +52,13 @@
     .md-subhead{
       color: #fff;
       text-decoration: none;
+      @include media();
       &:hover{
         color: #fff;
       }
+    }
+    &:hover{
+      text-decoration: none;
     }
     &:before{
       content: '';
@@ -330,6 +334,7 @@
     margin-bottom: 20px;
   }
 }
+
 .xb-deals-detail{
   &__title{
     margin-top: 28px;
@@ -429,17 +434,9 @@
       padding: 24px 8px 16px;
     }
     avatar-img{
-      width: 40px;
-      height: 40px;
       margin-right: 12px;
-      >img{
-        width: 40px;
-        height: 40px;
-      }
-      .c-user__name{
-        width: 40px;
-        height: 40px;
-      }
+
+      @include avatar-header(medium);
       @include xb-xs-screen{
         margin-right: 8px;
       }
@@ -459,6 +456,8 @@
   .xb-trial-detail__fixed-bottom{
     padding-bottom: 14px;
     margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+
     @include xb-xs-screen{
       padding: 0 10px;
       margin-bottom: 0;
@@ -467,7 +466,6 @@
       margin: 0;
       padding: 0 12px;
     }
-    border-bottom: 1px solid rgba(0,0,0,.12);
   }
   .xb-trial-detail__fixed-bottom-1{
     padding-bottom: 0;
@@ -482,6 +480,7 @@
     }
   }
 }
+
 .xb-deals-title{
   padding: 56px 0 0;
   @include xb-xs-screen{
@@ -491,11 +490,12 @@
     margin-bottom: 8px;
   }
 }
+
 .xb-deals-category{
   font-size: 16px;
-  outline: none;
   position: relative;
   height: 40px;
+
   .material-icons{
     margin-left: 4px;
     margin-right: 8px;
@@ -515,7 +515,7 @@
     text-align: left;
     padding: 8px 0;
     z-index: 2;
-    background-color: #fff;
+    background-color: $whiteColor;
     @include resetBorder();
   }
   .category-button{
@@ -537,7 +537,7 @@
     text-align: left;
     padding: 16px 0;
     z-index: 2;
-    background-color: #fff;
+    background-color: $whiteColor;
     font-size: 16px;
     @include resetBorder();
   }
@@ -547,31 +547,33 @@
     width: 138px;
     position: relative;
     overflow: hidden;
-    outline: none;
   }
   .sort-button{
-    outline: none;
     margin: 0 24px;
     height: 40px;
     font-size: 16px;
+
     @include xb-sm-screen{
       margin: 0 16px;
     }
   }
   .sort-button.active{
-    color: #3f51b5;
-    border-bottom: 2px solid #ff4081;
+    color: $primaryColor;
+    border-bottom: 2px solid $strikingColor;
   }
 }
+
 .xb-deals-sort{
   md-select{
     margin-top: 0;
     margin-bottom: 8px;
   }
 }
+
 .xb-pointer{
   cursor: pointer;
 }
+
 .xb-deals-post{
   padding: 16px 0 16px 16px;
   position: relative;
@@ -640,6 +642,7 @@
     }
   }
 }
+
 .recommend-list{
   margin-top: 36px;
   margin-left: 16px;
@@ -657,7 +660,7 @@
   &__title{
     height: 56px;
     padding: 0 16px;
-    background-color: #f9f9f9;
+    background-color: $lightWhiteColor;
   }
   &__body{
     background-color: $whiteBackground;
@@ -678,8 +681,8 @@
       padding: 0;
       width: 100%;
       display: block;
-      cursor: pointer;
       position: relative;
+      @extend .xb-pointer;
       >img{
         width: 100%;
         min-height: 162px;
@@ -698,7 +701,7 @@
         border-radius: 50%;
         md-icon{
           @include changeMdIcon(36px);
-          color: #FFF;
+          color: $whiteColor;
         }
       }
     }
@@ -725,7 +728,7 @@
         width: 20px;
         height: 20px;
         margin-bottom: 0;
-        cursor: pointer;
+        @extend .xb-pointer;
       }
     }
 

@@ -1,8 +1,3 @@
-.xb-login-body{
-  @media screen and (max-width: 600px){
-    background-color: #FFF !important;
-  }
-}
 .xb-login-image{
   margin-bottom: 24px;
 }
@@ -27,7 +22,7 @@
     margin-top: 16px;
     >div{
       font-size: 14px;
-      color: #3f51b5;
+      color: $primaryColor;
     }
   }
 }
@@ -132,7 +127,7 @@
 }
 .xb-verification{
   z-index: 1;
-  background-color: #dff2f4;
+  background-color: $lightColor;
   min-height: 56px;
   position: relative;
   overflow: hidden;
@@ -177,7 +172,7 @@
     }
     &.md-linkedin-btn{
       @extend .md-facebook-btn;
-      background-color: #0177b5;
+      background-color: $linkedinColor;
     }
   }
 }

@@ -80,61 +80,26 @@
     margin-bottom: 24px;
   }
   &__mask{
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.6);
-    cursor: pointer;
+    @extend .xb-deals-list__mask;
     color: #fff;
-    text-decoration: none;
     &:hover{
       color: #fff;
     }
-    &:before{
-      content: '';
-      position: absolute;
-      display: block;
-      top: 15%;
-      left: 65%;
-      height: 30%;
-      width: 1px;
-      background-color: rgba(255, 255, 255, .5);
-      @include transform(rotate(45deg));
-    }
-    &:after{
-      content: '';
-      position: absolute;
-      display: block;
-      top: 60%;
-      left: 35%;
-      height: 30%;
-      width: 1px;
-      background-color: rgba(255, 255, 255, .5);
-      @include transform(rotate(45deg));
-    }
   }
   avatar-img{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
     margin-right: -4px;
+
+    @include avatar-header(small);
+
     .c-user__name{
-      width: 30px;
-      height: 30px;
       border: 2px solid #F1F1F1;
     }
     &:last-child{
       margin-right: 8px;
     }
     img{
-      width: 100%;
-      height: 100%;
       margin-bottom: 0;
       border: 2px solid #F1F1F1;
-      border-radius: 50%;
     }
   }
   .md-subhead{
@@ -160,9 +125,10 @@
     }
   }
   &__subtitle{
-    text-align: center;
     margin-top: 8px;
     margin-bottom: 40px;
+
+    @extend .md-align-center;
     @include xb-xs-screen{
       margin-top: 12px;
       text-align: left;
@@ -221,11 +187,8 @@
   }
   &__avatar{
     margin: 16px 16px 16px 0;
-    width: 40px;
-    height: 40px;
+    @include avatar-header(medium);
     >img{
-      width: 100%;
-      height: 100%;
       margin-bottom: 0;
     }
   }
@@ -396,7 +359,7 @@
     @include media();
     line-height: 28px;
     text-align: center;
-    color: #fff;
+    color: $whiteColor;
     border: 4px solid #DCDCDC;
     border-radius: 50%;
     background-color: $strikingColor;
@@ -451,7 +414,7 @@
     }
   }
   &__align-right{
-    text-align: right;
+    @extend .md-align-right;
   }
   &__fixed-height{
     height: 24px;

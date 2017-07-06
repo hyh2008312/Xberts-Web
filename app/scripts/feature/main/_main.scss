@@ -19,7 +19,7 @@
       font-size: 30px;
       line-height: 40px;
       &.active {
-        color: $PrimaryINDIGO;
+        color: $primaryColor;
       }
       @include xs-screen{
         font-size: 20px;
@@ -326,39 +326,10 @@
     }
   }
   &__mask{
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.6);
+    @extend .xb-deals-list__mask;
     color: #fff;
-    text-decoration: none;
     &:hover{
       color: #fff;
-    }
-    &:before{
-      content: '';
-      position: absolute;
-      display: block;
-      top: 15%;
-      left: 65%;
-      height: 30%;
-      width: 1px;
-      background-color: rgba(255, 255, 255, .5);
-      @include transform(rotate(45deg));
-    }
-    &:after{
-      content: '';
-      position: absolute;
-      display: block;
-      top: 60%;
-      left: 35%;
-      height: 30%;
-      width: 1px;
-      background-color: rgba(255, 255, 255, .5);
-      @include transform(rotate(45deg));
     }
   }
 }
@@ -422,7 +393,7 @@
       }
     }
     a:nth-child(1) {
-      color: $PrimaryINDIGO;
+      color: $primaryColor;
       line-height: 14px;
     }
     .md-button{

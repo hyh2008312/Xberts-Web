@@ -11,7 +11,7 @@
     margin-left: 16px;
     margin-top: 16px;
     position: relative;
-    background-color: #fff;
+    @extend .background-whitem;
     padding: 0 16px 16px;
     overflow: hidden;
     @include resetBorder();
@@ -33,7 +33,7 @@
 }
 .xb-ask-title{
   .xb-section__title{
-    text-align: left;
+    @extend .md-align-left;
   }
   .md-button{
     margin: 0 0 24px;
@@ -65,18 +65,8 @@
   }
   &__head-bg{
     avatar-img{
-      width: 40px;
-      height: 40px;
       margin-right: 16px;
-      cursor: pointer;
-      img{
-        width: 40px;
-        height: 40px;
-      }
-      .c-user__name{
-        width: 40px;
-        height: 40px;
-      }
+      @include avatar-header(medium);
       @include xb-xs-screen{
         margin-right: 12px;
       }
@@ -368,20 +358,6 @@
       padding: 16px 8px 0;
       @include box-shadow(none)
     }
-    avatar-img{
-      width: 40px;
-      height: 40px;
-      margin-right: 16px;
-      margin-bottom: 0;
-      >img{
-        width: 40px;
-        height: 40px;
-      }
-      .c-user__name{
-        width: 40px;
-        height: 40px;
-      }
-    }
     &-title{
       padding-top: 20px;
       margin-bottom: 12px;
@@ -466,7 +442,7 @@
       height: 48px;
     }
     .md-padding{
-      background-color: #F1F1F1;
+      background-color: $lightWhiteColor;
       overflow: hidden;
       border-top: 1px solid rgba(0,0,0,.12);
       padding: 0 16px;
@@ -499,7 +475,7 @@
     }
   }
   .active{
-    color: $PrimaryINDIGO;
+    color: $primaryColor;
   }
   &__img-1{
     width: 20px;

@@ -157,3 +157,85 @@
 @mixin transform($arguments...) {
   @include prefixer(transform, $arguments, webkit moz ms o spec);
 }
+
+// prefix animation
+@mixin prefix-keyframes($animationName, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $prefix-for-webkit == true {
+      @-webkit-keyframes #{$animationName} {
+        @content;
+      }
+    }
+    @else if $prefix == moz and $prefix-for-mozilla == true {
+      @-moz-keyframes #{$animationName} {
+        @content;
+      }
+    }
+    @else if $prefix == ms and $prefix-for-microsoft == true {
+      @-ms-keyframes #{$animationName} {
+        @content;
+      }
+    }
+    @else if $prefix == o and $prefix-for-opera == true {
+      @-o-keyframes #{$animationName} {
+        @content;
+      }
+    }
+    @else if $prefix == spec and $prefix-for-spec == true {
+      @keyframes #{$animationName} {
+        @content;
+      }
+    }
+    @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+// prefix content
+@mixin prefix-content($content-name,$content-txt){
+  @include prefixer($content-name, $content-txt, webkit moz ms o spec);
+}
+
+// avatar content
+@mixin avatar-header($media) {
+  @if $media == medium {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    img{
+      width: 40px;
+      height: 40px;
+    }
+    .c-user__name{
+      width: 40px;
+      height: 40px;
+    }
+  }
+  @else if $media == small {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    img{
+      width: 30px;
+      height: 30px;
+    }
+    .c-user__name{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  @else {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    img{
+      width: 80px;
+      height: 80px;
+    }
+    .c-user__name{
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
