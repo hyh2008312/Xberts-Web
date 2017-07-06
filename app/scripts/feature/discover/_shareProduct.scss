@@ -1,20 +1,5 @@
 $PrimaryINDIGO: #3f51b5;
 
-
-@mixin triangleBottom($px1:10px,$px2:10px,$color:#FFF){
-  width: 0;
-  height: 0;
-  border-left: $px1 solid transparent;
-  border-right: $px1 solid transparent;
-  border-bottom: $px2 solid $color;
-}
-@mixin transform($arguments...) {
-  -webkit-transform: $arguments;
-  -moz-transform: $arguments;
-  -o-transform: $arguments;
-  -ms-transform: $arguments;
-  transform: $arguments;
-}
 .xb-section{
   &__title {
     text-align: center;

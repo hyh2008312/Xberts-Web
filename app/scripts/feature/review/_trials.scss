@@ -316,7 +316,7 @@
     }
     span{
       margin-left: 8px;
-      color: #ff4a87;
+      @extend .xb-color-striking;
     }
   }
   .active{
@@ -363,7 +363,7 @@
       overflow: hidden;
       white-space: nowrap;
       >span{
-        color: #ff4a87;
+        color: $strikingColor;
       }
     }
   }
@@ -398,8 +398,8 @@
     text-align: center;
     color: #fff;
     border: 4px solid #DCDCDC;
-    background-color: #ff4a87;
     border-radius: 50%;
+    background-color: $strikingColor;
   }
   &__circle-bg{
     padding: 0 4px;
@@ -435,7 +435,7 @@
     background-color: #000;
     border-radius: 50%;
     @include xb-xs-screen{
-      background-color: #ff4a87;
+      background-color: $strikingColor;
     }
   }
   &__time-axis{
@@ -480,7 +480,7 @@
     cursor: pointer;
   }
   &__star{
-    color: #ff4a87;
+    @extend .xb-color-striking;
   }
   &__avatar{
     display: block;

@@ -9,3 +9,15 @@
 .border-bottom{
   border-bottom: 1px solid #dcdcdc;
 }
+
+.text-underline{
+  text-decoration: underline;
+}
+
+$aligns: left right center justify;
+
+@each $align in $aligns {
+  .md-align-#{$align} {
+    text-align: $align;
+  }
+}

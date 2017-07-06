@@ -19,10 +19,7 @@ $colors: (
   .background-#{$name} {
     background-color: $color;
   }
-  .font-#{$name} {
+  .xb-color-#{$name} {
     color: $color;
-  }
-  .border-bottom-#{$name} {
-    border-bottom: 1px solid $color;
   }
 }

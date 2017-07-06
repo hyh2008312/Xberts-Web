@@ -3,18 +3,6 @@ html {
   min-height: 100%;
 }
 
-//body {
-//  margin-top: $xb-coupon-bar-height;
-//  margin-bottom: $xb-footer-height;
-//  background-color: $xb-default-bg;
-//  line-height: 1.43;
-//
-//  @media screen and (max-width: $screen-sm-min) {
-//    margin-top: $xb-coupon-bar-height-screen-sm;
-//    margin-bottom: $xb-footer-height-screen-sm;
-//  }
-//}
-
 body {
   /* padding bottom by footer height */
 
@@ -23,35 +11,27 @@ body {
   max-height: 100%;
   overflow: hidden;
   background-color: #f1f1f1;
+  font-size: $defaultFontSize;
+  line-height: (20px / $defaultFontSize);
 }
 
-
-
-@media screen and (max-width: $screen-sm-min) {
-  // Hide shipping info card on mobile
-  #shipping-info-card {
-    display: none;
-  }
-
-  // Hide contact maker card on mobile
-  #contact-owner-card {
-    display: none;
-  }
+* {
+  @include box-sizing(border-box);
+}
+*:before,
+*:after {
+  @include box-sizing(border-box);
 }
 
-.panel-heading {
-  padding: 15px;
+ul.xb-list-pros-cons{
+  //padding-left: 10px;
+  margin-bottom: 20px;
+  -webkit-padding-start:15px
 }
 
-h3.panel-title {
-  font-size: 24px;
-}
-
-.landing-p {
-  font-size: 20px;
-  p {
-    font-size: 20px;
-  }
+a{
+  color: $primaryColor;
+  text-decoration: none;
 }
 
 a.a-gray {
@@ -83,87 +63,6 @@ a.block-link {
   }
 }
 
-.full-page {
-  margin-top: 0;
-}
-
-.partial-page {
-  margin-top: $sectionSpace;
-}
-
-.full-image > img {
-  width: 100%;
-}
-
-.coupon-banner {
-  width: 100%;
-  height: $xb-coupon-bar-height;
-  padding-top: 15px;
-  color: $xb-default-font-color-inverse;
-  background-color: $brand-primary;
-
-  @media screen and (max-width: $screen-sm-min) {
-    height: $xb-coupon-bar-height-screen-sm;
-  }
-
-  a {
-    color: $xb-default-font-color-inverse;
-    text-decoration: underline;
-  }
-}
-
-
-
-.container .jumbotron, .container-fluid .jumbotron {
-  border-radius: 0;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.6)
-}
-
-.jumbotron {
-  h2 {
-    text-align: center;
-    color: $whiteColor;
-  }
-  h3 {
-    text-align: center;
-    color: $lightColor;
-  }
-}
-
-.form-inline {
-  margin-bottom: 15px;
-}
-
-.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
-  margin-left: 0;
-}
-
-.radio-inline, .checkbox-inline {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.tab-content {
-  padding: 16px;
-  overflow: hidden;
-  img {
-    max-width: 100%;
-  }
-}
-
-.label {
-  display: inline-block;
-}
-
-.label-default {
-  margin-right: 2px;
-  background-color: $lightGrayColor;
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
 .note-editor {
   border: 1px solid $lightGrayColor;
 }
@@ -185,30 +84,6 @@ a.block-link {
   border: none;
 }
 
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-justify {
-  text-align: justify;
-}
-
-.pr {
-  position: relative;
-}
-
-.hide {
-  display: none;
-}
-
 .note-editable img {
   max-width: 100%;
 }
@@ -220,138 +95,6 @@ a.block-link {
 
 .optional-field {
   color: $grayColor;
-}
-
-$xy: (
-  a5-10: 5px 10px,
-  a10-10: 5px 10px,
-);
-@each $name, $top-left in $xy {
-  .padding-#{$name} {
-    padding: nth($top-left, 1) nth($top-left, 2);
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .jumbotron {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  .jumbotron h2 {
-    font-size: 36px;
-    margin-top: 0;
-  }
-  .jumbotron h3 {
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-
-  .landing-page {
-    height: 600px;
-    margin-top: -50px;
-    .section-title {
-      margin-top: 200px;
-    }
-  }
-  .expert-profile {
-    margin-top: 10px;
-  }
-  .expert-profile-btn {
-    margin-top: 45px;
-  }
-}
-
-.label {
-  font-weight: normal;
-}
-
-.label-primary {
-  background-color: $primaryColor;
-}
-
-.label-success {
-  background-color: $successColor;
-}
-
-.expert-profile img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-}
-
-@media screen and (max-width: 767px) {
-  .landing-page {
-    margin-top: -50px;
-    height: 500px;
-    .section-title {
-      text-align: center;
-      h1 {
-        font-size: 36px;
-      }
-      margin-top: 180px;
-    }
-  }
-}
-
-.error {
-  color: red;
-  font-weight: bold;
-}
-
-.top-buffer-sm {
-  margin-top: 20px;
-}
-
-.bottom-buffer-sm {
-  margin-bottom: 20px;
-}
-
-.login-container {
-  background-color: $xb-form-default-bg;
-  border: solid 1px $xb-default-border;
-  margin: 60px auto;
-  max-width: 400px;
-  padding: 20px;
-
-  h5 {
-    @include headerDivider($xb-form-default-bg);
-    color: $xb-default-border;
-    font-weight: normal;
-    margin: 20px 0;
-  }
-
-  .btn {
-    margin: 15px 0;
-  }
-}
-
-// Password reset
-[name=resetPasswordRequestForm] input[type=email] {
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-[name=resetPasswordRequestForm] button {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-[name=resetPasswordConfirmForm] [type=password] {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-// Edit Profile
-.avatar-thumb {
-  width: 120px;
-  height: 120px;
-}
-
-.intl-tel-input {
-  position: relative;
-  display: block;
 }
 
 //summer-note overrides
@@ -393,84 +136,6 @@ $xy: (
   z-index: 1040;
 }
 
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1030;
-  background-color: #000;
-}
-
-img.full-image {
-  width: 100%;
-}
-
-.progress {
+.pr {
   position: relative;
-}
-
-.progress-tip-down {
-  position: relative;
-  .progress {
-    margin-bottom: 30px;
-  }
-}
-
-.progress-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #333;
-}
-
-.progress-tip-left {
-  position: absolute;
-  top: 13px;
-  left: 0;
-  text-align: left;
-  z-index: 5;
-}
-
-.progress-tip-right {
-  position: absolute;
-  top: 13px;
-  right: 0;
-  text-align: right;
-  z-index: 5;
-}
-
-
-.text-underline{
-  text-decoration: underline;
-}
-
-
-#backtop.light {
-  bottom: 40px;
-  right: 30px;
-  z-index: 1;
-}
-
-.xb-dot-bottom{
-  border-bottom: 1px dotted #333;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  font-weight: normal;
-  font-size: 22px;
-}
-
-#review-detail .affix, #report-detail .affix{
-  top: 70px;
-}
-
-.affix .affix-hidden{
-  display: none;
-}
-
-.xb-border-left{
-  border-left: 1px solid $lightGrayColor;
 }

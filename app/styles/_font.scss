@@ -44,23 +44,6 @@ $spaces: (
     margin-#{$direction}:$defaultMargin;
   }
 }
-.font-60{
-  font-size: 48px;
-}
-//@each $space in $spaces {
-//  @each $direction in $directions{
-//    .#{$space}-#{$direction}{
-//      #{$space}-#{$direction}: 1px;
-//    }
-//  }
-//}
-
-.xb-font-larger{
-  font-size: 1.4em;
-  @media screen and (max-width: 800px){
-    font-size: 1.2em;
-  }
-}
 
 h2{
   @media screen and (max-width: 800px){
@@ -68,17 +51,8 @@ h2{
   }
 }
 
-.title-h4{
-  padding-bottom: 10px;
-  border-bottom: 1px dashed #CCCCCC;
-}
-
 .xb-bold{
   font-weight: bold;
-}
-
-.xb-dark-font {
-  color: $darkColor;
 }
 
 .xb-italic{

@@ -7,6 +7,19 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 // endbower
 
 @import "xb-md-supplement";
+@import "mix";
+@import "mixins";
+@import "animation";
+@import "component";
+@import "structure";
+@import "navbar";
+@import "footer";
+@import "layout";
+@import "theme";
+@import "components/index";
+@import "pages/index";
+@import "utilities";
+
 @import "../scripts/feature/profile/profile";
 @import "../scripts/feature/review/report/report";
 @import "../scripts/components/comments/comment";
@@ -21,21 +34,6 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "../scripts/feature/message/message";
 
 
-@import "mix";
-@import "mixins";
-@import "animation";
-@import "component";
-@import "list";
-@import "structure";
-@import "navbar";
-@import "footer";
-@import "layout";
-@import "theme";
-@import "components/index";
-@import "pages/index";
-@import "utilities";
-@import "typographic";
-@import "others";
 
 
 

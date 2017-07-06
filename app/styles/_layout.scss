@@ -1,3 +1,27 @@
+
+
+.container {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 740px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
 // basic layout
 
 .margin-none {
@@ -544,12 +568,4 @@ ul.xb-ul-alpha {
   white-space: nowrap;
 }
 
-ul.xb-list-pros-cons{
-  //padding-left: 10px;
-  margin-bottom: 20px;
-  -webkit-padding-start:15px
-}
 
-hr{
-
-}
