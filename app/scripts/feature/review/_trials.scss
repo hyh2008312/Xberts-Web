@@ -155,6 +155,12 @@
       padding: 8px 0;
     }
   }
+  &__pop-1{
+    margin-top: 24px;
+    @include xb-xs-screen{
+      margin-top: 12px;
+    }
+  }
   &__triangle{
     position: relative;
     width: 0;
@@ -188,6 +194,13 @@
   &__avatar{
     margin: 16px 16px 16px 0;
     @include avatar-header(medium);
+    >img{
+      margin-bottom: 0;
+    }
+  }
+  &__avatar-1{
+    @include avatar-header(large);
+    margin-right: 16px;
     >img{
       margin-bottom: 0;
     }
@@ -419,6 +432,9 @@
   &__fixed-height{
     height: 24px;
   }
+  &__website{
+    margin-left: 80px;
+  }
 }
 .xb-trial-reviewer{
   margin-bottom: 24px;
@@ -446,16 +462,11 @@
     @extend .xb-color-striking;
   }
   &__avatar{
-    display: block;
-    width: 40px;
-    height: 40px;
+    @include avatar-header(medium);
     margin-right: 16px;
     >img{
-      width: 100%;
-      height: 100%;
       margin-bottom: 0;
     }
-    cursor: pointer;
   }
   &__name{
     cursor: pointer;

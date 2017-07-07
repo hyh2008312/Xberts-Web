@@ -199,7 +199,20 @@
 
 // avatar content
 @mixin avatar-header($media) {
-  @if $media == medium {
+  @if $media == large {
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    img{
+      width: 64px;
+      height: 64px;
+    }
+    .c-user__name {
+      width: 64px;
+      height: 64px;
+    }
+  }
+  @else if $media == medium {
     width: 40px;
     height: 40px;
     cursor: pointer;

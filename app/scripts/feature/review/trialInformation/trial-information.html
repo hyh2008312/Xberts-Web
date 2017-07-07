@@ -72,10 +72,15 @@
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">Apply Now</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">Apply Now</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
+
+      <div class="xb-trial-detail__pop-1">Since our sponsor only provides a limited number of free samples, you can also purchase this product immediately
+        by clicking <span class="text-underline xb-color-striking" ng-click="trial.review.buyNow('trials-detail');">HERE</span>.</div>
     </div>
     <div ng-switch-when="SELECTION">
       <div class="xb-trial-detail__pop">
@@ -85,10 +90,15 @@
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
+
+      <div class="xb-trial-detail__pop-1">Since our sponsor only provides a limited number of free samples, you can also purchase this product immediately
+        by clicking <span class="text-underline xb-color-striking" ng-click="trial.review.buyNow('trials-detail');">HERE</span>.</div>
     </div>
     <div ng-switch-when="CONFIRMATION">
       <div class="xb-trial-detail__pop">
@@ -98,20 +108,30 @@
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
+
+      <div class="xb-trial-detail__pop-1">Since our sponsor only provides a limited number of free samples, you can also purchase this product immediately
+        by clicking <span class="text-underline xb-color-striking" ng-click="trial.review.buyNow('trials-detail');">HERE</span>.</div>
     </div>
     <div ng-switch-when="REVIEW">
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised"
            ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="center center" ng-if="isFacebookApp">
         <md-button tabs-fixed-item class="md-primary md-raised"
                    ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
+        <md-button class="md-accent md-margin-clear" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
+
+      <div class="xb-trial-detail__pop-1">Since our sponsor only provides a limited number of free samples, you can also purchase this product immediately
+        by clicking <span class="text-underline xb-color-striking" ng-click="trial.review.buyNow('trials-detail');">HERE</span>.</div>
     </div>
     <div ng-switch-when="ENDED">
       <div class="xb-trial-detail__pop">
