@@ -96,7 +96,7 @@ angular.module('xbertsApp')
   })
   .filter('worldCurrency', ['$rootScope','$filter',function($rootScope,$filter) {
     return function (money, currency) {
-      if($rootScope.country == 'INR') {
+      if($rootScope.country == 'IN') {
         if(currency != 'INR') {
           return money = $filter('currency')(Math.round(money / $rootScope.exchangeRate * 100) / 100,'₹');
         } else {
