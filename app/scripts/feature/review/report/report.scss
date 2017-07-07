@@ -26,7 +26,7 @@
     }
   }
   &__info{
-    @include xb-md-screen{
+    @include xb-gt-sm-screen{
       padding-left: 56px;
     }
   }
