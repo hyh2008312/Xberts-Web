@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('DealsFactory', ['$location','$timeout','$mdSidenav','$mdDialog',
-    function ($location,$timeout,$mdSidenav,$mdDialog) {
+  .factory('DealsFactory', ['$rootScope','$location','$timeout','$mdSidenav','$mdDialog',
+    function ($rootScope,$location,$timeout,$mdSidenav,$mdDialog) {
 
     var self = this;
 
@@ -19,6 +19,11 @@ angular.module('xbertsApp')
       scope.selectedIndex = parseInt(array.findIndex(function(x) {
         return x.value == tab;
       }));
+      if($rootScope.state.current.name == 'application.productDeals') {
+        if(scope.selectedIndex < 0) {
+          scope.selectedIndex = 0;
+        }
+      }
     };
 
     this.debounce = function(func, wait, context) {

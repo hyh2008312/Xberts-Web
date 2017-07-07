@@ -38,6 +38,11 @@ angular.module('xbertsApp')
         $scope.selectedIndex = parseInt(tabIndexToParam.findIndex(function(x) {
           return x == tab;
         }));
+        if($rootScope.state.current.name == 'application.expert') {
+          if($scope.selectedIndex < 0) {
+            $scope.selectedIndex = 0;
+          }
+        }
       };
 
       updateActiveTabOnSearch();
