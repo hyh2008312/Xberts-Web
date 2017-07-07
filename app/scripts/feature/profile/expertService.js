@@ -28,6 +28,14 @@ angular.module('xbertsApp')
       return delay.promise;
     };
 
+    this.getQuestionsList = function(params) {
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/questions/').get(params).$promise.then(AskModel.buildPageList);
+    };
+
+    this.getAnswersList = function(params) {
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/answers/').get(params).$promise.then(AskModel.buildPageList);
+    };
+
     this.follow = function(params) {
       return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/follow/').save().$promise;
     };

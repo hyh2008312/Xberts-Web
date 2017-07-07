@@ -4,7 +4,7 @@
 .xb-credit-top-banner{
   .xb-top-banner__content{
     margin-top: 128px;
-    @include xs-screen{
+    @include xb-xs-screen{
       margin-top: 0;
       .xb-top-banner__title{
         font-size: 20px;
@@ -325,7 +325,7 @@
       background-color: rgba(0,0,0,.12);
       margin-bottom: 16px;
       display: block;
-      @include xs-screen{
+      @include xb-xs-screen{
         width: 100%;
       }
     }

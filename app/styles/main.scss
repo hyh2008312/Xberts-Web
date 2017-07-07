@@ -1,14 +1,13 @@
 @import "color";
 @import "font";
 @import "variables";
-$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-@import "xb-md-supplement";
 @import "mix";
 @import "mixins";
+@import "xb-md-supplement";
 @import "animation";
 @import "component";
 @import "structure";

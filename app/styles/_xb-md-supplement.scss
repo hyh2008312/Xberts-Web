@@ -1,26 +1,3 @@
-//media mixin
-
-// for mobile
-@mixin xs-screen(){
-  @media screen and (max-width: $screen-xs-max) {
-    @content;
-  }
-}
-
-// for table
-@mixin sm-screen(){
-  @media screen and (min-width: $screen-sm-min)and (max-width: $screen-sm-max) {
-    @content;
-  }
-}
-
-// for desktop
-@mixin md-screen(){
-  @media screen and (min-width: $screen-md-min) {
-    @content;
-  }
-}
-
 
 // typography
 
@@ -70,7 +47,7 @@ p{
   @include font-h2();
   margin-top: 0;
   margin-bottom: 16px;
-  @include xs-screen{
+  @include xb-xs-screen{
     @include font-h1();
     margin-bottom: 8px;
   }
@@ -152,7 +129,7 @@ a {
   }
 }
 
-a.xb2-nostyle-link{
+a.xb2-nostyle-link {
   color: inherit;
   &:hover {
     color: inherit;
@@ -161,25 +138,25 @@ a.xb2-nostyle-link{
 
 //list
 
-md-list-item.md-padding-clear{
+md-list-item.md-padding-clear {
   padding:0 0;
 }
 
-.xb2-ul{
+.xb2-ul {
   margin-bottom: 8px;
   -webkit-padding-start: 16px;
 }
 
 // img
 
-img.xb2-img-responsible{
+img.xb2-img-responsible {
   width: 100%;
 }
 
 
 // layout
 
-.xb2-bottom-fixed{
+.xb2-bottom-fixed {
   position: fixed;
   width: 100%;
   left: 0;
@@ -190,17 +167,17 @@ img.xb2-img-responsible{
 }
 
 
-@mixin regular(){
+@mixin regular() {
   font-weight: 400;
 }
-@mixin light(){
+@mixin light() {
   font-weight: 300;
 }
-@mixin media(){
+@mixin media() {
   font-weight: 500;
 }
 
-.md-subhead, b{
+.md-subhead, b {
   font-weight: 500;
 }
 $directions: left top right bottom;
@@ -224,34 +201,34 @@ $aligns: left right center justify;
   }
 }
 
-.md-margin-clear{
+.md-margin-clear {
   margin: 0 0;
 }
 
-.md-padding-clear{
+.md-padding-clear {
   padding: 0 0;
 }
 
-.md-relative{
+.md-relative {
   position: relative;
 }
 
-p,.md-body-1{
+p,.md-body-1 {
   font-size: 14px;
   line-height: 24px;
   @include regular;
 }
 
-.list-none-style{
+.list-none-style {
   list-style: none;
 }
 
-.xb-loading{
+.xb-loading {
   path{
     stroke:rgba(0, 0, 0, .38);
   }
 }
-.xb-loading-top{
+.xb-loading-top {
   position: fixed;
   left: 0;
   top: 0;
@@ -260,7 +237,7 @@ p,.md-body-1{
   z-index: 99999;
   .md-container{
     height: 4px;
-    @include xs-screen{
+    @include xb-xs-screen{
       height: 2px;
     }
   }

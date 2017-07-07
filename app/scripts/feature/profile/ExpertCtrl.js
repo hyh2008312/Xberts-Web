@@ -3,9 +3,9 @@
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
     'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ProductDeals','ExpertService',
-    'AskModel','AskService','localStorageService','achievement',
+    'AskModel','localStorageService','achievement',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
-              ApplicationService, Sales, SystemConstant, ProductDeals, ExpertService,AskModel,AskService,
+              ApplicationService, Sales, SystemConstant, ProductDeals, ExpertService,AskModel,
               localStorageService,achievement) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
@@ -92,10 +92,10 @@ angular.module('xbertsApp')
         name: 'questions_list_' + $scope.expert.userId,
         objClass: AskModel,
         params: {
-          owner: $scope.expert.userId,
+          id: $scope.expert.userId,
           page_size: 12
         },
-        fetchFunction: AskService.getList
+        fetchFunction: ExpertService.getQuestionsList
       };
       $scope.postsQuestionPaginator = new Paginator(parQuestion);
 
@@ -103,10 +103,10 @@ angular.module('xbertsApp')
         name: 'answers_list_' + $scope.expert.userId,
         objClass: AskModel,
         params: {
-          owner: $scope.expert.userId,
+          id: $scope.expert.userId,
           page_size: 12
         },
-        fetchFunction: AskService.getAnswersList
+        fetchFunction: ExpertService.getAnswersList
       };
       $scope.postsAnswerPaginator = new Paginator(parAnswers);
 

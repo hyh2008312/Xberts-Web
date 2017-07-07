@@ -3,7 +3,7 @@
     padding-top: 24px;
     padding-bottom: 24px;
 
-    @include md-screen{
+    @include xb-md-screen{
       padding-top: 40px;
       padding-bottom: 40px;
     }
@@ -12,7 +12,7 @@
     @include font-h2();
     margin-top: 0;
     margin-bottom: 8px;
-    @include md-screen{
+    @include xb-md-screen{
       text-align: center;
     }
   }
@@ -20,20 +20,20 @@
   &__subtitle{
     @include font-p();
     margin-bottom: 16px;
-    @include md-screen{
+    @include xb-md-screen{
       text-align: center;
       margin-bottom: 32px;
     }
   }
   &__info{
-    @include md-screen{
+    @include xb-md-screen{
       padding-left: 56px;
     }
   }
 
   &__author{
     margin-bottom: 0;
-    @include md-screen{
+    @include xb-md-screen{
       margin-bottom: 24px;
       padding:0 !important;
     }
@@ -41,7 +41,7 @@
 
   &__rating{
     margin-bottom: 16px;
-    @include md-screen{
+    @include xb-md-screen{
       margin-bottom: 24px;
       padding:0 !important;
     }
@@ -53,7 +53,7 @@
 
   &__button{
 
-    @include xs-screen{
+    @include xb-xs-screen{
       position: fixed;
       width: 100%;
       left: 0;
@@ -61,10 +61,6 @@
       z-index: 50;
       background-color: #FFFFFF;
       padding: 10px;
-    }
-
-    @include xs-screen{
-
     }
   }
 }
@@ -116,7 +112,7 @@
 }
 
 .xb2-price{
-  @include md-screen{
+  @include xb-md-screen{
     margin-bottom: 24px;
   }
   &__final{

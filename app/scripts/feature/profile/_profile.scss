@@ -147,8 +147,8 @@
     color: #000;
   }
   md-ink-bar{
-    color: #3f51b5;
-    background-color: #3f51b5;
+    color: $primaryColor;
+    background-color: $primaryColor;
   }
   &__title{
     width: 112px;
@@ -218,8 +218,8 @@
     text-align: center;
     margin-right: 42px;
     border-radius: 50%;
-    color: #fff;
-    $colors: (1 #325998) (2 #0077b4) (3 #009ff3);
+    color: $whiteColor;
+    $colors: (1 $facebookColor) (2 $linkedinColor) (3 $twitterColor);
     @each $color in $colors {
       &-color-#{nth($color, 1)} {
         background-color: nth($color, 2);
@@ -253,7 +253,7 @@
 .xb-password-dialog{
   padding: 16px;
   width: 704px;
-  @include xs-screen{
+  @include xb-xs-screen{
     max-width: 100%;
   }
   .md-button{
@@ -267,7 +267,7 @@
   }
 }
 .xb-my-profile{
-  background-color: #3f52b4;
+  background-color: $navigationColor;
   @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.38));
   &__content{
     margin-top: 16px;
@@ -288,7 +288,7 @@
     }
   }
   &__title{
-    color: #fff;
+    color: $whiteColor;
     margin-left: 88px;
     @media screen and (max-width: 600px){
       margin-left: 8px;
@@ -341,7 +341,7 @@
     font-style: italic;
     line-height: 24px;
     background-color: #fff;
-    color: #3f51b5;
+    color: $primaryColor;
     i{
       display: block;
       width: 16px;
@@ -351,7 +351,7 @@
       text-align: center;
     }
     .material-icons{
-      color: #3f51b5;
+      color: $primaryColor;
     }
   }
   &__cursor{
@@ -366,8 +366,8 @@
     font-family: "Times new Roman";
     font-style: italic;
     line-height: 24px;
-    background-color: #fff;
-    color: #3f51b5;
+    background-color: $whiteColor;
+    color: $primaryColor;
     i{
       display: block;
       width: 16px;
@@ -396,10 +396,10 @@
       margin-right: 16px;
     }
     md-icon{
-      color: #fff;
+      color: $whiteColor;
     }
     i{
-      color: #fff;
+      color: $whiteColor;
       width: 24px;
       height: 24px;
       font-size: 24px;
@@ -408,13 +408,13 @@
     }
   }
   &__button-1{
-    background-color: #fff !important;
+    background-color: $whiteColor !important;
     md-icon{
-      color: #3f51b5 !important;
+      color: $primaryColor !important;
     }
   }
   &__padding-top{
-    @media screen and (width: 600px){
+    @include xb-xs-screen{
       padding-top: 16px;
     }
   }
@@ -422,7 +422,7 @@
     md-tabs-canvas{
       border-radius: 2px;
       border:1px solid rgba(0,0,0,.06);
-      background-color: #fff;
+      background-color: $whiteColor;
       height: 40px;
       md-pagination-wrapper{
         height: 40px;
@@ -467,7 +467,7 @@
   }
   &__margin-top{
     margin-top: 16px;
-    background-color: #fff;
+    background-color: $whiteColor;
     border-radius: 2px;
     border: 1px solid rgba(0,0,0,.06);
     min-height: 200px;
@@ -493,7 +493,7 @@
     margin-bottom: 32px;
     padding: 0 16px;
     span{
-      color: #ff4081;
+      color: $strikingColor;
     }
     a{
       border-bottom: 1px solid;
@@ -502,7 +502,7 @@
   &__middle{
     margin-bottom: 40px;
     @include resetBorder();
-    background-color: #fff;
+    background-color: $whiteColor;
     .md-subhead{
       padding: 16px;
       border-bottom: 1px solid rgba(0, 0, 0, .12);
@@ -519,7 +519,7 @@
       width: 36px;
       height: 36px;
       text-align: center;
-      color: #fff;
+      color: $whiteColor;
       margin-right: 16px;
 
     }
@@ -527,7 +527,7 @@
       color: rgba(0, 0, 0, .38);
       background-color: transparent;
     }
-    $hoverChanges: (1 #3b5998) (2 #0177b5) (3 #1da1f2) (4 #3f51b5);
+    $hoverChanges: (1 $facebookColor) (2 $twitterColor) (3 $linkedinColor) (4 #3f51b5);
     @each $hoverChange in $hoverChanges{
       #{$parent}__color-#{nth($hoverChange, 1)} {
         cursor: pointer;
@@ -595,7 +595,7 @@
         border-radius: 4px;
         margin-right: 12px;
       }
-      $colors: (1 #3b5998) (2 #1da1f2) (3 #0177b5);
+      $colors: (1 $facebookColor) (2 $twitterColor) (3 $linkedinColor);
       @each $color in $colors{
         &:nth-child(#{nth($color, 1)}) {
           >i{
@@ -619,7 +619,7 @@
       margin-right: 12px;
     }
     span{
-      color: #3f51b5;
+      color: $primaryColor;
       outline: none;
     }
   }
@@ -661,7 +661,7 @@
         margin-right: 8px;
         margin-top: 8px;
         @include changeMdIcon(16px);
-        color: #FFF;
+        color: $whiteColor;
       }
     }
   }
@@ -760,7 +760,7 @@
   &__content{
     margin-top: 8px;
     span{
-      color: #3f51b5;
+      color: $primaryColor;
       cursor: pointer;
     }
   }
@@ -833,7 +833,7 @@
   min-width: 364px;
   margin-left: 16px;
   margin-bottom: 16px;
-  background-color: #fff;
+  background-color: $whiteColor;
   padding: 16px 0;
   @include resetBorder();
   >span{

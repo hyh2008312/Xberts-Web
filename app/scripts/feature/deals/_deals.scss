@@ -339,7 +339,7 @@
   &__title{
     margin-top: 28px;
     margin-bottom: 12px;
-    @include xs-screen{
+    @include xb-xs-screen{
       font-size: 16px;
       line-height: 24px;
     }

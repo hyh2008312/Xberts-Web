@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('MyQuestionsCtrl', ['$scope', '$rootScope','expert','Paginator','AskModel','AskService','$stateParams',
-    function ($scope, $rootScope,expert,Paginator,AskModel,AskService, $stateParams) {
+  .controller('MyQuestionsCtrl', ['$scope', '$rootScope','expert','Paginator','AskModel','ExpertService','$stateParams',
+    function ($scope, $rootScope,expert,Paginator,AskModel,ExpertService, $stateParams) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
@@ -11,10 +11,10 @@ angular.module('xbertsApp')
         name: 'questions_list_posts_' + $stateParams.expertId,
         objClass: AskModel,
         params: {
-          owner: $stateParams.expertId,
+          id: $stateParams.expertId,
           page_size: 12
         },
-        fetchFunction: AskService.getList
+        fetchFunction: ExpertService.getQuestionsList
       };
       $scope.postsQuestionPaginator = new Paginator(parQuestion);
 

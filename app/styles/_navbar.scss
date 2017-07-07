@@ -257,7 +257,7 @@
 .nav-main-opacity {
   .xb-body-view{
     margin-top: -56px;
-    @include xs-screen{
+    @include xb-xs-screen{
       margin-top: 0;
     }
   }

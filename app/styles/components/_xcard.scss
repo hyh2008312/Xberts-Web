@@ -70,7 +70,7 @@
   $parent: &;
 
   &--image-left {
-    @include md-screen {
+    @include xb-md-screen {
       padding-left: 270px;
       #{$parent}__image_wrap {
         width: 270px;
