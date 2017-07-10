@@ -1,21 +1,3 @@
-$numbers: (1 2 3 4 5 8 10);
-@each $number in $numbers {
-  .md-p-#{$number} {
-    @if ($number==1) {
-      @include ellipsisText();
-    } @else {
-      @include ellipsisMultiText($number);
-    }
-  }
-  .md-p-#{$number}-max {
-    @if ($number==1) {
-      @include ellipsisText();
-    } @else {
-      @include ellipsisMultiTextMax($number);
-    }
-  }
-}
-
 .mask {
   position: absolute;
   width: 100%;

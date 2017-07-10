@@ -1,12 +1,10 @@
-@import "color";
-@import "font";
+@import "utils/index";
 @import "variables";
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-@import "mix";
-@import "mixins";
+
 @import "xb-md-supplement";
 @import "animation";
 @import "component";
@@ -14,7 +12,6 @@
 @import "navbar";
 @import "footer";
 @import "layout";
-@import "theme";
 @import "components/index";
 @import "pages/index";
 @import "utilities";

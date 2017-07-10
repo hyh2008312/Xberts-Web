@@ -256,4 +256,18 @@
 @mixin ellipsisText {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+@mixin ellipsisMultiText($multi) {
+  position: relative;
+  height: $defaultLineHeight * $multi;
+  overflow: hidden;
+}
+
+@mixin ellipsisMultiTextMax($multi) {
+  position: relative;
+  max-height: $defaultLineHeight * $multi;
+  overflow: hidden;
 }

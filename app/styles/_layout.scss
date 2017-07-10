@@ -346,12 +346,6 @@ hr {
   }
 }
 
-.xb-section-title-decoration {
-  h2 {
-    @include headerDivider($xb-default-bg);
-  }
-}
-
 .xb-section-body {
   margin-bottom: 0;
 }
