@@ -81,6 +81,21 @@
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Official Website:</label>
+          <input type="text" class="form-control" name='official_url' ng-model="projectData.official_url"
+                 required placeholder="http://"
+                 ng-required="true" ng-maxlength="200">
+
+          <div class="" ng-show="projectForm.$submitted || projectForm.buy_url.$touched"
+               ng-messages="projectForm.buy_url.$error">
+            <p class="message-error" ng-message="required">* required.</p>
+
+            <p class="message-error" ng-message="maxlength">* no more than 200 chars.</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
 
