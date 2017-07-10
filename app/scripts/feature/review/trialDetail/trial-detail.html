@@ -116,19 +116,21 @@
 
                 </div>
               </div>
-              <div ng-if="!trial.isShowReviews">
-                <div class="xb-detail-cards">
+              <div ng-if="!trial.isShowReviews ">
+                <div class="xb-detail-cards" ng-if="trial.review.project.officialUrl != ''">
                   <div class="md-subhead">
                     About This Brand
                   </div>
                   <div class="xb-detail-cards__padding-2">
                     <div layout="row" layout-align="start center">
-                      <avatar-img class="xb-trial-detail__avatar-1" src="trial.review.project.account.avatar" name="trial.review.project.account.fullname"></avatar-img>
-                      <div flex>{{ trial.review.project.account.fullname }}</div>
+                      <avatar-img ng-click="trial.review.website();" class="xb-trial-detail__avatar-1" src="trial.review.project.account.avatar"
+                                  name="trial.review.project.account.fullname"></avatar-img>
+                      <div flex ng-click="trial.review.website();">{{ trial.review.project.account.fullname }}</div>
                     </div>
-                    <div class="xb-color-primary md-margin-top-2 xb-detail-cards__website">
+                    <a class="xb-color-primary md-margin-top-2 xb-pointer xb-detail-cards__website"
+                       ng-click="trial.review.website();">
                       See their website >>
-                    </div>
+                    </a>
                   </div>
                 </div>
                 <div class="xb-detail-cards">
@@ -210,7 +212,7 @@
   <div ng-hide="!trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
     <md-truncate flex class="md-subhead">Reviews</md-truncate>
     <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
-             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="0" toggle="true">keyboard_arrow_up</md-icon>
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="0" toggle="true">keyboard_arrow_down</md-icon>
   </div>
   <div ng-hide="!trial.isShowReviews" class="container ">
     <div class="xb-detail-cards__padding-2" infinite-scroll="trial.pendingApplicantPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
@@ -245,18 +247,19 @@
     </div>
     <load-more ng-if="trial.selectedApplicantPaginator.loading"></load-more>
   </div>
-  <div ng-hide="trial.isShowReviews" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
+  <div ng-hide="trial.isShowReviews || trial.review.project.officialUrl == ''" class="xb-credit-mobile__nav" layout="row" layout-align="space-between center">
     <md-truncate flex class="md-subhead">About This Brand</md-truncate>
     <md-icon md-font-set="material-icons" nav-next-slide-toggle toggle-element="'.xb-credit-mobile .container'"
-             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="true">keyboard_arrow_up</md-icon>
+             parent="'.xb-credit-mobile__nav'" active-class="'active'" touch-class="'hover'" index="2" toggle="true">keyboard_arrow_down</md-icon>
   </div>
-  <div ng-hide="trial.isShowReviews" class="container">
+  <div ng-hide="trial.isShowReviews || trial.review.project.officialUrl == ''" class="container">
     <div class="xb-detail-cards xb-detail-cards__padding-2">
       <div layout="row" layout-align="start center">
-        <avatar-img class="xb-trial-detail__avatar-1" src="trial.review.project.account.avatar" name="trial.review.project.account.fullname"></avatar-img>
-        <div flex>{{ trial.review.project.account.fullname }}</div>
+        <avatar-img  ng-click="trial.review.website();" class="xb-trial-detail__avatar-1"
+                     src="trial.review.project.account.avatar" name="trial.review.project.account.fullname"></avatar-img>
+        <div flex ng-click="trial.review.website();">{{ trial.review.project.account.fullname }}</div>
       </div>
-      <div class="xb-color-primary md-margin-top-2 xb-detail-cards__website">
+      <div ng-click="trial.review.website();" class="xb-color-primary md-margin-top-2 xb-detail-cards__website">
         See their website >>
       </div>
     </div>

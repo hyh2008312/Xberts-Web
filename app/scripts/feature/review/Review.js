@@ -50,6 +50,11 @@ function ReviewModel($state) {
       }
 
       window.open(this.project.buyUrl);
+    },
+    website: function() {
+      if(this.project.officialUrl != '') {
+        window.open(this.project.officialUrl);
+      }
     }
   };
   Review.build = function (data) {
