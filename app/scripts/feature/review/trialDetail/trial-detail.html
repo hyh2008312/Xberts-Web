@@ -43,24 +43,24 @@
               <div class="xb-trial-detail__pop-bg" ng-switch="trial.review.status">
                 <div ng-switch-when="APPLICATION" layout="row" layout-align="start center">
                   <md-button  class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
-                  <div class="md-margin-left-2"> or </div>
-                  <md-button class="md-accent md-margin-clear" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
+                  <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()"> or </div>
+                  <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
                 <div ng-switch-when="SELECTION">
                   <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
-                  <div class="md-margin-left-2"> or </div>
-                  <md-button class="md-accent md-margin-clear" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
+                  <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()"> or </div>
+                  <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
                 <div ng-switch-when="CONFIRMATION">
                   <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="true">APPLICANT SCREENING</md-button>
-                  <div class="md-margin-left-2"> or </div>
-                  <md-button class="md-accent md-margin-clear" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
+                  <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()"> or </div>
+                  <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
                 <div ng-switch-when="REVIEW">
                   <md-button tabs-fixed-item class="md-primary md-raised"
                              ui-sref="application.protected.crowdtestingReport({reviewId:trial.review.id})">SUBMIT REVIEW</md-button>
-                  <div class="md-margin-left-2"> or </div>
-                  <md-button class="md-accent md-margin-clear" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
+                  <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()"> or </div>
+                  <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
                 <div ng-switch-when="ENDED">
                   <md-button class="md-accent md-raised" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
