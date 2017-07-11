@@ -720,9 +720,9 @@
   }
 }
 .xb-my-trials{
-  margin-top: 24px;
+  margin: 16px 0 0 16px;
   @include xb-xs-screen{
-    margin-top: 16px;
+    margin: 8px 0 0 8px;
   }
   &__img{
     cursor: pointer;
