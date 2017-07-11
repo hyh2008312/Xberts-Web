@@ -123,7 +123,7 @@
   <div hide-gt-xs ng-repeat="value in [0,1]">
     <div ng-repeat="item in deals track by $index" ng-if="$index % 2 == value">
       <div class="xb-deals-list__img-bg">
-        <a layout="column" layout-align="start center" ng-if="!user.isAuth()" ui-sref="application.signup({tab:item.id})">
+        <a layout="column" layout-align="start center" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
           <img src="{{item.getImageUrl()}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">

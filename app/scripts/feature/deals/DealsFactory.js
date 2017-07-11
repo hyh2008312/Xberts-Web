@@ -46,23 +46,14 @@ angular.module('xbertsApp')
       }, 200, context);
     };
 
-    this.openSignUp = function(timer,ev) {
-      $mdDialog.show({
-        controller: function(scope, $mdDialog) {
+    this.signupPicture = null;
 
-          scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-          scope.askQuestion = function(question) {
-          };
-        },
-        templateUrl: 'scripts/feature/ask/recommendationPost/recommendation-post-dialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true,
-        disableParenScroll: true
-      });
-    };
+    this.signupPictureList = [
+      'https://xberts.imgix.net/shareProduct/020faceb-9337-48af-9fb6-0f7a3a5be43c.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1987befb4823a49f0e6d40ce9552da99',
+      'https://xberts.imgix.net/shareProduct/364ff990-4c7c-40ab-ab07-9c226742c3ca.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=f16f5186b5e35abf55e3b94e7b52e40b',
+      'https://xberts.imgix.net/shareProduct/befe56ea-8d53-44c5-a643-55f7f5076b50.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=5899fbb30d87956da3e930d25a30b521',
+      'https://xberts.imgix.net/shareProduct/9cc66322-e0a4-4157-bd95-cac2f1f92248.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=cb14ba20416b296e3921a620b77dfef2'
+    ];
 
     return this;
   }]);

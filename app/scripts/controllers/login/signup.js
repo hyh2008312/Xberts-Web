@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('SignupCtrl', ['$scope', '$rootScope', '$location', '$state', 'SystemConstant', 'SignupService',
-    'AuthService', 'AnalyticsService', '$mdDialog','$stateParams',
+    'AuthService', 'AnalyticsService', '$mdDialog',
     function($scope, $rootScope, $location, $state, SystemConstant, SignupService,
-             AuthService, AnalyticsService, $mdDialog,$stateParams) {
+             AuthService, AnalyticsService, $mdDialog) {
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.loginError = {};
 
@@ -74,13 +74,9 @@ angular.module('xbertsApp')
       $scope.showSignup = function(obj, ev) {
         $mdDialog.show({
           controller: function(scope, $mdDialog) {
-            scope.showTitle = !obj? false:true;
 
             scope.cancel = function() {
               $mdDialog.cancel();
-              if(scope.showTitle) {
-                $state.go('application.dealsDetail',{dealsId:$stateParams.tab});
-              }
             };
 
             scope.signup = function() {
@@ -123,11 +119,6 @@ angular.module('xbertsApp')
           disableParenScroll: true
         });
       };
-
-      if( $stateParams.tab) {
-        $scope.showTitle = $stateParams.tab;
-        $scope.showSignup($stateParams.tab);
-      }
 
       var title = 'Xberts – Sign up now to get started';
       var description = "Join Xberts community so you can try the coolest products for free and stay up-to-date on the latest tech gadgets and deals. Very easy to sign up!";
