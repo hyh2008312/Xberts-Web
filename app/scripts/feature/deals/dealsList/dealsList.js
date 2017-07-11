@@ -17,7 +17,7 @@ angular.module('xbertsApp')
             controller: function(scope, $mdDialog) {
 
               if( DealsFactory.signupPicture == null) {
-                DealsFactory.signupPicture = DealsFactory.signupPictureList[Math.floor(Math.random() * 2)];
+                DealsFactory.signupPicture = DealsFactory.signupPictureList[Math.floor(Math.random() * 4)];
               }
 
               scope.image = DealsFactory.signupPicture;
