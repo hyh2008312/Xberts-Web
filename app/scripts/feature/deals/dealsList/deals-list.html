@@ -167,7 +167,7 @@
         </a>
       </div>
       <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-        <a class="xb-deals-list__title md-dark-secondary" ng-if="!user.isAuth()" ui-sref="application.signup({tab:'deals'})">
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
           {{item.title}}
         </a>
         <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
