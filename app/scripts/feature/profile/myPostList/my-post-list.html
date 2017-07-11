@@ -1,6 +1,6 @@
 <div class="xb-my-posts" ng-repeat="post in posts track by $index" layout="row"
      layout-align="space-between stretch" ng-click="closeMenu();">
-  <div class="xb-my-posts__bg">
+  <div class="xb-my-posts__bg" ui-sref="application.dealsDetail({dealsId:post.id})">
     <div>
       <img ng-src="{{post.getImageUrl()}}" />
     </div>
