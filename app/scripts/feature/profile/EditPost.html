@@ -9,7 +9,7 @@
     <img src="https://xberts.imgix.net/static/icon/44113454-38cd-41ae-8125-3b07f73c1b95.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=ca12094a0867c6947f60613d0e9902a9" />
     <span class="xb-bold" ng-click="helpTips()">Helpful Tips to Earn Points >></span>
   </div>
-  <div layout="row" layout-align="start start" layou-xs="column">
+  <div layout="row" layout-align="start start" layout-xs="column">
     <div class="md-margin-top-2" flex-gt-xs="65" flex-xs>
       <form name="productForm" novalidate ng-submit="submitForm(product)" lear-form-error>
         <md-input-container class="md-block" md-no-float>
@@ -32,7 +32,7 @@
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
         </div>
         <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
-          <img ngf-src="file || product.getImageOriginal()" flex="initial" />
+          <img ngf-src="file || product.getImageUrl()" flex="initial" />
           <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
             <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
           </div>
