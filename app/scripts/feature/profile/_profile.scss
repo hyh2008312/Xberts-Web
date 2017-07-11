@@ -1,10 +1,14 @@
 
 
 .xb-my-posts{
-  padding:16px 16px 0;
+  padding:0 16px 16px;
 
   @include xb-xs-screen{
-    padding:8px 8px 0;
+    padding:0 0 8px;
+  }
+
+  &:last-child{
+    padding-bottom: 0;
   }
 
   &__bg{
@@ -44,14 +48,25 @@
   }
 
   &__title{
+    font-size: 16px;
+    @include media();
     @include xb-xs-screen{
+      font-size: 14px;
       max-height: 48px;
       @include ellipsisText();
+      margin-bottom: 0;
     }
   }
 
   .md-icon-button{
     margin: 0;
+    @include xb-xs-screen{
+      padding: 0;
+      width: auto;
+      height: auto;
+      min-height: 0;
+      margin-right: 16px;
+    }
   }
   .material-icons{
     cursor: pointer;

@@ -6,7 +6,7 @@
     </div>
   </div>
   <div flex layout="column" layout-align="space-between">
-    <p class="md-subhead md-dark-primary xb-my-posts__title" ui-sref="application.dealsDetail({dealsId:post.id})" >{{post.title}}</p>
+    <p class="md-dark-primary xb-my-posts__title" ui-sref="application.dealsDetail({dealsId:post.id})" >{{post.title}}</p>
     <div layout="row" layout-align="start center">
       <div ng-if="post.approvalStatus == 'pending'" flex layout="row" layout-align="start center">
         <md-button ng-if="currentUser" class="md-icon-button" ui-sref="application.protected.editPost({productId:post.id})"
