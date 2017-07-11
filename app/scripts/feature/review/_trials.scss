@@ -250,6 +250,9 @@
     padding: 4px 0 16px;
   }
   &__avatar-bg{
+    avatar-img{
+      @include avatar-header(medium);
+    }
     .md-button{
       margin: 0;
       font-size: 24px;

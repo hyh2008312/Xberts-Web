@@ -14,8 +14,8 @@
           <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-xs>
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
-          <div class="xb2-page-head__author xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
-            <md-list-item class="md-padding-clear">
+          <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
+            <md-list-item class="md-padding-clear xb-trial-detail__avatar-bg">
               <avatar-img class="md-avatar" src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
               <p layout="row" layout-align="start center">
                 <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:report.getReviewerId() })">{{
@@ -67,7 +67,7 @@
           </div>
           <div class="xb2-page-head__button" flex-order="4" ng-if="!isFacebookApp">
             <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
-              <p flex class="xb2-price">
+              <p flex class="xb2-price md-margin-clear">
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
@@ -79,7 +79,7 @@
           </div>
           <div flex-order="4" ng-if="isFacebookApp">
             <div layout="row" layout-align="start center">
-              <p flex class="xb2-price">
+              <p flex class="xb2-price md-margin-clear">
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
