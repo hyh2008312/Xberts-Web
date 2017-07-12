@@ -29,6 +29,8 @@ angular.module('xbertsApp')
       $mdDialog.show({
         controller: function(scope, $mdDialog) {
 
+          scope.disabled = false;
+
           scope.cancel = function() {
             $mdDialog.cancel();
           };
@@ -41,8 +43,10 @@ angular.module('xbertsApp')
               return;
             }
 
+            scope.disabled = true;
             AskService.create(question).then(function(data) {
               scope.cancel();
+              scope.disabled = false;
               askCtrl.askPaginator.items.unshift(data);
             },function() {});
           };

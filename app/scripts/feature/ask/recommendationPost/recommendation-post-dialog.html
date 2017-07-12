@@ -15,7 +15,7 @@
         <textarea ng-model="question.description" type="text" name="description" placeholder="Add more details"></textarea>
       </md-input-container>
       <div class="xb-question-dialog__actions" layout="row" layout-align="end center">
-        <md-button class="md-primary" type="submit">Post</md-button>
+        <md-button class="md-primary" ng-disabled="disabled" type="submit">Post</md-button>
         <md-button class="md-dark-secondary" ng-click="cancel()" >Cancel</md-button>
       </div>
     </form>
