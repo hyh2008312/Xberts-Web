@@ -31,10 +31,12 @@ angular.module('xbertsApp')
             if(data.follow == true && scope.achievement && $rootScope.user.getUserId() === scope.expert.userId) {
               scope.achievement.followeesAmount++;
             }
-            if(data.follow == false && scope.achievement && $rootScope.user.getUserId() != scope.expert.userId) {
+            if(data.follow == false && scope.achievement && $rootScope.user.getUserId() != scope.expert.userId
+              && scope.userId == scope.expert.userId) {
               scope.achievement.followersAmount--;
             }
-            if(data.follow == true && scope.achievement && $rootScope.user.getUserId() != scope.expert.userId) {
+            if(data.follow == true && scope.achievement && $rootScope.user.getUserId() != scope.expert.userId
+              && scope.userId == scope.expert.userId) {
               scope.achievement.followersAmount++;
             }
             if(data.follow == false && scope.following == true && $rootScope.user.getUserId() === scope.expert.userId) {
