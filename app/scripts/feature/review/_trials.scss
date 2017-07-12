@@ -159,6 +159,8 @@
     margin-top: 24px;
     @include xb-xs-screen{
       margin-top: 12px;
+      margin-bottom: 12px;
+      font-size: 12px;
     }
   }
   &__triangle{

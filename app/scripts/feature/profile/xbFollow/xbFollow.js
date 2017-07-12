@@ -37,7 +37,7 @@ angular.module('xbertsApp')
             if(data.follow == true && scope.achievement && $rootScope.user.getUserId() != scope.expert.userId) {
               scope.achievement.followersAmount++;
             }
-            if(data.follow == false && scope.following == true) {
+            if(data.follow == false && scope.following == true && $rootScope.user.getUserId() === scope.expert.userId) {
               scope.experts.splice(scope.index,1);
               return false;
             }
