@@ -1,5 +1,5 @@
-<md-icon ng-if="!xbStyle" ng-class="{'md-warn':join.vote}" ng-click="vote()">thumb_up</md-icon>
+<md-icon ng-if="!xbStyle" class="md-dark-third" ng-class="{'md-warn':join.vote}" ng-click="vote()">thumb_up</md-icon>
 <div ng-if="xbStyle" class="xb-vote" ng-class="{'xb-vote__color':join.vote}" ng-click="vote()">
   VOTE
 </div>
-<span>{{interact.vote_amount || interact.voteAmount || " "}}</span>
+<span class="md-dark-third">{{interact.vote_amount || interact.voteAmount || " "}}</span>

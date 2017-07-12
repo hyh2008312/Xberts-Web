@@ -9,7 +9,15 @@ angular.module('xbertsApp')
     askCtrl.sort = AskService.getSort();
 
     askCtrl.selectedIndex = 0;
-    askCtrl.changeSort = function() {
+    askCtrl.changeSort = function(sort) {
+      switch(sort) {
+        case 0 :
+          askCtrl.topReviewers.params.type = 'week';
+          break;
+        default :
+          askCtrl.topReviewers.params.type = null;
+          break;
+      }
       askCtrl.topReviewers.clear();
       askCtrl.topReviewers.load();
     };

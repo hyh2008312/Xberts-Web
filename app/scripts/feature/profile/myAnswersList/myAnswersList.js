@@ -38,7 +38,8 @@ angular.module('xbertsApp')
               localStorageService.remove(name + '_count');
             }, function () {});
           });
-        }
+        };
+
       }
     }
   }]);

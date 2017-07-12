@@ -64,13 +64,13 @@
     <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
     <vote layout="row" layout-align="start center" ></vote>
     <div layout="row" layout-align="start center" ng-click="onToggleDown();">
-      <md-icon flex="none">sms</md-icon>
+      <md-icon class="md-dark-third" flex="none">sms</md-icon>
     </div>
     <comment-amounts layout="row" layout-align="start center"></comment-amounts>
     <md-fab-speed-dial ng-hide="hidden" md-direction="right" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
       <md-fab-trigger>
         <md-button class="md-icon-button">
-          <md-icon md-font-set="material-icons"> share </md-icon>
+          <md-icon class="md-dark-third" md-font-set="material-icons"> share </md-icon>
         </md-button>
       </md-fab-trigger>
       <md-fab-actions>
@@ -78,7 +78,7 @@
                    socialshare-provider="{{item.name}}" socialshare-description="{{product.description}}" socialshare-text="{{product.title}}"
                    socialshare-media="{{product.getImageOriginal()}}"  socialshare-source="{{product.getImageOriginal()}}"
                    socialshare-url="{{inviteObj.shareUrl(product.getShareUrl(product.id), item.name)}}">
-          <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+          <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
         </md-button>
       </md-fab-actions>
     </md-fab-speed-dial>

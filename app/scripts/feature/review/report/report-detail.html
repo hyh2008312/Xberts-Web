@@ -26,7 +26,7 @@
                                  ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
                 <md-fab-trigger>
                   <md-button class="md-icon-button">
-                    <md-icon md-font-set="material-icons md-dark-secondary"> share </md-icon>
+                    <md-icon md-font-set="material-icons md-dark-third"> share </md-icon>
                   </md-button>
                 </md-fab-trigger>
                 <md-fab-actions>
@@ -34,7 +34,7 @@
                              socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
                              socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
                              socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}" >
-                    <i class="fa fa-{{item.name}} md-dark-secondary" aria-hidden="true"></i>
+                    <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
                   </md-button>
                 </md-fab-actions>
               </md-fab-speed-dial>

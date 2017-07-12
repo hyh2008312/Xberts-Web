@@ -23,7 +23,7 @@
       <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
     </div>
     <div layout="row" layout-align="start center" hide-gt-xs>
-      <md-icon md-font-set="material-icons md-dark-secondary" ng-click="showListBottomSheet()"> share </md-icon>
+      <md-icon md-font-set="material-icons md-dark-third" ng-click="showListBottomSheet()"> share </md-icon>
     </div>
     <div layout="row" layout-align="start center" hide-xs>
       <i class="fa fa-{{item.name}} md-dark-third xb-deals-detail__color-{{$index}}" ng-repeat="item in shareList track by $index"

@@ -51,6 +51,7 @@ angular.module('xbertsApp')
             name: 'answer_leaders_list',
             objClass:AskModel,
             params: {
+              type: 'week',
               page_size: 12
             },
             fetchFunction:AskService.getAnswerLeaderList
