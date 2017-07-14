@@ -4,7 +4,7 @@
   <div class="xb-ask-list__answer-content md-body-1" ng-if="post.description">
     {{post.description | reduceSentence:140}}{{post.description.length>140?'...':''}}
     <span class="xb-ask-list__color" ng-if="post.description.length>140"
-          ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+          ui-sref="application.answerQuestionDetail({questionId:post.id})">More</span>
   </div>
   <div class="xb-my-answers__bottom">
     <div ng-if="currentUser" class="xb-my-answers__actions" layout="row" layout-align="start center">
@@ -65,10 +65,10 @@
           </md-button>
           <div layout="row" layout-align="start center">
             <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Follow</md-button>
+                       ng-click="follow(post)">Follow</md-button>
             <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
             <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Following</md-button>
+                       ng-click="follow(post)">Following</md-button>
             <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           </div>
         </div>
@@ -89,10 +89,10 @@
           </div>
           <div layout="row" layout-align="start center">
             <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Follow</md-button>
+                       ng-click="follow(post)">Follow</md-button>
             <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
             <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Following</md-button>
+                       ng-click="follow(post)">Following</md-button>
             <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           </div>
         </div>
@@ -119,10 +119,10 @@
         </div>
         <div layout="row" layout-align="start center">
           <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                     ng-click="follow(product)">Follow</md-button>
+                     ng-click="follow(post)">Follow</md-button>
           <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                     ng-click="follow(product)">Following</md-button>
+                     ng-click="follow(post)">Following</md-button>
           <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
         </div>
       </div>
