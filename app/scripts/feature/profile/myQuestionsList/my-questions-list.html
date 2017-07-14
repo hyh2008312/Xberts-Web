@@ -65,10 +65,10 @@
           </md-button>
           <div layout="row" layout-align="start center">
             <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Follow</md-button>
+                       ng-click="follow(post)">Follow</md-button>
             <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
             <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Following</md-button>
+                       ng-click="follow(post)">Following</md-button>
             <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           </div>
         </div>
@@ -89,10 +89,10 @@
           </div>
           <div layout="row" layout-align="start center">
             <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Follow</md-button>
+                       ng-click="follow(post)">Follow</md-button>
             <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
             <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                       ng-click="follow(product)">Following</md-button>
+                       ng-click="follow(post)">Following</md-button>
             <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           </div>
         </div>
@@ -119,10 +119,10 @@
         </div>
         <div layout="row" layout-align="start center">
           <md-button ng-if="!post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                     ng-click="follow(product)">Follow</md-button>
+                     ng-click="follow(post)">Follow</md-button>
           <span class="md-dark-secondary" ng-if="!post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
           <md-button ng-if="post.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-                     ng-click="follow(product)">Following</md-button>
+                     ng-click="follow(post)">Following</md-button>
           <span class="md-dark-secondary" ng-if="post.currentUser.follow" >&nbsp;{{post.followeeCount > 0? post.followeeCount:''}}</span>
         </div>
       </div>
