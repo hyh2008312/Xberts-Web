@@ -49,21 +49,21 @@ angular.module('xbertsApp')
           });
         };
 
-        scope.follow = function(product) {
+        scope.follow = function(post) {
           if(!$rootScope.user.authRequired()) {
             return;
           }
-          AskService.follow(product.id).then(function(data) {
-            if(product.currentUser) {
-              product.currentUser.follow = data.follow;
+          AskService.follow(post.id).then(function(data) {
+            if(post.currentUser) {
+              post.currentUser.follow = data.follow;
             } else {
-              product.currentUser = {};
-              product.currentUser.follow = data.follow;
+              post.currentUser = {};
+              post.currentUser.follow = data.follow;
             }
             if(data.follow) {
-              product.followeeCount++;
+              post.followeeCount++;
             } else {
-              product.followeeCount--;
+              post.followeeCount--;
             }
             localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_currentPage');
             localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_items');
