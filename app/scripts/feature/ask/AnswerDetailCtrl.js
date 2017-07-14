@@ -7,6 +7,7 @@ angular.module('xbertsApp')
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
     answerCtrl.user = $rootScope.user;
+    answerCtrl.showAnswer = false;
 
     answerCtrl.options = {
       height: 300,

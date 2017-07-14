@@ -4,7 +4,8 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        product: '='
+        product : '=',
+        showAnswer : '='
       },
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
@@ -15,6 +16,7 @@ angular.module('xbertsApp')
           if(!$rootScope.user.authRequired()) {
             return;
           }
+          scope.showAnswer = !scope.showAnswer;
         };
         scope.follow = function(product) {
           if(!$rootScope.user.authRequired()) {
