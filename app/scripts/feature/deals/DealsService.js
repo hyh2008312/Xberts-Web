@@ -41,8 +41,8 @@ angular.module('xbertsApp')
         value: 'everything',
         name: 'All'
       },{
-        value: 'discount',
-        name: 'Deep Discount'
+        value: 'promotion',
+        name: 'Limited Time'
       },{
         value: "cool",
         name: 'Lifestyle'
