@@ -433,6 +433,11 @@
   }
   &__website{
     margin-left: 80px;
+    display: block;
+    padding-bottom: 16px;
+    @include xb-xs-screen{
+      padding-bottom: 0;
+    }
   }
 }
 .xb-trial-reviewer{
