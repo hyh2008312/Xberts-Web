@@ -55,6 +55,8 @@ function ProductDeals($state,urlParser,$sce) {
         return host[0];
       } else if(host.length == 3) {
         return host[1];
+      } else if(host.length == 4) {
+        return host[2];
       }
       return '';
     },
