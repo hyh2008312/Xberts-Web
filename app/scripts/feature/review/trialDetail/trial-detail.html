@@ -42,7 +42,7 @@
             <div class="xb-trial-detail__content" layout="row" layout-align="start center" flex="">
               <div class="xb-trial-detail__pop-bg" ng-switch="trial.review.status">
                 <div ng-switch-when="APPLICATION" layout="row" layout-align="start center">
-                  <md-button  class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply Now</md-button>
+                  <md-button  class="md-primary md-raised" ui-sref="application.protected.apply({reviewId:trial.review.id})">Apply for Trial</md-button>
                   <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()"> or </div>
                   <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
                 </div>
