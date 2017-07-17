@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
+  .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ReportService', '$state',
     'localStorageService','$mdMedia','$mdDialog',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService,$mdMedia,$mdDialog) {
+    function ($rootScope, $scope, UploadService, ReportService, $state, localStorageService,$mdMedia,$mdDialog) {
 
     $scope.blog = {};
     $scope.disabled = false;
@@ -176,72 +176,26 @@ angular.module('xbertsApp')
         return;
       }
 
-      var _product = {
-        id: product.id,
-        title: product.title,
-        description: product.description,
-        purchaseUrl: product.purchaseUrl,
-        imageGroup: product.imageGroup,
-        videoUrl: product.videoUrl,
-        salePrice: {
-          currency: product.salePrice.currency,
-          amount: product.salePrice.amount
-        },
-        originalPrice: {
-          currency: product.salePrice.currency,
-          amount: product.originalPrice.amount
-        },
-        category: product.category
+      var _blog = {
+        id: blog.id,
+        title: blog.title,
+        description: blog.description,
+        imageGroup: blog.imageGroup,
       };
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
       $scope.disabled = true;
-      ShareProductService.update(_product).then(function () {
-        $scope.$emit('backdropOff', 'success');
-        var name = 'posts_' + $rootScope.user.getUserId();
-        // clear post list
-        localStorageService.remove(name + '_currentPage');
-        localStorageService.remove(name + '_items');
-        localStorageService.remove(name + '_next');
-        localStorageService.remove(name + '_count');
-        if($mdMedia('xs')) {
-          $state.go('application.protected.posts', {
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
-        } else {
-          $state.go('application.expert', {
-            tab:'posts',
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
-        }
-        $scope.disabled = false;
-      }, function () {
-        // tips
-        $scope.$emit('backdropOff', 'project get error');
-        $scope.disabled = false;
-        // post end
-      });
     };
 
     $scope.reset = function() {
-      if($mdMedia('xs')) {
-        $state.go('application.protected.posts', {
-          expertId: $rootScope.user.getUserId()
-        },{
-          reload:true
-        });
+      if ($rootScope.postLoginState) {
+        $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
+        $rootScope.postLoginState = null;
+      } else if ($rootScope.previous && $rootScope.previous.state) {
+        $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
       } else {
-        $state.go('application.expert', {
-          tab:'posts',
-          expertId: $rootScope.user.getUserId()
-        },{
-          reload:true
-        });
+        $state.go('application.main', {}, {reload: true})
       }
     };
 

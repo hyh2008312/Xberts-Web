@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('xbPost', [function() {
+  .directive('xbPost', function() {
     return {
       templateUrl: 'views/directive/xb-post.html',
-      replace: true,
+      replace: false,
       restrict: 'E',
-      scope:{},
+      scope:{
+        onClose: '&'
+      },
       link: function postLink(scope, element, attrs) {
         scope.isPopupOpen = false;
 
@@ -15,4 +17,4 @@ angular.module('xbertsApp')
         };
       }
     };
-  }]);
+  });
