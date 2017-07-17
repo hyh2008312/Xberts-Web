@@ -2,15 +2,17 @@
 
 angular.module('xbertsApp')
   .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdMedia','$mdDialog',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService,
-              category,$mdMedia,$mdDialog) {
+    'localStorageService','$mdMedia','$mdDialog',
+    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService,$mdMedia,$mdDialog) {
 
     $scope.blog = {};
     $scope.disabled = false;
 
-    $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
+    $scope.imgLoaded = false;
     $scope.showMask = false;
+
+    $scope.previousRange = null;
+
     $scope.onShowMask = function() {
       $scope.showMask = !$scope.showMask;
     };
@@ -35,14 +37,135 @@ angular.module('xbertsApp')
         return;
       }
     };
+
     $scope.coverUpload = function ($file) {
       if(!$rootScope.user.authRequired()) {
         return;
       }
       if ($file) {
-        UploadService.uploadFile($file, 'SHARE_PRODUCT', $scope)
+        UploadService.uploadFile($file, 'REVIEW_REPORT_DETAILS', $scope)
           .then(coverSuccessCallback, errorCallback);
       }
+    };
+
+
+
+    var getCurrentRange = function () {
+      var sel;
+      if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+          return sel.getRangeAt(0);
+        }
+      } else if (document.selection && document.selection.createRange) {
+        return document.selection.createRange();
+      }
+      return null;
+    };
+
+    var setCurrentRange = function (range) {
+      var sel;
+      if (range) {
+        if (window.getSelection) {
+          sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        } else if (document.selection && range.select) {
+          //document.select is a legacy problem.
+          range.select();
+        }
+      }
+    };
+
+    $scope.setPreviousRange = function (evt) {
+      $scope.previousRange = getCurrentRange();
+    };
+
+    $scope.onFocus = function (evt) {
+      evt.target.addEventListener('mouseup', $scope.setPreviousRange);
+    };
+
+    $scope.paste = function (e) {
+      var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+
+      e.preventDefault();
+      $scope.setPreviousRange();
+
+      var paragraphs = bufferText.split('\n');
+      for (var i = 0; i < paragraphs.length; i++) {
+        var pNode = document.createElement('p');
+        var textNode = document.createTextNode(paragraphs[i]);
+        if($filter('isLink')(paragraphs[i])) {
+          var aNode = document.createElement('a');
+          aNode.appendChild(textNode);
+          aNode.setAttribute('href', paragraphs[i]);
+          aNode.setAttribute('target', '_blank');
+          pNode.appendChild(aNode);
+        } else  {
+          pNode.appendChild(textNode);
+        }
+        angular.element('.summernote').summernote('insertNode', pNode);
+      }
+    };
+
+
+    var insertImage = function (src, id, url) {
+      setCurrentRange($scope.previousRange);
+
+      src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
+      id = id || 1;
+
+      var img = document.createElement('img');
+      img.setAttribute('data-image-id', id);
+      img.setAttribute('src', src);
+      img.setAttribute('url',url);
+      var div = document.createElement('div');
+      div.appendChild(img);
+      div.setAttribute('class', 'xb-answer-img-bg');
+      angular.element('.summernote').summernote('insertNode', div);
+
+      img.setAttribute('class', 'pre-loading');
+      img.onload = function () {
+        this.setAttribute('class', '');
+      };
+      img.onerror = function () {
+        this.setAttribute('class', '');
+      };
+
+      $timeout(function () {
+        $scope.setPreviousRange();
+      }, 100);
+
+    };
+
+    var imageSuccessCallback = function (data) {
+      insertImage(data.imageUrl, data.id, data.url);
+    };
+
+    var errorCallbackNew = function (error) {
+      // Don't display error when user cancels upload
+      if (error.status === -1) {
+        return;
+      }
+
+      growl.error('Failed to upload');
+    };
+
+    $scope.imageUpload = function (files) {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
+      for (var i = 0; i < files.length; i++) {
+        UploadService.uploadFile(files[i], 'REVIEW_REPORT_DETAILS', $scope)
+          .then(function (data) {
+            imageSuccessCallback(data.data);
+          }, errorCallbackNew);
+      }
+    };
+
+    $scope.onChange = function (contents) {
+      $scope.detailCharacterCount = contents.replace("< *iframe(.|/r|/n)+?/iframe *>","")
+        .replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "").length;
     };
 
     $scope.submitForm = function(blog){
