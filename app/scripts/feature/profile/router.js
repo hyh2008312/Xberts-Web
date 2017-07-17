@@ -87,7 +87,7 @@ angular
         }
       })
       .state('application.protected.editPost', {
-        url: '/editPost/:productId',
+        url: '/offer/:productId/edit',
         templateUrl: 'scripts/feature/profile/EditPost.html',
         controller: 'EditPostCtrl',
         resolve: {
@@ -100,7 +100,7 @@ angular
         }
       })
       .state('application.protected.editQuestion', {
-        url: '/editQuestion/:questionId',
+        url: '/question/:questionId/edit',
         templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
         controller: 'EditMyQuestionsCtrl',
         resolve: {

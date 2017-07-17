@@ -1,7 +1,3 @@
-<!--<div class="coupon-banner text-center text-uppercase navbar-fixed-top">-->
-  <!--<p><a ui-sref="application.protected.profile({ action: 'invite' })">Invite friends</a> to get $10 off your next purchase.</p>-->
-<!--</div>-->
-
 <div class="xberts-navbar" role="navigation" hide-xs >
   <div class="container" layout="row" layout-align="start center">
     <img ui-sref="application.main" src="https://xberts.imgix.net/static/logo/b26747af-9403-4b96-bd44-5431625d526c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=4a117ac0f1603262af3a454a1a974915" width="120" height="32" alt="xberts">
@@ -19,6 +15,7 @@
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
+      <xb-post></xb-post>
       <xb-notification></xb-notification>
       <messages></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
@@ -63,7 +60,8 @@
      || state.current.name == 'application.protected.answers'">My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editPost'
-     || state.current.name == 'application.protected.post'">Edit Post</h2>
+     || state.current.name == 'application.protected.post'
+     || state.current.name == 'application.protected.editQuestion'">Post</h2>
     <h2 ng-if="state.current.name == 'application.about'">About us</h2>
     <h2 ng-if="state.current.name == 'application.protected.invite'">Invite Friends</h2>
     <h2 ng-if="state.current.name == 'application.personalCredit'">My Points</h2>
