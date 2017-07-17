@@ -1,24 +1,15 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdDialog','$mdToast','SystemConstant',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,
-              $mdDialog,$mdToast,SystemConstant) {
+  .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
+    'localStorageService','category','$mdMedia','$mdDialog',
+    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService,
+              category,$mdMedia,$mdDialog) {
 
-    $scope.product = {};
-    $scope.isFirstPost = true;
+    $scope.blog = {};
     $scope.disabled = false;
-    $scope.product.imageGroup = [];
-    $scope.product.salePrice = {};
-    $scope.product.salePrice.currency = $rootScope.country == 'IN'? 'INR':'USD';
-    $scope.product.originalPrice = {};
-    $scope.product.category = {};
-    $scope.categoryoptions = category;
-    $scope.currency = SystemConstant.CURRENCY;
 
-
-    $scope.imgLoaded = false;
+    $scope.imgLoaded = $scope.product.imageGroup.length>0?true:false;
     $scope.showMask = false;
     $scope.onShowMask = function() {
       $scope.showMask = !$scope.showMask;
@@ -54,7 +45,7 @@ angular.module('xbertsApp')
       }
     };
 
-    $scope.submitForm = function(product){
+    $scope.submitForm = function(blog){
       if(!$rootScope.user.authRequired()) {
         return;
       }
@@ -77,13 +68,13 @@ angular.module('xbertsApp')
           currency: product.salePrice.currency,
           amount: product.originalPrice.amount
         },
-        category:product.category
+        category: product.category
       };
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
       $scope.disabled = true;
-      ShareProductService.create(_product).then(function () {
+      ShareProductService.update(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         var name = 'posts_' + $rootScope.user.getUserId();
         // clear post list
@@ -91,13 +82,20 @@ angular.module('xbertsApp')
         localStorageService.remove(name + '_items');
         localStorageService.remove(name + '_next');
         localStorageService.remove(name + '_count');
-        $mdToast.show({
-          hideDelay: 3000,
-          position: 'top',
-          toastClass:'xb-deals-dialog__toast',
-          templateUrl: 'scripts/feature/deals/editPost/post-toast.html'
-        });
-        $state.go('application.productDeals');
+        if($mdMedia('xs')) {
+          $state.go('application.protected.posts', {
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        } else {
+          $state.go('application.expert', {
+            tab:'posts',
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        }
         $scope.disabled = false;
       }, function () {
         // tips
@@ -108,13 +106,19 @@ angular.module('xbertsApp')
     };
 
     $scope.reset = function() {
-      if ($rootScope.postLoginState) {
-        $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
-        $rootScope.postLoginState = null;
-      } else if ($rootScope.previous && $rootScope.previous.state) {
-        $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
+      if($mdMedia('xs')) {
+        $state.go('application.protected.posts', {
+          expertId: $rootScope.user.getUserId()
+        },{
+          reload:true
+        });
       } else {
-        $state.go('application.productDeals', {}, {reload: true})
+        $state.go('application.expert', {
+          tab:'posts',
+          expertId: $rootScope.user.getUserId()
+        },{
+          reload:true
+        });
       }
     };
 

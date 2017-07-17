@@ -7,6 +7,7 @@ angular.module('xbertsApp')
               category,$mdMedia,$mdDialog,SystemConstant) {
 
     $scope.product = editPost;
+    $scope.disabled = false;
     $scope.categoryoptions = category;
     $scope.currency = SystemConstant.CURRENCY;
 
@@ -74,6 +75,7 @@ angular.module('xbertsApp')
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
+      $scope.disabled = true;
       ShareProductService.update(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         var name = 'posts_' + $rootScope.user.getUserId();
@@ -96,20 +98,30 @@ angular.module('xbertsApp')
             reload:true
           });
         }
+        $scope.disabled = false;
       }, function () {
         // tips
         $scope.$emit('backdropOff', 'project get error');
+        $scope.disabled = false;
         // post end
       });
     };
 
     $scope.reset = function() {
-      $state.go('application.expert', {
-        tab:'posts',
-        expertId: $rootScope.user.getUserId()
-      },{
-        reload:true
-      });
+      if($mdMedia('xs')) {
+        $state.go('application.protected.posts', {
+          expertId: $rootScope.user.getUserId()
+        },{
+          reload:true
+        });
+      } else {
+        $state.go('application.expert', {
+          tab:'posts',
+          expertId: $rootScope.user.getUserId()
+        },{
+          reload:true
+        });
+      }
     };
 
     $scope.helpTips = function(ev) {

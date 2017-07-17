@@ -18,7 +18,7 @@
           <textarea ng-model="question.description" type="text" name="description" placeholder="Add more details"></textarea>
         </md-input-container>
         <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-          <md-button class="md-primary md-raised" type="submit" >Save</md-button>
+          <md-button class="md-primary md-raised" type="submit" >{{isFirstPost?"Post":"Save"}}</md-button>
           <md-button class="md-raised" ng-click="reset()">Cancel</md-button>
         </div>
       </form>

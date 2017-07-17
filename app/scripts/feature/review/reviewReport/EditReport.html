@@ -1,26 +1,39 @@
 <div class="container xb-edit-post">
   <div class="xb-ask-title xb-deals-title">
     <div class="xb-section__title">
-      <h2><span class="md-display-1">Post an Blog</span></h2>
+      <h2><span class="md-display-1">Share an Offer</span></h2>
       <h3><span class="md-body-1 md-dark-secondary">Help others save big by finding the best deals and the lowest price!</span></h3>
     </div>
   </div>
+  <div class="xb-edit-post__tips md-margin-top-1" hide-gt-xs layout="row" layout-align="start center">
+    <img src="https://xberts.imgix.net/static/icon/44113454-38cd-41ae-8125-3b07f73c1b95.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=ca12094a0867c6947f60613d0e9902a9" />
+    <span class="xb-bold" ng-click="helpTips()">Helpful Tips to Earn Points >></span>
+  </div>
   <div layout="row" layout-align="start start" layout-xs="column">
     <div class="md-margin-top-2" flex-gt-xs="65" flex-xs>
-      <form name="productForm" novalidate ng-submit="submitForm(product)" lear-form-error>
+      <form name="productForm" novalidate ng-submit="submitForm(blog)" lear-form-error>
         <md-input-container class="md-block" md-no-float>
-          <label class="md-dark-secondary">Product Title</label>
-          <input required ng-model="product.title" name="title" placeholder=""/>
+          <label class="md-dark-secondary">Title</label>
+          <input required ng-model="blog.title" name="title" placeholder=""/>
           <div ng-messages="productForm.title.$error">
             <div ng-message="required">This is required!</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block xb-edit-post__fill" md-no-float>
-          <label class="md-dark-secondary">Recommended Reason</label>
-          <textarea required ng-model="product.description" name="description" placeholder=""></textarea>
-          <div ng-messages="productForm.description.$error">
-            <div ng-message="required">This is required!</div>
-          </div>
+          <md-input-container class="md-block md-input-has-value">
+            <label class="md-container-ignore md-no-float">Describe the unboxing & user experience of this product:</label>
+            <summernote config="summerNoteFull" ng-model="reportData.details" on-change="onChange(contents)"
+                        on-image-upload="imageUpload(files)" editable="editable"
+                        editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
+                        on-keyup="setPrevious(evt)"></summernote>
+            <p class="font-graym" style="margin-top: -10px">* Total characters:{{detailCharacterCount}}.
+              <span ng-show="detailCharacterCount<1000"> Please include at least 1000 characters.</span>
+            </p>
+
+            <p class="font-graym" style="margin-top: -10px">* Total images:{{imageCount}}.
+              <span ng-show="imageCount<3" class="font-danger"> Please include at least 3 images.</span>
+            </p>
+          </md-input-container>
         </md-input-container>
         <div class="md-caption md-dark-secondary xb-bold">Upload a Product Picture *</div>
         <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"

@@ -87,7 +87,7 @@ angular
         }
       })
       .state('application.protected.editPost', {
-        url: '/offer/:productId/edit',
+        url: '/post/:productId/edit',
         templateUrl: 'scripts/feature/profile/EditPost.html',
         controller: 'EditPostCtrl',
         resolve: {
