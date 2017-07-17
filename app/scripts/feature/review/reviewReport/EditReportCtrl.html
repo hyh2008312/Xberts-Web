@@ -1,0 +1,64 @@
+<div class="container xb-edit-post">
+  <div class="xb-ask-title xb-deals-title">
+    <div class="xb-section__title">
+      <h2><span class="md-display-1">Post a Blog</span></h2>
+      <h3><span class="md-body-1 md-dark-secondary">Help others save big by finding the best deals and the lowest price!</span></h3>
+    </div>
+  </div>
+  <div class="xb-edit-post__tips md-margin-top-1" hide-gt-xs layout="row" layout-align="start center">
+    <img src="https://xberts.imgix.net/static/icon/44113454-38cd-41ae-8125-3b07f73c1b95.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=ca12094a0867c6947f60613d0e9902a9" />
+    <span class="xb-bold" ng-click="helpTips()">Helpful Tips to Earn Points >></span>
+  </div>
+  <div layout="row" layout-align="start start" layout-xs="column">
+    <div class="md-margin-top-2" flex-gt-xs="65" flex-xs>
+      <form name="productForm" novalidate ng-submit="submitForm(blog)" lear-form-error>
+        <md-input-container class="md-block" md-no-float>
+          <label class="md-dark-secondary">Title</label>
+          <input required ng-model="blog.title" name="title" placeholder=""/>
+          <div ng-messages="productForm.title.$error">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block xb-edit-post__fill" md-no-float>
+          <md-input-container class="md-block md-input-has-value">
+            <label class="md-container-ignore md-no-float">Description</label>
+            <summernote config="summerNoteFull" ng-model="blog.details" on-change="onChange(contents)"
+                        on-image-upload="imageUpload(files)" editable="editable"
+                        editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
+                        on-keyup="setPrevious(evt)"></summernote>
+          </md-input-container>
+        </md-input-container>
+        <div class="md-caption md-dark-secondary xb-bold md-margin-top-2">Cover Image *</div>
+        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
+             ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
+          <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
+        </div>
+        <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
+          <img ngf-src="file || product.getImageUrl()" flex="initial" />
+          <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
+            <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+          </div>
+        </div>
+        <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
+          <md-button class="md-primary md-raised" ng-disabled="disabled" type="submit" >{{isFirstPost?"Post":"Save"}}</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+        </div>
+      </form>
+    </div>
+    <div flex="35" hide-xs>
+      <div class="xb-detail-cards">
+        <div class="md-subhead">
+          Helpful Tips to Earn Points
+        </div>
+        <div class="xb-detail-cards__padding-2 background-whitem">
+          <div class="md-margin-bottom-2">Please follow these tips to earn 8 bonus points for your posts:</div>
+          <ul class="review-ul">
+            <li>The product you share should be available to ship</li>
+            <li>Average product rating should be above 3.5 stars</li>
+            <li>Upload a clear picture and provide more details</li>
+            <li>Make sure the product has not been posted</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

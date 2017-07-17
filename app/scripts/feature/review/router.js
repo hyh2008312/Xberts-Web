@@ -257,5 +257,9 @@ angular
           }]
         }
       })
-    ;
+      .state('application.protected.reviewReport', {
+        url: '/reviews/edit',
+        templateUrl: 'scripts/feature/review/reviewReport/editReportCtrl.html',
+        controller: 'EditReportCtrl'
+      });
   }]);

@@ -7,6 +7,8 @@ angular.module('xbertsApp')
               $mdDialog,$mdToast,SystemConstant) {
 
     $scope.product = {};
+    $scope.isFirstPost = true;
+    $scope.disabled = false;
     $scope.product.imageGroup = [];
     $scope.product.salePrice = {};
     $scope.product.salePrice.currency = $rootScope.country == 'IN'? 'INR':'USD';
@@ -14,6 +16,7 @@ angular.module('xbertsApp')
     $scope.product.category = {};
     $scope.categoryoptions = category;
     $scope.currency = SystemConstant.CURRENCY;
+
 
     $scope.imgLoaded = false;
     $scope.showMask = false;
@@ -79,6 +82,7 @@ angular.module('xbertsApp')
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
+      $scope.disabled = true;
       ShareProductService.create(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         var name = 'posts_' + $rootScope.user.getUserId();
@@ -94,15 +98,24 @@ angular.module('xbertsApp')
           templateUrl: 'scripts/feature/deals/editPost/post-toast.html'
         });
         $state.go('application.productDeals');
+        $scope.disabled = false;
       }, function () {
         // tips
         $scope.$emit('backdropOff', 'project get error');
+        $scope.disabled = false;
         // post end
       });
     };
 
     $scope.reset = function() {
-      $state.go('application.productDeals');
+      if ($rootScope.postLoginState) {
+        $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
+        $rootScope.postLoginState = null;
+      } else if ($rootScope.previous && $rootScope.previous.state) {
+        $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
+      } else {
+        $state.go('application.productDeals', {}, {reload: true})
+      }
     };
 
     $scope.helpTips = function(ev) {

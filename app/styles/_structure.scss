@@ -141,3 +141,10 @@ a.block-link {
 .pr {
   position: relative;
 }
+
+// fixed older popup form field name position problem
+.form-group{
+  position: relative;
+  margin-top: 25px;
+  overflow: visible;
+}

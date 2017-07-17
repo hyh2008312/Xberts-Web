@@ -93,5 +93,10 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
       reloadOnSearch: false,
       controller: 'AnswerPostCtrl'
+    })
+    .state('application.protected.askQuestion', {
+      url: '/ask/question/edit',
+      templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
+      controller: 'EditQuestionsCtrl'
     });
   }]);

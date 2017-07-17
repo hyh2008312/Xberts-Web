@@ -1,0 +1,10 @@
+<div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
+  <md-icon md-font-set="material-icons">add</md-icon>
+  <span class="xberts-navbar__red-point"></span>
+  <div class="xberts-navbar__right-container-popup-1" ng-show="isPopupOpen" flex="none">
+    <span class="xberts-navbar__triangle-1"></span>
+    <div ui-sref-active="active" ui-sref="application.protected.post">Post an Offer</div>
+    <div ui-sref-active="active" ui-sref="application.protected.askQuestion">Ask a Question</div>
+    <div ui-sref-active="active" ui-sref="application.protected.reviewReport">Post a Blog</div>
+  </div>
+</div>

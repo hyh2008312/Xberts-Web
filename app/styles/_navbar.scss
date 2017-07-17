@@ -109,6 +109,7 @@
       }
     }
   }
+  $parent: &;
   &__right-container-popup{
     background-color: #FFF;
     position: absolute;
@@ -132,6 +133,11 @@
       color: rgba(0,0,0,.87);
     }
   }
+  &__right-container-popup-1{
+    @extend #{$parent}__right-container-popup;
+    width: 160px;
+  }
+
   &__right-container-notification{
     background-color: #FFF;
     position: absolute;
@@ -171,6 +177,10 @@
     border-bottom: 10px solid #FFF;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+  }
+  &__triangle-1{
+    @extend #{$parent}__triangle;
+    left: 70px;
   }
   &__red-point{
     position: absolute;
