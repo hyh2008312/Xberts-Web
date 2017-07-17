@@ -1,7 +1,7 @@
 <div class="container xb-edit-post">
   <div class="xb-ask-title xb-deals-title">
     <div class="xb-section__title">
-      <h2><span class="md-display-1">Share an Offer</span></h2>
+      <h2><span class="md-display-1">Post an Offer</span></h2>
       <h3><span class="md-body-1 md-dark-secondary">Help others save big by finding the best deals and the lowest price!</span></h3>
     </div>
   </div>
@@ -74,7 +74,11 @@
         </div>
         <md-input-container class="md-block" md-no-float>
           <label class="md-dark-secondary">Purchase Link</label>
-          <input ng-model="product.purchaseUrl" type="url" name="link" placeholder="https://"/>
+          <input ng-model="product.purchaseUrl" type="url" name="link" placeholder="https://" required/>
+          <div ng-messages="productForm.link.$error">
+            <div ng-message="required">This is required!</div>
+            <div ng-message="url">This link is incorrect!</div>
+          </div>
         </md-input-container>
         <md-input-container class="md-block" md-no-float>
           <label class="md-dark-secondary">Product Video</label>
@@ -82,7 +86,7 @@
           <span class="md-caption md-dark-secondary">Please upload your video to Youtube first and paste the link here</span>
         </md-input-container>
         <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
-          <md-button class="md-primary md-raised" type="submit" >Save</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
+          <md-button class="md-primary md-raised" ng-disabled="disabled" type="submit" >{{isFirstPost?"Post":"Save"}}</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
         </div>
       </form>
     </div>

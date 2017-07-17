@@ -61,39 +61,47 @@
       }
     }
   }
+  $parent: &;
   &__right-container{
     >div{
       position: relative;
       cursor: pointer;
       font-size: 16px;
       color: rgba(255,255,255,.5);
-      padding: 0 20px;
+      padding: 16px 20px;
       &:hover{
         color: rgba(255,255,255,1);
-      }
-      .material-icons{
-        color: rgba(255,255,255,.5);
-        &:hover{
-          color: rgba(255,255,255,1);
-        }
-      }
-      .top-right-badge{
-        font-size: 10px;
-        position: absolute;
-        right: 5%;
-        top: -2px;
-        line-height: 16px;
-        border-radius: 2px;
-        padding: 0 3px;
-        background-color: #ff4081;
-        @include transform(scale(.75,.75));
       }
     }
   }
   &__right-container-button{
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgba(255,255,255,.5);
+    padding: 16px 20px;
+    &:hover{
+      color: rgba(255,255,255,1);
+    }
+    .material-icons{
+      color: rgba(255,255,255,.5);
+      &:hover{
+        color: rgba(255,255,255,1);
+      }
+    }
+    .top-right-badge{
+      font-size: 10px;
+      position: absolute;
+      right: 5%;
+      top: -2px;
+      line-height: 16px;
+      border-radius: 2px;
+      padding: 0 3px;
+      background-color: #ff4081;
+      @include transform(scale(.75,.75));
+    }
     width: 64px;
     height: 56px;
-    padding-top: 16px !important;
     >avatar-img{
       width: 24px;
       height: 24px;
@@ -132,6 +140,11 @@
       color: rgba(0,0,0,.87);
     }
   }
+  &__right-container-popup-1{
+    @extend #{$parent}__right-container-popup;
+    width: 160px;
+  }
+
   &__right-container-notification{
     background-color: #FFF;
     position: absolute;
@@ -171,6 +184,10 @@
     border-bottom: 10px solid #FFF;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+  }
+  &__triangle-1{
+    @extend #{$parent}__triangle;
+    left: 70px;
   }
   &__red-point{
     position: absolute;
@@ -226,7 +243,8 @@
   }
   &__bottom-container{
     width: 100%;
-    >div{
+    $parent: &;
+    &-button{
       position: relative;
       width: 100%;
       font-size: 16px;
@@ -241,6 +259,16 @@
         border-radius: 50%;
         background-color: #ff4081;
       }
+      &-shadow{
+        @include box-shadow(0 0 1px 1px rgba(0, 0, 0, 0.12) inset);
+        margin: 0 -4px;
+        padding: 0 4px;
+        background-color: $lightGrayColor;
+      }
+    }
+    &-button-1{
+      @extend #{$parent}-button;
+      line-height: 48px;
     }
   }
 }

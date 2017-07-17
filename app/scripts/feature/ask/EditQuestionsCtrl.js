@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditMyQuestionsCtrl', ['$rootScope', '$scope', 'editMyQuestion', 'AskService', '$state', 'localStorageService',
-    '$mdMedia',
-    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia) {
+  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService',
+    function ($rootScope, $scope, AskService, $state, localStorageService) {
 
-      $scope.question = editMyQuestion;
+      $scope.question = {};
+      $scope.disabled = false;
+      $scope.isFirstPost = true;
 
       $scope.askQuestion = function(question) {
         if(!$rootScope.user.authRequired()) {
@@ -16,11 +17,13 @@ angular.module('xbertsApp')
         }
 
         $scope.$emit('backdropOn', 'post');
+        $scope.disabled = true;
         AskService.updateQuestion(question).then(function() {
           localStorageService.remove('ask_questions_list' + '_currentPage');
           localStorageService.remove('ask_questions_list' + '_items');
           localStorageService.remove('ask_questions_list' + '_next');
           localStorageService.remove('ask_questions_list' + '_count');
+
           if($mdMedia('xs')) {
             $state.go('application.protected.questions', {
               expertId: $rootScope.user.getUserId()
@@ -35,26 +38,25 @@ angular.module('xbertsApp')
               reload:true
             });
           }
+
           $scope.$emit('backdropOff', 'success');
+
+          $scope.disabled = false;
         },function() {
           $scope.$emit('backdropOff', 'failure');
+
+          $scope.disabled = false;
         });
       };
 
       $scope.reset = function() {
-        if($mdMedia('xs')) {
-          $state.go('application.protected.questions', {
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
+        if ($rootScope.postLoginState) {
+          $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params, {reload: true});
+          $rootScope.postLoginState = null;
+        } else if ($rootScope.previous && $rootScope.previous.state) {
+          $state.go($rootScope.previous.state, $rootScope.previous.params, {reload: true});
         } else {
-          $state.go('application.expert', {
-            tab:'questions',
-            expertId: $rootScope.user.getUserId()
-          },{
-            reload:true
-          });
+          $state.go('application.askQuestionMain', {}, {reload: true})
         }
       };
   }]);
