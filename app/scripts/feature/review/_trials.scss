@@ -30,10 +30,11 @@
       margin-bottom: 8px;
     }
     >a{
-      padding: 6px 16px;
+      margin:6px 0;
+      padding: 0 16px;
       display: block;
       line-height: 24px;
-      height: 60px;
+      height: 48px;
       @include ellipsisText();
     }
 
