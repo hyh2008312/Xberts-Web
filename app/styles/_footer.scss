@@ -1,6 +1,12 @@
 .xb-footer-hide{
-  @media screen and (max-width: 600px) {
+  @include xb-xs-screen{
     display: none;
+  }
+
+  &__PC{
+    @include xb-gt-xs-screen{
+      display: none;
+    }
   }
 }
 .footer {
