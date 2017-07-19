@@ -2,10 +2,30 @@
 
 angular.module('xbertsApp')
   .controller('TrialDetailController', ['$rootScope', 'review', 'pendingApplicantPaginator', 'selectedApplicantPaginator',
-    function ($rootScope, review, pendingApplicantPaginator, selectedApplicantPaginator) {
+    'Paginator','ReviewService',
+    function ($rootScope, review, pendingApplicantPaginator, selectedApplicantPaginator,Paginator,ReviewService) {
       var self = this;
 
       self.review = review;
+
+      self.disabled = false;
+
+      if($rootScope.user.isAuth()) {
+        var par = {
+          name: 'xb_applicant_' + review.id,
+          params: {
+            review_id: review.id,
+            reviewer_id: $rootScope.user.getUserId()
+          },
+          fetchFunction: ReviewService.checkIsApplicant
+        };
+        self.isAuthReviewer = new Paginator(par);
+        self.isAuthReviewer.load().then(function(data) {
+          if(data.items.length > 0) {
+            self.disabled = true;
+          }
+        });
+      }
 
       self.isShowReviews = (self.review.status == 'ENDED');
       if(self.isShowReviews) {

@@ -12,7 +12,7 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/review/trialInformation/trial-information.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.trial = scope.trial || [];
+        console.log(scope.disabled)
 
         // FAB Speed Dial Component
         // Set the component to the normal state

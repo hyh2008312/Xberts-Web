@@ -61,5 +61,8 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/review/reviews/:id/reports/').get(params).$promise.then(Report.buildPageList);
     };
 
+    self.checkIsApplicant = function(params) {
+      return $resource(API_BASE_URL + '/review/applicants/').get(params).$promise.then(Review.buildPageList);
+    };
 
   }]);

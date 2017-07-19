@@ -72,17 +72,17 @@
       </div>
       <div class="xb-trial-detail__triangle" hide-xs></div>
       <div class="xb-trial-detail__fixed-bottom" layout-xs="row" layout-align-xs="center center" ng-if="!isFacebookApp">
-        <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">
-          <span hide-xs>Apply Now</span>
-          <span hide-gt-xs>Apply For Trial</span>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="trial.disabled" ng-click="applyNow(trial.review.id)">
+          <span hide-xs>{{trial.disabled?'Applied':'Apply Now'}}</span>
+          <span hide-gt-xs>{{trial.disabled?'Applied':'Apply for Trial'}}</span>
         </md-button>
         <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()" hide-gt-xs> or </div>
         <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
       </div>
       <div class="xb-trial-detail__fixed-bottom-1" layout-xs="row" layout-align-xs="start center" ng-if="isFacebookApp">
-        <md-button tabs-fixed-item class="md-primary md-raised" ng-click="applyNow(trial.review.id)">
-          <span>Apply Now</span>
-          <span hide-gt-xs>Apply For Trial</span>
+        <md-button tabs-fixed-item class="md-primary md-raised" ng-disabled="trial.disabled" ng-click="applyNow(trial.review.id)">
+          <span hide-xs>{{trial.disabled?'Applied':'Apply Now'}}</span>
+          <span hide-gt-xs>{{trial.disabled?'Applied':'Apply for Trial'}}</span>
         </md-button>
         <div class="md-margin-left-2" ng-if="!trial.review.isFlashsale()" hide-gt-xs> or </div>
         <md-button class="md-accent md-margin-clear" ng-if="!trial.review.isFlashsale()" hide-gt-xs ng-click="trial.review.buyNow('trials-detail');">Buy Now</md-button>
