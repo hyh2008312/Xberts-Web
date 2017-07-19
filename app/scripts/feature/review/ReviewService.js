@@ -65,4 +65,8 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/review/applicants/').get(params).$promise.then(Review.buildPageList);
     };
 
+    self.postBlog = function(params) {
+      return $resource(API_BASE_URL + '/blogs/').save(params).$promise;
+    };
+
   }]);

@@ -1,13 +1,15 @@
-<div class="xb-messages__chat-box" ng-repeat="message in messages track by $index" layout="row"
-     layout-align="{{message.sender.id === user.getUserId() ? 'end': 'start'}} start">
-  <avatar-img ng-class="{true:'xb-messages__left-avatar',false:'xb-messages__right-avatar'}[message.sender.id === user.getUserId()]"
-              src="message.sender.userprofile.avatar" name="message.sender.firstName"
-              ui-sref="application.expert({expertId:message.sender.id})"
-              flex-order="{{message.sender.id === user.getUserId() ? '1': '0'}}"></avatar-img>
-  <div flex-order="{{message.sender.id === user.getUserId() ? '0': '1'}}"
-       layout="column" layout-align="start {{message.sender.id === user.getUserId() ? 'end': 'start'}}">
-    <div class="md-caption md-dark-secondary">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</div>
-    <span class="xb-messages__chat-box-bg md-margin-top-1">{{ message.body }}</span>
+<div class="md-padding-bottom-3" xb-height-scroll del-hegiht="332">
+  <div class="xb-messages__chat-box" ng-repeat="message in messages track by $index" layout="row"
+       layout-align="{{message.sender.id === user.getUserId() ? 'end': 'start'}} start" >
+    <avatar-img ng-class="{true:'xb-messages__left-avatar',false:'xb-messages__right-avatar'}[message.sender.id === user.getUserId()]"
+                src="message.sender.userprofile.avatar" name="message.sender.firstName"
+                ui-sref="application.expert({expertId:message.sender.id})"
+                flex-order="{{message.sender.id === user.getUserId() ? '1': '0'}}"></avatar-img>
+    <div flex-order="{{message.sender.id === user.getUserId() ? '0': '1'}}"
+         layout="column" layout-align="start {{message.sender.id === user.getUserId() ? 'end': 'start'}}">
+      <div class="md-caption md-dark-secondary">{{ message.sentAt | amDateFormat:'MMM DD, YYYY h:mm a' }}</div>
+      <span class="xb-messages__chat-box-bg md-margin-top-1">{{ message.body }}</span>
+    </div>
   </div>
 </div>
 <div class="xb-messages__chat-box-reply">

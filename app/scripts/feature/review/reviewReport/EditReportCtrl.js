@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ReportService', '$state',
-    'localStorageService','$mdMedia','$mdDialog',
-    function ($rootScope, $scope, UploadService, ReportService, $state, localStorageService,$mdMedia,$mdDialog) {
+  .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ReviewService', '$state',
+    'localStorageService','$mdMedia','$mdDialog','$filter',
+    function ($rootScope, $scope, UploadService, ReviewService, $state, localStorageService,$mdMedia,$mdDialog,$filter) {
 
     $scope.blog = {};
     $scope.disabled = false;
+    $scope.isFirstPost = true;
 
     $scope.imgLoaded = false;
     $scope.showMask = false;
@@ -20,16 +21,13 @@ angular.module('xbertsApp')
     $scope.offDeleteImage = function() {
       $scope.showMask = false;
       $scope.imgLoaded = false;
-      $scope.product.imageGroup = [];
+      $scope.blog.cover = null;
     };
 
     var coverSuccessCallback = function (data) {
       $scope.showMask = false;
       $scope.imgLoaded = true;
-      $scope.product.imageGroup.push({
-        index: 0,
-        image: data.data.id
-      })
+      $scope.blog.cover = data.data.imageUrl;
     };
     var errorCallback = function (error) {
       // Don't display error when user cancels upload
@@ -169,23 +167,45 @@ angular.module('xbertsApp')
     };
 
     $scope.submitForm = function(blog){
+
       if(!$rootScope.user.authRequired()) {
         return;
       }
+
       if (!$scope.productForm.$valid) {
         return;
       }
 
+      if(blog.detail == '') {
+        return;
+      }
+
+      if(blog.cover == null) {
+        return;
+      }
+
       var _blog = {
-        id: blog.id,
         title: blog.title,
-        description: blog.description,
-        imageGroup: blog.imageGroup,
+        detail: blog.detail,
+        cover: blog.cover,
+        edit_status: ''
       };
 
       // post start
       $scope.$emit('backdropOn', 'fetch project');
       $scope.disabled = true;
+      ReviewService.postBlog(_blog).then(function(data) {
+
+        $state.go('application.campaignreviews');
+
+        $scope.$emit('backdropOff', 'success');
+
+        $scope.disabled = false;
+      },function() {
+        $scope.$emit('backdropOff', 'success');
+
+        $scope.disabled = false;
+      });
     };
 
     $scope.reset = function() {
@@ -214,7 +234,7 @@ angular.module('xbertsApp')
       });
     };
 
-    var title = 'Share an Offer';
+    var title = 'Post a Blog';
     var description = 'Help others save big by finding the best deals and the lowest price!';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';

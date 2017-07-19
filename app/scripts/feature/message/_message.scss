@@ -172,8 +172,8 @@
       }
     }
     &-reply{
-      margin-top: 20px;
       border-top: 1px solid rgba(0,0,0,.06);
+      height: 220px;
       avatar-img{
         margin-top: 20px;
         margin-right: 12px;
@@ -190,6 +190,7 @@
         }
       }
       @include xb-xs-screen{
+        height: auto;
         margin-top: 70px;
         border-top:none;
       }
@@ -205,11 +206,15 @@
     margin-right: 12px;
   }
   &__fixed-bottom{
+    .md-resize-wrapper{
+      max-height: 80px;
+      overflow: scroll;
+    }
     @include xb-xs-screen{
       .md-resize-wrapper{
         height: 20px;
         margin-top: 20px;
-        overflow: hidden;
+        overflow: scroll;
       }
       position: fixed;
       left: 0;

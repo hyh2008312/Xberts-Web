@@ -3,7 +3,7 @@
   <div class="md-dark-third md-margin-top-1">You have no message</div>
 </div>
 <div class="container" layout="row">
-  <div class="xb-messages__left">
+  <div class="xb-messages__left" xb-height-scroll del-hegiht="112">
     <message-list messages="messages" mobile="screenIsSmall"></message-list>
   </div>
   <div flex ui-view ng-if="!screenIsSmall"></div>
