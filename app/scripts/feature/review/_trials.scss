@@ -3,6 +3,9 @@
     margin-top: 32px;
     margin-bottom: 16px;
   }
+  .xb-reviews-list__margin-top{
+    margin-top: 16px;
+  }
   &__bottom{
     margin-bottom: 40px;
     display: block;
@@ -44,6 +47,7 @@
     padding-bottom: 66.66%;
     overflow: hidden;
     position: relative;
+    display: block;
     >img{
       position: absolute;
       left: 0;
