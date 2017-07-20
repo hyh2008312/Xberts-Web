@@ -12,7 +12,6 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/review/trialInformation/trial-information.html',
       link: function (scope, element, attrs, ctrls) {
-        console.log(scope.disabled)
 
         // FAB Speed Dial Component
         // Set the component to the normal state
