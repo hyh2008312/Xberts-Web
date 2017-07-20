@@ -27,10 +27,10 @@ angular.module('xbertsApp')
             fetchFunction: DealsService.getDealsList
           };
           switch ($stateParams.tab) {
-            case 'promotion':
+            case 'lighting_deals':
               par.params.promotion = 'True';
               break;
-            case 'cool':
+            case 'best_selling':
               par.params.search = 'cool';
               break;
             case 'editor':

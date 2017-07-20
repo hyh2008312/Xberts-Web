@@ -75,11 +75,11 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.params.promotion = null;
       dealsCtrl.productsPaginator.params.search = null;
       switch (sortId) {
-        case 'promotion':
+        case 'lighting_deals':
           $scope.selectedIndex = 1;
           dealsCtrl.productsPaginator.params.promotion = 'True';
               break;
-        case 'cool':
+        case 'best_selling':
           $scope.selectedIndex = 2;
           dealsCtrl.productsPaginator.params.search = 'cool';
               break;

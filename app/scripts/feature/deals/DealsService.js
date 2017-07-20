@@ -41,10 +41,10 @@ angular.module('xbertsApp')
         value: 'everything',
         name: 'All'
       },{
-        value: 'promotion',
+        value: 'lighting_deals',
         name: ' Lightning Deals'
       },{
-        value: "cool",
+        value: "best_selling",
         name: 'Best Selling'
       }]
     };
