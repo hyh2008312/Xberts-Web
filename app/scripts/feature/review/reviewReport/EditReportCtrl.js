@@ -41,7 +41,7 @@ angular.module('xbertsApp')
         return;
       }
       if ($file) {
-        UploadService.uploadFile($file, 'REVIEW_REPORT_DETAILS', $scope)
+        UploadService.uploadFile($file, 'BLOG_COVER', $scope)
           .then(coverSuccessCallback, errorCallback);
       }
     };
@@ -154,7 +154,7 @@ angular.module('xbertsApp')
         return;
       }
       for (var i = 0; i < files.length; i++) {
-        UploadService.uploadFile(files[i], 'REVIEW_REPORT_DETAILS', $scope)
+        UploadService.uploadFile(files[i], 'BLOG_DETAILS', $scope)
           .then(function (data) {
             imageSuccessCallback(data.data);
           }, errorCallbackNew);
@@ -186,9 +186,9 @@ angular.module('xbertsApp')
 
       var _blog = {
         title: blog.title,
-        detail: blog.detail,
+        details: blog.details,
         cover: blog.cover,
-        edit_status: ''
+        edit_status: 'PUBLISHED'
       };
 
       // post start

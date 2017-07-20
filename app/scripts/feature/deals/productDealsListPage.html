@@ -2,7 +2,7 @@
   <div class="container">
     <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
       <div class="xb-section__title">
-        <h2><span class="md-display-1">Exclusive Deals by Xberts Community</span></h2>
+        <h2><span class="md-display-1">Exclusive Deals Curated by Community</span></h2>
         <h3><span class="md-body-1">Discover the latest products and deals for a better life</span></h3>
       </div>
       <div flex="none">
@@ -10,12 +10,13 @@
       </div>
     </div>
     <div layout="row" layout-align="start center">
-      <deals-category hide-xs categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
-                          on-category-change="dealsCtrl.changeCategory(categoryId);"></deals-category>
+
       <deals-sort sort="dealsCtrl.sort" sort-id="selectedIndex"
                   on-sort-change="dealsCtrl.changeSort(sortId);"></deals-sort>
       <div flex layout="row" layout-align="end center" hide-xs>
-        <deals-filter filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
+        <deals-category  hide-xs categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                        on-category-change="dealsCtrl.changeCategory(categoryId);"></deals-category>
+        <deals-filter class="md-margin-left-2" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
                     on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
       </div>
       <div hide-gt-xs flex class="xb-filter__filter-bg" layout="row" layout-align="end center">

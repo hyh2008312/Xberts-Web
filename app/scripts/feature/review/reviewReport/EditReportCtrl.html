@@ -22,7 +22,7 @@
         <md-input-container class="md-block xb-edit-post__fill" md-no-float>
           <md-input-container class="md-block md-input-has-value">
             <label class="md-container-ignore md-no-float">Description</label>
-            <summernote config="summerNoteFull" ng-model="blog.detail" on-change="onChange(contents)"
+            <summernote config="summerNoteFull" ng-model="blog.details" on-change="onChange(contents)"
                         on-image-upload="imageUpload(files)" editable="editable"
                         editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
                         on-keyup="setPrevious(evt)"></summernote>

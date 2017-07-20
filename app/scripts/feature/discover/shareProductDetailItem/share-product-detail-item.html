@@ -19,6 +19,14 @@
     <pre class="md-body-1" ng-if="product.owner != null" ng-bind-html="product.description"></pre>
     <p class="md-body-1" ng-if="product.owner == null" ng-bind-html="product.description"></p>
   </md-card-content>
+  <div class="product__content" layout="row" layout-align="start center" ng-if="product.promotionEnd">
+    <div class="product__time" layout="row" layout-align="start center">
+      <i class="iconfontXberts icon-pic-clock" ></i>
+      <span end-time-left end-time="product.promotionEnd">
+        <span ng-show="timeValue>0">{{ timeUnit }}</span>
+      </span>
+    </div>
+  </div>
   <md-card-actions layout="row" layout-align="start center" class="product__action" >
     <div class="xb-deals-list__price" layout="row" layout-align="start center" flex hide-xs>
       <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
@@ -30,7 +38,7 @@
     </div>
     <div class="md-margin-right-2" hide-xs>{{product.getDomain()}}</div>
     <md-button hide-xs class="md-primary md-raised" ng-click="product.buyNow('deals-item');"
-               target="_blank">See Offer</md-button>
+               target="_blank">SEE DETAIL</md-button>
 
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
@@ -43,7 +51,7 @@
           </span>
         </div>
         <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('deals-item');">
-          See Offer
+          SEE DETAIL
         </md-button>
       </div>
     </div>
@@ -58,7 +66,7 @@
       </span>
     </div>
     <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-click="product.buyNow('deals-item');"
-               target="_blank">See Offer</md-button>
+               target="_blank">SEE DETAIL</md-button>
   </div>
   <interact interact="product.interact">
     <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">

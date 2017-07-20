@@ -239,6 +239,16 @@
       display: block;
     }
   }
+  &__time{
+    background-color: $orangeColor;
+    height: 28px;
+    border-radius: 14px;
+    padding: 0 16px 0 6px;
+    color: #fff;
+    >i{
+      margin-right: 12px;
+    }
+  }
 }
 .post-form{
   width: 366px;
