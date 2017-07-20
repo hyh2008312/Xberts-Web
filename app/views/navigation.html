@@ -15,7 +15,7 @@
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
-      <xb-post></xb-post>
+      <xb-post hide></xb-post>
       <xb-notification></xb-notification>
       <messages></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
@@ -97,7 +97,7 @@
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active" ui-sref="application.login" ng-click="close()">Log in</div>
   </div>
   <div ng-if="user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end stretch">
-    <xb-post layout="column" flex on-close="close()"></xb-post>
+    <xb-post layout="column" flex on-close="close()" hide></xb-post>
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active" ui-sref="application.protected.message.notification" ng-click="close()"
          layout="row" layout-align="start start">Notification
       <span ng-if="unreadNotificationMeCount > 0 || unreadNotificationSystemCount > 0 || unreadNotificationFeedsCount > 0"></span></div>
