@@ -32,7 +32,6 @@ angular.module('xbertsApp')
           if($scope.timeValue > 0) {
             $timeout(function() {
               updateTime();
-              $timeout.cancel();
             }, 1000);
           }
         };
