@@ -132,6 +132,10 @@
     }
   }
   &__price{
+    margin-bottom: 16px;
+    @include xb-xs-screen{
+      margin-bottom: 0;
+    }
     .md-headline{
       line-height: 24px;
       margin-right: 8px;
@@ -161,6 +165,12 @@
     color: #ff4081;
     border:1px solid rgba(255,64,129,.38);
     padding: 0 8px;
+    border-radius: 2px;
+    margin: 8px 0;
+    @include media();
+    @include xb-xs-screen{
+      font-size: 10px;
+    }
   }
   .md-dark-secondary{
     @include xb-xs-screen{
@@ -217,11 +227,12 @@
     right: 8px;
     top: 8px;
     padding: 0 8px;
-    color: #000;
-    background-color: #fff;
+    color: $whiteColor;
+    background-color: $orangeColor;
     line-height: 28px;
     font-size: 12px;
     border-radius: 2px;
+    @include media();
     @include xb-xs-screen{
       padding: 0 4px;
       font-size: 10px;
