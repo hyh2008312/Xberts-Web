@@ -122,7 +122,7 @@ angular.module('xbertsApp')
       $mdSidenav('filterLeft').close();
     };
 
-    var title = 'Discover - Exclusive Deals by Xberts Community';
+    var title = 'Discover - Exclusive Deals Curated by Community';
     var description = 'Discover the latest products and deals for a better life';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
