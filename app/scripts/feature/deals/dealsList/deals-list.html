@@ -37,7 +37,7 @@
           </span>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null" hide>
         <avatar-Img class="xb-pointer" flex="none" src="item.owner.userprofile.avatar" name="item.getDealsName()"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
         <div layout="column" layout-align="space-between start">
@@ -48,7 +48,7 @@
           <div class="md-dark-secondary"><span hide-xs>Posted</span>  <span am-time-ago='item.created'></span></div>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null" hide>
         <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
         </avatar-Img>
         <div layout="column" layout-align="space-between start">
@@ -98,7 +98,7 @@
           </span>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null" hide>
         <avatar-Img class="xb-pointer" flex="none" src="item.owner.userprofile.avatar" name="item.getDealsName()"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
         <div layout="column" layout-align="space-between start">
@@ -108,7 +108,7 @@
           <div class="md-dark-secondary"><span hide-xs>Posted</span>  <span am-time-ago='item.created'></span></div>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null" hide>
         <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
         </avatar-Img>
         <div layout="column" layout-align="space-between start">
@@ -182,7 +182,7 @@
           </span>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null" hide >
         <avatar-Img class="xb-pointer" flex="none" src="item.owner.userprofile.avatar" name="item.getDealsName()"  class="md-user-avatar"
                     ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
         <div layout="column" layout-align="space-between start">
@@ -192,7 +192,7 @@
           <div class="md-dark-secondary"><span hide-xs>Posted</span> <span am-time-ago='item.created'></span></div>
         </div>
       </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null">
+      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null" hide>
         <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
         </avatar-Img>
         <div layout="column" layout-align="space-between start">

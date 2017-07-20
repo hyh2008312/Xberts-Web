@@ -126,7 +126,7 @@
           </div>
         </md-tab>
 
-        <md-tab label="Offers" md-on-select="loadMyFinds()">
+        <md-tab label="Deals" md-on-select="loadMyFinds()">
           <div class="background-whitem xb-my-profile__margin-top">
             <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                  infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
@@ -217,7 +217,7 @@
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.posts({expertId:expert.userId})">
-      Offers
+      Deals
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
