@@ -79,7 +79,7 @@ angular.module('xbertsApp')
           $scope.selectedIndex = 1;
           dealsCtrl.productsPaginator.params.promotion = 'True';
               break;
-        case 'best_selling':
+        case 'best_sellers':
           $scope.selectedIndex = 2;
           dealsCtrl.productsPaginator.params.search = 'cool';
               break;

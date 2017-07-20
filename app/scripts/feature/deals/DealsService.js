@@ -44,8 +44,8 @@ angular.module('xbertsApp')
         value: 'lighting_deals',
         name: ' Lightning Deals'
       },{
-        value: "best_selling",
-        name: 'Best Selling'
+        value: "best_sellers",
+        name: 'Best Sellers'
       }]
     };
 

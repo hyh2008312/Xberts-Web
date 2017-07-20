@@ -30,7 +30,7 @@ angular.module('xbertsApp')
             case 'lighting_deals':
               par.params.promotion = 'True';
               break;
-            case 'best_selling':
+            case 'best_sellers':
               par.params.search = 'cool';
               break;
             case 'editor':
