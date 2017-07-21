@@ -248,6 +248,18 @@
     >i{
       margin-right: 12px;
     }
+    @include xb-xs-screen{
+      height: 24px;
+      padding: 0 12px 0 6px;
+      >i{
+        margin-right: 8px;
+      }
+    }
+  }
+  &__price{
+    @include xb-xs-screen{
+      padding: 16px 8px 0;
+    }
   }
 }
 .post-form{
@@ -403,9 +415,9 @@
     padding: 0;
   }
   .#{$product}__headline{
-    padding: 24px 16px 4px;
+    padding: 24px 16px 24px;
     @include xb-xs-screen{
-      padding: 16px 8px 4px;
+      padding: 12px 8px 12px;
     }
   }
   .#{$product}__subtitle{

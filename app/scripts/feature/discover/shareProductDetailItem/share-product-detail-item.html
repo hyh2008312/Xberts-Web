@@ -8,18 +8,39 @@
       <img ng-src="{{product.getImageUrl()}}" alt="{{productsDetail.title}}">
     </div>
   </div>
+  <div class="product__price" hide-gt-xs>
+    <div layout="row" layout-align="space-between center">
+      <span class="md-headline xb-bold">
+        {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
+      </span>
+      <div class="product__time" layout="row" layout-align="start center" ng-if="product.promotionEnd">
+        <i class="iconfontXberts icon-pic-clock" ></i>
+        <span end-time-left end-time="product.promotionEnd">
+          <span ng-show="timeValue>0">{{ timeUnit }}</span>
+        </span>
+      </div>
+    </div>
+    <div class="xb-deals-list__price" layout="row" layout-align="start center">
+      <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
+        {{product.originalPrice.amount | worldCurrency:product.originalPrice.currency}}
+      </span>
+      <span class="xb-deals-list__discount" ng-if="product.discount > 0">
+        {{product.discount * 100 | number:0}}% OFF
+      </span>
+    </div>
+  </div>
   <md-card-title class="product__headline">
     <span class="md-headline">{{product.title}}</span>
   </md-card-title>
   <span class="md-body-1 product__subtitle" ng-if="product.name">{{product.name}}</span>
-  <div class="product__tags" layout="row" layout-align="start center">
+  <div class="product__tags" layout="row" layout-align="start center" ng-if="product.tags.length > 0">
     <span ng-repeat="value in product.tags">{{value}}</span>
   </div>
   <md-card-content class="product__content">
     <pre class="md-body-1" ng-if="product.owner != null" ng-bind-html="product.description"></pre>
     <p class="md-body-1" ng-if="product.owner == null" ng-bind-html="product.description"></p>
   </md-card-content>
-  <div class="product__content" layout="row" layout-align="start center" ng-if="product.promotionEnd">
+  <div class="product__content" layout="row" layout-align="start center" ng-if="product.promotionEnd" hide-xs>
     <div class="product__time" layout="row" layout-align="start center">
       <i class="iconfontXberts icon-pic-clock" ></i>
       <span end-time-left end-time="product.promotionEnd">
@@ -42,14 +63,7 @@
 
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
-        <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
-          <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
-            {{product.originalPrice.amount | worldCurrency:product.originalPrice.currency}}
-          </span>
-          <span class="md-headline xb-bold">
-            {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
-          </span>
-        </div>
+        <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
         <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('deals-item');">
           SEE DETAIL
         </md-button>
@@ -57,14 +71,7 @@
     </div>
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
-    <div class="xb-deals-list__price" layout="row" layout-align="start center" flex>
-      <span class="md-dark-secondary" ng-if="product.originalPrice.amount>0">
-        {{product.originalPrice.amount | worldCurrency:product.originalPrice.currency}}
-      </span>
-      <span class="md-headline xb-bold">
-        {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
-      </span>
-    </div>
+    <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
     <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-click="product.buyNow('deals-item');"
                target="_blank">SEE DETAIL</md-button>
   </div>
