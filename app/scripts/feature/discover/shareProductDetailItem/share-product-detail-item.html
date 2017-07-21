@@ -45,6 +45,7 @@
       <i class="iconfontXberts icon-pic-clock" ></i>
       <span end-time-left end-time="product.promotionEnd">
         <span ng-show="timeValue>0">{{ timeUnit }}</span>
+        <span ng-show="timeValue<=0">00:00:00</span>
       </span>
     </div>
   </div>
