@@ -41,6 +41,13 @@
     }
   }
   $parent: &;
+  &__mask-bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
   &__mask{
     display: none;
     position: absolute;
@@ -81,6 +88,42 @@
       width: 1px;
       background-color: rgba(255, 255, 255, .5);
       @include transform(rotate(45deg));
+    }
+  }
+  &__time-out{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    >div{
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,.54);
+      >div{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,.38);
+        >div{
+          color: #fff;
+          @include media();
+          @include transform(rotate(-30deg));
+        }
+      }
+      @include xb-xs-screen{
+        width: 56px;
+        height: 56px;
+        >div{
+          width: 48px;
+          height: 48px;
+          border: 1px solid rgba(255,255,255,.38);
+          >div{
+            font-size: 12px;
+          }
+        }
+      }
     }
   }
   &__img-bg{

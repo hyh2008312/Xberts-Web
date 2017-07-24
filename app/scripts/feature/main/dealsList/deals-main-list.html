@@ -14,6 +14,7 @@
         <div class="xb-deals-list__top-right">
           <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
             <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            <span ng-show="timeValue<=0">00:00:00</span>
           </span>
         </div>
       </a>
