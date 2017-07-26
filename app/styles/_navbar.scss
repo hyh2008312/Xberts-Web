@@ -72,6 +72,9 @@
       &:hover{
         color: rgba(255,255,255,1);
       }
+      @include xb-sm-screen{
+        padding: 16px 10px;
+      }
     }
   }
   &__right-container-button{
@@ -115,6 +118,11 @@
         height: auto;
         margin-bottom: 0;
       }
+    }
+
+    @include xb-sm-screen{
+      width: 44px;
+      padding: 16px 10px;
     }
   }
   &__right-container-popup{
@@ -174,6 +182,9 @@
     .md-tab{
       padding: 8px 28px;
     }
+    @include xb-sm-screen{
+      left: -190px;
+    }
   }
   &__triangle{
     position: absolute;
@@ -197,6 +208,9 @@
     height: 6px;
     border-radius: 50%;
     background-color: #ff4081;
+    @include xb-sm-screen{
+      right: 8px;
+    }
   }
 }
 
@@ -207,7 +221,6 @@
   h2{
     @include ellipsisText();
     height: 24px;
-    width: 70%;
   }
 }
 

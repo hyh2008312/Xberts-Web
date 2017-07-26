@@ -1,0 +1,93 @@
+<md-tabs class="xb-search__tabs" md-dynamic-height md-selected="currentIndex" md-no-ink md-no-ink-bar>
+
+  <md-tab md-on-select="loadAll()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">All</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div class="md-margin-bottom-4">
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+          <h3 class="md-dark-secondary" flex>Discover</h3>
+        </div>
+        <search-deals-list class="xb-search__list-bg" deals="productsPaginator.items" is-all="true"></search-deals-list>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+             ng-click="changeCurrentIndex(1)">
+          SEE MORE
+        </div>
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+          <h3 class="md-dark-secondary" flex>Ask</h3>
+        </div>
+        <question-item products="askPaginator.items" is-all="true"></question-item>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+             ng-click="changeCurrentIndex(2)">
+          SEE MORE
+        </div>
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+          <h3 class="md-dark-secondary" flex>Blog</h3>
+        </div>
+        <search-blog-list class="xb-search__list-bg" reviews="reviews.items" is-all="true"></search-blog-list>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+             ng-click="changeCurrentIndex(4)">
+          SEE MORE
+        </div>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab md-on-select="loadDiscover()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">Discover</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div class="md-margin-top-2" infinite-scroll="productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="productsPaginator.loading || !productsPaginator.next || currentIndex != 1" flex
+           layout="column">
+        <search-deals-list class="xb-search__list-bg"  deals="productsPaginator.items"></search-deals-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="productsPaginator.loading"></load-more>
+        <div class="md-margin-top-4 md-margin-bottom-4" ng-if="productsPaginator.currentPage == 1 && productsPaginator.count == 0"
+             layout="column" layout-align="center center" flex="noshrink">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
+        </div>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab md-on-select="loadAsk()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">Ask</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div class="md-margin-top-2" infinite-scroll="askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="askPaginator.loading || !askPaginator.next || currentIndex != 2">
+        <question-item products="askPaginator.items"></question-item>
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="askPaginator.loading"></load-more>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab md-on-select="loadTrials()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">Trials</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab md-on-select="loadBlog()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">Blog</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div class="md-margin-top-2" infinite-scroll="reviews.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="reviews.loading || !reviews.next || currentIndex != 4">
+        <search-blog-list class="xb-search__list-bg" reviews="reviews.items"></search-blog-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+</md-tabs>
+

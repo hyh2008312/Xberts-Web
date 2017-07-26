@@ -1,0 +1,112 @@
+<div class="xb-search__list" ng-repeat="item in deals track by $index" layout="row" ng-if="!isAll">
+  <div class="xb-search__list-img-bg" flex="none">
+    <img src="{{item.getImageUrl()}}" title="{{item.title}}">
+    <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+      <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+        <md-icon >play_arrow</md-icon>
+      </div>
+    </div>
+    <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
+      <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
+        <div layout="row" layout-align="center center">
+          <div layout="row" layout-align="center center">
+            <div layout="row" layout-align="center center">
+              Expired
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="xb-search__list-content" layout="column" flex>
+    <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+      {{item.title}}
+    </a>
+    <md-truncate class="md-dark-secondary" hide-xs>
+      {{item.description}}
+    </md-truncate>
+    <div layout="column" flex layout-align="end">
+      <div layout="row" layout-align="space-between end">
+        <div class="xb-search__list-price" layout-gt-xs="row" layout-align-gt-xs="start center" layout-xs="column" layout-align-xs="start start">
+          <span hide-xs class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
+            {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
+          </span>
+          <span hide-xs class="md-headline xb-bold">
+            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+          </span>
+          <div hide-gt-xs>
+            <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
+            {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
+            </span>
+            <span class="md-headline xb-bold">
+              {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+            </span>
+          </div>
+          <span class="xb-deals-list__discount" ng-if="item.discount > 0">
+            {{item.discount * 100 | number:0}}% OFF
+          </span>
+        </div>
+        <div class="xb-search__list-time" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
+          <span class="xb-bold" ng-show="timeValue>0">{{ timeUnit }}</span>
+          <span class="xb-bold" ng-show="timeValue<=0">00:00:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="xb-search__list" ng-repeat="item in deals track by $index" layout="row" ng-if="isAll && $index <= 1">
+  <div class="xb-search__list-img-bg" flex="none">
+    <img src="{{item.getImageUrl()}}" title="{{item.title}}">
+    <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+      <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+        <md-icon >play_arrow</md-icon>
+      </div>
+    </div>
+    <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
+      <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
+        <div layout="row" layout-align="center center">
+          <div layout="row" layout-align="center center">
+            <div layout="row" layout-align="center center">
+              Expired
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="xb-search__list-content" layout="column" flex>
+    <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+      {{item.title}}
+    </a>
+    <md-truncate class="md-dark-secondary" hide-xs>
+      {{item.description}}
+    </md-truncate>
+    <div layout="column" flex layout-align="end">
+      <div layout="row" layout-align="space-between end">
+        <div class="xb-search__list-price" layout-gt-xs="row" layout-align-gt-xs="start center" layout-xs="column" layout-align-xs="start start">
+          <span hide-xs class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
+            {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
+          </span>
+          <span hide-xs class="md-headline xb-bold">
+            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+          </span>
+          <div hide-gt-xs>
+            <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
+            {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
+            </span>
+            <span class="md-headline xb-bold">
+              {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+            </span>
+          </div>
+          <span class="xb-deals-list__discount" ng-if="item.discount > 0">
+            {{item.discount * 100 | number:0}}% OFF
+          </span>
+        </div>
+        <div class="xb-search__list-time" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
+          <span class="xb-bold" ng-show="timeValue>0">{{ timeUnit }}</span>
+          <span class="xb-bold" ng-show="timeValue<=0">00:00:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

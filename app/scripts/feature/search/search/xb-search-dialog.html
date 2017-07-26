@@ -1,0 +1,21 @@
+<md-dialog class="xb-search-dialog">
+  <div layout="row" layout-align="start center">
+    <div class="md-margin-bottom-3" hide-xs>
+      <md-icon class="md-dark-secondary">search</md-icon>
+    </div>
+    <form name="searchForm" novalidate ng-submit="search(searchForm)" clear-form-error flex layout="row" layout-align="start center">
+      <md-input-container class="md-block" md-no-float flex>
+        <input ng-model="search" type="text" name="search" placeholder="Search" md-auto-focus/>
+      </md-input-container>
+      <md-button class="md-primary" hide-gt-xs ng-click="search(searchForm)">
+        <md-icon class="md-dark-secondary">search</md-icon>
+      </md-button>
+    </form>
+    <div class="md-margin-bottom-3" hide-xs>
+      <md-icon class="md-dark-secondary" ng-click="cancel();">close</md-icon>
+    </div>
+  </div>
+  <div class="md-dark-secondary" hide-xs>
+    PRESS ENTER TO SEE THE RESULTS
+  </div>
+</md-dialog>

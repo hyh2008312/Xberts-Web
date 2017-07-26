@@ -1,0 +1,191 @@
+.xb-search{
+  &__margin-left{
+    @include xb-xs-screen{
+      margin-left: 8px;
+    }
+  }
+  &__bottom-button{
+    background-color: $whiteColor;
+    font-size: 16px;
+    line-height: 36px;
+    color: $primaryColor;
+    @include resetBorder();
+    @include xb-xs-screen{
+      margin: 0 8px;
+    }
+  }
+  &__tabs{
+    max-width: 800px;
+    margin: auto;
+    position: inherit;
+    md-tabs-wrapper{
+      background-color: $whiteColor;
+      @include box-shadow(0 0 3px 1px rgba(0, 0, 0, 0.06));
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 56px;
+      z-index: 1;
+    }
+    md-tabs-canvas{
+      max-width: 800px;
+      margin: auto;
+      md-pagination-wrapper{
+        @include xb-gt-xs-screen{
+          max-width: 800px;
+          width: 100%;
+
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 auto;
+          flex: 0 0 auto;
+
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+          flex-direction: row;
+
+          -webkit-box-align: stretch;
+          -webkit-align-items: stretch;
+          align-items: stretch;
+          -webkit-align-content: stretch;
+          align-content: stretch;
+
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+          justify-content: space-between;
+
+          &:after{
+            display: none;
+          }
+        }
+      }
+    }
+    md-tabs-content-wrapper{
+      margin-top: 48px;
+      md-tab-content{
+        padding: 0 1px;
+      }
+    }
+    .md-tab{
+      &.md-active{
+        border-bottom: 2px solid $primaryColor;
+      }
+    }
+  }
+  &__text-transform{
+    text-transform: capitalize;
+  }
+  &__list-bg{
+    display: block;
+    @include xb-xs-screen{
+      padding: 0 8px;
+      margin-bottom: 16px;
+      background-color: $whiteColor;
+    }
+  }
+  &__list{
+    margin-bottom: 16px;
+    padding: 0 1px;
+    background-color: $whiteColor;
+    @include xb-gt-xs-screen{
+      @include resetBorder();
+    }
+    @include xb-xs-screen{
+      padding: 16px 0;
+      margin-bottom: 0;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+    &-img-bg{
+      width: 219px;
+      height: 146px;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      @include xb-xs-screen{
+        width: 72px;
+        height: 72px;
+        border-radius: 2px;
+      }
+      >img{
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        @include transform(translate(-50%,-50%));
+      }
+    }
+    &-content{
+      padding: 12px 16px 12px;
+      @include xb-xs-screen{
+        padding: 0 0 0 16px;
+      }
+    }
+    &-title{
+      max-height: 64px;
+      overflow: hidden;
+      @include xb-xs-screen{
+        font-size: 16px;
+        line-height: 16px;
+        max-height: 16px;
+      }
+    }
+    &-price{
+      .md-headline{
+        line-height: 24px;
+        margin-right: 8px;
+        @include xb-xs-screen{
+          font-size: 16px;
+          line-height: 16px;
+          margin: 8px 0 0;
+        }
+      }
+      .md-dark-secondary{
+        text-decoration: line-through;
+        margin-right: 8px;
+        @include xb-xs-screen{
+          margin-top: 8px;
+        }
+      }
+      .xb-deals-list__discount{
+        margin: 0;
+        @include xb-xs-screen{
+          margin-top: 8px;
+        }
+      }
+    }
+    &-time{
+      white-space: nowrap;
+    }
+  }
+}
+.xb-search-dialog{
+  margin-top: 16px;
+  padding: 0 16px 32px;
+  align-self: flex-start;
+  max-width: 100%;
+  @extend .container;
+  @include xb-xs-screen{
+    margin-top: 0;
+    width: 100%;
+  }
+  md-input-container{
+    margin: 16px 24px;
+    padding: 0;
+    @include xb-xs-screen{
+      margin: 16px 0;
+    }
+  }
+  @include xb-xs-screen{
+    padding: 0 8px 8px;
+    .md-button{
+      margin: 0 0 24px 8px;
+      padding: 0 16px;
+      min-width: 0;
+    }
+  }
+
+}

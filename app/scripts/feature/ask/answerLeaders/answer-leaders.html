@@ -3,7 +3,7 @@
     <avatar-Img src="expert.user.userprofile.avatar" class="md-avatar"
                 ui-sref="application.expert({ expertId:expert.user.id })"
       name="expert.user.firstName"></avatar-Img>
-    <div class="md-2-line" ng-class="{'md-offset': true }" layout-fill layout="column" layout-align="center start">
+    <div class="md-2-line" ng-class="{'md-offset': true }" flex layout="column" layout-align="center start">
       <div layout="row" layout-align="start center">
         <a class="md-subhead" ui-sref="application.expert({ expertId:expert.user.id })">{{ expert.user.firstName }}</a>
         <credit-badge class="credit-badge" points="expert.user.badgePoint"></credit-badge>

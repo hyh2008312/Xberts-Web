@@ -11,10 +11,12 @@
     </div>
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
+      <xb-search></xb-search>
       <div ui-sref-active="active" ui-sref="application.signup">Sign up</div>
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
+      <xb-search hide></xb-search>
       <xb-post hide></xb-post>
       <xb-notification></xb-notification>
       <messages></messages>
@@ -32,24 +34,25 @@
 </div>
 
 <md-toolbar class="xberts-navbar-moblie md-hue-2" hide-gt-xs>
-  <div class="md-toolbar-tools">
+  <div class="md-toolbar-tools" layout="row" layout-align="start center">
     <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
       <md-icon md-font-set="material-icons"> menu </md-icon>
     </md-button>
-    <h2 ng-if="state.current.name == 'application.main'">Home</h2>
-    <h2 ng-if="state.current.name == 'application.productDeals'">Discover</h2>
-    <h2 ng-if="state.current.name == 'application.askQuestionMain'">Ask</h2>
-    <h2 ng-if="state.current.name == 'application.testingcampaigns'">Trials</h2>
-    <h2 ng-if="state.current.name == 'application.campaignreviews'">Reviews</h2>
-    <h2 ng-if="state.current.name == 'application.creditMain'">Perks</h2>
-    <h2 ng-if="state.current.name == 'application.signup'">Sign up</h2>
+    <h2 ng-if="state.current.name == 'application.main'" flex>Home</h2>
+    <h2 ng-if="state.current.name == 'application.productDeals'" flex>Discover</h2>
+    <h2 ng-if="state.current.name == 'application.askQuestionMain'" flex>Ask</h2>
+    <h2 ng-if="state.current.name == 'application.testingcampaigns'" flex>Trials</h2>
+    <h2 ng-if="state.current.name == 'application.campaignreviews'" flex>Reviews</h2>
+    <h2 ng-if="state.current.name == 'application.creditMain'" flex>Perks</h2>
+    <h2 ng-if="state.current.name == 'application.search'" flex>Search</h2>
+    <h2 ng-if="state.current.name == 'application.signup'" flex>Sign up</h2>
     <h2 ng-if="state.current.name == 'application.login'
-     || state.current.name == 'application.linkedinLogin'">Log in</h2>
+     || state.current.name == 'application.linkedinLogin'" flex>Log in</h2>
     <h2 ng-if="state.current.name == 'application.protected.message.inbox'
      || state.current.name == 'application.protected.message.inbox.thread'
-     || state.current.name == 'application.protected.thread'">Messages</h2>
+     || state.current.name == 'application.protected.thread'" flex>Messages</h2>
     <h2 ng-if="state.current.name == 'application.protected.message.notification'
-      || state.current.name == 'application.protected.message.notificationDetail'">Notification</h2>
+      || state.current.name == 'application.protected.message.notificationDetail'" flex>Notification</h2>
     <h2 ng-if="state.current.name == 'application.expert'
      || state.current.name == 'application.protected.biography'
      || state.current.name == 'application.protected.trials'
@@ -57,24 +60,25 @@
      || state.current.name == 'application.protected.referrals'
      || state.current.name == 'application.protected.follow'
      || state.current.name == 'application.protected.questions'
-     || state.current.name == 'application.protected.answers'">My Profile</h2>
-    <h2 ng-if="state.current.name == 'application.protected.editProfile'">Edit Profile</h2>
+     || state.current.name == 'application.protected.answers'" flex>My Profile</h2>
+    <h2 ng-if="state.current.name == 'application.protected.editProfile'" flex>Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editPost'
      || state.current.name == 'application.protected.post'
      || state.current.name == 'application.protected.editQuestion'
      || state.current.name == 'application.protected.askQuestion'
-     || state.current.name == 'application.protected.reviewReport'">Post</h2>
-    <h2 ng-if="state.current.name == 'application.about'">About us</h2>
-    <h2 ng-if="state.current.name == 'application.protected.invite'">Invite Friends</h2>
-    <h2 ng-if="state.current.name == 'application.personalCredit'">My Points</h2>
-    <h2 ng-if="state.current.name == 'application.terms'">Terms</h2>
-    <h2 ng-if="state.current.name == 'application.privacy'">Privacy</h2>
-    <h2 ng-if="state.current.name == 'application.protected.shippingAddress'">Shipping Address</h2>
-    <h2 ng-if="state.current.name == 'application.protected.answerPost'">Answer</h2>
+     || state.current.name == 'application.protected.reviewReport'" flex>Post</h2>
+    <h2 ng-if="state.current.name == 'application.about'" flex>About us</h2>
+    <h2 ng-if="state.current.name == 'application.protected.invite'" flex>Invite Friends</h2>
+    <h2 ng-if="state.current.name == 'application.personalCredit'" flex>My Points</h2>
+    <h2 ng-if="state.current.name == 'application.terms'" flex>Terms</h2>
+    <h2 ng-if="state.current.name == 'application.privacy'" flex>Privacy</h2>
+    <h2 ng-if="state.current.name == 'application.protected.shippingAddress'" flex>Shipping Address</h2>
+    <h2 ng-if="state.current.name == 'application.protected.answerPost'" flex>Answer</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
-    || state.current.name == 'application.answerQuestionDetail'">{{pageSettings._title}}</h2>
+    || state.current.name == 'application.answerQuestionDetail'" flex>{{pageSettings._title}}</h2>
+    <xb-search hide></xb-search>
   </div>
 </md-toolbar>
 <md-sidenav
@@ -111,7 +115,7 @@
   </div>
 </md-sidenav>
 <verification ng-if="user.isAuth() && user.getInvited() && !user.getEmailVerification() && user.getUserEmail()"></verification>
-<md-content class="xb-body-view" md-scroll-y flex layout="column">
+<md-content ng-class="pageSettings._backgroundColor" class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ng-class="{true:'xb-footer-padding',false:''}[state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'

@@ -2,7 +2,7 @@
   <md-list-item class="xb-main-reviewer__item" ng-repeat="expert in reviewers" layout="row" layout-align="start center">
     <avatar-Img src="expert.avatar" class="md-avatar" ui-sref="application.expert({ expertId:expert.user_id })"
       name="expert.first_name"></avatar-Img>
-    <div class="md-2-line" ng-class="{'md-offset': true }" layout-fill layout="column" layout-align="center start">
+    <div class="md-2-line" ng-class="{'md-offset': true }" flex layout="column" layout-align="center start">
       <div layout="row" layout-align="start center">
         <a class="md-subhead" ui-sref="application.expert({ expertId:expert.user_id })">{{ expert.first_name }}</a>
         <credit-badge class="credit-badge" points="expert.badge_point"></credit-badge>

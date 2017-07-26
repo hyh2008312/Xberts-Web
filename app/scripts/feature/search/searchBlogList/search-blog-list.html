@@ -1,0 +1,47 @@
+<div class="xb-search__list" ng-repeat="review in reviews track by $index" layout="row" ng-if="!isAll">
+  <div class="xb-search__list-img-bg" flex="none">
+    <img src="{{review.image}}" title="{{review.title}}">
+  </div>
+  <div class="xb-search__list-content" layout="column" flex>
+    <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" target="_blank">
+      {{review.title}}
+    </a>
+    <md-truncate class="md-dark-secondary" hide-xs>
+      {{review.description}}
+    </md-truncate>
+    <div layout="column" flex layout-align="end">
+      <div layout="row" layout-align="start end">
+        <div class="report-publisher"  layout="row" layout-align="start center" >
+          <avatar-img hide-xs src="review.getReviewer().avatar" name="review.getReviewer().fullname"
+                      ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-img>
+          by&nbsp;<a hide-gt-xs ui-sref="application.expert({ expertId:review.getReviewer().id })">{{ review.getReviewer().fullname }}</a><span hide-xs>{{ review.applicant.reviewer.fullname }}</span>
+          <credit-badge class="credit-badge" points="review.getReviewBadgePoint()"></credit-badge>
+          &nbsp;&nbsp;<span am-time-ago='review.approval_status_changed'></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="xb-search__list" ng-repeat="review in reviews track by $index" layout="row" ng-if="isAll && $index <= 1">
+  <div class="xb-search__list-img-bg" flex="none">
+    <img src="{{review.image}}" title="{{review.title}}">
+  </div>
+  <div class="xb-search__list-content" layout="column" flex>
+    <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" target="_blank">
+      {{review.title}}
+    </a>
+    <md-truncate class="md-dark-secondary" hide-xs>
+      {{review.description}}
+    </md-truncate>
+    <div layout="column" flex layout-align="end">
+      <div layout="row" layout-align="start end">
+        <div class="report-publisher" layout="row" layout-align="start center" >
+          <avatar-img hide-xs src="review.getReviewer().avatar" name="review.getReviewer().fullname"
+                      ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-img>
+          by&nbsp;<a hide-gt-xs ui-sref="application.expert({ expertId:review.getReviewer().id })">{{ review.getReviewer().fullname }}</a><span hide-xs>{{ review.applicant.reviewer.fullname }}</span>
+          <credit-badge class="credit-badge" points="review.getReviewBadgePoint()"></credit-badge>
+          &nbsp;&nbsp;<span am-time-ago='review.approval_status_changed'></span>
+        </div>
+      </div>
+    </div>
+</div>
