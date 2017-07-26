@@ -17,6 +17,7 @@ angular
     'infinite-scroll',
     'LocalStorageModule',
     'summernote',
+    'ui.bootstrap',
     'internationalPhoneNumber',
     'duScroll',
     'dcbImgFallback',
