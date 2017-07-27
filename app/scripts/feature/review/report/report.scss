@@ -270,3 +270,14 @@
     }
   }
 }
+
+.xb-reviews-detail{
+  &__container{
+    max-width: 858px;
+    margin: auto;
+  }
+  &__action-buttons{
+    @extend .product__action-buttons;
+    margin: 0;
+  }
+}

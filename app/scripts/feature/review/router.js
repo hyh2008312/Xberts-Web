@@ -111,6 +111,16 @@ angular
           }]
         }
       })
+      .state('application.blogReport', {
+        url: '/reviews/:reportId',
+        templateUrl: 'scripts/feature/review/reviewDetail/reviewDetail.html',
+        controller: 'ReviewDetailCtrl',
+        resolve: {
+          report: ['ReportService', '$stateParams', function (ReportService, $stateParams) {
+            return ReportService.getReport($stateParams.reportId);
+          }]
+        }
+      })
       .state('application.campaignreviews', {
         url: "/reviews",
         templateUrl: 'scripts/feature/review/report/report-list.html',

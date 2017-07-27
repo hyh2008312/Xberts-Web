@@ -7,10 +7,10 @@
   </a>
   <div class="xb-reviews-list__bottom">
     <div class="xb-reviews-list__title" >
-      <a class="md-subhead md-dark-primary" hide-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" target="_blank">
+      <a class="md-subhead md-dark-primary" hide-xs ui-sref="application.blogReport({reportId:review.id})" target="_blank">
         {{ review.title }}
       </a>
-      <a class="md-subhead md-dark-primary" hide-gt-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})">
+      <a class="md-subhead md-dark-primary" hide-gt-xs ui-sref="application.blogReport({eportId:review.id})">
         {{ review.title }}
       </a>
     </div>
@@ -38,10 +38,10 @@
   <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="50" flex-sm="65">
     <div class="xb-reviews-list__top" flex-gt-xs>
       <div class="xb-reviews-list__title" >
-        <a class="md-subhead md-dark-primary" hide-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" target="_blank">
+        <a class="md-subhead md-dark-primary" hide-xs ui-sref="application.blogReport({reportId:review.id})" target="_blank">
           {{ review.title }}
         </a>
-        <a class="md-subhead md-dark-primary" hide-gt-xs ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})">
+        <a class="md-subhead md-dark-primary" hide-gt-xs ui-sref="application.blogReport({reportId:review.id})">
           {{ review.title }}
         </a>
       </div>
