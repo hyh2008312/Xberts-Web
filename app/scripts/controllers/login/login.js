@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', 'Configuration',
-    'AuthService', 'AnalyticsService', '$mdDialog',
+    'AuthService', 'AnalyticsService', '$mdDialog','GooglePlusLogin',
     function($scope, $rootScope, $location, $state, $stateParams, Configuration,
-             AuthService, AnalyticsService, $mdDialog) {
+             AuthService, AnalyticsService, $mdDialog,GooglePlusLogin) {
       if ($stateParams.error === 'linkedin_login') {
         $scope.loginError = {linkedinError: true};
 
@@ -12,6 +12,22 @@ angular.module('xbertsApp')
       } else {
         $scope.loginError = {};
       }
+
+      $scope.googleLogin = function() {
+        $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView('/googlelogin');
+
+        AuthService.googleLogin().then(function () {
+            $scope.$emit('backdropOff', 'success');
+            if($rootScope.user.getUserEmail()) {
+              AuthService.loginRedirect();
+            }
+          })
+          .catch(function (response) {
+            $scope.$emit('backdropOff', 'error');
+          });
+      };
 
       $scope.linkedinLogin = function() {
         $scope.$emit('backdropOn', 'post');

@@ -57,4 +57,9 @@ angular
       // Disable timeout feature since automatic logout is not desired for now
       IdleProvider.timeout(0);
       KeepaliveProvider.interval(ConfigurationProvider.tokenRefreshCheckInterval);
-    }]);
+    }])
+  .config(['GooglePlusLoginProvider', function(GooglePlusLoginProvider) {
+    GooglePlusLoginProvider.init({
+      client_id: '557140536548-k81pmeev2j551qg38jdqc8n0t6knurbo.apps.googleusercontent.com'
+    });
+  }]);

@@ -4,11 +4,11 @@ angular.module('xbertsApp')
   .factory('AuthService', ['$rootScope', '$resource', '$state', '$q', '$httpParamSerializer', '$location',
     '_', 'Configuration', 'OAuthToken', 'SystemConstant', 'randomString', 'localStorageService', 'Idle', 'API_BASE_URL',
     'OAUTH_CLIENT_ID','$mdDialog','AnalyticsService','$window','SignupService','VerificationEmailService','growl','$timeout',
-    '$mdMedia','LoginDialogFactory','AccountService','$filter',
+    '$mdMedia','LoginDialogFactory','AccountService','$filter','GooglePlusLogin',
     function($rootScope, $resource, $state, $q, $httpParamSerializer, $location,
              _, Configuration, OAuthToken, SystemConstant, randomString, localStorageService, Idle, API_BASE_URL,
              OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService,VerificationEmailService,growl,$timeout,
-             $mdMedia,LoginDialogFactory,AccountService,$filter) {
+             $mdMedia,LoginDialogFactory,AccountService,$filter,GooglePlusLogin) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
                     roles, isResolved, inviteToken, points, consumed, isEmailVerified,isInvited) {
         this._userId = userId || '';
@@ -352,6 +352,25 @@ angular.module('xbertsApp')
         return deferred.promise;
       }
 
+      function googleLogin() {
+        var deferred = $q.defer();
+
+        GooglePlusLogin.signIn().then(function(user) {
+          if(user) {
+            exchangeTokenForGoole(GooglePlusLogin.getUserId())
+              .then(function () {
+                deferred.resolve();
+              })
+              .catch(function (response) {
+                deferred.reject(response);
+              });
+          }
+
+        });
+
+        return deferred.promise;
+      }
+
       function linkedinLogin() {
         var oauth2Url = 'https://www.linkedin.com/uas/oauth2/authorization';
         var state = Configuration.linkedinDefaultState;
@@ -409,6 +428,80 @@ angular.module('xbertsApp')
         return $resource(API_BASE_URL + '/oauth2/convert-token/').save(params).$promise
           .then(function(value) {
             return postLogin(value);
+          });
+      }
+
+      function exchangeTokenForGoole(accessToken) {
+        var params = {
+          client_id: OAUTH_CLIENT_ID,
+          id_token: accessToken
+        };
+
+        return $resource(API_BASE_URL + '/accounts/google_sign/').save(params).$promise
+          .then(function(value) {
+            OAuthToken.setToken(value.token);
+
+            value = value.user;
+            if(!$filter('isEmail')(value.email)) {
+              $mdDialog.show({
+                controller: function(scope, $mdDialog) {
+                  scope.data = {};
+
+                  scope.data.email = value.email;
+
+                  scope.cancel = function() {
+                    $mdDialog.cancel();
+
+                    fetchSetUser(value);
+
+                    loginRedirect();
+                  };
+
+                  scope.changeEmail = function() {
+                    if (!scope.changeEmailForm.$valid) {
+                      return;
+                    }
+
+                    scope.$emit('backdropOn', 'put');
+
+                    scope.changeEmailForm.serverError = {};
+
+                    AccountService.changeEmail(scope.data.email)
+                      .then(function (value) {
+                        $rootScope.user.setUserEmail(value.email);
+                        scope.$emit('backdropOff', 'success');
+                        $state.go('application.expert', {expertId: value.userId});
+                        loginRedirect();
+                      })
+                      .catch(function (response) {
+                        scope.$emit('backdropOff', 'error');
+
+                        if (response.status === 409) {
+                          scope.changeEmailForm.serverError.duplicate = true;
+                        } else {
+                          scope.changeEmailForm.serverError.generic = true;
+                        }
+                      });
+                  };
+                },
+                templateUrl: 'scripts/feature/login/emailAddress/emailAddress.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: false,
+                disableParenScroll: true,
+                multiple:true,
+                openFrom:{
+                  left:200,
+                  top: 200,
+                  width:561,
+                  height:312.5
+                },
+                onShowing: function() {
+                  angular.element('md-dialog.md-transition-in:eq(0)').animate({opacity:0},0);
+                }
+              });
+              return;
+            }
+            fetchSetUser(value);
           });
       }
 
@@ -622,6 +715,7 @@ angular.module('xbertsApp')
         login: login,
         facebookLogin: facebookLogin,
         linkedinLogin: linkedinLogin,
+        googleLogin: googleLogin,
         getLinkedinToken: getLinkedinToken,
         exchangeToken: exchangeToken,
         auth: auth,

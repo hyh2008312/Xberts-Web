@@ -4,10 +4,10 @@ angular
   .module('xbertsApp')
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
     'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService','ExchangeRateService','$timeout','$mdDialog',
-    'LoginDialogFactory','$mdMedia',
+    'LoginDialogFactory','$mdMedia','GooglePlusLogin',
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService,
               SocialShare, $location, OAuthToken, Configuration, AuthService,ExchangeRateService,$timeout,$mdDialog,
-              LoginDialogFactory,$mdMedia) {
+              LoginDialogFactory,$mdMedia,GooglePlusLogin) {
 
       // to checkout out if token is expire
       $rootScope.$on('Keepalive', function() {
@@ -190,6 +190,21 @@ angular
           version    : 'v2.5'
         });
       };
+
+
+      $window._startGoogleSignin = GooglePlusLogin._loadCallback;
+
+      (function(d,s) {
+        // Load the SDK asynchronously
+        var po = d.createElement(s);
+        po.type = 'text/javascript';
+        po.async = true;
+        po.src =
+          'https://apis.google.com/js/client:platform.js?onload=_startGoogleSignin';
+        var _s = d.getElementsByTagName('script')[0];
+        _s.parentNode.insertBefore(po, _s);
+      }(document, 'script'));
+
 
       // Load the SDK asynchronously
       (function(d, s, id) {

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('DealsService', ['$resource','ProductDeals','API_BASE_URL',function ($resource,ProductDeals,API_BASE_URL) {
+  .service('DealsService', ['$rootScope','$resource','ProductDeals','API_BASE_URL',
+    function ($rootScope,$resource,ProductDeals,API_BASE_URL) {
 
     var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'});
@@ -11,6 +12,8 @@ angular.module('xbertsApp')
     this.discountId = null;
 
     this.getDealsList = function(params) {
+      params.approval_status = 'approved';
+      params.country = $rootScope.country;
       return DealsProductResource.get(params).$promise.then(ProductDeals.buildPageList);
     };
 
