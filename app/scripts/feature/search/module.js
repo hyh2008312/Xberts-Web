@@ -6,11 +6,6 @@ angular.module('xbertsApp')
       .state('application.search', {
       url: '/search/:question',
       templateUrl: 'scripts/feature/search/searchResult.html',
-      controller: 'SearchResultCtrl',
-      resolve: {
-        result: [function(SearchService, $stateParams) {
-          return {};
-        }]
-      }
+      controller: 'SearchResultCtrl'
     })
   }]);

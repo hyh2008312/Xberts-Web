@@ -39,7 +39,7 @@
       <div class="xb-search__text-transform">Discover</div>
     </md-tab-label>
     <md-tab-body>
-      <div class="md-margin-top-2" infinite-scroll="productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+      <div class="md-margin-top-2" infinite-scroll="productsPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
            infinite-scroll-disabled="productsPaginator.loading || !productsPaginator.next || currentIndex != 1" flex
            layout="column">
         <search-deals-list class="xb-search__list-bg"  deals="productsPaginator.items"></search-deals-list>
@@ -58,7 +58,7 @@
       <div class="xb-search__text-transform">Ask</div>
     </md-tab-label>
     <md-tab-body>
-      <div class="md-margin-top-2" infinite-scroll="askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+      <div class="md-margin-top-2" infinite-scroll="askPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
            infinite-scroll-disabled="askPaginator.loading || !askPaginator.next || currentIndex != 2">
         <question-item products="askPaginator.items"></question-item>
         <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="askPaginator.loading"></load-more>

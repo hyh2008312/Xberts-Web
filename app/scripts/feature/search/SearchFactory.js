@@ -5,9 +5,9 @@ angular.module('xbertsApp')
 
     this.sort = 0;
 
-    this.sortList = ['All','Discover','Ask','Trials','Blog'];
+    this.askFrom = null;
 
-    this.from = null;
+    this.productFrom = null;
 
     return this;
 

@@ -32,7 +32,6 @@ angular.module('xbertsApp')
         }
       );
 
-
       this.currentPage = localStorageService.get(this.name + '_currentPage') || 0;
       this.params.page = this.currentPage + 1;
       this.next = !(localStorageService.get(this.name + '_next') === false);
