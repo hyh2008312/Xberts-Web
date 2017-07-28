@@ -275,9 +275,67 @@
   &__container{
     max-width: 858px;
     margin: auto;
+    @include xb-xs-screen{
+      margin: 0 8px;
+    }
+  }
+  &__title{
+    font-size: 34px;
+    line-height: 40px;
+    margin-top: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    @include media();
+    @include xb-xs-screen{
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: 12px;
+      border: none;
+    }
+  }
+  &__head-bg{
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    margin-bottom: 24px;
+    @include xb-xs-screen{
+      border: none;
+      margin-bottom: 16px;
+    }
+    avatar-img{
+
+      margin: 16px;
+
+      @include avatar-header(large);
+
+      @include xb-xs-screen{
+        margin: 0 16px 0 0;
+
+        @include avatar-header(medium);
+      }
+
+      .c-user__avatar{
+        margin-bottom: 0;
+      }
+    }
+    .xb-deals-detail__head-bottom{
+      margin-top: 0;
+    }
+  }
+  &__content{
+    img{
+      max-width: 100%;
+    }
+    iframe{
+      max-width: 100%;
+    }
   }
   &__action-buttons{
     @extend .product__action-buttons;
     margin: 0;
+  }
+  &__margin-left{
+    margin-left: 16px;
+    @include xb-xs-screen{
+      margin-left: 0;
+    }
   }
 }

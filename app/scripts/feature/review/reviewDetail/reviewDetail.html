@@ -1,18 +1,33 @@
 <div class="background-whitem">
   <img ng-src="{{report.image}}" hide-gt-xs>
   <div class="xb-reviews-detail__container">
-    <div>{{ report.title }}</div>
+    <div class="xb-reviews-detail__title">{{ report.title }}</div>
     <div class="xb-reviews-detail__head-bg" layout="row" layout-align="start center">
       <avatar-img src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
-      <div layout="row" layout-align="start center">
-        <a ui-sref="application.expert({ expertId:report.getReviewerId() })">
-          {{report.getReviewerName()}}</a>
-        <xb-follow></xb-follow>
-        <div class="md-dark-secondary">{{report.getReviewerPosition()}}</div>
+      <div layout="column" layout-align="start" flex>
+        <div layout="row" layout-align-gt-xs="start center" layout-align-xs="space-between center">
+          <a ui-sref="application.expert({ expertId:report.getReviewerId() })">
+            {{report.getReviewerName()}}</a>
+          <credit-badge class="credit-badge" points="report.getReviewBadgePoint()"></credit-badge>
+          <xb-follow class="xb-reviews-detail__margin-left" follow="report.applicant.reviewer.current_user.follow" user-id="report.getReviewerId()"
+                     expert="expert" achievement="achievement"></xb-follow>
+        </div>
+        <md-truncate class="md-dark-secondary" hide-xs>{{report.getReviewerPosition()}}</md-truncate>
         <div class="md-dark-secondary">June 12th,2017</div>
       </div>
+      <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center"  hide-xs>
+        <div layout="column" layout-align="center start">
+          <div class="xb-bold">5</div>
+          <div>Blogs</div>
+        </div>
+        <span flex="none"></span>
+        <div layout="column" layout-align="center start">
+          <div class="xb-bold">{{achievement.followersAmount}}</div>
+          <div>{{achievement.followersAmount > 1? 'Followers':'Follower'}}</div>
+        </div>
+      </div>
     </div>
-    <div ng-bind-html="report.details | trust"></div>
+    <div class="xb-reviews-detail__content" ng-bind-html="report.details | trust"></div>
     <div class="product__tags" layout="row" layout-align="start center">
       <span ng-repeat="value in report.tags">{{value}}</span>
     </div>
