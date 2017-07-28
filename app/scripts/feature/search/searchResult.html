@@ -6,27 +6,27 @@
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-bottom-4">
-        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="products.length>0">
           <h3 class="md-dark-secondary" flex>Discover</h3>
         </div>
-        <search-deals-list class="xb-search__list-bg" deals="productsPaginator.items" is-all="true"></search-deals-list>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+        <search-deals-list class="xb-search__list-bg" deals="products" is-all="true"></search-deals-list>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="products.length>0"
              ng-click="changeCurrentIndex(1)">
           SEE MORE
         </div>
-        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="ask.length>0">
           <h3 class="md-dark-secondary" flex>Ask</h3>
         </div>
-        <question-item products="askPaginator.items" is-all="true"></question-item>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+        <question-item products="ask" is-all="true"></question-item>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="ask.length>0"
              ng-click="changeCurrentIndex(2)">
           SEE MORE
         </div>
-        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center">
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="reviews.length>0">
           <h3 class="md-dark-secondary" flex>Blog</h3>
         </div>
-        <search-blog-list class="xb-search__list-bg" reviews="reviews.items" is-all="true"></search-blog-list>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center"
+        <search-blog-list class="xb-search__list-bg" reviews="reviews" is-all="true"></search-blog-list>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="reviews.length>0"
              ng-click="changeCurrentIndex(4)">
           SEE MORE
         </div>

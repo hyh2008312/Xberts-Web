@@ -11,12 +11,12 @@
     </div>
 
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
-      <xb-search hide></xb-search>
+      <xb-search></xb-search>
       <div ui-sref-active="active" ui-sref="application.signup">Sign up</div>
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
-      <xb-search hide></xb-search>
+      <xb-search></xb-search>
       <xb-post hide></xb-post>
       <xb-notification></xb-notification>
       <messages></messages>
@@ -78,7 +78,7 @@
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
     || state.current.name == 'application.answerQuestionDetail'" flex>{{pageSettings._title}}</h2>
-    <xb-search hide></xb-search>
+    <xb-search></xb-search>
   </div>
 </md-toolbar>
 <md-sidenav

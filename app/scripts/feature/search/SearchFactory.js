@@ -7,6 +7,8 @@ angular.module('xbertsApp')
 
     this.sortList = ['All','Discover','Ask','Trials','Blog'];
 
+    this.from = null;
+
     return this;
 
   }]);

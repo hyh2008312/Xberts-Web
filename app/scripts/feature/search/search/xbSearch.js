@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('xbSearch', ['$mdDialog',function ($mdDialog) {
+  .directive('xbSearch', ['$mdDialog','$state',function ($mdDialog, $state) {
     return {
       templateUrl: "scripts/feature/search/search/xb-search.html",
       scope: {
@@ -17,7 +17,9 @@ angular.module('xbertsApp')
                 scope.search = null;
               };
               scope.submit = function() {
-
+                if(scope.search != null) {
+                  $state.go('application.search', {question:scope.search}, {reload:true});
+                }
               };
             },
             templateUrl: 'scripts/feature/search/search/xb-search-dialog.html',

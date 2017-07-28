@@ -3,11 +3,11 @@
     <div class="md-margin-bottom-3" hide-xs>
       <md-icon class="md-dark-secondary">search</md-icon>
     </div>
-    <form name="searchForm" novalidate ng-submit="search(searchForm)" clear-form-error flex layout="row" layout-align="start center">
+    <form name="searchForm" novalidate ng-submit="submit(searchForm)" clear-form-error flex layout="row" layout-align="start center">
       <md-input-container class="md-block" md-no-float flex>
         <input ng-model="search" type="text" name="search" placeholder="Search" md-auto-focus/>
       </md-input-container>
-      <md-button class="md-primary" hide-gt-xs ng-click="search(searchForm)">
+      <md-button class="md-primary" hide-gt-xs ng-click="submit(searchForm)">
         <md-icon class="md-dark-secondary">search</md-icon>
       </md-button>
     </form>
