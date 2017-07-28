@@ -166,17 +166,20 @@
     -webkit-flex: 1 1 480px !important;
     @include xb-lg-screen{
       max-width: 49.3% !important;
+      min-width: 49.3%;
     }
     @include xb-md-screen{
       max-width: 49.3% !important;
       flex: 1 1 360px !important;
       -webkit-flex: 1 1 360px !important;
+      min-width: 49.3%;
     }
     @include xb-sm-screen{
       flex: 1 1 295px !important;
       -webkit-flex: 1 1 295px !important;
       max-width: 49.3% !important;
       margin-bottom: 8px;
+      min-width: 49.3%;
     }
     @include xb-xs-screen{
       margin-bottom: 8px;

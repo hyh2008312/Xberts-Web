@@ -2,13 +2,15 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
-    'ExpertService', '$mdMedia',
-    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,$mdMedia) {
+    'ExpertService','blogPaginator',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,blogPaginator) {
       $scope.report = report;
 
       $scope.expert = {
         userId: report.getReviewerId()
       };
+
+      $scope.blogPaginator = blogPaginator;
 
       ExpertService.getAchievement(report.getReviewerId()).then(function(data) {
         $scope.achievement = data;

@@ -118,6 +118,9 @@ angular
         resolve: {
           report: ['ReportService', '$stateParams', function (ReportService, $stateParams) {
             return ReportService.getReport($stateParams.reportId);
+          }],
+          blogPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
+            return DealsService.getRecommendList($stateParams.reportId);
           }]
         }
       })
