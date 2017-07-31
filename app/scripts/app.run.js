@@ -115,7 +115,7 @@ angular
           ]
         }
       };
-      alert($window.userAgent);
+      alert($window.navigator.userAgent);
 
       SocialShare.createSocialShare($location.absUrl());
 
