@@ -17,7 +17,7 @@
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
       <xb-search></xb-search>
-      <xb-post hide></xb-post>
+      <xb-post></xb-post>
       <xb-notification></xb-notification>
       <messages></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<md-toolbar class="xberts-navbar-moblie md-hue-2" hide-gt-xs>
+<md-toolbar class="xberts-navbar-moblie md-hue-2" hide-gt-xs ng-if="!xbertsApp">
   <div class="md-toolbar-tools" layout="row" layout-align="start center">
     <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
       <md-icon md-font-set="material-icons"> menu </md-icon>

@@ -18,4 +18,15 @@ angular.module('xbertsApp')
 
       return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
     };
+
+    this.isXbertApp = function() {
+      var ua = navigator.userAgent||navigator.vendor||window.opera;
+
+      if (ua.indexOf('Xbert') > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
   }]);

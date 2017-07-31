@@ -4,10 +4,10 @@ angular
   .module('xbertsApp')
   .run(['$rootScope', '$state', '$stateParams', '$window', 'localStorageService', 'PageService', 'SignupService',
     'SocialShare', '$location','OAuthToken', 'Configuration', 'AuthService','ExchangeRateService','$timeout','$mdDialog',
-    'LoginDialogFactory','$mdMedia','GooglePlusLogin',
+    'LoginDialogFactory','$mdMedia','GooglePlusLogin','BrowserUtil',
     function ($rootScope, $state, $stateParams, $window, localStorageService, PageService, SignupService,
               SocialShare, $location, OAuthToken, Configuration, AuthService,ExchangeRateService,$timeout,$mdDialog,
-              LoginDialogFactory,$mdMedia,GooglePlusLogin) {
+              LoginDialogFactory,$mdMedia,GooglePlusLogin,BrowserUtil) {
 
       // to checkout out if token is expire
       $rootScope.$on('Keepalive', function() {
@@ -115,7 +115,7 @@ angular
           ]
         }
       };
-      alert($window.navigator.userAgent);
+      $rootScope.xbertsApp =  BrowserUtil.isXbertApp();
 
       SocialShare.createSocialShare($location.absUrl());
 
