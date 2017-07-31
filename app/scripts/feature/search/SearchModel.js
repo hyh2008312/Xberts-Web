@@ -8,7 +8,7 @@ function SearchModel($state,urlParser,$sce) {
 
   SearchModel.prototype = {
     getImageUrl: function() {
-      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:this.imageUrl;
+      return this.imageGroup[0].imageUrls != null ? this.imageGroup[0].imageUrls.original:this.imageUrl;
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;

@@ -5,6 +5,7 @@ angular.module('xbertsApp')
     'SearchModel',
     function ($rootScope,$scope,SearchService,$stateParams,SearchFactory,Paginator,SearchModel) {
 
+      SearchFactory.keywords = $stateParams.question;
       SearchService.getSearch({
         'search_info': $stateParams.question
       }).then(function(data) {
@@ -29,7 +30,7 @@ angular.module('xbertsApp')
 
       $scope.loadDiscover = function() {
         if($scope.productsPaginator) {
-          // return;
+           return;
         }
         var par = {
           name: 'xb-search-product' + $stateParams.question,

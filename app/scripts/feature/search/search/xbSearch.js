@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('xbSearch', ['$mdDialog','$state',function ($mdDialog, $state) {
+  .directive('xbSearch', ['$mdDialog','$state','SearchFactory',function ($mdDialog, $state, SearchFactory) {
     return {
       templateUrl: "scripts/feature/search/search/xb-search.html",
       scope: {
@@ -12,7 +12,7 @@ angular.module('xbertsApp')
         scope.openSearch = function(ev) {
           $mdDialog.show({
             controller: function(scope, $mdDialog) {
-              scope.search = null;
+              scope.search = SearchFactory.keywords;
               scope.cancel = function() {
                 scope.search = null;
               };

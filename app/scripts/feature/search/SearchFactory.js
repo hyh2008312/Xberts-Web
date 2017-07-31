@@ -9,6 +9,8 @@ angular.module('xbertsApp')
 
     this.productFrom = null;
 
+    this.keywords = '';
+
     return this;
 
   }]);

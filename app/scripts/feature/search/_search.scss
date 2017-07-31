@@ -110,7 +110,7 @@
         height: 72px;
         border-radius: 2px;
       }
-      >img{
+      img{
         width: 100%;
         position: absolute;
         left: 50%;
@@ -160,6 +160,9 @@
     &-time{
       white-space: nowrap;
     }
+  }
+  &__margin-top{
+    margin-top: 100px;
   }
 }
 .xb-search-dialog{

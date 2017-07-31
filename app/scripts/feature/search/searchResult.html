@@ -30,6 +30,11 @@
              ng-click="changeCurrentIndex(4)">
           SEE MORE
         </div>
+        <div class="xb-search__margin-top md-margin-bottom-4" ng-if="products.length == 0 && ask.length == 0"
+             layout="column" layout-align="center center" flex="noshrink">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary md-margin-top-2 md-align-center">Please try again with different search keywords.</div>
+        </div>
       </div>
     </md-tab-body>
   </md-tab>
@@ -44,10 +49,10 @@
            layout="column">
         <search-deals-list class="xb-search__list-bg"  deals="productsPaginator.items"></search-deals-list>
         <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="productsPaginator.loading"></load-more>
-        <div class="md-margin-top-4 md-margin-bottom-4" ng-if="productsPaginator.currentPage == 1 && productsPaginator.count == 0"
+        <div class="xb-search__margin-top md-margin-bottom-4" ng-if="productsPaginator.currentPage == 1 && productsPaginator.count == 0"
              layout="column" layout-align="center center" flex="noshrink">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
-          <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
+          <div class="md-dark-secondary md-margin-top-2 md-align-center">Please try again with different search keywords.</div>
         </div>
       </div>
     </md-tab-body>
@@ -62,6 +67,11 @@
            infinite-scroll-disabled="askPaginator.loading || !askPaginator.next || currentIndex != 2">
         <question-item products="askPaginator.items"></question-item>
         <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="askPaginator.loading"></load-more>
+        <div class="xb-search__margin-top md-margin-bottom-4" ng-if="askPaginator.currentPage == 1 && askPaginator.count == 0"
+             layout="column" layout-align="center center" flex="noshrink">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary md-margin-top-2">Please try again with different search keywords.</div>
+        </div>
       </div>
     </md-tab-body>
   </md-tab>
@@ -71,20 +81,23 @@
       <div class="xb-search__text-transform">Trials</div>
     </md-tab-label>
     <md-tab-body>
-      <div>
+      <div class="xb-search__margin-top md-margin-bottom-4"
+           layout="column" layout-align="center center" flex="noshrink">
+        <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+        <div class="md-dark-secondary md-margin-top-2 md-align-center">Please try again with different search keywords.</div>
       </div>
     </md-tab-body>
   </md-tab>
 
   <md-tab md-on-select="loadBlog()">
     <md-tab-label>
-      <div class="xb-search__text-transform">Blog</div>
+      <div class="xb-search__text-transform">Reviews</div>
     </md-tab-label>
     <md-tab-body>
-      <div class="md-margin-top-2" infinite-scroll="reviews.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
-           infinite-scroll-disabled="reviews.loading || !reviews.next || currentIndex != 4">
-        <search-blog-list class="xb-search__list-bg" reviews="reviews.items"></search-blog-list>
-        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
+      <div class="xb-search__margin-top md-margin-bottom-4"
+           layout="column" layout-align="center center" flex="noshrink">
+        <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+        <div class="md-dark-secondary md-margin-top-2 md-align-center">Please try again with different search keywords.</div>
       </div>
     </md-tab-body>
   </md-tab>

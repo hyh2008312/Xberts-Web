@@ -202,22 +202,22 @@
   <div class="background-whitem">
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.answers({expertId:expert.userId})">
-      Answers
+      Answers <span>{{achievement.answerAmount}}</span>
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.questions({expertId:expert.userId})">
-      Questions
+      Questions <span>{{achievement.questionAmount}}</span>
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.trials({expertId:expert.userId})">
-      Trials
+      Trials <span>{{achievement.reviewAmount}}</span>
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.posts({expertId:expert.userId})">
-      Deals
+      Deals <span>{{achievement.shareProductAmount}}</span>
       <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
