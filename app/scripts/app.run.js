@@ -115,6 +115,8 @@ angular
           ]
         }
       };
+      alert($window.userAgent);
+
       SocialShare.createSocialShare($location.absUrl());
 
       ExchangeRateService.getRate();
