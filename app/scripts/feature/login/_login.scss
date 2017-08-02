@@ -163,20 +163,39 @@
     width: 100%;
   }
 }
-.md-button{
-  &.md-raised{
-    &.md-facebook-btn{
-      width: 220px;
-      margin: 0;
-      text-transform: capitalize;
-    }
-    &.md-linkedin-btn{
-      @extend .md-facebook-btn;
-      background-color: $linkedinColor;
-    }
-    &.md-google-btn{
-      @extend .md-facebook-btn;
-      background-color: $googleColor;
-    }
+.md-facebook-btn{
+  width: 220px;
+  margin: 0;
+  text-transform: capitalize;
+  min-height: 36px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 36px;
+  vertical-align: middle;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  color: $whiteColor;
+  background-color: $facebookColor;
+  border-radius: 2px;
+  &:hover {
+    text-decoration: none;
+    color: $whiteColor;
   }
+  &:focus {
+    text-decoration: none;
+    color: $whiteColor;
+  }
+}
+
+.md-linkedin-btn{
+  @extend .md-facebook-btn;
+  background-color: $linkedinColor;
+}
+.md-google-btn{
+  @extend .md-facebook-btn;
+  background-color: $googleColor;
 }
