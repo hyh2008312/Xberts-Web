@@ -31,8 +31,16 @@
       max-width: 800px;
       margin: auto;
       md-pagination-wrapper{
-        @include xb-gt-xs-screen{
+        @include xb-gt-xs-screen {
           max-width: 800px;
+          width: 100%;
+          .md-tab{
+            margin-right: 80px;
+          }
+        }
+
+        @include xb-xs-screen{
+          max-width: 600px;
           width: 100%;
 
           -webkit-box-flex: 0;

@@ -13,6 +13,7 @@ angular.module('xbertsApp')
         scope.headImage = DealsService.headImage;
 
         scope.openMobileDialog = function(id) {
+
           $mdDialog.show({
             controller: function(scope, $mdDialog) {
 
@@ -28,7 +29,9 @@ angular.module('xbertsApp')
               };
 
               scope.signup = function() {
-                $state.go('application.signup');
+                if(!$rootScope.user.authRequired(true)) {
+                  return;
+                }
               };
             },
             templateUrl: 'scripts/feature/deals/dealsDialog/deals-dialog.html',

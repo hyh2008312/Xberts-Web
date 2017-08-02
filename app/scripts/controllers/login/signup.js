@@ -8,6 +8,22 @@ angular.module('xbertsApp')
       $scope.countryOptions = SystemConstant.COUNTRIES;
       $scope.loginError = {};
 
+      $scope.googleLogin = function() {
+        $scope.$emit('backdropOn', 'post');
+
+        AnalyticsService.sendPageView('/googlelogin');
+
+        AuthService.googleLogin().then(function () {
+            $scope.$emit('backdropOff', 'success');
+            if($rootScope.user.getUserEmail()) {
+              AuthService.loginRedirect();
+            }
+          })
+          .catch(function (response) {
+            $scope.$emit('backdropOff', 'error');
+          });
+      };
+
       $scope.linkedinLogin = function() {
         $scope.$emit('backdropOn', 'post');
 

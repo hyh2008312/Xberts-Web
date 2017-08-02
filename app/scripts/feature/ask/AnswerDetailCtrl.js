@@ -7,7 +7,7 @@ angular.module('xbertsApp')
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
     answerCtrl.user = $rootScope.user;
-    answerCtrl.showAnswer = false;
+    answerCtrl.showAnswer = answerCtrl.answerPaginator.count == 0 ? true : false;
 
     answerCtrl.options = {
       height: 300,
@@ -76,8 +76,6 @@ angular.module('xbertsApp')
     answerCtrl.addProduct = function (product) {
       answerCtrl.answerPaginator.items.unshift(product);
     };
-
-
 
     var title = productsDetail.title;
     var description = productsDetail.description;

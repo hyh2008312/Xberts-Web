@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService',
-    function ($rootScope, $scope, AskService, $state, localStorageService) {
+  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService','$mdDialog',
+    function ($rootScope, $scope, AskService, $state, localStorageService,$mdDialog) {
 
       $scope.question = {};
       $scope.disabled = false;
@@ -59,4 +59,19 @@ angular.module('xbertsApp')
           $state.go('application.askQuestionMain', {}, {reload: true})
         }
       };
+
+      $scope.helpTips = function(ev) {
+        $mdDialog.show({
+          controller: function(scope, $mdDialog) {
+            scope.cancel = function() {
+              $mdDialog.cancel();
+            };
+          },
+          templateUrl: 'scripts/feature/profile/myQuestionsList/myQuestionTips.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          disableParenScroll: true
+        });
+      };;
   }]);

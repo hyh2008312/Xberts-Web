@@ -17,7 +17,7 @@
         <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
       </div>
     </md-tab>
-    <md-tab label="Questions" md-on-select="loadMyFollowingQuestions()">
+    <md-tab label="Questions Followed" md-on-select="loadMyFollowingQuestions()">
       <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next">
         <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items" current-user="isCurrentUser" hide-state="true"></my-questions-list>

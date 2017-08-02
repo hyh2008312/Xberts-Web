@@ -29,7 +29,7 @@
               <div class="md-subhead">Quick Look</div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right">
+          <div class="xb-deals-list__top-right" layout="row" layout-align="start center" ng-if="item.promotionEnd">
             <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
               <span ng-show="timeValue>0">{{ timeUnit }}</span>
               <span ng-show="timeValue<=0">00:00:00</span>
@@ -65,8 +65,7 @@
         </div>
       </div>
       <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null" hide>
-        <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
-        </avatar-Img>
+        <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar"></avatar-Img>
         <div layout="column" layout-align="space-between start">
           <div layout="row" layout-align="start center">
             <span class="md-dark-primary">{{item.getDealsName()}}</span>
@@ -106,7 +105,7 @@
               <div class="md-subhead">Quick Look</div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right">
+          <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
             <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
               <span ng-show="timeValue>0">{{ timeUnit }}</span>
                <span ng-show="timeValue<0">00:00:00</span>
@@ -174,7 +173,7 @@
               </div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right">
+          <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
             <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
               <span ng-show="timeValue>0">{{ timeUnit }}</span>
               <span ng-show="timeValue<=0">00:00:00</span>
@@ -199,7 +198,7 @@
               </div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right">
+          <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
             <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
               <span ng-show="timeValue>0">{{ timeUnit }}</span>
               <span ng-show="timeValue<=0">00:00:00</span>

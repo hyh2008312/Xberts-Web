@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('MessageThreadCtrl', ['_', '$scope', '$rootScope', '$state', '$stateParams', 'messages', 'MessageService',
-    function (_, $scope, $rootScope, $state, $stateParams, messages, MessageService) {
+    '$mdMedia',
+    function (_, $scope, $rootScope, $state, $stateParams, messages, MessageService,$mdMedia) {
       $scope.messages = messages;
       $scope.firstMessage = _(messages).first();
 
@@ -21,6 +22,18 @@ angular.module('xbertsApp')
       } else {
         var parentId = null;
       }
+
+      $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        //you also get the actual event object
+        //do stuff, execute functions -- whatever...
+        if(!$mdMedia('xs')) {
+          var item = document.getElementsByClassName('xb-scroll-into-view')[0];
+        } else {
+          var item = document.getElementsByClassName('xb-body-view')[0];
+        }
+
+        item.scrollTop = item.scrollHeight;
+      });
 
       $scope.replyMessage = function () {
         if (!$scope.replyForm.$valid) {

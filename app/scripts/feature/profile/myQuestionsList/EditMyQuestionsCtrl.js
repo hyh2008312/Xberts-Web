@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('EditMyQuestionsCtrl', ['$rootScope', '$scope', 'editMyQuestion', 'AskService', '$state', 'localStorageService',
-    '$mdMedia',
-    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia) {
+    '$mdMedia','$mdDialog',
+    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia,$mdDialog) {
 
       $scope.question = editMyQuestion;
 
@@ -56,5 +56,20 @@ angular.module('xbertsApp')
             reload:true
           });
         }
+      };
+
+      $scope.helpTips = function(ev) {
+        $mdDialog.show({
+          controller: function(scope, $mdDialog) {
+            scope.cancel = function() {
+              $mdDialog.cancel();
+            };
+          },
+          templateUrl: 'scripts/feature/profile/myQuestionsList/myQuestionTips.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          disableParenScroll: true
+        });
       };
   }]);

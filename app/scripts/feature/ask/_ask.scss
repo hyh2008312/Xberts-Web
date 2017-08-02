@@ -331,7 +331,22 @@
   &__inner-content{
     max-width: 800px;
     margin: auto;
-    display: block;
+  }
+  &__fixed-top-content{
+    display: none;
+    width: 100%;
+    height: 56px;
+    z-index: 1;
+    >div{
+      height: 56px;
+    }
+    .md-button{
+      margin: 0 0 0 16px;
+    }
+    @include xb-xs-screen{
+      padding: 0 10px;
+    }
+    @include box-shadow(0 0 3px 1px rgba(0, 0, 0, .19));
   }
   &__title{
     .md-dark-secondary{

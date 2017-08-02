@@ -7,15 +7,16 @@
   <div class="xb-my-achievement background-whitem">
     <div ng-if="achievemets.shareProductAmount && achievemets.shareProductAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['shareProductAmount']" ></i>
-      Share {{achievemets.shareProductAmount>1? achievemets.shareProductAmount + ' products': achievemets.shareProductAmount + ' product'}}
+      {{achievemets.shareProductAmount>1? achievemets.shareProductAmount + ' deals are ': achievemets.shareProductAmount + ' deal is '}}
+      featured
     </div>
     <div ng-if="achievemets.thumbsUpAmount && achievemets.thumbsUpAmount > 0" layout="row" layout-align="start center">
       <div><md-icon class="md-dark-third" md-font-set="material-icons">{{icons['thumbsUpAmount']}}</md-icon></div>
       Received {{achievemets.thumbsUpAmount>1? achievemets.thumbsUpAmount + ' thumbs up': achievemets.thumbsUpAmount + ' thumb up'}}
     </div>
-    <div ng-if="achievemets.answerAmount && achievemets.answerAmount > 0" layout="row" layout-align="start center">
-      <i class="iconfontXberts" ng-class="icons['answerAmount']" ></i>
-      Answered {{achievemets.answerAmount > 1?achievemets.answerAmount+ ' questions':achievemets.answerAmount+ ' question'}}</div>
+    <div ng-if="achievemets.questionAnsweredAmount && achievemets.questionAnsweredAmount > 0" layout="row" layout-align="start center">
+      <i class="iconfontXberts" ng-class="icons['questionAnsweredAmount']" ></i>
+      Answered {{achievemets.questionAnsweredAmount > 1?achievemets.questionAnsweredAmount+ ' questions':achievemets.answerAmount+ ' question'}}</div>
 
     <div ng-if="achievemets.bestAnswerAmount && achievemets.bestAnswerAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['bestAnswerAmount']" ></i>

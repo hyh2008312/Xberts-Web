@@ -4,6 +4,12 @@
       <div class="xb-login-container background-whitem" layout="row" layout-align="start center" hide-xs>
         <div class="xb-login-container__button-bg">
           <div>
+            <md-button href="#" class="md-primary md-raised md-google-btn" ng-click="googleLogin()">
+              <i class="iconfontXberts icon-google"></i>
+              <span class="md-margin-left-1">Continue with Google</span>
+            </md-button>
+          </div>
+          <div>
             <md-button href="#" class="md-primary md-raised md-facebook-btn" ng-click="facebookLogin(loginError)">
               <i class="fa fa-facebook"></i>
               <span class="md-margin-left-1">Continue with Facebook</span>
@@ -44,17 +50,23 @@
       </div>
       <div class="xb-login-mobile-container" hide-gt-xs>
         <div class="xb-login-container__button-bg">
-          <div>
-            <md-button href="#" class="md-primary md-raised md-facebook-btn" ng-click="facebookLogin(loginError)">
-              <i class="fa fa-facebook"></i>
-              <span class="md-margin-left-1">Continue with Facebook</span>
+            <div>
+              <md-button href="#" class="md-primary md-raised md-google-btn" ng-click="googleLogin()">
+                <i class="iconfontXberts icon-google"></i>
+                <span class="md-margin-left-1">Continue with Google</span>
+              </md-button>
+            </div>
+            <div>
+              <md-button href="#" class="md-primary md-raised md-facebook-btn" ng-click="facebookLogin(loginError)">
+                <i class="fa fa-facebook"></i>
+                <span class="md-margin-left-1">Continue with Facebook</span>
+              </md-button>
+            </div>
+            <md-button href="#" class="md-primary md-raised md-linkedin-btn" ng-click="linkedinLogin()">
+              <i class="fa fa-linkedin"></i>
+              <span class="md-margin-left-1">Continue with LinkedIn</span>
             </md-button>
           </div>
-          <md-button href="#" class="md-primary md-raised md-linkedin-btn" ng-click="linkedinLogin()">
-            <i class="fa fa-linkedin"></i>
-            <span class="md-margin-left-1">Continue with LinkedIn</span>
-          </md-button>
-        </div>
         <div class="xb-login-mobile-container__text-button" layout="column" layout-align="center center">
           <div ng-click="showLogin();">Log in with Email</div>
           <p><span class="md-caption md-dark-secondary">Don't have an account?</span>&nbsp;&nbsp;<a ui-sref="application.signup" ng-click="cancel()">Sign up</a></p>

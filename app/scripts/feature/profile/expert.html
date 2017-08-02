@@ -95,45 +95,70 @@
     <div flex>
       <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-selected="selectedIndex" md-no-ink md-no-ink-bar>
 
-        <md-tab label="Answers" md-on-select="loadMyAnswers()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 0">
-              <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-              <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+
+        <md-tab md-on-select="loadMyAnswers()">
+          <md-tab-label>
+            Answers
+            <span class="xb-my-profile__mobile-number">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
+          </md-tab-label>
+          <md-tab-body>
+            <div class="background-whitem xb-my-profile__margin-top">
+              <div infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 0">
+                <my-answers-list class="xb-my-posts" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
+                <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+              </div>
             </div>
-          </div>
+          </md-tab-body>
         </md-tab>
 
-        <md-tab label="Questions" md-on-select="loadMyQuestions()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 1">
-              <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-              <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+        <md-tab md-on-select="loadMyQuestions()">
+          <md-tab-label>
+            Questions
+            <span class="xb-my-profile__mobile-number">{{achievement.questionAmount>0?achievement.questionAmount:''}}</span>
+          </md-tab-label>
+          <md-tab-body>
+            <div class="background-whitem xb-my-profile__margin-top">
+              <div infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 1">
+                <my-questions-list class="xb-my-posts" posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
+                <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+              </div>
             </div>
-          </div>
+          </md-tab-body>
         </md-tab>
 
         <md-tab label="Trials" md-on-select="loadMyTrials()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="reviewApplicantPaginator.loadNext()"
-                 infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">
-              <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
-              <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
+          <md-tab-label>
+            Trials
+            <span class="xb-my-profile__mobile-number">{{achievement.reviewAmount>0?achievement.reviewAmount:''}}</span>
+          </md-tab-label>
+          <md-tab-body>
+            <div class="background-whitem xb-my-profile__margin-top">
+              <div infinite-scroll="reviewApplicantPaginator.loadNext()"
+                   infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">
+                <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
+                <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
+              </div>
             </div>
-          </div>
+          </md-tab-body>
         </md-tab>
 
         <md-tab label="Deals" md-on-select="loadMyFinds()">
-          <div class="background-whitem xb-my-profile__margin-top">
-            <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-                 infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
-              <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-              <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+          <md-tab-label>
+            Deals
+            <span class="xb-my-profile__mobile-number">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</span>
+          </md-tab-label>
+          <md-tab-body>
+            <div class="background-whitem xb-my-profile__margin-top">
+              <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+                   infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
+                <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+                <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+              </div>
             </div>
-          </div>
+          </md-tab-body>
         </md-tab>
 
         <md-tab label="follow" md-on-select="loadMyFollow()">
@@ -155,7 +180,7 @@
                   <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
                 </div>
               </md-tab>
-              <md-tab label="Questions" md-on-select="loadMyFollowingQuestions()">
+              <md-tab label="Questions Followed" md-on-select="loadMyFollowingQuestions()">
                 <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                      infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next || selectedIndex != 4">
                   <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items"
@@ -202,28 +227,38 @@
   <div class="background-whitem">
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.answers({expertId:expert.userId})">
-      Answers <span>{{achievement.answerAmount}}</span>
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      Answers <div class="xb-my-profile__mobile-number">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</div>
+      <div flex layout="row" layout-align="end center">
+        <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.questions({expertId:expert.userId})">
-      Questions <span>{{achievement.questionAmount}}</span>
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      Questions <div class="xb-my-profile__mobile-number">{{achievement.questionAmount>0?achievement.questionAmount:''}}</div>
+      <div flex layout="row" layout-align="end center">
+        <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.trials({expertId:expert.userId})">
-      Trials <span>{{achievement.reviewAmount}}</span>
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      Trials <div class="xb-my-profile__mobile-number">{{achievement.reviewAmount>0?achievement.reviewAmount:''}}</div>
+      <div flex layout="row" layout-align="end center">
+        <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.posts({expertId:expert.userId})">
-      Deals <span>{{achievement.shareProductAmount}}</span>
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      Deals <div class="xb-my-profile__mobile-number">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</div>
+      <div flex layout="row" layout-align="end center">
+        <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.follow({expertId:expert.userId})">
       Follow
-      <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      <div flex layout="row" layout-align="end center">
+        <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
+      </div>
     </div>
   </div>
 </div>

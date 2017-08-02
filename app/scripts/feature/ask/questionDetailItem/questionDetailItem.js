@@ -10,13 +10,36 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
 
+        var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
+
+        angular.element('.xb-body-view').bind("scroll", function(e) {
+          if(e.currentTarget.scrollTop >= _offsetTop) {
+            angular.element('.xb-question-detail__fixed-top-content').css({
+              display:'block',
+              position: 'fixed',
+              left:'0',
+              top: 56 +'px'
+            });
+          } else {
+            angular.element('.xb-question-detail__fixed-top-content').css({
+              display:'none',
+              position: 'relative',
+              top: 'auto'
+            });
+          }
+        });
+
         scope.user = $rootScope.user;
 
-        scope.answer = function() {
+        scope.answer = function(scrollTopAnswer) {
           if(!$rootScope.user.authRequired()) {
             return;
           }
           scope.showAnswer = !scope.showAnswer;
+          if(scrollTopAnswer == true) {
+            scope.showAnswer = true;
+            angular.element('.xb-body-view').scrollTop(50);
+          }
         };
         scope.follow = function(product) {
           if(!$rootScope.user.authRequired()) {

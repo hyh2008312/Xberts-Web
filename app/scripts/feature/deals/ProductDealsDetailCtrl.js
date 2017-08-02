@@ -21,11 +21,12 @@ angular.module('xbertsApp')
           name: 'other_posts_' + productsDetail.owner.id,
           objClass: ProductDeals,
           params: {
-            owner: productsDetail.owner.id,
+            id: productsDetail.owner.id,
             page_size:12
           },
-          fetchFunction: DealsService.getDealsList
+          fetchFunction: ExpertService.getPostList
         };
+
         $scope.postsProductPaginator = new Paginator(par);
         $scope.postsProductPaginator.load();
       }

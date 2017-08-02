@@ -1,6 +1,6 @@
-<div class="md-padding-bottom-3" xb-height-scroll del-hegiht="332">
+<div class="md-padding-bottom-3 xb-scroll-into-view" xb-height-scroll del-hegiht="332" scroll-bottom="true" >
   <div class="xb-messages__chat-box" ng-repeat="message in messages track by $index" layout="row"
-       layout-align="{{message.sender.id === user.getUserId() ? 'end': 'start'}} start" >
+       layout-align="{{message.sender.id === user.getUserId() ? 'end': 'start'}} start" on-finish-render="ngRepeatFinished" >
     <avatar-img ng-class="{true:'xb-messages__left-avatar',false:'xb-messages__right-avatar'}[message.sender.id === user.getUserId()]"
                 src="message.sender.userprofile.avatar" name="message.sender.firstName"
                 ui-sref="application.expert({expertId:message.sender.id})"
@@ -12,7 +12,7 @@
     </div>
   </div>
 </div>
-<div class="xb-messages__chat-box-reply">
+<div class="xb-messages__chat-box-reply" ng-init="init()">
   <form name="replyForm" ng-submit="replyMessage()" novalidate>
     <div class="xb-messages__fixed-bottom" layout="row" layout-align="start start">
       <avatar-img hide-xs src="user._userAvatar" name="user._firstName"></avatar-img>

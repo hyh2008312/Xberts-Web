@@ -174,5 +174,9 @@
       @extend .md-facebook-btn;
       background-color: $linkedinColor;
     }
+    &.md-google-btn{
+      @extend .md-facebook-btn;
+      background-color: $googleColor;
+    }
   }
 }
