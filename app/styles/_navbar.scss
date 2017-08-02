@@ -150,6 +150,7 @@
   }
   &__right-container-popup-1{
     @extend #{$parent}__right-container-popup;
+    left: -48px;
     width: 160px;
   }
 
