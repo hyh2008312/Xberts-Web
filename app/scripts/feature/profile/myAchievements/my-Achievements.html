@@ -1,13 +1,13 @@
-<div ng-if="achievemets && (achievemets.shareProductAmount > 0 || achievemets.thumbsUpAmount > 0
-   || achievemets.answerAmount > 0 || achievemets.bestAnswerAmount > 0 || achievemets.reviewAmount > 0
+<div ng-if="achievemets && (achievemets.shareProductFeaturedAmount > 0 || achievemets.thumbsUpAmount > 0
+   || achievemets.questionAnsweredAmount > 0 || achievemets.bestAnswerAmount > 0 || achievemets.reviewAmount > 0
    || achievemets.reviewFeaturedAmount > 0 || achievemets.inviteAmount > 0)"  class="xb-main-reviewer">
   <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
     Achievements
   </div>
   <div class="xb-my-achievement background-whitem">
-    <div ng-if="achievemets.shareProductAmount && achievemets.shareProductAmount > 0" layout="row" layout-align="start center">
-      <i class="iconfontXberts" ng-class="icons['shareProductAmount']" ></i>
-      {{achievemets.shareProductAmount>1? achievemets.shareProductAmount + ' deals are ': achievemets.shareProductAmount + ' deal is '}}
+    <div ng-if="achievemets.shareProductFeaturedAmount && achievemets.questionAnsweredAmount > 0" layout="row" layout-align="start center">
+      <i class="iconfontXberts" ng-class="icons['shareProductFeaturedAmount']" ></i>
+      {{achievemets.questionAnsweredAmount>1? achievemets.questionAnsweredAmount + ' deals are ': achievemets.questionAnsweredAmount + ' deal is '}}
       featured
     </div>
     <div ng-if="achievemets.thumbsUpAmount && achievemets.thumbsUpAmount > 0" layout="row" layout-align="start center">
@@ -16,7 +16,7 @@
     </div>
     <div ng-if="achievemets.questionAnsweredAmount && achievemets.questionAnsweredAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['questionAnsweredAmount']" ></i>
-      Answered {{achievemets.questionAnsweredAmount > 1?achievemets.questionAnsweredAmount+ ' questions':achievemets.answerAmount+ ' question'}}</div>
+      Answered {{achievemets.questionAnsweredAmount > 1?achievemets.questionAnsweredAmount+ ' questions':achievemets.questionAnsweredAmount+ ' question'}}</div>
 
     <div ng-if="achievemets.bestAnswerAmount && achievemets.bestAnswerAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['bestAnswerAmount']" ></i>

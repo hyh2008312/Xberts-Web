@@ -8,7 +8,7 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/profile/myAchievements/my-Achievements.html',
       link: function (scope, element, attrs, ctrls) {
         scope.icons = {
-          shareProductAmount:'icon-paper_edit',
+          shareProductFeaturedAmount:'icon-paper_edit',
           thumbsUpAmount:'thumb_up',
           questionAnsweredAmount:'icon-pic-answer',
           bestAnswerAmount:'icon-pic-best-answer',
