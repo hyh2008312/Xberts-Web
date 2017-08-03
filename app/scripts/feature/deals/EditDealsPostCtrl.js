@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdDialog','$mdToast','SystemConstant',
+    'localStorageService','category','$mdDialog','$mdToast','SystemConstant','$mdMedia',
     function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,
-              $mdDialog,$mdToast,SystemConstant) {
+              $mdDialog,$mdToast,SystemConstant,$mdMedia) {
 
     $scope.product = {};
     $scope.isFirstPost = true;
@@ -97,7 +97,21 @@ angular.module('xbertsApp')
           toastClass:'xb-deals-dialog__toast',
           templateUrl: 'scripts/feature/deals/editPost/post-toast.html'
         });
-        $state.go('application.productDeals');
+
+        if($mdMedia('xs')) {
+          $state.go('application.protected.posts', {
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        } else {
+          $state.go('application.expert', {
+            tab:'deals',
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        }
         $scope.disabled = false;
       }, function () {
         // tips
