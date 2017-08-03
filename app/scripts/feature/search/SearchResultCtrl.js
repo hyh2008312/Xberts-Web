@@ -70,8 +70,8 @@ angular.module('xbertsApp')
         $scope.askPaginator.load();
       };
 
-      var title = 'Xberts';
-      var description = 'Xberts is a Y Combinator funded company located in Silicon Valley and China. Our team is comprised of industry experts who are passionate about new technologies and creative designs.';
+      var title = 'Xberts - ' + $stateParams.question;
+      var description = $stateParams.question;
       var backgroundColor = 'background-bg-light';
       var shareImage = '';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

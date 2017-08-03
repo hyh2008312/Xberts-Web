@@ -2,29 +2,34 @@
   <div class="container" layout="row" layout-align="start center">
     <img ui-sref="application.main" src="https://xberts.imgix.net/static/logo/b26747af-9403-4b96-bd44-5431625d526c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=4a117ac0f1603262af3a454a1a974915" width="120" height="32" alt="xberts">
 
-    <div class="xberts-navbar__center-container" flex layout="row" layout-align="start center">
+    <div class="xberts-navbar__center-container" layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.productDeals">Discover<span>NEW</span></div>
       <div ui-sref-active="active" ui-sref="application.askQuestionMain">Ask<div></div></div>
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Trials</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
     </div>
-
+    <xb-search flex></xb-search>
     <div class="xberts-navbar__right-container" ng-if="!user.isAuth()" layout="row" layout-align="start center">
-      <xb-search></xb-search>
       <div ui-sref-active="active" ui-sref="application.signup">Sign up</div>
       <div ui-sref-active="active" ui-sref="application.login">Log in</div>
     </div>
     <div class="xberts-navbar__right-container" ng-if="user.isAuth()" layout="row" layout-align="start center">
-      <xb-search></xb-search>
+
       <xb-post></xb-post>
-      <xb-notification></xb-notification>
-      <messages></messages>
+      <xb-notification hide></xb-notification>
+      <messages hide></messages>
       <div class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
         <avatar-img src="user._userAvatar" name="user.getUserName()" show-name="true" ></avatar-img>
         <div class="xberts-navbar__right-container-popup" ng-show="isPopupOpen" flex="none">
           <div ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })">My Profile</div>
           <div ui-sref-active="active" ui-sref="application.protected.invite">Invite Friends</div>
+          <div ui-sref-active="active" ui-sref="application.protected.message.notification"
+               layout="row" layout-align="start start">Notification
+            <span class="xberts-navbar__red-point-1" ng-if="unreadNotificationMeCount > 0 || unreadNotificationSystemCount > 0 || unreadNotificationFeedsCount > 0"></span></div>
+          <div ui-sref-active="active" ui-sref="application.protected.message.inbox"
+               layout="row" layout-align="start start">Messages
+            <span class="xberts-navbar__red-point-1" ng-if="unreadDirectMessageCount > 0"></span></div>
           <div ui-sref-active="active" ui-sref="application.protected.editProfile({tab: 'setting'})">Settings</div>
           <div ng-click="logout()">Logout</div>
         </div>

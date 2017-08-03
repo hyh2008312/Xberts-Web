@@ -135,6 +135,7 @@
     &-title{
       max-height: 64px;
       overflow: hidden;
+      @include media();
       @include xb-xs-screen{
         font-size: 16px;
         line-height: 16px;
@@ -199,4 +200,12 @@
     }
   }
 
+  &__close{
+    position: absolute;
+    right: 40px;
+    top: 18px;
+    @include xb-xs-screen{
+      right: 72px;
+    }
+  }
 }

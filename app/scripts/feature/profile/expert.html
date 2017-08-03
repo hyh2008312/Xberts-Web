@@ -99,7 +99,8 @@
         <md-tab md-on-select="loadMyAnswers()">
           <md-tab-label>
             Answers
-            <span class="xb-my-profile__mobile-number">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
           </md-tab-label>
           <md-tab-body>
             <div class="background-whitem xb-my-profile__margin-top">
@@ -115,7 +116,8 @@
         <md-tab md-on-select="loadMyQuestions()">
           <md-tab-label>
             Questions
-            <span class="xb-my-profile__mobile-number">{{achievement.questionAmount>0?achievement.questionAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.questionAmount>0?achievement.questionAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.questionFeatureAmount>0?achievement.questionFeatureAmount:''}}</span>
           </md-tab-label>
           <md-tab-body>
             <div class="background-whitem xb-my-profile__margin-top">
@@ -131,7 +133,8 @@
         <md-tab label="Trials" md-on-select="loadMyTrials()">
           <md-tab-label>
             Trials
-            <span class="xb-my-profile__mobile-number">{{achievement.reviewAmount>0?achievement.reviewAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.trialAmount>0?achievement.trialAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</span>
           </md-tab-label>
           <md-tab-body>
             <div class="background-whitem xb-my-profile__margin-top">
@@ -148,7 +151,8 @@
         <md-tab label="Deals" md-on-select="loadMyFinds()">
           <md-tab-label>
             Deals
-            <span class="xb-my-profile__mobile-number">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</span>
+            <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.shareProductFeaturedAmount>0?achievement.shareProductFeaturedAmount:''}}</span>
           </md-tab-label>
           <md-tab-body>
             <div class="background-whitem xb-my-profile__margin-top">
@@ -227,28 +231,36 @@
   <div class="background-whitem">
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.answers({expertId:expert.userId})">
-      Answers <div class="xb-my-profile__mobile-number">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</div>
+      Answers
+      <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</div>
+      <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
         <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
       </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.questions({expertId:expert.userId})">
-      Questions <div class="xb-my-profile__mobile-number">{{achievement.questionAmount>0?achievement.questionAmount:''}}</div>
+      Questions
+      <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.questionAmount>0?achievement.questionAmount:''}}</div>
+      <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.questionFeatureAmount>0?achievement.questionFeatureAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
         <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
       </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.trials({expertId:expert.userId})">
-      Trials <div class="xb-my-profile__mobile-number">{{achievement.reviewAmount>0?achievement.reviewAmount:''}}</div>
+      Trials
+      <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.trialAmount>0?achievement.trialAmount:''}}</div>
+      <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
         <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
       </div>
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.posts({expertId:expert.userId})">
-      Deals <div class="xb-my-profile__mobile-number">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</div>
+      Deals
+      <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</div>
+      <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.shareProductFeaturedAmount>0?achievement.shareProductFeaturedAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
         <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
       </div>

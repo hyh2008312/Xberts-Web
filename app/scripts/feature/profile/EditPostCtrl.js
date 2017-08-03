@@ -92,7 +92,7 @@ angular.module('xbertsApp')
           });
         } else {
           $state.go('application.expert', {
-            tab:'posts',
+            tab:'deals',
             expertId: $rootScope.user.getUserId()
           },{
             reload:true
@@ -116,7 +116,7 @@ angular.module('xbertsApp')
         });
       } else {
         $state.go('application.expert', {
-          tab:'posts',
+          tab:'deals',
           expertId: $rootScope.user.getUserId()
         },{
           reload:true

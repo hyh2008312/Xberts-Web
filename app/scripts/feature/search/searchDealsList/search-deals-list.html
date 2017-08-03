@@ -1,16 +1,23 @@
 <div class="xb-search__list" ng-repeat="item in deals track by $index" layout="row" ng-if="!isAll">
   <div class="xb-search__list-img-bg" flex="none">
-    <a ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank" hide-gt-xs>
+    <a ui-sref="application.dealsDetail({dealsId:item.id})" hide-gt-xs>
       <img src="{{item.getImageUrl()}}" title="{{item.title}}">
     </a>
-    <a ui-sref="application.dealsDetail({dealsId:item.id})" hide-xs>
+    <a ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank" hide-xs>
       <img src="{{item.getImageUrl()}}" title="{{item.title}}">
     </a>
-    <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+    <a ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
+       ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank" hide-xs>
       <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
         <md-icon >play_arrow</md-icon>
       </div>
-    </div>
+    </a>
+    <a ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
+       ui-sref="application.dealsDetail({dealsId:item.id})" hide-gt-xs>
+      <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+        <md-icon >play_arrow</md-icon>
+      </div>
+    </a>
     <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
       <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
         <div layout="row" layout-align="center center">
@@ -25,11 +32,11 @@
   </div>
   <div class="xb-search__list-content" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})"
-       hide-gt-xs target="_blank">
+       hide-gt-xs >
       {{item.title}}
     </a>
     <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})"
-       hide-xs>
+       hide-xs target="_blank">
       {{item.title}}
     </a>
     <md-truncate class="md-dark-secondary" hide-xs>
@@ -66,17 +73,24 @@
 </div>
 <div class="xb-search__list" ng-repeat="item in deals track by $index" layout="row" ng-if="isAll && $index <= 1">
   <div class="xb-search__list-img-bg" flex="none">
-    <a ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank" hide-gt-xs>
+    <a ui-sref="application.dealsDetail({dealsId:item.id})" hide-gt-xs>
       <img src="{{item.getImageUrl()}}" title="{{item.title}}">
     </a>
-    <a ui-sref="application.dealsDetail({dealsId:item.id})" hide-xs>
+    <a ui-sref="application.dealsDetail({dealsId:item.id})" hide-xs target="_blank">
       <img src="{{item.getImageUrl()}}" title="{{item.title}}">
     </a>
-    <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+    <a ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
+       ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank" hide-xs>
       <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
         <md-icon >play_arrow</md-icon>
       </div>
-    </div>
+    </a>
+    <a ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
+       ui-sref="application.dealsDetail({dealsId:item.id})" hide-gt-xs>
+      <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+        <md-icon >play_arrow</md-icon>
+      </div>
+    </a>
     <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
       <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
         <div layout="row" layout-align="center center">
@@ -91,11 +105,11 @@
   </div>
   <div class="xb-search__list-content" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})"
-       hide-gt-xs target="_blank">
+       hide-gt-xs>
       {{item.title}}
     </a>
     <a class="xb-search__list-title md-headline md-dark-primary" ui-sref="application.dealsDetail({dealsId:item.id})"
-       hide-xs>
+       hide-xs target="_blank">
       {{item.title}}
     </a>
     <md-truncate class="md-dark-secondary" hide-xs>

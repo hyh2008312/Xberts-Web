@@ -17,7 +17,7 @@ angular.module('xbertsApp')
                 scope.search = null;
               };
               scope.submit = function() {
-                if(scope.search != null) {
+                if(scope.search != null && scope.search != '') {
                   $state.go('application.search', {question:scope.search}, {reload:true});
                 }
               };
@@ -28,7 +28,8 @@ angular.module('xbertsApp')
             clickOutsideToClose: true,
             disableParenScroll: true
           });
-        }
+        };
       }
-    }
+    };
+
   }]);

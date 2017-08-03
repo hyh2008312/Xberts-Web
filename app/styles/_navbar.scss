@@ -94,7 +94,6 @@
     }
     .top-right-badge{
       font-size: 10px;
-      position: absolute;
       right: 5%;
       top: -2px;
       line-height: 16px;
@@ -211,6 +210,24 @@
     background-color: #ff4081;
     @include xb-sm-screen{
       right: 8px;
+    }
+  }
+  &__red-point-1{
+    margin-left: 8px;
+    margin-top: 16px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ff4081;
+  }
+  &__search-bg{
+    background-color: rgba(0,0,0,.12);
+    height: 36px;
+    border-radius: 10px;
+    margin: 0 12px 0 16px;
+    >.material-icons{
+      margin-left: 12px;
+      color: rgba(255,255,255,.5);
     }
   }
 }
