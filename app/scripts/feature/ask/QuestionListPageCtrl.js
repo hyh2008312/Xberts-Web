@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
-  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator',
-    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator) {
+  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator','$mdMedia',
+    '$state',
+    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator,$mdMedia,$state) {
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
@@ -47,7 +48,20 @@ angular.module('xbertsApp')
             AskService.create(question).then(function(data) {
               scope.cancel();
               scope.disabled = false;
-              askCtrl.askPaginator.items.unshift(data);
+              if($mdMedia('xs')) {
+                $state.go('application.protected.questions', {
+                  expertId: $rootScope.user.getUserId()
+                },{
+                  reload:true
+                });
+              } else {
+                $state.go('application.expert', {
+                  tab:'questions',
+                  expertId: $rootScope.user.getUserId()
+                },{
+                  reload:true
+                });
+              }
             },function() {});
           };
         },

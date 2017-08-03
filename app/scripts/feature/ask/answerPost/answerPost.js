@@ -171,6 +171,7 @@ angular.module('xbertsApp')
             scope.answer.description = null;
             scope.formToggle = !scope.formToggle;
             scope.detailCtrl.addProduct(newProduct);
+            scope.detailCtrl.showAnswer = false;
             var scrollTop = angular.element('.xb-body-view').scrollTop();
             angular.element('.xb-body-view').scrollTop(scrollTop + angular.element('.xb-question-detail__answer-title').offset().top - 20);
           }, function () {

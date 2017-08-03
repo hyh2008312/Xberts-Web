@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService','$mdDialog',
-    function ($rootScope, $scope, AskService, $state, localStorageService,$mdDialog) {
+  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService','$mdDialog','$mdMedia',
+    function ($rootScope, $scope, AskService, $state, localStorageService,$mdDialog,$mdMedia) {
 
       $scope.question = {};
       $scope.disabled = false;
@@ -18,11 +18,7 @@ angular.module('xbertsApp')
 
         $scope.$emit('backdropOn', 'post');
         $scope.disabled = true;
-        AskService.updateQuestion(question).then(function() {
-          localStorageService.remove('ask_questions_list' + '_currentPage');
-          localStorageService.remove('ask_questions_list' + '_items');
-          localStorageService.remove('ask_questions_list' + '_next');
-          localStorageService.remove('ask_questions_list' + '_count');
+        AskService.create(question).then(function() {
 
           if($mdMedia('xs')) {
             $state.go('application.protected.questions', {
