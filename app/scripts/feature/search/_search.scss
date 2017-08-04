@@ -1,7 +1,8 @@
 .xb-search{
   &__margin-left{
     @include xb-xs-screen{
-      margin-left: 8px;
+      margin-left:  8px;
+      margin-right: 8px;
     }
   }
   &__bottom-button{
@@ -172,6 +173,14 @@
   }
   &__margin-top{
     margin-top: 100px;
+  }
+
+  &__subhead{
+    font-size: 16px;
+  }
+
+  &__color{
+    color: $strikingColor;
   }
 }
 .xb-search-dialog{

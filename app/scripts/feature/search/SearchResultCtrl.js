@@ -6,6 +6,7 @@ angular.module('xbertsApp')
     function ($rootScope,$scope,SearchService,$stateParams,SearchFactory,Paginator,SearchModel) {
 
       SearchFactory.keywords = $stateParams.question;
+      $scope.keywords = SearchFactory.keywords;
       SearchService.getSearch({
         'search_info': $stateParams.question
       }).then(function(data) {
