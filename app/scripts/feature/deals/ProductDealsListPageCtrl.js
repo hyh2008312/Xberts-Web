@@ -68,7 +68,7 @@ angular.module('xbertsApp')
     };
 
     dealsCtrl.changeSort = function (sortId) {
-      dealsCtrl.sortId = sortId;
+      dealsCtrl.sortId = sortId == 'everything'? null: sortId;
       dealsCtrl.productsPaginator.params.promotion = null;
       dealsCtrl.productsPaginator.params.search = null;
       switch (sortId) {
@@ -80,7 +80,7 @@ angular.module('xbertsApp')
           $scope.selectedIndex = 2;
           dealsCtrl.productsPaginator.params.search = 'cool';
               break;
-        default:
+        default :
           $scope.selectedIndex = 0;
               break;
       }

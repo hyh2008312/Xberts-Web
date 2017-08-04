@@ -29,7 +29,8 @@
           <deals-list-main layout="row" class="xb-main-scroll" deals="dealsCtrl.productsPaginator.items"></deals-list-main>
         </div>
       </div>
-      <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+      <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
+           infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
            infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex layout="column">
         <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
         <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center"
