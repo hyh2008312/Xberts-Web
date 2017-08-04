@@ -12,14 +12,12 @@ angular.module('xbertsApp')
         scope.pointsTotal = scope.total - parseInt(scope.points.consumed);
         scope.myPointsList = {
           'Top Answer': 0,
-          'Featured Questions': parseInt(scope.points.postQuestionFeatured),
           'Product Submission': parseInt(scope.points.postProductFeatured),
           'Trial Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
-          'Profile Completeness': parseInt(scope.points.uploadAvatar),
+          'Profile Completeness': parseInt(scope.points.hasAvatar),
           'Redeem Gifts': '-' + parseInt(scope.points.consumed),
           'Other': scope.total - parseInt(scope.points.consumed) - parseInt(scope.points.postProductFeatured) -
-          parseInt(scope.points.applyTrial) - parseInt(scope.points.postReviewFeatured) - parseInt(scope.points.uploadAvatar)
-          - parseInt(scope.points.postQuestionFeatured)
+          parseInt(scope.points.applyTrial) - parseInt(scope.points.postReviewFeatured) - parseInt(scope.points.hasAvatar)
         };
 
       }
