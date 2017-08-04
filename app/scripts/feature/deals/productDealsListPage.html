@@ -9,71 +9,37 @@
         <md-button class="md-raised md-primary" ng-click="dealsCtrl.post()">Share a Deal</md-button>
       </div>
     </div>
-    <div layout="row" layout-align="start center">
-
-      <deals-sort sort="dealsCtrl.sort" sort-id="selectedIndex"
-                  on-sort-change="dealsCtrl.changeSort(sortId);"></deals-sort>
-      <div flex layout="row" layout-align="end center" hide-xs>
-        <deals-category  hide-xs categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
-                        on-category-change="dealsCtrl.changeCategory(categoryId);"></deals-category>
-        <deals-filter class="md-margin-left-2" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
-                    on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
-      </div>
-      <div hide-gt-xs flex class="xb-filter__filter-bg" layout="row" layout-align="end center">
-        Filter
-        <div ng-click="dealsCtrl.toggleLeft()">
-          <md-icon md-font-set="material-icons"> menu </md-icon>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 <div>
   <div class="container">
-    <div layout="row">
-      <md-sidenav class="md-sidenav-left xberts-navbar-moblie-sidenav category xb-filter background-whitem"
-        md-component-id="filterLeft" hide-gt-xs layout="column"
-        md-disable-scroll-target=".xb-body-view">
-        <div flex="noshrink">
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Category
+    <div flex layout="row" layout-align="end center" ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null">
+      <deals-discount class="md-margin-left-2" discount="dealsCtrl.discount"
+                    on-discount-change="dealsCtrl.changeDiscount(discountIndex);" discount-id="dealsCtrl.discountId"></deals-discount>
+      <deals-filter class="md-margin-left-4" filter="dealsCtrl.price"
+                    on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
+    </div>
+    <div class="md-margin-bottom-4" layout="row">
+      <div ng-if="dealsCtrl.categoryId == null &&  dealsCtrl.sortId == null" flex layout="column">
+        <div ng-repeat="item in dealsCtrl.categories">
+          <div class="xb-title" layout="row" layout-align="start center">
+            <h3 class="md-dark-primary" flex>{{item.name}}</h3>
+            <a class="md-body-1">SEE MORE</a>
           </div>
-          <discovery-category class="xb-filter__margin-bottom" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
-                              on-category-change="dealsCtrl.changeCategory(categoryId);dealsCtrl.close();"></discovery-category>
-          <div class="xb-filter__title" layout="row" layout-align="space-between center">
-            Price
-          </div>
-          <deals-filter class="xb-filter__margin-bottom" filter="dealsCtrl.price" group="dealsCtrl.priceGroup"
-                        on-filter-change="dealsCtrl.changePrice(filterIndex);dealsCtrl.close();" filter-id="dealsCtrl.priceId"></deals-filter>
+          <deals-list-main layout="row" class="xb-main-scroll" deals="dealsCtrl.productsPaginator.items"></deals-list-main>
         </div>
-      </md-sidenav>
-      <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
-           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex
-           layout="column">
-        <div layout="row" layout-align="space-between start" >
-          <div class="xb-filter__tags" layout-gt-xs="row" layout-align-gt-xs="start start"
-            layout-xs="column" layout-align-xs="start start">
-            <div layout="row" layout-align="start center" hide-gt-xs ng-repeat="category in dealsCtrl.categories" ng-class="'flex-order-'+dealsCtrl.tagOrder[0]"
-                 ng-if="category.id != null && category.id === dealsCtrl.categoryId">
-              {{category.name}}
-              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('categoryId')">close</md-icon>
-            </div>
-            <div layout="row" layout-align="start center" hide-gt-xs ng-repeat="price in dealsCtrl.price" ng-class="'flex-order-'+dealsCtrl.tagOrder[1]"
-                 ng-if="price.id === dealsCtrl.priceId">
-              {{price.name}}
-              <md-icon class="material-icons md-dark-secondary" ng-click="dealsCtrl.removeTag('priceId')">close</md-icon>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex layout="column">
         <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
-        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="dealsCtrl.productsPaginator.loading"></load-more>
-        <div class="md-margin-top-4 md-margin-bottom-4" ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0"
-             layout="column" layout-align="center center" flex="noshrink">
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center"
+             ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+        <div class="md-margin-top-4 md-margin-bottom-4" layout="column" layout-align="center center" flex="noshrink"
+             ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

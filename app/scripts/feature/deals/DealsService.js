@@ -10,6 +10,7 @@ angular.module('xbertsApp')
     this.categoryId = null;
     this.priceId = null;
     this.discountId = null;
+    this.sortId = null;
 
     this.getDealsList = function(params) {
       params.approval_status = 'approved';

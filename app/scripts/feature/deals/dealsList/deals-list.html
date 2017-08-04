@@ -41,12 +41,14 @@
         <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
           {{item.title}}
         </a>
+        <div>
+          <span class="md-headline xb-bold">
+            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+          </span>
+        </div>
         <div class="xb-deals-list__price" layout="row" layout-align="start center" layout-wrap>
           <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
-          </span>
-          <span class="md-headline xb-bold">
-            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
           </span>
           <span class="xb-deals-list__discount" ng-if="item.discount > 0">
             {{item.discount * 100 | number:0}}% OFF
@@ -117,12 +119,14 @@
         <a class="xb-deals-list__title md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
           {{item.title}}
         </a>
+        <div>
+          <span class="md-headline xb-bold">
+            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+          </span>
+        </div>
         <div class="xb-deals-list__price" layout="row" layout-align="start center" layout-wrap>
           <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
-          </span>
-          <span class="md-headline xb-bold">
-            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
           </span>
           <span class="xb-deals-list__discount" ng-if="item.discount > 0">
             {{item.discount * 100 | number:0}}% OFF
@@ -213,12 +217,14 @@
         <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
           {{item.title}}
         </a>
+        <div>
+          <span class="md-headline xb-bold">
+            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+          </span>
+        </div>
         <div class="xb-deals-list__price" layout="row" layout-align="start center" layout-wrap>
           <span class="md-dark-secondary" ng-if="item.originalPrice.amount>0">
             {{item.originalPrice.amount | worldCurrency:item.originalPrice.currency}}
-          </span>
-          <span class="md-headline xb-bold">
-            {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
           </span>
           <span class="xb-deals-list__discount" ng-if="item.discount > 0">
             {{item.discount * 100 | number:0}}% OFF

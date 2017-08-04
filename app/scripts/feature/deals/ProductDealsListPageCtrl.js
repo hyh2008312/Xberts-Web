@@ -13,10 +13,12 @@ angular.module('xbertsApp')
     });
     dealsCtrl.sort = sort;
     dealsCtrl.price = DealsService.getPrice();
+    dealsCtrl.discount = DealsService.getDiscount();
     dealsCtrl.productsPaginator = productsPaginator;
-    dealsCtrl.categoryId = ShareProductService.categoryId;
+    dealsCtrl.categoryId = DealsService.categoryId;
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
+    dealsCtrl.sortId = DealsService.sortId;
 
     $scope.selectedIndex = 0;
     DealsFactory.updateActiveTabOnSearch($scope,sort);
@@ -58,13 +60,8 @@ angular.module('xbertsApp')
     };
 
     dealsCtrl.changeCategory = function (categoryId) {
-      dealsCtrl.tagOrder[0]= DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
-      if(dealsCtrl.tagOrder[0] >= 20) {
-        dealsCtrl.tagOrder[0] -= 20;
-        dealsCtrl.tagOrder[1] -= 20;
-      }
-      ShareProductService.categoryId = categoryId;
-      dealsCtrl.categoryId = ShareProductService.categoryId;
+      DealsService.categoryId = categoryId;
+      dealsCtrl.categoryId = DealsService.categoryId;
       dealsCtrl.productsPaginator.params.category = categoryId || null;
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
@@ -94,11 +91,6 @@ angular.module('xbertsApp')
 
     dealsCtrl.changePrice = function(filterIndex) {
       if(filterIndex != null) {
-        dealsCtrl.tagOrder[1] = DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
-        if(dealsCtrl.tagOrder[1] >= 20) {
-          dealsCtrl.tagOrder[0] -= 20;
-          dealsCtrl.tagOrder[1] -= 20;
-        }
         var item = dealsCtrl.price[filterIndex];
         DealsService.priceId = item.id;
         dealsCtrl.priceId = DealsService.priceId;
@@ -114,12 +106,19 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.load();
     };
 
-    // mobile sidenav toggle from left
-    dealsCtrl.toggleLeft = DealsFactory.buildDelayedToggler('filterLeft', dealsCtrl);
-
-    dealsCtrl.close = function () {
-      // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav('filterLeft').close();
+    dealsCtrl.changeDiscount = function(discountIndex) {
+      if(discountIndex != null) {
+        var item = dealsCtrl.discount[discountIndex];
+        DealsService.discountId = item.id;
+        dealsCtrl.discountId = DealsService.discountId;
+        dealsCtrl.productsPaginator.params.dicount = item.value1;
+      } else {
+        DealsService.discountId = null;
+        dealsCtrl.discountId = DealsService.discountId;
+        dealsCtrl.productsPaginator.params.dicount = null;
+      }
+      dealsCtrl.productsPaginator.clear();
+      dealsCtrl.productsPaginator.load();
     };
 
     var title = 'Discover - Exclusive Deals Curated by Community';
