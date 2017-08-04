@@ -12,6 +12,8 @@ angular.module('xbertsApp')
 
         $scope.products = SearchModel.buildList(data.product);
         $scope.ask = SearchModel.buildList(data.ask);
+        $scope.productCount = data.productCount;
+        $scope.askCount = data.askCount;
         $scope.reviews = SearchModel.buildList(data.reviews);
       });
 
