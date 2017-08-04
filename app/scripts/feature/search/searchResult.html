@@ -7,7 +7,7 @@
     <md-tab-body>
       <div class="md-margin-bottom-4">
         <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="products.length>0">
-          <h3 class="md-dark-secondary" flex>Discover</h3>
+          <h3 class="md-dark-secondary" flex>Deals</h3>
         </div>
         <search-deals-list class="xb-search__list-bg" deals="products" is-all="true"></search-deals-list>
         <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="products.length<=2"
@@ -15,7 +15,7 @@
           SEE MORE
         </div>
         <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="ask.length>0">
-          <h3 class="md-dark-secondary" flex>Ask</h3>
+          <h3 class="md-dark-secondary" flex>Questions</h3>
         </div>
         <question-item products="ask" is-all="true"></question-item>
         <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="ask.length<=2"
@@ -41,7 +41,7 @@
 
   <md-tab md-on-select="loadDiscover()">
     <md-tab-label>
-      <div class="xb-search__text-transform">Discover</div>
+      <div class="xb-search__text-transform">Deals</div>
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-top-2" infinite-scroll="productsPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
@@ -60,7 +60,7 @@
 
   <md-tab md-on-select="loadAsk()">
     <md-tab-label>
-      <div class="xb-search__text-transform">Ask</div>
+      <div class="xb-search__text-transform">Questions</div>
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-top-2" infinite-scroll="askPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
