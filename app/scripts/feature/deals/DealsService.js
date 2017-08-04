@@ -40,6 +40,37 @@ angular.module('xbertsApp')
       return number;
     };
 
+    this.getCategory = function() {
+      return [{
+        id: '1',
+        src: 'https://xberts.imgix.net/static/icon/d36548c1-e15f-475e-a766-f4dd26afae7a.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=34643a4a1e8b05258aacc4237ec39b63'
+      }, {
+        id: '2',
+        src: 'https://xberts.imgix.net/static/logo/ba707dd8-0a6d-4968-8e18-6625a24af39e.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=7fc1e8e7d96e1f311bd61a21ed6ce6d5'
+      }, {
+        id: '3',
+        src: 'https://xberts.imgix.net/static/logo/c98f8664-b369-456a-9669-24772b7a2cd9.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=d939420eac54e5c65585df1e6dfd6efd'
+      }, {
+        id: '4',
+        src: 'https://xberts.imgix.net/static/logo/657be4b5-230d-4bd2-a4aa-4b76bc22de61.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=dff1d465076a8c84981d75f6af9a33c6'
+      }, {
+        id: '5',
+        src: 'https://xberts.imgix.net/static/logo/b093e037-34d6-47db-a281-e4adad2ba6a3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=498d9edab2e79f74b868c1581ab48509'
+      }, {
+        id: '6',
+        src: 'https://xberts.imgix.net/static/logo/d6f3425c-2c1c-437a-8ff5-c5e4ce78c23c.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=8b12ca946ed0b58a8c1e5270b1983148'
+      }, {
+        id: '7',
+        src: 'https://xberts.imgix.net/static/logo/95f416b3-3627-4ecb-9250-56c5d23f603c.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=37cf18ce3e37da7b1bac2b2a23676453'
+      }, {
+        id: '8',
+        src: 'https://xberts.imgix.net/static/logo/7e807936-55f5-46e1-8c3f-f59c3d267fb0.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=e293586305571a2611bc78ff729d125b'
+      }, {
+        id: '9',
+        src: ''
+      }]
+    };
+
     this.getSort = function() {
       return [{
         value: 'everything',
