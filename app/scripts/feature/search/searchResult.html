@@ -10,7 +10,7 @@
           <h3 class="md-dark-secondary" flex>Deals</h3>
         </div>
         <search-deals-list class="xb-search__list-bg" deals="products" is-all="true"></search-deals-list>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="products.length<=2"
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="products.length>0"
              ng-click="changeCurrentIndex(1)">
           SEE MORE
         </div>
@@ -18,7 +18,7 @@
           <h3 class="md-dark-secondary" flex>Questions</h3>
         </div>
         <question-item products="ask" is-all="true"></question-item>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="ask.length<=2"
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="ask.length>0"
              ng-click="changeCurrentIndex(2)">
           SEE MORE
         </div>
