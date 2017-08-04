@@ -221,13 +221,13 @@
     background-color: #ff4081;
   }
   &__search-bg{
-    background-color: rgba(0,0,0,.12);
+    background-color: rgba(255,255,255,.12);
     height: 36px;
     border-radius: 10px;
     margin: 0 12px 0 16px;
     >.material-icons{
       margin-left: 12px;
-      color: rgba(255,255,255,.5);
+      color: $whiteColor;
     }
   }
 }
