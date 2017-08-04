@@ -8,7 +8,7 @@
         <input ng-model="search" type="text" name="search" placeholder="Search" md-auto-focus/>
       </md-input-container>
       <div class="xb-search-dialog__close" ng-if="search">
-        <md-icon class="md-dark-secondary" ng-click="cancel();">close</md-icon>
+        <div class="md-dark-secondary iconfontXberts icon-search-delete" ng-click="cancel();"></div>
       </div>
       <md-button class="md-primary" hide-gt-xs ng-click="submit(searchForm)">
         <md-icon class="md-dark-secondary">search</md-icon>
