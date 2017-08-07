@@ -147,7 +147,7 @@ angular.module('xbertsApp')
       });
     };
 
-    var title = 'Share an Offer';
+    var title = 'Share a deal';
     var description = 'Help others save big by finding the best deals and the lowest price!';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
