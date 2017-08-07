@@ -1,4 +1,4 @@
-<div class="xb-deals-category" ng-click="open()" layout="row" layout-align="end center" ng-mouseleave="close()">
+<div class="xb-deals-category" ng-click="open();openSheet();" layout="row" layout-align="end center" ng-mouseleave="close()">
   {{!filterDiscount(discount)?'Discount':filterDiscount(discount)}}
   <div layout="row" layout-align="start center">
     <md-icon md-font-set="material-icons">arrow_drop_down</md-icon>

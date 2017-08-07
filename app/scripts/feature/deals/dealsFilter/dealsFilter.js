@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsFilter', ['DealsService',function (DealsService) {
+  .directive('dealsFilter', ['$mdBottomSheet','$mdMedia',function ($mdBottomSheet,$mdMedia) {
     return {
       restrict: 'E',
       scope: {
@@ -12,6 +12,28 @@ angular.module('xbertsApp')
 
         scope.open = function() {
           scope.categoryOpen = !scope.categoryOpen;
+        };
+
+        scope.openSheet = function() {
+          if($mdMedia('xs')) {
+            $mdBottomSheet.show({
+              templateUrl: 'scripts/feature/deals/dealsFilter/deals-filter-bottom-sheet.html',
+              controller: function($scope, $mdBottomSheet) {
+                $scope.filter = scope.filter;
+                $scope.onFilterChange = scope.onFilterChange;
+                $scope.filterId = scope.filterId;
+
+                $scope.close = function() {
+                  $mdBottomSheet.cancel();
+                };
+              }
+            }).then(function(clickedItem) {
+
+            }).catch(function(error) {
+
+            });
+          }
+
         };
 
         scope.close = function() {

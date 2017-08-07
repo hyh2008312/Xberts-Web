@@ -1,31 +1,26 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
+  .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator', 'DealsService', 'ShareProductService',
     '$mdSidenav','$timeout','$state','DealsFactory','$scope',
-    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
+    function ($window, $rootScope, productsPaginator, DealsService, ShareProductService, $mdSidenav,
               $timeout,$state,DealsFactory,$scope) {
     var dealsCtrl = this;
 
-    dealsCtrl.categories = [];
-    angular.forEach(categories,function(e) {
-      dealsCtrl.categories.push(e);
-    });
-    dealsCtrl.sort = sort;
+    dealsCtrl.categories = DealsService.getCategory();
     dealsCtrl.price = DealsService.getPrice();
     dealsCtrl.discount = DealsService.getDiscount();
     dealsCtrl.productsPaginator = productsPaginator;
     dealsCtrl.categoryId = DealsService.categoryId;
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
-    dealsCtrl.sortId = DealsService.sortId;
 
     $scope.selectedIndex = 0;
-    DealsFactory.updateActiveTabOnSearch($scope,sort);
+    DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     $scope.$on('$locationChangeSuccess', function () {
-      DealsFactory.updateActiveTabOnSearch($scope,sort);
-      if(sort[$scope.selectedIndex]) {
-        dealsCtrl.changeSort(sort[$scope.selectedIndex].value);
+      DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
+      if( dealsCtrl.categories[$scope.selectedIndex]) {
+        dealsCtrl.changeCategory( $scope.selectedIndex);
       }
     });
 
@@ -36,55 +31,27 @@ angular.module('xbertsApp')
       $state.go('application.protected.post');
     };
 
-    dealsCtrl.tagOrder = [1, 1];
+    dealsCtrl.changeCategory = function ($index) {
+      $scope.selectedIndex = $index;
 
-    dealsCtrl.removeTag = function(name) {
-      dealsCtrl[name] = null;
-      switch (name) {
-        case 'categoryId':
-          ShareProductService.categoryId = null;
-          dealsCtrl.productsPaginator.params.category = null;
-          break;
-        case 'priceId':
-          DealsService.priceId = null;
-          dealsCtrl.productsPaginator.params.min_price = null;
-          dealsCtrl.productsPaginator.params.max_price = null;
-          break;
-        case 'discountId':
-          DealsService.discountId = null;
-          dealsCtrl.productsPaginator.params.min_discount = null;
-          break;
-      }
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
+      var categoryId = dealsCtrl.categories[$scope.selectedIndex].id;
 
-    dealsCtrl.changeCategory = function (categoryId) {
       DealsService.categoryId = categoryId;
       dealsCtrl.categoryId = DealsService.categoryId;
-      dealsCtrl.productsPaginator.params.category = categoryId || null;
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
+      DealsService.priceId = null;
+      DealsService.discountId = null;
+      dealsCtrl.priceId = DealsService.priceId;
+      dealsCtrl.discountId = DealsService.discountId;
 
-    dealsCtrl.changeSort = function (sortId) {
-      dealsCtrl.sortId = sortId == 'everything'? null: sortId;
-      dealsCtrl.productsPaginator.params.promotion = null;
-      dealsCtrl.productsPaginator.params.search = null;
-      switch (sortId) {
-        case 'lighting_deals':
-          $scope.selectedIndex = 1;
-          dealsCtrl.productsPaginator.params.promotion = 'True';
-              break;
-        case 'best_sellers':
-          $scope.selectedIndex = 2;
-          dealsCtrl.productsPaginator.params.search = 'cool';
-              break;
-        default :
-          $scope.selectedIndex = 0;
-              break;
+      if(categoryId != 'lighting_deals') {
+        dealsCtrl.productsPaginator.params.category = categoryId || null;
+        dealsCtrl.productsPaginator.params.promotion = null;
+      } else {
+        dealsCtrl.productsPaginator.params.category =  null;
+        dealsCtrl.productsPaginator.params.promotion = true;
       }
-      DealsFactory.updateUrl($scope,sort);
+
+      DealsFactory.updateUrl($scope,dealsCtrl.categories);
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
     };

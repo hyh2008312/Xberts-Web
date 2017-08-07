@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsCategory', [function () {
+  .directive('dealsCategory', ['DealsService', function (DealsService) {
     return {
       restrict: 'E',
       scope: {
@@ -9,27 +9,9 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/deals/dealsCategory/deals-category.html',
       link: function (scope, element, attrs, ctrls) {
-        if(scope.categories[0].name != 'All Categories') {
-          scope.categories.unshift({
-            name:'All Categories'
-          });
-        }
 
-        scope.filterCatergoy = function(e) {
-          for(var i = 0; i < e.length;i++) {
-            if(e[i].id == scope.categoryId) {
-              return e[i].name != 'All Categories' ? e[i].name: 'Categories';
-            }
-          }
-        };
+        scope.page = 0;
 
-        scope.open = function() {
-          scope.categoryOpen = !scope.categoryOpen;
-        };
-
-        scope.close = function() {
-          scope.categoryOpen = false;
-        };
       }
     }
   }]);

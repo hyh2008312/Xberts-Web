@@ -178,6 +178,7 @@
     margin-bottom: 16px;
     @include xb-xs-screen{
       margin-bottom: 0;
+      font-size: 12px;
     }
     .md-headline{
       line-height: 24px;
@@ -213,6 +214,7 @@
     @include media();
     @include xb-xs-screen{
       font-size: 10px;
+      padding: 0 4px;
     }
   }
   .md-dark-secondary{
@@ -307,6 +309,13 @@
   &__fixed-height{
     height: 40px;
     overflow: hidden;
+  }
+
+  &__margin{
+    margin: 16px 0 24px;
+    @include xb-xs-screen{
+      margin: 16px 0;
+    }
   }
 }
 
@@ -615,6 +624,164 @@
     color: $primaryColor;
     border-bottom: 2px solid $strikingColor;
   }
+
+
+}
+
+.xb-deals-categories {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  &__tabs {
+    position: relative;
+    margin-right: 16px;
+    padding-bottom: 16px;
+    width: 84px;
+    > div {
+      width: 84px;
+      height: 84px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      color: $whiteColor;
+      > img{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+      }
+    }
+
+    &-mask{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 84px;
+      height: 84px;
+      background-color: rgba(0,0,0,.4);
+      z-index: 0;
+      border-radius: 4px;
+    }
+
+    &.active{
+      &:after{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 4px;
+        background-color: $primaryColor;
+        width: 100%;
+      }
+    }
+
+    &-img{
+      width: 84px;
+      height: 84px;
+      background-color: #680909;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      border-radius: 4px;
+    }
+
+    &-text{
+      position: relative;
+      z-index: 1;
+      margin: 0 0 8px 8px;
+      white-space: normal;
+      @include media();
+    }
+
+    &-text-1{
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 8px;
+      white-space: normal;
+      @include media();
+    }
+
+    @include xb-xs-screen{
+      width: 80px;
+      margin-right: 8px;
+      padding-bottom: 8px;
+
+      > div {
+        width: 80px;
+        height: 80px;
+      }
+
+      &.active{
+        &:after{
+          height: 2px;
+        }
+      }
+
+      &-img{
+        width: 80px;
+        height: 80px;
+      }
+
+      &-mask{
+        width: 80px;
+        height: 80px;
+      }
+
+      &-text{
+        margin: 0 0 8px 4px;
+      }
+    }
+
+
+  }
+
+  &__left-arrow{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    height: 84px;
+    width: 36px;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0, rgba(0,0,0,0) 100%);
+    .material-icons {
+      margin-left: 0;
+      font-size: 36px;
+      height: 36px;
+      color: $whiteColor;
+    }
+  }
+  &__right-arrow{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    height: 84px;
+    width: 36px;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 0, rgba(0,0,0,1) 100%);
+    .material-icons{
+      margin-right: 12px;
+      font-size: 36px;
+      height: 36px;
+      color: $whiteColor;
+    }
+  }
+
+  $parent: &;
+  @include xb-gt-xs-screen{
+    &:hover{
+      #{$parent}__left-arrow {
+        display: flex;
+      }
+      #{$parent}__right-arrow {
+        display: flex;
+      }
+    }
+  }
 }
 
 .xb-deals-sort{
@@ -794,6 +961,7 @@
     }
   }
 }
+
 .xb-deals-dialog{
   &__toast{
     height: 112px;
@@ -810,5 +978,44 @@
   }
   &__img{
     height: 45px;
+  }
+}
+
+.xb-deals-list-main {
+  .xb-main-deals {
+    @include xb-xs-screen {
+      > div {
+        width: 160px !important;
+        max-width: 160px !important;
+
+        .xb-deals-list__img-bg{
+          padding-bottom: 100%;
+          >a {
+            >img {
+              max-width: 180%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.xb-deals-bottom-sheet{
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: $whiteColor;
+
+  &__title{
+    height: 48px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+  md-radio-button{
+    margin: 0 8px 24px;
   }
 }

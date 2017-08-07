@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsDiscount', ['DealsService',function (DealsService) {
+  .directive('dealsDiscount', ['$mdBottomSheet', '$mdMedia', function ($mdBottomSheet, $mdMedia) {
     return {
       restrict: 'E',
       scope: {
@@ -12,6 +12,28 @@ angular.module('xbertsApp')
 
         scope.open = function() {
           scope.categoryOpen = !scope.categoryOpen;
+        };
+
+        scope.openSheet = function() {
+          if($mdMedia('xs')) {
+            $mdBottomSheet.show({
+              templateUrl: 'scripts/feature/deals/dealsDiscount/deals-discount-bottom-sheet.html',
+              controller: function($scope, $mdBottomSheet) {
+                $scope.discount = scope.discount;
+                $scope.onDiscountChange = scope.onDiscountChange;
+                $scope.discountId = scope.discountId;
+
+                $scope.close = function() {
+                  $mdBottomSheet.cancel();
+                };
+              }
+            }).then(function(clickedItem) {
+
+            }).catch(function(error) {
+
+            });
+          }
+
         };
 
         scope.close = function() {

@@ -26,21 +26,23 @@ angular.module('xbertsApp')
             },
             fetchFunction: DealsService.getDealsList
           };
-          switch ($stateParams.tab) {
-            case 'lighting_deals':
-              par.params.promotion = 'True';
-              break;
-            case 'best_sellers':
-              par.params.search = 'cool';
-              break;
-            case 'editor':
-              par.params.search = 'editor';
-              break;
+
+          var selectedIndex = parseInt(DealsService.getCategory().findIndex(function(x) {
+            return x.value == $stateParams.tab;
+          }));
+
+          var categoryId = DealsService.getCategory()[selectedIndex].id;
+          DealsService.categoryId = categoryId;
+
+          if(categoryId != 'lighting_deals') {
+            par.params.category = categoryId || null;
+            par.params.promotion = null;
+          } else {
+            par.params.category =  null;
+            par.params.promotion = true;
           }
+
           return new Paginator(par).load();
-        }],
-        categories: ['ShareProductService',function(ShareProductService) {
-          return ShareProductService.getCategoryList();
         }],
         sort: ['DealsService',function(DealsService) {
           return DealsService.getSort();

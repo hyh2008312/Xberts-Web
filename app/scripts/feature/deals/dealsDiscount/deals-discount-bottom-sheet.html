@@ -1,0 +1,9 @@
+<div class="xb-deals-bottom-sheet" >
+  <div class="xb-deals-bottom-sheet__title md-subhead" layout="row" layout-align="start center">Discount</div>
+  <md-radio-group ng-model="discountId">
+    <md-radio-button class="filter-button md-primary" ng-value="null"
+                     ng-checked="null == discountId" ng-click="onDiscountChange({discountIndex:null});close();" >All</md-radio-button>
+    <md-radio-button class="filter-button md-primary" ng-repeat="item in discount track by $index" ng-value="item.id"
+                     ng-checked="item.id == discountId" ng-click="onDiscountChange({discountIndex:item.id});close();" >{{item.name}}</md-radio-button>
+  </md-radio-group>
+</div>

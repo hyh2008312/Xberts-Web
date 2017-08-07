@@ -9,24 +9,27 @@
         <md-button class="md-raised md-primary" ng-click="dealsCtrl.post()">Share a Deal</md-button>
       </div>
     </div>
+    <deals-category class="xb-main-scroll" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                    on-category-change="dealsCtrl.changeCategory($index);"></deals-category>
   </div>
 </div>
 <div>
   <div class="container">
-    <div flex layout="row" layout-align="end center" ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null">
-      <deals-discount class="md-margin-left-2" discount="dealsCtrl.discount"
+    <div class="xb-deals-list__margin" flex layout="row" layout-align="end center" layout-align-xs="start center"
+         ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null">
+      <deals-discount discount="dealsCtrl.discount"
                     on-discount-change="dealsCtrl.changeDiscount(discountIndex);" discount-id="dealsCtrl.discountId"></deals-discount>
       <deals-filter class="md-margin-left-4" filter="dealsCtrl.price"
                     on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
     </div>
     <div class="md-margin-bottom-4" layout="row">
       <div ng-if="dealsCtrl.categoryId == null &&  dealsCtrl.sortId == null" flex layout="column">
-        <div ng-repeat="item in dealsCtrl.categories">
+        <div ng-repeat="item in dealsCtrl.categories track by $index" ng-if="$index > 0">
           <div class="xb-title" layout="row" layout-align="start center">
             <h3 class="md-dark-primary" flex>{{item.name}}</h3>
-            <a class="md-body-1">SEE MORE</a>
+            <a class="md-body-1 xb-pointer" ng-click="dealsCtrl.changeCategory($index);">SEE MORE</a>
           </div>
-          <deals-list-main layout="row" class="xb-main-scroll" deals="dealsCtrl.productsPaginator.items"></deals-list-main>
+          <deals-list-main layout="row" class="xb-main-scroll xb-deals-list-main" deals="dealsCtrl.productsPaginator.items"></deals-list-main>
         </div>
       </div>
       <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
