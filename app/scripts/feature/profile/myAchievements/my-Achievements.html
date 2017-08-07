@@ -5,9 +5,9 @@
     Achievements
   </div>
   <div class="xb-my-achievement background-whitem">
-    <div ng-if="achievemets.shareProductFeaturedAmount && achievemets.questionAnsweredAmount > 0" layout="row" layout-align="start center">
+    <div ng-if="achievemets.shareProductFeaturedAmount && achievemets.shareProductFeaturedAmount > 0" layout="row" layout-align="start center">
       <i class="iconfontXberts" ng-class="icons['shareProductFeaturedAmount']" ></i>
-      {{achievemets.questionAnsweredAmount>1? achievemets.shareProductFeaturedAmount + ' deals are ': achievemets.shareProductFeaturedAmount + ' deal is '}}
+      {{achievemets.shareProductFeaturedAmount>1? achievemets.shareProductFeaturedAmount + ' deals are ': achievemets.shareProductFeaturedAmount + ' deal is '}}
       featured
     </div>
     <div ng-if="achievemets.thumbsUpAmount && achievemets.thumbsUpAmount > 0" layout="row" layout-align="start center">
