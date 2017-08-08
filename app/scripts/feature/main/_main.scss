@@ -261,14 +261,13 @@
       padding: 0 8px;
       background-color: #ff4081;
       display: block;
+      margin-right: 8px;
     }
-    #{$parent}__promotion{
-      margin-left: 8px;
+    #{$parent}__promotion {
       background-color: $orangeColor;
       text-transform: capitalize;
     }
-    #{$parent}__launch{
-      margin-left: 8px;
+    #{$parent}__launch {
       background-color: $successColor;
       text-transform: capitalize;
     }
