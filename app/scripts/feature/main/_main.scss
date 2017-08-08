@@ -254,13 +254,23 @@
     top: 8px;
     >span{
       font-size: 14px;
-      line-height: 28px;
+      line-height: 24px;
       font-weight: 500;
       color: #FFF;
       border-radius: 2px;
       padding: 0 8px;
       background-color: #ff4081;
       display: block;
+    }
+    #{$parent}__promotion{
+      margin-left: 8px;
+      background-color: $orangeColor;
+      text-transform: capitalize;
+    }
+    #{$parent}__launch{
+      margin-left: 8px;
+      background-color: $successColor;
+      text-transform: capitalize;
     }
     >i{
       color: #fff;
@@ -282,6 +292,7 @@
       }
     }
   }
+
   &__top-right{
     z-index: 1;
     position: absolute;
@@ -290,7 +301,7 @@
     padding: 0 8px;
     color: #000;
     background-color: #fff;
-    line-height: 28px;
+    line-height: 24px;
     font-size: 12px;
     border-radius: 2px;
   }

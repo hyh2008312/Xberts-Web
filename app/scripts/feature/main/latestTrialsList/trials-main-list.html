@@ -5,8 +5,12 @@
           <span>
             <span ng-if="!trial.isFlashsale()">Free</span>
             <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
-      </span>
-      <i class="fa fa-{{item.name}} xb-main-col__bg-{{$index}}" aria-hidden="true"
+        </span>
+        <span ng-class="{true:'xb-main-col__promotion',false:''}[trial.tags == 'Promotion'] + {true:'xb-main-col__launch',false:''}[trial.tags == 'Launch']"
+            ng-if="trial.tags">
+          <span>{{trial.tags}}</span>
+        </span>
+      <i ng-if="!trial.tags" class="fa fa-{{item.name}} xb-main-col__bg-{{$index}}" aria-hidden="true"
          ng-repeat="item in shareList track by $index" socialshare
          socialshare-provider="{{item.name}}" socialshare-description="{{trial.description}}"
          socialshare-text="{{trial.title}}" socialshare-url="{{inviteObj.shareUrl(trial.getShareUrl(trial.id), item.name)}}" >

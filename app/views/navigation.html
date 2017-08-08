@@ -5,7 +5,7 @@
     <div class="xberts-navbar__center-container" layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.productDeals">Discover<div></div></div>
       <div ui-sref-active="active" ui-sref="application.askQuestionMain">Ask</div>
-      <div ui-sref-active="active" ui-sref="application.testingcampaigns">Trials</div>
+      <div ui-sref-active="active" ui-sref="application.testingcampaigns">Crowdtesting</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
     </div>
@@ -47,7 +47,7 @@
     <h2 ng-if="state.current.name == 'application.main'" flex>Home</h2>
     <h2 ng-if="state.current.name == 'application.productDeals'" flex>Discover</h2>
     <h2 ng-if="state.current.name == 'application.askQuestionMain'" flex>Ask</h2>
-    <h2 ng-if="state.current.name == 'application.testingcampaigns'" flex>Trials</h2>
+    <h2 ng-if="state.current.name == 'application.testingcampaigns'" flex>Crowdtesting</h2>
     <h2 ng-if="state.current.name == 'application.campaignreviews'" flex>Reviews</h2>
     <h2 ng-if="state.current.name == 'application.creditMain'" flex>Perks</h2>
     <h2 ng-if="state.current.name == 'application.search'" flex>Search</h2>
@@ -98,7 +98,7 @@
          layout="row" layout-align="start start">Discover<span></span></div>
     <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()"
          layout="row" layout-align="start start">Ask<span></span></div>
-    <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Trials</div>
+    <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Crowdtesting</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>
   </div>

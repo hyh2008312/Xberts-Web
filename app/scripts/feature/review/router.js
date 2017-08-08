@@ -3,14 +3,12 @@
 angular
   .module('xbertsApp')
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.when('/crowdtesting/:reviewId', '/campaigns/:reviewId');
-    $urlRouterProvider.when('/testcampaign', '/trials');
-    $urlRouterProvider.when('/testcampaign/:reviewId', '/trials/:reviewId');
-    $urlRouterProvider.when('/crowdtesting/:reviewId/confirmaddress', '/trials/:reviewId/confirmaddress');
+    $urlRouterProvider.when('/testcampaign', '/crowdtesting');
+    $urlRouterProvider.when('/testcampaign/:reviewId', '/crowdtesting/:reviewId');
 
     $stateProvider
       .state('application.selectApplicants', {
-        url: "/trials/:reviewId/applicants",
+        url: "/crowdtesting/:reviewId/applicants",
         templateUrl: 'scripts/feature/review/applicationSelect/review_applicants.html',
         controller: 'ReviewApplicantsCtrl',
         resolve: {
@@ -56,7 +54,7 @@ angular
         }
       })
       .state('application.selectReports', {
-        url: "/trials/:reviewId/reports",
+        url: "/crowdtesting/:reviewId/reports",
         templateUrl: 'scripts/feature/review/reportSelection/select_reports.html',
         controller: 'SelectReportsCtrl',
         resolve: {
@@ -91,7 +89,7 @@ angular
         }
       })
       .state('application.protected.crowdtestingReport', {
-        url: '/trials/:reviewId/report',
+        url: '/crowdtesting/:reviewId/report',
         templateUrl: 'scripts/feature/review/report/report-edit.html',
         controller: 'ReportEditCtrl',
         resolve: {
@@ -102,7 +100,7 @@ angular
         }
       })
       .state('application.report', {
-        url: '/trials/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action',
+        url: '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action',
         templateUrl: 'scripts/feature/review/report/report-detail.html',
         controller: 'ReportDetailCtrl',
         resolve: {
@@ -144,7 +142,7 @@ angular
       })
 
       .state('application.testingcampaigns', {
-        url: "/trials",
+        url: "/crowdtesting",
         templateUrl: 'scripts/feature/review/trialList/trialListPage.html',
         controller: 'TrialListPageController as trials',
         reloadOnSearch: false,
@@ -177,7 +175,7 @@ angular
         }
       })
       .state('application.testingcampaign', {
-        url: "/trials/{reviewId:[0-9]+}?action&tab",
+        url: "/crowdtesting/{reviewId:[0-9]+}?action&tab",
         templateUrl: 'scripts/feature/review/trialDetail/trial-detail.html',
         controller: 'TrialDetailController as trial',
         reloadOnSearch: false,
@@ -214,7 +212,7 @@ angular
         }
       })
       .state('application.protected.apply', {
-        url: "/trials/:reviewId/apply",
+        url: "/crowdtesting/:reviewId/apply",
         templateUrl: 'scripts/feature/review/apply/apply.html',
         controller: 'ReviewApplyController as apply',
         resolve: {
@@ -231,7 +229,7 @@ angular
         }
       })
       .state('application.protected.confirmShipAddress', {
-        url: '/trials/:reviewId/confirmaddress',
+        url: '/crowdtesting/:reviewId/confirmaddress',
         templateUrl: 'scripts/feature/review/applyConfirm/confirm-shipping-address.html',
         controller: 'ConfirmShippingAddressCtrl as confirm',
         resolve: {
@@ -248,7 +246,7 @@ angular
         }
       })
       .state('application.reviewGuide', {
-        url: '/trials/:reviewId/guide',
+        url: '/crowdtesting/:reviewId/guide',
         templateUrl: 'scripts/feature/review/reviewGuide/reviewGuide.html',
         controller: 'ReviewGuideCtrl',
         resolve: {
