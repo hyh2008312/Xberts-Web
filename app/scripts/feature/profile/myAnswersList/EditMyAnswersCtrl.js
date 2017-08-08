@@ -12,8 +12,11 @@ angular.module('xbertsApp')
       $scope.answerId = $stateParams.answerId;
       $scope.disabled = false;
       $scope.formToggle = true;
+
+      var _height = !$mdMedia('xs') ? 400:300;
+
       $scope.options = {
-        height: 400,
+        height: _height,
         toolbar: [
           ['textsize', ['fontsize']],
           ['style', ['bold']],

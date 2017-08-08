@@ -1,15 +1,18 @@
 angular.module('xbertsApp')
   .controller('AnswerPostCtrl', ['$rootScope','$scope','UploadService','AskService','$stateParams','$state',
-    'localStorageService','growl','$filter','$timeout',
-    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,$filter,$timeout) {
+    'localStorageService','growl','$filter','$timeout','$mdMedia',
+    function ($rootScope,$scope,UploadService,AskService,$stateParams,$state,localStorageService,growl,$filter,$timeout,$mdMedia) {
 
 
       $scope.detailCharacterCount = 0;
       $scope.questionId = $stateParams.questionId;
       $scope.disabled = false;
       $scope.formToggle = true;
+
+      var _height = !$mdMedia('xs') ? 400:300;
+
       $scope.options = {
-        height: 400,
+        height: _height,
         toolbar: [
           ['textsize', ['fontsize']],
           ['style', ['bold']],
