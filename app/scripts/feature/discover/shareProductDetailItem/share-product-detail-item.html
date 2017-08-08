@@ -72,7 +72,8 @@
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
         <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
-        <md-button class="md-primary md-raised" target="_blank" ng-click="product.buyNow('deals-item');">
+        <md-button class="md-primary md-raised xb-deals-detail__purchase-btn"
+                   target="_blank" ng-click="product.buyNow('deals-item');">
           SEE DETAIL
         </md-button>
       </div>
@@ -80,8 +81,8 @@
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
     <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
-    <md-button class="md-primary md-raised" ng-if="product.getSharePrice()" ng-click="product.buyNow('deals-item');"
-               target="_blank">SEE DETAIL</md-button>
+    <md-button class="md-primary md-raised xb-deals-detail__purchase-btn" ng-if="product.getSharePrice()"
+               ng-click="product.buyNow('deals-item');" target="_blank">SEE DETAIL</md-button>
   </div>
   <interact interact="product.interact">
     <md-card-actions layout="row" layout-align="start center" class="product__action-buttons">
