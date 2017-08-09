@@ -3,8 +3,20 @@
 angular
   .module('xbertsApp')
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.when('/testcampaign', '/crowdtesting');
-    $urlRouterProvider.when('/testcampaign/:reviewId', '/crowdtesting/:reviewId');
+    $urlRouterProvider.when('/trials', '/crowdtesting');
+    $urlRouterProvider.when('/trials/:reviewId', '/crowdtesting/:reviewId');
+    $urlRouterProvider.when('/trials/:reviewId/reports', '/crowdtesting/:reviewId/reports');
+    $urlRouterProvider.when('/trials/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action',
+      '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action');
+    $urlRouterProvider.when('/trials/:reviewId/applicants', '/crowdtesting/:reviewId/applicants');
+    $urlRouterProvider.when('/trials/:reviewId/report', '/crowdtesting/:reviewId/report');
+    $urlRouterProvider.when('/trials/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action',
+      '/crowdtesting/{reviewId:[0-9]*}/reports/{reportId:[0-9]*}?action');
+    $urlRouterProvider.when('/trials/{reviewId:[0-9]+}?action&tab',
+      '/crowdtesting/{reviewId:[0-9]+}?action&tab');
+    $urlRouterProvider.when('/trials/:reviewId/apply', '/crowdtesting/:reviewId/apply');
+    $urlRouterProvider.when('/trials/:reviewId/confirmaddress', '/crowdtesting/:reviewId/confirmaddress');
+    $urlRouterProvider.when('/trials/:reviewId/guide', '/crowdtesting/:reviewId/guide');
 
     $stateProvider
       .state('application.selectApplicants', {
