@@ -13,7 +13,8 @@
     <div class="md-margin-top-2" flex-gt-xs="65" flex-xs>
       <form name="recommendation" novalidate ng-submit="askQuestion(question)" clear-form-error>
         <md-input-container class="md-block" md-no-float>
-          <input required ng-model="question.title" type="text" name="question" placeholder="Question"/>
+          <label>Question</label>
+          <input required ng-model="question.title" type="text" name="question"/>
           <div ng-messages="recommendation.question.$error">
             <div ng-message="required">Please enter your question.</div>
           </div>
