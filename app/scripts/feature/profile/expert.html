@@ -130,9 +130,9 @@
           </md-tab-body>
         </md-tab>
 
-        <md-tab label="Trials" md-on-select="loadMyTrials()">
+        <md-tab md-on-select="loadMyTrials()">
           <md-tab-label>
-            Trials
+            Crowdtesting
             <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.trialAmount>0?achievement.trialAmount:''}}</span>
             <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</span>
           </md-tab-label>
@@ -148,7 +148,7 @@
           </md-tab-body>
         </md-tab>
 
-        <md-tab label="Deals" md-on-select="loadMyFinds()">
+        <md-tab md-on-select="loadMyFinds()">
           <md-tab-label>
             Deals
             <span class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</span>
@@ -249,7 +249,7 @@
     </div>
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.trials({expertId:expert.userId})">
-      Trials
+      Crowdtesting
       <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.trialAmount>0?achievement.trialAmount:''}}</div>
       <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
