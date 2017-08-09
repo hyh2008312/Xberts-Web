@@ -4,6 +4,7 @@ angular.module('xbertsApp')
   .service('DealsService', ['$rootScope','$resource','ProductDeals','API_BASE_URL',
     function ($rootScope,$resource,ProductDeals,API_BASE_URL) {
 
+    var DealsProductHomeResource = $resource(API_BASE_URL + '/products/home/');
     var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'});
 
@@ -11,6 +12,13 @@ angular.module('xbertsApp')
     this.priceId = null;
     this.discountId = null;
     this.sortId = null;
+
+    this.getHomeList = function(params) {
+      params = {};
+      params.approval_status = 'approved';
+      params.country = $rootScope.country;
+      return DealsProductHomeResource.get(params).$promise;
+    };
 
     this.getDealsList = function(params) {
       params.approval_status = 'approved';
@@ -40,8 +48,10 @@ angular.module('xbertsApp')
       return number;
     };
 
-    this.getCategory = function() {
-      return [{
+    this.getCategoryList = null;
+
+    this.getCategory = function(_category) {
+      var category = [{
         id: null,
         src: null,
         name: 'ALL',
@@ -116,7 +126,16 @@ angular.module('xbertsApp')
         src: 'https://xberts.imgix.net/static/logo/0d5d3aa6-001d-4a6f-8a23-11f5553d657b.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=28a4ce3f1dfd45873d8d4bc5de44f2dc',
         name: 'Mobiles & Accessories',
         value: 'mobiles_accessories'
-      }]
+      }, {
+        id: '',
+        src: null,
+        name: 'Other',
+        value: 'other'
+      }];
+
+      if(_category == null) {
+        return category;
+      }
     };
 
     this.getSort = function() {

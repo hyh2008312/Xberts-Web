@@ -687,6 +687,17 @@
       border-radius: 4px;
     }
 
+    &-img-1{
+      width: 84px;
+      height: 84px;
+      background-color: #0a2d61;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      border-radius: 4px;
+    }
+
     &-text{
       position: relative;
       z-index: 1;

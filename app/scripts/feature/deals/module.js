@@ -14,6 +14,13 @@ angular.module('xbertsApp')
       resolve: {
         productsPaginator: ['Paginator', 'DealsService','ProductDeals','$stateParams',
           function (Paginator, DealsService, ProductDeals,$stateParams) {
+          var selectedIndex = parseInt(DealsService.getCategory().findIndex(function(x) {
+            return x.value == $stateParams.tab;
+          }));
+
+          if(selectedIndex == 0) {
+            return DealsService.getHomeList();
+          }
 
           var par = {
             name: 'deals_product_list',
@@ -27,10 +34,6 @@ angular.module('xbertsApp')
             fetchFunction: DealsService.getDealsList
           };
 
-          var selectedIndex = parseInt(DealsService.getCategory().findIndex(function(x) {
-            return x.value == $stateParams.tab;
-          }));
-
           var categoryId = DealsService.getCategory()[selectedIndex].id;
           DealsService.categoryId = categoryId;
 
@@ -42,10 +45,11 @@ angular.module('xbertsApp')
             par.params.promotion = true;
           }
 
+
           return new Paginator(par).load();
         }],
-        sort: ['DealsService',function(DealsService) {
-          return DealsService.getSort();
+        category: ['ShareProductService', function (ShareProductService) {
+          return ShareProductService.getCategoryList();
         }]
       }
     })

@@ -24,12 +24,12 @@
     </div>
     <div class="md-margin-bottom-4" layout="row">
       <div ng-if="dealsCtrl.categoryId == null &&  dealsCtrl.sortId == null" flex layout="column">
-        <div ng-repeat="item in dealsCtrl.categories track by $index" ng-if="$index > 0">
-          <div class="xb-title" layout="row" layout-align="start center">
-            <h3 class="md-dark-primary" flex>{{item.name}}</h3>
-            <a class="md-body-1 xb-pointer" ng-click="dealsCtrl.changeCategory($index);">SEE MORE</a>
+        <div ng-repeat="item in dealsCtrl.productsPaginator track by $index">
+          <div class="xb-title" layout="row" layout-align="start center" ng-if="item.product.length > 0">
+            <h3 class="md-dark-primary" flex>{{item.name == 'Entertain-ment'? 'Entertainment':item.name}}</h3>
+            <a class="md-body-1 xb-pointer" ng-click="dealsCtrl.changeCategory($index + 1);">SEE MORE</a>
           </div>
-          <deals-list-main layout="row" class="xb-main-scroll xb-deals-list-main" deals="dealsCtrl.productsPaginator.items"></deals-list-main>
+          <deals-list-main layout="row" class="xb-main-scroll xb-deals-list-main" deals="item.product"></deals-list-main>
         </div>
       </div>
       <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
