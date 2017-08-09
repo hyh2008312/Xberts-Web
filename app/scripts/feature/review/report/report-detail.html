@@ -11,7 +11,12 @@
 
       <div layout-gt-sm="row" layout="column">
         <div flex-gt-sm="60">
-          <img ng-src="{{report.image.image_origin}}" class="xb2-img-responsible" hide-xs>
+          <div class="xb-deals-list__img-bg xb-main-deals__img-bg" hide-xs>
+            <a layout="column" layout-align="start center">
+              <img ng-src="{{report.image.image_origin}}" >
+            </a>
+          </div>
+
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
           <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
@@ -42,10 +47,10 @@
             </md-list-item>
           </div>
 
-          <div class="xb2-page-head__rating xb2-rating-star" flex-order="1" flex-order-gt-xs="2" layout
-               layout-align="start center">
-            <rating-star value="{{report.getScore()}}"></rating-star>
-            <span class="xb2-rating-star__value">{{report.getScore()}}</span>
+          <div class="xb-trial-reviewer__rating xb2-page-head__rating" layout="row" layout-align="start center" flex-order="1" flex-order-gt-xs="2" >
+            <rating-stars layout="row" layout-align="start center" class="xb-rating-star" rating="report.getScore()" read-only="true"
+                          state-on="'xb-trial-reviewer__star'"></rating-stars>
+            <span>{{report.getScore() | number:1}}</span>
           </div>
 
           <div hide-xs class="xb2-page-head__rating-detail" flex-order="3">
