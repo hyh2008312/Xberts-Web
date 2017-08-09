@@ -106,6 +106,9 @@ angular
         resolve: {
           editMyQuestion: ['AskService', '$stateParams', function (AskService, $stateParams) {
             return AskService.getQuestionsDetail($stateParams.questionId);
+          }],
+          category: ['ShareProductService', function (ShareProductService) {
+            return ShareProductService.getCategoryList();
           }]
         }
       })

@@ -2,10 +2,11 @@
 
 angular.module('xbertsApp')
   .controller('EditMyQuestionsCtrl', ['$rootScope', '$scope', 'editMyQuestion', 'AskService', '$state', 'localStorageService',
-    '$mdMedia','$mdDialog',
-    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia,$mdDialog) {
+    '$mdMedia','$mdDialog','category',
+    function ($rootScope, $scope, editMyQuestion, AskService, $state, localStorageService,$mdMedia,$mdDialog,category) {
 
       $scope.question = editMyQuestion;
+      $scope.categoryoptions = category;
 
       $scope.askQuestion = function(question) {
         if(!$rootScope.user.authRequired()) {

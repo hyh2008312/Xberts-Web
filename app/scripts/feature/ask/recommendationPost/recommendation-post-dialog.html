@@ -14,6 +14,17 @@
       <md-input-container class="md-block">
         <textarea ng-model="question.description" type="text" name="description" placeholder="Add more details"></textarea>
       </md-input-container>
+      <md-input-container class="md-block xb-edit-post__fixed-width xb-edit-profile__margin-bottom" >
+        <label>Category</label>
+        <md-select ng-model="question.category.name" name="category" required >
+          <md-option ng-repeat="option in categoryoptions" ng-value="option.name" >
+            {{option.name}}
+          </md-option>
+        </md-select>
+        <div ng-messages="recommendation.category.$error">
+          <div ng-message="required">Please select category.</div>
+        </div>
+      </md-input-container>
       <div class="xb-question-dialog__actions" layout="row" layout-align="end center">
         <md-button class="md-primary" ng-disabled="disabled" type="submit">Post</md-button>
         <md-button class="md-dark-secondary" ng-click="cancel()" >Cancel</md-button>

@@ -27,50 +27,7 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      $mdDialog.show({
-        controller: function(scope, $mdDialog) {
-
-          scope.disabled = false;
-
-          scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-          scope.askQuestion = function(question) {
-            if(!$rootScope.user.authRequired()) {
-              scope.cancel();
-              return;
-            }
-            if (!scope.recommendation.$valid) {
-              return;
-            }
-
-            scope.disabled = true;
-            AskService.create(question).then(function(data) {
-              scope.cancel();
-              scope.disabled = false;
-              if($mdMedia('xs')) {
-                $state.go('application.protected.questions', {
-                  expertId: $rootScope.user.getUserId()
-                },{
-                  reload:true
-                });
-              } else {
-                $state.go('application.expert', {
-                  tab:'questions',
-                  expertId: $rootScope.user.getUserId()
-                },{
-                  reload:true
-                });
-              }
-            },function() {});
-          };
-        },
-        templateUrl: 'scripts/feature/ask/recommendationPost/recommendation-post-dialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose: true,
-        disableParenScroll: true
-      });
+      $state.go('application.protected.askQuestion');
     };
 
     askCtrl.changeOrder = function(order) {

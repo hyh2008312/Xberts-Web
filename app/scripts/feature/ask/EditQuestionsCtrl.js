@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService','$mdDialog','$mdMedia',
-    function ($rootScope, $scope, AskService, $state, localStorageService,$mdDialog,$mdMedia) {
+  .controller('EditQuestionsCtrl', ['$rootScope', '$scope', 'AskService', '$state', 'localStorageService','$mdDialog',
+    '$mdMedia','category',
+    function ($rootScope, $scope, AskService, $state, localStorageService,$mdDialog,$mdMedia,category) {
 
       $scope.question = {};
       $scope.disabled = false;
       $scope.isFirstPost = true;
+      $scope.categoryoptions = category;
 
       $scope.askQuestion = function(question) {
         if(!$rootScope.user.authRequired()) {

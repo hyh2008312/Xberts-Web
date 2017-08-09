@@ -97,6 +97,11 @@ angular.module('xbertsApp')
     .state('application.protected.askQuestion', {
       url: '/ask/question/edit',
       templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
-      controller: 'EditQuestionsCtrl'
+      controller: 'EditQuestionsCtrl',
+      resolve: {
+        category: ['ShareProductService', function (ShareProductService) {
+          return ShareProductService.getCategoryList();
+        }]
+      }
     });
   }]);
