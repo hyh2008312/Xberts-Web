@@ -1,6 +1,6 @@
 <interact interact="report.interact">
   <div class="xb2-page-head">
-    <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-gt-xs>
+    <img ng-src="{{report.image.image_origin}}" class="xb2-img-responsible" hide-gt-xs>
     <div class="container">
       <div class="xb2-page-head__title-wrap">
         <h1 class="xb2-page-head__title">{{ report.title }}</h1>
@@ -11,7 +11,7 @@
 
       <div layout-gt-sm="row" layout="column">
         <div flex-gt-sm="60">
-          <img ng-src="{{report.image}}" class="xb2-img-responsible" hide-xs>
+          <img ng-src="{{report.image.image_origin}}" class="xb2-img-responsible" hide-xs>
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
           <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">

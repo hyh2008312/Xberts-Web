@@ -1,6 +1,7 @@
 <div class="xb-main-review" ng-repeat="review in reviews track by $index" layout="row">
   <div class="xb-main-review__img-content" flex-gt-xs="30" flex-xs="33" layout="row" layout-align="center center">
-    <img flex="initial" ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})" ng-src="{{review.image}}"/>
+    <img flex="initial" ui-sref="application.report({reviewId:review.getReview().id,reportId:review.id})"
+         ng-src="{{review.image.image_sm}}"/>
   </div>
   <div class="xb-main-review__information-content" flex-gt-xs="70" flex-xs="66" layout="column" layout-align="space-between start">
     <p hide-xs class="report-category"><span ng-repeat="category in review.getReview().project.categories">{{ category.name }}<span

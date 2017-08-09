@@ -1,6 +1,6 @@
 <div class="xb-trial-reviewer" layout="row" layout-align-xs="start center" ng-repeat="review in reviewers track by $index">
   <div class="xb-trial-reviewer__left-part" ui-sref="application.report({reviewId:review.getReviewId(),reportId:review.id})">
-    <img ng-src="{{review.image}}" />
+    <img ng-src="{{review.image.image_sm}}" />
   </div>
   <div layout="column" layout-align="space-between" flex>
     <md-truncate class="md-subhead" ui-sref="application.report({reviewId:review.getReviewId(),reportId:review.id})">{{review.title}}</md-truncate>

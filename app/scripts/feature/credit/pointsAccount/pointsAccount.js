@@ -11,7 +11,7 @@ angular.module('xbertsApp')
         scope.points = scope.points||{};
         scope.pointsTotal = scope.total - parseInt(scope.points.consumed);
         scope.myPointsList = {
-          'Top Answer': 0,
+          'Top Answer': parseInt(scope.points.bestAnswer),
           'Featured Questions': parseInt(scope.points.postQuestionFeatured),
           'Product Submission': parseInt(scope.points.postProductFeatured),
           'Trial Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
@@ -19,7 +19,7 @@ angular.module('xbertsApp')
           'Redeem Gifts': '-' + parseInt(scope.points.consumed),
           'Other': scope.total - parseInt(scope.points.consumed) - parseInt(scope.points.postProductFeatured) -
           parseInt(scope.points.applyTrial) - parseInt(scope.points.postReviewFeatured) - parseInt(scope.points.uploadAvatar)
-          - parseInt(scope.points.postQuestionFeatured)
+          - parseInt(scope.points.postQuestionFeatured) - parseInt(scope.points.bestAnswer)
         };
 
       }

@@ -1,6 +1,10 @@
 <div class="xb-my-answers" ng-repeat="post in posts track by $index">
   <a class="xb-my-answers__title md-subhead md-dark-primary"
        ui-sref="application.answerQuestionDetail({questionId:post.question})">{{post.questionTitle}}</a>
+  <div ng-if="post.isBestAnswer" class="xb-ask-list__best-answer" layout="row" layout-align="start center">
+    <i class="iconfontXberts icon-pic-best-answer1"></i>
+    <span class="xb-bold md-margin-left-1">Top Answer</span>
+  </div>
   <div class="xb-my-answers__content" ng-if="post.text">
     {{post.text | reduceSentence:140}}{{post.text.length>140? '...':''}}
     <span ng-if="post.text.length>140" ui-sref="application.answerQuestionDetail({questionId:post.question})" class="xb-my-answers__color">more</span>

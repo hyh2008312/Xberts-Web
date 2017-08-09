@@ -363,8 +363,6 @@ angular.module('xbertsApp')
 
       var imageSuccessCallback = function (data) {
         insertImage(data.imageUrl, data.id);
-        $scope.reportData.image_assets = $scope.reportData.image_assets || [];
-        $scope.reportData.image_assets.push(data.id);
       };
 
       var errorCallback = function (error) {
