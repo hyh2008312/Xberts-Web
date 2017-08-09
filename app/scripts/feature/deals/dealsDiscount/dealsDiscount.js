@@ -1,13 +1,13 @@
 angular.module('xbertsApp')
-  .directive('dealsFilter', ['$mdBottomSheet','$mdMedia',function ($mdBottomSheet,$mdMedia) {
+  .directive('dealsDiscount', ['$mdBottomSheet', '$mdMedia', function ($mdBottomSheet, $mdMedia) {
     return {
       restrict: 'E',
       scope: {
-        filter: '=',
-        onFilterChange: '&',
-        filterId: '='
+        discount: '=',
+        onDiscountChange: '&',
+        discountId: '='
       },
-      templateUrl: 'scripts/feature/deals/dealsFilter/deals-filter.html',
+      templateUrl: 'scripts/feature/deals/dealsDiscount/deals-discount.html',
       link: function (scope, element, attrs, ctrls) {
 
         scope.open = function() {
@@ -17,11 +17,11 @@ angular.module('xbertsApp')
         scope.openSheet = function() {
           if($mdMedia('xs')) {
             $mdBottomSheet.show({
-              templateUrl: 'scripts/feature/deals/dealsFilter/deals-filter-bottom-sheet.html',
+              templateUrl: 'scripts/feature/deals/dealsDiscount/deals-discount-bottom-sheet.html',
               controller: function($scope, $mdBottomSheet) {
-                $scope.filter = scope.filter;
-                $scope.onFilterChange = scope.onFilterChange;
-                $scope.filterId = scope.filterId;
+                $scope.discount = scope.discount;
+                $scope.onDiscountChange = scope.onDiscountChange;
+                $scope.discountId = scope.discountId;
 
                 $scope.close = function() {
                   $mdBottomSheet.cancel();
@@ -40,9 +40,9 @@ angular.module('xbertsApp')
           scope.categoryOpen = false;
         };
 
-        scope.filterPrice = function(e) {
+        scope.filterDiscount = function(e) {
           for(var i = 0; i < e.length;i++) {
-            if(e[i].id == scope.filterId) {
+            if(e[i].id == scope.discountId) {
               return e[i].name;
             }
           }

@@ -14,6 +14,13 @@ angular.module('xbertsApp')
       resolve: {
         productsPaginator: ['Paginator', 'DealsService','ProductDeals','$stateParams',
           function (Paginator, DealsService, ProductDeals,$stateParams) {
+          var selectedIndex = parseInt(DealsService.getCategory().findIndex(function(x) {
+            return x.value == $stateParams.tab;
+          }));
+
+          if(selectedIndex == 0) {
+            return DealsService.getHomeList();
+          }
 
           var par = {
             name: 'deals_product_list',
@@ -26,24 +33,23 @@ angular.module('xbertsApp')
             },
             fetchFunction: DealsService.getDealsList
           };
-          switch ($stateParams.tab) {
-            case 'lighting_deals':
-              par.params.promotion = 'True';
-              break;
-            case 'best_sellers':
-              par.params.search = 'cool';
-              break;
-            case 'editor':
-              par.params.search = 'editor';
-              break;
+
+          var categoryId = DealsService.getCategory()[selectedIndex].id;
+          DealsService.categoryId = categoryId;
+
+          if(categoryId != 'lighting_deals') {
+            par.params.category = categoryId || null;
+            par.params.promotion = null;
+          } else {
+            par.params.category =  null;
+            par.params.promotion = true;
           }
+
+
           return new Paginator(par).load();
         }],
-        categories: ['ShareProductService',function(ShareProductService) {
+        category: ['ShareProductService', function (ShareProductService) {
           return ShareProductService.getCategoryList();
-        }],
-        sort: ['DealsService',function(DealsService) {
-          return DealsService.getSort();
         }]
       }
     })

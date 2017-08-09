@@ -1,12 +1,28 @@
-<div class="xb-deals-category" ng-click="open()" layout="row" layout-align="start center" ng-mouseleave="close()">
-  {{filterCatergoy(categories)}}
-  <div layout="row" layout-align="start center">
-    <md-icon md-font-set="material-icons">arrow_drop_down</md-icon>
-    <span></span>
+<div class="xb-deals-categories" flex="noshrink" layout="row" layout-align="start start">
+  <div class="xb-deals-categories__tabs" ng-class="{'active': category.id == categoryId}"
+       ng-repeat="category in categories track by $index"
+       ng-click="onCategoryChange({$index: $index});">
+    <div layout="column" layout-align="end">
+      <div class="xb-deals-categories__tabs-img" ng-if="category.id == null "></div>
+      <div class="xb-deals-categories__tabs-img-1" ng-if="category.id != null && category.src == null"></div>
+      <img ng-if="category.id != null && category.src != null" src="{{category.src}}">
+      <div class="xb-deals-categories__tabs-mask"></div>
+      <div ng-class="{true:'xb-deals-categories__tabs-text-1',false:'xb-deals-categories__tabs-text'}[category.src == null]">
+        {{category.name}}</div>
+    </div>
   </div>
-  <div class="xb-deals-category__bg" ng-if="categoryOpen">
-    <div class="category-button" ng-repeat="category in categories" layout="row" layout-align="start center"
-         ng-click="onCategoryChange({categoryId:category.id});" >{{category.name}}</div>
+
+  <div class="xb-deals-categories__left-arrow" layout="row" layout-align="start center"
+       scroll-control scroll-element="'.xb-deals-categories'" page="page" page-size="4" distance="100">
+    <md-icon md-font-set="material-icons">
+      keyboard_arrow_left
+    </md-icon>
+  </div>
+  <div class="xb-deals-categories__right-arrow" layout="row" layout-align="end center"
+       scroll-control scroll-element="'.xb-deals-categories'" direction="1" page="page" page-size="4" distance="100"
+       amount="categories.length">
+    <md-icon md-font-set="material-icons">
+      keyboard_arrow_right
+    </md-icon>
   </div>
 </div>
-

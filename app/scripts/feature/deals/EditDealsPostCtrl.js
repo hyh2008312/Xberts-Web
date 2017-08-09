@@ -17,7 +17,6 @@ angular.module('xbertsApp')
     $scope.categoryoptions = category;
     $scope.currency = SystemConstant.CURRENCY;
 
-
     $scope.imgLoaded = false;
     $scope.showMask = false;
     $scope.onShowMask = function() {

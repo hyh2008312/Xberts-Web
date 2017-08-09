@@ -1,31 +1,36 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator','categories','sort', 'DealsService', 'ShareProductService',
-    '$mdSidenav','$timeout','$state','DealsFactory','$scope',
-    function ($window, $rootScope, productsPaginator, categories, sort, DealsService, ShareProductService, $mdSidenav,
-              $timeout,$state,DealsFactory,$scope) {
+  .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator', 'DealsService', 'ShareProductService',
+    '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator',
+    function ($window, $rootScope, productsPaginator, DealsService, ShareProductService, $mdSidenav,
+              $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator) {
     var dealsCtrl = this;
 
-    dealsCtrl.categories = [];
-    angular.forEach(categories,function(e) {
-      dealsCtrl.categories.push(e);
-    });
-    dealsCtrl.sort = sort;
+    DealsService.getCategoryList = DealsFactory.getCategory(category);
+
+    dealsCtrl.categories = DealsService.getCategoryList;
     dealsCtrl.price = DealsService.getPrice();
-    dealsCtrl.productsPaginator = productsPaginator;
-    dealsCtrl.categoryId = ShareProductService.categoryId;
+    dealsCtrl.discount = DealsService.getDiscount();
+
+    dealsCtrl.categoryId = DealsService.categoryId;
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
 
     $scope.selectedIndex = 0;
-    DealsFactory.updateActiveTabOnSearch($scope,sort);
+    DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     $scope.$on('$locationChangeSuccess', function () {
-      DealsFactory.updateActiveTabOnSearch($scope,sort);
-      if(sort[$scope.selectedIndex]) {
-        dealsCtrl.changeSort(sort[$scope.selectedIndex].value);
+      DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
+      if( dealsCtrl.categories[$scope.selectedIndex]) {
+        dealsCtrl.changeCategory( $scope.selectedIndex);
       }
     });
+
+    if($scope.selectedIndex == 0) {
+      dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(productsPaginator,DealsService.getCategoryList);
+    } else {
+      dealsCtrl.productsPaginator = productsPaginator;
+    }
 
     dealsCtrl.post = function() {
       if(!$rootScope.user.authRequired()) {
@@ -34,71 +39,56 @@ angular.module('xbertsApp')
       $state.go('application.protected.post');
     };
 
-    dealsCtrl.tagOrder = [1, 1];
+    dealsCtrl.changeCategory = function ($index) {
+      $scope.selectedIndex = $index;
 
-    dealsCtrl.removeTag = function(name) {
-      dealsCtrl[name] = null;
-      switch (name) {
-        case 'categoryId':
-          ShareProductService.categoryId = null;
-          dealsCtrl.productsPaginator.params.category = null;
-          break;
-        case 'priceId':
-          DealsService.priceId = null;
-          dealsCtrl.productsPaginator.params.min_price = null;
-          dealsCtrl.productsPaginator.params.max_price = null;
-          break;
-        case 'discountId':
-          DealsService.discountId = null;
-          dealsCtrl.productsPaginator.params.min_discount = null;
-          break;
-      }
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
+      var categoryId = dealsCtrl.categories[$scope.selectedIndex].id;
 
-    dealsCtrl.changeCategory = function (categoryId) {
-      dealsCtrl.tagOrder[0]= DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
-      if(dealsCtrl.tagOrder[0] >= 20) {
-        dealsCtrl.tagOrder[0] -= 20;
-        dealsCtrl.tagOrder[1] -= 20;
-      }
-      ShareProductService.categoryId = categoryId;
-      dealsCtrl.categoryId = ShareProductService.categoryId;
-      dealsCtrl.productsPaginator.params.category = categoryId || null;
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
-    };
+      DealsService.categoryId = categoryId;
+      dealsCtrl.categoryId = DealsService.categoryId;
+      DealsService.priceId = null;
+      DealsService.discountId = null;
+      dealsCtrl.priceId = DealsService.priceId;
+      dealsCtrl.discountId = DealsService.discountId;
 
-    dealsCtrl.changeSort = function (sortId) {
-      dealsCtrl.sortId = sortId;
-      dealsCtrl.productsPaginator.params.promotion = null;
-      dealsCtrl.productsPaginator.params.search = null;
-      switch (sortId) {
-        case 'lighting_deals':
-          $scope.selectedIndex = 1;
-          dealsCtrl.productsPaginator.params.promotion = 'True';
-              break;
-        case 'best_sellers':
-          $scope.selectedIndex = 2;
-          dealsCtrl.productsPaginator.params.search = 'cool';
-              break;
-        default:
-          $scope.selectedIndex = 0;
-              break;
+      if($scope.selectedIndex == 0) {
+        DealsFactory.updateUrl($scope,dealsCtrl.categories);
+        dealsCtrl.productsPaginator = null;
+        DealsService.getHomeList().then(function(data) {
+          dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(data,DealsService.getCategoryList);
+        });
+      } else {
+
+        var par = {
+          name: 'deals_product_list',
+          objClass: ProductDeals,
+          params: {
+            category: DealsService.categoryId,
+            min_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value1: null,
+            max_price: DealsService.priceId != null ? DealsService.getPrice()[DealsService.priceId].value2: null,
+            page_size: 12
+          },
+          fetchFunction: DealsService.getDealsList
+        };
+
+
+        if(categoryId != 'lighting_deals') {
+          par.params.category = categoryId || null;
+          par.params.promotion = null;
+        } else {
+          par.params.category =  null;
+          par.params.promotion = true;
+        }
+
+        DealsFactory.updateUrl($scope,dealsCtrl.categories);
+        dealsCtrl.productsPaginator = new Paginator(par);
+        dealsCtrl.productsPaginator.clear();
+        dealsCtrl.productsPaginator.load();
       }
-      DealsFactory.updateUrl($scope,sort);
-      dealsCtrl.productsPaginator.clear();
-      dealsCtrl.productsPaginator.load();
     };
 
     dealsCtrl.changePrice = function(filterIndex) {
       if(filterIndex != null) {
-        dealsCtrl.tagOrder[1] = DealsService.getMaxNumber(dealsCtrl.tagOrder) + 1;
-        if(dealsCtrl.tagOrder[1] >= 20) {
-          dealsCtrl.tagOrder[0] -= 20;
-          dealsCtrl.tagOrder[1] -= 20;
-        }
         var item = dealsCtrl.price[filterIndex];
         DealsService.priceId = item.id;
         dealsCtrl.priceId = DealsService.priceId;
@@ -114,12 +104,19 @@ angular.module('xbertsApp')
       dealsCtrl.productsPaginator.load();
     };
 
-    // mobile sidenav toggle from left
-    dealsCtrl.toggleLeft = DealsFactory.buildDelayedToggler('filterLeft', dealsCtrl);
-
-    dealsCtrl.close = function () {
-      // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav('filterLeft').close();
+    dealsCtrl.changeDiscount = function(discountIndex) {
+      if(discountIndex != null) {
+        var item = dealsCtrl.discount[discountIndex];
+        DealsService.discountId = item.id;
+        dealsCtrl.discountId = DealsService.discountId;
+        dealsCtrl.productsPaginator.params.dicount = item.value1;
+      } else {
+        DealsService.discountId = null;
+        dealsCtrl.discountId = DealsService.discountId;
+        dealsCtrl.productsPaginator.params.dicount = null;
+      }
+      dealsCtrl.productsPaginator.clear();
+      dealsCtrl.productsPaginator.load();
     };
 
     var title = 'Discover - Exclusive Deals Curated by Community';

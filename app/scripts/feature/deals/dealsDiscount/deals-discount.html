@@ -1,0 +1,14 @@
+<div class="xb-deals-category" ng-click="open();openSheet();" layout="row" layout-align="end center" ng-mouseleave="close()">
+  {{!filterDiscount(discount)?'Discount':filterDiscount(discount)}}
+  <div layout="row" layout-align="start center">
+    <md-icon md-font-set="material-icons">arrow_drop_down</md-icon>
+  </div>
+  <div class="xb-deals-category__bg-1" ng-show="categoryOpen" hide-xs>
+    <md-radio-group ng-model="discountId">
+      <md-radio-button class="filter-button md-primary" ng-value="null"
+                       ng-checked="null == discountId" ng-click="onDiscountChange({discountIndex:null});" >All</md-radio-button>
+      <md-radio-button class="filter-button md-primary" ng-repeat="item in discount track by $index" ng-value="item.id"
+                       ng-checked="item.id == discountId" ng-click="onDiscountChange({discountIndex:item.id});" >{{item.name}}</md-radio-button>
+    </md-radio-group>
+  </div>
+</div>
