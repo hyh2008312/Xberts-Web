@@ -137,7 +137,7 @@
             <span class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</span>
           </md-tab-label>
           <md-tab-body>
-            <div class="background-whitem xb-my-profile__margin-top">
+            <div class="background-whitem xb-my-profile__margin-top md-padding-bottom-2">
               <div infinite-scroll="reviewApplicantPaginator.loadNext()"
                    infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
                    infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">

@@ -40,7 +40,7 @@ angular.module('xbertsApp')
           });
         } else {
           $state.go('application.expert', {
-            tab:'posts',
+            tab:'deals',
             expertId: productsDetail.owner.id
           },{
             reload:true
