@@ -104,8 +104,8 @@ angular.module('xbertsApp')
       }, {
         id: '12',
         src: 'https://xberts.imgix.net/static/logo/39253a68-8438-45bb-aadd-c8045a171fb3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=6f2214fc7bd3a227b2cac289541dc432',
-        name: 'For Kits',
-        value: 'for_kits'
+        name: 'For Kids',
+        value: 'for_kids'
       }, {
         id: '9',
         src: 'https://xberts.imgix.net/static/logo/007bd5fb-9b95-46e3-9fbf-a2e1519d6de9.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=5cbd94dc890d0a59517c018db15e0bde',
