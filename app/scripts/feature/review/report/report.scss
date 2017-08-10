@@ -1,7 +1,7 @@
 .xb2-page-head{
   >.container{
     padding-top: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 0;
 
     @include xb-gt-sm-screen{
       padding-top: 40px;
@@ -19,7 +19,7 @@
 
   &__subtitle{
     @include font-p();
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     @include xb-gt-sm-screen{
       text-align: center;
       margin-bottom: 32px;
@@ -31,17 +31,18 @@
     }
   }
 
+
+
   &__author{
     margin-bottom: 0;
     @include xb-gt-sm-screen{
-      margin-bottom: 24px;
-      padding:0 !important;
+      margin-bottom: 16px;
     }
   }
 
   &__rating{
     margin-top: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     @include xb-gt-sm-screen{
       margin-bottom: 16px;
     }
@@ -62,6 +63,12 @@
       background-color: #FFFFFF;
       padding: 10px;
       border-top: 1px solid rgba(0,0,0,.12);
+    }
+  }
+
+  &__thumb-up{
+    span{
+      margin-left: 8px;
     }
   }
 }
@@ -120,6 +127,9 @@
     @include font-h2();
     display: inline-block;
     vertical-align: middle;
+    @include xb-gt-xs-screen{
+      margin-bottom: 16px;
+    }
   }
 
   &__retail{

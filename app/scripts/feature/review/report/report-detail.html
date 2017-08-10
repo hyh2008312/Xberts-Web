@@ -19,14 +19,14 @@
 
         </div>
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
-          <div layout="row" layout-align="start center" class="xb-trial-detail__avatar-bg" flex-order="2" flex-order-gt-xs="1">
-            <md-list-item class="md-padding-clear xb-trial-detail__avatar-bg">
+          <div class="xb2-page-head__author" layout="row" layout-align="start center" flex-order="2" flex-order-gt-xs="1">
+            <div class="xb-trial-detail__avatar-bg" layout="row" layout-align="start center" flex>
               <avatar-img class="md-avatar" src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"></avatar-img>
-              <p layout="row" layout-align="start center">
+              <div class="md-margin-left-1" layout="row" layout-align="start center" flex>
                 <a class="xb2-nostyle-link" ui-sref="application.expert({ expertId:report.getReviewerId() })">{{
                 report.getReviewerName()}}</a>
                 <credit-badge class="credit-badge" points="report.getReviewBadgePoint()"></credit-badge>
-              </p>
+              </div>
               <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }"
                                  ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
                 <md-fab-trigger>
@@ -43,8 +43,8 @@
                   </md-button>
                 </md-fab-actions>
               </md-fab-speed-dial>
-              <vote></vote>
-            </md-list-item>
+              <vote class="xb2-page-head__thumb-up" layout="row" layout-align="start center"></vote>
+            </div>
           </div>
 
           <div class="xb-trial-reviewer__rating xb2-page-head__rating" layout="row" layout-align="start center" flex-order="1" flex-order-gt-xs="2" >
