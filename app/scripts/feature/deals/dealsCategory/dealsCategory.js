@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsCategory', ['DealsService', function (DealsService) {
+  .directive('dealsCategory', ['DealsService','$mdMedia',function (DealsService,$mdMedia) {
     return {
       restrict: 'E',
       scope: {
@@ -15,7 +15,7 @@ angular.module('xbertsApp')
 
         var index = 0;
 
-        angular.forEach(DealsService.getCategory(),function(e, i) {
+        angular.forEach(DealsService.getCategoryList,function(e, i) {
           if(e.value == scope.categoryTab) {
             index = i;
             if(index > 11) {
@@ -27,8 +27,9 @@ angular.module('xbertsApp')
         scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
           //you also get the actual event object
           //do stuff, execute functions -- whatever...
+          var width = !$mdMedia('xs') ? 100: 88;
           angular.element('.xb-deals-categories').animate({
-            scrollLeft:index * 100 + 'px'
+            scrollLeft:index * width + 'px'
           },0);
         });
 
