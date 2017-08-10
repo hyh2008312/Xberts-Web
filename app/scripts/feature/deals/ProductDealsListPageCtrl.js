@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProductDealsListPageCtrl', ['$window','$rootScope','productsPaginator', 'DealsService', 'ShareProductService',
+  .controller('ProductDealsListPageCtrl', ['$window','$rootScope', 'DealsService', 'ShareProductService',
     '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator',
-    function ($window, $rootScope, productsPaginator, DealsService, ShareProductService, $mdSidenav,
+    function ($window, $rootScope, DealsService, ShareProductService, $mdSidenav,
               $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator) {
     var dealsCtrl = this;
 
     DealsService.getCategoryList = DealsFactory.getCategory(category);
-
     dealsCtrl.categories = DealsService.getCategoryList;
     dealsCtrl.price = DealsService.getPrice();
     dealsCtrl.discount = DealsService.getDiscount();
@@ -25,19 +24,6 @@ angular.module('xbertsApp')
         dealsCtrl.changeCategory( $scope.selectedIndex);
       }
     });
-
-    if($scope.selectedIndex == 0) {
-      dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(productsPaginator,DealsService.getCategoryList);
-    } else {
-      dealsCtrl.productsPaginator = productsPaginator;
-    }
-
-    dealsCtrl.post = function() {
-      if(!$rootScope.user.authRequired()) {
-        return;
-      }
-      $state.go('application.protected.post');
-    };
 
     dealsCtrl.changeCategory = function ($index) {
       $scope.selectedIndex = $index;
@@ -85,6 +71,15 @@ angular.module('xbertsApp')
         dealsCtrl.productsPaginator.clear();
         dealsCtrl.productsPaginator.load();
       }
+    };
+
+    dealsCtrl.changeCategory($scope.selectedIndex);
+
+    dealsCtrl.post = function() {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
+      $state.go('application.protected.post');
     };
 
     dealsCtrl.changePrice = function(filterIndex) {

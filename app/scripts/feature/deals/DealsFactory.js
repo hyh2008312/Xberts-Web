@@ -62,7 +62,7 @@ angular.module('xbertsApp')
               newArr.push(item);
             }
           }
-          if(i == 0) {
+          if(i == 1) {
             if(k.indexOf('promotions') > -1) {
               var v = obj[k];
               item.product = ProductDeals.buildList(v);

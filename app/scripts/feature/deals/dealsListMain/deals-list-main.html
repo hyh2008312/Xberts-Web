@@ -1,7 +1,41 @@
 <div class="xb-main-deals" flex="noshrink" layout="row" layout-align="start start">
-  <div ng-repeat="item in deals track by $index" flex="none" ng-if="$index <4">
+  <div ng-repeat="item in deals track by $index" flex="none">
     <div class="xb-deals-list__img-bg xb-main-deals__img-bg">
-      <a layout="column" layout-align="start center"  ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+      <a layout="column" layout-align="start center" hide-xs ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+        <img src="{{item.getImageUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div class="xb-deals-list__top-right">
+          <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
+            <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            <span ng-show="timeValue<=0">00:00:00</span>
+          </span>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
+        <img src="{{item.getImageUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div class="xb-deals-list__top-right">
+          <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
+            <span ng-show="timeValue>0">{{ timeUnit }}</span>
+            <span ng-show="timeValue<=0">00:00:00</span>
+          </span>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
         <img src="{{item.getImageUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -20,7 +54,16 @@
       </a>
     </div>
     <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-xs
+         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+        {{item.title}}
+      </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
+         ui-sref="application.dealsDetail({dealsId:item.id})">
+        {{item.title}}
+      </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
+         ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
       <div>
@@ -39,3 +82,8 @@
     </div>
   </div>
 </div>
+<i class="iconfontXberts icon-jiantou xb-main-scroll__left-arrow animation-opacity-show"
+   scroll-control scroll-element="'.xb-main-deals'" page="page" page-size="4" distance="299"></i>
+<i class="iconfontXberts icon-jiantou- xb-main-scroll__right-arrow animation-opacity-show"
+   scroll-control scroll-element="'.xb-main-deals'" direction="1"
+   page="page" page-size="4" distance="299" amount="deals.length"></i>
