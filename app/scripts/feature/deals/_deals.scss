@@ -701,7 +701,8 @@
     &-text{
       position: relative;
       z-index: 1;
-      margin: 0 0 8px 8px;
+      text-align: center;
+      margin-bottom: 8px;
       white-space: normal;
       @include media();
     }
@@ -741,9 +742,6 @@
         height: 80px;
       }
 
-      &-text{
-        margin: 0 0 8px 4px;
-      }
     }
 
 

@@ -79,8 +79,8 @@ angular.module('xbertsApp')
       }, {
         id: '8',
         src: 'https://xberts.imgix.net/static/logo/657be4b5-230d-4bd2-a4aa-4b76bc22de61.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=dff1d465076a8c84981d75f6af9a33c6',
-        name: 'Communte',
-        value: 'communte'
+        name: 'Commute',
+        value: 'commute'
       }, {
         id: '2',
         src: 'https://xberts.imgix.net/static/logo/b093e037-34d6-47db-a281-e4adad2ba6a3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=498d9edab2e79f74b868c1581ab48509',
