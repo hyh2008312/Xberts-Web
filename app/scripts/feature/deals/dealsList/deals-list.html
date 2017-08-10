@@ -4,36 +4,24 @@
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
           <img src="{{item.getImageUrl()}}"/>
-          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
-               end-time-left end-time="item.promotionEnd" >
-            <div ng-show="timeValue>0" class="xb-main-discover__image-button" layout="row" layout-align="center center">
+          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+            <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
             </div>
           </div>
-          <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
-            <div ng-show="timeValue>0" class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
-              <div class="md-subhead">Quick Look</div>
-            </div>
-            <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
-              <div layout="row" layout-align="center center">
-                <div layout="row" layout-align="center center">
-                  <div layout="row" layout-align="center center">
-                    Expired
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="xb-deals-list__mask-bg" ng-if="!item.promotionEnd">
+          <div class="xb-deals-list__mask-bg">
             <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
               <div class="md-subhead">Quick Look</div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right" layout="row" layout-align="start center" ng-if="item.promotionEnd">
-            <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
-              <span ng-show="timeValue>0">{{ timeUnit }}</span>
-              <span ng-show="timeValue<=0">00:00:00</span>
-            </span>
+          <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+            <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+              <span >{{ timeUnit }}</span>
+            </div>
+            <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+                 layout="row" layout-align="start center">
+              <span >Expired</span>
+            </div>
           </div>
         </a>
       </div>
@@ -82,36 +70,24 @@
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
           <img src="{{item.getImageUrl()}}"/>
-          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
-               end-time-left end-time="item.promotionEnd" >
-            <div ng-show="timeValue>0" class="xb-main-discover__image-button" layout="row" layout-align="center center">
+          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+            <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
             </div>
           </div>
-          <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
-            <div ng-show="timeValue>0" class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
-              <div class="md-subhead">Quick Look</div>
-            </div>
-            <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
-              <div layout="row" layout-align="center center">
-                <div layout="row" layout-align="center center">
-                  <div layout="row" layout-align="center center">
-                    Expired
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="xb-deals-list__mask-bg" ng-if="!item.promotionEnd">
+          <div class="xb-deals-list__mask-bg">
             <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
               <div class="md-subhead">Quick Look</div>
             </div>
           </div>
-          <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
-            <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
-              <span ng-show="timeValue>0">{{ timeUnit }}</span>
-               <span ng-show="timeValue<0">00:00:00</span>
-            </span>
+          <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+            <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+              <span >{{ timeUnit }}</span>
+            </div>
+            <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+                 layout="row" layout-align="start center">
+              <span >Expired</span>
+            </div>
           </div>
         </a>
       </div>
@@ -160,28 +136,19 @@
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
           <img src="{{item.getImageUrl()}}"/>
-          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center"
-               end-time-left end-time="item.promotionEnd" >
-            <div ng-show="timeValue>0" class="xb-main-discover__image-button" layout="row" layout-align="center center">
+          <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+            <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
             </div>
           </div>
-          <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
-            <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
-              <div layout="row" layout-align="center center">
-                <div layout="row" layout-align="center center">
-                  <div layout="row" layout-align="center center">
-                    Expired
-                  </div>
-                </div>
-              </div>
+          <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+            <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+              <span >{{ timeUnit }}</span>
             </div>
-          </div>
-          <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
-            <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
-              <span ng-show="timeValue>0">{{ timeUnit }}</span>
-              <span ng-show="timeValue<=0">00:00:00</span>
-            </span>
+            <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+                 layout="row" layout-align="start center">
+              <span >Expired</span>
+            </div>
           </div>
         </a>
         <a layout="column" layout-align="start center" ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
@@ -189,17 +156,6 @@
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
-            </div>
-          </div>
-          <div class="xb-deals-list__mask-bg" end-time-left end-time="item.promotionEnd" ng-if="item.promotionEnd">
-            <div ng-show="timeValue<=0" class="xb-deals-list__time-out" layout="row" layout-align="center center">
-              <div layout="row" layout-align="center center">
-                <div layout="row" layout-align="center center">
-                  <div layout="row" layout-align="center center">
-                    Expired
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <div class="xb-deals-list__top-right" ng-if="item.promotionEnd" layout="row" layout-align="start center">
@@ -229,26 +185,6 @@
           <span class="xb-deals-list__discount" ng-if="item.discount > 0">
             {{item.discount * 100 | number:0}}% OFF
           </span>
-        </div>
-      </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner != null" hide >
-        <avatar-Img class="xb-pointer" flex="none" src="item.owner.userprofile.avatar" name="item.getDealsName()"  class="md-user-avatar"
-                    ui-sref="application.expert({ expertId:item.getPostId() })"></avatar-Img>
-        <div layout="column" layout-align="space-between start">
-          <div layout="row" layout-align="start center">
-            <a class="md-dark-primary" ui-sref="application.expert({expertId:item.getPostId()})">{{item.getDealsName()}}</a>
-            <credit-badge class="credit-badge" points="item.owner.badgePoint"></credit-badge></div>
-          <div class="md-dark-secondary"><span hide-xs>Posted</span> <span am-time-ago='item.created'></span></div>
-        </div>
-      </div>
-      <div layout="row" class="xb-deals-list__head" ng-if="item.owner == null" hide>
-        <avatar-Img flex="none" src="headImage" name="item.getDealsName()"  class="md-user-avatar">
-        </avatar-Img>
-        <div layout="column" layout-align="space-between start">
-          <div layout="row" layout-align="start center">
-            <span class="md-dark-primary">{{item.getDealsName()}}</span>
-          </div>
-          <div class="md-dark-secondary"><span hide-xs>Posted</span> <span am-time-ago='item.created'></span></div>
         </div>
       </div>
     </div>

@@ -11,11 +11,14 @@
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <div class="md-subhead">Quick Look</div>
         </div>
-        <div class="xb-deals-list__top-right">
-          <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
-            <span ng-show="timeValue>0">{{ timeUnit }}</span>
-            <span ng-show="timeValue<=0">00:00:00</span>
-          </span>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
@@ -28,11 +31,14 @@
         <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
           <div class="md-subhead">Quick Look</div>
         </div>
-        <div class="xb-deals-list__top-right">
-          <span end-time-left end-time="item.promotionEnd" extraInfo="Expired">
-            <span ng-show="timeValue>0">{{ timeUnit }}</span>
-            <span ng-show="timeValue<=0">00:00:00</span>
-          </span>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">

@@ -21,9 +21,6 @@ angular.module('xbertsApp')
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     $scope.$on('$locationChangeSuccess', function () {
       DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
-      if( dealsCtrl.categories[$scope.selectedIndex]) {
-        dealsCtrl.changeCategory( $scope.selectedIndex);
-      }
     });
 
     dealsCtrl.changeCategory = function ($index) {
@@ -41,9 +38,14 @@ angular.module('xbertsApp')
       if($scope.selectedIndex == 0) {
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
         dealsCtrl.productsPaginator = null;
-        DealsService.getHomeList().then(function(data) {
-          dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(data,DealsService.getCategoryList);
-        });
+        if(DealsService.homeDealsList == null) {
+          DealsService.getHomeList().then(function(data) {
+            dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(data,DealsService.getCategoryList);
+            DealsService.homeDealsList = dealsCtrl.productsPaginator;
+          });
+        } else {
+          dealsCtrl.productsPaginator = DealsService.homeDealsList;
+        }
       } else {
 
         var par = {
@@ -69,7 +71,6 @@ angular.module('xbertsApp')
 
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
         dealsCtrl.productsPaginator = new Paginator(par);
-        dealsCtrl.productsPaginator.clear();
         dealsCtrl.productsPaginator.load();
       }
     };
@@ -105,11 +106,11 @@ angular.module('xbertsApp')
         var item = dealsCtrl.discount[discountIndex];
         DealsService.discountId = item.id;
         dealsCtrl.discountId = DealsService.discountId;
-        dealsCtrl.productsPaginator.params.dicount = item.value1;
+        dealsCtrl.productsPaginator.params.min_discount = item.value1;
       } else {
         DealsService.discountId = null;
         dealsCtrl.discountId = DealsService.discountId;
-        dealsCtrl.productsPaginator.params.dicount = null;
+        dealsCtrl.productsPaginator.params.min_discount = null;
       }
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();

@@ -13,6 +13,8 @@ angular.module('xbertsApp')
     this.discountId = null;
     this.sortId = null;
 
+    this.homeDealsList = null;
+
     this.getHomeList = function(params) {
       params = {};
       params.approval_status = 'approved';

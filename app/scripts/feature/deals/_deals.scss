@@ -284,6 +284,9 @@
       line-height: 18px;
     }
   }
+  &__expired{
+    background-color: $dangerColor;
+  }
   &__head{
     padding: 0 16px 16px;
     @include xb-xs-screen{
