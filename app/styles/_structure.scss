@@ -15,6 +15,10 @@ body {
   line-height: (20px / $defaultFontSize);
 }
 
+::-webkit-scrollbar{
+  display:none;
+}
+
 * {
   outline: none;
   @include box-sizing(border-box);

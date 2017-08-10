@@ -1,12 +1,12 @@
 <div class="xb-deals-categories" flex="noshrink" layout="row" layout-align="start start">
   <div class="xb-deals-categories__tabs" ng-class="{'active': category.id == categoryId}"
        ng-repeat="category in categories track by $index"
-       ng-click="onCategoryChange({$index: $index});">
+       ng-click="onCategoryChange({$index: $index});" on-finish-render="ngRepeatFinished">
     <div layout="column" layout-align="end">
       <div class="xb-deals-categories__tabs-img" ng-if="category.id == null "></div>
       <div class="xb-deals-categories__tabs-img-1" ng-if="category.id != null && category.src == null"></div>
       <img ng-if="category.id != null && category.src != null" src="{{category.src}}">
-      <div class="xb-deals-categories__tabs-mask"></div>
+      <div class="xb-deals-categories__tabs-mask" ng-if="category.src != null"></div>
       <div ng-class="{true:'xb-deals-categories__tabs-text-1',false:'xb-deals-categories__tabs-text'}[category.src == null]">
         {{category.name}}</div>
     </div>

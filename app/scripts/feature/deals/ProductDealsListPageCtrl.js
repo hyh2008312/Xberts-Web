@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope', 'DealsService', 'ShareProductService',
-    '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator',
+    '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator','$stateParams',
     function ($window, $rootScope, DealsService, ShareProductService, $mdSidenav,
-              $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator) {
+              $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator, $stateParams) {
     var dealsCtrl = this;
 
     DealsService.getCategoryList = DealsFactory.getCategory(category);
@@ -15,6 +15,7 @@ angular.module('xbertsApp')
     dealsCtrl.categoryId = DealsService.categoryId;
     dealsCtrl.priceId = DealsService.priceId;
     dealsCtrl.discountId = DealsService.discountId;
+    dealsCtrl.tabs = $stateParams.tab;
 
     $scope.selectedIndex = 0;
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
