@@ -79,8 +79,8 @@ angular.module('xbertsApp')
       }, {
         id: '8',
         src: 'https://xberts.imgix.net/static/logo/657be4b5-230d-4bd2-a4aa-4b76bc22de61.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=dff1d465076a8c84981d75f6af9a33c6',
-        name: 'Communte Essentials',
-        value: 'communte_essentials'
+        name: 'Communte',
+        value: 'communte'
       }, {
         id: '2',
         src: 'https://xberts.imgix.net/static/logo/b093e037-34d6-47db-a281-e4adad2ba6a3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=498d9edab2e79f74b868c1581ab48509',
@@ -104,13 +104,13 @@ angular.module('xbertsApp')
       }, {
         id: '12',
         src: 'https://xberts.imgix.net/static/logo/39253a68-8438-45bb-aadd-c8045a171fb3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=6f2214fc7bd3a227b2cac289541dc432',
-        name: 'For Kids',
-        value: 'for_kids'
+        name: 'Kids',
+        value: 'kids'
       }, {
         id: '9',
         src: 'https://xberts.imgix.net/static/logo/007bd5fb-9b95-46e3-9fbf-a2e1519d6de9.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=5cbd94dc890d0a59517c018db15e0bde',
-        name: 'For Pets',
-        value: 'for_pets'
+        name: 'Pets',
+        value: 'pets'
       }, {
         id: '4',
         src: 'https://xberts.imgix.net/static/logo/609ab993-8630-4fa4-9835-6e36bf0c171e.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=828213fd6b5ff9d9a47aaaa1db81f9dc',
@@ -124,8 +124,8 @@ angular.module('xbertsApp')
       }, {
         id: '13',
         src: 'https://xberts.imgix.net/static/logo/0d5d3aa6-001d-4a6f-8a23-11f5553d657b.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=28a4ce3f1dfd45873d8d4bc5de44f2dc',
-        name: 'Mobiles & Accessories',
-        value: 'mobiles_accessories'
+        name: 'Mobiles',
+        value: 'mobiles'
       }, {
         id: '',
         src: null,
