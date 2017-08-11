@@ -66,7 +66,7 @@ angular.module('xbertsApp')
           par.params.promotion = null;
         } else {
           par.params.category =  null;
-          par.params.promotion = true;
+          par.params.promotion = "True";
         }
 
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
