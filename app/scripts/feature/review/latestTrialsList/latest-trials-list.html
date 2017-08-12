@@ -36,7 +36,7 @@
        ng-if="$index > 1 && $index < 6" flex-gt-xs="25" flex-xs>
     <div class="xb-main-col__container">
       <div class="xb-main-col__value" layout-gt-sm="row" layout-align-gt-sm="start center"
-           layout-sm="column" layout-align-sm="start start">
+           layout-sm="column" layout-align-sm="start start" layout-xs="row" layout-align-xs="start center">
         <span>
           <span ng-if="!trial.isFlashsale()">Free</span>
           <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
@@ -45,7 +45,7 @@
              ng-if="trial.tags">
           <span>{{trial.tags}}</span>
         </span>
-        <span hide-gt-sm class="md-margin-top-1" ng-class="{true:'xb-main-col__promotion',false:''}[trial.tags.toLowerCase() == 'promotion'] + {true:'xb-main-col__launch',false:''}[trial.tags.toLowerCase() == 'launch']"
+        <span hide-gt-sm hide-xs class="md-margin-top-1" ng-class="{true:'xb-main-col__promotion',false:''}[trial.tags.toLowerCase() == 'promotion'] + {true:'xb-main-col__launch',false:''}[trial.tags.toLowerCase() == 'launch']"
               ng-if="trial.tags">
           <span>{{trial.tags}}</span>
         </span>
