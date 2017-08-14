@@ -177,6 +177,10 @@ angular.module('xbertsApp')
           answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
         }
 
+        if(answer.description == '') {
+          return;
+        }
+
         var _product = {
           question: $scope.questionId,
           description: answer.description
