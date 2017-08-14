@@ -14,7 +14,7 @@ angular.module('xbertsApp')
           'Top Answer': parseInt(scope.points.bestAnswer),
           'Featured Questions': parseInt(scope.points.postQuestionFeatured),
           'Product Submission': parseInt(scope.points.postProductFeatured),
-          'Trial Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
+          'Crowdtesting Participation': parseInt(scope.points.applyTrial) + parseInt(scope.points.postReviewFeatured),
           'Profile Completeness': parseInt(scope.points.uploadAvatar),
           'Redeem Gifts': '-' + parseInt(scope.points.consumed),
           'Other': scope.total - parseInt(scope.points.consumed) - parseInt(scope.points.postProductFeatured) -

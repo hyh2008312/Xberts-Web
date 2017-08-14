@@ -6,8 +6,8 @@ angular.module('xbertsApp')
 
       var self = this;
 
-      var title = 'Trials – Try latest gadgets';
-      var description = 'Try the coolest products for Free or with Deep Discount, and share your reviews with our community. ';
+      var title = 'Crowdtesting – Test new product';
+      var description = 'Test the coolest products for Free or with Deep Discount, and share your reviews with our community. ';
       var backgroundColor = 'background-bg-light';
       var shareImage = '';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
