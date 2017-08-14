@@ -156,7 +156,13 @@ angular.module('xbertsApp')
             answer.description = answer.description.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
           }
 
-          if(answer.description == '') {
+          var str =answer.description;
+          str = str.replace(/[ | ]*\n/g,'\n');
+          str = str.replace(/<\/?[^>]*>/g,'');
+          str = str.replace(/&nbsp;/ig,'');
+          str = str.replace(/\s+/g,"");
+
+          if(str == '') {
             return;
           }
 
