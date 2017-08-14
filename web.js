@@ -39,7 +39,9 @@ function start() {
   });
   app.use(prerender.set('prerenderToken', 'W7C9qOob3QilKJiMu1XN'));
   app.use(compression());
-  app.use(express.static('' + __dirname + '/dist'));
+  app.use(express.static('' + __dirname + '/dist',{
+    maxAge: 86400000
+  }));
   app.use(function(req, res) {
     res.sendfile('dist/index.html');
   });
