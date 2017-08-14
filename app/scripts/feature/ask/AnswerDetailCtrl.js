@@ -75,6 +75,7 @@ angular.module('xbertsApp')
 
     answerCtrl.addProduct = function (product) {
       answerCtrl.answerPaginator.items.unshift(product);
+      answerCtrl.answerPaginator.count++;
     };
 
     var title = productsDetail.title;
