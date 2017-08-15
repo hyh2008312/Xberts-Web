@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
-  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet','localStorageService',
-    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService) {
+  .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet',
+    'localStorageService','$state',
+    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService,$state) {
     return {
       restrict: 'E',
       scope: {
@@ -41,6 +42,14 @@ angular.module('xbertsApp')
             angular.element('.xb-body-view').scrollTop(50);
           }
         };
+
+        scope.answerMobile = function() {
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
+          $state.go('application.protected.answerPost',{questionId:scope.product.id});
+        };
+
         scope.follow = function(product) {
           if(!$rootScope.user.authRequired()) {
             return;

@@ -9,7 +9,7 @@
       <md-button class="md-primary md-raised" ng-click="answer();" hide-xs>
         Answer
       </md-button>
-      <md-button class="md-primary md-raised" ui-sref="application.protected.answerPost({questionId:product.id})" hide-gt-xs>
+      <md-button class="md-primary md-raised" ng-click="answerMobile();" hide-gt-xs>
         Answer
       </md-button>
       <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
