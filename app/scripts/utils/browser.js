@@ -31,11 +31,10 @@ angular.module('xbertsApp')
             weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
             qq: u.match(/\sQQ/i) == " qq" //是否QQ
           };
-        }(),
-        language:(navigator.browserLanguage || navigator.language).toLowerCase()
+        }()
       };
-      if(browser.ios || browser.iPhone || browser.iPad) {
-        return true
+      if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+        return true;
       } else {
         return false;
       }
