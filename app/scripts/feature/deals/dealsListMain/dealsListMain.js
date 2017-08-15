@@ -44,8 +44,8 @@ angular.module('xbertsApp')
           };
 
           scope.onSwipeLeft = function() {
-            if(scope.isMobile) {
-              return false;
+            if(!scope.isMobile) {
+              return;
             }
             var width = 168;
             scope.page++;
@@ -59,8 +59,8 @@ angular.module('xbertsApp')
           };
 
           scope.onSwipeRight= function() {
-            if(scope.isMobile) {
-              return false;
+            if(!scope.isMobile) {
+              return;
             }
             var width = 168;
             scope.page--;
