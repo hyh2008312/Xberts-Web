@@ -34,10 +34,9 @@ angular.module('xbertsApp')
           }
         });
 
+        scope.isMobile = BrowserUtil.isIos();
+
         scope.onSwipeLeft = function() {
-          if(!scope.isMobile) {
-            return;
-          }
           var width = !$mdMedia('xs') ? 100: 88;
           scope.page++;
           if(scope.page > scope.categories.length / 3) {
@@ -50,9 +49,6 @@ angular.module('xbertsApp')
         };
 
         scope.onSwipeRight= function() {
-          if(!scope.isMobile) {
-            return;
-          }
           var width = !$mdMedia('xs') ? 100: 88;
           scope.page--;
           if(scope.page < 0) {
@@ -62,8 +58,6 @@ angular.module('xbertsApp')
             scrollLeft:3 * scope.page * width + 'px'
           },300);
         };
-
-        scope.isMobile = BrowserUtil.isIos();
 
       }
     }
