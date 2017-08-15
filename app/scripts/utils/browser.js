@@ -33,6 +33,7 @@ angular.module('xbertsApp')
           };
         }()
       };
+      alert(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad)
       if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
         return true;
       } else {
