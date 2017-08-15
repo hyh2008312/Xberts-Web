@@ -6,6 +6,12 @@
         <h3><span class="md-body-1">Discover the latest products and deals for a better life</span></h3>
       </div>
       <div flex="none">
+        <div class="md-margin-bottom-4" ng-if="dealsCtrl.admin">
+          <md-select ng-model="dealsCtrl.country"
+                     class="md-no-underline" md-on-close="dealsCtrl.changeCountry(dealsCtrl.country)">
+            <md-option  ng-value="item.country" ng-repeat="item in dealsCtrl.countries">{{item.name}}</md-option>
+          </md-select>
+        </div>
         <md-button class="md-raised md-primary" ng-click="dealsCtrl.post()">Share a Deal</md-button>
       </div>
     </div>
@@ -13,5 +19,47 @@
   <div class="container xb-deals-list-main__clear">
     <deals-category class="xb-main-scroll" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
                     on-category-change="dealsCtrl.changeCategory($index);" category-tab="dealsCtrl.tabs"></deals-category>
+  </div>
+</div>
+<div>
+  <div class="container">
+    <div class="xb-deals-list__margin" flex layout="row" layout-align="end center" layout-align-xs="start center"
+         ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null">
+      <deals-discount discount="dealsCtrl.discount"
+                    on-discount-change="dealsCtrl.changeDiscount(discountIndex);" discount-id="dealsCtrl.discountId"></deals-discount>
+      <deals-filter class="md-margin-left-4" filter="dealsCtrl.price"
+                    on-filter-change="dealsCtrl.changePrice(filterIndex);" filter-id="dealsCtrl.priceId"></deals-filter>
+    </div>
+  </div>
+  <div class="md-margin-bottom-4">
+    <div >
+      <div ng-if="dealsCtrl.categoryId == null &&  dealsCtrl.sortId == null" flex layout="column">
+        <div ng-repeat="item in dealsCtrl.productsPaginator track by $index">
+          <div class="container">
+            <div class="xb-title" layout="row" layout-align="start center" ng-if="item.product.length > 0">
+              <h3 class="md-dark-primary" flex>{{item.name == 'Entertain-ment'? 'Entertainment':item.name}}</h3>
+              <a class="md-body-1 xb-pointer" ng-click="dealsCtrl.changeCategory($index + 1);">SEE MORE</a>
+            </div>
+          </div>
+          <div class="container xb-deals-list-main__clear">
+            <deals-list-main layout="row" class="xb-main-scroll xb-deals-list-main" deals="item.product"></deals-list-main>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
+           infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex layout="column">
+        <deals-list deals="dealsCtrl.productsPaginator.items"></deals-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center"
+                   ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+        <div class="md-margin-top-4 md-margin-bottom-4" layout="column" layout-align="center center" flex="noshrink"
+             ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
