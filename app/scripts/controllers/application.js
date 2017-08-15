@@ -69,4 +69,6 @@ angular.module('xbertsApp')
       };
 
       $scope.isIos = BrowserUtil.isIos();
+
+      alert($scope.isIos);
     }]);

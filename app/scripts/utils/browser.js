@@ -16,7 +16,7 @@ angular.module('xbertsApp')
     this.isIos = function() {
       var browser={
         versions:function(){
-          var u = navigator.userAgent, app = navigator.appVersion;
+          var u = navigator.userAgent||navigator.vendor||window.opera, app = navigator.appVersion;
           return {
             trident: u.indexOf('Trident') > -1, //IE内核
             presto: u.indexOf('Presto') > -1, //opera内核
