@@ -2,8 +2,8 @@
 
 angular.module('xbertsApp')
   .controller('ApplicationCtrl', ['$scope', '$rootScope',
-    '$timeout', '$mdSidenav','AnalyticsService',
-    function($scope, $rootScope, $timeout, $mdSidenav, AnalyticsService) {
+    '$timeout', '$mdSidenav','AnalyticsService', 'BrowserUtil',
+    function($scope, $rootScope, $timeout, $mdSidenav, AnalyticsService, BrowserUtil) {
       $scope.userDropdownStatus = {
         isopen: false
       };
@@ -67,4 +67,6 @@ angular.module('xbertsApp')
       $scope.onPopup = function() {
         $scope.isPopupOpen = !$scope.isPopupOpen;
       };
+
+      $scope.isIos = BrowserUtil.isIos();
     }]);
