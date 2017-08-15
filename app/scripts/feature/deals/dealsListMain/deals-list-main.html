@@ -1,4 +1,6 @@
-<div class="xb-main-deals" flex="noshrink" layout="row" layout-align="start start">
+<div class="xb-main-deals" ng-class="{true:'xb-overflow-hidden',false:''}[isMobile]"
+     flex="noshrink" layout="row" layout-align="start start"
+     md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <div ng-repeat="item in deals track by $index" flex="none">
     <div class="xb-deals-list__img-bg xb-main-deals__img-bg">
       <a layout="column" layout-align="start center" hide-xs ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">

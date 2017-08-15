@@ -633,8 +633,6 @@
 
 .xb-deals-categories {
   overflow-y: hidden;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
   &__tabs {
     position: relative;
     margin-right: 16px;
@@ -1009,6 +1007,11 @@
           }
         }
       }
+    }
+  }
+  &__clear{
+    @include xb-xs-screen{
+      padding: 0;
     }
   }
 }

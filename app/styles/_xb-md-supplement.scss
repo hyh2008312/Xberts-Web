@@ -242,3 +242,11 @@ p,.md-body-1 {
     }
   }
 }
+
+.xb-ios-scroll-fixed{
+  -webkit-overflow-scrolling: auto;
+}
+
+.xb-overflow-hidden{
+  overflow: hidden !important;
+}

@@ -1,4 +1,6 @@
-<div class="xb-deals-categories" flex="noshrink" layout="row" layout-align="start start">
+<div class="xb-deals-categories" ng-class="{true:'xb-overflow-hidden',false:''}[isMobile]"
+     flex="noshrink" layout="row" layout-align="start start"
+     md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <div class="xb-deals-categories__tabs" ng-class="{'active': category.id == categoryId}"
        ng-repeat="category in categories track by $index"
        ng-click="onCategoryChange({$index: $index});" on-finish-render="ngRepeatFinished">
@@ -13,13 +15,13 @@
   </div>
 
   <div class="xb-deals-categories__left-arrow" layout="row" layout-align="start center"
-       scroll-control scroll-element="'.xb-deals-categories'" page="page" page-size="4" distance="100">
+       scroll-control scroll-element="'.xb-deals-categories'" page="page" page-size="3" distance="100">
     <md-icon md-font-set="material-icons">
       keyboard_arrow_left
     </md-icon>
   </div>
   <div class="xb-deals-categories__right-arrow" layout="row" layout-align="end center"
-       scroll-control scroll-element="'.xb-deals-categories'" direction="1" page="page" page-size="4" distance="100"
+       scroll-control scroll-element="'.xb-deals-categories'" direction="1" page="page" page-size="3" distance="100"
        amount="categories.length">
     <md-icon md-font-set="material-icons">
       keyboard_arrow_right

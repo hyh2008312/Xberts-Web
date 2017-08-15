@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('dealsCategory', ['DealsService','$mdMedia',function (DealsService,$mdMedia) {
+  .directive('dealsCategory', ['DealsService','$mdMedia','BrowserUtil',function (DealsService,$mdMedia,BrowserUtil) {
     return {
       restrict: 'E',
       scope: {
@@ -18,9 +18,7 @@ angular.module('xbertsApp')
         angular.forEach(DealsService.getCategoryList,function(e, i) {
           if(e.value == scope.categoryTab) {
             index = i;
-            if(index > 11) {
-              scope.page = 1;
-            }
+            scope.page = Math.floor(index / 3);
           }
         });
 
@@ -31,8 +29,37 @@ angular.module('xbertsApp')
           angular.element('.xb-deals-categories').animate({
             scrollLeft:index * width + 'px'
           },0);
+          if($mdMedia('xs')) {
+            scope.page = Math.floor(index / 3);
+          }
         });
 
+        scope.onSwipeLeft = function() {
+          var width = !$mdMedia('xs') ? 100: 88;
+          scope.page++;
+          if(scope.page > scope.categories.length / 3) {
+            scope.page = Math.floor(scope.categories.length / 3);
+          }
+          angular.element('.xb-deals-categories').animate({
+            scrollLeft:3 * scope.page * width + 'px'
+          },300);
+
+        };
+
+        scope.onSwipeRight= function() {
+          var width = !$mdMedia('xs') ? 100: 88;
+          scope.page--;
+          if(scope.page < 0) {
+            scope.page = 0;
+          }
+          angular.element('.xb-deals-categories').animate({
+            scrollLeft:3 * scope.page * width + 'px'
+          },300);
+        };
+
+        scope.$watch(function() { return BrowserUtil.isMobile(); }, function(data) {
+          scope.isMobile = data;
+        });
 
       }
     }

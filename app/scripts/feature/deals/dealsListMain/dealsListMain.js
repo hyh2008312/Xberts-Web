@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('dealsListMain', ['DealsService','$mdDialog','DealsFactory','$state','$rootScope',
-    function (DealsService,$mdDialog,DealsFactory,$state,$rootScope) {
+  .directive('dealsListMain', ['DealsService','$mdDialog','DealsFactory','$state','$rootScope','BrowserUtil',
+    function (DealsService,$mdDialog,DealsFactory,$state,$rootScope,BrowserUtil) {
       return {
         restrict: 'E',
         scope: {
@@ -41,7 +41,36 @@ angular.module('xbertsApp')
               clickOutsideToClose: false,
               disableParenScroll: true
             });
-          }
+          };
+
+          scope.onSwipeLeft = function() {
+            var width = 168;
+            scope.page++;
+            if(scope.page > scope.deals.length / 2) {
+              scope.page = Math.floor(scope.deals.length / 2);
+            }
+            element.find('.xb-main-deals').animate({
+              scrollLeft:2 * scope.page * width + 'px'
+            },300);
+
+          };
+
+          scope.onSwipeRight= function() {
+            var width = 168;
+            scope.page--;
+            if(scope.page < 0) {
+              scope.page = 0;
+            }
+            element.find('.xb-main-deals').animate({
+              scrollLeft:2 * scope.page * width + 'px'
+            },300);
+
+          };
+
+          scope.$watch(function() { return BrowserUtil.isMobile(); }, function(data) {
+            scope.isMobile = data;
+          });
+
         }
       }
     }]);

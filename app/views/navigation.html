@@ -121,7 +121,7 @@
   </div>
 </md-sidenav>
 <verification ng-if="user.isAuth() && user.getInvited() && !user.getEmailVerification() && user.getUserEmail()"></verification>
-<md-content ng-class="pageSettings._backgroundColor" class="xb-body-view" md-scroll-y flex layout="column">
+<md-content ng-class="pageSettings._backgroundColor + {true:' xb-ios-scroll-fixed',false:''}[state.current.name == 'application.productDeals']" class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ng-class="{true:'xb-footer-padding',false:''}[state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
