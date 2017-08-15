@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsListPageCtrl', ['$window','$rootScope', 'DealsService', 'ShareProductService',
-    '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator','$stateParams',
+    '$mdSidenav','$state','DealsFactory','$scope','ProductDeals','category','Paginator','$stateParams',
     function ($window, $rootScope, DealsService, ShareProductService, $mdSidenav,
-              $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator, $stateParams) {
+              $state,DealsFactory,$scope,ProductDeals,category,Paginator, $stateParams) {
     var dealsCtrl = this;
 
     DealsService.getCategoryList = DealsFactory.getCategory(category);
