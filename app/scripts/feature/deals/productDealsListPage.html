@@ -6,14 +6,12 @@
         <h3><span class="md-body-1">Discover the latest products and deals for a better life</span></h3>
       </div>
       <div flex="none">
-        <!--admin-->
-        <div class="md-margin-bottom-4" ng-if="dealsCtrl.admin">
+        <div class="md-margin-bottom-4" ng-if="dealsCtrl.admin != null">
           <md-select ng-model="dealsCtrl.country"
                      class="md-no-underline" md-on-close="dealsCtrl.changeCountry(dealsCtrl.country)">
             <md-option  ng-value="item.country" ng-repeat="item in dealsCtrl.countries">{{item.name}}</md-option>
           </md-select>
         </div>
-        <!--end admin-->
         <md-button class="md-raised md-primary" ng-click="dealsCtrl.post()">Share a Deal</md-button>
       </div>
     </div>
