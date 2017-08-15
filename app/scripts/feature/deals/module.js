@@ -3,13 +3,27 @@
 angular.module('xbertsApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-      .state('application.productDeals', {
+    .state('application.productDeals', {
       url: '/discover?tab',
       params:{
         tab:'everything'
       },
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
+      reloadOnSearch: false,
+      resolve: {
+        category: ['ShareProductService', function (ShareProductService) {
+          return ShareProductService.getCategoryList();
+        }]
+      }
+    })
+    .state('application.adminDeals', {
+      url: '/admin/discover?tab',
+      params:{
+        tab:'everything'
+      },
+      templateUrl: 'scripts/feature/deals/productDealsListPage.html',
+      controller: 'ProductDealsListPageAdminCtrl as dealsCtrl',
       reloadOnSearch: false,
       resolve: {
         category: ['ShareProductService', function (ShareProductService) {

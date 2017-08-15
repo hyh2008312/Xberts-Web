@@ -268,8 +268,8 @@ angular.module('xbertsApp')
     ];
 
     var CURRENCY = [
-      {code: 'USD', name: 'USD'},
-      {code: 'INR', name: 'Rs'}
+      {code: 'USD', name: 'USD', country: 'US'},
+      {code: 'INR', name: 'Rs', country: 'IN'}
     ];
 
     var JOB_FUNCTION = [
