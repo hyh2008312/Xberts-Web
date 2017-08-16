@@ -727,7 +727,9 @@
 .xb-main-deals{
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 0 10px;
+  @include xb-xs-screen{
+    padding: 0 10px;
+  }
   >div{
     display: inline-block;
     vertical-align: top;
