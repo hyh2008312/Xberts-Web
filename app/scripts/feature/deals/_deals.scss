@@ -641,7 +641,7 @@
   overflow-y: hidden;
   white-space: nowrap;
   @include xb-xs-screen{
-    padding: 0 10px;
+    padding: 0 8px;
   }
   &__tabs {
     position: relative;
@@ -665,7 +665,7 @@
         z-index: 0;
       }
     }
-    &:last-child{
+    &:nth-last-child(3){
       margin-right: 0;
     }
 
