@@ -16,7 +16,33 @@ function ProductDeals($state,urlParser,$sce) {
       return this.owner != null?this.owner.firstName : "Editors' Pick";
     },
     getImageUrl: function() {
-      return this.imageGroup.length > 0 ? this.imageGroup[0].imageUrls.original:this.imageUrl;
+      if(this.cover) {
+        return this.cover.originSm? this.cover.originSm: this.cover.origin;
+      } else {
+        return false;
+      }
+    },
+    getCoverUrl: function() {
+      if(this.cover) {
+        return this.cover.originLg? this.cover.originLg: this.cover.origin;
+      } else {
+        return false;
+      }
+    },
+    getFixedImageUrl: function() {
+      if(this.cover) {
+        return this.cover.fixedRecSm? this.cover.fixedRecSm: this.cover.origin;
+      } else {
+        return false;
+      }
+
+    },
+    getFixedSqrUrl: function() {
+      if(this.cover) {
+        return this.cover.fixedSqrSm? this.cover.fixedSqrSm: this.cover.origin;
+      } else {
+        return false;
+      }
     },
     getPostId: function() {
       return this.owner != null?this.owner.id : false;

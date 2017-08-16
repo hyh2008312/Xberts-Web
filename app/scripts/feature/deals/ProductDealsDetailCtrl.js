@@ -8,11 +8,11 @@ angular.module('xbertsApp')
       $scope.productsDetail = productsDetail;
       $scope.productsPaginator = productsPaginator;
       $scope.headImage = DealsService.headImage;
-      $scope.expert = {
-        userId: productsDetail.owner.id
-      };
 
       if(productsDetail.owner != null) {
+        $scope.expert = {
+          userId: productsDetail.owner.id
+        };
         ExpertService.getAchievement(productsDetail.owner.id).then(function(data) {
            $scope.achievement = data;
         });
@@ -64,9 +64,9 @@ angular.module('xbertsApp')
       ];
 
       var title = productsDetail.title;
-      var description = productsDetail.description.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, "");
+      var description = productsDetail.description?productsDetail.description.replace(/(?:<([^>]+)>)/ig, "").replace(/(?:&[^;]{2,6};)/ig, ""):'';
       var backgroundColor = 'background-bg-light';
-      var shareImage = productsDetail.imageGroup.length > 0 ? productsDetail.imageGroup[0].imageUrls.original:productsDetail.imageUrl;
+      var shareImage = productsDetail.getCoverUrl();
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);
 
