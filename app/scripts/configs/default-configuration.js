@@ -18,7 +18,9 @@ angular.module('configuration.properties', [])
 
     // API endpoints to ignore when trying to insert request header
     requestExceptionEndpoints: [
-      'cloudfront.net'
+      'cloudfront.net',
+      'ip/',
+      'products/categories/'
     ],
 
     // API endpoints to ignore when server returns unauthorized response status
