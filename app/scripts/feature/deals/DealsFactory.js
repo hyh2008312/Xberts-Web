@@ -16,6 +16,7 @@ angular.module('xbertsApp')
 
     this.updateActiveTabOnSearch = function(scope, array) {
       var tab = $location.search().tab;
+      $rootScope.dealsTab = tab;
       scope.selectedIndex = parseInt(array.findIndex(function(x) {
         return x.value == tab;
       }));

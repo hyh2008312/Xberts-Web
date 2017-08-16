@@ -1,4 +1,4 @@
-<div class="xb-deals-categories xb-overflow-hidden" ng-if="isMobile"
+<div class="xb-deals-categories xb-overflow-hidden" ng-if="isMobile && categoryTab == 'everything'"
      md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <div class="xb-deals-categories__tabs" ng-class="{'active': category.id == categoryId}"
        ng-repeat="category in categories track by $index"
@@ -27,7 +27,7 @@
     </md-icon>
   </div>
 </div>
-<div class="xb-deals-categories" ng-if="!isMobile">
+<div class="xb-deals-categories" ng-if="!isMobile || categoryTab != 'everything'">
   <div class="xb-deals-categories__tabs" ng-class="{'active': category.id == categoryId}"
        ng-repeat="category in categories track by $index"
        ng-click="onCategoryChange({$index: $index});" on-finish-render="ngRepeatFinished">

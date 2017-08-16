@@ -53,6 +53,10 @@
       &:hover{
         opacity: 1;
       }
+
+      @include xb-xs-screen{
+        display: none;
+      }
     }
     &.rn-carousel-control-next{
       right: 32px;
@@ -74,6 +78,10 @@
       }
       &:hover{
         opacity: 1;
+      }
+
+      @include xb-xs-screen{
+        display: none;
       }
     }
   }
