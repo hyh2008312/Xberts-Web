@@ -1,5 +1,6 @@
 angular.module('xbertsApp')
-  .directive('dealsCategory', ['DealsService','$mdMedia','BrowserUtil',function (DealsService,$mdMedia,BrowserUtil) {
+  .directive('dealsCategory', ['DealsService','$mdMedia','BrowserUtil',
+    function (DealsService,$mdMedia,BrowserUtil) {
     return {
       restrict: 'E',
       scope: {
@@ -42,7 +43,7 @@ angular.module('xbertsApp')
           if(scope.page > scope.categories.length / 3) {
             scope.page = Math.floor(scope.categories.length / 3);
           }
-          angular.element('.xb-deals-categories').animate({
+          element.find('.xb-main-deals').animate({
             scrollLeft:3 * scope.page * width + 'px'
           },300);
 
@@ -54,7 +55,7 @@ angular.module('xbertsApp')
           if(scope.page < 0) {
             scope.page = 0;
           }
-          angular.element('.xb-deals-categories').animate({
+          element.find('.xb-main-deals').animate({
             scrollLeft:3 * scope.page * width + 'px'
           },300);
         };

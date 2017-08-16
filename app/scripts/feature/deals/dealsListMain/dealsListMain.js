@@ -45,32 +45,29 @@ angular.module('xbertsApp')
 
           scope.isMobile = BrowserUtil.isIos();
 
-          if(scope.isMobile) {
-            scope.onSwipeLeft = function() {
-              var width = 168;
-              scope.page++;
-              if(scope.page > scope.deals.length / 2) {
-                scope.page = Math.floor(scope.deals.length / 2);
-              }
-              element.find('.xb-main-deals').animate({
-                scrollLeft:2 * scope.page * width + 'px'
-              },300);
+          scope.onSwipeLeft = function() {
+            var width = 168;
+            scope.page++;
+            if(scope.page > scope.deals.length / 2) {
+              scope.page = Math.floor(scope.deals.length / 2);
+            }
+            element.find('.xb-main-deals').animate({
+              scrollLeft:2 * scope.page * width + 'px'
+            },300);
 
-            };
+          };
 
-            scope.onSwipeRight= function() {
-              var width = 168;
-              scope.page--;
-              if(scope.page < 0) {
-                scope.page = 0;
-              }
-              element.find('.xb-main-deals').animate({
-                scrollLeft:2 * scope.page * width + 'px'
-              },300);
+          scope.onSwipeRight= function() {
+            var width = 168;
+            scope.page--;
+            if(scope.page < 0) {
+              scope.page = 0;
+            }
+            element.find('.xb-main-deals').animate({
+              scrollLeft:2 * scope.page * width + 'px'
+            },300);
 
-            };
-          }
-
+          };
         }
       }
     }]);
