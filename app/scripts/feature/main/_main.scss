@@ -1,4 +1,3 @@
-
 .xb-top-banner-container{
   position: relative;
   display: block;
@@ -28,6 +27,53 @@
       &.active {
         background-color: $primaryColor;
         color: $primaryColor;
+      }
+    }
+  }
+  .rn-carousel-control{
+    top: 50%;
+    &.rn-carousel-control-prev{
+      left: 32px;
+      width: 64px;
+      height: 64px;
+      background-color: rgba(255,255,255,.12);
+      display: block;
+      border-radius: 50%;
+      text-align: center;
+      overflow: hidden;
+      opacity: 0;
+      &:before{
+        content: '';
+        width: 64px;
+        height: 64px;
+        background: url("https://xberts.imgix.net/static/icon/70781863-b7ca-43f3-a9a2-b258e440182f.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=70d79c94ab2b81092f2d1f865d9aef0c")
+        center / 100% no-repeat ;
+        display: block;
+      }
+      &:hover{
+        opacity: 1;
+      }
+    }
+    &.rn-carousel-control-next{
+      right: 32px;
+      width: 64px;
+      height: 64px;
+      background-color: rgba(255,255,255,.12);
+      display: block;
+      border-radius: 50%;
+      text-align: center;
+      overflow: hidden;
+      opacity: 0;
+      &:before{
+        content: '';
+        width: 64px;
+        height: 64px;
+        background: url("https://xberts.imgix.net/static/icon/4aca713d-ac75-472a-9a23-ccbf0851e955.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=43343a8990d6182d8008f0cca1a63dde")
+        center / 100% no-repeat ;
+        display: block;
+      }
+      &:hover{
+        opacity: 1;
       }
     }
   }
