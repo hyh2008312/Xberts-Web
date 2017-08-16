@@ -9,7 +9,7 @@ angular.module('xbertsApp')
     var title = report.title;
     var description = report.description;
     var backgroundColor = 'background-bg-white';
-    var shareImage = report.image;
+    var shareImage = report.image_origin;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
     // FAB Speed Dial Component
