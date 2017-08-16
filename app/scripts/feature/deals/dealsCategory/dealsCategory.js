@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('dealsCategory', ['DealsService','$mdMedia','BrowserUtil',
-    function (DealsService,$mdMedia,BrowserUtil) {
+  .directive('dealsCategory', ['DealsService','$mdMedia',
+    function (DealsService,$mdMedia) {
     return {
       restrict: 'E',
       scope: {
@@ -34,31 +34,6 @@ angular.module('xbertsApp')
             scope.page = Math.floor(index / 4);
           }
         });
-
-        scope.isMobile = BrowserUtil.isIos();
-
-        scope.onSwipeLeft = function() {
-          var width = !$mdMedia('xs') ? 100: 88;
-          scope.page++;
-          if(scope.page > scope.categories.length / 4) {
-            scope.page = Math.floor(scope.categories.length / 4);
-          }
-          element.find('.xb-deals-categories').animate({
-            scrollLeft:4 * scope.page * width + 'px'
-          },300);
-
-        };
-
-        scope.onSwipeRight= function() {
-          var width = !$mdMedia('xs') ? 100: 88;
-          scope.page--;
-          if(scope.page < 0) {
-            scope.page = 0;
-          }
-          element.find('.xb-deals-categories').animate({
-            scrollLeft:4 * scope.page * width + 'px'
-          },300);
-        };
 
       }
     }
