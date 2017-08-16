@@ -96,13 +96,13 @@ angular.module('xbertsApp')
       }, {
         id: '11',
         src: 'https://xberts.imgix.net/static/logo/95f416b3-3627-4ecb-9250-56c5d23f603c.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=37cf18ce3e37da7b1bac2b2a23676453',
-        name: 'Exercise',
-        value: 'exercise'
+        name: 'Fitness Exercise',
+        value: 'fitness_exercise'
       }, {
         id: '5',
         src: 'https://xberts.imgix.net/static/logo/7e807936-55f5-46e1-8c3f-f59c3d267fb0.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=e293586305571a2611bc78ff729d125b',
-        name: 'Outdoor',
-        value: 'outdoor'
+        name: 'Outdoor Travel',
+        value: 'outdoor_travel'
       }, {
         id: '12',
         src: 'https://xberts.imgix.net/static/logo/39253a68-8438-45bb-aadd-c8045a171fb3.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=6f2214fc7bd3a227b2cac289541dc432',

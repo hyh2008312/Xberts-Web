@@ -250,3 +250,9 @@ p,.md-body-1 {
 .xb-overflow-hidden{
   overflow: hidden !important;
 }
+
+md-content{
+  *{
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
