@@ -19,7 +19,7 @@ angular.module('xbertsApp')
         angular.forEach(DealsService.getCategoryList,function(e, i) {
           if(e.value == scope.categoryTab) {
             index = i;
-            scope.page = Math.floor(index / 3);
+            scope.page = Math.floor(index / 4);
           }
         });
 
@@ -27,11 +27,11 @@ angular.module('xbertsApp')
           //you also get the actual event object
           //do stuff, execute functions -- whatever...
           var width = !$mdMedia('xs') ? 100: 88;
-          angular.element('.xb-deals-categories').animate({
+          element.find('.xb-deals-categories').animate({
             scrollLeft:index * width + 'px'
           },0);
           if($mdMedia('xs')) {
-            scope.page = Math.floor(index / 3);
+            scope.page = Math.floor(index / 4);
           }
         });
 
@@ -40,11 +40,11 @@ angular.module('xbertsApp')
         scope.onSwipeLeft = function() {
           var width = !$mdMedia('xs') ? 100: 88;
           scope.page++;
-          if(scope.page > scope.categories.length / 3) {
-            scope.page = Math.floor(scope.categories.length / 3);
+          if(scope.page > scope.categories.length / 4) {
+            scope.page = Math.floor(scope.categories.length / 4);
           }
-          element.find('.xb-main-deals').animate({
-            scrollLeft:3 * scope.page * width + 'px'
+          element.find('.xb-deals-categories').animate({
+            scrollLeft:4 * scope.page * width + 'px'
           },300);
 
         };
@@ -55,8 +55,8 @@ angular.module('xbertsApp')
           if(scope.page < 0) {
             scope.page = 0;
           }
-          element.find('.xb-main-deals').animate({
-            scrollLeft:3 * scope.page * width + 'px'
+          element.find('.xb-deals-categories').animate({
+            scrollLeft:4 * scope.page * width + 'px'
           },300);
         };
 

@@ -717,10 +717,20 @@
   @include xb-xs-screen{
     padding-bottom: 24px;
   }
+  &__clear{
+    @include xb-xs-screen{
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
 }
 .xb-main-deals{
   overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0 10px;
   >div{
+    display: inline-block;
+    vertical-align: top;
     position: relative;
     width: 283px !important;
     max-width: 283px !important;

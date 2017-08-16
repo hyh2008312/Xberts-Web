@@ -168,6 +168,12 @@
       padding: 0 8px 8px;
     }
   }
+  &__content-1{
+    height: 140px;
+    @include xb-xs-screen{
+      height: 129px;
+    }
+  }
   &__tag{
     margin-top: 6px;
     @include xb-xs-screen{
@@ -633,11 +639,17 @@
 
 .xb-deals-categories {
   overflow-y: hidden;
+  white-space: nowrap;
+  @include xb-xs-screen{
+    padding: 0 10px;
+  }
   &__tabs {
     position: relative;
     margin-right: 16px;
     padding-bottom: 16px;
     width: 84px;
+    display: inline-block;
+    vertical-align: top;
     > div {
       width: 84px;
       height: 84px;
@@ -652,6 +664,9 @@
         width: 100%;
         z-index: 0;
       }
+    }
+    &:last-child{
+      margin-right: 0;
     }
 
     &-mask{
