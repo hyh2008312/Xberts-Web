@@ -122,20 +122,21 @@ angular
         }
       })
       .state('application.blogReport', {
-        url: '/reviews/:reportId',
+        url: '/articles/:blogId',
         templateUrl: 'scripts/feature/review/reviewDetail/reviewDetail.html',
         controller: 'ReviewDetailCtrl',
         resolve: {
-          report: ['ReportService', '$stateParams', function (ReportService, $stateParams) {
-            return ReportService.getReport($stateParams.reportId);
+          report: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getBlogDetail($stateParams.blogId);
           }],
           blogPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
-            return DealsService.getRecommendList($stateParams.reportId);
+            return [];
+            // return DealsService.getRecommendList($stateParams.reportId);
           }]
         }
       })
       .state('application.campaignreviews', {
-        url: "/reviews",
+        url: "/articles",
         templateUrl: 'scripts/feature/review/report/report-list.html',
         controller: 'ReportListCtrl',
         reloadOnSearch: false,
@@ -146,6 +147,8 @@ angular
                 name: 'all_review_list_featured_top',
                 objClass:MainModel,
                 params: {
+                  edit_status:'PUBLISHED',
+                  approval_status:'APPROVED',
                   page_size: 4
                 },
                 fetchFunction: MainService.getReviewsList
@@ -270,7 +273,7 @@ angular
         }
       })
       .state('application.protected.reviewReport', {
-        url: '/reviews/edit',
+        url: '/articles/edit',
         templateUrl: 'scripts/feature/review/reviewReport/editReportCtrl.html',
         controller: 'EditReportCtrl'
       });

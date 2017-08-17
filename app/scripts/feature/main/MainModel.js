@@ -10,13 +10,10 @@ function MainModel() {
 
   MainModel.prototype = {
     getReviewer: function () {
-      return this.applicant.reviewer;
+      return this.owner;
     },
     getReviewBadgePoint: function() {
       return this.applicant.reviewer.badge_point;
-    },
-    getReview: function() {
-      return this.applicant.review;
     },
     offPercentage: function () {
       if (this.flashsale) {

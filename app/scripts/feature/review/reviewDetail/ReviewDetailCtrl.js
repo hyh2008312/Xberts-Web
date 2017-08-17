@@ -6,13 +6,15 @@ angular.module('xbertsApp')
     function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,blogPaginator) {
       $scope.report = report;
 
+      $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === report.owner.id;
+
       $scope.expert = {
-        userId: report.getReviewerId()
+        userId: report.owner.id
       };
 
       $scope.blogPaginator = blogPaginator;
 
-      ExpertService.getAchievement(report.getReviewerId()).then(function(data) {
+      ExpertService.getAchievement(report.owner.id).then(function(data) {
         $scope.achievement = data;
       });
 

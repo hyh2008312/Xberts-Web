@@ -2,7 +2,7 @@ angular.module('xbertsApp')
   .service('MainService', ['$resource','MainModel','API_BASE_URL',function ($resource, MainModel, API_BASE_URL) {
 
     var BannerResource = $resource(API_BASE_URL + '/contents/mainPageTopBanners/',null);
-    var ReportResource = $resource(API_BASE_URL + '/review/reports/:id/');
+    var ReportResource = $resource(API_BASE_URL + '/articles/:id/',{id:'@id'});
 
     this.bannerList = null;
 
@@ -20,6 +20,7 @@ angular.module('xbertsApp')
     this.getReviewsList = function (params) {
       return ReportResource.get(params).$promise.then(MainModel.buildPageList);
     };
+
     this.getRecommendedReviewers = function (params) {
       return $resource(API_BASE_URL + '/xberts/reviewers/').get(params).$promise.then(MainModel.buildPageList);
     };

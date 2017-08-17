@@ -9,6 +9,9 @@ angular.module('xbertsApp')
       name: 'all_review_list',
       objClass:MainModel,
       params: {
+        is_recommended:'False',
+        edit_status:'PUBLISHED',
+        approval_status:'APPROVED',
         page_size: 4
       },
       fetchFunction: MainService.getReviewsList
@@ -21,6 +24,9 @@ angular.module('xbertsApp')
       objClass: MainModel,
       pageNumber: 3,
       params: {
+        is_recommended:'True',
+        edit_status:'PUBLISHED',
+        approval_status:'APPROVED',
         page_size: 2
       },
       fetchFunction: MainService.getReviewsList
@@ -58,9 +64,8 @@ angular.module('xbertsApp')
 
     };
 
-    var title = 'Reviews – Unbiased product reviews from our community';
-    var description = 'Explore new products reviewed by our community users. Share the good ones with your friends so ' +
-      'they can make smarter purchasing decisions.';
+    var title = 'Articles – Inspirations from Savvy Shoppers';
+    var description = 'Follow our savvy shoppers to get the best value for your money.';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

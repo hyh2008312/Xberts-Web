@@ -6,7 +6,7 @@
       <div ui-sref-active="active" ui-sref="application.productDeals">Discover</div>
       <div ui-sref-active="active" ui-sref="application.askQuestionMain">Ask</div>
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Crowdtesting</div>
-      <div ui-sref-active="active" ui-sref="application.campaignreviews">Reviews</div>
+      <div ui-sref-active="active" ui-sref="application.campaignreviews">Articles<div></div></div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
     </div>
     <xb-search flex></xb-search>
@@ -48,7 +48,7 @@
     <h2 ng-if="state.current.name == 'application.productDeals'" flex>Discover</h2>
     <h2 ng-if="state.current.name == 'application.askQuestionMain'" flex>Ask</h2>
     <h2 ng-if="state.current.name == 'application.testingcampaigns'" flex>Crowdtesting</h2>
-    <h2 ng-if="state.current.name == 'application.campaignreviews'" flex>Reviews</h2>
+    <h2 ng-if="state.current.name == 'application.campaignreviews'" flex>Articles</h2>
     <h2 ng-if="state.current.name == 'application.creditMain'" flex>Perks</h2>
     <h2 ng-if="state.current.name == 'application.search'" flex>Search</h2>
     <h2 ng-if="state.current.name == 'application.signup'" flex>Sign up</h2>
@@ -83,7 +83,7 @@
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
-    || state.current.name == 'application.answerQuestionDetail'" flex>{{pageSettings._title}}</h2>
+    || state.current.name == 'application.answerQuestionDetail' || state.current.name == 'application.blogReport' " flex>{{pageSettings._title}}</h2>
     <xb-search></xb-search>
   </div>
 </md-toolbar>
@@ -94,12 +94,11 @@
 
   <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
-    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()"
-         layout="row" layout-align="start start">Discover</div>
-    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()"
-         layout="row" layout-align="start start">Ask</div>
+    <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()">Discover</div>
+    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()">Ask</div>
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Crowdtesting</div>
-    <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()">Reviews</div>
+    <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()"
+         layout="row" layout-align="start start">Articles<span flex="none"></span></div>
     <div ui-sref-active="active" ui-sref="application.creditMain" ng-click="close()">Perks</div>
   </div>
   <div ng-if="!user.isAuth()" class="xberts-navbar-moblie-sidenav__bottom-container" flex="noshrink" layout="column" layout-align="end start">
