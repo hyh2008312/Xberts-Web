@@ -9,6 +9,9 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/answerItem/answer-item.html',
       link: function (scope, element, attrs, ctrls) {
         scope.user = $rootScope.user;
+
+        scope.admin = AskService.order == 3;
+
         scope.onToggleDown = function(answer) {
           answer.commentToggle = !answer.commentToggle;
         };

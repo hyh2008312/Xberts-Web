@@ -11,6 +11,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.admin = AskService.order == 3;
+
         var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
 
         angular.element('.xb-body-view').bind("scroll", function(e) {
@@ -197,6 +199,8 @@ angular.module('xbertsApp')
             // User clicked outside or hit escape
           });
         };
+
+        scope.user = $rootScope.user;
       }
     }
   }]);

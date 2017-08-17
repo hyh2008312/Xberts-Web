@@ -21,9 +21,14 @@
       <md-button class="md-warn md-margin-clear" ng-disabled="answer.disabled"
                  ng-if="!(user.isAuth() && user.getUserId() === answer.getAnswerUserId()) && answer.owner.currentUser.follow" ng-click="addFollow(answer);">Following</md-button>
     </div>
-    <div ng-if="answer.isBestAnswer" class=" xb-ask-list__best-answer" layout="row" layout-align="start center">
-      <i class="iconfontXberts icon-pic-best-answer1"></i>
-      <span class="xb-bold md-margin-left-1">Top Answer</span>
+    <div layout="row" layout-align="space-between center">
+      <div ng-if="answer.isBestAnswer" class="xb-ask-list__best-answer" layout="row" layout-align="start center">
+        <i class="iconfontXberts icon-pic-best-answer1"></i>
+        <span class="xb-bold md-margin-left-1">Top Answer</span>
+      </div>
+      <md-checkbox aria-label="111" class="md-margin-top-2" hide-xs ng-if="user.isStaff() && admin">
+        Selected as Top Answer
+      </md-checkbox>
     </div>
     <div class="xb-ask-list__answer-content md-body-1 md-dark-primary" ng-bind-html="answer.description | trust"
          ng-bind-html-unsafe="whatever" add-link-target></div>

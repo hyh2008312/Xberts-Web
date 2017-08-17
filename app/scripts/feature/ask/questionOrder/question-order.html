@@ -1,5 +1,17 @@
 <div class="xb-ask-order" layout="row" layout-align="start center">
-  <md-button ng-repeat="order in orderList track by $index" ng-class="{true:'active'}[index == $index]" ng-click="changeOrder($index)">
+  <md-button ng-repeat="order in orderList track by $index" ng-class="{true:'active'}[index == $index]" ng-click="changeOrder($index)"
+    ng-if="!user.isStaff() && $index < 3">
+    <div layout="row" layout-align="center center">
+      {{order}}
+      <div flex="none" layout="row" layout-align="center center" ng-if="$index>=1">
+        <img class="xb-ask-order__img-1" hide-xs ng-if="$index == 1" src="https://xberts.imgix.net/static/icon/e6bd3e2f-d951-4e79-bdbd-1cdf047090d1.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=8ffae9afb497d9abe0ef9169ec558a59" />
+        <img class="xb-ask-order__img-2" hide-xs ng-if="$index == 2" src="https://xberts.imgix.net/static/icon/efb7a548-80ff-4f10-8a6d-182e86d1d20b.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=acf5776098a60f6a04e70cb3f9dc117c" />
+      </div>
+    </div>
+    <div ng-if="index == $index" class="tab-triangle"></div>
+  </md-button>
+  <md-button ng-repeat="order in orderList track by $index" ng-class="{true:'active'}[index == $index]" ng-click="changeOrder($index)"
+             ng-if="user.isStaff()">
     <div layout="row" layout-align="center center">
       {{order}}
       <div flex="none" layout="row" layout-align="center center" ng-if="$index>=1">

@@ -16,6 +16,7 @@
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
           <question-item ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"></question-item>
           <question-item ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"></question-item>
+          <question-item ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"></question-item>
           <load-more layout="row" layout-align="center center" ng-if="askCtrl.askPaginator.loading"></load-more>
         </div>
       </div>
