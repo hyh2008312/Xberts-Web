@@ -2,10 +2,6 @@
   <div flex-gt-xs="50" ng-class="{true:'xb-main-col__left',false:''}[$index==1]" ng-repeat="trial in trials track by $index" ng-if="$index <= 1">
     <div class="xb-main-col__container xb-main-col__container-1 xb-main-col__container-bottom">
       <div class="xb-main-col__value" layout="row" layout-align="start center">
-        <span>
-          <span ng-if="!trial.isFlashsale()">Free</span>
-          <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
-        </span>
         <span ng-class="{true:'xb-main-col__promotion',false:''}[trial.tags.toLowerCase() == 'promotion'] + {true:'xb-main-col__launch',false:''}[trial.tags.toLowerCase() == 'launch']"
               ng-if="trial.tags">
           <span>{{trial.tags}}</span>
@@ -37,10 +33,6 @@
     <div class="xb-main-col__container">
       <div class="xb-main-col__value" layout-gt-sm="row" layout-align-gt-sm="start center"
            layout-sm="column" layout-align-sm="start start" layout-xs="row" layout-align-xs="start center">
-        <span>
-          <span ng-if="!trial.isFlashsale()">Free</span>
-          <span ng-if="trial.isFlashsale()">{{ trial.offPercentage() }}%Off</span></span>
-        </span>
         <span hide-sm ng-class="{true:'xb-main-col__promotion',false:''}[trial.tags.toLowerCase() == 'promotion'] + {true:'xb-main-col__launch',false:''}[trial.tags.toLowerCase() == 'launch']"
              ng-if="trial.tags">
           <span>{{trial.tags}}</span>
