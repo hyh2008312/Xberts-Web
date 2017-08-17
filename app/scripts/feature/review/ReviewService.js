@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .service('ReviewService', ['$resource', 'API_BASE_URL', '$q', '$rootScope', '$state', 'growl', 'Review', 'Report',
-    function ($resource, API_BASE_URL, $q, $rootScope, $state, growl, Review, Report) {
+    'MainModel',
+    function ($resource, API_BASE_URL, $q, $rootScope, $state, growl, Review, Report,MainModel) {
     var self = this;
 
     var ReviewResource = $resource(API_BASE_URL + '/review/reviews/:id/', {id: '@id'}, {'patch': {method: 'PATCH'}});
@@ -65,11 +66,15 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/review/applicants/').get(params).$promise.then(Review.buildPageList);
     };
 
+    this.getArticleList = function (params) {
+      return $resource(API_BASE_URL + '/articles/').get(params).$promise.then(MainModel.buildPageList);
+    };
+
     self.postBlog = function(params) {
       return $resource(API_BASE_URL + '/blogs/').save(params).$promise;
     };
 
     self.getBlogDetail = function (reviewId) {
-      return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'}).get({id:reviewId}).$promise;
+      return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'}).get({id:reviewId}).$promise.then(MainModel.build);
     };
   }]);

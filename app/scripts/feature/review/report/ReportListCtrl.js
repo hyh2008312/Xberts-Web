@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-.controller('ReportListCtrl', ['$scope', '$rootScope', 'reviewsFeaturedTop', 'MainService', 'MainModel','Paginator','ExpertService',
-  function ($scope, $rootScope, reviewsFeaturedTop, MainService, MainModel,Paginator,ExpertService) {
+.controller('ReportListCtrl', ['$scope', '$rootScope', 'reviewsFeaturedTop', 'ReviewService', 'MainModel','Paginator','ExpertService',
+  function ($scope, $rootScope, reviewsFeaturedTop, ReviewService, MainModel,Paginator,ExpertService) {
     $scope.reviewsFeaturedTop = reviewsFeaturedTop;
 
     var par = {
@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         approval_status:'APPROVED',
         page_size: 4
       },
-      fetchFunction: MainService.getReviewsList
+      fetchFunction: ReviewService.getArticleList
     };
     $scope.reviews = new Paginator(par);
     $scope.reviews.load();
@@ -29,7 +29,7 @@ angular.module('xbertsApp')
         approval_status:'APPROVED',
         page_size: 2
       },
-      fetchFunction: MainService.getReviewsList
+      fetchFunction: ReviewService.getArticleList
     };
     $scope.reviewsFeatured = new Paginator(par1);
     $scope.reviewsFeatured.load();
@@ -62,6 +62,13 @@ angular.module('xbertsApp')
 
       });
 
+    };
+
+    $scope.addArticles = function() {
+      if(!$rootScope.user.authRequired()) {
+        return;
+      }
+      $state.go('application.protected.reviewReport');
     };
 
     var title = 'Articles – Inspirations from Savvy Shoppers';

@@ -141,8 +141,8 @@ angular
         controller: 'ReportListCtrl',
         reloadOnSearch: false,
         resolve: {
-          reviewsFeaturedTop: ['Paginator', 'MainService', 'MainModel',
-            function (Paginator, MainService, MainModel) {
+          reviewsFeaturedTop: ['Paginator', 'ReviewService', 'MainModel',
+            function (Paginator, ReviewService, MainModel) {
               var par = {
                 name: 'all_review_list_featured_top',
                 objClass:MainModel,
@@ -151,7 +151,7 @@ angular
                   approval_status:'APPROVED',
                   page_size: 4
                 },
-                fetchFunction: MainService.getReviewsList
+                fetchFunction: ReviewService.getArticleList
               };
               return new Paginator(par).load();
             }]
@@ -273,7 +273,7 @@ angular
         }
       })
       .state('application.protected.reviewReport', {
-        url: '/articles/edit',
+        url: '/articles/post/edit',
         templateUrl: 'scripts/feature/review/reviewReport/editReportCtrl.html',
         controller: 'EditReportCtrl'
       });

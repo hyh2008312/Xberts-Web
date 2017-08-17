@@ -1,19 +1,25 @@
 angular.module('xbertsApp')
-  .factory('MainModel', MainModel);
+  .factory('MainModel', ['$state',MainModel]);
 
 
-function MainModel() {
+function MainModel($state) {
 
   function MainModel(data) {
     angular.extend(this, data);
   }
 
   MainModel.prototype = {
-    getReviewer: function () {
+    getOwner: function () {
       return this.owner;
+    },
+    getReviewer: function () {
+      return this.applicant.reviewer;
     },
     getReviewBadgePoint: function() {
       return this.applicant.reviewer.badge_point;
+    },
+    getReview: function() {
+      return this.applicant.review;
     },
     offPercentage: function () {
       if (this.flashsale) {
@@ -27,6 +33,9 @@ function MainModel() {
     },
     isFlashsale: function () {
       return this.flashsale && this.flashsale.shopGatewayInventoryId !== '0';
+    },
+    getShareUrl: function(id) {
+      return $state.href("application.blogReport", {blogId:id},{absolute:true});
     }
   };
 

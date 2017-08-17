@@ -1,5 +1,5 @@
 angular.module('xbertsApp')
-  .directive('reviewsList', function () {
+  .directive('reviewsMainList', function () {
     return {
       restrict: 'E',
       scope: {

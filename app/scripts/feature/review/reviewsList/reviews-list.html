@@ -39,12 +39,12 @@
     </div>
   </div>
   <div layout="row" class="xb-deals-list__head">
-    <avatar-Img class="xb-pointer" flex="none" src="review.getReviewer().avatar" name="review.getReviewer().fullname"
-                ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-Img>
+    <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().fullname"
+                ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
     <div layout="column" layout-align="space-between start">
       <div layout="row" layout-align="start center">
-        <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getReviewer().id })">{{review.getReviewer().first_name}}</a>
-        <credit-badge class="credit-badge" points="review.getReviewer().badge_point"></credit-badge>
+        <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
+        <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
       </div>
       <div class="md-dark-secondary"><span am-time-ago='review.created'></span></div>
     </div>
@@ -93,20 +93,20 @@
       </div>
     </div>
     <div layout="row" class="xb-deals-list__head">
-      <avatar-Img class="xb-pointer" flex="none" src="review.getReviewer().avatar" name="review.getReviewer().fullname"
-                  ui-sref="application.expert({ expertId:review.getReviewer().id })"></avatar-Img>
+      <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().fullname"
+                  ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
       <div layout="column" layout-align="space-between start" flex>
         <div layout="row" layout-align="start center">
-          <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getReviewer().id })">{{review.getReviewer().first_name}}</a>
-          <credit-badge class="credit-badge" points="review.getReviewer().badge_point"></credit-badge>
+          <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
+          <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
         </div>
         <div class="md-dark-secondary"><span am-time-ago='review.created'></span></div>
       </div>
       <md-button hide class="md-primary md-margin-clear" ng-disabled="review.disabled"
-                 ng-if="!(user.isAuth() && user.getUserId() === review.getReviewer().id) && !review.getReviewer().userprofile.current_user.follow"
+                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && !review.getOwner().userprofile.current_user.follow"
                  ng-click="onReviewsFollow({review:review});">Follow</md-button>
       <md-button hide class="md-warn md-margin-clear" ng-disabled="review.disabled"
-                 ng-if="!(user.isAuth() && user.getUserId() === review.getReviewer().id) && review.getReviewer().userprofile.current_user.follow"
+                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && review.getOwner().userprofile.current_user.follow"
                  ng-click="onReviewsFollow({review:review});">Following</md-button>
     </div>
   </div>

@@ -23,7 +23,7 @@
           <div class="xb-bold"
                ng-class="{true:'xb-reviews-detail__color',false:''}[report.owner.current_user.follow == true]
                + {true:' xb-reviews-detail__color-1',false:''}[!report.owner.current_user.follow]
-               + {true:' xb-reviews-detail__color-2',false:''}[!report.owner.current_user.follow]">{{achievement.followersAmount}}</div>
+               + {true:' xb-reviews-detail__color-2',false:''}[isCurrentUser]">{{achievement.followersAmount}}</div>
           <xb-follow class="" follow="report.owner.current_user.follow" user-id="report.owner.id"
                      expert="expert" achievement="achievement"></xb-follow>
           <md-button ng-if="isCurrentUser" ng-disabled="true">Follow</md-button>
@@ -55,7 +55,7 @@
           <md-fab-actions>
             <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
                        socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
-                       socialshare-media="{{report.getImageOriginal()}}"  socialshare-source="{{report.getImageOriginal()}}"
+                       socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
                        socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
               <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
             </md-button>
@@ -64,7 +64,7 @@
         <div layout="row" layout-align="end center" hide-xs flex>
           <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
                      socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
-                     socialshare-media="{{report.getImageOriginal()}}"  socialshare-source="{{report.getImageOriginal()}}"
+                     socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
                      socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
             <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
           </md-button>
