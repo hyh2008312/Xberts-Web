@@ -121,35 +121,37 @@ angular
           }]
         }
       })
+      .state('application.blogReport', {
+        url: '/reviews/:reportId',
+        templateUrl: 'scripts/feature/review/reviewDetail/reviewDetail.html',
+        controller: 'ReviewDetailCtrl',
+        resolve: {
+          report: ['ReportService', '$stateParams', function (ReportService, $stateParams) {
+            return ReportService.getReport($stateParams.reportId);
+          }],
+          blogPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
+            return DealsService.getRecommendList($stateParams.reportId);
+          }]
+        }
+      })
       .state('application.campaignreviews', {
         url: "/reviews",
         templateUrl: 'scripts/feature/review/report/report-list.html',
         controller: 'ReportListCtrl',
         reloadOnSearch: false,
         resolve: {
-          reviews: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
-            var par = {
-              name: 'all_review_list',
-              objClass:MainModel,
-              params: {
-                page_size: 12
-              },
-              fetchFunction: MainService.getReviewsList
-            };
-            return new Paginator(par).load();
-          }],
-          topReviewers: ['Paginator', 'MainService', 'MainModel', function (Paginator, MainService, MainModel) {
-            var par = {
-              name: 'top_reviewer_list',
-              objClass:MainModel,
-              params: {
-                recommended:'True',
-                page_size: 20
-              },
-              fetchFunction:MainService.getRecommendedReviewers
-            };
-            return new Paginator(par).load();
-          }]
+          reviewsFeaturedTop: ['Paginator', 'MainService', 'MainModel',
+            function (Paginator, MainService, MainModel) {
+              var par = {
+                name: 'all_review_list_featured_top',
+                objClass:MainModel,
+                params: {
+                  page_size: 4
+                },
+                fetchFunction: MainService.getReviewsList
+              };
+              return new Paginator(par).load();
+            }]
         }
       })
 

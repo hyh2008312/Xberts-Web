@@ -1,27 +1,26 @@
 <section class="xb-section" id="reviews">
   <div class="container">
-    <div class="xb-section__title">
-      <h2><span class="md-display-1">Unbiased Product Reviews from Our Community</span></h2>
-      <h3><span class="md-body-1 md-dark-secondary">Explore top rated products reviewed by our trusted users</span></h3>
-    </div>
-    <div layout="row" layout-align="start start">
-      <div class="xb-main-reviews" flex>
-        <md-card class="product-order" layout="row" layout-align="start center">
-          <md-button>Latest<div class="tab-triangle"></div></md-button>
-        </md-card>
-        <div infinite-scroll="reviews.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-             infinite-scroll-disabled="reviews.loading || !reviews.next">
-          <reviews-list reviews="reviews.items"></reviews-list>
-          <load-more layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
-        </div>
-        <div class="xb-main-reviews__bottom-btn" layout="row" layout-align="center center">
-        </div>
+    <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
+      <div class="xb-section__title">
+        <h2><span class="md-display-1">Unbiased Product Reviews from Our Community</span></h2>
+        <h3><span class="md-body-1 md-dark-secondary">Explore top rated products reviewed by our trusted users</span></h3>
       </div>
-      <div class="xb-main-reviewer" hide-sm hide-xs>
-        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
-          Top Reviewers of The Month
-        </div>
-        <top-reviewers-list reviewers="topReviewers"></top-reviewers-list>
+      <div flex="none">
+        <md-button class="md-raised md-primary" ui-sref="application.protected.reviewReport">Post Blog</md-button>
+      </div>
+    </div>
+    <div class="xb-trials">
+      <div class="md-headline xb-reviews-list__margin-top">Featured</div>
+      <reviews-list class="xb-reviews-list" reviews-featured="reviewsFeaturedTop.items"
+                    on-reviews-follow="addFollow(review)"
+                    layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></reviews-list>
+      <div class="md-headline">Latest</div>
+      <div infinite-scroll="loadNextImages()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="reviews.loading || reviewsFeatured.loading || (!reviews.next && !reviewsFeatured.next)">
+        <reviews-list class="xb-reviews-list" reviews="reviews.items" reviews-featured="reviewsFeatured.items"
+                      on-reviews-follow="addFollow(review)"
+            layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></reviews-list>
+        <load-more layout="row" layout-align="center center" ng-if="reviews.loading || reviewsFeatured.loading"></load-more>
       </div>
     </div>
   </div>

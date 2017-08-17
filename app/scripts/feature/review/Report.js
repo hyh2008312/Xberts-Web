@@ -43,6 +43,9 @@ function ReportModel() {
     getReviewerId: function () {
       return this.applicant.reviewer.id;
     },
+    getReviewerPosition: function () {
+      return this.applicant.reviewer.userprofile.position + " @ " + this.applicant.reviewer.userprofile.company;
+    },
     getScore: function () {
       var temp = [(this.presentation + this.cost_performance + this.usability) / 3] * 10;
       return Math.round(temp) / 10;

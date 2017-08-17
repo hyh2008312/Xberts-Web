@@ -34,6 +34,7 @@ angular.module('xbertsApp')
 
       this.currentPage = localStorageService.get(this.name + '_currentPage') || 0;
       this.params.page = this.currentPage + 1;
+      this.pageNumber = _params.pageNumber;
       this.next = !(localStorageService.get(this.name + '_next') === false);
       this.minSize = _params.minSize || 0;
       this.loading = false;
@@ -41,6 +42,7 @@ angular.module('xbertsApp')
 
       this.isNotLoginedLoaded = false;
       this.isLoginedLoaded = false;
+      this.setCurrentPage = false;
     }
 
     Paginator.prototype = {
@@ -61,6 +63,13 @@ angular.module('xbertsApp')
         var process = _process || [];
         var self = this;
         self.params.page = self.currentPage + 1;
+
+        if(self.pageNumber && !this.setCurrentPage) {
+          self.params.page = self.pageNumber;
+          self.currentPage = self.pageNumber - 1;
+          this.setCurrentPage = true;
+        }
+
         self.fetchFunction(self.params).then(function (resource) {
           self.count = resource.count;
           self.currentPage += 1;
