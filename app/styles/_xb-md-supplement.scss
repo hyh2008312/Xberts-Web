@@ -251,3 +251,8 @@ p,.md-body-1 {
   overflow: hidden !important;
 }
 
+.material-icons {
+  /* Support for  UC ! */
+  text-rendering: optimizeLegibility;
+
+}

@@ -22,7 +22,7 @@ angular.module('xbertsApp')
 
       $scope.selectedIndex = 0;
 
-      var tabIndexToParam = ['profile', 'social', 'setting'];
+      var tabIndexToParam = ['profile', 'setting'];
 
       var updateActiveTabOnSearch = function () {
         var tab = $location.search().tab;
@@ -45,9 +45,7 @@ angular.module('xbertsApp')
         }, 0);
       };
 
-      var title = '';
-      var description = '';
+      var title = 'Xberts - Edit Profile and Account Settngs';
       var backgroundColor = 'background-bg-light';
-      var shareImage = '';
-      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
+      $rootScope.pageSettings.setPage(title, '', backgroundColor, null, true);
     }]);
