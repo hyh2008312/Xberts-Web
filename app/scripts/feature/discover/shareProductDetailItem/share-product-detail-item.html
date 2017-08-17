@@ -65,13 +65,13 @@
         {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
       </span>
     </div>
-    <div class="md-margin-right-2" hide-xs>{{product.getDomain()}}</div>
+    <div class="md-margin-right-2" hide-xs>{{product.getDomain().toUpperCase()}}</div>
     <md-button hide-xs class="md-primary md-raised xb-deals-detail__purchase-btn" ng-click="product.buyNow('deals-item');"
                target="_blank">SEE DETAIL</md-button>
 
     <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
-        <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
+        <div class="md-margin-right-2" flex>{{product.getDomain().toUpperCase()}}</div>
         <md-button class="md-primary md-raised xb-deals-detail__purchase-btn"
                    target="_blank" ng-click="product.buyNow('deals-item');">
           SEE DETAIL
@@ -80,7 +80,7 @@
     </div>
   </md-card-actions>
   <div class="product__action-1" layout="row" layout-align="start center" hide-gt-xs ng-if="isFacebookApp">
-    <div class="md-margin-right-2" flex>{{product.getDomain()}}</div>
+    <div class="md-margin-right-2" flex>{{product.getDomain().toUpperCase()}}</div>
     <md-button class="md-primary md-raised xb-deals-detail__purchase-btn" ng-if="product.getSharePrice()"
                ng-click="product.buyNow('deals-item');" target="_blank">SEE DETAIL</md-button>
   </div>
