@@ -23,7 +23,7 @@
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
-        <img src="{{item.getFixedImageUrl()}}" title="{{item.title}}"/>
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
             <md-icon >play_arrow</md-icon>
@@ -43,7 +43,7 @@
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
-        <img src="{{item.getFixedImageUrl()}}" title="{{item.title}}"/>
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
             <md-icon >play_arrow</md-icon>
@@ -113,7 +113,7 @@
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
-        <img src="{{item.getFixedImageUrl()}}" title="{{item.title}}"/>
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
             <md-icon >play_arrow</md-icon>
@@ -133,7 +133,7 @@
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
-        <img src="{{item.getFixedImageUrl()}}" title="{{item.title}}"/>
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
             <md-icon >play_arrow</md-icon>
