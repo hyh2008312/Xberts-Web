@@ -37,8 +37,8 @@ angular.module('xbertsApp')
       $scope.reviewsFeatured.load();
 
       $scope.loadNextImages = function() {
-        $scope.reviews.loadNext().then(function() {
-          $scope.reviewsFeatured.loadNext();
+        $scope.reviewsFeatured.loadNext().then(function() {
+          $scope.reviews.loadNext();
         });
       };
     }

@@ -14,10 +14,10 @@ angular.module('xbertsApp')
         scope.user = $rootScope.user;
 
         scope.changeOrder  = function($index) {
-          return Math.floor($index / 4) - 20;
+          return Math.floor($index / 4);
         };
         scope.changeOrder1  = function($index) {
-          return Math.floor($index / 2) - 20;
+          return Math.floor($index / 2);
         };
 
       }
