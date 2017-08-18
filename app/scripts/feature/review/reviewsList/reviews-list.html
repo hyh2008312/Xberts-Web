@@ -1,5 +1,5 @@
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviewsFeatured track by $index"
-     layout-gt-xs="row" layout-align="start stretch" reviews-repeat-order index="changeOrder1($index)">
+    layout-xs="column" layout-align-xs="start start" layout-gt-xs="row" layout-align-gt-xs="start stretch" reviews-repeat-order index="changeOrder1($index)">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>

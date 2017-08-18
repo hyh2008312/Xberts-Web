@@ -174,9 +174,9 @@
 
     @include resetBorder();
 
-    flex: 1 1 480px !important;
-    -webkit-flex: 1 1 480px !important;
     @include xb-lg-screen{
+      flex: 1 1 480px !important;
+      -webkit-flex: 1 1 480px !important;
       max-width: 49.3% !important;
       min-width: 49.3%;
     }
