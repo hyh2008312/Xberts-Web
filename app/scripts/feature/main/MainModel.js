@@ -21,6 +21,15 @@ function MainModel($state) {
         return this.owner.company;
       }
     },
+    getPosition: function() {
+      if(this.owner.userprofile.position && this.owner.userprofile.company) {
+        return this.owner.userprofile.position + " @ " + this.owner.userprofile.company;
+      } else if(this.owner.userprofile.position && !this.owner.userprofile.company) {
+        return this.owner.userprofile.position;
+      } else if(this.owner.userprofile.company) {
+        return this.owner.userprofile.company;
+      }
+    },
     getReviewer: function () {
       return this.applicant.reviewer;
     },

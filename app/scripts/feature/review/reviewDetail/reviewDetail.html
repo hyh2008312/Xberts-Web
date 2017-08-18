@@ -18,7 +18,7 @@
                      user-id="report.owner.id"
                      expert="expert" achievement="achievement"></xb-follow>
         </div>
-        <md-truncate class="md-dark-secondary" hide-xs>{{report.owner.userprofile.position}}</md-truncate>
+        <md-truncate class="md-dark-secondary" hide-xs>{{report.getPosition()}}</md-truncate>
         <div class="md-dark-secondary">{{report.created | amDateFormat:'MMMM Do,YYYY'}}</span></div>
       </div>
       <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" hide-xs>
