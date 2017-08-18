@@ -29,6 +29,9 @@
     @include xb-gt-sm-screen{
       padding-left: 56px;
     }
+    .xb-redeem-detail__content-line{
+      width: 100%;
+    }
   }
 
 
@@ -41,7 +44,7 @@
   }
 
   &__rating{
-    margin-top: 8px;
+    margin-top: 0;
     margin-bottom: 8px;
     @include xb-gt-sm-screen{
       margin-bottom: 16px;
@@ -138,6 +141,10 @@
     text-decoration: line-through;
     color: rgba(0,0,0,0.54);
     vertical-align: middle;
+    margin-bottom: 16px;
+    @include xb-xs-screen{
+      margin-bottom: 0;
+    }
   }
 }
 

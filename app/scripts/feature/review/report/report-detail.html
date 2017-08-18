@@ -49,6 +49,7 @@
               <vote class="xb2-page-head__thumb-up" layout="row" layout-align="start center"></vote>
             </div>
           </div>
+          <div class="xb-redeem-detail__content-line" flex-order="2" hide-xs></div>
 
           <div class="xb-trial-reviewer__rating xb2-page-head__rating" layout="row" layout-align="start center" flex-order="1" flex-order-gt-xs="2" >
             <rating-stars layout="row" layout-align="start center" class="xb-rating-star" rating="report.getScore()" read-only="true"
@@ -76,7 +77,7 @@
           <div class="xb2-page-head__button" flex-order="4" ng-if="!isFacebookApp">
             <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
               <p flex class="xb2-price md-margin-clear">
-                <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
+                <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>&nbsp;
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
               <md-button tabs-fixed-item class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
