@@ -18,11 +18,11 @@
   <div class="xb-reviews-list__bottom">
     <div class="xb-reviews-list__title" >
       <a class="md-subhead md-dark-primary" hide-xs ng-if="review.report"
-         ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+         ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
         {{ review.title }}
       </a>
       <a class="md-subhead md-dark-primary" hide-gt-xs ng-if="review.report"
-         ui-sref="application.report({reviewId:review.report,reportId:review.id})">
+         ui-sref="application.report({reviewId:review.id,reportId:review.report})">
         {{ review.title }}
       </a>
       <a class="md-subhead md-dark-primary" hide-xs ng-if="review.blog"
@@ -53,11 +53,11 @@
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviewsFeatured track by $index"
      layout-gt-xs="row" layout-align="start stretch" flex-order="{{changeOrder1($index)}}">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.report,reportId:review.id})">
+     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-xs ng-if="review.blog"
