@@ -143,6 +143,7 @@
 
 .xb-reviews-list{
   &__list-1{
+    background-color: $whiteColor;
     margin-bottom: 16px;
 
     @include resetBorder();
@@ -168,6 +169,7 @@
     }
   }
   &__list-2{
+    background-color: $whiteColor;
     margin-bottom: 16px;
 
     @include resetBorder();
