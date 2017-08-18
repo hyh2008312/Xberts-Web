@@ -147,6 +147,7 @@ angular
                 name: 'all_review_list_featured_top',
                 objClass:MainModel,
                 params: {
+                  is_recommended:'True',
                   edit_status:'PUBLISHED',
                   approval_status:'APPROVED',
                   page_size: 4
