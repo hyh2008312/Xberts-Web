@@ -1,7 +1,6 @@
 angular.module('xbertsApp')
-  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator','$mdMedia',
-    '$state','MainModel','ReviewService',
-    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator,$mdMedia,$state,MainModel,ReviewService) {
+  .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator',
+    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator) {
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
@@ -27,7 +26,37 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      $state.go('application.protected.askQuestion');
+      $mdDialog.show({
+        controller: function(scope, $mdDialog) {
+
+          scope.disabled = false;
+
+          scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          scope.askQuestion = function(question) {
+            if(!$rootScope.user.authRequired()) {
+              scope.cancel();
+              return;
+            }
+            if (!scope.recommendation.$valid) {
+              return;
+            }
+
+            scope.disabled = true;
+            AskService.create(question).then(function(data) {
+              scope.cancel();
+              scope.disabled = false;
+              askCtrl.askPaginator.items.unshift(data);
+            },function() {});
+          };
+        },
+        templateUrl: 'scripts/feature/ask/recommendationPost/recommendation-post-dialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        disableParenScroll: true
+      });
     };
 
     askCtrl.changeOrder = function(order) {
@@ -76,20 +105,6 @@ angular.module('xbertsApp')
           break;
       }
     };
-
-    var par = {
-      name: 'all_review_list_featured_top',
-      objClass: MainModel,
-      params: {
-        is_recommended:'True',
-        edit_status:'PUBLISHED',
-        approval_status:'APPROVED',
-        page_size: 4
-      },
-      fetchFunction: ReviewService.getArticleList
-    };
-    askCtrl.askPaginator = new Paginator(par);
-    askCtrl.askPaginator.load();
 
     var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';
     var description = 'Get recommendations and tips from our global community of savvy-shoppers';
