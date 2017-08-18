@@ -50,7 +50,7 @@
           <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
           <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
         </div>
-        <div class="md-dark-secondary"><span am-time-ago='review.created'></span></div>
+        <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
       </div>
       <md-button hide class="md-primary md-margin-clear" ng-disabled="review.disabled"
                  ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && !review.getOwner().userprofile.current_user.follow"
@@ -168,12 +168,12 @@
   <div layout="row" class="xb-deals-list__head">
     <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
                 ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
-    <div layout="column" layout-align="space-between start">
+    <div layout="column" layout-align="space-between start" flex>
       <div layout="row" layout-align="start center">
         <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
         <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
       </div>
-      <div class="md-dark-secondary"><span am-time-ago='review.created'></span></div>
+      <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
     </div>
   </div>
 </div>
@@ -221,12 +221,12 @@
   <div layout="row" class="xb-deals-list__head">
     <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
                 ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
-    <div layout="column" layout-align="space-between start">
+    <div layout="column" layout-align="space-between start" flex>
       <div layout="row" layout-align="start center">
         <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
         <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
       </div>
-      <div class="md-dark-secondary"><span am-time-ago='review.created'></span></div>
+      <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
     </div>
   </div>
 </div>

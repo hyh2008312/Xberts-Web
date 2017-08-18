@@ -12,6 +12,15 @@ function MainModel($state) {
     getOwner: function () {
       return this.owner;
     },
+    getOwnerPosition: function() {
+      if(this.owner.position && this.owner.company) {
+        return this.owner.position + " @ " + this.owner.company;
+      } else if(this.owner.position && !this.owner.company) {
+        return this.owner.position;
+      } else if(this.owner.company) {
+        return this.owner.company;
+      }
+    },
     getReviewer: function () {
       return this.applicant.reviewer;
     },
