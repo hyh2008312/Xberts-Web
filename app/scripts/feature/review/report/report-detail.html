@@ -4,8 +4,11 @@
     <div class="container">
       <div class="xb2-page-head__title-wrap">
         <h1 class="xb2-page-head__title">{{ report.title }}</h1>
-        <p class="xb2-page-head__subtitle">
+        <p class="xb2-page-head__subtitle" hide-gt-xs>
           <a ui-sref="application.testingcampaign({ reviewId:report.getReviewId() })">{{ report.getProductTitle() }}</a>
+        </p>
+        <p class="xb2-page-head__subtitle" hide-xs>
+          <a class="md-headline md-dark-secondary" ui-sref="application.testingcampaign({ reviewId:report.getReviewId() })">{{ report.getProductTitle() }}</a>
         </p>
       </div>
 

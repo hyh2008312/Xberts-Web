@@ -9,7 +9,7 @@
     }
   }
   &__title{
-    @include font-h2();
+    @include font-h1();
     margin-top: 0;
     margin-bottom: 8px;
     @include xb-gt-sm-screen{
@@ -240,10 +240,9 @@
   }
   &__bottom{
     padding: 0 16px;
-    height: 140px;
+    height: 72px;
     @include xb-sm-screen{
       padding: 0 8px;
-      height: 130px;
     }
     @include xb-xs-screen{
       height: auto;

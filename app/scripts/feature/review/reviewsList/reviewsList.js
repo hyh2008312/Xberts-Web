@@ -7,7 +7,8 @@ angular.module('xbertsApp')
       scope: {
         reviews: '=',
         reviewsFeatured: '=',
-        onReviewsFollow: '&'
+        onReviewsFollow: '&',
+        featured: '='
       },
       templateUrl: 'scripts/feature/review/reviewsList/reviews-list.html',
       link: function (scope, element, attrs, ctrls) {

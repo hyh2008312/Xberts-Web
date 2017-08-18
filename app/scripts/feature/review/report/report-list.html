@@ -13,7 +13,8 @@
       <div class="md-headline xb-reviews-list__margin-top">Featured</div>
       <reviews-list class="xb-reviews-list" reviews-featured="reviewsFeaturedTop.items"
                     on-reviews-follow="addFollow(review)"
-                    layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></reviews-list>
+                    layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap
+                    featured="true"></reviews-list>
       <div class="md-headline" ng-if="reviews.count > 0 || reviewsFeatured.count > 0">Latest</div>
       <div infinite-scroll="loadNextImages()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="reviews.loading || reviewsFeatured.loading || (!reviews.next && !reviewsFeatured.next)">
