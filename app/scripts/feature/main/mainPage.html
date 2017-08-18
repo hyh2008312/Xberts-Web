@@ -57,7 +57,7 @@
             <deals-sort sort="mainCtrl.sort" sort-id="mainCtrl.selectedIndex"
                         on-sort-change="mainCtrl.changeSort(sortId);"></deals-sort>
           </div>
-          <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
+          <answer-leaders leaders="mainCtrl.topReviewers.items"></answer-leaders>
           <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center"
                      ng-if="mainCtrl.topReviewers.loading"></load-more>
         </div>
