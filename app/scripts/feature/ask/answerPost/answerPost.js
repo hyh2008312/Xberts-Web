@@ -89,7 +89,9 @@ angular.module('xbertsApp')
           var div = document.createElement('div');
           div.appendChild(img);
           div.setAttribute('class', 'xb-answer-img-bg');
-          angular.element('.summernote').summernote('insertNode', div);
+          var p = document.createElement('p');
+          p.appendChild(div);
+          angular.element('.summernote').summernote('insertNode', p);
 
           img.setAttribute('class', 'pre-loading');
           img.onload = function () {
