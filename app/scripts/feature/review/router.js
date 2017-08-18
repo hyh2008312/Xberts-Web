@@ -274,7 +274,7 @@ angular
       })
       .state('application.protected.reviewReport', {
         url: '/articles/post/edit',
-        templateUrl: 'scripts/feature/review/reviewReport/editReportCtrl.html',
+        templateUrl: 'scripts/feature/review/reviewReport/EditReportCtrl.html',
         controller: 'EditReportCtrl'
       });
   }]);
