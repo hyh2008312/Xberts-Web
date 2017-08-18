@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-.controller('ReportListCtrl', ['$scope', '$rootScope', 'reviewsFeaturedTop', 'ReviewService', 'MainModel','Paginator','ExpertService',
-  function ($scope, $rootScope, reviewsFeaturedTop, ReviewService, MainModel,Paginator,ExpertService) {
+.controller('ReportListCtrl', ['$scope', '$rootScope', 'reviewsFeaturedTop', 'ReviewService', 'MainModel','Paginator',
+  'ExpertService','$state',
+  function ($scope, $rootScope, reviewsFeaturedTop, ReviewService, MainModel,Paginator,ExpertService,$state) {
     $scope.reviewsFeaturedTop = reviewsFeaturedTop;
 
     var par = {
