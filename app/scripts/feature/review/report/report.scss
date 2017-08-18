@@ -148,15 +148,15 @@
 
     @include resetBorder();
 
-    flex: 1 1 230px !important;
-    -webkit-flex: 1 1 230px !important;
+    flex: 1 1 240px !important;
+    -webkit-flex: 1 1 240px !important;
     @include xb-lg-screen{
       max-width: 24% !important;
     }
     @include xb-md-screen{
       max-width: 24% !important;
-      flex: 1 1 180px !important;
-      -webkit-flex: 1 1 180px !important;
+      flex: 1 1 190px !important;
+      -webkit-flex: 1 1 190px !important;
     }
     @include xb-sm-screen{
       flex: 1 1 145px !important;

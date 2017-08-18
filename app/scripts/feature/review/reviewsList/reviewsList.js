@@ -17,7 +17,7 @@ angular.module('xbertsApp')
           return Math.floor($index / 4);
         };
         scope.changeOrder1  = function($index) {
-          return Math.floor($index / 2);
+          return Math.floor($index / 4);
         };
 
       }

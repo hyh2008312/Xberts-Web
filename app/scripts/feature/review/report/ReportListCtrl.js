@@ -24,12 +24,12 @@ angular.module('xbertsApp')
       var par1 = {
         name: 'all_review_list_featured',
         objClass: MainModel,
-        pageNumber: 3,
+        pageNumber: 2,
         params: {
           is_recommended:'True',
           edit_status:'PUBLISHED',
           approval_status:'APPROVED',
-          page_size: 2
+          page_size: 4
         },
         fetchFunction: ReviewService.getArticleList
       };
