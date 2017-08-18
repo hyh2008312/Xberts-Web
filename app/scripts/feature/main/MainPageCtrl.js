@@ -86,7 +86,7 @@ angular.module('xbertsApp')
             mainCtrl.topReviewers.params.type = null;
             break;
         }
-        mainCtrl.topReviewers = new Paginator(par);
+        mainCtrl.topReviewers.clear();
         mainCtrl.topReviewers.load();
       };
 
