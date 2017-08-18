@@ -6,40 +6,42 @@ angular.module('xbertsApp')
   function ($scope, $rootScope, reviewsFeaturedTop, ReviewService, MainModel,Paginator,ExpertService,$state) {
     $scope.reviewsFeaturedTop = reviewsFeaturedTop;
 
-    var par = {
-      name: 'all_review_list',
-      objClass:MainModel,
-      params: {
-        is_recommended:'False',
-        edit_status:'PUBLISHED',
-        approval_status:'APPROVED',
-        page_size: 4
-      },
-      fetchFunction: ReviewService.getArticleList
-    };
-    $scope.reviews = new Paginator(par);
-    $scope.reviews.load();
+    if(reviewsFeaturedTop.count > 4) {
+      var par = {
+        name: 'all_review_list',
+        objClass:MainModel,
+        params: {
+          is_recommended:'False',
+          edit_status:'PUBLISHED',
+          approval_status:'APPROVED',
+          page_size: 4
+        },
+        fetchFunction: ReviewService.getArticleList
+      };
+      $scope.reviews = new Paginator(par);
+      $scope.reviews.load();
 
-    var par1 = {
-      name: 'all_review_list_featured',
-      objClass: MainModel,
-      pageNumber: 3,
-      params: {
-        is_recommended:'True',
-        edit_status:'PUBLISHED',
-        approval_status:'APPROVED',
-        page_size: 2
-      },
-      fetchFunction: ReviewService.getArticleList
-    };
-    $scope.reviewsFeatured = new Paginator(par1);
-    $scope.reviewsFeatured.load();
+      var par1 = {
+        name: 'all_review_list_featured',
+        objClass: MainModel,
+        pageNumber: 3,
+        params: {
+          is_recommended:'True',
+          edit_status:'PUBLISHED',
+          approval_status:'APPROVED',
+          page_size: 2
+        },
+        fetchFunction: ReviewService.getArticleList
+      };
+      $scope.reviewsFeatured = new Paginator(par1);
+      $scope.reviewsFeatured.load();
 
-    $scope.loadNextImages = function() {
-      $scope.reviews.loadNext().then(function() {
-        $scope.reviewsFeatured.loadNext();
-      });
-    };
+      $scope.loadNextImages = function() {
+        $scope.reviews.loadNext().then(function() {
+          $scope.reviewsFeatured.loadNext();
+        });
+      };
+    }
 
     $scope.addFollow = function (review) {
       if (!$rootScope.user.authRequired()) {

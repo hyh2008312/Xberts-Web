@@ -14,7 +14,7 @@
       <reviews-list class="xb-reviews-list" reviews-featured="reviewsFeaturedTop.items"
                     on-reviews-follow="addFollow(review)"
                     layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></reviews-list>
-      <div class="md-headline">Latest</div>
+      <div class="md-headline" ng-if="reviews.count > 0 || reviewsFeatured.count > 0">Latest</div>
       <div infinite-scroll="loadNextImages()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="reviews.loading || reviewsFeatured.loading || (!reviews.next && !reviewsFeatured.next)">
         <reviews-list class="xb-reviews-list" reviews="reviews.items" reviews-featured="reviewsFeatured.items"
