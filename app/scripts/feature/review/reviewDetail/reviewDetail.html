@@ -35,7 +35,7 @@
         <img ng-src="{{report.cover}}">
       </div>
     </div>
-    <div class="xb-reviews-detail__content" ng-bind-html="report.description | trust"></div>
+    <div class="xb-reviews-detail__content" ng-bind-html="report.details | trust"></div>
     <div class="product__tags" layout="row" layout-align="start center">
       <span ng-repeat="value in report.tags">{{value}}</span>
     </div>
