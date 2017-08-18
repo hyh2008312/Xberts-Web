@@ -1,5 +1,5 @@
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviewsFeatured track by $index"
-    layout-xs="column" layout-align-xs="start start"
+     layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder1($index)" ng-if="featured">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
@@ -62,7 +62,7 @@
   </div>
 </div>
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviewsFeatured track by $index"
-     layout-xs="column" layout-align-xs="start start"
+     layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder1($index)" ng-if="!featured">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
@@ -125,7 +125,7 @@
   </div>
 </div>
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviews track by $index"
-     layout-xs="column" layout-align-xs="start start"
+     layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder($index)" ng-if="!featured && review.blog">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
