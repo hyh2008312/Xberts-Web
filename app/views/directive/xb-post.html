@@ -1,16 +1,20 @@
 <div hide-xs class="xberts-navbar__right-container-button" ng-mouseenter="onPopup()" ng-mouseleave="onPopup()">
   <md-icon md-font-set="material-icons">add</md-icon>
+  <span class="xberts-navbar__red-point"></span>
   <div class="xberts-navbar__right-container-popup-1" ng-show="isPopupOpen" flex="none">
     <span class="xberts-navbar__triangle-1"></span>
     <div ui-sref-active="active" ui-sref="application.protected.post">Share a Deal</div>
     <div ui-sref-active="active" ui-sref="application.protected.askQuestion">Ask a Question</div>
-    <div ui-sref-active="active" ui-sref="application.protected.reviewReport">Post an Article</div>
+    <div ui-sref-active="active" ui-sref="application.protected.reviewReport" layout="row" layout-align="start start">
+      Post an Article
+      <span class="xberts-navbar__red-point-1" ></span></div>
   </div>
 </div>
 
 <div hide-gt-xs flex>
   <div class="xberts-navbar-moblie-sidenav__bottom-container-button"
        layout="row" layout-align="start start" ng-click="onPopup()">Post
+    <span></span>
     <div layout="row" layout-align="end start" flex>
       <div>
         <md-icon ng-if="!isPopupOpen" md-font-set="material-icons">keyboard_arrow_down</md-icon>
@@ -24,6 +28,9 @@
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button-1" ui-sref-active="active"
          ui-sref="application.protected.askQuestion" ng-click="onClose();">Ask a Question</div>
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button-1" ui-sref-active="active"
-         ui-sref="application.protected.reviewReport" ng-click="onClose();">Post an Article</div>
+         ui-sref="application.protected.reviewReport" ng-click="onClose();" layout="row" layout-align="start start">
+      Post an Article
+      <span class="xberts-navbar__red-point-1"></span>
+    </div>
   </div>
 </div>
