@@ -1,8 +1,8 @@
 angular.module('xbertsApp')
-  .controller('MainPageCtrl', ['$rootScope','topBanner','answerPaginator','Paginator','MainService','DealsService','ReviewService',
+  .controller('MainPageCtrl', ['$rootScope','topBanner','Paginator','MainService','DealsService','ReviewService',
     'AskService','$stateParams','AuthService','ProductDeals','Review','MainModel',
     'AskModel',
-    function ($rootScope, topBanner,answerPaginator,Paginator,MainService, DealsService, ReviewService,
+    function ($rootScope, topBanner,Paginator,MainService, DealsService, ReviewService,
               AskService,$stateParams,AuthService,ProductDeals,Review,MainModel,AskModel) {
 
       if($stateParams.uid && $stateParams.token) {
@@ -37,47 +37,131 @@ angular.module('xbertsApp')
       mainCtrl.latestPaginater.load();
 
       var par = {
-        name: 'all_report_list',
-        objClass:MainModel,
-        params: {
-          page_size: 6
-        },
-        fetchFunction: MainService.getReviewsList
-      };
-      mainCtrl.reviews = new Paginator(par);
-      mainCtrl.reviews.load();
-
-      var par = {
-        name: 'top_review_main_list',
-        objClass:MainModel,
-        params: {
-          recommended:'True',
-          page_size: 12
-        },
-        fetchFunction:MainService.getRecommendedReviewers
-      };
-      mainCtrl.topReviewers = new Paginator(par);
-      mainCtrl.topReviewers.load();
-
-      mainCtrl.answerPaginator = answerPaginator;
-
-      var par = {
-        name: 'main_ask_questions_list',
+        name: 'ask_questions_list',
         objClass: AskModel,
         params: {
-          page_size: 4
+          page_size: 3
         },
         fetchFunction: AskService.getList
       };
       mainCtrl.askPaginator = new Paginator(par);
       mainCtrl.askPaginator.load();
 
+      var par = {
+        name: 'answer_leaders_list',
+        objClass:AskModel,
+        params: {
+          type: 'week',
+          page_size: 12
+        },
+        fetchFunction:AskService.getAnswerLeaderList
+      };
+      mainCtrl.topReviewers = new Paginator(par);
+      mainCtrl.topReviewers.load();
 
+      var par = {
+        name: 'all_review_list_featured_top',
+        objClass: MainModel,
+        params: {
+          is_recommended:'True',
+          edit_status:'PUBLISHED',
+          approval_status:'APPROVED',
+          page_size: 4
+        },
+        fetchFunction: ReviewService.getArticleList
+      };
+      mainCtrl.reviewsFeaturedTop = new Paginator(par);
+      mainCtrl.reviewsFeaturedTop.load();
 
-      var title = '';
-      var description = '';
+      mainCtrl.order = AskService.order;
+      mainCtrl.sort = AskService.getSort();
+
+      mainCtrl.selectedIndex = 0;
+      mainCtrl.changeSort = function(sort) {
+        switch(sort) {
+          case 0 :
+            mainCtrl.topReviewers.params.type = 'week';
+            break;
+          default :
+            mainCtrl.topReviewers.params.type = null;
+            break;
+        }
+        mainCtrl.topReviewers = new Paginator(par);
+        mainCtrl.topReviewers.load();
+      };
+
+      mainCtrl.changeOrder = function(order) {
+        AskService.order = order;
+        mainCtrl.order = AskService.order;
+        switch (mainCtrl.order) {
+          case 0:
+            var par = {
+              name: 'ask_questions_list',
+              objClass: AskModel,
+              params: {
+                page_size: 3
+              },
+              fetchFunction: AskService.getList
+            };
+            mainCtrl.askPaginator = new Paginator(par);
+            mainCtrl.askPaginator.load();
+            break;
+          case 1:
+            var par = {
+              name: 'ask_questions_list_amount',
+              objClass: AskModel,
+              params: {
+                ordering: 'answer_amount,-new_answer_arrived',
+                page_size: 3
+              },
+              fetchFunction: AskService.getList
+            };
+            mainCtrl.askPaginator = new Paginator(par);
+            mainCtrl.askPaginator.load();
+            break;
+          case 2:
+            var par = {
+              name: 'ask_questions_list_popular',
+              objClass: AskModel,
+              params: {
+                page_size: 3
+              },
+              fetchFunction: AskService.getPopularList
+            };
+            mainCtrl.askPaginator = new Paginator(par);
+            mainCtrl.askPaginator.load();
+            break;
+        }
+      };
+
+      mainCtrl.addFollow = function (review) {
+        if (!$rootScope.user.authRequired()) {
+          return;
+        }
+        review.disabled = true;
+        ExpertService.follow({id:review.getReviewer().id}).then(function(data) {
+          angular.forEach($scope.reviewsFeaturedTop.items,function(e,i) {
+            if(e.getReviewer().id == review.getReviewer().id ) {
+              e.getReviewer().userprofile.current_user.follow = data.follow;
+            }
+          });
+          angular.forEach($scope.reviewsFeatured.items,function(e,i) {
+            if(e.applicant.reviewer.id  == review.applicant.reviewer.id ) {
+              e.getReviewer().userprofile.current_user.follow = data.follow;
+            }
+          });
+          review.disabled = false;
+          review.getReviewer().userprofile.current_user.follow = data.follow;
+        }, function() {
+
+        });
+
+      };
+
+      var title = null;
+      var description = null;
       var backgroundColor = 'background-bg-light';
-      var shareImage = '';
+      var shareImage = null;
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
   }]);

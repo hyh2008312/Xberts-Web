@@ -10,18 +10,6 @@ angular.module('xbertsApp')
         resolve: {
           topBanner:['MainService',function(MainService) {
             return MainService.getBannerList();
-          }],
-          answerPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
-            var par = {
-              name: 'main_ask_answer',
-              objClass: AskModel,
-              params: {
-                ordering: 'answer_amount-',
-                page_size: 8
-              },
-              fetchFunction: AskService.getList
-            };
-            return new Paginator(par).load();
           }]
         }
       })
@@ -34,18 +22,6 @@ angular.module('xbertsApp')
         resolve: {
           topBanner:['MainService',function(MainService) {
             return MainService.getBannerList();
-          }],
-          answerPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
-            var par = {
-              name: 'main_ask_answer',
-              objClass: AskModel,
-              params: {
-                ordering: 'answer_amount-',
-                page_size: 8
-              },
-              fetchFunction: AskService.getList
-            };
-            return new Paginator(par).load();
           }]
         }
       })

@@ -25,30 +25,42 @@
   </div>
   <div class="container">
     <div class="xb-title" layout="row" layout-align="start center" ng-if="mainCtrl.askPaginator.items.length > 0">
+      <h3 class="md-dark-primary" flex>Article</h3>
+      <a class="md-body-1" ui-sref="application.campaignreviews">SEE MORE</a>
+    </div>
+    <reviews-list class="xb-reviews-list" reviews-featured="mainCtrl.reviewsFeaturedTop.items"
+                  on-reviews-follow="mainCtrl.addFollow(review)"
+                  layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap
+                  featured="true"></reviews-list>
+    </div>
+  </div>
+  <div class="container">
+    <div class="xb-title" layout="row" layout-align="start center" ng-if="mainCtrl.askPaginator.items.length > 0">
       <h3 class="md-dark-primary" flex>Ask Xberts Community</h3>
       <a class="md-body-1" ui-sref="application.askQuestionMain">SEE MORE</a>
     </div>
-    <main-question-item questions="mainCtrl.askPaginator.items" answer="mainCtrl.answerPaginator.items"></main-question-item>
-  </div>
-  <div class="container xb-main-section">
-    <div class="xb-title" layout="row" layout-align="start end" ng-if="mainCtrl.topReviewers.items.length > 0">
-      <h3 class="md-dark-primary" layout-fill>Reviews from Tech Insiders</h3>
-    </div>
-    <div layout="row" layout-align="start start">
-      <div class="xb-main-reviews" flex ng-if="mainCtrl.reviews.items.length > 0">
-        <md-card class="product-order" layout="row" layout-align="start center">
-          <md-button>Latest<div class="tab-triangle"></div></md-button>
-        </md-card>
-        <reviews-main-list reviews="mainCtrl.reviews.items"></reviews-main-list>
-        <div class="xb-main-reviews__bottom-btn" layout="row" layout-align="center center">
-          <md-button class="md-primary md-raised" ui-sref="application.campaignreviews()">SEE MORE</md-button>
+    <div layout="row" layout-align="start start" ng-if="mainCtrl.askPaginator.items.length > 0">
+      <div flex>
+        <question-order ask-ctrl="mainCtrl" index="mainCtrl.order" main-page="true"></question-order>
+        <div>
+          <question-item ng-if="mainCtrl.order == 0" products="mainCtrl.askPaginator.items"></question-item>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="mainCtrl.askPaginator.loading"></load-more>
+          <div class="xb-main-reviews__bottom-btn md-margin-bottom-2" layout="row" layout-align="center center">
+            <md-button class="md-primary md-raised" ui-sref="application.campaignreviews()" flex>SEE MORE</md-button>
+          </div>
         </div>
       </div>
-      <div class="xb-main-reviewer" hide-sm hide-xs ng-if="mainCtrl.topReviewers.items.length > 0">
-        <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="start center">
-          Top Reviewers of The Month
+      <div hide-sm hide-xs flex="none">
+        <div class="xb-main-reviewer">
+          <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="space-between center">
+            LEADERBOARD
+            <deals-sort sort="mainCtrl.sort" sort-id="mainCtrl.selectedIndex"
+                        on-sort-change="mainCtrl.changeSort(sortId);"></deals-sort>
+          </div>
+          <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
+          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center"
+                     ng-if="mainCtrl.topReviewers.loading"></load-more>
         </div>
-        <top-reviewers-list reviewers="mainCtrl.topReviewers.items"></top-reviewers-list>
       </div>
     </div>
   </div>

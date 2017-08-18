@@ -4,11 +4,15 @@ angular.module('xbertsApp')
       restrict: 'E',
       scope: {
         askCtrl: '=',
-        index: '='
+        index: '=',
+        mainPage: '='
       },
       templateUrl: 'scripts/feature/ask/questionOrder/question-order.html',
       link: function (scope, element, attrs, ctrls) {
         scope.orderList = ['latest','need help','popular','pending'];
+        if(scope.mainPage) {
+          scope.orderList = ['latest'];
+        }
 
         scope.changeOrder = function(index) {
           scope.index = index;

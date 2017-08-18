@@ -1,7 +1,7 @@
 angular.module('xbertsApp')
   .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator','$mdMedia',
-    '$state',
-    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator,$mdMedia,$state) {
+    '$state','MainModel','ReviewService',
+    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator,$mdMedia,$state,MainModel,ReviewService) {
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
@@ -76,6 +76,20 @@ angular.module('xbertsApp')
           break;
       }
     };
+
+    var par = {
+      name: 'all_review_list_featured_top',
+      objClass: MainModel,
+      params: {
+        is_recommended:'True',
+        edit_status:'PUBLISHED',
+        approval_status:'APPROVED',
+        page_size: 4
+      },
+      fetchFunction: ReviewService.getArticleList
+    };
+    askCtrl.askPaginator = new Paginator(par);
+    askCtrl.askPaginator.load();
 
     var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';
     var description = 'Get recommendations and tips from our global community of savvy-shoppers';
