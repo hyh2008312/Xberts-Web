@@ -25,13 +25,12 @@
   </div>
   <div class="container">
     <div class="xb-title" layout="row" layout-align="start center" ng-if="mainCtrl.askPaginator.items.length > 0">
-      <h3 class="md-dark-primary" flex>Article</h3>
+      <h3 class="md-dark-primary" flex>Inspirations from Savvy Shoppers</h3>
       <a class="md-body-1" ui-sref="application.campaignreviews">SEE MORE</a>
     </div>
     <reviews-list class="xb-reviews-list" reviews-featured="mainCtrl.reviewsFeaturedTop.items"
-                  on-reviews-follow="mainCtrl.addFollow(review)"
-                  layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap
-                  featured="true"></reviews-list>
+                  on-reviews-follow="mainCtrl.addFollow(review)" layout-gt-xs="row"
+                  layout-align-gt-xs="space-between start" layout-wrap featured="true"></reviews-list>
     </div>
   </div>
   <div class="container">
@@ -43,7 +42,8 @@
         <question-order ask-ctrl="mainCtrl" index="mainCtrl.order" main-page="true"></question-order>
         <div>
           <question-item ng-if="mainCtrl.order == 0" products="mainCtrl.askPaginator.items"></question-item>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="mainCtrl.askPaginator.loading"></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="mainCtrl.askPaginator.loading"></load-more>
           <div class="xb-main-reviews__bottom-btn md-margin-bottom-2" layout="row" layout-align="center center">
             <md-button class="md-primary md-raised" ui-sref="application.askQuestionMain()" flex>SEE MORE</md-button>
           </div>

@@ -26,7 +26,7 @@ angular.module('xbertsApp')
 
       var par = {
         name: 'trials',
-        objClass:Review,
+        objClass: Review,
         params: {
           page_size: 6,
           review_type: 'FREE_SAMPLE'
@@ -35,29 +35,6 @@ angular.module('xbertsApp')
       };
       mainCtrl.latestPaginater = new Paginator(par);
       mainCtrl.latestPaginater.load();
-
-      var par = {
-        name: 'ask_questions_list',
-        objClass: AskModel,
-        params: {
-          page_size: 3
-        },
-        fetchFunction: AskService.getList
-      };
-      mainCtrl.askPaginator = new Paginator(par);
-      mainCtrl.askPaginator.load();
-
-      var par = {
-        name: 'answer_leaders_list',
-        objClass:AskModel,
-        params: {
-          type: 'week',
-          page_size: 12
-        },
-        fetchFunction:AskService.getAnswerLeaderList
-      };
-      mainCtrl.topReviewers = new Paginator(par);
-      mainCtrl.topReviewers.load();
 
       var par = {
         name: 'all_review_list_featured_top',
@@ -72,6 +49,30 @@ angular.module('xbertsApp')
       };
       mainCtrl.reviewsFeaturedTop = new Paginator(par);
       mainCtrl.reviewsFeaturedTop.load();
+
+      var par = {
+        name: 'main_ask_answer',
+        objClass: AskModel,
+        params: {
+          ordering: 'answer_amount-',
+          page_size: 3
+        },
+        fetchFunction: AskService.getList
+      };
+      mainCtrl.askPaginator = new Paginator(par);
+      mainCtrl.askPaginator.load();
+
+      var par = {
+        name: 'answer_leaders_list',
+        objClass:AskModel,
+        params: {
+          type: 'week',
+          page_size: 12
+        },
+        fetchFunction: AskService.getAnswerLeaderList
+      };
+      mainCtrl.topReviewers = new Paginator(par);
+      mainCtrl.topReviewers.load();
 
       mainCtrl.order = AskService.order;
       mainCtrl.sort = AskService.getSort();
@@ -88,50 +89,6 @@ angular.module('xbertsApp')
         }
         mainCtrl.topReviewers.clear();
         mainCtrl.topReviewers.load();
-      };
-
-      mainCtrl.changeOrder = function(order) {
-        AskService.order = order;
-        mainCtrl.order = AskService.order;
-        switch (mainCtrl.order) {
-          case 0:
-            var par = {
-              name: 'ask_questions_list',
-              objClass: AskModel,
-              params: {
-                page_size: 3
-              },
-              fetchFunction: AskService.getList
-            };
-            mainCtrl.askPaginator = new Paginator(par);
-            mainCtrl.askPaginator.load();
-            break;
-          case 1:
-            var par = {
-              name: 'ask_questions_list_amount',
-              objClass: AskModel,
-              params: {
-                ordering: 'answer_amount,-new_answer_arrived',
-                page_size: 3
-              },
-              fetchFunction: AskService.getList
-            };
-            mainCtrl.askPaginator = new Paginator(par);
-            mainCtrl.askPaginator.load();
-            break;
-          case 2:
-            var par = {
-              name: 'ask_questions_list_popular',
-              objClass: AskModel,
-              params: {
-                page_size: 3
-              },
-              fetchFunction: AskService.getPopularList
-            };
-            mainCtrl.askPaginator = new Paginator(par);
-            mainCtrl.askPaginator.load();
-            break;
-        }
       };
 
       mainCtrl.addFollow = function (review) {

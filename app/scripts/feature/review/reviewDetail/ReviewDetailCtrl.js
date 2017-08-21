@@ -4,6 +4,7 @@ angular.module('xbertsApp')
   .controller('ReviewDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
     'ExpertService','blogPaginator',
     function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,blogPaginator) {
+
       $scope.report = report;
 
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === report.owner.id;

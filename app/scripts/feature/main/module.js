@@ -5,7 +5,6 @@ angular.module('xbertsApp')
         url: "/",
         templateUrl: 'scripts/feature/main/mainPage.html',
         controller: 'MainPageCtrl as mainCtrl',
-        reloadOnSearch: false,
         cache:true,
         resolve: {
           topBanner:['MainService',function(MainService) {
@@ -17,7 +16,6 @@ angular.module('xbertsApp')
         url: '/accounts/verify/email/:uid/:token',
         templateUrl: 'scripts/feature/main/mainPage.html',
         controller: 'MainPageCtrl as mainCtrl',
-        reloadOnSearch: false,
         cache:true,
         resolve: {
           topBanner:['MainService',function(MainService) {

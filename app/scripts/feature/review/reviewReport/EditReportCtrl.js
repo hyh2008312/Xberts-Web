@@ -179,11 +179,22 @@ angular.module('xbertsApp')
         return;
       }
 
-      if(blog.detail == '') {
+      if(blog.cover == null) {
         return;
       }
 
-      if(blog.cover == null) {
+      if (blog.details) {
+        blog.details = blog.details.replace(/pre-loading/ig, "");
+        blog.details = blog.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
+      }
+
+      var str = blog.details;
+      str = str.replace(/[ | ]*\n/g,'\n');
+      str = str.replace(/<\/?[^>]*>/g,'');
+      str = str.replace(/&nbsp;/ig,'');
+      str = str.replace(/\s+/g,"");
+
+      if(str == '') {
         return;
       }
 
