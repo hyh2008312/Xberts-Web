@@ -37,7 +37,27 @@
     <div class="product__tags" layout="row" layout-align="start center">
       <span ng-repeat="value in report.tags">{{value}}</span>
     </div>
-    <interact interact="report.interact">
+    <interact interact="report.interact" hide-xs>
+      <div class="xb-reviews-detail__zan" layout="column" layout-align="center center">
+        <vote class="xb-reviews-detail__zan-inner" layout="row" layout-align="center center"></vote>
+        <div class="md-margin-top-1">{{report.interact.vote_amount}} Helpful!</div>
+      </div>
+      <div class="md-headline" id="Comments">Comments</div>
+      <feedback-list interact-id="{{report.interact.id}}" hide-state="!commentToggle"></feedback-list>
+      <div class="xb-reviews-detail__share-bg" share-fixed-button
+           item="'xb-reviews-detail__container'"
+           content="'xb-deals-detail__atlas'"
+           content1="'product__tags'" delta="56">
+        <div aria-label="{{item.name}}" ng-repeat="item in shareList" socialshare
+             socialshare-provider="{{item.name}}" socialshare-description="{{pageSettings._description}}" socialshare-text="{{pageSettings._title}}"
+             socialshare-media="{{pageSettings._shareImage}}" socialshare-source="{{pageSettings._shareImage}}"
+             socialshare-url="{{inviteObj.shareUrl(pageSettings.getUrl(), item.name)}}"
+             layout="row" layout-align="center center">
+          <i class="fa fa-{{item.name}}" aria-hidden="true"></i>
+        </div>
+      </div>
+    </interact>
+    <interact interact="report.interact" hide-gt-xs>
       <div layout="row" layout-align="start center" class="xb-reviews-detail__action-buttons">
         <vote layout="row" layout-align="start center" flex="none"></vote>
         <div layout="row" layout-align="start center" ng-click="onToggleDown();" flex="none">
@@ -70,7 +90,7 @@
       </div>
       <div layout class="product__interact" ng-show="commentToggle" >
         <div flex>
-          <feedback-list interact-id="{{report.interact.id}}" hide-state="!commentToggle"></feedback-list>
+
         </div>
       </div>
     </interact>

@@ -1,7 +1,30 @@
 .xb2-page-head{
+  &__bg{
+    @include xb-lg-screen{
+      height: 592px;
+    }
+    @include xb-md-screen{
+      height: 528px;
+    }
+    @include xb-sm-screen{
+      height: 880px;
+    }
+    @include xb-xs-screen{
+      background-color: #fff;
+    }
+  }
+
+  @include xb-gt-xs-screen{
+    width: 100%;
+    position: fixed;
+    top: 56px;
+    pointer-events: none;
+  }
+
   >.container{
     padding-top: 16px;
     padding-bottom: 0;
+
 
     @include xb-gt-sm-screen{
       padding-top: 40px;
@@ -14,6 +37,9 @@
     margin-bottom: 8px;
     @include xb-gt-sm-screen{
       text-align: center;
+    }
+    @include xb-xs-screen{
+      @include font-h2();
     }
   }
 
@@ -31,6 +57,9 @@
     }
     .xb-redeem-detail__content-line{
       width: 100%;
+      @include xb-sm-screen{
+        margin-top: 16px;
+      }
     }
   }
 
@@ -83,15 +112,20 @@
 }
 
 .xb2-page-content{
-  //padding-top: 24px;
   &__section{
     margin-bottom: 24px;
+    iframe{
+      width: 100%;
+    }
   }
   .md-tab{
     span{
       margin-left: 8px;
       color: #ff4a87;
     }
+  }
+  .xb-trial-detail__content{
+    margin-left: 84px;
   }
 }
 
@@ -302,6 +336,12 @@
     @include xb-xs-screen{
       margin: 0 8px;
     }
+
+    .md-headline{
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
   }
   &__title{
     font-size: 34px;
@@ -377,5 +417,51 @@
   }
   &__color-2{
     color: rgba(0,0,0,.38);
+  }
+  &__zan{
+    padding: 56px 0;
+    border-top: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    span{
+      display: none;
+    }
+    &-inner{
+      .material-icons{
+        border-radius: 50%;
+        background-color: $primaryColor;
+        width: 72px;
+        height: 72px;
+        color: $whiteColor;
+        text-align: center;
+        line-height: 72px;
+      }
+    }
+  }
+  &__share{
+    .xb-reviews-detail__head-bg{
+      margin-bottom: 0;
+      border: none;
+    }
+  }
+  &__share-bg{
+    position: fixed;
+    display: none;
+    >div{
+      cursor: pointer;
+      width: 64px;
+      height: 36px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+      >i{
+        color: #fff;
+        font-size: 24px;
+      }
+      $colors: (1 $facebookColor) (2 $twitterColor) (3 $linkedinColor);
+      @each $color in $colors{
+        &:nth-child(#{nth($color, 1)}) {
+          background-color: nth($color, 2);
+        }
+      }
+    }
   }
 }

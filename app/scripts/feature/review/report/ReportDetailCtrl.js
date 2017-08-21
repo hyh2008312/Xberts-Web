@@ -2,13 +2,23 @@
 
 angular.module('xbertsApp')
   .controller('ReportDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
-    'BrowserUtil',
-    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService, BrowserUtil) {
+    'BrowserUtil','ExpertService',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService, BrowserUtil,ExpertService) {
     $scope.report = report;
+
+    $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === report.getReviewerId();
+
+    $scope.expert = {
+      userId: report.getReviewerId()
+    };
+
+    ExpertService.getAchievement(report.getReviewerId()).then(function(data) {
+      $scope.achievement = data;
+    });
 
     var title = report.title;
     var description = report.description;
-    var backgroundColor = 'background-bg-white';
+    var backgroundColor = 'background-bg-light';
     var shareImage = report.image_origin;
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 

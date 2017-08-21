@@ -1,13 +1,16 @@
 <div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index" ng-if="!isAll">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">{{product.title}}</a>
+  <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+    target="_blank">{{product.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer && product.description && !hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <span class="xb-ask-list__color" ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"
+       ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
   </div>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="product.description && hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <span class="xb-ask-list__color" ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"
+       ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
@@ -26,37 +29,40 @@
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
-           ui-sref="application.answerQuestionDetail({questionId:product.id})">
+      <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer">more</span>
+        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer"
+           ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
       </div>
-      <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
-           ui-sref="application.answerQuestionDetail({questionId:product.id})">
+      <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:100}}{{product.latestAnswer.text.length>100? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer">more</span>
+        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer"
+              ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</span>
       </div>
-      <div class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
-           flex="none" ng-if="product.latestAnswer.preImage">
+      <a class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+           flex="none" ng-if="product.latestAnswer.preImage" target="_blank">
         <img src="{{product.latestAnswer.preImage}}" />
-      </div>
+      </a>
     </div>
   </div>
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerAmount">
       <div ng-switch-when="0" >
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary"
+                   ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">
           Be the first to answer
         </md-button>
       </div>
       <div ng-switch-when="1" layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+                   target="_blank">
           Answer
         </md-button>
         <span class="xb-ask-list__color">&nbsp;1</span>
       </div>
       <div ng-switch-default layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+                   target="_blank">
           Answers
         </md-button>
         <span class="xb-ask-list__color">&nbsp;{{product.answerAmount}}</span>
@@ -72,14 +78,17 @@
 </div>
 <div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index" ng-if="isAll && $index <= 1">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">{{product.title}}</a>
+  <a class="xb-ask-list__title md-headline md-dark-primary" target="_blank"
+     ui-sref="application.answerQuestionDetail({questionId:product.id})">{{product.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer && product.description && !hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <span class="xb-ask-list__color" ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"
+       ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
   </div>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="product.description && hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <span class="xb-ask-list__color" ng-if="product.description.length>140" ui-sref="application.answerQuestionDetail({questionId:product.id})">More</span>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"
+       ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
@@ -98,37 +107,40 @@
       </div>
     </div>
     <div layout="row" layout-align="start start">
-      <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
-           ui-sref="application.answerQuestionDetail({questionId:product.id})">
+      <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer">more</span>
+        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer"
+              ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
       </div>
-      <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text"
-           ui-sref="application.answerQuestionDetail({questionId:product.id})">
+      <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:100}}{{product.latestAnswer.text.length>100? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer">more</span>
+        <a ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer"
+           ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
       </div>
-      <div class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
-           flex="none" ng-if="product.latestAnswer.preImage">
+      <a class="xb-ask-list__answer-image-bg xb-pointer" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+           flex="none" ng-if="product.latestAnswer.preImage" target="_blank">
         <img src="{{product.latestAnswer.preImage}}" />
-      </div>
+      </a>
     </div>
   </div>
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerAmount">
       <div ng-switch-when="0" >
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+                   target="_blank">
           Be the first to answer
         </md-button>
       </div>
       <div ng-switch-when="1" layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+                   target="_blank">
           Answer
         </md-button>
         <span class="xb-ask-list__color">&nbsp;1</span>
       </div>
       <div ng-switch-default layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})">
+        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id})"
+                   target="_blank">
           Answers
         </md-button>
         <span class="xb-ask-list__color">&nbsp;{{product.answerAmount}}</span>

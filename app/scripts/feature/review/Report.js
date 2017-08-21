@@ -44,7 +44,13 @@ function ReportModel() {
       return this.applicant.reviewer.id;
     },
     getReviewerPosition: function () {
-      return this.applicant.reviewer.userprofile.position + " @ " + this.applicant.reviewer.userprofile.company;
+      if(this.applicant.reviewer.userprofile.position && this.applicant.reviewer.userprofile.company) {
+        return this.applicant.reviewer.userprofile.position + " @ " + this.applicant.reviewer.userprofile.company;
+      } else if(this.applicant.reviewer.userprofile.position && !this.applicant.reviewer.userprofile.company) {
+        return this.applicant.reviewer.userprofile.position;
+      } else if(this.applicant.reviewer.userprofile.company) {
+        return this.applicant.reviewer.userprofile.company;
+      }
     },
     getScore: function () {
       var temp = [(this.presentation + this.cost_performance + this.usability) / 3] * 10;

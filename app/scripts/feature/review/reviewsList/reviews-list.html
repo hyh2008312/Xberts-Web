@@ -2,39 +2,23 @@
      layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder1($index)" ng-if="featured">
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-xs ng-if="review.blog"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-gt-xs ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="50" flex-sm="65">
     <div class="xb-reviews-list__top" flex-gt-xs>
       <div class="xb-reviews-list__title" >
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.report"
            ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
           {{ review.title }}
         </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-gt-xs
-           ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.blog"
            ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-gt-xs
-           ui-sref="application.blogReport({blogId:review.blog})">
           {{ review.title }}
         </a>
       </div>
@@ -65,39 +49,23 @@
      layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder1($index)" ng-if="!featured">
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-xs ng-if="review.blog"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-gt-xs ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="50" flex-sm="65">
     <div class="xb-reviews-list__top" flex-gt-xs>
       <div class="xb-reviews-list__title" >
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.report"
            ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
           {{ review.title }}
         </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-gt-xs
-           ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.blog"
            ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-gt-xs
-           ui-sref="application.blogReport({blogId:review.blog})">
           {{ review.title }}
         </a>
       </div>
@@ -128,39 +96,23 @@
      layout-xs="column" layout-align-xs="start"
      layout-gt-xs="row" layout-align-gt-xs="start stretch"
      reviews-repeat-order index="changeOrder($index)" ng-if="!featured && review.blog">
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-xs ng-if="review.report"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35"  hide-xs ng-if="review.blog"
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" hide-gt-xs ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="50" flex-sm="65">
     <div class="xb-reviews-list__top" flex-gt-xs>
       <div class="xb-reviews-list__title" >
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.report"
            ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
           {{ review.title }}
         </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.report" hide-gt-xs
-           ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-xs
+        <a class="md-subhead md-dark-primary" ng-if="review.blog"
            ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog" hide-gt-xs
-           ui-sref="application.blogReport({blogId:review.blog})">
           {{ review.title }}
         </a>
       </div>
@@ -189,38 +141,22 @@
 </div>
 <div class="xb-reviews-list__list-1" ng-repeat="review in reviewsFeatured track by $index"
      reviews-repeat-order index="changeOrder1($index)" ng-if="!featured && false">
-  <a class="xb-trials-list__img-bg" hide-xs ng-if="review.report"
+  <a class="xb-trials-list__img-bg" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
-  <a class="xb-trials-list__img-bg" hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" hide-xs ng-if="review.blog"
+  <a class="xb-trials-list__img-bg" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" hide-gt-xs ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <div class="xb-reviews-list__bottom">
     <div class="xb-reviews-list__title" >
-      <a class="md-subhead md-dark-primary" hide-xs ng-if="review.report"
+      <a class="md-subhead md-dark-primary" ng-if="review.report"
          ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
         {{ review.title }}
       </a>
-      <a class="md-subhead md-dark-primary" hide-gt-xs ng-if="review.report"
-         ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" hide-xs ng-if="review.blog"
+      <a class="md-subhead md-dark-primary" ng-if="review.blog"
          ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" hide-gt-xs ng-if="review.blog"
-         ui-sref="application.blogReport({blogId:review.blog})">
         {{ review.title }}
       </a>
     </div>
@@ -242,38 +178,22 @@
 </div>
 <div class="xb-reviews-list__list-1" ng-repeat="review in reviews track by $index"
      reviews-repeat-order index="changeOrder($index)" ng-if="!featured && false">
-  <a class="xb-trials-list__img-bg" hide-xs ng-if="review.report"
+  <a class="xb-trials-list__img-bg" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
   </a>
-  <a class="xb-trials-list__img-bg" hide-gt-xs ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" hide-xs ng-if="review.blog"
+  <a class="xb-trials-list__img-bg" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" hide-gt-xs ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})">
     <img ng-src="{{review.cover }}"/>
   </a>
   <div class="xb-reviews-list__bottom">
     <div class="xb-reviews-list__title" >
-      <a class="md-subhead md-dark-primary" hide-xs ng-if="review.report"
+      <a class="md-subhead md-dark-primary" ng-if="review.report"
          ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
         {{ review.title }}
       </a>
-      <a class="md-subhead md-dark-primary" hide-gt-xs ng-if="review.report"
-         ui-sref="application.report({reviewId:review.id,reportId:review.report})">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" hide-xs ng-if="review.blog"
+      <a class="md-subhead md-dark-primary" ng-if="review.blog"
          ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" hide-gt-xs ng-if="review.blog"
-         ui-sref="application.blogReport({blogId:review.blog})">
         {{ review.title }}
       </a>
     </div>

@@ -21,6 +21,7 @@ angular.module('xbertsApp')
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     $scope.$on('$locationChangeSuccess', function () {
       DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
+      dealsCtrl.changeCategory($scope.selectedIndex);
     });
 
     dealsCtrl.changeCategory = function ($index) {
@@ -74,8 +75,6 @@ angular.module('xbertsApp')
         dealsCtrl.productsPaginator.load();
       }
     };
-
-    dealsCtrl.changeCategory($scope.selectedIndex);
 
     dealsCtrl.post = function() {
       if(!$rootScope.user.authRequired()) {
