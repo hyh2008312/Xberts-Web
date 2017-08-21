@@ -57,44 +57,45 @@
         </div>
       </div>
     </interact>
-    <interact interact="report.interact" hide-gt-xs>
-      <div layout="row" layout-align="start center" class="xb-reviews-detail__action-buttons">
-        <vote layout="row" layout-align="start center" flex="none"></vote>
-        <div layout="row" layout-align="start center" ng-click="onToggleDown();" flex="none">
-          <md-icon class="md-dark-third" flex="none">sms</md-icon>
-        </div>
-        <comment-amounts layout="row" layout-align="start center" flex="none"></comment-amounts>
-        <md-fab-speed-dial hide-gt-xs flex layout="row" layout-align="end center" ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
-          <md-fab-trigger>
-            <md-button class="md-icon-button">
-              <md-icon class="md-dark-third" md-font-set="material-icons"> share </md-icon>
-            </md-button>
-          </md-fab-trigger>
-          <md-fab-actions>
-            <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
-                       socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
-                       socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
-                       socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
-              <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
-            </md-button>
-          </md-fab-actions>
-        </md-fab-speed-dial>
-        <div layout="row" layout-align="end center" hide-xs flex>
+
+  </div>
+  <interact interact="report.interact" hide-gt-xs>
+    <div layout="row" layout-align="start center" class="xb-reviews-detail__action-buttons">
+      <vote layout="row" layout-align="start center" flex="none"></vote>
+      <div layout="row" layout-align="start center" ng-click="onToggleDown();" flex="none">
+        <md-icon class="md-dark-third" flex="none">sms</md-icon>
+      </div>
+      <comment-amounts layout="row" layout-align="start center" flex="none"></comment-amounts>
+      <md-fab-speed-dial hide-gt-xs flex layout="row" layout-align="end center" ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale" ng-class="{ 'md-hover-full': hover }" ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false">
+        <md-fab-trigger>
+          <md-button class="md-icon-button">
+            <md-icon class="md-dark-third" md-font-set="material-icons"> share </md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
           <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
                      socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
                      socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
                      socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
             <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
           </md-button>
-        </div>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+      <div layout="row" layout-align="end center" hide-xs flex>
+        <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
+                   socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
+                   socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
+                   socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
+          <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
+        </md-button>
       </div>
-      <div layout class="product__interact" ng-show="commentToggle" >
-        <div flex>
-          <feedback-list interact-id="{{report.interact.id}}" hide-state="!commentToggle"></feedback-list>
-        </div>
+    </div>
+    <div layout class="product__interact" ng-show="commentToggle" >
+      <div flex>
+        <feedback-list interact-id="{{report.interact.id}}" hide-state="!commentToggle"></feedback-list>
       </div>
-    </interact>
-  </div>
+    </div>
+  </interact>
 </div>
 <div class="container">
   <div class="xb-deals-detail__title md-subhead" ng-if="blogPaginator!=null && blogPaginator.length>0">YOU MAY ALSO LIKE</div>
