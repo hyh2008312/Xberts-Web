@@ -18,7 +18,7 @@
     <li>The cost of product sample is: <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getFlashSale()}}</b>
       <del>{{ confirm.review.getRetailPrice() }}</del>
     </li>
-    <li ng-if="confirm.review.getDeposit()">This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getDeposit()}}</b> to make
+    <li ng-if="confirm.review.getDeposit() && confirm.review.getDeposit() > 0">This campaign will require a deposit payment of <b md-colors="{color: 'accent'}" class="md-subhead">${{ confirm.review.getDeposit()}}</b> to make
       sure all applicants will submit their reviews
       after receiving the product.
     </li>
