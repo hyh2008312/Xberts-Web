@@ -12,7 +12,7 @@
   margin-bottom: 8px;
 }
 .xb2-comment{
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   &__avatar{
     width: 40px;
     height: 40px;
@@ -32,7 +32,11 @@
 
   &__name{
     @include font-h3();
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+  }
+
+  &__detial{
+    margin-bottom: 4px;
   }
 
   &__secondary{
