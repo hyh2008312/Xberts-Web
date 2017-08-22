@@ -16,7 +16,7 @@ angular.module('xbertsApp')
         objClass: AskModel,
         params: {
           owner: $rootScope.user.getUserId(),
-          question: productsDetail.question,
+          question: productsDetail.id,
           page_size: 12
         },
         fetchFunction: AskService.getAnswersList

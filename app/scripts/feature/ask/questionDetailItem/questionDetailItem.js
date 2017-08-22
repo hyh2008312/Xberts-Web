@@ -41,12 +41,11 @@ angular.module('xbertsApp')
           }
           if(scope.answers.length > 0) {
             var confirm = $mdDialog.confirm()
-              .title('Would you like to delete your debt?')
-              .textContent('All of the banks have agreed to forgive you your debts.')
-              .ariaLabel('Lucky day')
+              .textContent('You have already answered this question. Would you like to edit it?')
+              .ariaLabel('Answer alert')
               .targetEvent(ev)
-              .ok('Please do it!')
-              .cancel('Sounds like a scam');
+              .ok('Edit')
+              .cancel('Cancel');
 
             $mdDialog.show(confirm).then(function() {
               $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
@@ -67,12 +66,11 @@ angular.module('xbertsApp')
 
           if(scope.answers.length > 0) {
             var confirm = $mdDialog.confirm()
-              .title('Would you like to delete your debt?')
-              .textContent('All of the banks have agreed to forgive you your debts.')
-              .ariaLabel('Lucky day')
+              .textContent('You have already answered this question. Would you like to edit it?')
+              .ariaLabel('Answer alert')
               .targetEvent(ev)
-              .ok('Please do it!')
-              .cancel('Sounds like a scam');
+              .ok('Edit')
+              .cancel('Cancel');
 
             $mdDialog.show(confirm).then(function() {
 
