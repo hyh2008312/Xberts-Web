@@ -121,44 +121,6 @@ angular
           }]
         }
       })
-      .state('application.blogReport', {
-        url: '/articles/:blogId',
-        templateUrl: 'scripts/feature/review/reviewDetail/reviewDetail.html',
-        controller: 'ReviewDetailCtrl',
-        resolve: {
-          report: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
-            return ReviewService.getBlogDetail($stateParams.blogId);
-          }],
-          blogPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
-            return [];
-            // return DealsService.getRecommendList($stateParams.reportId);
-          }]
-        }
-      })
-      .state('application.campaignreviews', {
-        url: "/articles",
-        templateUrl: 'scripts/feature/review/report/report-list.html',
-        controller: 'ReportListCtrl',
-        reloadOnSearch: false,
-        resolve: {
-          reviewsFeaturedTop: ['Paginator', 'ReviewService', 'MainModel',
-            function (Paginator, ReviewService, MainModel) {
-              var par = {
-                name: 'all_review_list_featured_top',
-                objClass:MainModel,
-                params: {
-                  is_recommended:'True',
-                  edit_status:'PUBLISHED',
-                  approval_status:'APPROVED',
-                  page_size: 4
-                },
-                fetchFunction: ReviewService.getArticleList
-              };
-              return new Paginator(par).load();
-            }]
-        }
-      })
-
       .state('application.testingcampaigns', {
         url: "/crowdtesting",
         templateUrl: 'scripts/feature/review/trialList/trialListPage.html',
@@ -166,29 +128,39 @@ angular
         reloadOnSearch: false,
         resolve: {
           latestPaginater: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
-            var par = {
-              name: 'trials',
-              objClass:Review,
-              params: {
-                page_size: 6,
-                review_type: 'FREE_SAMPLE'
-              },
-              fetchFunction: ReviewService.getList
-            };
-            return new Paginator(par).load();
+            if(!ReviewService.latestPaginater) {
+              var par = {
+                name: 'trials',
+                objClass:Review,
+                params: {
+                  page_size: 6,
+                  review_type: 'FREE_SAMPLE'
+                },
+                fetchFunction: ReviewService.getList
+              };
+              ReviewService.latestPaginater = new Paginator(par);
+              return ReviewService.latestPaginater.load();
+            } else {
+              return ReviewService.latestPaginater;
+            }
           }],
           trialPaginator: ['Paginator', 'ReviewService','Review', function (Paginator, ReviewService,Review) {
-            var par = {
-              name: 'end_trials',
-              objClass: Review,
-              params: {
-                page_size: 12,
-                review_type: 'FREE_SAMPLE',
-                status: 'ENDED'
-              },
-              fetchFunction: ReviewService.getList
-            };
-            return new Paginator(par).load();
+            if(!ReviewService.trialPaginator) {
+              var par = {
+                name: 'end_trials',
+                objClass: Review,
+                params: {
+                  page_size: 12,
+                  review_type: 'FREE_SAMPLE',
+                  status: 'ENDED'
+                },
+                fetchFunction: ReviewService.getList
+              };
+              ReviewService.trialPaginator = new Paginator(par);
+              return ReviewService.trialPaginator.load();
+            }  else {
+              return ReviewService.trialPaginator;
+            }
           }]
         }
       })
@@ -270,6 +242,48 @@ angular
         resolve: {
           review: ['$stateParams', 'ReviewService', function ($stateParams, ReviewService) {
             return ReviewService.getDetail($stateParams.reviewId);
+          }]
+        }
+      })
+      .state('application.campaignreviews', {
+        url: "/articles",
+        templateUrl: 'scripts/feature/review/report/report-list.html',
+        controller: 'ReportListCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          reviewsFeaturedTop: ['Paginator', 'ReviewService', 'MainModel',
+            function (Paginator, ReviewService, MainModel) {
+              if(!ReviewService.reviewsFeaturedTop) {
+                var par = {
+                  name: 'all_review_list_featured_top',
+                  objClass:MainModel,
+                  params: {
+                    is_recommended:'True',
+                    edit_status:'PUBLISHED',
+                    approval_status:'APPROVED',
+                    page_size: 4
+                  },
+                  fetchFunction: ReviewService.getArticleList
+                };
+                ReviewService.reviewsFeaturedTop = new Paginator(par);
+                return ReviewService.reviewsFeaturedTop.load();
+              } else {
+                return ReviewService.reviewsFeaturedTop;
+              }
+            }]
+        }
+      })
+      .state('application.blogReport', {
+        url: '/articles/:blogId',
+        templateUrl: 'scripts/feature/review/reviewDetail/reviewDetail.html',
+        controller: 'ReviewDetailCtrl',
+        resolve: {
+          report: ['ReviewService', '$stateParams', function (ReviewService, $stateParams) {
+            return ReviewService.getBlogDetail($stateParams.blogId);
+          }],
+          blogPaginator: ['DealsService','$stateParams',function (DealsService,$stateParams) {
+            return [];
+            // return DealsService.getRecommendList($stateParams.reportId);
           }]
         }
       })

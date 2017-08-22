@@ -5,7 +5,8 @@
         <span ui-sref="application.askQuestionMain()" class="xb-question-detail__pointer">ASK</span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<span class="md-dark-primary">QUESTION</span></div>
       <md-button class="md-primary" ng-click="answerCtrl.addQuestion()">Ask Question</md-button>
     </div>
-    <question-detail-item product="answerCtrl.productsDetail" show-answer="answerCtrl.showAnswer"></question-detail-item>
+    <question-detail-item product="answerCtrl.productsDetail" show-answer="answerCtrl.showAnswer"
+      answers="answerCtrl.isAnswered.items"></question-detail-item>
     <div ng-if="user.isAuth()" hide-xs>
       <answer-post ng-if="answerCtrl.showAnswer" class="xb-question-detail__inner-content" options="answerCtrl.options"
                    question-id="answerCtrl.productsDetail.id" detail-ctrl="answerCtrl"></answer-post>

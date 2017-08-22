@@ -1,13 +1,29 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    'localStorageService',
-    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService) {
+    'localStorageService','AskModel','Paginator',
+    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,AskModel,Paginator) {
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
     answerCtrl.user = $rootScope.user;
     answerCtrl.showAnswer = answerCtrl.answerPaginator.count == 0 ? true : false;
+
+    answerCtrl.isAnswered = false;
+    if($rootScope.user.getUserId()) {
+      var par = {
+        name: 'ask_answers_detail',
+        objClass: AskModel,
+        params: {
+          owner: $rootScope.user.getUserId(),
+          question: productsDetail.question,
+          page_size: 12
+        },
+        fetchFunction: AskService.getAnswersList
+      };
+      answerCtrl.isAnswered = new Paginator(par);
+      answerCtrl.isAnswered.load();
+    }
 
     answerCtrl.options = {
       height: 300,

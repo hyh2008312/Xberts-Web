@@ -1,5 +1,11 @@
-<md-icon ng-if="!xbStyle" class="md-dark-third" ng-class="{'md-warn':join.vote}" ng-click="vote()">thumb_up</md-icon>
+<md-icon ng-if="!xbStyle && !xbBlog" class="md-dark-third" ng-class="{'md-warn':join.vote}" ng-click="vote()">thumb_up</md-icon>
 <div ng-if="xbStyle" class="xb-vote" ng-class="{'xb-vote__color':join.vote}" ng-click="vote()">
   VOTE
 </div>
-<span class="md-dark-third">{{interact.vote_amount || interact.voteAmount || " "}}</span>
+<span class="md-dark-third" ng-if="!xbBlog">{{interact.vote_amount || interact.voteAmount || " "}}</span>
+<div class="xb-vote__inner" ng-if="xbBlog" ng-show="!join.vote" ng-click="vote()">
+  <md-icon>thumb_up</md-icon>
+</div>
+<div class="xb-vote__inner-1" ng-if="xbBlog" ng-show="join.vote" ng-click="vote()">
+  Thanks
+</div>

@@ -77,4 +77,7 @@ angular.module('xbertsApp')
         name: 'Overall'
       }];
     };
+
+    this.askPaginator = {};
+    this.topReviewers = null;
   }]);

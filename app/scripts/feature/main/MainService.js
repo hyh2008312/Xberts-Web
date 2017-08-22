@@ -1,10 +1,23 @@
 angular.module('xbertsApp')
   .service('MainService', ['$resource','MainModel','API_BASE_URL',function ($resource, MainModel, API_BASE_URL) {
 
-    var BannerResource = $resource(API_BASE_URL + '/contents/mainPageTopBanners/',null);
-    var ReportResource = $resource(API_BASE_URL + '/review/reports/:id/');
+    var BannerResource = $resource(API_BASE_URL + '/contents/mainPageTopBanners/',null,{
+      'query' : {
+        method:'GET',
+        params:{
+          no_auth: true
+        },
+        isArray:true
+      }
+    });
 
+    // cache data
     this.bannerList = null;
+    this.dealsPaginator = null;
+    this.latestPaginater = null;
+    this.reviewsFeaturedTop = null;
+    this.askPaginator = null;
+    this.topReviewers = null;
 
     this.getBannerList = function(params) {
       if(this.bannerList == null) {
@@ -13,15 +26,5 @@ angular.module('xbertsApp')
       return this.bannerList;
     };
 
-    this.getList = function (params) {
-      return $resource(API_BASE_URL + '/review/reviews/', {id: '@id'}).get(params).$promise.then(MainModel.buildPageList);
-    };
-
-    this.getReviewsList = function (params) {
-      return ReportResource.get(params).$promise.then(MainModel.buildPageList);
-    };
-    this.getRecommendedReviewers = function (params) {
-      return $resource(API_BASE_URL + '/xberts/reviewers/').get(params).$promise.then(MainModel.buildPageList);
-    };
 
   }]);

@@ -21,7 +21,14 @@ angular.module('xbertsApp')
     };
 
     self.getList = function (params) {
-      return $resource(API_BASE_URL + '/review/reviews/', {id: '@id'}).get(params).$promise;
+      return $resource(API_BASE_URL + '/review/reviews/', {id: '@id'}, {
+        'get' : {
+          method:'GET',
+            params:{
+            no_auth: true
+          }
+        }
+      }).get(params).$promise;
     };
 
     self.getRecommendedReviewers = function (params) {
@@ -67,7 +74,14 @@ angular.module('xbertsApp')
     };
 
     this.getArticleList = function (params) {
-      return $resource(API_BASE_URL + '/articles/').get(params).$promise.then(MainModel.buildPageList);
+      return $resource(API_BASE_URL + '/articles/',null,{
+        'get' : {
+          method:'GET',
+          params:{
+            no_auth: true
+          }
+        }
+      }).get(params).$promise.then(MainModel.buildPageList);
     };
 
     self.postBlog = function(params) {
@@ -77,4 +91,8 @@ angular.module('xbertsApp')
     self.getBlogDetail = function (reviewId) {
       return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'}).get({id:reviewId}).$promise.then(MainModel.build);
     };
+
+    this.latestPaginater = null;
+    this.trialPaginator = null;
+    this.reviewsFeaturedTop = null;
   }]);

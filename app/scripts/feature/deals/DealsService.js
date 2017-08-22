@@ -4,9 +4,31 @@ angular.module('xbertsApp')
   .service('DealsService', ['$rootScope','$resource','ProductDeals','API_BASE_URL',
     function ($rootScope,$resource,ProductDeals,API_BASE_URL) {
 
-    var DealsProductHomeResource = $resource(API_BASE_URL + '/products/home/');
-    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
-    var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'});
+    var DealsProductHomeResource = $resource(API_BASE_URL + '/products/home/',{},{
+      'get' : {
+        method:'GET',
+        params:{
+          no_auth: true
+        }
+      }
+    });
+    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{
+      'get' : {
+        method:'GET',
+        params:{
+          no_auth: true
+        }
+      },
+      'patch': {method: 'PATCH'}});
+    var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'}, {
+      'query' : {
+        method:'GET',
+        params:{
+          no_auth: true
+        },
+        isArray:true
+      }
+    });
 
     this.categoryId = null;
     this.priceId = null;

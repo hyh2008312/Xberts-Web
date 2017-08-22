@@ -7,7 +7,7 @@ angular.module('xbertsApp')
       controller: 'QuestionListPage as askCtrl',
       resolve: {
         askPaginator: ['Paginator', 'AskService', 'AskModel', function (Paginator, AskService, AskModel) {
-          var par = null;
+          var _par = AskService.askPaginator[AskService.order];
           switch (AskService.order) {
             case 0:
               var par = {
@@ -18,7 +18,13 @@ angular.module('xbertsApp')
                 },
                 fetchFunction: AskService.getList
               };
-              par = new Paginator(par).load();
+              if(!_par) {
+                _par = new Paginator(par);
+                AskService.askPaginator[AskService.order] = _par;
+                _par.load();
+              } else {
+                _par = AskService.askPaginator[AskService.order];
+              }
               break;
             case 1:
               var par = {
@@ -30,7 +36,13 @@ angular.module('xbertsApp')
                 },
                 fetchFunction: AskService.getList
               };
-              par = new Paginator(par).load();
+              if(!_par) {
+                _par = new Paginator(par);
+                AskService.askPaginator[AskService.order] = _par;
+                _par.load();
+              } else {
+                _par = AskService.askPaginator[AskService.order];
+              }
               break;
             case 2:
               var par = {
@@ -41,7 +53,13 @@ angular.module('xbertsApp')
                 },
                 fetchFunction: AskService.getPopularList
               };
-              par = new Paginator(par).load();
+              if(!_par) {
+                _par = new Paginator(par);
+                AskService.askPaginator[AskService.order] = _par;
+                _par.load();
+              } else {
+                _par = AskService.askPaginator[AskService.order];
+              }
               break;
             case 3:
               var par = {
@@ -53,22 +71,34 @@ angular.module('xbertsApp')
                 },
                 fetchFunction: AskService.getList
               };
-              par = new Paginator(par).load();
+              if(!_par) {
+                _par = new Paginator(par);
+                AskService.askPaginator[AskService.order] = _par;
+                _par.load();
+              } else {
+                _par = AskService.askPaginator[AskService.order];
+              }
               break;
           }
-          return par;
+          return _par;
         }],
         topReviewers: ['Paginator', 'AskService', 'MainModel', function (Paginator, AskService, AskModel) {
-          var par = {
-            name: 'answer_leaders_list',
-            objClass:AskModel,
-            params: {
-              type: 'week',
-              page_size: 12
-            },
-            fetchFunction:AskService.getAnswerLeaderList
-          };
-          return new Paginator(par).load();
+          if(!AskService.topReviewers) {
+            var par = {
+              name: 'answer_leaders_list',
+              objClass:AskModel,
+              params: {
+                type: 'week',
+                page_size: 12
+              },
+              fetchFunction:AskService.getAnswerLeaderList
+            };
+            AskService.topReviewers = new Paginator(par);
+            return AskService.topReviewers.load();
+          } else {
+            return AskService.topReviewers;
+          }
+
         }]
       }
     })

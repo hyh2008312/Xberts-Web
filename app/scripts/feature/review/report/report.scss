@@ -432,17 +432,7 @@
     span{
       display: none;
     }
-    &-inner{
-      .material-icons{
-        border-radius: 50%;
-        background-color: $primaryColor;
-        width: 72px;
-        height: 72px;
-        color: $whiteColor;
-        text-align: center;
-        line-height: 72px;
-      }
-    }
+
   }
   &__share{
     .xb-reviews-detail__head-bg{

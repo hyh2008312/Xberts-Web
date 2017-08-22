@@ -10,15 +10,20 @@ angular.module('xbertsApp')
           return CreditService.topBanner;
         }],
         creditMain: ['Paginator','CreditService','ShareProduct',function(Paginator, CreditService, ShareProduct) {
-          var par = {
-            name: 'credit_gift_list',
-            objClass: ShareProduct,
-            params: {
-              page_size: 6
-            },
-            fetchFunction: CreditService.getList
-          };
-          return new Paginator(par).load();
+          if(!CreditService.creditMain) {
+            var par = {
+              name: 'credit_gift_list',
+              objClass: ShareProduct,
+              params: {
+                page_size: 6
+              },
+              fetchFunction: CreditService.getList
+            };
+            CreditService.creditMain = new Paginator(par);
+            return CreditService.creditMain.load();
+          } else {
+            return CreditService.creditMain;
+          }
         }]
       }
     })

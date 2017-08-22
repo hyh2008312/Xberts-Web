@@ -72,4 +72,24 @@
   &__color{
     color: rgb(255,87,34);
   }
+  &__inner{
+    border-radius: 50%;
+    background-color: $primaryColor;
+    width: 72px;
+    height: 72px;
+    text-align: center;
+    line-height: 72px;
+    .material-icons{
+      color: $whiteColor;
+    }
+  }
+  &__inner-1{
+    border-radius: 50%;
+    background-color: #ff5722;
+    width: 72px;
+    height: 72px;
+    color: $whiteColor;
+    text-align: center;
+    line-height: 72px;
+  }
 }

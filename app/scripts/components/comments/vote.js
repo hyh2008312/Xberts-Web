@@ -5,7 +5,8 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        xbStyle: '='
+        xbStyle: '=',
+        xbBlog: '='
       },
       templateUrl: 'scripts/components/comments/vote.html',
       require: '^^interact',

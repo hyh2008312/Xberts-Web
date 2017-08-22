@@ -12,6 +12,10 @@ angular.module('xbertsApp')
           }
         });
 
+        if(config.params && config.params.no_auth) {
+          shouldIgnore = true;
+        }
+
         if (shouldIgnore) {
           return config;
         }

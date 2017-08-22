@@ -12,69 +12,93 @@ angular.module('xbertsApp')
       var mainCtrl = this;
       mainCtrl.topBanner = topBanner;
 
-      var par = {
-        name: 'deals_main_list',
-        objClass: ProductDeals,
-        params: {
-          page_size: 12
-        },
-        fetchFunction: DealsService.getDealsList
-      };
+      if(!MainService.dealsPaginator) {
+        var par = {
+          name: 'deals_main_list',
+          objClass: ProductDeals,
+          params: {
+            page_size: 12
+          },
+          fetchFunction: DealsService.getDealsList
+        };
 
-      mainCtrl.dealsPaginator = new Paginator(par);
-      mainCtrl.dealsPaginator.load();
+        mainCtrl.dealsPaginator = new Paginator(par);
+        mainCtrl.dealsPaginator.load();
+        MainService.dealsPaginator = mainCtrl.dealsPaginator;
+      } else {
+        mainCtrl.dealsPaginator = MainService.dealsPaginator;
+      }
 
-      var par = {
-        name: 'trials',
-        objClass: Review,
-        params: {
-          page_size: 6,
-          review_type: 'FREE_SAMPLE'
-        },
-        fetchFunction: ReviewService.getList
-      };
-      mainCtrl.latestPaginater = new Paginator(par);
-      mainCtrl.latestPaginater.load();
+      if(!MainService.latestPaginater) {
+        var par = {
+          name: 'trials',
+          objClass: Review,
+          params: {
+            page_size: 6,
+            review_type: 'FREE_SAMPLE'
+          },
+          fetchFunction: ReviewService.getList
+        };
+        mainCtrl.latestPaginater = new Paginator(par);
+        mainCtrl.latestPaginater.load();
+        MainService.latestPaginater = mainCtrl.latestPaginater;
+      } else {
+        mainCtrl.latestPaginater = MainService.latestPaginater;
+      }
 
-      var par = {
-        name: 'all_review_list_featured_top',
-        objClass: MainModel,
-        params: {
-          is_recommended:'True',
-          edit_status:'PUBLISHED',
-          approval_status:'APPROVED',
-          page_size: 4
-        },
-        fetchFunction: ReviewService.getArticleList
-      };
-      mainCtrl.reviewsFeaturedTop = new Paginator(par);
-      mainCtrl.reviewsFeaturedTop.load();
+      if(!MainService.reviewsFeaturedTop) {
+        var par = {
+          name: 'all_review_list_featured_top',
+          objClass: MainModel,
+          params: {
+            is_recommended: 'True',
+            edit_status: 'PUBLISHED',
+            approval_status: 'APPROVED',
+            page_size: 4
+          },
+          fetchFunction: ReviewService.getArticleList
+        };
+        mainCtrl.reviewsFeaturedTop = new Paginator(par);
+        mainCtrl.reviewsFeaturedTop.load();
+        MainService.reviewsFeaturedTop = mainCtrl.reviewsFeaturedTop;
+      } else {
+        mainCtrl.reviewsFeaturedTop = MainService.reviewsFeaturedTop;
+      }
 
-      var par = {
-        name: 'main_ask_answer',
-        objClass: AskModel,
-        params: {
-          ordering: 'answer_amount-',
-          page_size: 3
-        },
-        fetchFunction: AskService.getList
-      };
-      mainCtrl.askPaginator = new Paginator(par);
-      mainCtrl.askPaginator.load();
+      if(!MainService.askPaginator) {
+        var par = {
+          name: 'main_ask_answer',
+          objClass: AskModel,
+          params: {
+            ordering: 'answer_amount-',
+            page_size: 3
+          },
+          fetchFunction: AskService.getList
+        };
+        mainCtrl.askPaginator = new Paginator(par);
+        mainCtrl.askPaginator.load();
+        MainService.askPaginator = mainCtrl.askPaginator;
+      } else {
+        mainCtrl.askPaginator = MainService.askPaginator;
+      }
 
-      var par = {
-        name: 'answer_leaders_list',
-        objClass:AskModel,
-        params: {
-          type: 'week',
-          page_size: 12
-        },
-        fetchFunction: AskService.getAnswerLeaderList
-      };
-      mainCtrl.topReviewers = new Paginator(par);
-      mainCtrl.topReviewers.load();
+      if(!MainService.topReviewers) {
+        var par = {
+          name: 'answer_leaders_list',
+          objClass: AskModel,
+          params: {
+            type: 'week',
+            page_size: 12
+          },
+          fetchFunction: AskService.getAnswerLeaderList
+        };
+        mainCtrl.topReviewers = new Paginator(par);
+        mainCtrl.topReviewers.load();
+        MainService.topReviewers = mainCtrl.topReviewers;
+      } else {
+        mainCtrl.topReviewers = MainService.topReviewers;
+      }
 
-      mainCtrl.order = AskService.order;
       mainCtrl.sort = AskService.getSort();
 
       mainCtrl.selectedIndex = 0;

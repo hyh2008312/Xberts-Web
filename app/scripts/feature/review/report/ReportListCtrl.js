@@ -7,34 +7,44 @@ angular.module('xbertsApp')
     $scope.reviewsFeaturedTop = reviewsFeaturedTop;
 
     if(reviewsFeaturedTop.count > 4) {
-      var par = {
-        name: 'all_review_list',
-        objClass:MainModel,
-        params: {
-          is_recommended:'False',
-          edit_status:'PUBLISHED',
-          approval_status:'APPROVED',
-          page_size: 4
-        },
-        fetchFunction: ReviewService.getArticleList
-      };
-      $scope.reviews = new Paginator(par);
-      $scope.reviews.load();
+      if(!ReviewService.reviews) {
+        var par = {
+          name: 'all_review_list',
+          objClass:MainModel,
+          params: {
+            is_recommended:'False',
+            edit_status:'PUBLISHED',
+            approval_status:'APPROVED',
+            page_size: 4
+          },
+          fetchFunction: ReviewService.getArticleList
+        };
+        $scope.reviews = new Paginator(par);
+        $scope.reviews.load();
+        ReviewService.reviews = $scope.reviews;
+      } else {
+        $scope.reviews = ReviewService.reviews;
+      }
 
-      var par1 = {
-        name: 'all_review_list_featured',
-        objClass: MainModel,
-        pageNumber: 2,
-        params: {
-          is_recommended:'True',
-          edit_status:'PUBLISHED',
-          approval_status:'APPROVED',
-          page_size: 4
-        },
-        fetchFunction: ReviewService.getArticleList
-      };
-      $scope.reviewsFeatured = new Paginator(par1);
-      $scope.reviewsFeatured.load();
+      if(!ReviewService.reviewsFeatured) {
+        var par1 = {
+          name: 'all_review_list_featured',
+          objClass: MainModel,
+          pageNumber: 2,
+          params: {
+            is_recommended:'True',
+            edit_status:'PUBLISHED',
+            approval_status:'APPROVED',
+            page_size: 4
+          },
+          fetchFunction: ReviewService.getArticleList
+        };
+        $scope.reviewsFeatured = new Paginator(par1);
+        $scope.reviewsFeatured.load();
+        ReviewService.reviewsFeatured = $scope.reviewsFeatured;
+      } else {
+        $scope.reviewsFeatured = ReviewService.reviewsFeatured;
+      }
 
       $scope.loadNextImages = function() {
         $scope.reviewsFeatured.loadNext().then(function() {

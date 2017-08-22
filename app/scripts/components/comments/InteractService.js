@@ -30,6 +30,6 @@ angular.module('xbertsApp')
 
     this.vote = function (data) {
       return JoinResource.vote(data).$promise;
-    }
+    };
 
   }]);

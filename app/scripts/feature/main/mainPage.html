@@ -41,7 +41,7 @@
       <div flex>
         <question-order ask-ctrl="mainCtrl" index="mainCtrl.order" main-page="true"></question-order>
         <div>
-          <question-item ng-if="mainCtrl.order == 0" products="mainCtrl.askPaginator.items"></question-item>
+          <question-item products="mainCtrl.askPaginator.items"></question-item>
           <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
                      ng-if="mainCtrl.askPaginator.loading"></load-more>
           <div class="xb-main-reviews__bottom-btn md-margin-bottom-2" layout="row" layout-align="center center">

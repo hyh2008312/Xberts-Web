@@ -6,7 +6,8 @@ angular.module('xbertsApp')
       restrict: 'E',
       scope: {
         product : '=',
-        showAnswer : '='
+        showAnswer : '=',
+        answers : '='
       },
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
@@ -34,8 +35,22 @@ angular.module('xbertsApp')
 
         scope.user = $rootScope.user;
 
-        scope.answer = function(scrollTopAnswer) {
+        scope.answer = function(scrollTopAnswer,ev) {
           if(!$rootScope.user.authRequired()) {
+            return;
+          }
+          if(scope.answers.length > 0) {
+            var confirm = $mdDialog.confirm()
+              .title('Would you like to delete your debt?')
+              .textContent('All of the banks have agreed to forgive you your debts.')
+              .ariaLabel('Lucky day')
+              .targetEvent(ev)
+              .ok('Please do it!')
+              .cancel('Sounds like a scam');
+
+            $mdDialog.show(confirm).then(function() {
+              $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
+            }, function() {});
             return;
           }
           scope.showAnswer = !scope.showAnswer;
@@ -45,8 +60,24 @@ angular.module('xbertsApp')
           }
         };
 
-        scope.answerMobile = function() {
+        scope.answerMobile = function(ev) {
           if(!$rootScope.user.authRequired()) {
+            return;
+          }
+
+          if(scope.answers.length > 0) {
+            var confirm = $mdDialog.confirm()
+              .title('Would you like to delete your debt?')
+              .textContent('All of the banks have agreed to forgive you your debts.')
+              .ariaLabel('Lucky day')
+              .targetEvent(ev)
+              .ok('Please do it!')
+              .cancel('Sounds like a scam');
+
+            $mdDialog.show(confirm).then(function() {
+
+              $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
+            }, function() {});
             return;
           }
           $state.go('application.protected.answerPost',{questionId:scope.product.id});

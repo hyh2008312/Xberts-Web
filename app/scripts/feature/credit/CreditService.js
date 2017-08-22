@@ -26,4 +26,6 @@ angular.module('xbertsApp')
       title : "Xberts Tech Insider <br>Reward Program"
     }];
 
+    this.creditMain = null;
+
   }]);
