@@ -23,7 +23,8 @@ angular.module('xbertsApp')
       $scope.selectedIndex1 = 0;
       $scope.selectedIndex2 = 0;
 
-      var tabIndexToParam = ['profile', 'questions', 'crowdtesting', 'deals', 'follow'];
+      var tabIndexToParam = ['profile', 'questions', 'crowdtesting', 'deals', 'articles', 'following',
+        'follower','question_followed'];
 
       var updateUrl = function () {
         setTimeout(function () {
@@ -51,36 +52,29 @@ angular.module('xbertsApp')
         updateActiveTabOnSearch();
       });
 
-      $scope.loadMyTrials = function () {
+      $scope.loadContent = function(index) {
+        $scope.selectedIndex = index;
         updateUrl();
-        if ($scope.reviewApplicantPaginator) return;
-        var filter = '';
-        if ($rootScope.user.getUserId() != expert.userId) {
-          filter = {is_submit_report: true};
-        }
-        var par = {
-          name: 'trials_' + $scope.expert.userId,
-          params: {reviewer_id: $scope.expert.userId},
-          filter: filter,
-          fetchFunction: ApplicationService.getApplications
-        };
-        $scope.reviewApplicantPaginator = new Paginator(par);
       };
 
-      $scope.loadMyCampaings = function () {
-        updateUrl();
-        if ($scope.campaignPaginator) return;
-        var par = {
-          name: 'campaigns_' + $scope.expert.userId,
-          params: {owner: $scope.expert.userId},
-          fetchFunction: ReviewService.getList
-        };
-        $scope.campaignPaginator = new Paginator(par);
+      var filter = '';
+      if ($rootScope.user.getUserId() != expert.userId) {
+        filter = {is_submit_report: true};
+      }
+      var par = {
+        name: 'trials_' + $scope.expert.userId,
+        params: {reviewer_id: $scope.expert.userId},
+        filter: filter,
+        fetchFunction: ApplicationService.getApplications
       };
+      $scope.reviewApplicantPaginator = new Paginator(par);
 
-      $scope.loadMyBio = function () {
-        updateUrl();
+      var par = {
+        name: 'campaigns_' + $scope.expert.userId,
+        params: {owner: $scope.expert.userId},
+        fetchFunction: ReviewService.getList
       };
+      $scope.campaignPaginator = new Paginator(par);
 
       var par = {
         name: 'posts_' + $scope.expert.userId,
@@ -115,26 +109,6 @@ angular.module('xbertsApp')
       };
       $scope.postsAnswerPaginator = new Paginator(parAnswers);
 
-      $scope.loadMyPosts = function () {
-        updateUrl();
-      };
-
-      $scope.loadMyFinds = function () {
-        updateUrl();
-      };
-
-      $scope.loadMyQuestions = function() {
-        updateUrl();
-      };
-
-      $scope.loadMyAnswers = function() {
-        updateUrl();
-      };
-
-      $scope.loadMyFollow = function () {
-        updateUrl();
-      };
-
       var parfollowing = {
         name: 'followings_list_' + $scope.expert.userId,
         params: {
@@ -165,21 +139,6 @@ angular.module('xbertsApp')
         fetchFunction: ExpertService.getFollowingQuestion
       };
       $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
-
-      $scope.loadMyFollowingQuestions = function() {
-        updateUrl();
-      };
-
-      $scope.loadMyFollowing = function() {
-        $scope.followingPaginator.clear();
-        $scope.followingPaginator.load();
-      };
-
-      $scope.loadMyFollower = function() {
-        $scope.followerPaginator.clear();
-        $scope.followerPaginator.load();
-      };
-
 
       $scope.contactUser = function () {
         if (!$rootScope.user.authRequired()) {

@@ -73,12 +73,15 @@
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
-      <div>
+      <div class="xb-deals-list__tags xb-deals-list__fixed-height md-margin-bottom-1">
         {{item.tags}}
       </div>
       <div>
          <span class="md-headline xb-bold">
           {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
+        </span>
+        <span class="xb-deals-list__discount" ng-if="item.discount > 0">
+          {{item.discount * 100 | number:0}}% OFF
         </span>
       </div>
       <div class="xb-deals-list__price md-margin-bottom-2" layout="row" layout-align="start center" layout-wrap>
@@ -166,11 +169,11 @@
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
-      <div>
+      <div class="xb-deals-list__tags xb-deals-list__fixed-height md-margin-bottom-1">
         {{item.tags}}
       </div>
       <div>
-         <span class="md-headline xb-bold">
+        <span class="md-headline xb-bold">
           {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
         </span>
       </div>

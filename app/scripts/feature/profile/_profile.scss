@@ -1,5 +1,3 @@
-
-
 .xb-my-posts{
   padding:0 16px 16px;
 
@@ -535,6 +533,51 @@
       font-size: 14px;
       font-weight: bold;
     }
+  }
+  &__left-button{
+    width: 210px;
+    margin-right: 16px;
+    >div{
+      @extend .md-dark-secondary !optional;
+      line-height: 36px;
+      padding: 0 16px;
+      margin-top: 8px;
+      border-radius: 2px;
+      font-size: 16px;
+
+      span{
+        font-size: 14px;
+      }
+
+      &:hover{
+        @include media();
+        color: rgba(0,0,0,.87);
+        background-color: rgba(0,0,0,.12);
+      }
+
+      &.active{
+        @include media();
+        color: rgba(0,0,0,.87);
+        background-color: rgba(0,0,0,.12);
+      }
+    }
+  }
+  &__center-content{
+    >div{
+      overflow: hidden;
+    }
+  }
+  &__center-title{
+    height: 56px;
+    font-size: 24px;
+    margin: 0 16px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    >span{
+      margin-left: 8px;
+    }
+  }
+  &__center-inner-content{
+    min-height: 200px;
   }
 }
 .xb-invite-friends{

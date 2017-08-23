@@ -181,7 +181,7 @@
     }
   }
   &__price{
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     @include xb-xs-screen{
       margin-bottom: 0;
       font-size: 12px;
@@ -216,7 +216,7 @@
     border:1px solid rgba(255,64,129,.38);
     padding: 0 8px;
     border-radius: 2px;
-    margin: 8px 0;
+    margin: 8px 0 8px 8px;
     @include media();
     @include xb-xs-screen{
       font-size: 10px;
@@ -316,11 +316,13 @@
     }
   }
   &__fixed-height{
-    height: 40px;
+    height: 20px;
     overflow: hidden;
     white-space: normal;
   }
-
+  &__tags{
+    color: $primaryColor;
+  }
   &__margin{
     margin: 16px 0 24px;
     @include xb-xs-screen{
