@@ -70,8 +70,7 @@ angular.module('xbertsApp')
           name: 'main_ask_answer',
           objClass: AskModel,
           params: {
-            ordering: 'answer_amount-',
-            page_size: 3
+            page_size: 4
           },
           fetchFunction: AskService.getList
         };

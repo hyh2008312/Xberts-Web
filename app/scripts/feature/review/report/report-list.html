@@ -15,16 +15,16 @@
                     on-reviews-follow="addFollow(review)"
                     layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap
                     featured="true"></reviews-list>
-      <div class="md-headline" ng-if="reviews.count > 0 || reviewsFeatured.count > 0">Latest</div>
-      <div infinite-scroll="loadNextImages()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="reviews.loading || reviewsFeatured.loading || (!reviews.next && !reviewsFeatured.next)">
-        <reviews-list class="xb-reviews-list" reviews="reviews.items" reviews-featured="reviewsFeatured.items"
+      <div class="md-headline" ng-if="reviews.count > 0">Latest</div>
+      <div infinite-scroll="reviews.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="reviews.loading || !reviews.next">
+        <reviews-list class="xb-reviews-list" reviews="reviews.items"
                       on-reviews-follow="addFollow(review)" hide-xs
                       layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></reviews-list>
-        <reviews-list class="xb-reviews-list" reviews="reviews.items" reviews-featured="reviewsFeatured.items"
+        <reviews-list class="xb-reviews-list" reviews="reviews.items"
                       on-reviews-follow="addFollow(review)" hide-gt-xs
                       layout-xs="column" layout-align-xs="start"></reviews-list>
-        <load-more layout="row" layout-align="center center" ng-if="reviews.loading || reviewsFeatured.loading"></load-more>
+        <load-more layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
       </div>
     </div>
   </div>

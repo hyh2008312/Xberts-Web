@@ -10,12 +10,11 @@ angular.module('xbertsApp')
       if(!ReviewService.reviews) {
         var par = {
           name: 'all_review_list',
-          objClass:MainModel,
+          objClass: MainModel,
           params: {
-            is_recommended:'False',
             edit_status:'PUBLISHED',
             approval_status:'APPROVED',
-            page_size: 4
+            page_size: 12
           },
           fetchFunction: ReviewService.getArticleList
         };
@@ -25,32 +24,6 @@ angular.module('xbertsApp')
       } else {
         $scope.reviews = ReviewService.reviews;
       }
-
-      if(!ReviewService.reviewsFeatured) {
-        var par1 = {
-          name: 'all_review_list_featured',
-          objClass: MainModel,
-          pageNumber: 2,
-          params: {
-            is_recommended:'True',
-            edit_status:'PUBLISHED',
-            approval_status:'APPROVED',
-            page_size: 4
-          },
-          fetchFunction: ReviewService.getArticleList
-        };
-        $scope.reviewsFeatured = new Paginator(par1);
-        $scope.reviewsFeatured.load();
-        ReviewService.reviewsFeatured = $scope.reviewsFeatured;
-      } else {
-        $scope.reviewsFeatured = ReviewService.reviewsFeatured;
-      }
-
-      $scope.loadNextImages = function() {
-        $scope.reviewsFeatured.loadNext().then(function() {
-          $scope.reviews.loadNext();
-        });
-      };
     }
 
     $scope.addFollow = function (review) {

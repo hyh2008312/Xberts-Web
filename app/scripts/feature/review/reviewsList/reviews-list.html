@@ -45,57 +45,9 @@
     </div>
   </div>
 </div>
-<div class="xb-reviews-list__list-2" ng-repeat="review in reviewsFeatured track by $index"
-     layout-xs="column" layout-align-xs="start"
-     layout-gt-xs="row" layout-align-gt-xs="start stretch"
-     reviews-repeat-order index="changeOrder1($index)" ng-if="!featured">
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="50" flex-sm="65">
-    <div class="xb-reviews-list__top" flex-gt-xs>
-      <div class="xb-reviews-list__title" >
-        <a class="md-subhead md-dark-primary" ng-if="review.report"
-           ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-          {{ review.title }}
-        </a>
-        <a class="md-subhead md-dark-primary" ng-if="review.blog"
-           ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-          {{ review.title }}
-        </a>
-      </div>
-      <div class="xb-reviews-list__description md-dark-secondary" hide-xs>
-        {{ review.description }}
-      </div>
-    </div>
-    <div layout="row" class="xb-deals-list__head">
-      <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
-                  ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
-      <div layout="column" layout-align="space-between start" flex>
-        <div layout="row" layout-align="start center">
-          <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
-          <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
-        </div>
-        <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
-      </div>
-      <md-button hide class="md-primary md-margin-clear" ng-disabled="review.disabled"
-                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && !review.getOwner().userprofile.current_user.follow"
-                 ng-click="onReviewsFollow({review:review});">Follow</md-button>
-      <md-button hide class="md-warn md-margin-clear" ng-disabled="review.disabled"
-                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && review.getOwner().userprofile.current_user.follow"
-                 ng-click="onReviewsFollow({review:review});">Following</md-button>
-    </div>
-  </div>
-</div>
 <div class="xb-reviews-list__list-2" ng-repeat="review in reviews track by $index"
      layout-xs="column" layout-align-xs="start"
-     layout-gt-xs="row" layout-align-gt-xs="start stretch"
-     reviews-repeat-order index="changeOrder($index)" ng-if="!featured && review.blog">
+     layout-gt-xs="row" layout-align-gt-xs="start stretch">
   <a class="xb-reviews-list__img-bg" flex-gt-sm="50" flex-sm="35" ng-if="review.report"
      ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img ng-src="{{review.cover }}"/>
@@ -136,80 +88,6 @@
       <md-button hide class="md-warn md-margin-clear" ng-disabled="review.disabled"
                  ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && review.getOwner().userprofile.current_user.follow"
                  ng-click="onReviewsFollow({review:review});">Following</md-button>
-    </div>
-  </div>
-</div>
-<div class="xb-reviews-list__list-1" ng-repeat="review in reviewsFeatured track by $index"
-     reviews-repeat-order index="changeOrder1($index)" ng-if="!featured && false">
-  <a class="xb-trials-list__img-bg" ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <div class="xb-reviews-list__bottom">
-    <div class="xb-reviews-list__title" >
-      <a class="md-subhead md-dark-primary" ng-if="review.report"
-         ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" ng-if="review.blog"
-         ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-        {{ review.title }}
-      </a>
-    </div>
-    <div class="xb-reviews-list__description md-dark-secondary" hide>
-      {{ review.description }}
-    </div>
-  </div>
-  <div layout="row" class="xb-deals-list__head">
-    <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
-                ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
-    <div layout="column" layout-align="space-between start" flex>
-      <div layout="row" layout-align="start center">
-        <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
-        <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
-      </div>
-      <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
-    </div>
-  </div>
-</div>
-<div class="xb-reviews-list__list-1" ng-repeat="review in reviews track by $index"
-     reviews-repeat-order index="changeOrder($index)" ng-if="!featured && false">
-  <a class="xb-trials-list__img-bg" ng-if="review.report"
-     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <a class="xb-trials-list__img-bg" ng-if="review.blog"
-     ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img ng-src="{{review.cover }}"/>
-  </a>
-  <div class="xb-reviews-list__bottom">
-    <div class="xb-reviews-list__title" >
-      <a class="md-subhead md-dark-primary" ng-if="review.report"
-         ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
-        {{ review.title }}
-      </a>
-      <a class="md-subhead md-dark-primary" ng-if="review.blog"
-         ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-        {{ review.title }}
-      </a>
-    </div>
-    <div class="xb-reviews-list__description md-dark-secondary" hide>
-      {{ review.description }}
-    </div>
-  </div>
-  <div layout="row" class="xb-deals-list__head">
-    <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
-                ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
-    <div layout="column" layout-align="space-between start" flex>
-      <div layout="row" layout-align="start center">
-        <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
-        <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
-      </div>
-      <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
     </div>
   </div>
 </div>
