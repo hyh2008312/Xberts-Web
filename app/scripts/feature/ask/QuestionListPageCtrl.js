@@ -103,6 +103,19 @@ angular.module('xbertsApp')
           askCtrl.askPaginator.clear();
           askCtrl.askPaginator.load();
           break;
+        case 3:
+          var par = {
+            name: 'ask_questions_list_pending',
+            objClass: AskModel,
+            params: {
+              page_size: 12
+            },
+            fetchFunction: AskService.getPending
+          };
+          askCtrl.askPaginator = new Paginator(par);
+          askCtrl.askPaginator.clear();
+          askCtrl.askPaginator.load();
+          break;
       }
     };
 

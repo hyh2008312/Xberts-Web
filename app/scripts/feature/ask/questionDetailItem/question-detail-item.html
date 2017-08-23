@@ -19,9 +19,6 @@
                  ng-click="follow(product)">Following</md-button>
       <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
     </div>
-    <md-button class="md-primary md-raised md-margin-left-4" ng-if="user.isStaff() && admin" hide-xs>
-      Save
-    </md-button>
     <div layout="row" layout-align="start center" hide-gt-xs>
       <md-icon md-font-set="material-icons md-dark-third" ng-click="showListBottomSheet()"> share </md-icon>
     </div>

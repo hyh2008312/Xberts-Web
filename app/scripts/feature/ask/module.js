@@ -63,13 +63,12 @@ angular.module('xbertsApp')
               break;
             case 3:
               var par = {
-                name: 'ask_questions_list_amount',
+                name: 'ask_questions_list_pending',
                 objClass: AskModel,
                 params: {
-                  ordering: 'answer_amount,-new_answer_arrived',
                   page_size: 12
                 },
-                fetchFunction: AskService.getList
+                fetchFunction: AskService.getPending
               };
               if(!_par) {
                 _par = new Paginator(par);

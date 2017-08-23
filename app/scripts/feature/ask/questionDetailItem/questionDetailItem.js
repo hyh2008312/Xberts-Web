@@ -7,8 +7,7 @@ angular.module('xbertsApp')
       scope: {
         product : '=',
         showAnswer : '=',
-        answers : '=',
-        admin: '='
+        answers : '='
       },
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {

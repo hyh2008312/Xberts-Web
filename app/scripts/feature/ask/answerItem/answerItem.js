@@ -71,7 +71,11 @@ angular.module('xbertsApp')
             clickOutsideToClose: true,
             disableParenScroll: true
           });
-        }
+        };
+
+        scope.seletedAsTopAnswer = function(answer) {
+          AskService.updateAnswer(answer).then(function(data) {});
+        };
       }
     }
   }]);

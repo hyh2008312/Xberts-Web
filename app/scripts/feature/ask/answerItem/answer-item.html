@@ -26,7 +26,9 @@
         <i class="iconfontXberts icon-pic-best-answer1"></i>
         <span class="xb-bold md-margin-left-1">Top Answer</span>
       </div>
-      <md-checkbox aria-label="111" class="md-margin-top-2" hide-xs ng-if="user.isStaff() && admin">
+      <md-checkbox ng-model="answer.isBestAnswer" aria-label="Selected as Top Answer" class="md-margin-top-2"
+                   hide-xs ng-if="user.isStaff() && admin"
+                   ng-change="seletedAsTopAnswer(answer)">
         Selected as Top Answer
       </md-checkbox>
     </div>

@@ -5,11 +5,16 @@ angular.module('xbertsApp')
     var AnswersLeaderResource = $resource(API_BASE_URL + '/answers/leaders/', null);
     var FollowerResource = $resource(API_BASE_URL + '/questions/followed/', null);
     var PopularResource = $resource(API_BASE_URL + '/questions/popular/');
+    var PendingResource = $resource(API_BASE_URL + '/questions/pending/');
 
     this.order = 0;
 
     this.getList = function (params) {
       return AskResource.get(params).$promise.then(AskModel.buildPageList);
+    };
+
+    this.getPending = function (params) {
+      return PendingResource.get(params).$promise.then(AskModel.buildPageList);
     };
 
     this.getPopularList = function(params) {
