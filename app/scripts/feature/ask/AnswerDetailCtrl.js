@@ -90,6 +90,9 @@ angular.module('xbertsApp')
     };
 
     answerCtrl.addProduct = function (product) {
+      answerCtrl.isAnswered = {};
+      answerCtrl.isAnswered.items = [];
+      answerCtrl.isAnswered.items.unshift(product);
       answerCtrl.answerPaginator.items.unshift(product);
       answerCtrl.answerPaginator.count++;
     };
