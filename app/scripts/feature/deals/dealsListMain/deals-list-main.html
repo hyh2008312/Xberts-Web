@@ -66,13 +66,16 @@
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.dealsDetail({dealsId:item.id})">
+         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
+      <div>
+        {{item.tags}}
+      </div>
       <div>
          <span class="md-headline xb-bold">
           {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
@@ -156,13 +159,16 @@
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.dealsDetail({dealsId:item.id})">
+         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
+      <div>
+        {{item.tags}}
+      </div>
       <div>
          <span class="md-headline xb-bold">
           {{item.salePrice.amount | worldCurrency:item.salePrice.currency}}
