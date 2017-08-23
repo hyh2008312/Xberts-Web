@@ -74,22 +74,22 @@
   }
   &__inner{
     border-radius: 50%;
-    background-color: $primaryColor;
-    width: 72px;
-    height: 72px;
+    width: 72px !important;
+    height: 72px !important;
     text-align: center;
-    line-height: 72px;
+    line-height: 72px !important;
+    margin: 0;
     .material-icons{
       color: $whiteColor;
     }
   }
   &__inner-1{
     border-radius: 50%;
-    background-color: #ff5722;
-    width: 72px;
-    height: 72px;
+    width: 72px !important;
+    height: 72px !important;
     color: $whiteColor;
     text-align: center;
-    line-height: 72px;
+    line-height: 72px !important;
+    margin: 0;
   }
 }

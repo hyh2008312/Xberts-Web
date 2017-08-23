@@ -3,9 +3,9 @@
   VOTE
 </div>
 <span class="md-dark-third" ng-if="!xbBlog">{{interact.vote_amount || interact.voteAmount || " "}}</span>
-<div class="xb-vote__inner" ng-if="xbBlog" ng-show="!join.vote" ng-click="vote()">
+<md-button class="md-fab xb-vote__inner md-primary" ng-if="xbBlog && !join.vote" ng-click="vote()">
   <md-icon>thumb_up</md-icon>
-</div>
-<div class="xb-vote__inner-1" ng-if="xbBlog" ng-show="join.vote" ng-click="vote()">
+</md-button>
+<md-button class="md-fab xb-vote__inner-1 md-warn" ng-if="xbBlog && join.vote" ng-click="vote()">
   Thanks
-</div>
+</md-button>
