@@ -11,6 +11,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/ask/questionItem/question-item.html',
       link: function (scope, element, attrs, ctrls) {
 
+        scope.admin = AskService.order == 3;
+
         scope.follow = function(product) {
           if(!$rootScope.user.authRequired()) {
             return;

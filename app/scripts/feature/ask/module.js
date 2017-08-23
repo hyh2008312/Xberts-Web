@@ -103,7 +103,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.answerQuestionDetail', {
-      url: '/ask/:questionId',
+      url: '/ask/:questionId?pending',
       templateUrl: 'scripts/feature/ask/answerDetail.html',
       controller: 'AnswerDetailCtrl as answerCtrl',
       resolve: {

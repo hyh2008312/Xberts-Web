@@ -1,13 +1,16 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    'localStorageService','AskModel','Paginator',
-    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,AskModel,Paginator) {
+    'localStorageService','AskModel','Paginator','$stateParams',
+    function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,
+              AskModel,Paginator,$stateParams) {
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
     answerCtrl.answerPaginator = answerPaginator;
     answerCtrl.user = $rootScope.user;
     answerCtrl.showAnswer = answerCtrl.answerPaginator.count == 0 ? true : false;
+
+    answerCtrl.admin = $stateParams.pending;
 
     answerCtrl.isAnswered = false;
     if($rootScope.user.getUserId()) {

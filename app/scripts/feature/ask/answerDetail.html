@@ -6,7 +6,7 @@
       <md-button class="md-primary" ng-click="answerCtrl.addQuestion()">Ask Question</md-button>
     </div>
     <question-detail-item product="answerCtrl.productsDetail" show-answer="answerCtrl.showAnswer"
-      answers="answerCtrl.isAnswered.items"></question-detail-item>
+      answers="answerCtrl.isAnswered.items" admin="answerCtrl.admin"></question-detail-item>
     <div ng-if="user.isAuth()" hide-xs>
       <answer-post ng-if="answerCtrl.showAnswer" class="xb-question-detail__inner-content" options="answerCtrl.options"
                    question-id="answerCtrl.productsDetail.id" detail-ctrl="answerCtrl"></answer-post>
@@ -19,7 +19,7 @@
 <div>
   <div class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
     infinite-scroll-disabled="answerCtrl.answerPaginator.loading || !answerCtrl.answerPaginator.next">
-    <answer-item answers="answerCtrl.answerPaginator.items"></answer-item>
+    <answer-item answers="answerCtrl.answerPaginator.items" admin="answerCtrl.admin"></answer-item>
     <load-more class="md-margin-bottom-2" layout="row" layout-align="center center" ng-if="answerCtrl.answerPaginator.loading"></load-more>
   </div>
 </div>

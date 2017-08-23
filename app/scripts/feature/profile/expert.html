@@ -135,7 +135,12 @@
           <span ng-if="isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
           <span ng-if="!isCurrentUser">{{achievement.answerAmount > 0?achievement.answerAmount:''}}</span>
         </div>
-        <div class="xb-my-profile__center-inner-content md-padding-bottom-2" infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="postsAnswerPaginator.count <= 0 && !postsAnswerPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div class="md-padding-bottom-2" infinite-scroll="postsAnswerPaginator.loadNext()" infinite-scroll-distance='0'
+             infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 0">
           <my-answers-list class="md-padding-bottom-2" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
           <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
@@ -147,10 +152,16 @@
           <span ng-if="isCurrentUser">{{achievement.questionAmount>0?achievement.questionAmount:''}}</span>
           <span ng-if="!isCurrentUser">{{achievement.questionFeatureAmount>0?achievement.questionFeatureAmount:''}}</span>
         </div>
-        <div class="xb-my-profile__center-inner-content md-padding-bottom-2" infinite-scroll="postsQuestionPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="postsQuestionPaginator.count <= 0 && !postsQuestionPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div class="md-padding-bottom-2" infinite-scroll="postsQuestionPaginator.loadNext()"
+             infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 1">
           <my-questions-list  posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsQuestionPaginator.loading"></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="postsQuestionPaginator.loading"></load-more>
         </div>
       </div>
       <div class="background-whitem md-padding-bottom-2" ng-if="selectedIndex == 2">
@@ -159,11 +170,16 @@
           <span ng-if="isCurrentUser">{{achievement.trialAmount>0?achievement.trialAmount:''}}</span>
           <span ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</span>
         </div>
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="reviewApplicantPaginator.count <= 0 && !reviewApplicantPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
         <div class="xb-my-profile__center-inner-content" infinite-scroll="reviewApplicantPaginator.loadNext()"
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">
           <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="reviewApplicantPaginator.loading" ></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="reviewApplicantPaginator.loading" ></load-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 3">
@@ -172,28 +188,42 @@
           <span ng-if="isCurrentUser">{{achievement.shareProductAmount>0?achievement.shareProductAmount:''}}</span>
           <span ng-if="!isCurrentUser">{{achievement.shareProductFeaturedAmount>0?achievement.shareProductFeaturedAmount:''}}</span>
         </div>
-        <div class="xb-my-profile__center-inner-content" infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="postsProductPaginator.count <= 0 && !postsProductPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0'
+             infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
           <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="postsProductPaginator.loading"></load-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 4">
         <div class="xb-my-profile__center-title" layout="row" layout-align="start center">
           Articles
         </div>
-        <div class="xb-my-profile__center-inner-content"></div>
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div></div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 5">
         <div class="xb-my-profile__center-title" layout="row" layout-align="start center">
           Following
           <span>{{achievement.followeesAmount>0?achievement.followeesAmount:''}}</span>
         </div>
-        <div class="xb-main-reviewer xb-my-follow md-padding-bottom-2 xb-my-profile__center-inner-content" infinite-scroll="followingPaginator.loadNext()"
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="followingPaginator.count <= 0 && !followingPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div class="xb-main-reviewer xb-my-follow md-padding-bottom-2" infinite-scroll="followingPaginator.loadNext()"
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 5">
           <my-follow experts="followingPaginator.items" following="true" achievement="achievement" expert="expert"></my-follow>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="followingPaginator.loading"></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="followingPaginator.loading"></load-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 6">
@@ -201,19 +231,27 @@
           Follower
           <span>{{achievement.followersAmount>0?achievement.followersAmount:''}}</span>
         </div>
-        <div class="xb-main-reviewer xb-my-follow md-padding-bottom-2 xb-my-profile__center-inner-content" infinite-scroll="followerPaginator.loadNext()"
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="followerPaginator.count <= 0 && !followerPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div class="xb-main-reviewer xb-my-follow md-padding-bottom-2" infinite-scroll="followerPaginator.loadNext()"
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 6">
           <my-follow experts="followerPaginator.items" achievement="achievement" expert="expert"></my-follow>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
+          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
+                     ng-if="followerPaginator.loading"></load-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 7">
         <div class="xb-my-profile__center-title" layout="row" layout-align="start center">
-          Follower
-          <span>{{achievement.followersAmount>0?achievement.followersAmount:''}}</span>
+          Question Followed
         </div>
-        <div class="md-padding-bottom-2 xb-my-profile__center-inner-content" infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+        <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+             ng-if="followingQuestionsPaginator.count <= 0 && !followingQuestionsPaginator.loading">
+          <i class="iconfontXberts icon-ic-empty"></i>
+        </div>
+        <div class="md-padding-bottom-2" infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next
              || selectedIndex != 7">
           <my-questions-list posts="followingQuestionsPaginator.items"

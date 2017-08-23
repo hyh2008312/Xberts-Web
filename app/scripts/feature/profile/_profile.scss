@@ -535,7 +535,7 @@
     }
   }
   &__left-button{
-    width: 210px;
+    width: 200px;
     margin-right: 16px;
     >div{
       @extend .md-dark-secondary !optional;
@@ -548,7 +548,7 @@
       span{
         font-size: 14px;
       }
-
+s
       &:hover{
         @include media();
         color: rgba(0,0,0,.87);
@@ -576,8 +576,13 @@
       margin-left: 8px;
     }
   }
-  &__center-inner-content{
-    min-height: 200px;
+  &__empty{
+    padding: 32px 0;
+    i{
+      font-size: 72px;
+      line-height: 72px;
+      color: rgba(0,0,0,.54);
+    }
   }
 }
 .xb-invite-friends{
@@ -937,7 +942,7 @@
   }
 }
 .xb-profile-follow{
-  min-width: 364px;
+  min-width: 296px;
   margin-left: 16px;
   margin-bottom: 16px;
   background-color: $whiteColor;
@@ -982,4 +987,7 @@
   width: 100%;
   @include box-shadow(none);
   margin-left: 0;
+}
+.xb-profile-reviewer{
+  max-width: 296px;
 }

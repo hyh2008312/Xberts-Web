@@ -7,12 +7,11 @@ angular.module('xbertsApp')
       scope: {
         product : '=',
         showAnswer : '=',
-        answers : '='
+        answers : '=',
+        admin: '='
       },
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
-
-        scope.admin = AskService.order == 3;
 
         var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
 
