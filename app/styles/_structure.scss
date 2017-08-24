@@ -110,9 +110,6 @@ a.block-link {
 //summer-note overrides
 
 .note-editable img {
-  width: 100% !important;
-  max-width: 850px !important;
-  height: auto !important;
   &.pre-loading {
     background: url("https://xberts.imgix.net/static/icon/loading.gif?s=1dc284fd55a3626df1317018bf299bcd") no-repeat center center;
     width: 200px;
@@ -120,11 +117,6 @@ a.block-link {
   }
 }
 
-.note-diseditable img {
-  width: 100% !important;
-  max-width: 850px !important;
-  height: auto !important;
-}
 
 .note-editable h1 {
   font-size: 24px;

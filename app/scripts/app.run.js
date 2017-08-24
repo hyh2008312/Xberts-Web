@@ -103,6 +103,10 @@ angular
           'video': 'fa fa-youtube-play'
         },
         popover: {
+          image:[
+            ['imagesize',['imageSize100','imageSize50','imageSize25']],
+            ['float',['floatLeft','floatRight','floatNone']]
+          ],
           link: [
             ['link', ['linkDialogShow', 'unlink']]
           ],
