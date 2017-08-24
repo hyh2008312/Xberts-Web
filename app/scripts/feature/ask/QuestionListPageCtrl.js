@@ -1,6 +1,7 @@
 angular.module('xbertsApp')
   .controller('QuestionListPage', ['$rootScope','askPaginator','topReviewers','$mdDialog','AskService','Paginator',
-    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator) {
+    '$state','$scope',
+    function ($rootScope,askPaginator,topReviewers,$mdDialog,AskService,Paginator,$state,$scope) {
 
     var askCtrl = this;
     askCtrl.askPaginator = askPaginator;
@@ -57,6 +58,11 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    $scope.isPopupOpen = false;
+    askCtrl.openPop = function(questionId) {
+      $state.go('application.askQuestionMain.answerQuestionDetail',{questionId:questionId, isPopupOpen: true});
     };
 
     askCtrl.changeOrder = function(order) {

@@ -30,9 +30,9 @@ angular.module('xbertsApp')
         fontSizes: ['14', '18'],
         dialogsInBody: true,
         popover:{
-          image:[['imagesize',
+          image:[
             ['remove',['removeMedia']]
-          ]]
+          ]
         }
       };
 

@@ -14,9 +14,6 @@ body {
   font-size: $defaultFontSize;
   line-height: (20px / $defaultFontSize);
 
-  @include xb-xs-screen{
-    @include prefixer(user-select, none, webkit moz ms o spec);
-  }
 }
 
 ::-webkit-scrollbar{

@@ -1,8 +1,10 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    'localStorageService','AskModel','Paginator','$stateParams',
+    'localStorageService','AskModel','Paginator','$stateParams','$scope',
     function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,
-              AskModel,Paginator,$stateParams) {
+              AskModel,Paginator,$stateParams,$scope) {
+
+    //$scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
@@ -48,9 +50,9 @@ angular.module('xbertsApp')
       },
       fontSizes: ['14', '18'],
       popover:{
-        image:[['imagesize',
+        image:[
           ['remove',['removeMedia']]
-        ]]
+        ]
       }
     };
 

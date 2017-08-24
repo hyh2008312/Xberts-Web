@@ -1,6 +1,7 @@
 <section class="xb-section xb-ask-bg">
   <div class="container">
-    <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column" layout-align-xs="start start">
+    <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
+         layout-align-xs="start start">
       <div class="xb-section__title">
         <h2><span class="md-display-1">Ask Xberts Community & Make Smart Purchasing Decision</span></h2>
         <h3><span class="md-body-1 md-dark-secondary">Get recommendations and tips from our global community of savvy-shoppers</span></h3>
@@ -14,9 +15,12 @@
         <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
         <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
-          <question-item ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"></question-item>
-          <question-item ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"></question-item>
-          <question-item ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"></question-item>
+          <question-item ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
+                         open-pop="askCtrl.openPop"></question-item>
+          <question-item ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
+                         open-pop="askCtrl.openPop"></question-item>
+          <question-item ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
+                         open-pop="askCtrl.openPop"></question-item>
           <load-more layout="row" layout-align="center center" ng-if="askCtrl.askPaginator.loading"></load-more>
         </div>
       </div>
@@ -28,7 +32,8 @@
                         on-sort-change="askCtrl.changeSort(sortId);"></deals-sort>
           </div>
           <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
-          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center" ng-if="askCtrl.topReviewers.loading"></load-more>
+          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center"
+                     ng-if="askCtrl.topReviewers.loading"></load-more>
         </div>
         <div class="xb-ask-bg__tips">
           <i class="iconfontXberts icon-pic-best-answer1"></i>

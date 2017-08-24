@@ -1,7 +1,8 @@
 angular.module('xbertsApp')
-  .config(['$stateProvider', function ($stateProvider) {
+  .config(['$urlRouterProvider','$stateProvider', function ($urlRouterProvider,$stateProvider) {
+
     $stateProvider
-      .state('application.askQuestionMain', {
+    .state('application.askQuestionMain', {
       url: '/ask',
       templateUrl: 'scripts/feature/ask/questionListPage.html',
       controller: 'QuestionListPage as askCtrl',
@@ -101,34 +102,62 @@ angular.module('xbertsApp')
         }]
       }
     })
+    //.state('application.askQuestionMain.answerQuestionDetail', {
+    //    url: '/:questionId?pending',
+    //    templateUrl: 'scripts/feature/ask/answerDetail.html',
+    //    controller: 'AnswerDetailCtrl as answerCtrl',
+    //    resolve: {
+    //      productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
+    //        return AskService.getQuestionsDetail($stateParams.questionId);
+    //      }],
+    //      answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService',
+    //        function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
+    //          localStorageService.remove('ask_answers_list' + '_currentPage');
+    //          localStorageService.remove('ask_answers_list' + '_items');
+    //          localStorageService.remove('ask_answers_list' + '_next');
+    //          localStorageService.remove('ask_answers_list' + '_count');
+    //          var par = {
+    //            name: 'ask_answers_list',
+    //            objClass: AskModel,
+    //            params: {
+    //              ordering: '-is_best_answer,-approve_at',
+    //              question: $stateParams.questionId,
+    //              page_size: 12
+    //            },
+    //            fetchFunction: AskService.getAnswersList
+    //          };
+    //          return new Paginator(par).load();
+    //        }]
+    //    }
+    //  })
     .state('application.answerQuestionDetail', {
-      url: '/ask/:questionId?pending',
-      templateUrl: 'scripts/feature/ask/answerDetail.html',
-      controller: 'AnswerDetailCtrl as answerCtrl',
-      resolve: {
-        productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
-          return AskService.getQuestionsDetail($stateParams.questionId);
-        }],
-        answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService',
-        function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
-          localStorageService.remove('ask_answers_list' + '_currentPage');
-          localStorageService.remove('ask_answers_list' + '_items');
-          localStorageService.remove('ask_answers_list' + '_next');
-          localStorageService.remove('ask_answers_list' + '_count');
-          var par = {
-            name: 'ask_answers_list',
-            objClass: AskModel,
-            params: {
-              ordering: '-is_best_answer,-approve_at',
-              question: $stateParams.questionId,
-              page_size: 12
-            },
-            fetchFunction: AskService.getAnswersList
-          };
-          return new Paginator(par).load();
-        }]
-      }
-    })
+        url: '/ask/:questionId?pending',
+        templateUrl: 'scripts/feature/ask/answerDetail.html',
+        controller: 'AnswerDetailCtrl as answerCtrl',
+        resolve: {
+          productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
+            return AskService.getQuestionsDetail($stateParams.questionId);
+          }],
+          answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService',
+            function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
+              localStorageService.remove('ask_answers_list' + '_currentPage');
+              localStorageService.remove('ask_answers_list' + '_items');
+              localStorageService.remove('ask_answers_list' + '_next');
+              localStorageService.remove('ask_answers_list' + '_count');
+              var par = {
+                name: 'ask_answers_list',
+                objClass: AskModel,
+                params: {
+                  ordering: '-is_best_answer,-approve_at',
+                  question: $stateParams.questionId,
+                  page_size: 12
+                },
+                fetchFunction: AskService.getAnswersList
+              };
+              return new Paginator(par).load();
+            }]
+        }
+      })
     .state('application.protected.answerPost', {
       url: '/answer?questionId',
       templateUrl: 'scripts/feature/ask/answerPost/answer-post.html',
@@ -145,4 +174,6 @@ angular.module('xbertsApp')
         }]
       }
     });
+
+
   }]);
