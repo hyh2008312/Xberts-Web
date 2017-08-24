@@ -18,7 +18,7 @@ angular.module('xbertsApp')
               };
               scope.submit = function() {
                 if(scope.search != null && scope.search != '') {
-                  $state.go('application.search', {question:scope.search}, {reload:true});
+                  $state.go('application.search', {q:scope.search}, {reload:true});
                 }
               };
             },

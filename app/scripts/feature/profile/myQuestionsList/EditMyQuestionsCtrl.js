@@ -73,4 +73,10 @@ angular.module('xbertsApp')
           disableParenScroll: true
         });
       };
+
+      var title = 'Ask - Ask Xberts Community & Make Smart Purchasing Decision';
+      var description = 'Get recommendations and tips from our global community of savvy-shoppers';
+      var backgroundColor = 'background-bg-white';
+      var shareImage = null;
+      $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);

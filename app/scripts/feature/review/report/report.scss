@@ -185,25 +185,25 @@
 .xb-reviews-list{
   &__list-1{
     background-color: $whiteColor;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 
     @include resetBorder();
 
-    flex: 1 1 240px !important;
-    -webkit-flex: 1 1 240px !important;
+    flex: 1 1 380px !important;
+    -webkit-flex: 1 1 380px !important;
     @include xb-lg-screen{
-      max-width: 24% !important;
+      max-width: 32% !important;
     }
     @include xb-md-screen{
-      max-width: 24% !important;
-      flex: 1 1 190px !important;
-      -webkit-flex: 1 1 190px !important;
+      max-width: 32% !important;
+      flex: 1 1 240px !important;
+      -webkit-flex: 1 1 240px !important;
     }
     @include xb-sm-screen{
-      flex: 1 1 145px !important;
-      -webkit-flex: 1 1 145px !important;
-      max-width: 24% !important;
-      margin-bottom: 8px;
+      flex: 1 1 180px !important;
+      -webkit-flex: 1 1 180px !important;
+      max-width: 32% !important;
+      margin-bottom: 16px;
     }
     @include xb-xs-screen{
       margin-bottom: 8px;
@@ -211,28 +211,28 @@
   }
   &__list-2{
     background-color: $whiteColor;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 
     @include resetBorder();
 
     @include xb-lg-screen{
       flex: 1 1 480px !important;
       -webkit-flex: 1 1 480px !important;
-      max-width: 49.3% !important;
-      min-width: 49.3%;
+      max-width: 49% !important;
+      min-width: 49%;
     }
     @include xb-md-screen{
-      max-width: 49.3% !important;
+      max-width: 49% !important;
       flex: 1 1 360px !important;
       -webkit-flex: 1 1 360px !important;
-      min-width: 49.3%;
+      min-width: 49%;
     }
     @include xb-sm-screen{
       flex: 1 1 295px !important;
       -webkit-flex: 1 1 295px !important;
-      max-width: 49.3% !important;
-      margin-bottom: 8px;
-      min-width: 49.3%;
+      max-width: 49% !important;
+      margin-bottom: 16px;
+      min-width: 49%;
     }
     @include xb-xs-screen{
       margin-bottom: 8px;
@@ -271,19 +271,21 @@
     }
   }
   &__top{
-    padding: 16px 16px 0;
+    padding: 0 24px;
     @include xb-sm-screen{
-      padding: 4px 8px 0;
+      padding: 0 8px;
     }
     @include xb-xs-screen{
       padding: 0 16px 12px;
     }
   }
   &__bottom{
-    padding: 0 16px;
-    height: 72px;
+    padding: 0 24px;
+    height: 156px;
+    overflow: hidden;
     @include xb-sm-screen{
       padding: 0 8px;
+      height: 140px;
     }
     @include xb-xs-screen{
       height: auto;
@@ -291,31 +293,45 @@
     }
   }
   &__title{
-    margin-top: 8px;
-    font-size: 16px;
-    line-height: 24px;
-    max-height: 48px;
+    margin-top: 20px;
+    max-height: 64px;
     overflow: hidden;
+    a{
+      font-size: 24px;
+      line-height: 32px;
+      @include media();
+    }
+    @include xb-sm-screen{
+      margin-top: 8px;
+    }
     @include xb-xs-screen{
+      a{
+        font-size: 16px;
+        line-height: 24px;
+      }
       margin-top: 12px;
       max-height: none;
     }
   }
   &__description{
-    margin-top: 4px;
+    margin-top: 8px;
     max-height: 60px;
     overflow: hidden;
+    @include xb-sm-screen{
+      margin-top: 4px;
+    }
   }
   .md-button{
     min-width: 0;
     padding: 0;
   }
   .xb-deals-list__head{
+    padding: 8px 24px 16px;
     @include xb-sm-screen{
       avatar-img{
         margin-right: 8px;
       }
-      padding: 0 8px 8px;
+      padding: 8px 8px 8px;
     }
     @include xb-xs-screen{
       avatar-img{

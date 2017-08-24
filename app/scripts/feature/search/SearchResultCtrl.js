@@ -5,10 +5,10 @@ angular.module('xbertsApp')
     'SearchModel',
     function ($rootScope,$scope,SearchService,$stateParams,SearchFactory,Paginator,SearchModel) {
 
-      SearchFactory.keywords = $stateParams.question;
+      SearchFactory.keywords = $stateParams.q;
       $scope.keywords = SearchFactory.keywords;
       SearchService.getSearch({
-        'search_info': $stateParams.question
+        'search_info': $stateParams.q
       }).then(function(data) {
 
         $scope.products = SearchModel.buildList(data.product);
@@ -36,10 +36,10 @@ angular.module('xbertsApp')
            return;
         }
         var par = {
-          name: 'xb-search-product' + $stateParams.question,
+          name: 'xb-search-product' + $stateParams.q,
           objClass: SearchModel,
           params: {
-            'search_info': $stateParams.question,
+            'search_info': $stateParams.q,
             'page_size': 12
           },
           fetchFunction: SearchService.getProductSearch
@@ -61,10 +61,10 @@ angular.module('xbertsApp')
         }
 
         var par = {
-          name: 'xb-search-ask' + $stateParams.question,
+          name: 'xb-search-ask' + $stateParams.q,
           objClass: SearchModel,
           params: {
-            'search_info': $stateParams.question,
+            'search_info': $stateParams.q,
             'page_size': 12
           },
           fetchFunction: SearchService.getAskSearch
@@ -73,8 +73,8 @@ angular.module('xbertsApp')
         $scope.askPaginator.load();
       };
 
-      var title = 'Xberts - ' + $stateParams.question;
-      var description = $stateParams.question;
+      var title = 'Xberts - ' + $stateParams.q;
+      var description = $stateParams.q;
       var backgroundColor = 'background-bg-light';
       var shareImage = '';
       $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);

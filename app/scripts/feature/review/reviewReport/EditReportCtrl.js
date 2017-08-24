@@ -250,7 +250,7 @@ angular.module('xbertsApp')
 
     var title = 'Post an Articles';
     var description = 'Share your money-saving tips or first-hand reviews to inspire others!   ';
-    var backgroundColor = 'background-bg-light';
+    var backgroundColor = 'background-bg-white';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);

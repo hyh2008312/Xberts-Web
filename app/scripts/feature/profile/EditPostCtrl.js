@@ -141,7 +141,7 @@ angular.module('xbertsApp')
 
     var title = 'Share a deal';
     var description = 'Help others save big by finding the best deals and the lowest price!';
-    var backgroundColor = 'background-bg-light';
+    var backgroundColor = 'background-bg-white';
     var shareImage = '';
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
   }]);

@@ -14,7 +14,7 @@ angular.module('xbertsApp')
           params: {
             edit_status:'PUBLISHED',
             approval_status:'APPROVED',
-            page_size: 12
+            page_size: 8
           },
           fetchFunction: ReviewService.getArticleList
         };
