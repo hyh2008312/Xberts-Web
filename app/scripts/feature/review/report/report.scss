@@ -189,9 +189,9 @@
 
     @include resetBorder();
 
-    flex: 1 1 380px !important;
-    -webkit-flex: 1 1 380px !important;
     @include xb-lg-screen{
+      flex: 1 1 380px !important;
+      -webkit-flex: 1 1 380px !important;
       max-width: 32% !important;
     }
     @include xb-md-screen{
