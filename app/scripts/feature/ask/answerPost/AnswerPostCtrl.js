@@ -202,7 +202,7 @@ angular.module('xbertsApp')
           localStorageService.remove('ask_answers_list' + '_items');
           localStorageService.remove('ask_answers_list' + '_next');
           localStorageService.remove('ask_answers_list' + '_count');
-          $state.go('application.answerQuestionDetail',{questionId:$scope.questionId});
+          $state.go('application.askQuestionMain.answerQuestionDetail',{questionId:$scope.questionId});
           $scope.disabled = false;
         }, function () {
           // tips
