@@ -573,7 +573,7 @@
   height: 100%;
   background-color: rgba(0,0,0,.7);
   overflow-y: scroll;
-  z-index: 80;
+  z-index: 998;
   @include xb-xs-screen{
     background-color: rgba(0,0,0,.8);
   }
