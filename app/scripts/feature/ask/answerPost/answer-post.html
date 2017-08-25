@@ -9,7 +9,7 @@
       <!--<div layout="row" layout-align="space-between center">Minimum 150 characters required<span>{{detailCharacterCount}}</span></div>-->
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
+        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
     <form name="answerForm" novalidate ng-if="!formToggle" clear-form-error flex>
@@ -19,7 +19,7 @@
       <!--<div layout="row" layout-align="space-between center">Minimum 150 characters required<span>{{detailCharacterCount}}</span></div>-->
       <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="end center" layout-align-xs="center center">
         <md-button class="md-primary" ng-disabled="disabled" ng-click="submitForm(answer, answerForm);">Post</md-button>
-        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
+        <md-button class="md-dark-secondary" hide-gt-xs ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:questionId})">Cancel</md-button>
       </div>
     </form>
   </div>
