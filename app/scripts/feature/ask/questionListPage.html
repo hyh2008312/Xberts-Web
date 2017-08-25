@@ -1,4 +1,4 @@
-<section class="xb-section xb-ask-bg" ng-if="!isPopupOpen">
+<section class="xb-section xb-ask-bg" ng-if="!isPopupOpen" ng-class="{true:'xb-ask-hidden', false:''}[isPopupOpen]">
   <div class="container">
     <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
          layout-align-xs="start start">

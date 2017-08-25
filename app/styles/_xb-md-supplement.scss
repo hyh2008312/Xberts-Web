@@ -258,18 +258,18 @@ p,.md-body-1 {
 }
 md-backdrop{
   &.md-bottom-sheet-backdrop{
-    z-index: 81;
+    z-index: 998;
   }
   &.md-dialog-backdrop{
-    z-index: 81;
+    z-index: 998;
   }
 }
 md-bottom-sheet{
-  z-index: 82;
+  z-index: 1000;
 }
 .md-dialog-container{
-  z-index: 82;
+  z-index: 1000;
 }
 .md-scroll-mask{
-  z-index: 81;
+  z-index: 999;
 }
