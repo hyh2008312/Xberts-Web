@@ -1,7 +1,7 @@
 angular.module('xbertsApp')
   .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet',
-    'localStorageService','$state',
-    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService,$state) {
+    'localStorageService','$state','AskModel','Paginator',
+    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService,$state,AskModel,Paginator) {
     return {
       restrict: 'E',
       scope: {
@@ -33,21 +33,53 @@ angular.module('xbertsApp')
 
         scope.user = $rootScope.user;
 
+        var showConfirm = function(ev) {
+          var confirm = $mdDialog.confirm()
+            .textContent('You have already answered this question. Would you like to edit it?')
+            .ariaLabel('Answer alert')
+            .targetEvent(ev)
+            .ok('Edit')
+            .cancel('Cancel');
+
+          $mdDialog.show(confirm).then(function() {
+            $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
+          }, function() {});
+        };
+
         scope.answer = function(scrollTopAnswer,ev) {
           if(!$rootScope.user.authRequired()) {
             return;
           }
-          if(scope.answers.length > 0) {
-            var confirm = $mdDialog.confirm()
-              .textContent('You have already answered this question. Would you like to edit it?')
-              .ariaLabel('Answer alert')
-              .targetEvent(ev)
-              .ok('Edit')
-              .cancel('Cancel');
+          if(scope.answers && scope.answers.length > 0) {
+            showConfirm(ev);
+            return;
+          }
+          if(scope.answers == null && $rootScope.user.getUserId()) {
+            var par = {
+              name: 'ask_answers_detail',
+              objClass: AskModel,
+              params: {
+                owner: $rootScope.user.getUserId(),
+                question: scope.product.id,
+                page_size: 12
+              },
+              fetchFunction: AskService.getAnswersList
+            };
+            var _par = new Paginator(par).load();
+            _par.then(function(data) {
+                console.log(data);
+              scope.answers = data.items;
+              if(scope.answers.length > 0) {
+                showConfirm();
+                return;
+              }
+              scope.showAnswer = !scope.showAnswer;
+              if(scrollTopAnswer == true) {
+                scope.showAnswer = true;
+                angular.element('.xb-body-view').scrollTop(50);
+              }
+            });
 
-            $mdDialog.show(confirm).then(function() {
-              $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
-            }, function() {});
             return;
           }
           scope.showAnswer = !scope.showAnswer;
@@ -61,19 +93,27 @@ angular.module('xbertsApp')
           if(!$rootScope.user.authRequired()) {
             return;
           }
-
-          if(scope.answers.length > 0) {
-            var confirm = $mdDialog.confirm()
-              .textContent('You have already answered this question. Would you like to edit it?')
-              .ariaLabel('Answer alert')
-              .targetEvent(ev)
-              .ok('Edit')
-              .cancel('Cancel');
-
-            $mdDialog.show(confirm).then(function() {
-
-              $state.go('application.protected.editAnswer', {answerId:scope.answers[0].id});
-            }, function() {});
+          if(scope.answers && scope.answers.length > 0) {
+            showConfirm(ev);
+            return;
+          }
+          if(scope.answers == null && $rootScope.user.getUserId()) {
+            var par = {
+              name: 'ask_answers_detail',
+              objClass: AskModel,
+              params: {
+                owner: $rootScope.user.getUserId(),
+                question: scope.product.id,
+                page_size: 12
+              },
+              fetchFunction: AskService.getAnswersList
+            };
+            scope.answers = new Paginator(par).load().items;
+            if(scope.answers.length > 0) {
+              showConfirm();
+              return;
+            }
+            $state.go('application.protected.answerPost',{questionId:scope.product.id});
             return;
           }
           $state.go('application.protected.answerPost',{questionId:scope.product.id});

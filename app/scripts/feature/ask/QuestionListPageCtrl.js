@@ -60,8 +60,18 @@ angular.module('xbertsApp')
       });
     };
 
+    $rootScope.$on('$stateChangeStart', function () {
+      if($rootScope.state.current.name == 'application.askQuestionMain.answerQuestionDetail') {
+        $scope.isPopupOpen = false;
+        $scope.display = false;
+      }
+    });
+
     $scope.isPopupOpen = false;
+    $scope.display = false;
+
     askCtrl.openPop = function(questionId) {
+      $scope.display = true;
       $state.go('application.askQuestionMain.answerQuestionDetail',{questionId:questionId, isPopupOpen: true});
     };
 

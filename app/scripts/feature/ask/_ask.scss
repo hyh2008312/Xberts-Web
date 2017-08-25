@@ -56,6 +56,7 @@
     >.md-button{
       margin: 0;
     }
+
   }
   &__margin-top{
     margin-top: 24px;
@@ -317,12 +318,29 @@
 }
 .xb-question-detail{
   &__bg{
+    position: relative;
     background-color: #e5e5e5;
     padding-top: 28px;
     padding-bottom: 40px;
     @include xb-xs-screen{
       padding-top: 0;
       padding-bottom: 16px;
+    }
+    .md-icon-button{
+      position: absolute;
+      right: -90px;
+      top: 56px;
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      margin: 0;
+      .material-icons{
+        font-size: 56px;
+        line-height: 56px;
+        width: 56px;
+        height: 56px;
+        color: $whiteColor;
+      }
     }
   }
   &__pointer{
@@ -545,5 +563,40 @@
         padding: 0;
       }
     }
+  }
+}
+.xb-cover-view{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.7);
+  overflow: scroll;
+  z-index: 60;
+  @include xb-xs-screen{
+    background-color: rgba(0,0,0,.8);
+  }
+  >div:nth-child(1){
+    @extend .container;
+    background-color: #F1F1F1;
+    @include xb-xs-screen{
+      padding: 0;
+      width: 100%;
+      overflow: scroll;
+    }
+  }
+  &__button-bg{
+    height: 56px;
+    .md-icon-button{
+      .material-icons{
+        color: $whiteColor;
+      }
+    }
+  }
+}
+.xb-hover{
+  &:hover{
+    background-color: #f9f9f9;
   }
 }

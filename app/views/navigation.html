@@ -66,7 +66,8 @@
      || state.current.name == 'application.protected.referrals'
      || state.current.name == 'application.protected.follow'
      || state.current.name == 'application.protected.questions'
-     || state.current.name == 'application.protected.answers'" flex>My Profile</h2>
+     || state.current.name == 'application.protected.answers'
+     || state.current.name == 'application.protected.articles'" flex>My Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editProfile'" flex>Edit Profile</h2>
     <h2 ng-if="state.current.name == 'application.protected.editPost'
      || state.current.name == 'application.protected.post'
@@ -83,7 +84,8 @@
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
-    || state.current.name == 'application.answerQuestionDetail' || state.current.name == 'application.blogReport' " flex>{{pageSettings._title}}</h2>
+    || state.current.name == 'application.askQuestionMain.answerQuestionDetail'
+    || state.current.name == 'application.blogReport' " flex>{{pageSettings._title}}</h2>
     <xb-search></xb-search>
   </div>
 </md-toolbar>

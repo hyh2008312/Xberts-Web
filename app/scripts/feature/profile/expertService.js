@@ -55,4 +55,8 @@ angular.module('xbertsApp')
     this.getFollowingQuestion = function(params) {
       return ExpertFollowingQuestionsResource.get(params).$promise.then(AskModel.buildPageList);
     };
+
+    this.getArticles = function (params) {
+      return $resource(API_BASE_URL + '/articles/').get(params).$promise;
+    };
   }]);

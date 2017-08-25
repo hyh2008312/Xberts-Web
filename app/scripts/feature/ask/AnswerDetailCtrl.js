@@ -4,7 +4,8 @@ angular.module('xbertsApp')
     function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,
               AskModel,Paginator,$stateParams,$scope) {
 
-    //$scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
+    $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
+    $scope.isPopupOpen = $stateParams.isPopupOpen;
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
@@ -14,7 +15,7 @@ angular.module('xbertsApp')
 
     answerCtrl.admin = $stateParams.pending;
 
-    answerCtrl.isAnswered = false;
+    answerCtrl.isAnswered = {};
     if($rootScope.user.getUserId()) {
       var par = {
         name: 'ask_answers_detail',

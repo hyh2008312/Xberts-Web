@@ -198,5 +198,16 @@ angular
             return ExpertService.getExpert($stateParams.expertId);
           }]
         }
+      })
+      .state('application.protected.articles', {
+        url: '/profile/articles?expertId',
+        templateUrl: 'scripts/feature/profile/myArticlesList/myArticlesCtrl.html',
+        controller: 'MyArticlesCtrl',
+        reloadOnSearch: false,
+        resolve: {
+          expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
+            return ExpertService.getExpert($stateParams.expertId);
+          }]
+        }
       });
   }]);

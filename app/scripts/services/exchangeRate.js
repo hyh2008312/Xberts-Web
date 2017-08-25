@@ -7,7 +7,7 @@ angular.module('xbertsApp')
 
       var IpResource = $resource(API_BASE_URL + '/ip/');
 
-      var url = $sce.trustAsResourceUrl("https://query.yahooapis.com/v1/public/yql");
+      var url = $sce.trustAsResourceUrl("http://api.fixer.io/latest");
 
       // @params ('CNYUSD','EURUSD','INRUSD')
       this.country = '';
@@ -21,12 +21,10 @@ angular.module('xbertsApp')
           $rootScope.country = data.country;
         });
         $http.jsonp(url,{params:{
-          q:'select * from yahoo.finance.xchange where pair in ("INRUSD")',
-          format:'json',
-          diagnostics:true,
-          env:'store://datatables.org/alltableswithkeys'
+          base:'USD',
+          symbols: 'INR'
         },jsonpCallbackParam: 'callback'}).then(function(data) {
-          $rootScope.exchangeRate = data.data.query.results.rate.Rate;
+          $rootScope.exchangeRate = 1 / data.data.rates.INR;
         });
       };
 

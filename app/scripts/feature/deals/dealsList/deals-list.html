@@ -3,7 +3,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 4 == value">
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getFixedSqrUrl()}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -72,7 +72,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 3 == value">
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getFixedSqrUrl()}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -141,7 +141,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 2 == value">
       <div class="xb-deals-list__img-bg">
         <a layout="column" layout-align="start center" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getFixedSqrUrl()}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>

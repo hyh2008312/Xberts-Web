@@ -6,7 +6,8 @@ angular.module('xbertsApp')
       scope: {
         products: '=',
         hideAnswer: '=',
-        isAll: '='
+        isAll: '=',
+        openPop: '&'
       },
       templateUrl: 'scripts/feature/ask/questionItem/question-item.html',
       link: function (scope, element, attrs, ctrls) {

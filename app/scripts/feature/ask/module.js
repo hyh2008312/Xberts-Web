@@ -102,36 +102,11 @@ angular.module('xbertsApp')
         }]
       }
     })
-    //.state('application.askQuestionMain.answerQuestionDetail', {
-    //    url: '/:questionId?pending',
-    //    templateUrl: 'scripts/feature/ask/answerDetail.html',
-    //    controller: 'AnswerDetailCtrl as answerCtrl',
-    //    resolve: {
-    //      productsDetail: ['AskService','$stateParams',function(AskService, $stateParams) {
-    //        return AskService.getQuestionsDetail($stateParams.questionId);
-    //      }],
-    //      answerPaginator: ['Paginator', 'AskService', 'AskModel', '$stateParams','localStorageService',
-    //        function (Paginator, AskService, AskModel, $stateParams,localStorageService) {
-    //          localStorageService.remove('ask_answers_list' + '_currentPage');
-    //          localStorageService.remove('ask_answers_list' + '_items');
-    //          localStorageService.remove('ask_answers_list' + '_next');
-    //          localStorageService.remove('ask_answers_list' + '_count');
-    //          var par = {
-    //            name: 'ask_answers_list',
-    //            objClass: AskModel,
-    //            params: {
-    //              ordering: '-is_best_answer,-approve_at',
-    //              question: $stateParams.questionId,
-    //              page_size: 12
-    //            },
-    //            fetchFunction: AskService.getAnswersList
-    //          };
-    //          return new Paginator(par).load();
-    //        }]
-    //    }
-    //  })
-    .state('application.answerQuestionDetail', {
-        url: '/ask/:questionId?pending',
+    .state('application.askQuestionMain.answerQuestionDetail', {
+        url: '/:questionId?pending',
+        params: {
+          isPopupOpen : null
+        },
         templateUrl: 'scripts/feature/ask/answerDetail.html',
         controller: 'AnswerDetailCtrl as answerCtrl',
         resolve: {

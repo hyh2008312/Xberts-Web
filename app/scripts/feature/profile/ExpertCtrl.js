@@ -109,6 +109,17 @@ angular.module('xbertsApp')
       };
       $scope.postsAnswerPaginator = new Paginator(parAnswers);
 
+      var par = {
+        name: 'articles_' + $scope.expert.userId,
+        objClass: MainModel,
+        params: {
+          owner_id : $scope.expert.userId,
+          page_size: 12
+        },
+        fetchFunction: ExpertService.getArticles
+      };
+      $scope.postsArticlesPaginator = new Paginator(par);
+
       var parfollowing = {
         name: 'followings_list_' + $scope.expert.userId,
         params: {

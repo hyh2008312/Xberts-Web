@@ -1,25 +1,28 @@
-<div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index" ng-if="!isAll">
+<div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index" ng-if="!isAll"
+  ng-click="openPop({questionId:product.id})">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary"
-     ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
-    target="_blank">{{product.title}}</a>
+  <a class="xb-ask-list__title md-headline md-dark-primary" ng-click="$event.stopPropagation();"
+     ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id})" target="_blank">{{product.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer && product.description && !hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <a class="xb-ask-list__color" ng-if="product.description.length>140"
-       ui-sref="application.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"  ng-click="$event.stopPropagation();"
+       ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id})" target="_blank">More</a>
   </div>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="product.description && hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <a class="xb-ask-list__color" ng-if="product.description.length>140"
-       ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140"  ng-click="$event.stopPropagation();"
+       ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
+       target="_blank">More</a>
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
       <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"
-                  ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
+                  ui-sref="application.expert({ expertId:product.getLatestUserId()})"
+                  ng-click="$event.stopPropagation();"></avatar-Img>
       <div layout="column" layout-align="space-between start">
         <div class="md-subhead" layout="row" layout-align="start center"
-             ui-sref="application.expert({ expertId:product.getLatestUserId()})">
+             ui-sref="application.expert({ expertId:product.getLatestUserId()})"
+             ng-click="$event.stopPropagation();">
           {{product.latestAnswer.owner.firstName}}
           <credit-badge class="credit-badge" points="product.getLatestBadgePoint()"></credit-badge>
           <div class="md-dark-secondary md-margin-left-1">
@@ -32,16 +35,16 @@
     <div layout="row" layout-align="start start">
       <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
-        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer"
-           ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer" ng-click="$event.stopPropagation();"
+           ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
       </div>
       <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:100}}{{product.latestAnswer.text.length>100? '...':''}}
-        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer"
-              ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</span>
+        <span ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer" ng-click="$event.stopPropagation();"
+              ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</span>
       </div>
-      <a class="xb-ask-list__answer-image-bg xb-pointer"
-         ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+      <a class="xb-ask-list__answer-image-bg xb-pointer" ng-click="$event.stopPropagation();"
+         ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
            flex="none" ng-if="product.latestAnswer.preImage" target="_blank">
         <img src="{{product.latestAnswer.preImage}}" />
       </a>
@@ -50,20 +53,21 @@
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerAmount">
       <div ng-switch-when="0" >
-        <md-button class="md-primary"
-                   ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">
+        <md-button class="md-primary" ng-click="$event.stopPropagation();"
+                   ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">
           Be the first to answer
         </md-button>
       </div>
       <div ng-switch-when="1" layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+        <md-button class="md-primary" ng-click="$event.stopPropagation();"
+                   ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
                    target="_blank">
           Answer
         </md-button>
         <span class="xb-ask-list__color">&nbsp;1</span>
       </div>
       <div ng-switch-default layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+        <md-button class="md-primary" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
                    target="_blank">
           Answers
         </md-button>
@@ -78,27 +82,28 @@
     <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
   </div>
 </div>
-<div class="xb-ask-list__item background-whitem" ng-repeat="product in products track by $index" ng-if="isAll && $index <= 1">
+<div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index" ng-if="isAll && $index <= 1">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
-  <a class="xb-ask-list__title md-headline md-dark-primary" target="_blank"
-     ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})">{{product.title}}</a>
+  <a class="xb-ask-list__title md-headline md-dark-primary" target="_blank" ng-click="$event.stopPropagation();"
+     ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})">{{product.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="!product.latestAnswer && product.description && !hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <a class="xb-ask-list__color" ng-if="product.description.length>140"
-       ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140" ng-click="$event.stopPropagation();"
+       ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
   </div>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="product.description && hideAnswer">
     {{product.description | reduceSentence:140}}{{product.description.length>140?'...':''}}
-    <a class="xb-ask-list__color" ng-if="product.description.length>140"
-       ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+    <a class="xb-ask-list__color" ng-if="product.description.length>140" ng-click="$event.stopPropagation();"
+       ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
       <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"
-                  ui-sref="application.expert({ expertId:product.getLatestUserId()})"></avatar-Img>
+                  ui-sref="application.expert({ expertId:product.getLatestUserId()})"
+                  ng-click="$event.stopPropagation();"></avatar-Img>
       <div layout="column" layout-align="space-between start">
         <div class="md-subhead" layout="row" layout-align="start center"
-             ui-sref="application.expert({ expertId:product.getLatestUserId()})">
+             ui-sref="application.expert({ expertId:product.getLatestUserId()})" ng-click="$event.stopPropagation();">
           {{product.latestAnswer.owner.firstName}}
           <credit-badge class="credit-badge" points="product.getLatestBadgePoint()"></credit-badge>
           <div class="md-dark-secondary md-margin-left-1">
@@ -111,16 +116,16 @@
     <div layout="row" layout-align="start start">
       <div hide-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:400}}{{product.latestAnswer.text.length>400? '...':''}}
-        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer"
-              ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+        <a ng-if="product.latestAnswer.text.length>400" class="xb-ask-list__color xb-pointer" ng-click="$event.stopPropagation();"
+              ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
       </div>
       <div hide-gt-xs flex class="xb-ask-list__answer-content md-body-1 xb-pointer" ng-if="product.latestAnswer.text">
         {{product.latestAnswer.text | reduceSentence:100}}{{product.latestAnswer.text.length>100? '...':''}}
-        <a ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer"
-           ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
+        <a ng-if="product.latestAnswer.text.length>100" class="xb-ask-list__color xb-pointer" ng-click="$event.stopPropagation();"
+           ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">More</a>
       </div>
-      <a class="xb-ask-list__answer-image-bg xb-pointer"
-         ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+      <a class="xb-ask-list__answer-image-bg xb-pointer" ng-click="$event.stopPropagation();"
+         ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
          flex="none" ng-if="product.latestAnswer.preImage" target="_blank">
         <img src="{{product.latestAnswer.preImage}}" />
       </a>
@@ -129,20 +134,23 @@
   <div class="xb-ask-list__actions" layout="row" layout-align="start center">
     <div ng-switch="product.answerAmount">
       <div ng-switch-when="0" >
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+        <md-button class="md-primary" ng-click="$event.stopPropagation();"
+                   ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
                    target="_blank">
           Be the first to answer
         </md-button>
       </div>
       <div ng-switch-when="1" layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+        <md-button class="md-primary" ng-click="$event.stopPropagation();"
+                   ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
                    target="_blank">
           Answer
         </md-button>
         <span class="xb-ask-list__color">&nbsp;1</span>
       </div>
       <div ng-switch-default layout="row" layout-align="start center">
-        <md-button class="md-primary" ui-sref="application.answerQuestionDetail({questionId:product.id,pending:admin})"
+        <md-button class="md-primary" ng-click="$event.stopPropagation();"
+                   ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})"
                    target="_blank">
           Answers
         </md-button>
@@ -150,10 +158,11 @@
       </div>
     </div>
     <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Follow</md-button>
+               ng-click="follow(product);$event.stopPropagation();">Follow</md-button>
     <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
     <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
-               ng-click="follow(product)">Following</md-button>
-    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+               ng-click="follow(product);$event.stopPropagation();">Following</md-button>
+    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >
+      &nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
   </div>
 </div>
