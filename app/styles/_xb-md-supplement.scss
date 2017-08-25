@@ -263,10 +263,19 @@ md-backdrop{
   &.md-dialog-backdrop{
     z-index: 1051;
   }
+  &.md-select-backdrop{
+    z-index: 1051;
+  }
 }
 md-bottom-sheet{
   z-index: 1052;
 }
 .md-dialog-container{
   z-index: 1052;
+}
+.md-select-menu-container{
+  z-index: 1052;
+}
+.md-scroll-mask{
+  z-index: 1051;
 }
