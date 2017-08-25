@@ -75,6 +75,12 @@ angular.module('xbertsApp')
       $state.go('application.askQuestionMain.answerQuestionDetail',{questionId:questionId, isPopupOpen: true});
     };
 
+    $scope.jumpToAsk = function (isPopupOpen,display) {
+      if(!isPopupOpen && display) {
+        $state.go('application.askQuestionMain');
+      }
+    };
+
     askCtrl.changeOrder = function(order) {
       AskService.order = order;
       askCtrl.order = AskService.order;

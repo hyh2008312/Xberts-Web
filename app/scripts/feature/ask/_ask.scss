@@ -574,11 +574,13 @@
   background-color: rgba(0,0,0,.7);
   overflow: scroll;
   z-index: 1050;
+  pointer-events: auto;
   @include xb-xs-screen{
     overflow: hidden;
     background-color: rgba(0,0,0,.8);
   }
   >div:nth-child(1){
+    pointer-events: auto;
     @extend .container;
     background-color: #F1F1F1;
     padding: 0;
