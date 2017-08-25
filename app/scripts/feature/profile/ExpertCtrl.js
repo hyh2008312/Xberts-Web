@@ -20,8 +20,6 @@ angular.module('xbertsApp')
       };
 
       $scope.selectedIndex = 0;
-      $scope.selectedIndex1 = 0;
-      $scope.selectedIndex2 = 0;
 
       var tabIndexToParam = ['profile', 'questions', 'crowdtesting', 'deals', 'articles', 'following',
         'follower','question_followed'];
@@ -109,7 +107,7 @@ angular.module('xbertsApp')
       };
       $scope.postsAnswerPaginator = new Paginator(parAnswers);
 
-      var par = {
+      var parArticles = {
         name: 'articles_' + $scope.expert.userId,
         objClass: MainModel,
         params: {
@@ -118,7 +116,7 @@ angular.module('xbertsApp')
         },
         fetchFunction: ExpertService.getArticles
       };
-      $scope.postsArticlesPaginator = new Paginator(par);
+      $scope.postsArticlesPaginator = new Paginator(parArticles);
 
       var parfollowing = {
         name: 'followings_list_' + $scope.expert.userId,
@@ -198,18 +196,4 @@ angular.module('xbertsApp')
         $state.go('application.protected.editProfile');
       };
 
-      var par = {
-        name: 'myReferrals_' + $scope.expert.userId,
-        objClass: ShareProduct,
-        params: {
-          id: $scope.expert.userId,
-          page_size: 12
-        },
-        fetchFunction: ExpertService.getInviteList
-      };
-      $scope.myReferrals = new Paginator(par);
-
-      $scope.loadMyReferrals = function () {
-        updateUrl();
-      };
     }]);

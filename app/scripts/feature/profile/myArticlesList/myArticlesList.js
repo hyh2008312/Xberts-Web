@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('myArticlesList', ['$rootScope','$mdDialog','ShareProductService','localStorageService',
-    function($rootScope,$mdDialog, ShareProductService,localStorageService) {
+  .directive('myArticlesList', ['$rootScope','$mdDialog',
+    function($rootScope,$mdDialog) {
     return {
       restrict: 'E',
       scope: {
@@ -34,20 +34,7 @@ angular.module('xbertsApp')
           $mdDialog.show(confirm).then(function() {
 
           }, function() {
-            if(!$rootScope.user.authRequired()) {
-              return;
-            }
-            scope.posts.splice(index, 1);
-            ShareProductService.delete({id:id}).then(function () {
-              var name = 'posts_' + $rootScope.user.getUserId();
-              // clear post list
-              localStorageService.remove(name + '_currentPage');
-              localStorageService.remove(name + '_items');
-              localStorageService.remove(name + '_next');
-              localStorageService.remove(name + '_count');
-            }, function () {
 
-            });
           });
         };
       }
