@@ -48,7 +48,8 @@
     </div>
   </div>
 </section>
-<div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start">
+<div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start"
+     ui-sref="application.askQuestionMain">
   <div ui-view flex-xs></div>
   <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs>
     <md-button class="md-icon-button" ng-if="!isPopupOpen && display" ui-sref="application.askQuestionMain">
