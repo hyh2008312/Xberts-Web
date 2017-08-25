@@ -42,7 +42,7 @@ angular.module('xbertsApp')
 
       $scope.reset = function() {
         if($stateParams.source == 'answer') {
-          $state.go('application.answerQuestionDetail', {
+          $state.go('application.askQuestionMain.answerQuestionDetail', {
             questionId: $stateParams.questionId
           },{
             reload:true
@@ -177,7 +177,7 @@ angular.module('xbertsApp')
           localStorageService.remove('ask_answers_list' + '_count');
 
           if($stateParams.source == 'answer') {
-            $state.go('application.answerQuestionDetail', {
+            $state.go('application.askQuestionMain.answerQuestionDetail', {
               questionId: $stateParams.questionId
             },{
               reload:true
