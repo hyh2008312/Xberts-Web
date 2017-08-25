@@ -7,7 +7,7 @@ angular.module('xbertsApp')
 
       var IpResource = $resource(API_BASE_URL + '/ip/');
 
-      var url = $sce.trustAsResourceUrl("http://api.fixer.io/latest");
+      var url = $sce.trustAsResourceUrl("https://api.fixer.io/latest");
 
       // @params ('CNYUSD','EURUSD','INRUSD')
       this.country = '';
