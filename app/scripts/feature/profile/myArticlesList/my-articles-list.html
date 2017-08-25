@@ -12,7 +12,6 @@
       <img src="{{post.cover}}" />
     </div>
   </div>
-  <div>{{post|json}}</div>
   <div flex layout="column" layout-align="space-between">
     <p class="md-dark-primary xb-my-posts__title" ng-if="post.report"
          ui-sref="application.report({reviewId:review.id,reportId:post.report})">

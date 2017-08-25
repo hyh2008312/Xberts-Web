@@ -210,7 +210,20 @@ angular.module('xbertsApp')
       $scope.disabled = true;
       ReviewService.postBlog(_blog).then(function(data) {
 
-        $state.go('application.campaignreviews');
+        if($mdMedia('xs')) {
+          $state.go('application.protected.articles', {
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        } else {
+          $state.go('application.expert', {
+            tab:'articles',
+            expertId: $rootScope.user.getUserId()
+          },{
+            reload:true
+          });
+        }
 
         $scope.$emit('backdropOff', 'success');
 
