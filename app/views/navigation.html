@@ -80,7 +80,8 @@
     <h2 ng-if="state.current.name == 'application.terms'" flex>Terms</h2>
     <h2 ng-if="state.current.name == 'application.privacy'" flex>Privacy</h2>
     <h2 ng-if="state.current.name == 'application.protected.shippingAddress'" flex>Shipping Address</h2>
-    <h2 ng-if="state.current.name == 'application.protected.answerPost'" flex>Edit Answer</h2>
+    <h2 ng-if="state.current.name == 'application.protected.answerPost'
+    || state.current.name == 'application.protected.editAnswer'" flex>Edit Answer</h2>
     <h2 ng-if="state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'

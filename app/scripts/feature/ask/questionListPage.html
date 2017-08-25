@@ -1,4 +1,4 @@
-<section class="xb-section xb-ask-bg" ng-if="!isPopupOpen" ng-class="{true:'xb-ask-hidden', false:''}[isPopupOpen]">
+<section class="xb-section xb-ask-bg" ng-if="!isPopupOpen">
   <div class="container">
     <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
          layout-align-xs="start start">
@@ -48,8 +48,7 @@
     </div>
   </div>
 </section>
-<div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start center"
-  ng-touchmove="$event.stopPropagation();">
+<div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start center">
   <div ui-view flex-xs></div>
   <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs>
     <md-button class="md-icon-button" ng-if="!isPopupOpen && display" ui-sref="application.askQuestionMain">
