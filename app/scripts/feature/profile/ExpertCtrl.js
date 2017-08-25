@@ -113,7 +113,7 @@ angular.module('xbertsApp')
         name: 'articles_' + $scope.expert.userId,
         objClass: MainModel,
         params: {
-          owner_id : $scope.expert.userId,
+          owner__id : $scope.expert.userId,
           page_size: 12
         },
         fetchFunction: ExpertService.getArticles
