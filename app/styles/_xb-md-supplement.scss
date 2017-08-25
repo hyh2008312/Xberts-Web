@@ -256,3 +256,20 @@ p,.md-body-1 {
   text-rendering: optimizeLegibility;
 
 }
+md-backdrop{
+  &.md-bottom-sheet-backdrop{
+    z-index: 81;
+  }
+  &.md-dialog-backdrop{
+    z-index: 81;
+  }
+}
+md-bottom-sheet{
+  z-index: 82;
+}
+.md-dialog-container{
+  z-index: 82;
+}
+.md-scroll-mask{
+  z-index: 81;
+}

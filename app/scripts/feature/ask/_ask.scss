@@ -572,18 +572,19 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,.7);
-  overflow: scroll;
-  z-index: 60;
+  overflow-y: scroll;
+  z-index: 80;
   @include xb-xs-screen{
     background-color: rgba(0,0,0,.8);
   }
   >div:nth-child(1){
     @extend .container;
     background-color: #F1F1F1;
+    padding: 0;
     @include xb-xs-screen{
-      padding: 0;
+
       width: 100%;
-      overflow: scroll;
+      overflow-y: scroll;
     }
   }
   &__button-bg{
