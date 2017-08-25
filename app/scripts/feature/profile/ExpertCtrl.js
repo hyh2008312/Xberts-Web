@@ -109,7 +109,6 @@ angular.module('xbertsApp')
 
       var parArticles = {
         name: 'articles_' + $scope.expert.userId,
-        objClass: MainModel,
         params: {
           owner__id : $scope.expert.userId,
           page_size: 12

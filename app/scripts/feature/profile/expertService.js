@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .service('ExpertService', ['$rootScope','$resource', 'API_BASE_URL', 'ProductDeals','$q','AskModel','ShareProduct',
-    function ($rootScope,$resource, API_BASE_URL,ProductDeals,$q,AskModel,ShareProduct) {
+    'MainModel',
+    function ($rootScope,$resource, API_BASE_URL,ProductDeals,$q,AskModel,ShareProduct,MainModel) {
     var ExpertResource = $resource(API_BASE_URL + '/xberts/experts/:id/');
     var ExpertAchievementResource = $resource(API_BASE_URL + '/xberts/experts/:id/achievement/');
     var ExpertFollowingQuestionsResource = $resource(API_BASE_URL + '/xberts/experts/:id/followed_questions/');
@@ -57,6 +58,6 @@ angular.module('xbertsApp')
     };
 
     this.getArticles = function (params) {
-      return $resource(API_BASE_URL + '/articles/').get(params).$promise;
+      return $resource(API_BASE_URL + '/articles/').get(params).$promise.then(MainModel.buildPageList);
     };
   }]);
