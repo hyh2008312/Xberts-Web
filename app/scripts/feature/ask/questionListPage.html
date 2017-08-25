@@ -50,7 +50,10 @@
 </section>
 <div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start"
      ng-click="jumpToAsk(isPopupOpen,display);">
-  <div class="xb-pointer-auto" ui-view flex-xs ng-click="$event.stopPropagation()" ng-touchmove="$event.stopPropagation()"></div>
+  <div class="xb-pointer-auto" ui-view flex-xs ng-click="$event.stopPropagation()" ng-touchmove="$event.stopPropagation()">
+    <load-more class="xb-cover-view__margin-top" layout="row" layout-align="center center"
+               ng-if="!isPopupOpen && display"></load-more>
+  </div>
   <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs>
     <md-button class="md-icon-button" ng-if="!isPopupOpen && display" ui-sref="application.askQuestionMain">
       <md-icon md-font-set="material-icons">
