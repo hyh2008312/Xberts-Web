@@ -115,6 +115,8 @@
       </div>
       <div ng-class="{true:'active', false:''}[selectedIndex==4]" ng-click="loadContent(4)">
         Articles
+        <span ng-if="isCurrentUser">{{achievement.blogAmount>0?achievement.blogAmount:''}}</span>
+        <span ng-if="!isCurrentUser">{{achievement.blogApprovedAmount>0?achievement.blogApprovedAmount:''}}</span>
       </div>
       <div ng-class="{true:'active', false:''}[selectedIndex==5]" ng-click="loadContent(5)">
         Following
@@ -203,6 +205,8 @@
       <div class="background-whitem" ng-if="selectedIndex == 4">
         <div class="xb-my-profile__center-title" layout="row" layout-align="start center">
           Articles
+          <span ng-if="isCurrentUser">{{achievement.blogAmount>0?achievement.blogAmount:''}}</span>
+          <span ng-if="!isCurrentUser">{{achievement.blogApprovedAmount>0?achievement.blogApprovedAmount:''}}</span>
         </div>
         <div class="xb-my-profile__empty" layout="row" layout-align="center center"
              ng-if="postsArticlesPaginator.count <= 0 && !postsArticlesPaginator.loading">
@@ -338,6 +342,8 @@
     <div class="md-subhead" layout="row" layout-align="space-between center"
          ui-sref="application.protected.articles({expertId:expert.userId})">
       Articles
+      <div class="xb-my-profile__mobile-number" ng-if="isCurrentUser">{{achievement.blogAmount>0?achievement.blogAmount:''}}</div>
+      <div class="xb-my-profile__mobile-number" ng-if="!isCurrentUser">{{achievement.blogApprovedAmount>0?achievement.blogApprovedAmount:''}}</div>
       <div flex layout="row" layout-align="end center">
         <div><md-icon class="md-dark-secondary" md-font-set="material-icons">keyboard_arrow_right</md-icon></div>
       </div>

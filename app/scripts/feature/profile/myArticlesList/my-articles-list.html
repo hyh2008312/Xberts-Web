@@ -1,28 +1,32 @@
 <div class="xb-my-posts" ng-repeat="post in posts track by $index" layout="row"
      layout-align="space-between stretch" ng-click="closeMenu();">
-  <div class="xb-my-posts__bg" ng-show="post.report"
-     ui-sref="application.report({reviewId:post.id,reportId:post.report})">
-    <div>
-      <img src="{{post.cover}}" />
-    </div>
-  </div>
-  <div class="xb-my-posts__bg" ng-show="post.blog"
-     ui-sref="application.blogReport({blogId:post.blog})">
+  <div class="xb-my-posts__bg"
+     ui-sref="application.blogReport({blogId:post.id})">
     <div>
       <img src="{{post.cover}}" />
     </div>
   </div>
   <div flex layout="column" layout-align="space-between">
-    <p class="md-dark-primary xb-my-posts__title" ng-show="post.report"
-         ui-sref="application.report({reviewId:post.id,reportId:post.report})">
-      {{post.title}}
-    </p>
-    <p class="md-dark-primary xb-my-posts__title"  ng-show="post.blog"
-         ui-sref="application.blogReport({blogId:post.blog})">
+    <p class="md-dark-primary xb-my-posts__title"
+         ui-sref="application.blogReport({blogId:post.id})">
       {{post.title}}
     </p>
     <div layout="row" layout-align="start center">
-      <div flex></div>
+      <div ng-if="post.approvalStatus == 'PENDING'" flex layout="row" layout-align="start center">
+        <md-button ng-if="currentUser" class="md-icon-button"
+                   ui-sref="application.protected.editArticles({articlesId:post.id})"
+                   ng-click="$event.stopPropagation();">
+          <md-icon class="md-dark-third" md-font-set="material-icons">mode_edit</md-icon>
+        </md-button>
+        <md-button ng-if="currentUser" class="md-icon-button" hide
+                   ng-click="delete($event, post.id, $index);$event.stopPropagation();">
+          <md-icon class="md-dark-third" md-font-set="material-icons">delete</md-icon>
+        </md-button>
+      </div>
+      <div ng-if="post.approvalStatus == 'APPROVED'" flex layout="row" layout-align="start center">
+        <div class="xb-color-striking" ng-if="currentUser">Approved</div>
+      </div>
+      <div ng-if="!post.approvalStatus" flex></div>
       <span class="md-body-1 md-dark-third xb-my-posts__time">{{post.created|amDateFormat:'MM.DD.YYYY'}}</span>
     </div>
   </div>

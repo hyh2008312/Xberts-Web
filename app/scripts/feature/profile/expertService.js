@@ -37,6 +37,10 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/answers/').get(params).$promise.then(AskModel.buildPageList);
     };
 
+    this.getArticles = function(params) {
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/blogs/').get(params).$promise.then(MainModel.buildPageList);
+    };
+
     this.follow = function(params) {
       return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/follow/').save().$promise;
     };
@@ -55,9 +59,5 @@ angular.module('xbertsApp')
 
     this.getFollowingQuestion = function(params) {
       return ExpertFollowingQuestionsResource.get(params).$promise.then(AskModel.buildPageList);
-    };
-
-    this.getArticles = function (params) {
-      return $resource(API_BASE_URL + '/articles/').get(params).$promise.then(MainModel.buildPageList);
     };
   }]);

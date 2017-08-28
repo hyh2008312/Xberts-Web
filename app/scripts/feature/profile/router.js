@@ -122,6 +122,16 @@ angular
           }]
         }
       })
+      .state('application.protected.editArticles', {
+        url: '/articles/:articlesId/edit',
+        templateUrl: 'scripts/feature/review/reviewReport/EditReportCtrl.html',
+        controller: 'EditArticlesCtrl',
+        resolve: {
+          editMyArticles: ['ReviewService', '$stateParams', function(ReviewService, $stateParams) {
+            return ReviewService.getBlogDetail($stateParams.articlesId);
+          }]
+        }
+      })
       .state('application.protected.biography', {
         url: '/profile/biography?expertId',
         templateUrl: 'scripts/feature/profile/myBiography/myBiographyCtrl.html',

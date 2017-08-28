@@ -88,6 +88,10 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/blogs/').save(params).$promise;
     };
 
+    self.updateBlog = function(params) {
+      return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'},{'patch': {method: 'PATCH'}}).patch(params).$promise;
+    };
+
     self.getBlogDetail = function (reviewId) {
       return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'}).get({id:reviewId}).$promise.then(MainModel.build);
     };
