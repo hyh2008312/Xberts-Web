@@ -79,6 +79,8 @@ angular.module('xbertsApp')
           }
         };
         resize();
+        angular.element($window).off("resize", resize);
+        angular.element('.xb-body-view').off("scroll", resize);
         angular.element($window).on("resize", resize);
         angular.element('.xb-body-view').on("scroll", resize);
       }
