@@ -173,7 +173,7 @@
           <span ng-if="!isCurrentUser">{{achievement.reviewFeaturedAmount>0?achievement.reviewFeaturedAmount:''}}</span>
         </div>
         <div class="xb-my-profile__empty" layout="row" layout-align="center center"
-             ng-if="reviewApplicantPaginator.count <= 0 && !reviewApplicantPaginator.loading">
+             ng-if="reviewApplicantPaginator.items.length <= 0 && !reviewApplicantPaginator.loading">
           <i class="iconfontXberts icon-ic-empty"></i>
         </div>
         <div class="xb-my-profile__center-inner-content" infinite-scroll="reviewApplicantPaginator.loadNext()"
