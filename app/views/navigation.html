@@ -4,7 +4,7 @@
 
     <div class="xberts-navbar__center-container" layout="row" layout-align="start center">
       <div ui-sref-active="active" ui-sref="application.productDeals">Discover</div>
-      <div ui-sref-active="active" ui-sref="application.askQuestionMain">Ask</div>
+      <div ui-sref-active="active" ui-sref="application.askQuestionMain" ui-sref-opts="{reload:true}">Ask</div>
       <div ui-sref-active="active" ui-sref="application.campaignreviews">Articles<div></div></div>
       <div ui-sref-active="active" ui-sref="application.testingcampaigns">Crowdtesting</div>
       <div ui-sref-active="active" ui-sref="application.creditMain">Perks</div>
@@ -98,7 +98,7 @@
   <div class="xberts-navbar-moblie-sidenav__top-container" flex="noshrink">
     <div ui-sref-active="active" ui-sref="application.main" ng-click="close()">Home</div>
     <div ui-sref-active="active" ui-sref="application.productDeals" ng-click="close()">Discover</div>
-    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()">Ask</div>
+    <div ui-sref-active="active" ui-sref="application.askQuestionMain" ng-click="close()" ui-sref-opts="{reload:true}">Ask</div>
     <div ui-sref-active="active" ui-sref="application.campaignreviews" ng-click="close()"
          layout="row" layout-align="start start">Articles<span flex="none"></span></div>
     <div ui-sref-active="active" ui-sref="application.testingcampaigns" ng-click="close()">Crowdtesting</div>
