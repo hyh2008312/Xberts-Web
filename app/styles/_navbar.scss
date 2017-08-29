@@ -8,6 +8,9 @@
     >img{
       cursor: pointer;
       margin: 0 20px 0 0;
+      @include xb-sm-screen{
+        margin: 0 10px 0 0;
+      }
     }
   }
   @include box-shadow(0 3px 5px rgba(0,0,0,.38));
@@ -31,7 +34,7 @@
         color: rgba(255,255,255,1);
       }
       @include xb-sm-screen{
-        padding: 0 10px;
+        padding: 0 8px;
       }
       span{
         position: absolute;
@@ -73,7 +76,7 @@
         color: rgba(255,255,255,1);
       }
       @include xb-sm-screen{
-        padding: 16px 10px;
+        padding: 16px 8px;
       }
     }
   }
