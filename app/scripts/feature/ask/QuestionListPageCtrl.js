@@ -44,6 +44,7 @@ angular.module('xbertsApp')
 
     askCtrl.openPop = function(questionId) {
       $scope.display = true;
+      $rootScope.showToobar = true;
       $state.go('application.askQuestionMain.answerQuestionDetail',{questionId:questionId, isPopupOpen: true});
     };
 
