@@ -6,6 +6,7 @@ angular.module('xbertsApp')
 
     $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
     $scope.isPopupOpen = $stateParams.isPopupOpen;
+    $rootScope.showToobar = $stateParams.isPopupOpen;
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;

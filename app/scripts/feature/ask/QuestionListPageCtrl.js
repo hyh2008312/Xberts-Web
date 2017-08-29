@@ -34,11 +34,13 @@ angular.module('xbertsApp')
       if($rootScope.state.current.name == 'application.askQuestionMain.answerQuestionDetail') {
         $scope.isPopupOpen = false;
         $scope.display = false;
+        $rootScope.showToobar = $scope.isPopupOpen;
       }
     });
 
     $scope.isPopupOpen = false;
     $scope.display = false;
+    $rootScope.showToobar = $scope.isPopupOpen;
 
     askCtrl.openPop = function(questionId) {
       $scope.display = true;

@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<md-toolbar class="xberts-navbar-moblie md-hue-2" hide-gt-xs ng-if="!xbertsApp">
+<md-toolbar class="xberts-navbar-moblie md-hue-2" hide-gt-xs ng-if="!xbertsApp && !showToobar">
   <div class="md-toolbar-tools" layout="row" layout-align="start center">
     <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
       <md-icon md-font-set="material-icons"> menu </md-icon>
@@ -113,7 +113,8 @@
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active" ui-sref="application.protected.message.notification" ng-click="close()"
          layout="row" layout-align="start start">Notification
       <span ng-if="unreadNotificationMeCount > 0 || unreadNotificationSystemCount > 0 || unreadNotificationFeedsCount > 0"></span></div>
-    <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active" ui-sref="application.protected.message.inbox" ng-click="close()"
+    <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active"
+         ui-sref="application.protected.message.inbox" ng-click="close()"
          layout="row" layout-align="start start">Messages
       <span ng-if="unreadDirectMessageCount > 0"></span></div>
     <div class="xberts-navbar-moblie-sidenav__bottom-container-button" ui-sref-active="active" ui-sref="application.expert({ expertId: user.getUserId(), tab: 'profile' })" ng-click="close()">My Profile</div>
@@ -123,7 +124,10 @@
   </div>
 </md-sidenav>
 <verification ng-if="user.isAuth() && user.getInvited() && !user.getEmailVerification() && user.getUserEmail()"></verification>
-<md-content ng-class="pageSettings._backgroundColor + {true:' xb-ios-scroll-fixed',false:''}[state.current.name == 'application.productDeals' && isIos && dealsTab == 'everything']" class="xb-body-view" md-scroll-y flex layout="column">
+<md-content ng-class="pageSettings._backgroundColor + {true:' xb-ios-scroll-fixed',false:''}[
+    state.current.name == 'application.productDeals' && isIos && dealsTab == 'everything'] +
+    {true:' xb-overflow-hidden',false:''}[showToobar]"
+            class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ng-class="{true:'xb-footer-padding',false:''}[state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
     || state.current.name == 'application.redeemDetail' || state.current.name == 'application.dealsDetail'
@@ -131,6 +135,7 @@
   <xberts-footer ng-class="{true:'',false:'xb-footer-hide'}[state.current.name=='application.main'] +
      {true:' xb-footer-hide__PC',false:''}[state.current.name == 'application.protected.message.inbox'
      || state.current.name == 'application.protected.message.inbox.thread'
-     || state.current.name == 'application.protected.thread']" flex="noshrink" layout="row" layout-algin="center center"></xberts-footer>
+     || state.current.name == 'application.protected.thread']" flex="noshrink"
+                 layout="row" layout-align="center center"></xberts-footer>
 </md-content>
 

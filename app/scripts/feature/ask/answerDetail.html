@@ -11,7 +11,7 @@
       <md-button class="md-primary" ng-click="answerCtrl.addQuestion()">Ask Question</md-button>
     </div>
     <question-detail-item product="answerCtrl.productsDetail" show-answer="answerCtrl.showAnswer"
-      answers="answerCtrl.isAnswered.items" admin="answerCtrl.admin"></question-detail-item>
+      answers="answerCtrl.isAnswered.items" admin="answerCtrl.admin" is-popup-open="isPopupOpen"></question-detail-item>
     <div ng-if="user.isAuth()" hide-xs>
       <answer-post ng-if="answerCtrl.showAnswer" class="xb-question-detail__inner-content" options="answerCtrl.options"
                    question-id="answerCtrl.productsDetail.id" detail-ctrl="answerCtrl"></answer-post>
