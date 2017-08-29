@@ -37,7 +37,8 @@
     "angular-touch": "^1.6.3",
     "angular-carousel": "^1.0.1",
     "js-cookie": "^2.1.4",
-    "angular-bootstrap": "^2.5.0"
+    "angular-bootstrap": "^2.5.0",
+    "ng-cropper": "^0.4.1"
   },
   "appPath": "app",
   "moduleName": "xbertsApp",

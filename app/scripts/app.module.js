@@ -31,7 +31,8 @@ angular
     'mgcrea.ngStrap',
     'ngMaterial',
     'ngUrlParser',
-    'angular-carousel'
+    'angular-carousel',
+    'ngCropper'
   ]);
 
 angular.element(document).ready(function () {
