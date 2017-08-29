@@ -1,20 +1,15 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('imgCropper', function () {
+  .directive('imgCropper', ['Cropper','$timeout', function (Cropper,$timeout) {
     return {
       restrict: 'E',
       replace: false,
       scope: {
-
+        xbSrc : '='
       },
       templateUrl: 'views/directive/img-cropper.html',
-      link: function(scope) {
-
-      },
-      controllerAs: 'avatarCtrl',
-      controller: ['$scope', 'Cropper','$timeout', function ($scope,Cropper,$timeout) {
-
+      link: function(scope, element, attrs, ctrls) {
         var file, data;
 
         /**
@@ -23,9 +18,11 @@ angular.module('xbertsApp')
          * call `angular.element(this).scope().onFile(this.files[0])`
          * when input's event is fired.
          */
-        $scope.onFile = function(blob) {
+        scope.onFile = function(blob) {
           Cropper.encode((file = blob)).then(function(dataUrl) {
-            $scope.dataUrl = dataUrl;
+            $timeout(hideCropper);
+            scope.dataUrl = dataUrl;
+            scope.xbSrc = dataUrl;
             $timeout(showCropper);  // wait for $digest to set image's src
           });
         };
@@ -36,36 +33,30 @@ angular.module('xbertsApp')
          * Pass a full proxy name to the `ng-cropper-proxy` directive attribute to
          * enable proxing.
          */
-        $scope.cropper = {};
-        $scope.cropperProxy = 'cropper.first';
+        scope.cropper = {};
+        scope.cropperProxy = 'cropper.first';
 
         /**
          * When there is a cropped image to show encode it to base64 string and
          * use as a source for an image element.
          */
-        $scope.preview = function() {
+        scope.preview = function() {
           if (!file || !data) return;
           Cropper.crop(file, data).then(Cropper.encode).then(function(dataUrl) {
-            ($scope.preview || ($scope.preview = {})).dataUrl = dataUrl;
+            (scope.preview || (scope.preview = {})).dataUrl = dataUrl;
+            scope.xbSrc = dataUrl;
           });
         };
 
-        /**
-         * Use cropper function proxy to call methods of the plugin.
-         * See https://github.com/fengyuanchen/cropper#methods
-         */
-        $scope.clear = function(degrees) {
-          if (!$scope.cropper.first) return;
-          $scope.cropper.first('clear');
-        };
 
-        $scope.scale = function(width) {
+        scope.scale = function(width) {
           Cropper.crop(file, data)
             .then(function(blob) {
               return Cropper.scale(blob, {width: width});
             })
             .then(Cropper.encode).then(function(dataUrl) {
-            ($scope.preview || ($scope.preview = {})).dataUrl = dataUrl;
+            (scope.preview || (scope.preview = {})).dataUrl = dataUrl;
+            scope.xbSrc = dataUrl;
           });
         };
 
@@ -73,9 +64,9 @@ angular.module('xbertsApp')
          * Object is used to pass options to initalize a cropper.
          * More on options - https://github.com/fengyuanchen/cropper#options
          */
-        $scope.options = {
+        scope.options = {
           maximize: true,
-          aspectRatio: 1,
+          aspectRatio: 16/9,
           crop: function(dataNew) {
             data = dataNew;
           }
@@ -88,11 +79,17 @@ angular.module('xbertsApp')
          * listening to events passed by `ng-cropper-show` & `ng-cropper-hide` attributes.
          * To show or hide a cropper `$broadcast` a proper event.
          */
-        $scope.showEvent = 'show';
-        $scope.hideEvent = 'hide';
+        scope.showEvent = 'show';
+        scope.hideEvent = 'hide';
 
-        function showCropper() { $scope.$broadcast($scope.showEvent); }
-        function hideCropper() { $scope.$broadcast($scope.hideEvent); }
-      }]
+        function showCropper() { scope.$broadcast(scope.showEvent); }
+        function hideCropper() { scope.$broadcast(scope.hideEvent); }
+
+        scope.clear = function() {
+          scope.dataUrl = null;
+          scope.xbSrc = null;
+          $timeout(hideCropper);
+        };
+      }
     }
-  });
+  }]);
