@@ -1,5 +1,9 @@
 <div class="xb-my-biography">
   <div class="md-subhead">Articles</div>
+  <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+       ng-if="postsArticlesPaginator.items.length <= 0 && !postsArticlesPaginator.loading">
+    <i class="iconfontXberts icon-ic-empty"></i>
+  </div>
   <div infinite-scroll="postsArticlesPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="postsArticlesPaginator.loading || !postsArticlesPaginator.next">
     <my-articles-list class="xb-my-posts" posts="postsArticlesPaginator.items" current-user="isCurrentUser"></my-articles-list>

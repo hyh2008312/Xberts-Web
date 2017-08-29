@@ -1,25 +1,37 @@
 <div class="xb-my-biography">
   <div class="md-subhead">Follow</div>
   <md-tabs class="xb-my-profile__tabs" md-dynamic-height md-border-bottom>
-    <md-tab label="Following" md-on-select="loadMyFollowing()">
+    <md-tab label="Following" md-on-select="load(0)">
+      <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+           ng-if="followingPaginator.items.length <= 0 && !followingPaginator.loading">
+        <i class="iconfontXberts icon-ic-empty"></i>
+      </div>
       <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followingPaginator.loadNext()"
            infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next">
+           infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 0">
         <my-follow class="xb-my-posts" experts="followingPaginator.items" following="true"></my-follow>
         <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingPaginator.loading"></load-more>
       </div>
     </md-tab>
-    <md-tab label="Follower" md-on-select="loadMyFollower()">
+    <md-tab label="Follower" md-on-select="load(1)">
+      <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+           ng-if="followerPaginator.items.length <= 0 && !followerPaginator.loading">
+        <i class="iconfontXberts icon-ic-empty"></i>
+      </div>
       <div class="xb-main-reviewer xb-my-follow" infinite-scroll="followerPaginator.loadNext()"
            infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next">
+           infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 1">
         <my-follow class="xb-my-posts" experts="followerPaginator.items"></my-follow>
         <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
       </div>
     </md-tab>
-    <md-tab label="Questions Followed" md-on-select="loadMyFollowingQuestions()">
+    <md-tab label="Questions Followed" md-on-select="load(2)">
+      <div class="xb-my-profile__empty" layout="row" layout-align="center center"
+           ng-if="followingQuestionsPaginator.items.length <= 0 && !followingQuestionsPaginator.loading">
+        <i class="iconfontXberts icon-ic-empty"></i>
+      </div>
       <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
-           infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next">
+           infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next  || selectedIndex != 2">
         <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items" current-user="isCurrentUser" hide-state="true"></my-questions-list>
         <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingQuestionsPaginator.loading"></load-more>
       </div>

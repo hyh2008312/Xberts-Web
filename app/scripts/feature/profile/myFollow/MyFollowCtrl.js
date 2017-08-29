@@ -8,6 +8,8 @@ angular.module('xbertsApp')
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.expert = expert;
 
+      $scope.selectedIndex = 0;
+
       var parfollowing = {
         name: 'followings_list_' + $scope.expert.userId,
         params: {
@@ -39,16 +41,9 @@ angular.module('xbertsApp')
       };
       $scope.followingQuestionsPaginator = new Paginator(parfollowingQuestions);
 
-      $scope.loadMyFollowingQuestions = function() {};
-
-      $scope.loadMyFollowing = function() {
-        $scope.followingPaginator.clear();
-        $scope.followingPaginator.load();
+      $scope.load = function(index) {
+        $scope.selectedIndex = index;
       };
 
-      $scope.loadMyFollower = function() {
-        $scope.followerPaginator.clear();
-        $scope.followerPaginator.load();
-      };
 
     }]);
