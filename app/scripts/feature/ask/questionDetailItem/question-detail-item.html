@@ -43,3 +43,16 @@
     </md-button>
   </div>
 </div>
+<div class="xb-question-detail__fixed-top-content">
+  <div class="background-whitem xb-question-detail__fixed-top-content-1">
+    <div class="xb-question-detail__inner-content" layout="row" layout-align="start center">
+      <md-truncate class="md-subhead" flex="">{{product.title}}</md-truncate>
+      <md-button class="md-primary md-raised" ng-click="answer(true);" hide-xs>
+        Answer
+      </md-button>
+      <md-button class="md-primary md-raised" ui-sref="application.protected.answerPost({questionId:product.id})" hide-gt-xs>
+        Answer
+      </md-button>
+    </div>
+  </div>
+</div>

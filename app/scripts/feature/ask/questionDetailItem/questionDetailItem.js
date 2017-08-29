@@ -1,7 +1,8 @@
 angular.module('xbertsApp')
   .directive('questionDetailItem',['$rootScope','AskService','InviteService','$mdDialog','$mdBottomSheet',
-    'localStorageService','$state','AskModel','Paginator',
-    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService,$state,AskModel,Paginator) {
+    'localStorageService','$state','AskModel','Paginator','$mdMedia',
+    function ($rootScope,AskService,InviteService,$mdDialog,$mdBottomSheet,localStorageService,$state,AskModel,
+              Paginator,$mdMedia) {
     return {
       restrict: 'E',
       scope: {
@@ -16,20 +17,56 @@ angular.module('xbertsApp')
 
         angular.element('.xb-body-view').bind("scroll", function(e) {
           if(e.currentTarget.scrollTop >= _offsetTop) {
-            angular.element('.xb-question-detail__fixed-top-content').css({
+            angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
               display:'block',
               position: 'fixed',
               left:'0',
               top: 56 +'px'
             });
           } else {
-            angular.element('.xb-question-detail__fixed-top-content').css({
+            angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
               display:'none',
               position: 'relative',
               top: 'auto'
             });
           }
         });
+
+        if(!$mdMedia('xs')) {
+          angular.element('.xb-cover-view').bind("scroll", function(e) {
+            if(e.currentTarget.scrollTop >= _offsetTop + 112) {
+              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                display:'block',
+                position: 'fixed',
+                left:'0',
+                top: '0'
+              });
+            } else {
+              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                display:'none',
+                position: 'relative',
+                top: 'auto'
+              });
+            }
+          });
+        } else {
+          angular.element('.xb-cover-view > div:eq(0)').bind("scroll", function(e) {
+            if(e.currentTarget.scrollTop >= _offsetTop + 112) {
+              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                display:'block',
+                position: 'fixed',
+                left:'0',
+                top: '0'
+              });
+            } else {
+              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                display:'none',
+                position: 'relative',
+                top: 'auto'
+              });
+            }
+          });
+        }
 
         scope.user = $rootScope.user;
 
