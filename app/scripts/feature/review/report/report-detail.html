@@ -25,15 +25,15 @@
         <div flex-gt-sm="40" class="xb2-page-head__info" layout="column" layout-align="start">
           <div class="xb2-page-head__author" layout="row" layout-align="start center" flex-order="2" flex-order-gt-xs="1">
             <div class="xb-trial-detail__avatar-bg" layout="row" layout-align="start center" flex>
-              <avatar-img class="md-avatar" src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"
+              <avatar-img class="md-avatar xb-pointer-events-visible" src="report.applicant.reviewer.avatar" name="report.applicant.reviewer.fullname"
                           ui-sref="application.expert({ expertId:report.getReviewerId() })"></avatar-img>
               <div class="md-margin-left-1" layout="row" layout-align="start center" flex>
-                <a class="md-dark-secondary" ui-sref="application.expert({ expertId:report.getReviewerId() })">
+                <a class="md-dark-secondary xb-pointer-events-visible" ui-sref="application.expert({ expertId:report.getReviewerId() })">
                   {{report.getReviewerName()}}</a>
                 <credit-badge class="credit-badge" points="report.getReviewBadgePoint()"></credit-badge>
                 <div class="md-dark-secondary" hide-xs>{{report.created | amDateFormat:'MMMM Do,YYYY'}}</span></div>
               </div>
-              <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale"
+              <md-fab-speed-dial ng-hide="hidden" md-direction="left" md-open="isOpen" class="md-scale xb-pointer-events-visible"
                                  ng-class="{ 'md-hover-full': hover }"
                                  ng-mouseenter="isOpen=true" ng-mouseleave="isOpen=false" hide-gt-xs>
                 <md-fab-trigger>
@@ -50,7 +50,7 @@
                   </md-button>
                 </md-fab-actions>
               </md-fab-speed-dial>
-              <vote class="xb2-page-head__thumb-up" layout="row" layout-align="start center"></vote>
+              <vote class="xb2-page-head__thumb-up xb-pointer-events-visible" layout="row" layout-align="start center"></vote>
             </div>
           </div>
           <div class="xb-redeem-detail__content-line" flex-order="2" hide-xs></div>
@@ -84,7 +84,7 @@
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>&nbsp;
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
-              <md-button tabs-fixed-item class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
+              <md-button tabs-fixed-item class="md-raised md-accent md-margin-clear xb-pointer-events-visible" ng-click="report.buyNow('report-item');"
                          target="_blank">
                 See Product
               </md-button>
@@ -96,7 +96,7 @@
                 <span class="xb2-price__final">${{ report.getProductFinalPrice() }}</span>
                 <span class="xb2-price__retail" ng-if="report.isHasFinalPrice()">${{ report.getProductRetailPrice() }}</span>
               </p>
-              <md-button class="md-raised md-accent md-margin-clear" ng-click="report.buyNow('report-item');"
+              <md-button class="md-raised md-accent md-margin-clear xb-pointer-events-visible" ng-click="report.buyNow('report-item');"
                          target="_blank">
                 See Product
               </md-button>

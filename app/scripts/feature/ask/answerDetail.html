@@ -22,8 +22,13 @@
   {{answerCtrl.answerPaginator.count>1? answerCtrl.answerPaginator.count+ ' ANSWERS':answerCtrl.answerPaginator.count + ' ANSWER'}}
 </div>
 <div>
-  <div class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+  <div ng-if="isPopupOpen" class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-pointer-auto"' infinite-scroll-distance='0'
     infinite-scroll-disabled="answerCtrl.answerPaginator.loading || !answerCtrl.answerPaginator.next">
+    <answer-item answers="answerCtrl.answerPaginator.items" admin="answerCtrl.admin"></answer-item>
+    <load-more class="md-margin-bottom-2" layout="row" layout-align="center center" ng-if="answerCtrl.answerPaginator.loading"></load-more>
+  </div>
+  <div ng-if="!isPopupOpen" class="xb-question-detail__inner-content" infinite-scroll="answerCtrl.answerPaginator.loadNext()" infinite-scroll-container='".xb-body-view"' infinite-scroll-distance='0'
+       infinite-scroll-disabled="answerCtrl.answerPaginator.loading || !answerCtrl.answerPaginator.next">
     <answer-item answers="answerCtrl.answerPaginator.items" admin="answerCtrl.admin"></answer-item>
     <load-more class="md-margin-bottom-2" layout="row" layout-align="center center" ng-if="answerCtrl.answerPaginator.loading"></load-more>
   </div>
