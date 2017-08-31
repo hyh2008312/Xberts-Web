@@ -157,7 +157,7 @@ angular.module('xbertsApp')
     }, {
       id: '15',
       src: 'https://xberts.imgix.net/static/icon/b6b64b9b-6fa5-45e2-a936-296eba1740e2.jpg?auto=format%2Cenhance%2Ccompress&crop=edges&fit=crop&ixlib=python-1.1.2&s=de19ce0ad97020b163601894b37cb8bf',
-      name: 'Men Fashion',
+      name: 'Men<br>Fashion',
       value: 'men_fashion'
     }, {
       id: '16',
