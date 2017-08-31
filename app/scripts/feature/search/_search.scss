@@ -133,6 +133,12 @@
         padding: 0 0 0 16px;
       }
     }
+    &-content-1{
+      padding: 12px 16px 16px;
+      @include xb-xs-screen{
+        padding: 0 0 0 16px;
+      }
+    }
     &-title{
       max-height: 64px;
       overflow: hidden;

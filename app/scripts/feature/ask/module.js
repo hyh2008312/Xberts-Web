@@ -103,7 +103,7 @@ angular.module('xbertsApp')
       }
     })
     .state('application.askQuestionMain.answerQuestionDetail', {
-        url: '/:questionId?pending',
+        url: '^/ask/:questionId?pending',
         params: {
           isPopupOpen : null
         },

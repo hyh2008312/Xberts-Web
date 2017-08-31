@@ -5,7 +5,8 @@ angular.module('xbertsApp')
     function ($resource,API_BASE_URL,SearchModel,SearchFactory) {
     var SearchResource = $resource(API_BASE_URL + '/search/all');
     var SearchAskResource = $resource(API_BASE_URL + '/search/ask');
-    var SearchProductResource = $resource(API_BASE_URL + '/search/product');
+    var SearchProductResource = $resource(API_BASE_URL + '/search/product')
+    var SearchArticlesResource = $resource(API_BASE_URL + '/search/article');
 
     this.getSearch = function(params) {
       return SearchResource.save(params).$promise;
@@ -21,6 +22,13 @@ angular.module('xbertsApp')
     this.getProductSearch = function(params) {
       return SearchProductResource.save(params).$promise.then(function(data) {
         SearchFactory.productFrom = data.from;
+        return SearchModel.buildPageList(data);
+      });
+    };
+
+    this.getArticlesSearch = function(params) {
+      return SearchArticlesResource.save(params).$promise.then(function(data) {
+        SearchFactory.articlesFrom = data.from;
         return SearchModel.buildPageList(data);
       });
     };

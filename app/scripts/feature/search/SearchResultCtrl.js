@@ -11,11 +11,13 @@ angular.module('xbertsApp')
         'search_info': $stateParams.q
       }).then(function(data) {
 
-        $scope.products = SearchModel.buildList(data.product);
-        $scope.ask = SearchModel.buildList(data.ask);
         $scope.productCount = data.productCount;
         $scope.askCount = data.askCount;
-        $scope.reviews = SearchModel.buildList(data.reviews);
+        $scope.articlesCount = data.articlesCount;
+
+        $scope.products = SearchModel.buildList(data.product);
+        $scope.ask = SearchModel.buildList(data.ask);
+        $scope.articles = SearchModel.buildList(data.articles);
       });
 
       $scope.currentIndex = SearchFactory.sort;
@@ -71,6 +73,31 @@ angular.module('xbertsApp')
         };
         $scope.askPaginator = new Paginator(par);
         $scope.askPaginator.load();
+      };
+
+      $scope.articlesPaginatorLoad = function() {
+        if(SearchFactory.articlesFrom != null) {
+          $scope.articlesParginator.params.from = SearchFactory.articlesFrom;
+        }
+        $scope.articlesParginator.loadNext();
+      };
+
+      $scope.loadArticles = function() {
+        if($scope.articlesParginator) {
+          return;
+        }
+
+        var par = {
+          name: 'xb-search-articles' + $stateParams.q,
+          objClass: SearchModel,
+          params: {
+            'search_info': $stateParams.q,
+            'page_size': 12
+          },
+          fetchFunction: SearchService.getArticlesSearch
+        };
+        $scope.articlesParginator = new Paginator(par);
+        $scope.articlesParginator.load();
       };
 
       var title = 'Xberts - ' + $stateParams.q;

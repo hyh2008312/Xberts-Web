@@ -131,6 +131,7 @@ angular
 
       $rootScope.$on('$stateChangeStart', function() {
         angular.element(".xb-body-view").off('scroll');
+        angular.element(".xb-body-view").off('resize');
         if($rootScope.state.current.name == 'application.productDeals') {
           $timeout.cancel(LoginDialogFactory.timer);
           $mdDialog.cancel();

@@ -270,7 +270,7 @@
 .xb-trial-tabs{
   width: 100%;
   height: 56px;
-  z-index: 1;
+  z-index: 21;
   position: relative;
   &__inner-content{
     @include resetBorder();

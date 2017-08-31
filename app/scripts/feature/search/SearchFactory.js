@@ -9,6 +9,8 @@ angular.module('xbertsApp')
 
     this.productFrom = null;
 
+    this.articlesFrom = null;
+
     this.keywords = '';
 
     return this;

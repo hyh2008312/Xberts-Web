@@ -53,6 +53,9 @@ function SearchModel($state,urlParser,$sce) {
     },
     getLatestBadgePoint: function() {
       return this.latestAnswer.owner.badgePoint;
+    },
+    getOwner: function () {
+      return this.owner;
     }
   };
 

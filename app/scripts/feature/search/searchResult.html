@@ -30,15 +30,17 @@
              ng-click="changeCurrentIndex(2)">
           SEE MORE
         </div>
-        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="reviews.length>0">
-          <h3 class="md-dark-secondary" flex>Blog</h3>
+        <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="articles.length>0">
+          <h3 class="md-dark-secondary" flex>Articles</h3>
+          <div><span class="xb-search__color">{{articlesCount}}</span>{{articlesCount > 1? ' results': ' result'}}</div>
         </div>
-        <search-blog-list class="xb-search__list-bg" reviews="reviews" is-all="true"></search-blog-list>
-        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="reviews.length>0"
-             ng-click="changeCurrentIndex(4)">
+        <search-blog-list class="xb-search__list-bg" reviews="articles" is-all="true"></search-blog-list>
+        <div class="xb-search__bottom-button xb-pointer" layout="row" layout-align="center center" ng-if="articlesCount>0"
+             ng-click="changeCurrentIndex(3)">
           SEE MORE
         </div>
-        <div class="xb-search__margin-top md-margin-bottom-4" ng-if="products.length == 0 && ask.length == 0"
+        <div class="xb-search__margin-top md-margin-bottom-4"
+             ng-if="products.length == 0 && ask.length == 0 && articles.length == 0"
              layout="column" layout-align="center center" flex="noshrink">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary md-margin-top-2 md-align-center">Please try again with different search keywords.</div>
@@ -76,6 +78,24 @@
         <question-item products="askPaginator.items"></question-item>
         <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="askPaginator.loading"></load-more>
         <div class="xb-search__margin-top md-margin-bottom-4" ng-if="askPaginator.currentPage == 1 && askPaginator.count == 0"
+             layout="column" layout-align="center center" flex="noshrink">
+          <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+          <div class="md-dark-secondary md-margin-top-2">Please try again with different search keywords.</div>
+        </div>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab md-on-select="loadArticles()">
+    <md-tab-label>
+      <div class="xb-search__text-transform">Articles</div>
+    </md-tab-label>
+    <md-tab-body>
+      <div class="md-margin-top-2" infinite-scroll="articlesPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
+           infinite-scroll-disabled="articlesParginator.loading || !articlesParginator.next || currentIndex != 3">
+        <search-blog-list class="xb-search__list-bg" reviews="articlesParginator.items"></search-blog-list>
+        <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center" ng-if="articlesParginator.loading"></load-more>
+        <div class="xb-search__margin-top md-margin-bottom-4" ng-if="articlesParginator.currentPage == 1 && articlesParginator.count == 0"
              layout="column" layout-align="center center" flex="noshrink">
           <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
           <div class="md-dark-secondary md-margin-top-2">Please try again with different search keywords.</div>
