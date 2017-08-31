@@ -5,10 +5,10 @@
       <div class="xb-search__text-transform">All</div>
     </md-tab-label>
     <md-tab-body>
-      <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="productCount > 0 || askCount > 0">
+      <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="productCount > 0 || askCount > 0 || articlesCount > 0">
         <h3 flex>Results for <span class="xb-search__color">{{keywords}}</span></h3>
       </div>
-      <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="productCount <= 0 && askCount <= 0">
+      <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="productCount <= 0 && askCount <= 0 && articlesCount <= 0">
         <h3 flex>No results for <span class="xb-search__color">{{keywords}}</span></h3>
       </div>
       <div class="md-margin-bottom-4">
