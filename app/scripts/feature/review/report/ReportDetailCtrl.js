@@ -45,8 +45,4 @@ angular.module('xbertsApp')
       })
     };
 
-    angular.element('.xb-body-view').bind('scroll', function() {
-      console.log(1111)
-    });
-
   }]);
