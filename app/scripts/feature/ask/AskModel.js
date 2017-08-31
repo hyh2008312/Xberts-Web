@@ -54,7 +54,7 @@ function AskModel($state,urlParser,$sce) {
       return this.owner.badgePoint;
     },
     getShareUrl: function(id) {
-      return $state.href("application.shareProductDetail", {reviewId:id},{absolute:true});
+      return $state.href("application.askQuestionMain.answerQuestionDetail", {questionId:id},{absolute:true});
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;
