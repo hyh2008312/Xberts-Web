@@ -40,7 +40,7 @@
         <div ng-repeat="item in dealsCtrl.productsPaginator track by $index">
           <div class="container">
             <div class="xb-title" layout="row" layout-align="start center" ng-if="item.product.length > 0">
-              <h3 class="md-dark-primary" flex>{{item.name == 'Entertain-ment'? 'Entertainment':item.name}}</h3>
+              <h3 class="md-dark-primary" flex >{{item.name | categoryFilter}}</h3>
               <a class="md-body-1 xb-pointer" ui-sref="application.productDeals({'tab':dealsCtrl.categories[$index + 1].value})"
                  ui-sref-opts="{reload:true}">SEE MORE</a>
             </div>

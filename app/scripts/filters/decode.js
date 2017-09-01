@@ -109,4 +109,9 @@ angular.module('xbertsApp')
       }
       return money = $filter('currency')(money);
     };
-  }]);
+  }])
+  .filter('categoryFilter', function() {
+    return function (category) {
+      return category.replace('-', '').replace('<br>', ' ');
+    };
+  });
