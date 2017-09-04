@@ -50,7 +50,11 @@ angular.module('xbertsApp')
 
     $scope.jumpToAsk = function (isPopupOpen,display) {
       if(!isPopupOpen && display) {
+
         $state.go('application.askQuestionMain');
+        $scope.isPopupOpen = false;
+        $scope.display = false;
+        $rootScope.showToobar = $scope.isPopupOpen;
       }
     };
 

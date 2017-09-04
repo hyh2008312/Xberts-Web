@@ -63,13 +63,6 @@ angular.module('xbertsApp')
               newArr.push(item);
             }
           }
-          if(i == 1) {
-            if(k.indexOf('promotions') > -1) {
-              var v = obj[k];
-              item.product = ProductDeals.buildList(v);
-              newArr.push(item);
-            }
-          }
         }
       }
 
@@ -95,7 +88,6 @@ angular.module('xbertsApp')
         newArr.push(item);
       }
 
-      newArr.unshift(_self.category[1]);
       newArr.unshift(_self.category[0]);
 
       return newArr;
