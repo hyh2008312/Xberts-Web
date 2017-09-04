@@ -133,6 +133,7 @@
     left: -50px;
     top: 56px;
     width: 140px;
+    z-index: 22;
     @include resetBorder();
     border-radius: 2px;
     >div{
