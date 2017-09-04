@@ -13,7 +13,7 @@
     <div layout="row" layout-align="start start">
       <div flex>
         <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
-        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view"' infinite-scroll-distance='0'
+        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-ask-bg"' infinite-scroll-distance='0'
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
           <question-item ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
                          open-pop="askCtrl.openPop(questionId)"></question-item>
