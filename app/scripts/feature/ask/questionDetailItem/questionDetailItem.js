@@ -9,10 +9,12 @@ angular.module('xbertsApp')
         product : '=',
         showAnswer : '=',
         answers : '=',
-        isPopupOpen: '='
+        isPopupOpen: '=',
+        admin: '='
       },
       templateUrl: 'scripts/feature/ask/questionDetailItem/question-detail-item.html',
       link: function (scope, element, attrs, ctrls) {
+        scope.user = $rootScope.user;
 
         var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
 
