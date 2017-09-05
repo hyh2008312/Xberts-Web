@@ -74,8 +74,12 @@
         <span class="xb-ask-list__color">&nbsp;{{product.answerAmount}}</span>
       </div>
     </div>
-    <div class="md-margin-left-3 md-dark-secondary">FOLLOW</div>
-    <span class="md-dark-secondary" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+    <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+               ng-click="follow(product);$event.stopPropagation();">Follow</md-button>
+    <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+    <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+               ng-click="follow(product);$event.stopPropagation();">Following</md-button>
+    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
   </div>
 </div>
 <div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index" ng-if="isAll && $index <= 1">
@@ -153,7 +157,12 @@
         <span class="xb-ask-list__color">&nbsp;{{product.answerAmount}}</span>
       </div>
     </div>
-    <div class="md-margin-left-3 md-dark-secondary">FOLLOW</div>
-    <span class="md-dark-secondary" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+    <md-button ng-if="!product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+               ng-click="follow(product);$event.stopPropagation();">Follow</md-button>
+    <span class="md-dark-secondary" ng-if="!product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
+    <md-button ng-if="product.currentUser.follow" class="xb-ask-list__margin-left md-dark-secondary"
+               ng-click="follow(product);$event.stopPropagation();">Following</md-button>
+    <span class="md-dark-secondary" ng-if="product.currentUser.follow" >
+      &nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
   </div>
 </div>

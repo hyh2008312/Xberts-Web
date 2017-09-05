@@ -11,18 +11,18 @@ function AskModel($state,urlParser,$sce) {
       return this.latestAnswer.owner.id;
     },
     getLatestUserAvatar: function () {
-      return this.latestAnswer.owner.avatar || false;
+      return this.latestAnswer.owner.userprofile.avatar || false;
     },
     getLatestUserName: function () {
       return this.latestAnswer.owner.firstName;
     },
     getLatestUserPosition: function () {
-      if(this.latestAnswer.owner.position && this.latestAnswer.owner.company) {
-        return this.latestAnswer.owner.position +" @ "+ this.latestAnswer.owner.company;
-      } else if(this.latestAnswer.owner.position && !this.latestAnswer.owner.company) {
-        return this.latestAnswer.owner.position;
-      } else if(!this.latestAnswer.owner.position && this.latestAnswer.owner.company){
-        return this.latestAnswer.owner.company;
+      if(this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company) {
+        return this.latestAnswer.owner.userprofile.position +" @ "+ this.latestAnswer.owner.userprofile.company;
+      } else if(this.latestAnswer.owner.userprofile.position && !this.latestAnswer.owner.userprofile.company) {
+        return this.latestAnswer.owner.userprofile.position;
+      } else if(!this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company){
+        return this.latestAnswer.owner.userprofile.company;
       } else {
         return "";
       }
@@ -34,18 +34,18 @@ function AskModel($state,urlParser,$sce) {
       return this.owner.id;
     },
     getAnswerUserAvatar: function () {
-      return this.owner.avatar || false;
+      return this.owner.userprofile.avatar || false;
     },
     getAnswerUserName: function () {
       return this.owner.firstName;
     },
     getAnswerUserPosition: function () {
-      if(this.owner.position && this.owner.company) {
-        return this.owner.position +" @ "+ this.owner.company;
-      } else if(this.owner.position && !this.owner.company) {
-        return this.owner.position;
-      } else if(!this.owner.position && this.owner.company){
-        return this.owner.company;
+      if(this.owner.userprofile.position && this.owner.userprofile.company) {
+        return this.owner.userprofile.position +" @ "+ this.owner.userprofile.company;
+      } else if(this.owner.userprofile.position && !this.owner.userprofile.company) {
+        return this.owner.userprofile.position;
+      } else if(!this.owner.userprofile.position && this.owner.userprofile.company){
+        return this.owner.userprofile.company;
       } else {
         return "";
       }
