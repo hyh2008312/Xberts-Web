@@ -22,7 +22,7 @@ function start() {
     var shouldRedirect = false;
     var host = req.get('Host');
 
-    if (!host.match(/^www\..*/i) && ENV === 'prod') {
+    if (host == 'xberts.com' && ENV === 'prod') {
       host = 'www.' + host;
       shouldRedirect = true;
     }
