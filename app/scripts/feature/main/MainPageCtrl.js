@@ -70,6 +70,7 @@ angular.module('xbertsApp')
           name: 'main_ask_answer',
           objClass: AskModel,
           params: {
+            approval_status: 'APPROVED',
             page_size: 4
           },
           fetchFunction: AskService.getList

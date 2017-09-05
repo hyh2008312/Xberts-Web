@@ -11,7 +11,7 @@
   <div class="product__price" hide-gt-xs>
     <div layout="row" layout-align="space-between center">
       <span class="md-headline xb-bold">
-        {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
+        {{product.salePrice.amount | worldCurrency:product.salePrice.currency}}
       </span>
       <div class="product__time" layout="row" layout-align="start center" ng-if="product.promotionEnd">
         <i class="iconfontXberts icon-pic-clock" ></i>
@@ -62,7 +62,7 @@
         {{product.originalPrice.amount | worldCurrency:product.originalPrice.currency}}
       </span>
       <span class="md-headline xb-bold">
-        {{product.salePrice.amount | worldCurrency:product.originalPrice.currency}}
+        {{product.salePrice.amount | worldCurrency:product.salePrice.currency}}
       </span>
     </div>
     <div class="md-margin-right-2" hide-xs>{{product.getDomain().toUpperCase()}}</div>

@@ -67,6 +67,7 @@ angular.module('xbertsApp')
             name: 'ask_questions_list',
             objClass: AskModel,
             params: {
+              approval_status: 'APPROVED',
               page_size: 12
             },
             fetchFunction: AskService.getList
@@ -80,6 +81,7 @@ angular.module('xbertsApp')
             name: 'ask_questions_list_amount',
             objClass: AskModel,
             params: {
+              approval_status: 'APPROVED',
               ordering: 'answer_amount,-new_answer_arrived',
               page_size: 12
             },
