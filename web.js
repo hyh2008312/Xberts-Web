@@ -20,6 +20,10 @@ function start() {
   app.use(morgan('dev'));
   app.use('*', function(req, res, next) {
 
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
     var shouldRedirect = false;
     var host = req.get('Host');
 
