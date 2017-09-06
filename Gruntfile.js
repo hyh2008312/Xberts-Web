@@ -412,10 +412,11 @@ module.exports = function (grunt) {
           html: {
             'link[rel=stylesheet]': 'href',
             'script[src]': 'src'
-          }
+          },
+          css: true
         },
         files: {
-          'dist/index.html': 'dist/index.html'
+          '<%= yeoman.dist %>/index.html': '<%= yeoman.dist %>/index.html'
         }
       }
     }
