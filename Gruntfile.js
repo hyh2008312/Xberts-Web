@@ -153,7 +153,7 @@ module.exports = function (grunt) {
       },
       server: {
         options: {
-          map: true,
+          map: true
         },
         files: [{
           expand: true,
@@ -289,7 +289,8 @@ module.exports = function (grunt) {
           collapseWhitespace: true,
           conservativeCollapse: true,
           collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true
+          removeCommentsFromCDATA: true,
+          removeComments:true
         },
         files: [{
           expand: true,
@@ -400,7 +401,25 @@ module.exports = function (grunt) {
           constants: grunt.file.readJSON('config/prod.json')
         }
       }
+    },
+
+    cdnify: {
+      options: {
+        base: appConfig.environment == 'prod'? 'https://origin.xberts.com': ''
+      },
+      customOptions: {
+        options: {
+          html: {
+            'link[rel=stylesheet]': 'href',
+            'script[src]': 'src'
+          }
+        },
+        files: {
+          'dist/index.html': 'dist/index.html'
+        }
+      }
     }
+
   });
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -434,7 +453,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'cdnify'
   ]);
 
   grunt.registerTask('buildServe',[
