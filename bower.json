@@ -45,6 +45,11 @@
   "overrides": {
     "bootstrap": {
       "main": []
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
     }
   },
   "resolutions": {
