@@ -22,12 +22,12 @@ function MainModel($state) {
       }
     },
     getPosition: function() {
-      if(this.owner.userprofile.position && this.owner.userprofile.company) {
-        return this.owner.userprofile.position + " @ " + this.owner.userprofile.company;
-      } else if(this.owner.userprofile.position && !this.owner.userprofile.company) {
-        return this.owner.userprofile.position;
-      } else if(this.owner.userprofile.company) {
-        return this.owner.userprofile.company;
+      if(this.owner.position && this.owner.company) {
+        return this.owner.position + " @ " + this.owner.company;
+      } else if(this.owner.position && !this.owner.company) {
+        return this.owner.position;
+      } else if(this.owner.company) {
+        return this.owner.company;
       }
     },
     getReviewer: function () {

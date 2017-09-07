@@ -28,6 +28,23 @@ angular.module('xbertsApp')
             });
             answer.disabled = false;
             answer.owner.currentUser.follow = data.follow;
+
+            var followeeList = $rootScope.user.getFollowees();
+
+            if(data.follow) {
+              followeeList.unshift(answer.getAnswerUserId());
+              $rootScope.user.setFollowedQuestions(followeeList);
+            } else {
+              var index = 0;
+              angular.forEach(followeeList, function(e,i) {
+                if(e == answer.getAnswerUserId()) {
+                  index = i;
+                }
+              });
+              followeeList.splice(index,1);
+              $rootScope.user.setFollowedQuestions(followeeList);
+            }
+
           }, function() {
 
           });
@@ -75,6 +92,30 @@ angular.module('xbertsApp')
 
         scope.seletedAsTopAnswer = function(answer) {
           AskService.updateAnswer(answer).then(function(data) {});
+        };
+
+        scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+          //you also get the actual event object
+          //do stuff, execute functions -- whatever...
+
+          scope.changeFolloweeList();
+        });
+
+        scope.changeFolloweeList = function() {
+
+          var followeeList = $rootScope.user.getFollowees();
+
+          angular.forEach(scope.answers, function(e) {
+            e.owner.currentUser = {
+              follow : false
+            };
+
+            angular.forEach(followeeList, function(f) {
+              if(f == e.owner.id) {
+                e.owner.currentUser.follow = true;
+              }
+            });
+          });
         };
       }
     }

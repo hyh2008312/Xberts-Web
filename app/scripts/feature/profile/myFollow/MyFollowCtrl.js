@@ -8,6 +8,8 @@ angular.module('xbertsApp')
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.expert = expert;
 
+      $scope.expert.reload = true;
+
       $scope.selectedIndex = 0;
 
       var parfollowing = {
@@ -45,5 +47,18 @@ angular.module('xbertsApp')
         $scope.selectedIndex = index;
       };
 
+      $scope.reload = function(index) {
+        if($scope.expert.reload) {
+          $scope.expert.reload = false;
+          if(index == 0) {
+            $scope.followingPaginator.clear();
+            $scope.followingPaginator.load();
+          } else {
+            $scope.followerPaginator.clear();
+            $scope.followerPaginator.load();
+          }
+        }
+        $scope.selectedIndex = index;
+      };
 
     }]);

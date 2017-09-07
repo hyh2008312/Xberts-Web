@@ -1,5 +1,6 @@
 <md-list>
-  <md-list-item class="xb-main-reviewer__item" ng-repeat="xbert in experts track by $index" layout="row" layout-align="start center">
+  <md-list-item class="xb-main-reviewer__item" ng-repeat="xbert in experts track by $index"
+                layout="row" layout-align="start center" on-finish-render="ngRepeatFinished" >
     <avatar-Img src="xbert.userprofile.avatar" class="md-avatar" ui-sref="application.expert({ expertId:xbert.id })"
                 name="xbert.firstName"></avatar-Img>
     <div class="md-2-line" ng-class="{'md-offset': true }" layout-fill layout="column" layout-align="center start">
@@ -7,7 +8,7 @@
         <a class="md-subhead" ui-sref="application.expert({ expertId:xbert.id })">{{ xbert.firstName }}</a>
         <credit-badge class="credit-badge" points="xbert.badgePoint"></credit-badge>
       </div>
-      <p class="md-dark-secondary"> {{ xbert.userprofile.position }} @ {{ xbert.userprofile.company }} </p>
+      <p class="md-dark-secondary"> {{ xbert.position }} @ {{ xbert.company }} </p>
     </div>
     <xb-follow follow="xbert.currentUser.follow" user-id="xbert.id" experts="experts"
                index="$index" following="following" achievement="achievement" expert="expert"></xb-follow>

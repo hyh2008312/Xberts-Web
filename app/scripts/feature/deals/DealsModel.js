@@ -10,7 +10,7 @@ function ProductDeals($state,urlParser,$sce) {
 
   ProductDeals.prototype = {
     getDealsAvatar: function () {
-      return this.owner != null?this.owner.userprofile.avatar : '';
+      return this.owner != null?this.owner.avatar : '';
     },
     getDealsName: function () {
       return this.owner != null?this.owner.firstName : "Editors' Pick";

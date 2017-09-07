@@ -2,10 +2,11 @@
 
 angular.module('xbertsApp')
   .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService',
-    'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService','$mdMedia','$state',
-    function($rootScope,$scope,productsDetail,productsPaginator, InviteService,BrowserUtil,ExpertService,Paginator,
-             ProductDeals,DealsService,$mdMedia,$state) {
-      $scope.productsDetail = productsDetail;
+    'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService','$mdMedia','$state','DealsFactory',
+    function($rootScope,$scope,productsDetail,productsPaginator,InviteService,BrowserUtil,ExpertService,Paginator,
+             ProductDeals,DealsService,$mdMedia,$state, DealsFactory) {
+
+      $scope.productsDetail = DealsFactory.changeFolloweeList(productsDetail);
       $scope.productsPaginator = productsPaginator;
       $scope.headImage = DealsService.headImage;
 

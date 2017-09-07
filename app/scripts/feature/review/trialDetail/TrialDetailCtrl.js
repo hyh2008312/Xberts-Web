@@ -30,7 +30,7 @@ angular.module('xbertsApp')
       self.isShowReviews = (self.review.status == 'ENDED');
       if(self.isShowReviews) {
         self.pendingApplicantPaginator = pendingApplicantPaginator;
-        self.selectedApplicantPaginator = selectedApplicantPaginator;
+        self.selectedApplicantPaginator = ReviewService.reviewReportList(selectedApplicantPaginator);
       }
 
       var title = review.title;

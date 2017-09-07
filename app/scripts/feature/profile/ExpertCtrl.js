@@ -9,6 +9,7 @@ angular.module('xbertsApp')
               localStorageService,achievement) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
+      $scope.expert.reload = true;
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.isExpert = _($scope.expert.roles).contains(SystemConstant.ROLES.DOMAIN_EXPERT);
       $scope.achievement = achievement;
@@ -51,6 +52,22 @@ angular.module('xbertsApp')
       });
 
       $scope.loadContent = function(index) {
+        switch (index) {
+          case 5 :
+            if($scope.expert.reload) {
+              $scope.expert.reload = false;
+              $scope.followingPaginator.clear();
+              $scope.followingPaginator.load();
+            }
+            break;
+          case 6:
+            if($scope.expert.reload) {
+              $scope.expert.reload = false;
+              $scope.followerPaginator.clear();
+              $scope.followerPaginator.load();
+            }
+            break;
+        }
         $scope.selectedIndex = index;
         updateUrl();
       };

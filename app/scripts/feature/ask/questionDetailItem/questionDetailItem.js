@@ -166,6 +166,7 @@ angular.module('xbertsApp')
             return;
           }
           AskService.follow(product.id).then(function(data) {
+            var followeeList = $rootScope.user.getFollowedQuestions();
             if(product.currentUser) {
               product.currentUser.follow = data.follow;
             } else {
@@ -174,8 +175,18 @@ angular.module('xbertsApp')
             }
             if(data.follow) {
               product.followeeCount++;
+              followeeList.unshift(product.id);
+              $rootScope.user.setFollowedQuestions(followeeList);
             } else {
               product.followeeCount--;
+              var index = 0;
+              angular.forEach(followeeList, function(e,i) {
+                if(e == product.id) {
+                  index = i;
+                }
+              });
+              followeeList.splice(index,1);
+              $rootScope.user.setFollowedQuestions(followeeList);
             }
             localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_currentPage');
             localStorageService.remove('following_answers_list_' + $rootScope.user.getUserId() + '_items');

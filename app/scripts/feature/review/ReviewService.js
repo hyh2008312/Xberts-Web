@@ -96,6 +96,56 @@ angular.module('xbertsApp')
       return $resource(API_BASE_URL + '/blogs/:id/',{id:'@id'}).get({id:reviewId}).$promise.then(MainModel.build);
     };
 
+    self.blogReport = function(report) {
+      var followeeList = $rootScope.user.getFollowees();
+
+      report.owner.currentUser = {
+        follow: false
+      };
+
+      angular.forEach(followeeList, function(f) {
+        if(f == report.owner.id) {
+          report.owner.currentUser.follow = true;
+        }
+      });
+
+      return report;
+    };
+
+    self.reviewReport = function(report) {
+      var followeeList = $rootScope.user.getFollowees();
+
+      report.applicant.reviewer.currentUser = {
+        follow: false
+      };
+
+      angular.forEach(followeeList, function(f) {
+        if(f == report.applicant.reviewer.id) {
+          report.applicant.reviewer.currentUser.follow = true;
+        }
+      });
+
+      return report;
+    };
+
+    self.reviewReportList = function(reportList) {
+      var followeeList = $rootScope.user.getFollowees();
+
+      angular.forEach(reportList.items, function(e) {
+        e.reviewer.currentUser = {
+          follow: false
+        };
+
+        angular.forEach(followeeList, function(f) {
+          if(f == e.reviewer.id) {
+            e.reviewer.currentUser.follow = true;
+          }
+        });
+      });
+
+      return reportList;
+    };
+
     this.latestPaginater = null;
     this.trialPaginator = null;
     this.reviewsFeaturedTop = null;

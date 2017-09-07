@@ -1,5 +1,5 @@
 <div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index" ng-if="!isAll"
-  ng-click="openPop({questionId:product.id})">
+     on-finish-render="ngRepeatFinished" ng-click="openPop({questionId:product.id});">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
   <a class="xb-ask-list__title md-headline md-dark-primary" ng-click="$event.stopPropagation();"
      ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})" target="_blank">{{product.title}}</a>
@@ -16,7 +16,7 @@
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"
+      <avatar-Img src="product.latestAnswer.owner.avatar" name="product.latestAnswer.owner.firstName"
                   ui-sref="application.expert({ expertId:product.getLatestUserId()})"
                   ng-click="$event.stopPropagation();"></avatar-Img>
       <div layout="column" layout-align="space-between start">
@@ -82,7 +82,9 @@
     <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
   </div>
 </div>
-<div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index" ng-if="isAll && $index <= 1">
+<div class="xb-ask-list__item background-whitem xb-hover" ng-repeat="product in products track by $index"
+     on-finish-render="ngRepeatFinished"
+     ng-if="isAll && $index <= 1">
   <div class="xb-ask-list__margin-top md-body-1 md-dark-secondary ">Asked • <span am-time-ago='product.created'></span></div>
   <a class="xb-ask-list__title md-headline md-dark-primary" target="_blank" ng-click="$event.stopPropagation();"
      ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:product.id,pending:admin})">{{product.title}}</a>
@@ -98,7 +100,7 @@
   </div>
   <div ng-if="product.latestAnswer && !hideAnswer">
     <div class="xb-ask-list__head-bg" layout="row">
-      <avatar-Img src="product.latestAnswer.owner.userprofile.avatar" name="product.latestAnswer.owner.firstName"
+      <avatar-Img src="product.latestAnswer.owner.avatar" name="product.latestAnswer.owner.firstName"
                   ui-sref="application.expert({ expertId:product.getLatestUserId()})"
                   ng-click="$event.stopPropagation();"></avatar-Img>
       <div layout="column" layout-align="space-between start">

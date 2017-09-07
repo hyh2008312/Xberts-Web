@@ -2,9 +2,11 @@
 
 angular.module('xbertsApp')
   .controller('ReportDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
-    'BrowserUtil','ExpertService',
-    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService, BrowserUtil,ExpertService) {
-    $scope.report = report;
+    'BrowserUtil','ExpertService','ReviewService',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService, BrowserUtil,
+              ExpertService,ReviewService) {
+
+    $scope.report = ReviewService.reviewReport(report);
 
     $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === report.getReviewerId();
 

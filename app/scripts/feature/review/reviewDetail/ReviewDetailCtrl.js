@@ -2,12 +2,15 @@
 
 angular.module('xbertsApp')
   .controller('ReviewDetailCtrl',['$scope', '$rootScope', '$stateParams', 'report', 'ReviewReport', 'growl', 'InviteService',
-    'ExpertService','blogPaginator',
-    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,blogPaginator) {
+    'ExpertService','blogPaginator', 'ReviewService',
+    function ($scope, $rootScope, $stateParams, report, ReviewReport, growl, InviteService,ExpertService,blogPaginator,
+              ReviewService) {
 
       report.details = report.details.replace(/pre-loading/ig, "");
       report.details = report.details.replace(/(<p><br><\/p>){3,}/ig, "<p><br></p>");
-      $scope.report = report;
+
+
+      $scope.report = ReviewService.blogReport(report);
 
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === report.owner.id;
 

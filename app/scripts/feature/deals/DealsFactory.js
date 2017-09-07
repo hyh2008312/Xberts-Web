@@ -93,6 +93,23 @@ angular.module('xbertsApp')
       return newArr;
     };
 
+    this.changeFolloweeList = function(productsDetail) {
+
+      var followeeList = $rootScope.user.getFollowees();
+
+      productsDetail.owner.currentUser = {
+        follow: false
+      };
+
+      angular.forEach(followeeList, function(f) {
+        if(f == productsDetail.owner.id) {
+          productsDetail.owner.currentUser.follow = true;
+        }
+      });
+
+      return productsDetail;
+    };
+
     this.signupPicture = null;
 
     this.signupPictureList = [

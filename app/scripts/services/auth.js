@@ -10,7 +10,7 @@ angular.module('xbertsApp')
              OAUTH_CLIENT_ID, $mdDialog, AnalyticsService,$window,SignupService,VerificationEmailService,growl,$timeout,
              $mdMedia,LoginDialogFactory,AccountService,$filter,GooglePlusLogin) {
       function User(userId, firstName, lastName, userEmail, userType, userAvatar, isLinkedinSignup, isLinkedinConnected,
-                    roles, isResolved, inviteToken, points, consumed, isEmailVerified,isInvited) {
+                    roles, isResolved, inviteToken, points, consumed, isEmailVerified, isInvited, followees, followedQuestions) {
         this._userId = userId || '';
         this._firstName = firstName || '';
         this._lastName = lastName || '';
@@ -27,6 +27,8 @@ angular.module('xbertsApp')
         this._consumed = consumed || '';
         this._isEmailVerified = isEmailVerified;
         this._isInvited = isInvited;
+        this._followees = followees || [];
+        this._followedQuestions = followedQuestions || [];
 
         this.isAuth = function() {
           return this._userId ? true : false;
@@ -325,12 +327,28 @@ angular.module('xbertsApp')
         this.setInvited = function(isInvited) {
           this._isInvited = isInvited;
         };
+
+        this.getFollowees = function() {
+          return this._followees;
+        };
+
+        this.setFollowees = function(followees) {
+          this._followees = followees;
+        };
+
+        this.getFollowedQuestions = function() {
+          return this._followedQuestions;
+        };
+
+        this.setFollowedQuestions = function(followedQuetions) {
+          this._followedQuestions = followedQuetions;
+        };
       }
 
       function setUser(user) {
         $rootScope.user = new User(user.id, user.firstName, user.lastName, user.email, user.isStaff, user.avatar,
           user.isLinkedinSignup, user.isLinkedinConnected, user.roles, true, user.inviteToken, user.points,
-          user.consumed, user.isEmailVerified, user.isInvited);
+          user.consumed, user.isEmailVerified, user.isInvited, user.followees, user.followedQuestions);
       }
 
       function login(credentials) {

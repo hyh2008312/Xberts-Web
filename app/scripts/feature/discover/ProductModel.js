@@ -8,7 +8,7 @@ function ShareProduct(urlParser, $sce, $state) {
 
   ShareProduct.prototype = {
     getShareAvatar: function () {
-      return this.owner.userprofile.avatar || false;
+      return this.owner.avatar || false;
     },
     getShareName: function () {
       return this.owner.firstName;

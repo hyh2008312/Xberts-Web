@@ -167,7 +167,7 @@
                 <a class="md-dark-primary xb-bold" ui-sref="application.expert({ expertId:report.getReviewerId() })">
                   {{report.getReviewerName()}}</a>
                 <credit-badge class="credit-badge" points="report.getReviewBadgePoint()"></credit-badge>
-                <xb-follow class="xb-reviews-detail__margin-left" follow="report.applicant.reviewer.userprofile.current_user.follow"
+                <xb-follow class="xb-reviews-detail__margin-left" follow="report.applicant.reviewer.currentUser.follow"
                            user-id="report.getReviewerId()"
                            expert="expert" achievement="achievement"></xb-follow>
               </div>
