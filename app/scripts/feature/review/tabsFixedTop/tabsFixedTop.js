@@ -61,6 +61,9 @@ angular.module('xbertsApp')
       },
       link: function (scope, element, attrs, ctrls) {
         var resize = function() {
+          if(angular.element('.' + scope.item).length <= 0) {
+            return;
+          }
           var left = angular.element('.' + scope.item).offset().left + angular.element('.' + scope.item).width();
           element.hide();
           if(angular.element('.' + scope.content).offset().top - 400 < element.offset().top &&
