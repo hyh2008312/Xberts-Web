@@ -7,7 +7,6 @@
   <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
        infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next">
     <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-    <load-more layout="row" layout-align="center center" ng-if="postsProductPaginator.loading"></load-more>
+    <load-ask-more layout="column" class="xb-profile-questions__margin" ng-if="postsProductPaginator.loading"></load-ask-more>
   </div>
 </div>
-

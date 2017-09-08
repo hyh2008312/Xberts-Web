@@ -10,7 +10,7 @@
            infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 0">
         <my-follow class="xb-my-posts" experts="followingPaginator.items" following="true" expert="expert"></my-follow>
-        <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingPaginator.loading"></load-more>
+        <load-ask-leader-more layout="column" class="md-padding-top-1" ng-if="followingPaginator.loading"></load-ask-leader-more>
       </div>
     </md-tab>
     <md-tab label="Follower" md-on-select="reload(1)">
@@ -22,7 +22,7 @@
            infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 1">
         <my-follow class="xb-my-posts" experts="followerPaginator.items" expert="expert"></my-follow>
-        <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followerPaginator.loading"></load-more>
+        <load-ask-leader-more layout="column" class="md-padding-top-1" ng-if="followerPaginator.loading"></load-ask-leader-more>
       </div>
     </md-tab>
     <md-tab label="Questions Followed" md-on-select="load(2)">
@@ -33,8 +33,9 @@
       <div infinite-scroll="followingQuestionsPaginator.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
            infinite-scroll-disabled="followingQuestionsPaginator.loading || !followingQuestionsPaginator.next  || selectedIndex != 2">
         <my-questions-list class="xb-my-posts" posts="followingQuestionsPaginator.items" current-user="isCurrentUser" hide-state="true"></my-questions-list>
-        <load-more class="md-margin-top-1" layout="row" layout-align="center center" ng-if="followingQuestionsPaginator.loading"></load-more>
+        <load-ask-more layout="column" class="xb-profile-questions__margin" ng-if="followingQuestionsPaginator.loading"></load-ask-more>
       </div>
     </md-tab>
   </md-tabs>
 </div>
+

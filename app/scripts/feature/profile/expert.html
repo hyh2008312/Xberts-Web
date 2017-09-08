@@ -145,7 +145,7 @@
              infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsAnswerPaginator.loading || !postsAnswerPaginator.next || selectedIndex != 0">
           <my-answers-list class="md-padding-bottom-2" posts="postsAnswerPaginator.items" current-user="isCurrentUser"></my-answers-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center" ng-if="postsAnswerPaginator.loading"></load-more>
+          <load-ask-more layout="column" ng-if="postsAnswerPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 1">
@@ -162,8 +162,7 @@
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsQuestionPaginator.loading || !postsQuestionPaginator.next || selectedIndex != 1">
           <my-questions-list  posts="postsQuestionPaginator.items" current-user="isCurrentUser"></my-questions-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="postsQuestionPaginator.loading"></load-more>
+          <load-ask-more layout="column" ng-if="postsQuestionPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div class="background-whitem md-padding-bottom-2" ng-if="selectedIndex == 2">
@@ -180,8 +179,7 @@
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="reviewApplicantPaginator.loading || !reviewApplicantPaginator.next || selectedIndex != 2">
           <my-trials trials="reviewApplicantPaginator.items" current-user="isCurrentUser"></my-trials>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="reviewApplicantPaginator.loading" ></load-more>
+          <load-ask-more layout="column" ng-if="reviewApplicantPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 3">
@@ -194,12 +192,11 @@
              ng-if="postsProductPaginator.count <= 0 && !postsProductPaginator.loading">
           <i class="iconfontXberts icon-ic-empty"></i>
         </div>
-        <div infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0'
+        <div class="md-padding-bottom-2" infinite-scroll="postsProductPaginator.loadNext()" infinite-scroll-distance='0'
              infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsProductPaginator.loading || !postsProductPaginator.next || selectedIndex != 3">
-          <my-post-list class="xb-my-posts" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="postsProductPaginator.loading"></load-more>
+          <my-post-list layout="column" posts="postsProductPaginator.items" current-user="isCurrentUser"></my-post-list>
+          <load-ask-more layout="column" ng-if="postsProductPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 4">
@@ -212,12 +209,11 @@
              ng-if="postsArticlesPaginator.count <= 0 && !postsArticlesPaginator.loading">
           <i class="iconfontXberts icon-ic-empty"></i>
         </div>
-        <div infinite-scroll="postsArticlesPaginator.loadNext()" infinite-scroll-distance='0'
+        <div class="md-padding-bottom-2" infinite-scroll="postsArticlesPaginator.loadNext()" infinite-scroll-distance='0'
              infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="postsArticlesPaginator.loading || !postsArticlesPaginator.next || selectedIndex != 4">
-          <my-articles-list class="xb-my-posts" posts="postsArticlesPaginator.items" current-user="isCurrentUser"></my-articles-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="postsArticlesPaginator.loading"></load-more>
+          <my-articles-list layout="column" posts="postsArticlesPaginator.items" current-user="isCurrentUser"></my-articles-list>
+          <load-ask-more layout="column" ng-if="postsArticlesPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 5">
@@ -233,8 +229,7 @@
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="followingPaginator.loading || !followingPaginator.next || selectedIndex != 5">
           <my-follow experts="followingPaginator.items" following="true" achievement="achievement" expert="expert"></my-follow>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="followingPaginator.loading"></load-more>
+          <load-ask-leader-more layout="column" class="md-padding-top-2" ng-if="followingPaginator.loading"></load-ask-leader-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 6">
@@ -250,8 +245,7 @@
              infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
              infinite-scroll-disabled="followerPaginator.loading || !followerPaginator.next || selectedIndex != 6">
           <my-follow experts="followerPaginator.items" achievement="achievement" expert="expert"></my-follow>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="followerPaginator.loading"></load-more>
+          <load-ask-leader-more layout="column" class="md-padding-top-2" ng-if="followerPaginator.loading"></load-ask-leader-more>
         </div>
       </div>
       <div class="background-whitem" ng-if="selectedIndex == 7">
@@ -267,8 +261,7 @@
              || selectedIndex != 7">
           <my-questions-list posts="followingQuestionsPaginator.items"
                              current-user="isCurrentUser" hide-state="true"></my-questions-list>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="followingQuestionsPaginator.loading"></load-more>
+          <load-ask-more layout="column" ng-if="followingQuestionsPaginator.loading"></load-ask-more>
       </div>
       </div>
     </div>

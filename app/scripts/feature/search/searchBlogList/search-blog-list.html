@@ -1,6 +1,6 @@
 <div class="xb-search__list" ng-repeat="review in reviews track by $index" layout="row" ng-if="!isAll">
   <a class="xb-search__list-img-bg" flex="none" ng-if="review.report"
-     ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img src="{{review.cover}}">
   </a>
   <a class="xb-search__list-img-bg" flex="none" ng-if="review.blog"
@@ -9,7 +9,7 @@
   </a>
   <div class="xb-search__list-content-1" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.report"
-       ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+       ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
       {{review.title}}
     </a>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.blog"
@@ -35,7 +35,7 @@
 </div>
 <div class="xb-search__list" ng-repeat="review in reviews track by $index" layout="row" ng-if="isAll && $index <= 1">
   <a class="xb-search__list-img-bg" flex="none" ng-if="review.report"
-     ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+     ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
     <img src="{{review.cover}}">
   </a>
   <a class="xb-search__list-img-bg" flex="none" ng-if="review.blog"
@@ -44,7 +44,7 @@
   </a>
   <div class="xb-search__list-content-1" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.report"
-       ui-sref="application.report({reviewId:review.report,reportId:review.id})" target="_blank">
+       ui-sref="application.report({reviewId:review.id,reportId:review.report})" target="_blank">
       {{review.title}}
     </a>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.blog"

@@ -1,8 +1,8 @@
 .xb-my-posts{
-  padding:0 16px 16px;
+  padding:16px 16px 0;
 
   @include xb-xs-screen{
-    padding:0 0 8px;
+    padding:8px 0 0;
   }
 
   &:last-child{
@@ -808,7 +808,7 @@ s
 .xb-my-trials{
   margin: 16px 0 0 16px;
   @include xb-xs-screen{
-    margin: 8px 0 0 8px;
+    margin: 8px 0 0 0;
   }
   &__img{
     cursor: pointer;
@@ -823,7 +823,7 @@ s
   &__content{
     padding: 8px 16px;
     @include xb-xs-screen{
-      padding: 0 8px;
+      padding: 0 0 0 8px;
     }
     p{
       margin-bottom: 0;
@@ -939,6 +939,10 @@ s
     margin-bottom: 0;
     max-height: 48px;
     overflow: hidden;
+  }
+
+  &__margin{
+    margin: 0 -8px;
   }
 }
 .xb-profile-follow{

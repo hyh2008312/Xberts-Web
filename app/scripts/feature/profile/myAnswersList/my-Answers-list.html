@@ -7,13 +7,13 @@
   </div>
   <div class="xb-my-answers__content" ng-if="post.text">
     {{post.text | reduceSentence:140}}{{post.text.length>140? '...':''}}
-    <span ng-if="post.text.length>140" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.question})" class="xb-my-answers__color">more</span>
+    <a ng-if="post.text.length>140" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.question})" class="xb-my-answers__color">more</a>
   </div>
   <interact class="xb-my-answers__bottom" interact="post.interact">
     <div class="xb-my-answers__actions" layout="row" layout-align="start center">
       <up-and-down-vote ng-if="!currentUser" layout="row" layout-align="start center" ></up-and-down-vote>
       <div ng-if="currentUser" layout="row" layout-align="start center" ui-sref="application.protected.editAnswer({answerId:post.id})">
-        <md-icon class="md-dark-third" flex="none" >mode_edit</md-icon>
+        <md-icon class="md-dark-third xb-pointer" flex="none" >mode_edit</md-icon>
       </div>
       <span ng-if="currentUser"></span>
       <div layout="row" layout-align="start center">

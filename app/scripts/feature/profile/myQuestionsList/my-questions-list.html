@@ -3,8 +3,8 @@
      ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">{{post.title}}</a>
   <div class="xb-ask-list__answer-content md-body-1" ng-if="post.description">
     {{post.description | reduceSentence:140}}{{post.description.length>140?'...':''}}
-    <span class="xb-ask-list__color" ng-if="post.description.length>140"
-          ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">More</span>
+    <a class="xb-ask-list__color" ng-if="post.description.length>140"
+          ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">More</a>
   </div>
   <div class="xb-my-answers__bottom">
     <div ng-if="currentUser" class="xb-my-answers__actions" layout="row" layout-align="start center">
@@ -18,7 +18,7 @@
           <span class="md-dark-third">1</span>
         </div>
         <div ng-switch-default layout="row" layout-align="start center">
-          <div class="md-dark-third" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">
+          <div class="md-dark-third">
             ANSWERS
           </div>
           <span class="md-dark-third">{{post.answerAmount}}</span>
@@ -75,13 +75,13 @@
         <div ng-if="post.answerAmount > 0" layout="row" layout-align="start center">
           <div ng-switch="post.answerAmount">
             <div ng-switch-when="1" layout="row" layout-align="start center">
-              <md-button class="md-primary" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">
+              <md-button class="md-primary">
                 Answer
               </md-button>
               <span class="xb-ask-list__color">&nbsp;1</span>
             </div>
             <div ng-switch-default layout="row" layout-align="start center">
-              <md-button class="md-primary" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">
+              <md-button class="md-primary">
                 Answers
               </md-button>
               <span class="xb-ask-list__color">&nbsp;{{post.answerAmount}}</span>
@@ -111,7 +111,7 @@
             <span class="xb-ask-list__color">&nbsp;1</span>
           </div>
           <div ng-switch-default layout="row" layout-align="start center">
-            <md-button class="md-primary" ui-sref="application.askQuestionMain.answerQuestionDetail({questionId:post.id})">
+            <md-button class="md-primary">
               Answers
             </md-button>
             <span class="xb-ask-list__color">&nbsp;{{post.answerAmount}}</span>

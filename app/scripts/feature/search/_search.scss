@@ -87,9 +87,8 @@
   &__list-bg{
     display: block;
     @include xb-xs-screen{
-      padding: 0 8px;
+      padding: 0 1px;
       margin-bottom: 16px;
-      background-color: $whiteColor;
     }
   }
   &__list{
@@ -100,7 +99,7 @@
       @include resetBorder();
     }
     @include xb-xs-screen{
-      padding: 16px 0;
+      padding: 16px 8px;
       margin-bottom: 0;
       border-bottom: 1px solid rgba(0,0,0,.12);
       &:last-child{

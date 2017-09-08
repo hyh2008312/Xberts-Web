@@ -4,7 +4,7 @@ angular.module('xbertsApp')
   .controller('MyFollowCtrl', ['Paginator','$scope', '$rootScope','expert','ExpertService','AskModel',
     function (Paginator,$scope, $rootScope,expert,ExpertService,AskModel) {
 
-      $rootScope.pageSettings.setBackgroundColor('background-bg-light');
+      $rootScope.pageSettings.setBackgroundColor('background-bg-white');
       $scope.isCurrentUser = $rootScope.user.isAuth() && $rootScope.user.getUserId() === expert.userId;
       $scope.expert = expert;
 

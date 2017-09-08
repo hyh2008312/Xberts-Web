@@ -43,3 +43,27 @@
   }
 }
 
+.animation-place-holder{
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: place-holder-shimmer;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes place-holder-shimmer{
+  0%   {
+    left: -564px;
+  }
+  100% {
+    left: 564px;
+  }
+}
+@keyframes place-holder-shimmer{
+  0%   {
+    left: -564px;
+  }
+  100% {
+    left: 564px;
+  }
+}

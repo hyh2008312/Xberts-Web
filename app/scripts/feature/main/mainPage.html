@@ -34,16 +34,15 @@
     </div>
   </div>
   <div class="container">
-    <div class="xb-title" layout="row" layout-align="start center" ng-if="mainCtrl.askPaginator.items.length > 0">
+    <div class="xb-title" layout="row" layout-align="start center">
       <h3 class="md-dark-primary" flex>Ask Xberts Community</h3>
     </div>
-    <div layout="row" layout-align="start start" ng-if="mainCtrl.askPaginator.items.length > 0">
+    <div layout="row" layout-align="start start">
       <div flex>
         <question-order ask-ctrl="mainCtrl" index="mainCtrl.order" main-page="true"></question-order>
         <div>
           <question-item products="mainCtrl.askPaginator.items"></question-item>
-          <load-more class="md-margin-top-2 md-margin-bottom-2" layout="row" layout-align="center center"
-                     ng-if="mainCtrl.askPaginator.loading"></load-more>
+          <load-ask-more layout="column" class="md-margin-bottom-2 xb-border" ng-if="mainCtrl.askPaginator.loading"></load-ask-more>
           <div class="xb-main-reviews__bottom-btn md-margin-bottom-2" layout="row" layout-align="center center">
             <md-button class="md-primary md-raised" ui-sref="application.askQuestionMain()" ui-sref-opts="{reload:true}" flex>SEE MORE</md-button>
           </div>
@@ -57,8 +56,8 @@
                         on-sort-change="mainCtrl.changeSort(sortId);"></deals-sort>
           </div>
           <answer-leaders leaders="mainCtrl.topReviewers.items"></answer-leaders>
-          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center"
-                     ng-if="mainCtrl.topReviewers.loading"></load-more>
+          <load-ask-leader-more layout="column" class="background-whitem md-padding-top-2 md-padding-bottom-2"
+                                ng-if="mainCtrl.topReviewers.loading"></load-ask-leader-more>
         </div>
       </div>
     </div>

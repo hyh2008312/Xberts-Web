@@ -21,7 +21,7 @@
                          open-pop="askCtrl.openPop(questionId)"></question-item>
           <question-item ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
                          open-pop="askCtrl.openPop(questionId)"></question-item>
-          <load-more layout="row" layout-align="center center" ng-if="askCtrl.askPaginator.loading"></load-more>
+          <load-ask-more layout="column" class="xb-border" ng-if="askCtrl.askPaginator.loading"></load-ask-more>
         </div>
       </div>
       <div hide-sm hide-xs flex="none">
@@ -32,8 +32,8 @@
                         on-sort-change="askCtrl.changeSort(sortId);"></deals-sort>
           </div>
           <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
-          <load-more class="md-padding-top-2 md-padding-bottom-2" layout="row" layout-align="center center"
-                     ng-if="askCtrl.topReviewers.loading"></load-more>
+          <load-ask-leader-more layout="column" class="background-whitem md-padding-top-2 md-padding-bottom-2"
+                                ng-if="askCtrl.topReviewers.loading"></load-ask-leader-more>
         </div>
         <div class="xb-ask-bg__tips">
           <i class="iconfontXberts icon-pic-best-answer1"></i>
