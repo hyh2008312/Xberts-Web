@@ -1,4 +1,6 @@
 .xb-ask-bg{
+  overflow: auto;
+  height: 100%;
   @include xb-xs-screen{
     margin-left: -10px;
     margin-right: -10px;
@@ -623,3 +625,4 @@
   height: 100%;
   overflow: hidden;
 }
+

@@ -51,7 +51,7 @@
   -webkit-animation-timing-function: linear;
 }
 
-@-webkit-keyframes place-holder-shimmer{
+@keyframes place-holder-shimmer{
   0%   {
     left: -564px;
   }
@@ -59,7 +59,7 @@
     left: 564px;
   }
 }
-@keyframes place-holder-shimmer{
+@-webkit-keyframes place-holder-shimmer{
   0%   {
     left: -564px;
   }

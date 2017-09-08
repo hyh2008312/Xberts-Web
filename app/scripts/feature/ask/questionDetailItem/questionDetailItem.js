@@ -19,8 +19,7 @@ angular.module('xbertsApp')
         var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
 
         if(!scope.isPopupOpen) {
-          angular.element('.xb-body-view').off('scroll');
-          angular.element('.xb-body-view').on('scroll', function(e) {
+          angular.element('.xb-body-view').bind('scroll', function(e) {
             if(e.currentTarget.scrollTop >= _offsetTop) {
               angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
                 display:'block',
@@ -39,7 +38,7 @@ angular.module('xbertsApp')
         }
 
         if(!$mdMedia('xs')) {
-          angular.element('.xb-cover-view').on('scroll', function(e) {
+          angular.element('.xb-cover-view').bind('scroll', function(e) {
             if(e.currentTarget.scrollTop >= _offsetTop + 112) {
               angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
                 display:'block',
@@ -56,7 +55,7 @@ angular.module('xbertsApp')
             }
           });
         } else {
-          angular.element('.xb-cover-view > div:eq(0)').on("scroll", function(e) {
+          angular.element('.xb-cover-view > div:eq(0)').bind("scroll", function(e) {
             if(e.currentTarget.scrollTop >= _offsetTop + 112) {
               angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
                 display:'block',
