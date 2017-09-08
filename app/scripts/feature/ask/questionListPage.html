@@ -10,16 +10,16 @@
         <md-button class="md-raised md-primary" ng-click="askCtrl.addQuestion();">Ask Question</md-button>
       </div>
     </div>
-    <div layout="row" layout-align="start start">
+    <div layout="row" layout-align="start">
       <div flex>
         <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
-        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view"'
+        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-use-document-bottom='true'
              infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
-          <question-item ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
+          <question-item layout="column" ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
                          open-pop="askCtrl.openPop(questionId)"></question-item>
-          <question-item ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
+          <question-item layout="column" ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
                          open-pop="askCtrl.openPop(questionId)"></question-item>
-          <question-item ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
+          <question-item layout="column" ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
                          open-pop="askCtrl.openPop(questionId)"></question-item>
           <load-ask-more layout="column" class="xb-border" ng-if="askCtrl.askPaginator.loading"></load-ask-more>
         </div>

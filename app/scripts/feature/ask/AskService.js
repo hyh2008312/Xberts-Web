@@ -1,12 +1,6 @@
 angular.module('xbertsApp')
   .service('AskService', ['$resource','AskModel','API_BASE_URL',function ($resource,AskModel,API_BASE_URL) {
     var AskResource = $resource(API_BASE_URL + '/questions/:id/', {id:'@id'},{
-      'get': {
-        method: 'GET',
-        params:{
-          no_auth: true
-        }
-      },
       'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}
     });
     var AnswersResource = $resource(API_BASE_URL + '/answers/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
@@ -25,7 +19,14 @@ angular.module('xbertsApp')
     this.order = 0;
 
     this.getList = function (params) {
-      return AskResource.get(params).$promise.then(AskModel.buildPageList);
+      return $resource(API_BASE_URL + '/questions/', null, {
+        'get': {
+          method: 'GET',
+          params:{
+            no_auth: true
+          }
+        }
+      }).get(params).$promise.then(AskModel.buildPageList);
     };
 
     this.getPending = function (params) {

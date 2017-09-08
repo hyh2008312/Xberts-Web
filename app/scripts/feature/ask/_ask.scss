@@ -1,6 +1,4 @@
 .xb-ask-bg{
-  overflow: auto;
-  height: 100%;
   @include xb-xs-screen{
     margin-left: -10px;
     margin-right: -10px;
@@ -621,8 +619,8 @@
     background-color: #f9f9f9;
   }
 }
-.xb-ask-hidden{
+.xb-ask-overflow-scroll{
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
 }
 

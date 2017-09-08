@@ -35,6 +35,7 @@ angular.module('xbertsApp')
         $scope.isPopupOpen = false;
         $scope.display = false;
         $rootScope.showToobar = $scope.isPopupOpen;
+        askCtrl.askPaginator = askPaginator;
       }
     });
 
