@@ -1,8 +1,23 @@
 angular.module('xbertsApp')
   .service('AskService', ['$resource','AskModel','API_BASE_URL',function ($resource,AskModel,API_BASE_URL) {
-    var AskResource = $resource(API_BASE_URL + '/questions/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
+    var AskResource = $resource(API_BASE_URL + '/questions/:id/', {id:'@id'},{
+      'get': {
+        method: 'GET',
+        params:{
+          no_auth: true
+        }
+      },
+      'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}
+    });
     var AnswersResource = $resource(API_BASE_URL + '/answers/:id/', {id:'@id'},{'patch': {method: 'PATCH'},'delete':{method: 'DELETE'}});
-    var AnswersLeaderResource = $resource(API_BASE_URL + '/answers/leaders/', null);
+    var AnswersLeaderResource = $resource(API_BASE_URL + '/answers/leaders/', null, {
+      'get': {
+        method: 'GET',
+        params: {
+          no_auth: true
+        }
+      }
+    });
     var FollowerResource = $resource(API_BASE_URL + '/questions/followed/', null);
     var PopularResource = $resource(API_BASE_URL + '/questions/popular/');
     var PendingResource = $resource(API_BASE_URL + '/questions/pending/');
