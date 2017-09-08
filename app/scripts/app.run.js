@@ -184,7 +184,8 @@ angular
       $rootScope.$on('$viewContentLoading', function() {
         if(angular.element(".xb-body-view").length>0)
         {
-          if($rootScope.state.current.name != 'application.askQuestionMain') {
+          if($rootScope.state.current.name != 'application.askQuestionMain.answerQuestionDetail'
+            && $rootScope.state.current.name != 'application.askQuestionMain') {
             angular.element(".xb-body-view").scrollTop(0);
           }
         }
