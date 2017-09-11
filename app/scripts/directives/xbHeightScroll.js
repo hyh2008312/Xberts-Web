@@ -38,4 +38,24 @@ angular.module('xbertsApp')
         }
       }
     }
-  });
+  })
+  .directive('xbMaxHeightScroll', ['$window','$mdMedia',function($window) {
+    return {
+      restrict: 'A',
+      replace: false,
+      scope: {
+        delHeight : '='
+      },
+      link: function(scope, element, attrs) {
+        var resizeBody = function() {
+          var height = angular.element($window).height() - scope.delHeight;
+          element.css({
+            'max-height': height + 'px',
+            overflow: 'scroll'
+          });
+        };
+        angular.element($window).on('resize', resizeBody);
+        resizeBody();
+      }
+    };
+  }]);

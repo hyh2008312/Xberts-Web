@@ -1,62 +1,66 @@
-<section class="xb-section xb-ask-bg" ng-if="!isPopupOpen">
-  <div class="container">
-    <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
-         layout-align-xs="start start">
-      <div class="xb-section__title">
-        <h2><span class="md-display-1">Ask Xberts Community & Make Smart Purchasing Decision</span></h2>
-        <h3><span class="md-body-1 md-dark-secondary">Get recommendations and tips from our global community of savvy-shoppers</span></h3>
-      </div>
-      <div flex="none">
-        <md-button class="md-raised md-primary" ng-click="askCtrl.addQuestion();">Ask Question</md-button>
-      </div>
-    </div>
-    <div layout="row" layout-align="start">
-      <div flex>
-        <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
-        <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-body-view"'
-             infinite-scroll-distance='0'
-             infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
-          <question-item layout="column" ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
-                         open-pop="askCtrl.openPop(questionId)"></question-item>
-          <question-item layout="column" ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
-                         open-pop="askCtrl.openPop(questionId)"></question-item>
-          <question-item layout="column" ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
-                         open-pop="askCtrl.openPop(questionId)"></question-item>
-          <load-ask-more layout="column" class="xb-border" ng-if="askCtrl.askPaginator.loading"></load-ask-more>
+<div ng-if="!isPopupOpen">
+  <section class="xb-section xb-ask-bg" xb-max-height-scroll del-height="56">
+    <div class="container">
+      <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
+           layout-align-xs="start start">
+        <div class="xb-section__title">
+          <h2><span class="md-display-1">Ask Xberts Community & Make Smart Purchasing Decision</span></h2>
+          <h3><span class="md-body-1 md-dark-secondary">Get recommendations and tips from our global community of savvy-shoppers</span></h3>
+        </div>
+        <div flex="none">
+          <md-button class="md-raised md-primary" ng-click="askCtrl.addQuestion();">Ask Question</md-button>
         </div>
       </div>
-      <div hide-sm hide-xs flex="none">
-        <div class="xb-main-reviewer">
-          <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="space-between center">
-            LEADERBOARD
-            <deals-sort sort="askCtrl.sort" sort-id="askCtrl.selectedIndex"
-                        on-sort-change="askCtrl.changeSort(sortId);"></deals-sort>
+      <div layout="row" layout-align="start">
+        <div flex>
+          <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
+          <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-ask-bg"'
+               infinite-scroll-distance='0'
+               infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
+            <question-item layout="column" ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"
+                           open-pop="askCtrl.openPop(questionId)"></question-item>
+            <question-item layout="column" ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
+                           open-pop="askCtrl.openPop(questionId)"></question-item>
+            <question-item layout="column" ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
+                           open-pop="askCtrl.openPop(questionId)"></question-item>
+            <load-ask-more layout="column" class="xb-border" ng-if="askCtrl.askPaginator.loading"></load-ask-more>
           </div>
-          <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
-          <load-ask-leader-more layout="column" class="background-whitem md-padding-top-2 md-padding-bottom-2"
-                                ng-if="askCtrl.topReviewers.loading"></load-ask-leader-more>
         </div>
-        <div class="xb-ask-bg__tips">
-          <i class="iconfontXberts icon-pic-best-answer1"></i>
-          <div class="md-subhead md-dark-primary" layout="row" layout-align="space-between center">
-            Earn Points Now!
+        <div hide-sm hide-xs flex="none">
+          <div class="xb-main-reviewer">
+            <div class="md-subhead md-dark-primary xb-main-reviewer__title" layout="row" layout-align="space-between center">
+              LEADERBOARD
+              <deals-sort sort="askCtrl.sort" sort-id="askCtrl.selectedIndex"
+                          on-sort-change="askCtrl.changeSort(sortId);"></deals-sort>
+            </div>
+            <answer-leaders leaders="askCtrl.topReviewers.items"></answer-leaders>
+            <load-ask-leader-more layout="column" class="background-whitem md-padding-top-2 md-padding-bottom-2"
+                                  ng-if="askCtrl.topReviewers.loading"></load-ask-leader-more>
           </div>
-          <div>
-            You will earn <span class="xb-trial-reviewer__star xb-bold">10</span> <a class="xb-trial-reviewer__star text-underline" ui-sref="application.creditMain">points</a>
-            if your answer is selected as TOP Answer within 30 days after the question is posted. The TOP Answer will be chosen by in-house experts and community users.
+          <div class="xb-ask-bg__tips">
+            <i class="iconfontXberts icon-pic-best-answer1"></i>
+            <div class="md-subhead md-dark-primary" layout="row" layout-align="space-between center">
+              Earn Points Now!
+            </div>
+            <div>
+              You will earn <span class="xb-trial-reviewer__star xb-bold">10</span> <a class="xb-trial-reviewer__star text-underline" ui-sref="application.creditMain">points</a>
+              if your answer is selected as TOP Answer within 30 days after the question is posted. The TOP Answer will be chosen by in-house experts and community users.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
+
 <div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start"
      ng-click="jumpToAsk(isPopupOpen,display);">
   <div class="xb-pointer-auto" ui-view flex-xs ng-click="$event.stopPropagation()" ng-touchmove="$event.stopPropagation()">
     <load-more class="xb-cover-view__margin-top" layout="row" layout-align="center center"
                ng-if="!isPopupOpen && display"></load-more>
   </div>
-  <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs>
-    <md-button class="md-icon-button" ng-if="!isPopupOpen && display" ui-sref="application.askQuestionMain">
+  <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs
+       ng-if="!isPopupOpen && display" >
+    <md-button class="md-icon-button" ui-sref="application.askQuestionMain">
       <md-icon md-font-set="material-icons">
         close
       </md-icon>
