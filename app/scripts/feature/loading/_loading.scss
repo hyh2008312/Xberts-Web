@@ -21,6 +21,10 @@
     position: relative;
   }
 
+  &__discover-main-bg{
+    position: relative;
+  }
+
   &__mask{
     background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 20%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
     background-repeat: no-repeat;
@@ -55,6 +59,18 @@
     max-width: 176px;
   }
 
+  &__length-5{
+    max-width: 88px;
+  }
+
+  &__length-6{
+    max-width: 108px;
+  }
+
+  &__length-7{
+    max-width: 56px;
+  }
+
   &__height-1{
     height: 12px;
   }
@@ -75,7 +91,18 @@
     margin-top: 16px;
   }
 
+  &__margin-top-4{
+    margin-top: 8px;
+  }
+
+  &__margin-top-5{
+    margin-top: 24px;
+  }
+
   &__padding{
     padding: 24px;
+    @include xb-xs-screen{
+      padding: 16px 8px;
+    }
   }
 }

@@ -650,7 +650,8 @@ angular.module('xbertsApp')
       function loginRedirect() {
         $rootScope.$emit('backdropOff', 'success');
         if ($rootScope.postLoginState) {
-          if($rootScope.postLoginState.state == 'application.askQuestionMain.answerQuestionDetail') {
+          if($rootScope.postLoginState.state == 'application.askQuestionMain.answerQuestionDetail'
+            || $rootScope.postLoginState.state == 'application.productDeals.dealsDetail') {
             $state.go($rootScope.postLoginState.state, $rootScope.postLoginState.params);
             return;
           }

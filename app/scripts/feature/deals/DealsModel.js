@@ -98,7 +98,7 @@ function ProductDeals($state,urlParser,$sce) {
       window.open(this.purchaseUrl);
     },
     getShareUrl: function(id) {
-      return $state.href("application.dealsDetail", {dealsId:id},{absolute:true});
+      return $state.href("application.productDeals.dealsDetail", {dealsId:id},{absolute:true});
     }
   };
 

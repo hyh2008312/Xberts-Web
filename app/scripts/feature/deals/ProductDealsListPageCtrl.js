@@ -19,14 +19,51 @@ angular.module('xbertsApp')
 
     $scope.selectedIndex = 0;
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
-    $scope.$on('$locationChangeSuccess', function () {
+
+    $rootScope.$on('$stateChangeSuccess', function() {
       DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     });
 
+
+
+    dealsCtrl.productsPaginator = DealsService.getCategory();
+
     dealsCtrl.changeCategory = function ($index) {
       $scope.selectedIndex = $index;
+      $rootScope.dealsFactory  = {};
+
+      if($scope.selectedIndex == -1) {
+        $scope.selectedIndex = 0;
+        var categoryId = dealsCtrl.categories[$scope.selectedIndex].id;
+        DealsFactory.categoryItem = dealsCtrl.categories[$scope.selectedIndex].value;
+        $rootScope.dealsFactory.categoryItem = DealsFactory.categoryItem;
+
+        DealsService.categoryId = categoryId;
+        dealsCtrl.categoryId = DealsService.categoryId;
+        DealsService.priceId = null;
+        DealsService.discountId = null;
+        dealsCtrl.priceId = DealsService.priceId;
+        dealsCtrl.discountId = DealsService.discountId;
+
+        dealsCtrl.productsPaginator = DealsService.getCategory();
+        dealsCtrl.mainLoaded = false;
+
+        if(DealsService.homeDealsList == null) {
+          DealsService.getHomeList().then(function(data) {
+            dealsCtrl.mainLoaded = true;
+            dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(data,DealsService.getCategoryList);
+            DealsService.homeDealsList = dealsCtrl.productsPaginator;
+          });
+        } else {
+          dealsCtrl.mainLoaded = true;
+          dealsCtrl.productsPaginator = DealsService.homeDealsList;
+        }
+        return;
+      }
 
       var categoryId = dealsCtrl.categories[$scope.selectedIndex].id;
+      DealsFactory.categoryItem = dealsCtrl.categories[$scope.selectedIndex].value;
+      $rootScope.dealsFactory.categoryItem = DealsFactory.categoryItem;
 
       DealsService.categoryId = categoryId;
       dealsCtrl.categoryId = DealsService.categoryId;
@@ -37,15 +74,20 @@ angular.module('xbertsApp')
 
       if($scope.selectedIndex == 0) {
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
-        dealsCtrl.productsPaginator = null;
+        dealsCtrl.productsPaginator = DealsService.getCategory();
+        dealsCtrl.mainLoaded = false;
+
         if(DealsService.homeDealsList == null) {
           DealsService.getHomeList().then(function(data) {
+            dealsCtrl.mainLoaded = true;
             dealsCtrl.productsPaginator = DealsFactory.rebuildProduct(data,DealsService.getCategoryList);
             DealsService.homeDealsList = dealsCtrl.productsPaginator;
           });
         } else {
+          dealsCtrl.mainLoaded = true;
           dealsCtrl.productsPaginator = DealsService.homeDealsList;
         }
+
       } else {
 
         var par = {
@@ -114,6 +156,35 @@ angular.module('xbertsApp')
       }
       dealsCtrl.productsPaginator.clear();
       dealsCtrl.productsPaginator.load();
+    };
+
+    $scope.isPopupOpen = false;
+    $scope.display = false;
+    $rootScope.showToobar = $scope.isPopupOpen;
+
+    $rootScope.$on('$stateChangeStart', function () {
+      if($rootScope.state.current.name == 'application.productDeals.dealsDetail') {
+        $scope.isPopupOpen = false;
+        $scope.display = false;
+        $rootScope.showToobar = $scope.isPopupOpen;
+      }
+    });
+
+    dealsCtrl.openPop = function(dealsId) {
+      $scope.display = true;
+      $rootScope.showToobar = true;
+      $state.go('application.productDeals.dealsDetail',{dealsId:dealsId, isPopupOpen: true});
+    };
+
+    $scope.jumpToDeals = function (isPopupOpen,display) {
+      if(!isPopupOpen && display) {
+
+        $state.go('application.productDeals',{tab:DealsFactory.categoryItem});
+        $scope.isPopupOpen = false;
+        $scope.display = false;
+        $rootScope.showToobar = $scope.isPopupOpen;
+
+      }
     };
 
     var title = 'Discover - Exclusive Deals Curated by Community';

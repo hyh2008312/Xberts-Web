@@ -71,6 +71,8 @@ angular.module('xbertsApp')
 
     this.category = DealsService.categoryLocal;
 
+    this.categoryItem = null;
+
     var _self = this;
 
     this.getCategory = function(_category) {
@@ -97,15 +99,17 @@ angular.module('xbertsApp')
 
       var followeeList = $rootScope.user.getFollowees();
 
-      productsDetail.owner.currentUser = {
-        follow: false
-      };
+      if(productsDetail.owner != null) {
+        productsDetail.owner.currentUser = {
+          follow: false
+        };
 
-      angular.forEach(followeeList, function(f) {
-        if(f == productsDetail.owner.id) {
-          productsDetail.owner.currentUser.follow = true;
-        }
-      });
+        angular.forEach(followeeList, function(f) {
+          if(f == productsDetail.owner.id) {
+            productsDetail.owner.currentUser.follow = true;
+          }
+        });
+      }
 
       return productsDetail;
     };

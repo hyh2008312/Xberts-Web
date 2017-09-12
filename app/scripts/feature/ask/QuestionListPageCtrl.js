@@ -35,15 +35,12 @@ angular.module('xbertsApp')
         $scope.isPopupOpen = false;
         $scope.display = false;
         $rootScope.showToobar = $scope.isPopupOpen;
-        $rootScope.askOverflowHidden = false;
-        askCtrl.askPaginator = askPaginator;
       }
     });
 
     $scope.isPopupOpen = false;
     $scope.display = false;
     $rootScope.showToobar = $scope.isPopupOpen;
-    $rootScope.askOverflowHidden = false;
 
     askCtrl.openPop = function(questionId) {
       $scope.display = true;

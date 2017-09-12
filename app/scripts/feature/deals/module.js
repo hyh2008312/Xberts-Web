@@ -10,7 +10,6 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
-      reloadOnSearch: false,
       resolve: {
         category: ['ShareProductService', function (ShareProductService) {
           return ShareProductService.getCategoryList();
@@ -31,8 +30,11 @@ angular.module('xbertsApp')
         }]
       }
     })
-    .state('application.dealsDetail', {
-      url: '/discover/:dealsId',
+    .state('application.productDeals.dealsDetail', {
+      url: '^/discover/:dealsId',
+      params: {
+        isPopupOpen : null
+      },
       templateUrl: 'scripts/feature/deals/productDealsDetail.html',
       controller: 'ProductDealsDetailCtrl',
       resolve: {

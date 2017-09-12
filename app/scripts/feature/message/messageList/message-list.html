@@ -2,11 +2,11 @@
      layout="row" layout-align="start center" ng-click="viewThread(message, $index)">
   <span class="xb-messages__message-point"
         ng-if="$index > 0 && !message.readAt && user.getUserId() != message.sender.id"></span>
-  <avatar-img ng-if="user.getUserId() != message.sender.id" src="message.sender.userprofile.avatar"
+  <avatar-img ng-if="user.getUserId() != message.sender.id" src="message.sender.avatar"
               name="message.sender.firstName"
               ui-sref="application.expert({expertId:message.sender.id})"></avatar-img>
 
-  <avatar-img ng-if="user.getUserId() == message.sender.id" src="message.recipient.userprofile.avatar"
+  <avatar-img ng-if="user.getUserId() == message.sender.id" src="message.recipient.avatar"
               name="message.recipient.firstName"
               ui-sref="application.expert({expertId:message.recipient.id})"></avatar-img>
   <div flex>

@@ -3,8 +3,14 @@
 angular.module('xbertsApp')
   .controller('ProductDealsDetailCtrl', ['$rootScope','$scope','productsDetail','productsPaginator', 'InviteService',
     'BrowserUtil','ExpertService','Paginator','ProductDeals','DealsService','$mdMedia','$state','DealsFactory',
+    '$stateParams',
     function($rootScope,$scope,productsDetail,productsPaginator,InviteService,BrowserUtil,ExpertService,Paginator,
-             ProductDeals,DealsService,$mdMedia,$state, DealsFactory) {
+             ProductDeals,DealsService,$mdMedia,$state, DealsFactory,$stateParams) {
+
+      $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
+      $scope.isPopupOpen = $stateParams.isPopupOpen;
+
+      $scope.categoryItem = DealsFactory.categoryItem;
 
       $scope.productsDetail = DealsFactory.changeFolloweeList(productsDetail);
       $scope.productsPaginator = productsPaginator;

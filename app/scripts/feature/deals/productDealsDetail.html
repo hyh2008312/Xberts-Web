@@ -1,65 +1,74 @@
-<div class="container">
-  <div class="xb-mobile-row xb-section-body" layout="row" layout-align-gt-xs="start start" layout-xs="column">
-    <div flex-gt-xs="75" flex-xs>
-      <share-product-detail-item product="productsDetail"></share-product-detail-item>
-    </div>
-    <div flex-gt-xs="35" flex-xs>
-      <div class="recommend-list">
-        <div class="md-subhead md-dark-primary recommend-list__title" hide-xs layout="row" layout-align="start center">POSTED BY</div>
-        <div class="background-whitem">
-          <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner != null">
-            <avatar-Img class="xb-pointer" flex="none" src="productsDetail.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar"
-                        ui-sref="application.expert({ expertId:productsDetail.getPostId() })"></avatar-Img>
-            <div layout="column" layout-align="start stretch" flex>
-              <div layout="row" layout-align="space-between center">
-                <div>
-                  <div layout="row" layout-align="start center">
-                    <a class="md-dark-primary" ui-sref="application.expert({expertId:productsDetail.getPostId()})">{{productsDetail.getDealsName()}}</a>
-                    <credit-badge class="credit-badge" points="productsDetail.owner.badgePoint"></credit-badge></div>
-                  <div class="md-dark-secondary">Posted <span am-time-ago='productsDetail.created'></span></div>
-                </div>
-                <xb-follow follow="productsDetail.owner.currentUser.follow" user-id="productsDetail.owner.id"
-                           expert="expert" achievement="achievement"></xb-follow>
-              </div>
-              <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" ng-if="productsDetail.owner != null">
-                <div layout="column" layout-align="center start">
-                  <div class="xb-bold">{{postsProductPaginator.count}}</div>
-                  <div>{{postsProductPaginator.count > 1? 'Posts':'Post'}}</div>
-                </div>
-                <span flex="none"></span>
-                <div layout="column" layout-align="center start">
-                  <div class="xb-bold">{{achievement.followersAmount}}</div>
-                  <div>{{achievement.followersAmount > 1? 'Followers':'Follower'}}</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner == null">
-            <avatar-Img flex="none" src="headImage" name="productsDetail.getDealsName()"  class="md-user-avatar">
-            </avatar-Img>
-            <div layout="column" layout-align="space-between start">
-              <div layout="row" layout-align="start center">
-                <span class="md-dark-primary">{{productsDetail.getDealsName()}}</span>
-              </div>
-              <div class="md-dark-secondary">Posted <span am-time-ago='productsDetail.created'></span></div>
-            </div>
-          </div>
-        </div>
+<div class="xb-deals-detail__bg">
+  <md-button class="md-icon-button" ng-if="isPopupOpen" ui-sref="application.productDeals({tab:categoryItem})" hide-xs>
+    <md-icon md-font-set="material-icons">
+      close
+    </md-icon>
+  </md-button>
+  <div class="container">
+    <div class="xb-mobile-row xb-section-body" layout="row" layout-align-gt-xs="start start" layout-xs="column">
+      <div flex-gt-xs="75" flex-xs>
+        <share-product-detail-item product="productsDetail"></share-product-detail-item>
       </div>
-      <div class="recommend-list xb-deals-post__posts-top" ng-if="postsProductPaginator.items.length>1" ng-show="productsDetail.owner != null">
-        <div class="md-subhead md-dark-primary recommend-list__title" layout="row" layout-align="space-between center">
-          OTHER POSTS
-          <md-button class="md-primary" ng-click="seeMore()">VIEW MORE</md-button>
+      <div flex-gt-xs="35" flex-xs>
+        <div class="recommend-list">
+          <div class="md-subhead md-dark-primary recommend-list__title" hide-xs layout="row" layout-align="start center">POSTED BY</div>
+          <div class="background-whitem">
+            <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner != null">
+              <avatar-Img class="xb-pointer" flex="none" src="productsDetail.getDealsAvatar()" name="productsDetail.getDealsName()"  class="md-user-avatar"
+                          ui-sref="application.expert({ expertId:productsDetail.getPostId() })"></avatar-Img>
+              <div layout="column" layout-align="start stretch" flex>
+                <div layout="row" layout-align="space-between center">
+                  <div>
+                    <div layout="row" layout-align="start center">
+                      <a class="md-dark-primary" ui-sref="application.expert({expertId:productsDetail.getPostId()})">{{productsDetail.getDealsName()}}</a>
+                      <credit-badge class="credit-badge" points="productsDetail.owner.badgePoint"></credit-badge></div>
+                    <div class="md-dark-secondary">Posted <span am-time-ago='productsDetail.created'></span></div>
+                  </div>
+                  <xb-follow follow="productsDetail.owner.currentUser.follow" user-id="productsDetail.owner.id"
+                             expert="expert" achievement="achievement"></xb-follow>
+                </div>
+                <div class="xb-deals-detail__head-bottom" layout="row" layout-align="start center" ng-if="productsDetail.owner != null">
+                  <div layout="column" layout-align="center start">
+                    <div class="xb-bold">{{postsProductPaginator.count}}</div>
+                    <div>{{postsProductPaginator.count > 1? 'Posts':'Post'}}</div>
+                  </div>
+                  <span flex="none"></span>
+                  <div layout="column" layout-align="center start">
+                    <div class="xb-bold">{{achievement.followersAmount}}</div>
+                    <div>{{achievement.followersAmount > 1? 'Followers':'Follower'}}</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div layout="row" class="xb-deals-detail__head" ng-if="productsDetail.owner == null">
+              <avatar-Img flex="none" src="headImage" name="productsDetail.getDealsName()"  class="md-user-avatar">
+              </avatar-Img>
+              <div layout="column" layout-align="space-between start">
+                <div layout="row" layout-align="start center">
+                  <span class="md-dark-primary">{{productsDetail.getDealsName()}}</span>
+                </div>
+                <div class="md-dark-secondary">Posted <span am-time-ago='productsDetail.created'></span></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="background-whitem" >
-          <other-post-list posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>
+        <div class="recommend-list xb-deals-post__posts-top" ng-if="postsProductPaginator.items.length>1" ng-show="productsDetail.owner != null">
+          <div class="md-subhead md-dark-primary recommend-list__title" layout="row" layout-align="space-between center">
+            OTHER POSTS
+            <md-button class="md-primary" ng-click="seeMore()">VIEW MORE</md-button>
+          </div>
+          <div class="background-whitem" >
+            <other-post-list posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="xb-deals-detail__title md-subhead" ng-if="productsPaginator!=null && productsPaginator.length>0">YOU MAY ALSO LIKE</div>
-  <deals-list deals="productsPaginator"></deals-list>
+<div class="xb-deals-detail__bg">
+  <div class="container">
+    <div class="xb-deals-detail__title md-subhead" ng-if="productsPaginator!=null && productsPaginator.length>0">YOU MAY ALSO LIKE</div>
+    <deals-list deals="productsPaginator"></deals-list>
+  </div>
 </div>

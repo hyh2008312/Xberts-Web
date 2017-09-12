@@ -2,7 +2,7 @@
   <div class="xb-messages__chat-box" ng-repeat="message in messages track by $index" layout="row"
        layout-align="{{message.sender.id === user.getUserId() ? 'end': 'start'}} start" on-finish-render="ngRepeatFinished" >
     <avatar-img ng-class="{true:'xb-messages__left-avatar',false:'xb-messages__right-avatar'}[message.sender.id === user.getUserId()]"
-                src="message.sender.userprofile.avatar" name="message.sender.firstName"
+                src="message.sender.avatar" name="message.sender.firstName"
                 ui-sref="application.expert({expertId:message.sender.id})"
                 flex-order="{{message.sender.id === user.getUserId() ? '1': '0'}}"></avatar-img>
     <div flex-order="{{message.sender.id === user.getUserId() ? '0': '1'}}"

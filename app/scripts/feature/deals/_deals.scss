@@ -126,13 +126,21 @@
       }
     }
   }
+  &__min-height{
+    min-height: 100px;
+    @include xb-xs-screen{
+      min-height: 80px;
+    }
+  }
   &__img-bg{
     width: 100%;
     overflow: hidden;
     position: relative;
+    background-color: rgba(0,0,0,.12);
     >a{
       width: 100%;
       cursor: pointer;
+      background-color: $whiteColor;
       >img{
         max-width: 100%;
         max-height: 100%;
@@ -411,6 +419,31 @@
 }
 
 .xb-deals-detail{
+  &__bg{
+    position: relative;
+    padding-top: 28px;
+    padding-bottom: 40px;
+    @include xb-xs-screen{
+      padding-top: 0;
+      padding-bottom: 16px;
+    }
+    >.md-icon-button{
+      position: absolute;
+      right: -90px;
+      top: 56px;
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      margin: 0;
+      .material-icons{
+        font-size: 56px;
+        line-height: 56px;
+        width: 56px;
+        height: 56px;
+        color: $whiteColor;
+      }
+    }
+  }
   &__title{
     margin-top: 28px;
     margin-bottom: 12px;
@@ -833,7 +866,7 @@
     position: relative;
     border-radius: 2px;
     overflow: hidden;
-    >div{
+    >a{
       position: absolute;
       left: 0;
       top: 0;
@@ -1051,4 +1084,7 @@
   md-radio-button{
     margin: 0 8px 24px;
   }
+}
+.xb-deals-bg{
+
 }

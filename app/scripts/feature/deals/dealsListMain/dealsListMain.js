@@ -4,7 +4,9 @@ angular.module('xbertsApp')
       return {
         restrict: 'E',
         scope: {
-          deals: '='
+          deals: '=',
+          openPop: '&',
+          isDeals: '='
         },
         templateUrl: 'scripts/feature/deals/dealsListMain/deals-list-main.html',
         link: function (scope, element, attrs, ctrls) {
@@ -27,7 +29,7 @@ angular.module('xbertsApp')
 
                 scope.cancel = function() {
                   $mdDialog.cancel();
-                  $state.go('application.dealsDetail',{dealsId:id});
+                  $state.go('application.productDeals.dealsDetail',{dealsId:id});
                 };
 
                 scope.signup = function() {

@@ -4,10 +4,13 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        deals: '='
+        deals: '=',
+        openPop: '&',
+        isDeals: '='
       },
       templateUrl: 'scripts/feature/deals/dealsList/deals-list.html',
       link: function (scope, element, attrs, ctrls) {
+
         scope.user = $rootScope.user;
 
         scope.headImage = DealsService.headImage;
@@ -25,7 +28,7 @@ angular.module('xbertsApp')
 
               scope.cancel = function() {
                 $mdDialog.cancel();
-                $state.go('application.dealsDetail',{dealsId:id});
+                $state.go('application.productDeals.dealsDetail',{dealsId:id});
               };
 
               scope.signup = function() {

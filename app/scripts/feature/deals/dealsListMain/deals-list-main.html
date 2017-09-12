@@ -1,8 +1,9 @@
 <div class="xb-main-deals xb-overflow-hidden" ng-if="isMobile"
      md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <div ng-repeat="item in deals track by $index">
-    <div class="xb-deals-list__img-bg xb-main-deals__img-bg">
-      <a layout="column" layout-align="start center" hide-xs ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+    <div class="xb-deals-list__img-bg xb-main-deals__img-bg-1">
+      <a layout="column" ng-if="isDeals" layout-align="start center" hide-xs
+         ng-click="openPop({dealsId:item.id});">
         <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -22,7 +23,50 @@
           </div>
         </div>
       </a>
-      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
+      <a layout="column" ng-if="!isDeals" layout-align="start center" hide-xs
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth() && isDeals"
+         ng-click="openPop({dealsId:item.id});">
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth() && !isDeals"
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
         <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -62,11 +106,11 @@
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-xs
-         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
@@ -95,7 +139,7 @@
 <div class="xb-main-deals" ng-if="!isMobile">
   <div ng-repeat="item in deals track by $index">
     <div class="xb-deals-list__img-bg xb-main-deals__img-bg-1">
-      <a layout="column" layout-align="start center" hide-xs ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+      <a layout="column" ng-if="isDeals" layout-align="start center" hide-xs ng-click="openPop({dealsId:item.id});">
         <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -115,7 +159,8 @@
           </div>
         </div>
       </a>
-      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth()" ui-sref="application.dealsDetail({dealsId:item.id})">
+      <a layout="column" ng-if="!isDeals" layout-align="start center" hide-xs
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
         <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -135,7 +180,50 @@
           </div>
         </div>
       </a>
-      <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth() && isDeals"
+         ng-click="openPop({dealsId:item.id});">
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth() && !isDeals"
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
+        <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
+          <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
+            <md-icon >play_arrow</md-icon>
+          </div>
+        </div>
+        <div class="xb-deals-list__mask animation-opacity-show" layout="column" layout-align="center center" hide-xs>
+          <div class="md-subhead">Quick Look</div>
+        </div>
+        <div end-time-left end-time="item.promotionEnd" extraInfo="Expired" ng-if="item.promotionEnd">
+          <div ng-show="timeValue>0" class="xb-deals-list__top-right" layout="row" layout-align="start center">
+            <span >{{ timeUnit }}</span>
+          </div>
+          <div ng-show="timeValue<=0" class="xb-deals-list__top-right xb-deals-list__expired"
+               layout="row" layout-align="start center">
+            <span >Expired</span>
+          </div>
+        </div>
+      </a>
+      <a layout="column" layout-align="start center" hide-gt-xs ng-if="!user.isAuth()"
+         ng-click="openMobileDialog(item.id);">
         <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -155,11 +243,11 @@
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-xs
-         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.dealsDetail({dealsId:item.id})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"

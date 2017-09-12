@@ -12,14 +12,7 @@ angular.module('xbertsApp')
         }
       }
     });
-    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{
-      'get' : {
-        method:'GET',
-        params:{
-          no_auth: true
-        }
-      },
-      'patch': {method: 'PATCH'}});
+    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'}, {
       'query' : {
         method:'GET',
@@ -47,7 +40,14 @@ angular.module('xbertsApp')
     this.getDealsList = function(params) {
       params.approval_status = 'approved';
       params.country = $rootScope.country;
-      return DealsProductResource.get(params).$promise.then(ProductDeals.buildPageList);
+      return $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{
+        'get' : {
+          method:'GET',
+          params:{
+            no_auth: true
+          }
+        }
+      }).get(params).$promise.then(ProductDeals.buildPageList);
     };
 
     this.getDetail = function(dealsId) {
