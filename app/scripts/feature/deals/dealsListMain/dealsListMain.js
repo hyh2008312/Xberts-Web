@@ -10,6 +10,9 @@ angular.module('xbertsApp')
         },
         templateUrl: 'scripts/feature/deals/dealsListMain/deals-list-main.html',
         link: function (scope, element, attrs, ctrls) {
+
+          scope.user = $rootScope.user;
+
           scope.deals = scope.deals || [];
 
           scope.headImage = DealsService.headImage;

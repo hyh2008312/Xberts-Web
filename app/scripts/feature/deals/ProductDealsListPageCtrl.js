@@ -24,9 +24,9 @@ angular.module('xbertsApp')
       DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
     });
 
-
-
     dealsCtrl.productsPaginator = DealsService.getCategory();
+
+    dealsCtrl.categoryItem = DealsFactory.categoryItem;
 
     dealsCtrl.changeCategory = function ($index) {
       $scope.selectedIndex = $index;

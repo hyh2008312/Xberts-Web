@@ -590,8 +590,7 @@
     overflow: hidden;
     background-color: rgba(0,0,0,.8);
   }
-  >div:nth-child(1){
-    pointer-events: auto;
+  .xb-pointer-auto{
     @extend .container;
     background-color: #F1F1F1;
     padding: 0;

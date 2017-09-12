@@ -79,16 +79,16 @@
 </div>
 <div ng-class="{true:'xb-cover-view',false:''}[!isPopupOpen && display]" layout-xs="column" layout-align-xs="start"
      ng-click="jumpToDeals(isPopupOpen,display);">
-  <div class="xb-pointer-auto" ui-view flex-xs ng-click="$event.stopPropagation()" ng-touchmove="$event.stopPropagation()">
-    <load-more class="xb-cover-view__margin-top" layout="row" layout-align="center center"
-               ng-if="!isPopupOpen && display"></load-more>
-  </div>
   <div class="xb-cover-view__button-bg" layout="row" layout-align="center center" flex="none" hide-gt-xs
        ng-if="!isPopupOpen && display" >
-    <md-button class="md-icon-button" ui-sref="application.productDeals({tab:dealsCtrl.categories[selectedIndex].value})">
+    <md-button class="md-icon-button" ng-click="jumpToDeals(isPopupOpen,display);">
       <md-icon md-font-set="material-icons">
         close
       </md-icon>
     </md-button>
+  </div>
+  <div class="xb-pointer-auto" ui-view flex-xs ng-click="$event.stopPropagation()" ng-touchmove="$event.stopPropagation()">
+    <load-more class="xb-cover-view__margin-top" layout="row" layout-align="center center"
+               ng-if="!isPopupOpen && display"></load-more>
   </div>
 </div>
