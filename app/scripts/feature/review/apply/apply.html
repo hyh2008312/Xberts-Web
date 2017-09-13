@@ -180,8 +180,11 @@
             </md-button>
           </div>
           <div flex="30" flex-gt-sm="20" class="md-padding">
-            <md-button type="submit" class="md-raised md-primary xb-btn-block" ng-click="apply.submitForm(applierForm)"
-                       ng-disabled="applierForm.$invalid">submit
+            <md-button ng-if="!apply.expired" type="submit" class="md-raised md-primary xb-btn-block"
+                       ng-click="apply.submitForm(applierForm)" ng-disabled="applierForm.$invalid">submit
+            </md-button>
+            <md-button ng-if="apply.expired" class="md-raised xb-btn-block"
+                       ng-disabled="true">expired
             </md-button>
           </div>
         </div>

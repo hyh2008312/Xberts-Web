@@ -16,11 +16,13 @@ angular
     '$mdDialog',
     'AnalyticsService',
     '$location',
+    'moment',
     ReviewApplyController
   ]);
 
 
-function ReviewApplyController($scope, SystemConstant, review, applier, application, ApplierService, ApplicationService, $filter, $q, growl, $mdDialog, AnalyticsService, $location) {
+function ReviewApplyController($scope, SystemConstant, review, applier, application, ApplierService, ApplicationService,
+                               $filter, $q, growl, $mdDialog, AnalyticsService, $location, moment) {
   var self = this;
   self.review = review;
   /*todo: remove this transform to service*/
@@ -40,6 +42,11 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
 
   self.next = false;
 
+  var now = moment();
+  var endTime = moment(review.applicationEndDate);
+  console.log(endTime.diff(now, 'seconds'))
+
+  self.expired = endTime.diff(now, 'seconds') >= 1?false: true;
 
   if (self.application.id) {
     var answer = JSON.parse(application.answer);
