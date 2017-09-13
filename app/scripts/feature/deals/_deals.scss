@@ -129,7 +129,7 @@
   &__min-height{
     min-height: 100px;
     @include xb-xs-screen{
-      min-height: 80px;
+      min-height: 50px;
     }
   }
   &__img-bg{
