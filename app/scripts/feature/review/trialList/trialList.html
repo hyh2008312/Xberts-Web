@@ -13,7 +13,7 @@
     <a class="md-subhead md-dark-primary" ui-sref="application.testingcampaign({ reviewId:review.id })"
        hide-gt-xs>{{review.title }}</a>
     <div class="xb-trials-list__header md-dark-secondary" layout="row" layout-align="start center">
-      <avatar-img ng-repeat="reviewer in review.appliers track by $index" src="reviewer.reviewer.userprofile.avatar"
+      <avatar-img ng-repeat="reviewer in review.appliers track by $index" src="reviewer.reviewer.avatar"
         name="reviewer.reviewer.firstName + ' ' + reviewer.reviewer.lastName "
         ui-sref="application.expert({ expertId:reviewer.reviewer.id})"></avatar-img>
       {{ review.applicantCount > 0 ? review.applicantCount + ' applicants': review.applicantCount + ' applicant'}}</div>
