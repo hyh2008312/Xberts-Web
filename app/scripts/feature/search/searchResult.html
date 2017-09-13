@@ -2,7 +2,10 @@
 
   <md-tab md-on-select="loadAll()">
     <md-tab-label>
-      <div class="xb-search__text-transform">All</div>
+      <div class="xb-search__text-transform" layout="row" layout-align="center center">
+        All
+        <span class="xb-search__color md-caption md-margin-left-1">{{productCount + askCount + articlesCount}}</span>
+      </div>
     </md-tab-label>
     <md-tab-body>
       <div class="xb-title xb-search__margin-left" layout="row" layout-align="start center" ng-if="productCount > 0 || askCount > 0 || articlesCount > 0">
@@ -52,7 +55,10 @@
 
   <md-tab md-on-select="loadDiscover()">
     <md-tab-label>
-      <div class="xb-search__text-transform">Deals</div>
+      <div class="xb-search__text-transform" layout="row" layout-align="center center">
+        Deals
+        <span class="md-caption xb-search__color md-margin-left-1">{{productCount}}</span>
+      </div>
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-top-2 xb-search__list-bg" infinite-scroll="productsPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
@@ -71,7 +77,10 @@
 
   <md-tab md-on-select="loadAsk()">
     <md-tab-label>
-      <div class="xb-search__text-transform">Questions</div>
+      <div class="xb-search__text-transform" layout="row" layout-align="center center">
+        Questions
+        <span class="md-caption xb-search__color md-margin-left-1">{{askCount}}</span>
+      </div>
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-top-2" infinite-scroll="askPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
@@ -89,7 +98,10 @@
 
   <md-tab md-on-select="loadArticles()" >
     <md-tab-label>
-      <div class="xb-search__text-transform">Articles</div>
+      <div class="xb-search__text-transform" layout="row" layout-align="center center">
+        Articles
+        <span class="md-caption xb-search__color md-margin-left-1">{{articlesCount}}</span>
+      </div>
     </md-tab-label>
     <md-tab-body>
       <div class="md-margin-top-2" infinite-scroll="articlesPaginatorLoad()" infinite-scroll-container='".xb-body-view "' infinite-scroll-distance='0'
