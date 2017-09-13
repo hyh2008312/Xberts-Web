@@ -61,7 +61,7 @@
         </div>
 
         <div>
-          <p class="md-title">Questionnaire</p>
+          <p class="md-title" ng-if="apply.review.surveys.length > 0">Questionnaire</p>
           <div layout="column">
             <div ng-repeat="survey in apply.review.surveys">
               <question-input ng-repeat="question in survey.questions" question="question"
