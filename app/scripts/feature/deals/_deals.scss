@@ -419,6 +419,9 @@
 }
 
 .xb-deals-detail{
+  &__margin-bottom{
+    margin-bottom: 56px;
+  }
   &__bg{
     position: relative;
     padding-top: 28px;

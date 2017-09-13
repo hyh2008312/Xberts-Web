@@ -66,7 +66,7 @@
     </div>
   </div>
 </div>
-<div class="xb-deals-detail__bg">
+<div class="xb-deals-detail__bg" ng-class="{'xb-deals-detail__margin-bottom':isPopupOpen}">
   <div class="container">
     <div class="xb-deals-detail__title md-subhead" ng-if="productsPaginator!=null && productsPaginator.length>0">YOU MAY ALSO LIKE</div>
     <deals-list deals="productsPaginator"></deals-list>
