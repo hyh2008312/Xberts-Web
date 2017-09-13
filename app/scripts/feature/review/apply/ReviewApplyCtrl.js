@@ -44,7 +44,6 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
 
   var now = moment();
   var endTime = moment(review.applicationEndDate);
-  console.log(endTime.diff(now, 'seconds'))
 
   self.expired = endTime.diff(now, 'seconds') >= 1?false: true;
 
