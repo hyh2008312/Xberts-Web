@@ -61,19 +61,20 @@ angular.module('xbertsApp')
           }
         };
 
-        if(!scope.isScroll) {
-          angular.element($window).on('resize', resizeBody);
-        } else {
-          angular.element($window).off('resize', resizeBody);
-        }
+        var resizeIfScroll = function() {
+          if(!scope.isScroll) {
+            angular.element($window).on('resize', resizeBody);
+          } else {
+            angular.element($window).off('resize', resizeBody);
+          }
 
-        resizeBody();
+          resizeBody();
+        };
+
+        resizeIfScroll();
 
         scope.$watch('isScroll', function() {
-          if(scope.isScroll) {
-            angular.element($window).off('resize', resizeBody);
-            resizeBody();
-          }
+          resizeIfScroll();
         })
       }
     };
