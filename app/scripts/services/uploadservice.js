@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .service('UploadService', ['$q', '$rootScope', 'UploadAws', 'FileUtil', 'Asset', 'ProgressBarModal','$mdDialog',
-    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal,$mdDialog) {
+    'SystemConstant','systemImageSizeService',
+    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal, $mdDialog, SystemConstant, systemImageSizeService) {
       this.uploadFile = function (file, domain, scope) {
 
         scope.progress = 0;
@@ -18,6 +19,13 @@ angular.module('xbertsApp')
         var uploadPromise = UploadAws.uploadMedia(file, type + '_' + domain)
           .then(function (response) {
             var url = decodeURIComponent(response.headers('Location'));
+
+            console.log(url)
+            if(SystemConstant.IMAGE_UPLOAD_TYPE[domain]) {
+
+              return systemImageSizeService.setImageUrl(url,domain);
+            }
+
             if (type === 'VIDEO') {
               return Asset.createVideoAsset(url, domain);
             } else {

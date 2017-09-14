@@ -42,7 +42,9 @@ angular.module('xbertsApp')
       }
       if ($file) {
         UploadService.uploadFile($file, 'BLOG_COVER', $scope)
-          .then(coverSuccessCallback, errorCallback);
+          .then(function(data) {
+            coverSuccessCallback(data)
+          }, errorCallback);
       }
     };
 
@@ -107,16 +109,15 @@ angular.module('xbertsApp')
     };
 
 
-    var insertImage = function (src, id, url) {
+    var insertImage = function (src) {
+      console.log(src)
       setCurrentRange($scope.previousRange);
 
       src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
       id = id || 1;
 
       var img = document.createElement('img');
-      img.setAttribute('data-image-id', id);
       img.setAttribute('src', src);
-      img.setAttribute('url',url);
       var div = document.createElement('div');
       div.appendChild(img);
       div.setAttribute('class', 'xb-answer-img-bg');
@@ -140,7 +141,7 @@ angular.module('xbertsApp')
     };
 
     var imageSuccessCallback = function (data) {
-      insertImage(data.imageUrl, data.id, data.url);
+      insertImage(data.imageUrl);
     };
 
     var errorCallbackNew = function (error) {
