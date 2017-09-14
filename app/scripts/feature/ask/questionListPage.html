@@ -1,5 +1,5 @@
 <div ng-if="!isPopupOpen">
-  <section class="xb-section xb-ask-bg" xb-max-height-scroll del-height="56">
+  <section class="xb-section xb-ask-bg" xb-max-height-scroll del-height="56" is-scroll="isScroll">
     <div class="container">
       <div class="xb-ask-title" layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-xs="column"
            layout-align-xs="start start">
@@ -14,7 +14,7 @@
       <div layout="row" layout-align="start">
         <div flex>
           <question-order ask-ctrl="askCtrl" index="askCtrl.order"></question-order>
-          <div infinite-scroll="askCtrl.askPaginator.loadNext()" infinite-scroll-container='".xb-ask-bg"'
+          <div infinite-scroll="askCtrl.loadNext()" infinite-scroll-container='".xb-ask-bg"'
                infinite-scroll-distance='0'
                infinite-scroll-disabled="askCtrl.askPaginator.loading || !askCtrl.askPaginator.next">
             <question-item layout="column" ng-if="askCtrl.order == 0 || askCtrl.order == 2" products="askCtrl.askPaginator.items"

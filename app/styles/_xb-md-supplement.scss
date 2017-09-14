@@ -247,6 +247,10 @@ p,.md-body-1 {
   -webkit-overflow-scrolling: auto;
 }
 
+.xb-overflow-y-scroll{
+  overflow-y: scroll !important;
+}
+
 .xb-overflow-hidden{
   height: auto;
   overflow: hidden !important;

@@ -18,6 +18,11 @@ angular.module('xbertsApp')
     dealsCtrl.tabs = $stateParams.tab;
 
     $scope.selectedIndex = 0;
+    $scope.changeScroll = function(scroll) {
+      $scope.isScroll = scroll;
+      $rootScope.isScroll = !$scope.isScroll;
+    };
+    $scope.changeScroll(true);
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
 
     $rootScope.$on('$stateChangeSuccess', function() {
@@ -34,6 +39,8 @@ angular.module('xbertsApp')
 
       if($scope.selectedIndex == -1) {
         $scope.selectedIndex = 0;
+        $scope.changeScroll(true);
+
         var categoryId = dealsCtrl.categories[$scope.selectedIndex].id;
         DealsFactory.categoryItem = dealsCtrl.categories[$scope.selectedIndex].value;
         $rootScope.dealsFactory.categoryItem = DealsFactory.categoryItem;
@@ -73,6 +80,8 @@ angular.module('xbertsApp')
       dealsCtrl.discountId = DealsService.discountId;
 
       if($scope.selectedIndex == 0) {
+        $scope.changeScroll(true);
+
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
         dealsCtrl.productsPaginator = DealsService.getCategory();
         dealsCtrl.mainLoaded = false;
@@ -89,6 +98,7 @@ angular.module('xbertsApp')
         }
 
       } else {
+        $scope.changeScroll(false);
 
         var par = {
           name: 'deals_product_list',
@@ -113,7 +123,27 @@ angular.module('xbertsApp')
 
         DealsFactory.updateUrl($scope,dealsCtrl.categories);
         dealsCtrl.productsPaginator = new Paginator(par);
-        dealsCtrl.productsPaginator.load();
+        dealsCtrl.productsPaginator.load().then(dealsCtrl.loadFinished);
+
+      }
+    };
+
+    dealsCtrl.loadNext = function() {
+      dealsCtrl.productsPaginator.loadNext().then(dealsCtrl.loadFinished);
+    };
+
+    dealsCtrl.loadFinished = function(data) {
+      if(!data.next && !data.loading) {
+        var scrollTop =  document.getElementsByClassName('xb-deals-bg')[0].scrollTop;
+
+        $scope.changeScroll(true);
+
+        $scope.$watch('$viewContentLoaded', function() {
+          angular.element('.xb-body-view').animate({
+            scrollTop: scrollTop
+          },10);
+        });
+
       }
     };
 

@@ -1,5 +1,5 @@
 <div ng-if="!isPopupOpen">
-  <div class="xb-deals-bg" xb-max-height-scroll del-height="56" >
+  <div class="xb-deals-bg" xb-max-height-scroll del-height="56" is-scroll="isScroll">
     <div class="background-whitem">
       <div class="container">
         <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start"
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="container">
-          <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
+          <div ng-if="dealsCtrl.categoryId != null || dealsCtrl.sortId != null" infinite-scroll="dealsCtrl.loadNext()"
                infinite-scroll-container='".xb-deals-bg"' infinite-scroll-distance='0'
                infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex layout="column">
             <deals-list deals="dealsCtrl.productsPaginator.items" open-pop="dealsCtrl.openPop(dealsId)"

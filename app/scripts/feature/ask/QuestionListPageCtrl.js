@@ -8,6 +8,11 @@ angular.module('xbertsApp')
     askCtrl.topReviewers = topReviewers;
     askCtrl.order = AskService.order;
     askCtrl.sort = AskService.getSort();
+    $scope.changeScroll = function(scroll) {
+      $scope.isScroll = scroll;
+      $rootScope.isScroll = !$scope.isScroll;
+    };
+    $scope.changeScroll(false);
 
     askCtrl.selectedIndex = 0;
     askCtrl.changeSort = function(sort) {
@@ -59,6 +64,7 @@ angular.module('xbertsApp')
     };
 
     askCtrl.changeOrder = function(order) {
+      $scope.changeScroll(false);
       AskService.order = order;
       askCtrl.order = AskService.order;
       switch (askCtrl.order) {
@@ -74,7 +80,7 @@ angular.module('xbertsApp')
           };
           askCtrl.askPaginator = new Paginator(par);
           askCtrl.askPaginator.clear();
-          askCtrl.askPaginator.load();
+          askCtrl.askPaginator.load().then(askCtrl.loadFinished);
           break;
         case 1:
           var par = {
@@ -89,7 +95,7 @@ angular.module('xbertsApp')
           };
           askCtrl.askPaginator = new Paginator(par);
           askCtrl.askPaginator.clear();
-          askCtrl.askPaginator.load();
+          askCtrl.askPaginator.load().then(askCtrl.loadFinished);
           break;
         case 2:
           var par = {
@@ -102,7 +108,7 @@ angular.module('xbertsApp')
           };
           askCtrl.askPaginator = new Paginator(par);
           askCtrl.askPaginator.clear();
-          askCtrl.askPaginator.load();
+          askCtrl.askPaginator.load().then(askCtrl.loadFinished);
           break;
         case 3:
           var par = {
@@ -115,8 +121,27 @@ angular.module('xbertsApp')
           };
           askCtrl.askPaginator = new Paginator(par);
           askCtrl.askPaginator.clear();
-          askCtrl.askPaginator.load();
+          askCtrl.askPaginator.load().then(askCtrl.loadFinished);
           break;
+      }
+    };
+
+    askCtrl.loadNext = function() {
+      askCtrl.askPaginator.loadNext().then(askCtrl.loadFinished);
+    };
+
+    askCtrl.loadFinished = function(data) {
+      if(!data.next && !data.loading) {
+        var scrollTop =  document.getElementsByClassName('xb-ask-bg')[0].scrollTop;
+
+        $scope.changeScroll(true);
+
+        $scope.$watch('$viewContentLoaded', function() {
+          angular.element('.xb-body-view').animate({
+            scrollTop: scrollTop
+          },10);
+        });
+
       }
     };
 

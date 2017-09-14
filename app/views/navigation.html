@@ -126,9 +126,9 @@
 <verification ng-if="user.isAuth() && user.getInvited() && !user.getEmailVerification() && user.getUserEmail()"></verification>
 <md-content ng-class="pageSettings._backgroundColor + {true:' xb-ios-scroll-fixed',false:''}[
     state.current.name == 'application.productDeals' && isIos && dealsTab == 'everything'] +
+    {true:' xb-overflow-y-scroll',false:''}[state.current.name == 'application.productDeals' ] +
     {true:' xb-overflow-hidden',false:''}[showToobar] +
-    {true:' xb-overflow-hidden',false:''}[state.current.name == 'application.askQuestionMain'
-    || (state.current.name == 'application.productDeals' && dealsFactory.categoryItem != 'everything')]"
+    {true:' xb-overflow-hidden',false:''}[isScroll]"
             class="xb-body-view" md-scroll-y flex layout="column">
   <div class="xb-inner-body" ng-class="{true:'xb-footer-padding',false:''}[state.current.name == 'application.shareProductDetail' || state.current.name == 'application.report'
     || state.current.name == 'application.testingcampaign' || state.current.name == 'application.testingcampaign'
