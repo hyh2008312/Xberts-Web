@@ -325,6 +325,14 @@ angular.module('xbertsApp')
         scope.$on('$destory', function() {
           angular.element('.xb-body-view').off('scroll');
         });
+
+        scope.skip = function(product) {
+          if(!$rootScope.user.authRequired()) {
+            return;
+          }
+          product.skipped = !product.skipped;
+          AskService.setSkip(product).then(function(data) {});
+        };
       }
     }
   }]);

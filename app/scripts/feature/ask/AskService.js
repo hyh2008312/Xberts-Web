@@ -15,6 +15,7 @@ angular.module('xbertsApp')
     var FollowerResource = $resource(API_BASE_URL + '/questions/followed/', null);
     var PopularResource = $resource(API_BASE_URL + '/questions/popular/');
     var PendingResource = $resource(API_BASE_URL + '/questions/pending/');
+    var SkipResource = $resource(API_BASE_URL + '/questions/skipped/');
 
     this.order = 0;
 
@@ -87,6 +88,14 @@ angular.module('xbertsApp')
 
     this.report = function(params) {
       return $resource(API_BASE_URL + '/answers/'+params.id+'/report/').save(params).$promise;
+    };
+
+    this.getSkipList = function(params) {
+      return SkipResource.get(params).$promise.then(AskModel.buildPageList);
+    };
+
+    this.setSkip = function(params) {
+      return $resource(API_BASE_URL + '/questions/:id/mark_skipped/',{id:'@id'}).save(params).$promise;
     };
 
     this.getSort = function() {

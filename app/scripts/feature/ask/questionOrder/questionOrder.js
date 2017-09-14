@@ -9,7 +9,7 @@ angular.module('xbertsApp')
       },
       templateUrl: 'scripts/feature/ask/questionOrder/question-order.html',
       link: function (scope, element, attrs, ctrls) {
-        scope.orderList = ['latest','need help','popular','pending'];
+        scope.orderList = ['latest','need help','popular','pending', 'skip'];
         if(scope.mainPage) {
           scope.orderList = ['latest'];
         }

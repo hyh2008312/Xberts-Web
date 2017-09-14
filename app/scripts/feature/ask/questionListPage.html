@@ -21,7 +21,8 @@
                            open-pop="askCtrl.openPop(questionId)"></question-item>
             <question-item layout="column" ng-if="askCtrl.order == 1" products="askCtrl.askPaginator.items" hide-answer="true"
                            open-pop="askCtrl.openPop(questionId)"></question-item>
-            <question-item layout="column" ng-if="askCtrl.order == 3" products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
+            <question-item layout="column" ng-if="askCtrl.order == 3 || askCtrl.order == 4"
+                           products="askCtrl.askPaginator.items" hide-answer="true" admin="true"
                            open-pop="askCtrl.openPop(questionId)"></question-item>
             <load-ask-more layout="column" class="xb-border" ng-if="askCtrl.askPaginator.loading"></load-ask-more>
           </div>

@@ -123,6 +123,19 @@ angular.module('xbertsApp')
           askCtrl.askPaginator.clear();
           askCtrl.askPaginator.load().then(askCtrl.loadFinished);
           break;
+        case 4:
+          var par = {
+            name: 'ask_questions_list_skip',
+            objClass: AskModel,
+            params: {
+              page_size: 12
+            },
+            fetchFunction: AskService.getSkipList
+          };
+          askCtrl.askPaginator = new Paginator(par);
+          askCtrl.askPaginator.clear();
+          askCtrl.askPaginator.load().then(askCtrl.loadFinished);
+          break;
       }
     };
 

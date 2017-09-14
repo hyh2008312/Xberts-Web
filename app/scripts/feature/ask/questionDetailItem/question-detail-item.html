@@ -20,7 +20,8 @@
       <span class="md-dark-secondary" ng-if="product.currentUser.follow" >&nbsp;{{product.followeeCount > 0? product.followeeCount:''}}</span>
     </div>
     <div ng-if="user.isStaff() && admin">
-      <md-button class="md-primary md-raised" >skip</md-button>
+      <md-button class="md-primary md-raised" ng-if="product.skipped" ng-click="skip(product);">cancel skip</md-button>
+      <md-button class="md-primary md-raised" ng-if="!product.skipped" ng-click="skip(product);">skip</md-button>
     </div>
     <div layout="row" layout-align="start center" hide-gt-xs>
       <md-icon md-font-set="material-icons md-dark-third" ng-click="showListBottomSheet()"> share </md-icon>
