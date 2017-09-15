@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     function ($http,$sce,SystemConstant) {
       var self = this;
 
-      var _link = 'http://image.xberts.com/image/upload/done';
+      var _link = 'http://23.239.23.182/image/upload/done'||'https://image.xberts.com/image/upload/done';
       var url = $sce.trustAsResourceUrl(_link);
 
       self.setImageUrl = function (name,domain) {
@@ -14,7 +14,7 @@ angular.module('xbertsApp')
         var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
         var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
         var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
-        var needResize = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+        var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
         var file = name.split(originUrl)[1];
         return $http.get(url,{
           withCredentials: false,
@@ -26,7 +26,7 @@ angular.module('xbertsApp')
           },
           jsonpCallbackParam: 'callback'
         }).then(function(data) {
-          if(needResize) {
+          if(list) {
             return {
               imageUrl: name
             };

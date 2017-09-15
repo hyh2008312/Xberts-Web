@@ -34,12 +34,14 @@ angular.module('xbertsApp')
       params = {};
       params.approval_status = 'approved';
       params.country = $rootScope.country;
+      params.promotion_status = 2;
       return DealsProductHomeResource.get(params).$promise;
     };
 
     this.getDealsList = function(params) {
       params.approval_status = 'approved';
       params.country = $rootScope.country;
+      params.promotion_status = 2;
       return $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{
         'get' : {
           method:'GET',

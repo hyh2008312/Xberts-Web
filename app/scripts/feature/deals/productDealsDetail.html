@@ -1,5 +1,5 @@
 <div class="xb-deals-detail__bg">
-  <md-button class="md-icon-button" ng-if="isPopupOpen" ui-sref="application.productDeals({tab:categoryItem})" hide-xs>
+  <md-button class="md-icon-button" ng-if="isPopupOpen" hide-xs ng-click="close()">
     <md-icon md-font-set="material-icons">
       close
     </md-icon>
@@ -59,7 +59,9 @@
             <md-button class="md-primary" ng-click="seeMore()">VIEW MORE</md-button>
           </div>
           <div class="background-whitem" >
-            <other-post-list posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>
+            <other-post-list ng-if="isPopupOpen" posts="postsProductPaginator.items" id="productsDetail.id"
+                             open-pop="openPop(dealsId)" is-deals="true"></other-post-list>
+            <other-post-list ng-if="!isPopupOpen" posts="postsProductPaginator.items" id="productsDetail.id"></other-post-list>
           </div>
         </div>
       </div>
@@ -69,6 +71,7 @@
 <div class="xb-deals-detail__bg" ng-class="{'xb-deals-detail__margin-bottom':isPopupOpen}">
   <div class="container">
     <div class="xb-deals-detail__title md-subhead" ng-if="productsPaginator!=null && productsPaginator.length>0">YOU MAY ALSO LIKE</div>
-    <deals-list deals="productsPaginator"></deals-list>
+    <deals-list deals="productsPaginator" ng-if="isPopupOpen" open-pop="openPop(dealsId)" is-deals="true"></deals-list>
+    <deals-list deals="productsPaginator" ng-if="!isPopupOpen"></deals-list>
   </div>
 </div>

@@ -9,7 +9,7 @@ angular.module('xbertsApp')
 
       $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
       $scope.isPopupOpen = $stateParams.isPopupOpen;
-
+      $rootScope.showToobar = $scope.isPopupOpen;
       $scope.categoryItem = DealsFactory.categoryItem;
 
       $scope.productsDetail = DealsFactory.changeFolloweeList(productsDetail);
@@ -69,6 +69,46 @@ angular.module('xbertsApp')
         { name: "linkedin" },
         { name: "twitter" }
       ];
+
+      $rootScope.$on('$stateChangeStart', function () {
+        if($rootScope.state.current.name == 'application.productDeals.dealsDetail') {
+          if($scope.$parent != null) {
+            $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
+            $scope.$parent.display = true;
+            $scope.isPopupOpen = $stateParams.isPopupOpen;
+          }
+          $rootScope.showToobar = $scope.isPopupOpen;
+
+        }
+      });
+
+      $scope.$watch('$viewContentLoading', function() {
+        if(angular.element('.xb-cover-view').length>0) {
+          angular.element('.xb-cover-view').animate({
+            scrollTop: 0
+          },10);
+        }
+      });
+
+      $scope.close = function() {
+        if($scope.$parent != null) {
+          $scope.$parent.isPopupOpen = false;
+          $scope.$parent.display = false;
+          $scope.isPopupOpen = false;
+        }
+        $rootScope.showToobar = false;
+        $state.go('application.productDeals',{tab:DealsFactory.categoryItem});
+      };
+
+      $scope.openPop = function(dealsId) {
+        if($scope.$parent != null) {
+          $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
+          $scope.$parent.display = true;
+          $scope.isPopupOpen = $stateParams.isPopupOpen;
+        }
+        $rootScope.showToobar = $scope.isPopupOpen;
+        $state.go('application.productDeals.dealsDetail',{dealsId:dealsId, isPopupOpen: true});
+      };
 
       var title = productsDetail.title;
       var description = productsDetail.description;

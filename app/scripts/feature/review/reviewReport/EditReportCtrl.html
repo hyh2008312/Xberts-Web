@@ -34,7 +34,7 @@
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
         </div>
         <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
-          <img ngf-src="file || blog.cover" flex="initial" />
+          <img ngf-src=" blog.getArticlesImage(blog.cover, 'BLOG_COVER') || file" flex="initial" />
           <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
             <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
           </div>

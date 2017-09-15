@@ -27,6 +27,11 @@ angular.module('xbertsApp')
 
     $rootScope.$on('$stateChangeSuccess', function() {
       DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
+      if($rootScope.state.current.name == 'application.productDeals') {
+        $scope.isPopupOpen = false;
+        $scope.display = false;
+        $rootScope.showToobar = $scope.isPopupOpen;
+      }
     });
 
     dealsCtrl.productsPaginator = DealsService.getCategory();

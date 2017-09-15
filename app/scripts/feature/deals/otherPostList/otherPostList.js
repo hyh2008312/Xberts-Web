@@ -4,7 +4,9 @@ angular.module('xbertsApp')
       restrict: 'E',
       scope: {
         posts: '=',
-        id: '='
+        id: '=',
+        openPop: '&',
+        isDeals: '='
       },
       templateUrl: 'scripts/feature/deals/otherPostList/other-post-list.html',
       link: function (scope, element, attrs, ctrls) {

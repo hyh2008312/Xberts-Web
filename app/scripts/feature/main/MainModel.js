@@ -13,6 +13,9 @@ function MainModel($state,SystemConstant) {
       return this.owner;
     },
     getArticlesImage: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
       var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
       var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
       var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
@@ -25,6 +28,9 @@ function MainModel($state,SystemConstant) {
       }
     },
     getBlogsImage: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
       var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
       var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
       var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
