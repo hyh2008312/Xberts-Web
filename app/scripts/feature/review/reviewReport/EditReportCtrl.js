@@ -110,11 +110,9 @@ angular.module('xbertsApp')
 
 
     var insertImage = function (src) {
-      console.log(src)
       setCurrentRange($scope.previousRange);
 
       src = src || 'http://img762.ph.126.net/LLzXH6ArV6ystmyvHmYy3g==/4884435270860289921.jpg';
-      id = id || 1;
 
       var img = document.createElement('img');
       img.setAttribute('src', src);

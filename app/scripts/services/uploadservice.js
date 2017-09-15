@@ -16,13 +16,17 @@ angular.module('xbertsApp')
           type = 'IMAGE';
         }
 
+        progressModel.open({
+          scope: scope
+        }, file.name).catch(function() {
+          $rootScope.$emit('uploadCancel', file);
+        });
+
         var uploadPromise = UploadAws.uploadMedia(file, type + '_' + domain)
           .then(function (response) {
             var url = decodeURIComponent(response.headers('Location'));
 
-            console.log(url)
             if(SystemConstant.IMAGE_UPLOAD_TYPE[domain]) {
-
               return systemImageSizeService.setImageUrl(url,domain);
             }
 
@@ -31,7 +35,12 @@ angular.module('xbertsApp')
             } else {
               return Asset.createImageAsset(url, domain);
             }
-          }, null, function (evt) {
+          }, function(error) {
+            if(error.status == -1) {
+              progressModel.close();
+              return $q.reject(error);
+            }
+          }, function (evt) {
             scope.progress = parseInt(100.0 * evt.loaded / evt.total);
           })
           .then(function (data) {
@@ -42,12 +51,6 @@ angular.module('xbertsApp')
             progressModel.close();
             return $q.reject(error);
           });
-
-        progressModel.open({
-          scope: scope
-        }, file.name).catch(function() {
-          $rootScope.$emit('uploadCancel', file);
-        });
 
         return uploadPromise;
       };

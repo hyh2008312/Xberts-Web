@@ -5,11 +5,8 @@ angular.module('xbertsApp')
     function ($http,$sce,SystemConstant) {
       var self = this;
 
-      var url = $sce.trustAsResourceUrl("http://image.xberts.com/image/upload/done");
-
-      self.getImageUrl = function(name,use,category) {
-        return {};
-      };
+      var _link = 'http://image.xberts.com/image/upload/done';
+      var url = $sce.trustAsResourceUrl(_link);
 
       self.setImageUrl = function (name,domain) {
 
@@ -17,20 +14,30 @@ angular.module('xbertsApp')
         var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
         var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
         var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+        var needResize = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
         var file = name.split(originUrl)[1];
-        return $http.jsonp(url,{params:{
-          name: name,
-          use: use,
-          category: category
-        },jsonpCallbackParam: 'callback'}).then(function(data) {
-
+        return $http.get(url,{
+          withCredentials: false,
+          params:{
+            name: name,
+            use: use,
+            category: category,
+            no_auth: true
+          },
+          jsonpCallbackParam: 'callback'
+        }).then(function(data) {
+          if(needResize) {
+            return {
+              imageUrl: name
+            };
+          }
+          return {
+            imageUrl: SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file
+          };
         }, function(data) {
           return {
-            imageUrl: SystemConstant.IMAGE_BASE_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file
+            status: -1
           };
-          //return {
-          //  status: -1
-          //};
         });
       };
 

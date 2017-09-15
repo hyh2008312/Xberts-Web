@@ -1,8 +1,8 @@
 angular.module('xbertsApp')
-  .factory('MainModel', ['$state',MainModel]);
+  .factory('MainModel', ['$state','SystemConstant',MainModel]);
 
 
-function MainModel($state) {
+function MainModel($state,SystemConstant) {
 
   function MainModel(data) {
     angular.extend(this, data);
@@ -11,6 +11,30 @@ function MainModel($state) {
   MainModel.prototype = {
     getOwner: function () {
       return this.owner;
+    },
+    getArticlesImage: function(url, domain) {
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var file = url.split(originUrl)[1];
+      if(file != null) {
+        return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+      } else {
+        return url;
+      }
+    },
+    getBlogsImage: function(url, domain) {
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var file = url.split(originUrl)[1];
+      if(file != null) {
+        return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
+      } else {
+        return url;
+      }
     },
     getOwnerPosition: function() {
       if(this.owner.position && this.owner.company) {

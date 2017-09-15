@@ -393,6 +393,8 @@ angular.module('xbertsApp')
 
     var IMAGE_BASE_URL = 'https://xbertsmedia.s3.amazonaws.com';
 
+    var IMAGE_ACCESS_URL = 'https://media.xberts.com';
+
     var systemConstant = {};
     systemConstant.COUNTRIES = COUNTRIES;
     systemConstant.CURRENCY = CURRENCY;
@@ -408,6 +410,7 @@ angular.module('xbertsApp')
     systemConstant.PRODUCT_STAGE = PRODUCT_STAGE;
     systemConstant.IMAGE_UPLOAD_TYPE = IMAGE_UPLOAD_TYPE;
     systemConstant.IMAGE_BASE_URL = IMAGE_BASE_URL;
+    systemConstant.IMAGE_ACCESS_URL = IMAGE_ACCESS_URL;
 
     return systemConstant;
   });

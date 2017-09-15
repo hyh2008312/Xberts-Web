@@ -3,7 +3,7 @@
   <div class="xb-my-posts__bg"
      ui-sref="application.blogReport({blogId:post.id})">
     <div>
-      <img src="{{post.cover}}" />
+      <img src="{{post.getArticlesImage(post.cover, 'BLOG_COVER')}}" />
     </div>
   </div>
   <div flex layout="column" layout-align="space-between">

@@ -3,9 +3,9 @@
 angular.module('xbertsApp')
   .controller('ExpertCtrl', ['$scope', '$rootScope', '$location', '$state', '$stateParams', '$uibModal', 'Paginator','ReviewService',
     'Interact', 'expert', 'ApplicationService', 'Sales', 'SystemConstant', 'ProductDeals','ExpertService',
-    'AskModel','localStorageService','achievement',
+    'AskModel','MainModel','localStorageService','achievement',
     function ($scope, $rootScope, $location, $state, $stateParams, $uibModal, Paginator, ReviewService, Interact, expert,
-              ApplicationService, Sales, SystemConstant, ProductDeals, ExpertService,AskModel,
+              ApplicationService, Sales, SystemConstant, ProductDeals, ExpertService,AskModel,MainModel,
               localStorageService,achievement) {
       $rootScope.pageSettings.setBackgroundColor('background-bg-light');
       $scope.expert = expert;
@@ -126,6 +126,7 @@ angular.module('xbertsApp')
 
       var parArticles = {
         name: 'articles_' + $scope.expert.userId,
+        objClass: MainModel,
         params: {
           id: $scope.expert.userId,
           page_size: 12

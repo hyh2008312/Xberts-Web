@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .factory('SearchModel',['$state','urlParser','$sce',SearchModel]);
-function SearchModel($state,urlParser,$sce) {
+  .factory('SearchModel',['$state','urlParser','$sce','SystemConstant',SearchModel]);
+function SearchModel($state,urlParser,$sce,SystemConstant) {
 
   function SearchModel(data) {
     angular.extend(this, data);
@@ -9,6 +9,18 @@ function SearchModel($state,urlParser,$sce) {
   SearchModel.prototype = {
     getImageUrl: function() {
       return this.imageGroup[0].imageUrls != null ? this.imageGroup[0].imageUrls.original:this.imageUrl;
+    },
+    getArticlesImage: function(url, domain) {
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var file = url.split(originUrl)[1];
+      if(file != null) {
+        return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+      } else {
+        return url;
+      }
     },
     getVideo: function() {
       var baseUrl = null, baseKey = null;
@@ -35,7 +47,7 @@ function SearchModel($state,urlParser,$sce) {
       return this.latestAnswer.owner.id;
     },
     getLatestUserAvatar: function () {
-      return this.latestAnswer.owner.userprofile.avatar || false;
+      return this.latestAnswer.owner.avatar || false;
     },
     getLatestUserName: function () {
       return this.latestAnswer.owner.firstName;
