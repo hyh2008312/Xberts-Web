@@ -88,6 +88,13 @@ angular.module('xbertsApp')
             scrollTop: 0
           },10);
         }
+        if(!$rootScope.showToobar) {
+          if(angular.element('.xb-body-view').length>0) {
+            angular.element('.xb-body-view').animate({
+              scrollTop: 0
+            },10);
+          }
+        }
       });
 
       $scope.close = function() {
