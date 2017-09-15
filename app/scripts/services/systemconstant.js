@@ -375,6 +375,26 @@ angular.module('xbertsApp')
       {code: '4', name: 'Prototype'}
     ];
 
+    var IMAGE_UPLOAD_TYPE = {
+      'BLOG_COVER':{
+        'category': 'blog',
+        'use': 'cover',
+        'originUrl':'image/blog/cover/',
+        'list': 'xy',
+        'detail': 'co'
+      },
+      "BLOG_DETAILS": {
+        'category': 'blog',
+        'use': 'details',
+        'originUrl':'image/blog/details/',
+        'detail': 'mo'
+      }
+    };
+
+    var IMAGE_BASE_URL = 'https://xbertsmedia.s3.amazonaws.com';
+
+    var IMAGE_ACCESS_URL = 'https://media.xberts.com';
+
     var systemConstant = {};
     systemConstant.COUNTRIES = COUNTRIES;
     systemConstant.CURRENCY = CURRENCY;
@@ -388,6 +408,9 @@ angular.module('xbertsApp')
     systemConstant.OTHER_CONNECTION = OTHER_CONNECTION;
     systemConstant.ROLES = ROLES;
     systemConstant.PRODUCT_STAGE = PRODUCT_STAGE;
+    systemConstant.IMAGE_UPLOAD_TYPE = IMAGE_UPLOAD_TYPE;
+    systemConstant.IMAGE_BASE_URL = IMAGE_BASE_URL;
+    systemConstant.IMAGE_ACCESS_URL = IMAGE_ACCESS_URL;
 
     return systemConstant;
   });

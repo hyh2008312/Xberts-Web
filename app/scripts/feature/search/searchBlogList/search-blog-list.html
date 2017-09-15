@@ -5,7 +5,7 @@
   </a>
   <a class="xb-search__list-img-bg-1" flex="none" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img src="{{review.cover}}">
+    <img src="{{review.getArticlesImage(review.cover, 'BLOG_COVER')}}">
   </a>
   <div class="xb-search__list-content-1" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.report"
@@ -40,7 +40,7 @@
   </a>
   <a class="xb-search__list-img-bg-1" flex="none" ng-if="review.blog"
      ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
-    <img src="{{review.cover}}">
+    <img src="{{review.getArticlesImage(review.cover, 'BLOG_COVER')}}">
   </a>
   <div class="xb-search__list-content-1" layout="column" flex>
     <a class="xb-search__list-title md-headline md-dark-primary" ng-if="review.report"

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'API_BASE_URL',
-    function ($resource, $rootScope, Upload, API_BASE_URL) {
+  .service('UploadAws', ['$resource', '$rootScope', 'Upload', 'API_BASE_URL','$mdDialog','$q',
+    function ($resource, $rootScope, Upload, API_BASE_URL,$mdDialog,$q) {
       this.generatePolicy = function (type, file) {
         return $resource(API_BASE_URL + '/aws/s3policy/', null, {
           generate: {
@@ -47,6 +47,30 @@ angular.module('xbertsApp')
 
       this.uploadMedia = function (file, type) {
         var self = this;
+        if(file.type != 'image/jpg' && file.type != 'image/png' && file.type != 'image/jpeg' && file.type != 'image/gif') {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .parent(angular.element(angular.element(document.body)))
+              .clickOutsideToClose(true)
+              .disableParentScroll(true)
+              .textContent("Please check the picture format. It only supports JPEG, PNG or GIF format.")
+              .ariaLabel('Alert Dialog')
+              .ok('Ok')
+          );
+          return $q.reject({status: -1});
+        }
+        if(file.size > 4194304) {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .parent(angular.element(angular.element(document.body)))
+              .clickOutsideToClose(true)
+              .disableParentScroll(true)
+              .textContent("Please check the file size. The maximum file size is 4MB.")
+              .ariaLabel('Alert Dialog')
+              .ok('Ok')
+          );
+          return $q.reject({status: -1});
+        }
         return this.generatePolicy(type, file)
           .then(function (value) {
             value.$promise = undefined;

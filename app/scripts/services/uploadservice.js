@@ -2,7 +2,8 @@
 
 angular.module('xbertsApp')
   .service('UploadService', ['$q', '$rootScope', 'UploadAws', 'FileUtil', 'Asset', 'ProgressBarModal','$mdDialog',
-    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal,$mdDialog) {
+    'SystemConstant','systemImageSizeService',
+    function ($q, $rootScope, UploadAws, FileUtil, Asset, ProgressBarModal, $mdDialog, SystemConstant, systemImageSizeService) {
       this.uploadFile = function (file, domain, scope) {
 
         scope.progress = 0;
@@ -15,15 +16,31 @@ angular.module('xbertsApp')
           type = 'IMAGE';
         }
 
+        progressModel.open({
+          scope: scope
+        }, file.name).catch(function() {
+          $rootScope.$emit('uploadCancel', file);
+        });
+
         var uploadPromise = UploadAws.uploadMedia(file, type + '_' + domain)
           .then(function (response) {
             var url = decodeURIComponent(response.headers('Location'));
+
+            if(SystemConstant.IMAGE_UPLOAD_TYPE[domain]) {
+              return systemImageSizeService.setImageUrl(url,domain);
+            }
+
             if (type === 'VIDEO') {
               return Asset.createVideoAsset(url, domain);
             } else {
               return Asset.createImageAsset(url, domain);
             }
-          }, null, function (evt) {
+          }, function(error) {
+            if(error.status == -1) {
+              progressModel.close();
+              return $q.reject(error);
+            }
+          }, function (evt) {
             scope.progress = parseInt(100.0 * evt.loaded / evt.total);
           })
           .then(function (data) {
@@ -34,12 +51,6 @@ angular.module('xbertsApp')
             progressModel.close();
             return $q.reject(error);
           });
-
-        progressModel.open({
-          scope: scope
-        }, file.name).catch(function() {
-          $rootScope.$emit('uploadCancel', file);
-        });
 
         return uploadPromise;
       };
