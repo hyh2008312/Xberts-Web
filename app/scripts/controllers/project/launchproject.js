@@ -39,7 +39,6 @@ angular.module('xbertsApp')
           Project.getById($scope.projectData.id).then(
             function (result) {
               $scope.$emit('backdropOff', 'project get completed');
-              console.log(result);
               $scope.projectData = result;
               // $scope.projectTemp.tags = Utils.parseCommaStringForTagInput(result.certification_tags);
               $scope.projectTemp.project_category = result.categories[0].id;
@@ -80,7 +79,6 @@ angular.module('xbertsApp')
               })
             } else {
               $scope.projectData.$save(function (data) {
-                console.log(data);
                 $scope.$emit('backdropOff', 'success');
                 if ($state.is('^.basic')) {
                   $scope.tags[1].disabled = false;
@@ -239,7 +237,6 @@ angular.module('xbertsApp')
 
       $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
-        console.log('kk');
 
         if (!$scope.transitionListen || $scope.projectForm.submitted) return;
 

@@ -5,7 +5,6 @@ angular.module('xbertsApp')
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        console.log('preload');
         if(!element.hasClass('pre-loading')){
           element.addClass('pre-loading');
         }

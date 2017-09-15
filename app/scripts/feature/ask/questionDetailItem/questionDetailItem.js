@@ -109,7 +109,6 @@ angular.module('xbertsApp')
             };
             var _par = new Paginator(par).load();
             _par.then(function(data) {
-                console.log(data);
               scope.answers = data.items;
               if(scope.answers.length > 0) {
                 showConfirm();

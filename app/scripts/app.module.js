@@ -41,7 +41,6 @@ angular.element(document).ready(function () {
     if (token.expire_date - new Date().getTime() < 600 * 1000) {
       //todo: refresh token
       Cookies.remove('oauthtoken');
-      console.log('remove oauthtoken');
     }
   }
   angular.bootstrap(document, ['xbertsApp']);
