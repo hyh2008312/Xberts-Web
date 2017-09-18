@@ -5,7 +5,7 @@ angular.module('xbertsApp')
     function ($http,$sce,SystemConstant) {
       var self = this;
 
-      var _link = 'http://23.239.23.182/image/upload/done'||'https://image.xberts.com/image/upload/done';
+      var _link = 'https://image.xberts.com/image/upload/done';
       var url = $sce.trustAsResourceUrl(_link);
 
       self.setImageUrl = function (name,domain) {
