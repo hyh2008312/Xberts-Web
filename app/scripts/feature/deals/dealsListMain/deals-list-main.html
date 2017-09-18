@@ -105,15 +105,15 @@
       </a>
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-xs
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs
          ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
          ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>
@@ -242,15 +242,15 @@
       </a>
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-xs
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs
          ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
          ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
          ng-click="openMobileDialog(item.id);">
         {{item.title}}
       </a>

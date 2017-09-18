@@ -20,9 +20,15 @@ function MainModel($state,SystemConstant) {
       var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
       var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
       var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
-      var file = url.split(originUrl)[1];
-      if(file != null) {
-        return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_BASE_URL + domainFile;
+        }
       } else {
         return url;
       }
@@ -35,9 +41,13 @@ function MainModel($state,SystemConstant) {
       var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
       var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
       var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
-      var file = url.split(originUrl)[1];
-      if(file != null) {
-        return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_BASE_URL + domainFile;
+        }
       } else {
         return url;
       }

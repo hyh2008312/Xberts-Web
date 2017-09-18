@@ -46,6 +46,7 @@ angular.module('xbertsApp')
       };
 
       this.uploadMedia = function (file, type) {
+        console.log(file)
         var self = this;
         if(file.type != 'image/jpg' && file.type != 'image/png' && file.type != 'image/jpeg' && file.type != 'image/gif') {
           $mdDialog.show(

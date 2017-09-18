@@ -177,9 +177,9 @@
     }
   }
   &__content-1{
-    height: 140px;
+    height: 160px;
     @include xb-xs-screen{
-      height: 129px;
+      height: 140px;
     }
   }
   &__tag{
@@ -325,6 +325,11 @@
   }
   &__fixed-height{
     height: 20px;
+    overflow: hidden;
+    white-space: normal;
+  }
+  &__fixed-height-1{
+    height: 40px;
     overflow: hidden;
     white-space: normal;
   }
