@@ -23,6 +23,7 @@ angular.module('xbertsApp')
       $scope.showMask = false;
       $scope.imgLoaded = false;
       $scope.blog.cover = null;
+      $scope.editOrNot = false;
     };
 
     var coverSuccessCallback = function (data) {

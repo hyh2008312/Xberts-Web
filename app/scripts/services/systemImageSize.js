@@ -52,7 +52,7 @@ angular.module('xbertsApp')
         for(var i = 0; i < binary.length; i++) {
           array.push(binary.charCodeAt(i));
         }
-        var file = new File([new Uint8Array(array)], name, {type: mimeString});
+        var file = new File([new Uint8Array(array)], $file.name, {type: mimeString});
         var URL = window.URL || window.webkitURL;
         var url = URL.createObjectURL(file);
         file.$ngfBlobUrl = url;
