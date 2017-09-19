@@ -2,8 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('EditReportCtrl', ['$rootScope', '$scope','UploadService', 'ReviewService', '$state',
-    'localStorageService','$mdMedia','$mdDialog','$filter',
-    function ($rootScope, $scope, UploadService, ReviewService, $state, localStorageService,$mdMedia,$mdDialog,$filter) {
+    'localStorageService','$mdMedia','$mdDialog','$filter','systemImageSizeService',
+    function ($rootScope, $scope, UploadService, ReviewService, $state, localStorageService,$mdMedia,$mdDialog,$filter,
+              systemImageSizeService) {
 
     $scope.blog = {};
     $scope.disabled = false;
@@ -26,7 +27,6 @@ angular.module('xbertsApp')
 
     var coverSuccessCallback = function (data) {
       $scope.showMask = false;
-      $scope.imgLoaded = true;
       $scope.blog.cover = data.data.imageUrl;
     };
     var errorCallback = function (error) {
@@ -40,15 +40,8 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      if ($file) {
-        UploadService.uploadFile($file, 'BLOG_COVER', $scope)
-          .then(function(data) {
-            coverSuccessCallback(data)
-          }, errorCallback);
-      }
+      $scope.imgLoaded = true;
     };
-
-
 
     var getCurrentRange = function () {
       var sel;
@@ -258,6 +251,20 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    $scope.myCroppedImage = false;
+    $scope.editOrNot = false;
+
+    $scope.editImage = function($file) {
+      var file = systemImageSizeService.convertBase64UrlToFile($scope.myCroppedImage, $file);
+      $scope.editOrNot = !$scope.editOrNot;
+      if(file && $scope.editOrNot) {
+        UploadService.uploadFile(file, 'BLOG_COVER', $scope)
+          .then(function(data) {
+            coverSuccessCallback(data)
+          }, errorCallback);
+      }
     };
 
     var title = 'Post an Articles';

@@ -16,12 +16,6 @@ angular.module('xbertsApp')
           type = 'IMAGE';
         }
 
-        progressModel.open({
-          scope: scope
-        }, file.name).catch(function() {
-          $rootScope.$emit('uploadCancel', file);
-        });
-
         var uploadPromise = UploadAws.uploadMedia(file, type + '_' + domain)
           .then(function (response) {
             var url = decodeURIComponent(response.headers('Location'));
@@ -51,6 +45,13 @@ angular.module('xbertsApp')
             progressModel.close();
             return $q.reject(error);
           });
+
+
+        progressModel.open({
+          scope: scope
+        }, file.name).catch(function() {
+          $rootScope.$emit('uploadCancel', file);
+        });
 
         return uploadPromise;
       };

@@ -2,9 +2,9 @@
 
 angular.module('xbertsApp')
   .controller('EditArticlesCtrl', ['$rootScope', '$scope','UploadService', 'ReviewService', '$state',
-    'localStorageService','$mdMedia','$mdDialog','$filter','editMyArticles',
+    'localStorageService','$mdMedia','$mdDialog','$filter','editMyArticles','systemImageSizeService',
     function ($rootScope, $scope, UploadService, ReviewService, $state, localStorageService,$mdMedia,$mdDialog,$filter,
-              editMyArticles) {
+              editMyArticles,systemImageSizeService) {
 
     $scope.blog = editMyArticles;
     $scope.disabled = false;
@@ -12,6 +12,8 @@ angular.module('xbertsApp')
 
     $scope.imgLoaded = $scope.blog.cover?true:false;
     $scope.showMask = false;
+    $scope.myCroppedImage = false;
+    $scope.editOrNot = false;
 
     $scope.previousRange = null;
 
@@ -27,7 +29,6 @@ angular.module('xbertsApp')
 
     var coverSuccessCallback = function (data) {
       $scope.showMask = false;
-      $scope.imgLoaded = true;
       $scope.blog.cover = data.data.imageUrl;
     };
     var errorCallback = function (error) {
@@ -41,13 +42,8 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      if ($file) {
-        UploadService.uploadFile($file, 'BLOG_COVER', $scope)
-          .then(coverSuccessCallback, errorCallback);
-      }
+      $scope.imgLoaded = true;
     };
-
-
 
     var getCurrentRange = function () {
       var sel;
@@ -259,6 +255,17 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    $scope.editImage = function($file) {
+      var file = systemImageSizeService.convertBase64UrlToFile($scope.myCroppedImage, $file, 'BLOG_COVER');
+      $scope.editOrNot = !$scope.editOrNot;
+      if(file && $scope.editOrNot) {
+        UploadService.uploadFile(file, 'BLOG_COVER', $scope)
+          .then(function(data) {
+            coverSuccessCallback(data)
+          }, errorCallback);
+      }
     };
 
     var title = 'Post an Articles';

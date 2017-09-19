@@ -41,4 +41,22 @@ angular.module('xbertsApp')
         });
       };
 
+      self.convertBase64UrlToFile = function(dataURI, $file, domain){
+        if($file == null) {
+          $file = {};
+          $file.name = domain + new Date().getTime();
+        }
+        var binary = atob(dataURI.split(',')[1]);
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+          array.push(binary.charCodeAt(i));
+        }
+        var file = new File([new Uint8Array(array)], name, {type: mimeString});
+        var URL = window.URL || window.webkitURL;
+        var url = URL.createObjectURL(file);
+        file.$ngfBlobUrl = url;
+        return file;
+      };
+
     }]);
