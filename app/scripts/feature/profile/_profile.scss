@@ -814,6 +814,36 @@ s
       height: 0;
     }
   }
+  .upload-responsive-2{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 1px dashed rgba(0,0,0,.12);
+    margin-top: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    .material-icons{
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 40px;
+      text-align: center;
+    }
+    .popup-mask{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top:0;
+      background-color: rgba(0, 0, 0, .38);
+      md-icon{
+        margin-right: 8px;
+        margin-top: 8px;
+        @include changeMdIcon(16px);
+        color: $whiteColor;
+      }
+    }
+  }
   &__bottom-button{
     margin-top: 40px;
     margin-bottom: 72px;

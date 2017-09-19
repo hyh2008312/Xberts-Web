@@ -19,21 +19,12 @@
             <div ng-message="required">This is required!</div>
           </div>
         </md-input-container>
-        <md-input-container class="md-block xb-edit-post__fill" md-no-float>
-          <md-input-container class="md-block md-input-has-value">
-            <label class="md-container-ignore md-no-float">Description</label>
-            <summernote config="summerNoteFull" ng-model="blog.details" on-change="onChange(contents)"
-                        on-image-upload="imageUpload(files)" editable="editable"
-                        editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
-                        on-keyup="setPrevious(evt)"></summernote>
-          </md-input-container>
-        </md-input-container>
         <div class="md-caption md-dark-secondary xb-bold md-margin-top-2">Cover Image *</div>
-        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive-1"
+        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive-2"
              ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
         </div>
-        <div ng-show="imgLoaded" class="upload-responsive-1" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
+        <div ng-show="imgLoaded" class="upload-responsive-2" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
           <img ngf-src="blog.getBlogsImage(blog.cover, 'BLOG_COVER') || file" flex="initial"/>
           <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
             <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
@@ -54,6 +45,15 @@
             <md-button class="upload-responsive-1__button md-primary" ng-if="editOrNot" ng-click="editImage(file)">Edit</md-button>
           </div>
         </div>
+        <md-input-container class="md-block xb-edit-post__fill" md-no-float>
+          <md-input-container class="md-block md-input-has-value">
+            <label class="md-container-ignore md-no-float">Description</label>
+            <summernote config="summerNoteFull" ng-model="blog.details" on-change="onChange(contents)"
+                        on-image-upload="imageUpload(files)" editable="editable"
+                        editor="editor" on-paste="paste(evt)" on-focus="onFocus(evt)" name="details"
+                        on-keyup="setPrevious(evt)"></summernote>
+          </md-input-container>
+        </md-input-container>
         <div class="xb-edit-post__bottom-button" layout="row" layout-align-gt-xs="start center" layout-align-xs="center center">
           <md-button class="md-primary md-raised" ng-disabled="disabled" type="submit" >{{isFirstPost?"Post":"Save"}}</md-button><md-button class="md-raised" ng-click="reset()">Cancel</md-button>
         </div>
