@@ -32,7 +32,6 @@ angular
     'ngMaterial',
     'ngUrlParser',
     'angular-carousel',
-    'ngCropper',
     'ngImgCrop'
   ]);
 
