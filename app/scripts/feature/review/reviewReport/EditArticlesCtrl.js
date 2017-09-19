@@ -43,6 +43,7 @@ angular.module('xbertsApp')
         return;
       }
       $scope.imgLoaded = true;
+      $scope.showMask = false;
     };
 
     var getCurrentRange = function () {
