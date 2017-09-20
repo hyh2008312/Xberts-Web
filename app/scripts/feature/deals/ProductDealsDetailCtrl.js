@@ -12,6 +12,10 @@ angular.module('xbertsApp')
       $rootScope.showToobar = $scope.isPopupOpen;
       $scope.categoryItem = DealsFactory.categoryItem;
 
+      if(!$scope.isPopupOpen) {
+        $rootScope.isScroll = false;
+      }
+
       $scope.productsDetail = DealsFactory.changeFolloweeList(productsDetail);
       $scope.productsPaginator = productsPaginator;
       $scope.headImage = DealsService.headImage;
@@ -78,7 +82,6 @@ angular.module('xbertsApp')
             $scope.isPopupOpen = $stateParams.isPopupOpen;
           }
           $rootScope.showToobar = $scope.isPopupOpen;
-
         }
       });
 
@@ -104,11 +107,7 @@ angular.module('xbertsApp')
           $scope.isPopupOpen = false;
           if(DealsFactory.categoryItem == 'everything') {
             $rootScope.isScroll = false;
-          } else {
-            $rootScope.isScroll = true;
           }
-        } else {
-          $rootScope.isScroll = true;
         }
         $rootScope.showToobar = false;
 

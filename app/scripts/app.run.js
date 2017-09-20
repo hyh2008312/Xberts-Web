@@ -184,15 +184,12 @@ angular
       $rootScope.$on('$viewContentLoading', function() {
         if(angular.element(".xb-body-view").length>0)
         {
-          if($rootScope.state.current.name != 'application.askQuestionMain'
-            && $rootScope.state.current.name != 'application.productDeals') {
-            $rootScope.isScroll = false;
-          }
           if($rootScope.state.current.name != 'application.askQuestionMain.answerQuestionDetail'
             && $rootScope.state.current.name != 'application.askQuestionMain'
             && $rootScope.state.current.name != 'application.productDeals'
             && $rootScope.state.current.name != 'application.productDeals.dealsDetail') {
             angular.element(".xb-body-view").scrollTop(0);
+            $rootScope.isScroll = false;
           }
         }
       });

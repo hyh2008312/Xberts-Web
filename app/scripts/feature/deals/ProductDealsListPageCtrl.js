@@ -22,7 +22,7 @@ angular.module('xbertsApp')
       $scope.isScroll = scroll;
       $rootScope.isScroll = !$scope.isScroll;
     };
-    $scope.changeScroll(true);
+    $scope.changeScroll(false);
     DealsFactory.updateActiveTabOnSearch($scope, dealsCtrl.categories);
 
     $rootScope.$on('$stateChangeSuccess', function() {
@@ -221,10 +221,7 @@ angular.module('xbertsApp')
 
         if(DealsFactory.categoryItem == 'everything') {
           $rootScope.isScroll = false;
-        } else {
-          $rootScope.isScroll = true;
         }
-
       }
     };
 

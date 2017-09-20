@@ -6,6 +6,9 @@ angular.module('xbertsApp')
 
     $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
     $scope.isPopupOpen = $stateParams.isPopupOpen;
+    if(!$scope.isPopupOpen) {
+      $rootScope.isScroll = false;
+    }
 
     var answerCtrl = this;
     answerCtrl.productsDetail = productsDetail;
@@ -110,7 +113,6 @@ angular.module('xbertsApp')
         $scope.isPopupOpen = false;
       }
       $rootScope.showToobar = false;
-      $rootScope.isScroll = true;
       $state.go('application.askQuestionMain');
     };
 

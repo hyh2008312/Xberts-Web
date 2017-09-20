@@ -60,7 +60,6 @@ angular.module('xbertsApp')
         $scope.isPopupOpen = false;
         $scope.display = false;
         $rootScope.showToobar = $scope.isPopupOpen;
-        $rootScope.isScroll = true;
       }
     };
 
