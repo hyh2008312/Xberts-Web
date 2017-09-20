@@ -84,7 +84,8 @@
       <div layout="row" layout-align="end center" hide-xs flex>
         <md-button aria-label="{{item.name}}" class="md-icon-button" ng-repeat="item in shareList" socialshare
                    socialshare-provider="{{item.name}}" socialshare-description="{{report.description}}" socialshare-text="{{report.title}}"
-                   socialshare-media="{{report.cover}}"  socialshare-source="{{report.cover}}"
+                   socialshare-media="{{report.getBlogsImage(report.cover, 'BLOG_COVER')}}"
+                   socialshare-source="{{report.getBlogsImage(report.cover, 'BLOG_COVER')}}"
                    socialshare-url="{{inviteObj.shareUrl(report.getShareUrl(report.id), item.name)}}">
           <i class="fa fa-{{item.name}} md-dark-third" aria-hidden="true"></i>
         </md-button>
