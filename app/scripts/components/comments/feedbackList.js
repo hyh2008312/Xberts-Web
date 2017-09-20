@@ -33,44 +33,20 @@ angular.module('xbertsApp')
         };
 
         scope.leaveFeedback = function (feedbackForm) {
-          if(interactCtrl.getCurrentJoin().feedback_amount >= 3) {
-            scope.formToggle = !scope.formToggle;
-            scope.newFeedback = {};
-            growl.error("Sorry! You're not allowed to post more than 3 comments under the same post.");
-            return false;
-          }
           if (feedbackForm.$valid) {
 
-            interactCtrl.getOrCreateCurrentJoin().then(
-              function (currentJoin) {
-                var feedback = Feedback.build({
-                  date_published: new Date(),
-                  details: scope.newFeedback.details,
-                  interact: scope.interactId,
-                  post: currentJoin
-                });
+            var feedbackData = {
+              details: scope.newFeedback.details,
+              interact: scope.interactId
+            };
 
-                var feedbackData = {
-                  details: scope.newFeedback.details,
-                  interact: scope.interactId,
-                  post: currentJoin.id
-                };
-
-                scope.formToggle = !scope.formToggle;
-                scope.newFeedback = {};
-
-                scope.feedbackPaginator.items.unshift(feedback);
-                feedback.post.feedback_amount++;
-                if(!scope.hidePoints && feedback.post.feedback_amount<=1) {
-                  //scope.$emit('perksPointsOn', 2);
-                }
-                interactCtrl.setCurrentJoin(feedback.post);
-                interactCtrl.getInteract().increaseMessageAmount();
-                FeedbackService.create(feedbackData);
-
-              }
-            );
-
+            FeedbackService.create(feedbackData).then(function(feedback) {
+              interactCtrl.getInteract().increaseMessageAmount();
+              console.log(feedback);
+              scope.formToggle = !scope.formToggle;
+              scope.newFeedback = {};
+              scope.feedbackPaginator.items.unshift(feedback);
+            });
 
           } else {
             feedbackForm.$submitted = false;

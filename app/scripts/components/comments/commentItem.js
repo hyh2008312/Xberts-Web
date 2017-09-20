@@ -19,21 +19,13 @@ angular.module('xbertsApp')
 
         scope.leaveComment = function (commentForm) {
           if (commentForm.$valid) {
-            interactCtrl.getOrCreateCurrentJoin().then(
-              function (currentJoin) {
-
-                var comment = {
-                  details: scope.newComment.details,
-                  post_to: scope.comment.post,
-                  post: currentJoin
-                };
-
-                scope.replyToggle = false;
-                scope.newComment = {};
-
-                feedbackItemCtrl.leaveComment(comment);
-              }
-            );
+            var comment = {
+              details: scope.newComment.details,
+              post_to: scope.comment.post
+            };
+            feedbackItemCtrl.leaveComment(comment).then(function() {
+              scope.replyToggle = false;
+            });
           }
         };
 

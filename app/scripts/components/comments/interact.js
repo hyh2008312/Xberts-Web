@@ -10,7 +10,7 @@ angular.module('xbertsApp')
 
         $scope.interact = Interact.build($scope.interact);
 
-        $scope.currentJoin = {vote: null};
+        $scope.currentJoin = $scope.interact.currentJoin? $scope.interact.currentJoin:{vote:null};
 
         var self = this;
 
@@ -122,13 +122,7 @@ angular.module('xbertsApp')
       },
       controllerAs: 'interactCtrl',
       link: function (scope) {
-        if ($rootScope.user.isAuth()) {
-          InteractService.getJoin(scope.interact.id, $rootScope.user.getUserId()).then(function (join) {
-            if (join) {
-              angular.extend(scope.currentJoin, join);
-            }
-          });
-        }
+
       }
     };
   }]);

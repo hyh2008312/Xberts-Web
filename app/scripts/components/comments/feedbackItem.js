@@ -11,15 +11,17 @@ angular.module('xbertsApp')
 
       controller: function ($scope) {
         this.leaveComment = function (comment) {
-          comment.date_published = new Date();
           var commentData = {
             feedback: $scope.feedback.id,
             details: comment.details,
-            post_to_id: comment.post_to.id,
-            post_id: comment.post.id
+            post_to_id: comment.post_to.joiner.id
           };
-          $scope.feedback.comments.push(Comment.build(comment));
-          return CommentService.create(commentData);
+
+          return CommentService.create(commentData).then(function(comment) {
+            $scope.feedback.comments.push(Comment.build(comment));
+            $scope.replyToggle = false;
+            $scope.newComment = {};
+          });
         };
 
       },
@@ -39,20 +41,13 @@ angular.module('xbertsApp')
 
         scope.leaveComment = function (commentForm) {
           if (commentForm.$valid) {
-            interactCtrl.getOrCreateCurrentJoin().then(
-              function (currentJoin) {
-                var comment = {
-                  details: scope.newComment.details,
-                  post_to: scope.feedback.post,
-                  post: currentJoin
-                };
 
-                scope.replyToggle = false;
-                scope.newComment = {};
+            var comment = {
+              details: scope.newComment.details,
+              post_to: scope.feedback.post
+            };
 
-                scope.feedbackItemCtrl.leaveComment(comment);
-              }
-            )
+            scope.feedbackItemCtrl.leaveComment(comment);
 
           }
         };
