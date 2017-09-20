@@ -27,7 +27,7 @@ function MainModel($state,SystemConstant) {
         if(file != null) {
           return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
         } else {
-          return SystemConstant.IMAGE_BASE_URL + domainFile;
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
         }
       } else {
         return url;
@@ -48,7 +48,7 @@ function MainModel($state,SystemConstant) {
         if(file != null) {
           return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
         } else {
-          return SystemConstant.IMAGE_BASE_URL + domainFile;
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
         }
       } else {
         return url;
