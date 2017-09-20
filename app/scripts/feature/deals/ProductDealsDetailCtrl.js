@@ -102,8 +102,16 @@ angular.module('xbertsApp')
           $scope.$parent.isPopupOpen = false;
           $scope.$parent.display = false;
           $scope.isPopupOpen = false;
+          if(DealsFactory.categoryItem == 'everything') {
+            $rootScope.isScroll = false;
+          } else {
+            $rootScope.isScroll = true;
+          }
+        } else {
+          $rootScope.isScroll = true;
         }
         $rootScope.showToobar = false;
+
         $state.go('application.productDeals',{tab:DealsFactory.categoryItem});
       };
 

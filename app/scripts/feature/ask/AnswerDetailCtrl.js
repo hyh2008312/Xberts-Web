@@ -103,6 +103,17 @@ angular.module('xbertsApp')
       answerCtrl.answerPaginator.count++;
     };
 
+    $scope.close = function() {
+      if($scope.$parent != null) {
+        $scope.$parent.isPopupOpen = false;
+        $scope.$parent.display = false;
+        $scope.isPopupOpen = false;
+      }
+      $rootScope.showToobar = false;
+      $rootScope.isScroll = true;
+      $state.go('application.askQuestionMain');
+    };
+
     var title = productsDetail.title;
     var description = productsDetail.description;
     var backgroundColor = 'background-bg-light';
