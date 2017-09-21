@@ -10,7 +10,13 @@ angular.module('xbertsApp')
 
         $scope.interact = Interact.build($scope.interact);
 
-        $scope.currentJoin = $scope.interact.currentJoin? $scope.interact.currentJoin:{vote:null};
+        if($scope.interact.current_join) {
+          $scope.currentJoin = $scope.interact.current_join;
+        } else if($scope.interact.currentJoin) {
+          $scope.currentJoin = $scope.interact.currentJoin;
+        } else {
+          $scope.currentJoin = {vote:null};
+        }
 
         var self = this;
 
