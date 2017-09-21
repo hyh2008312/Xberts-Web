@@ -7,8 +7,48 @@ function SearchModel($state,urlParser,$sce,SystemConstant) {
   }
 
   SearchModel.prototype = {
-    getImageUrl: function() {
-      return this.imageGroup[0].imageUrls != null ? this.imageGroup[0].imageUrls.original:this.imageUrl;
+    getImageUrl: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list1;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
+      }
+    },
+    getFixedImageUrl: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
+      }
+
     },
     getArticlesImage: function(url, domain) {
       var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
