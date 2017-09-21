@@ -1,7 +1,7 @@
 <div class="xb-main-deals">
   <div ng-repeat="item in deals track by $index">
     <div class="xb-deals-list__img-bg xb-main-deals__img-bg-1">
-      <a layout="column" layout-align="start center" ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+      <a layout="column" layout-align="start center" ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
         <img src="{{item.getFixedImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" >

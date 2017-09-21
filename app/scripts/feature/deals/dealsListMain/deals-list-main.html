@@ -24,7 +24,7 @@
         </div>
       </a>
       <a layout="column" ng-if="!isDeals" layout-align="start center" hide-xs
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
         <img src="{{item.getFixedImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -66,7 +66,7 @@
         </div>
       </a>
       <a layout="column" layout-align="start center" hide-gt-xs ng-if="user.isAuth() && !isDeals"
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
         <img src="{{item.getFixedImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -105,12 +105,20 @@
       </a>
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ng-if="!isDeals"
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.di})" target="_blank">
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ng-if="isDeals"
+         ng-click="openPop({dealsId:item.id});">
+        {{item.title}}
+      </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth() && !isDeals"
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+        {{item.title}}
+      </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth() && isDeals"
+         ng-click="openPop({dealsId:item.id});">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"
@@ -242,12 +250,20 @@
       </a>
     </div>
     <div class="xb-deals-list__content xb-deals-list__content-1" layout="column" layout-align="stretch start">
-      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+      < <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ng-if="!isDeals"
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+      {{item.title}}
+    </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-xs ng-if="isDeals"
+         ng-click="openPop({dealsId:item.id});">
         {{item.title}}
       </a>
-      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth()"
-         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth() && !isDeals"
+         ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+        {{item.title}}
+      </a>
+      <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="user.isAuth() && isDeals"
+         ng-click="openPop({dealsId:item.id});">
         {{item.title}}
       </a>
       <a class="xb-deals-list__title xb-deals-list__fixed-height-1 md-dark-secondary" hide-gt-xs ng-if="!user.isAuth()"

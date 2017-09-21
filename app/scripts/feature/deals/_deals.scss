@@ -178,9 +178,6 @@
   }
   &__content-1{
     height: 160px;
-    @include xb-xs-screen{
-      height: 140px;
-    }
   }
   &__tag{
     margin-top: 6px;

@@ -25,7 +25,7 @@
           </div>
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -49,8 +49,12 @@
         </a>
       </div>
       <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-        <a class="xb-deals-list__title md-dark-secondary"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="!isDeals"
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+          {{item.title}}
+        </a>
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="isDeals"
+           ng-click="openPop({dealsId:item.id});">
           {{item.title}}
         </a>
         <div class="xb-deals-list__tags md-margin-bottom-1">
@@ -98,7 +102,7 @@
           </div>
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -122,8 +126,12 @@
         </a>
       </div>
       <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
-        <a class="xb-deals-list__title md-dark-secondary"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="!isDeals"
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+          {{item.title}}
+        </a>
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="isDeals"
+           ng-click="openPop({dealsId:item.id});">
           {{item.title}}
         </a>
         <div class="xb-deals-list__tags md-margin-bottom-1">
@@ -181,7 +189,7 @@
           </div>
         </a>
         <a layout="column" layout-align="start center" ng-if="user.isAuth() && !isDeals"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -200,8 +208,12 @@
         <a class="xb-deals-list__title md-dark-secondary" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
           {{item.title}}
         </a>
-        <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth()"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth() && !isDeals"
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+          {{item.title}}
+        </a>
+        <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth() && isDeals"
+           ng-click="openPop({dealsId:item.id});">
           {{item.title}}
         </a>
         <div class="xb-deals-list__tags md-margin-bottom-1">
