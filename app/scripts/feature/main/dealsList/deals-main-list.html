@@ -2,7 +2,7 @@
   <div ng-repeat="item in deals track by $index">
     <div class="xb-deals-list__img-bg xb-main-deals__img-bg-1">
       <a layout="column" layout-align="start center" ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
-        <img src="{{item.getFixedSqrUrl()}}" title="{{item.title}}"/>
+        <img src="{{item.getFixedImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}" title="{{item.title}}"/>
         <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
           <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
             <md-icon >play_arrow</md-icon>

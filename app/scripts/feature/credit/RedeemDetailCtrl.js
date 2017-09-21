@@ -86,7 +86,7 @@ angular.module('xbertsApp')
     var title = redeemDetail.name;
     var description = redeemDetail.description;
     var backgroundColor = 'background-bg-light';
-    var shareImage = redeemDetail.getImageOriginal();
+    var shareImage = redeemDetail.getGiftUrl(redeemDetail.image, 'GIFT');
     $rootScope.pageSettings.setPage(title, description, backgroundColor, shareImage, true);
 
   }]);

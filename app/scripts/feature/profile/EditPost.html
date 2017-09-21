@@ -27,14 +27,29 @@
           </div>
         </md-input-container>
         <div class="md-caption md-dark-secondary xb-bold">Upload a Product Picture *</div>
-        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive"
+        <div ng-show="!imgLoaded" layout="column" layout-align="center center" class="upload-responsive-2"
              ngf-select="coverUpload($file)" ng-model="file" accept="image/*" ngf-max-size="'5MB'">
           <md-icon md-font-set="material-icons md-dark-third">add_circle</md-icon>
         </div>
-        <div ng-show="imgLoaded" class="upload-responsive" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
-          <img src="product.getImageUrl()" ngf-src="file || product.getImageUrl()" flex="initial" />
+        <div ng-show="imgLoaded" class="upload-responsive-2" layout="column" layout-align="center center" ng-mouseenter="onShowMask()">
+          <img ngf-src="product.getCoverUrl(product.imageUrl, 'SHARE_PRODUCT') || file" flex="initial"/>
           <div class="popup-mask" ng-show="showMask" ng-mouseleave="onShowMask();" layout="row" layout-align="end start">
             <md-icon md-font-set="material-icons" ng-click="offDeleteImage();">clear</md-icon>
+          </div>
+        </div>
+        <div ng-show="imgLoaded && file.$ngfBlobUrl">
+          <div class="md-caption md-dark-secondary xb-bold md-margin-top-4">Product Image Setting</div>
+          <div layout="row" layout-align="start end" layout-xs="column" layout-align-xs="start start">
+            <div ng-class="{true:'', false:'upload-responsive-1__hidden'}[!editOrNot]" class="upload-responsive-1">
+              <img-crop area-type="square" image="file.$ngfBlobUrl" result-image="myCroppedImage"
+                        result-image-quality="1.0" result-image-format="file.type"></img-crop>
+            </div>
+            <div ng-show="editOrNot" class="upload-responsive-1" layout="column" layout-align="center center">
+              <img ng-src="{{myCroppedImage}}" flex="initial" />
+            </div>
+            <md-button class="upload-responsive-1__button md-primary md-raised"
+                       ng-if="!editOrNot" ng-click="editImage(file)">Save</md-button>
+            <md-button class="upload-responsive-1__button md-primary" ng-if="editOrNot" ng-click="editImage(file)">Edit</md-button>
           </div>
         </div>
         <md-input-container class="md-block xb-edit-post__fixed-width xb-edit-profile__margin-bottom" >

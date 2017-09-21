@@ -2,16 +2,18 @@
 
 angular.module('xbertsApp')
   .controller('EditPostCtrl', ['$rootScope', '$scope', 'editPost','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdMedia','$mdDialog','SystemConstant',
+    'localStorageService','category','$mdMedia','$mdDialog','SystemConstant','systemImageSizeService',
     function ($rootScope, $scope, editPost, UploadService, ShareProductService, $state, localStorageService,
-              category,$mdMedia,$mdDialog,SystemConstant) {
+              category,$mdMedia,$mdDialog,SystemConstant,systemImageSizeService) {
 
     $scope.product = editPost;
     $scope.disabled = false;
     $scope.categoryoptions = category;
     $scope.currency = SystemConstant.CURRENCY;
+    $scope.myCroppedImage = false;
+    $scope.editOrNot = false;
 
-    $scope.imgLoaded = $scope.product.cover?true:false;
+    $scope.imgLoaded = $scope.product.imageUrl?true:false;
     $scope.showMask = false;
     $scope.onShowMask = function() {
       $scope.showMask = !$scope.showMask;
@@ -20,16 +22,13 @@ angular.module('xbertsApp')
     $scope.offDeleteImage = function() {
       $scope.showMask = false;
       $scope.imgLoaded = false;
-      $scope.product.imageGroup = [];
+      $scope.product.imageUrl = null;
+      $scope.editOrNot = false;
     };
 
     var coverSuccessCallback = function (data) {
       $scope.showMask = false;
-      $scope.imgLoaded = true;
-      $scope.product.imageGroup.push({
-        index: 0,
-        image: data.data.id
-      })
+      $scope.product.imageUrl = data.data.imageUrl;
     };
     var errorCallback = function (error) {
       // Don't display error when user cancels upload
@@ -41,10 +40,8 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      if ($file) {
-        UploadService.uploadFile($file, 'SHARE_PRODUCT', $scope)
-          .then(coverSuccessCallback, errorCallback);
-      }
+      $scope.imgLoaded = true;
+      $scope.showMask = false;
     };
 
     $scope.submitForm = function(product){
@@ -60,7 +57,7 @@ angular.module('xbertsApp')
         title: product.title,
         description: product.description,
         purchaseUrl: product.purchaseUrl,
-        imageGroup: product.imageGroup,
+        imageUrl: product.imageUrl,
         videoUrl: product.videoUrl,
         salePrice: {
           currency: product.salePrice.currency,
@@ -137,6 +134,17 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    $scope.editImage = function($file) {
+      var file = systemImageSizeService.convertBase64UrlToFile($scope.myCroppedImage, $file, 'BLOG_COVER');
+      $scope.editOrNot = !$scope.editOrNot;
+      if(file && $scope.editOrNot) {
+        UploadService.uploadFile(file, 'BLOG_COVER', $scope)
+          .then(function(data) {
+            coverSuccessCallback(data)
+          }, errorCallback);
+      }
     };
 
     var title = 'Share a deal';

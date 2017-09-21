@@ -9,11 +9,11 @@ angular.module('xbertsApp')
         topBanner: ['CreditService',function(CreditService) {
           return CreditService.topBanner;
         }],
-        creditMain: ['Paginator','CreditService','ShareProduct',function(Paginator, CreditService, ShareProduct) {
+        creditMain: ['Paginator','CreditService','ProductDeals',function(Paginator, CreditService, ProductDeals) {
           if(!CreditService.creditMain) {
             var par = {
               name: 'credit_gift_list',
-              objClass: ShareProduct,
+              objClass: ProductDeals,
               params: {
                 page_size: 6
               },

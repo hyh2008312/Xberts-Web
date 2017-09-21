@@ -2,7 +2,7 @@
      layout-align="space-between stretch" ng-click="closeMenu();">
   <div class="xb-my-posts__bg" ui-sref="application.productDeals.dealsDetail({dealsId:post.id})">
     <div>
-      <img ng-src="{{post.getImageUrl()}}" />
+      <img ng-src="{{post.getFixedImageUrl(post.imageUrl, 'SHARE_PRODUCT')}}" />
     </div>
   </div>
   <div flex layout="column" layout-align="space-between">

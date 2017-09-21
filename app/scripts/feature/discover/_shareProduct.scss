@@ -439,6 +439,9 @@
   .#{$product}__action .md-subhead{
     margin-right: 16px;
   }
+  &__fixed-button{
+    bottom:56px;
+  }
 }
 
 

@@ -3,7 +3,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 4 == value">
       <div class="xb-deals-list__img-bg xb-deals-list__min-height">
         <a layout="column" ng-if="isDeals" layout-align="start center" ng-click="openPop({dealsId:item.id});">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -26,7 +26,7 @@
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
            ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -76,7 +76,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 3 == value">
       <div class="xb-deals-list__img-bg xb-deals-list__min-height">
         <a layout="column" ng-if="isDeals" layout-align="start center" ng-click="openPop({dealsId:item.id});">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -99,7 +99,7 @@
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
            ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -149,7 +149,7 @@
     <div ng-repeat="item in deals track by $index" ng-if="$index % 2 == value">
       <div class="xb-deals-list__img-bg xb-deals-list__min-height">
         <a layout="column" layout-align="start center" ng-if="!user.isAuth()" ng-click="openMobileDialog(item.id);">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -167,7 +167,7 @@
         </a>
         <a layout="column" layout-align="start center" ng-if="user.isAuth() && isDeals"
            ng-click="openPop({dealsId:item.id});">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>
@@ -182,7 +182,7 @@
         </a>
         <a layout="column" layout-align="start center" ng-if="user.isAuth() && !isDeals"
            ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="_blank">
-          <img src="{{item.getImageUrl()}}"/>
+          <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
               <md-icon >play_arrow</md-icon>

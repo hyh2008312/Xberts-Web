@@ -3,7 +3,8 @@ angular.module('xbertsApp')
     return {
       restrict: 'E',
       scope: {
-        product: '='
+        product: '=',
+        popupOpen: '='
       },
       templateUrl: 'scripts/feature/discover/shareProductDetailItem/share-product-detail-item.html',
       link: function (scope, element, attrs, ctrls) {

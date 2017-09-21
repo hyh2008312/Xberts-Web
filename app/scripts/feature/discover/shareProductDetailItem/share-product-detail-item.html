@@ -3,9 +3,9 @@
     <load-more></load-more>
     <iframe flex="grow" frameborder="0" ng-src="{{product.getVideo()}}" ></iframe>
   </div>
-  <div ng-if="product.getVideo() == null && product.getCoverUrl()" class="xb-deals-detail__atlas">
+  <div ng-if="product.getVideo() == null && product.getCoverUrl(product.imageUrl, 'SHARE_PRODUCT')" class="xb-deals-detail__atlas">
     <div layout="column" layout-align="center center">
-      <img ng-src="{{product.getCoverUrl()}}" alt="{{productsDetail.title}}">
+      <img ng-src="{{product.getCoverUrl(product.imageUrl, 'SHARE_PRODUCT')}}" alt="{{product.title}}">
     </div>
   </div>
   <div class="product__price" hide-gt-xs>
@@ -69,7 +69,8 @@
     <md-button hide-xs class="md-primary md-raised xb-deals-detail__purchase-btn" ng-click="product.buyNow('deals-item');"
                target="_blank">SEE DETAIL</md-button>
 
-    <div class="xb2-page-head__button" flex-order="4" hide-sm hide-gt-sm ng-if="!isFacebookApp">
+    <div class="xb2-page-head__button" ng-class="{true:'product-detail__fixed-button', false:''}[popupOpen]" flex-order="4"
+         hide-sm hide-gt-sm ng-if="!isFacebookApp">
       <div layout="row" layout-gt-xs="column" layout-align="start center" layout-align-gt-xs="start start">
         <div class="md-margin-right-2" flex>{{product.getDomain().toUpperCase()}}</div>
         <md-button class="md-primary md-raised xb-deals-detail__purchase-btn"

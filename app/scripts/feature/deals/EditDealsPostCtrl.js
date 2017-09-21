@@ -2,14 +2,13 @@
 
 angular.module('xbertsApp')
   .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
-    'localStorageService','category','$mdDialog','$mdToast','SystemConstant','$mdMedia',
+    'localStorageService','category','$mdDialog','$mdToast','SystemConstant','$mdMedia','systemImageSizeService',
     function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,
-              $mdDialog,$mdToast,SystemConstant,$mdMedia) {
+              $mdDialog,$mdToast,SystemConstant,$mdMedia,systemImageSizeService) {
 
     $scope.product = {};
     $scope.isFirstPost = true;
     $scope.disabled = false;
-    $scope.product.imageGroup = [];
     $scope.product.salePrice = {};
     $scope.product.salePrice.currency = $rootScope.country == 'IN'? 'INR':'USD';
     $scope.product.originalPrice = {};
@@ -26,16 +25,13 @@ angular.module('xbertsApp')
     $scope.offDeleteImage = function() {
       $scope.showMask = false;
       $scope.imgLoaded = false;
-      $scope.product.imageGroup = [];
+      $scope.product.imageUrl = null;
+      $scope.editOrNot = false;
     };
 
     var coverSuccessCallback = function (data) {
       $scope.showMask = false;
-      $scope.imgLoaded = true;
-      $scope.product.imageGroup.push({
-        index: 0,
-        image: data.data.id
-      })
+      $scope.product.imageUrl = data.data.imageUrl;
     };
     var errorCallback = function (error) {
       // Don't display error when user cancels upload
@@ -47,10 +43,8 @@ angular.module('xbertsApp')
       if(!$rootScope.user.authRequired()) {
         return;
       }
-      if ($file) {
-        UploadService.uploadFile($file, 'SHARE_PRODUCT', $scope)
-          .then(coverSuccessCallback, errorCallback);
-      }
+      $scope.imgLoaded = true;
+      $scope.showMask = false;
     };
 
     $scope.submitForm = function(product){
@@ -66,7 +60,7 @@ angular.module('xbertsApp')
         title: product.title,
         description: product.description,
         purchaseUrl: product.purchaseUrl,
-        imageGroup: product.imageGroup,
+        imageUrl: product.imageUrl,
         videoUrl: product.videoUrl,
         salePrice: {
           currency: product.salePrice.currency,
@@ -144,6 +138,20 @@ angular.module('xbertsApp')
         clickOutsideToClose: true,
         disableParenScroll: true
       });
+    };
+
+    $scope.myCroppedImage = false;
+    $scope.editOrNot = false;
+
+    $scope.editImage = function($file) {
+      var file = systemImageSizeService.convertBase64UrlToFile($scope.myCroppedImage, $file);
+      $scope.editOrNot = !$scope.editOrNot;
+      if(file && $scope.editOrNot) {
+        UploadService.uploadFile(file, 'SHARE_PRODUCT', $scope)
+          .then(function(data) {
+            coverSuccessCallback(data)
+          }, errorCallback);
+      }
     };
 
     var title = 'Share a deal';

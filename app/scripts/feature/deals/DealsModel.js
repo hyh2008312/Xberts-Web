@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .factory('ProductDeals',['$state','urlParser','$sce',ProductDeals]);
-function ProductDeals($state,urlParser,$sce) {
+  .factory('ProductDeals',['$state','urlParser','$sce','SystemConstant',ProductDeals]);
+function ProductDeals($state,urlParser,$sce,SystemConstant) {
 
   function ProductDeals(data) {
     angular.extend(this, data);
@@ -15,33 +15,110 @@ function ProductDeals($state,urlParser,$sce) {
     getDealsName: function () {
       return this.owner != null?this.owner.firstName : "Editors' Pick";
     },
-    getImageUrl: function() {
-      if(this.cover) {
-        return this.cover.originSm? this.cover.originSm: this.cover.origin;
-      } else {
+    getImageUrl: function(url, domain) {
+      if(url == null) {
         return false;
       }
-    },
-    getCoverUrl: function() {
-      if(this.cover) {
-        return this.cover.originLg? this.cover.originLg: this.cover.origin;
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list1;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
       } else {
-        return false;
+        return url;
       }
     },
-    getFixedImageUrl: function() {
-      if(this.cover) {
-        return this.cover.fixedRecSm? this.cover.fixedRecSm: this.cover.origin;
-      } else {
+    getFixedImageUrl: function(url, domain) {
+      if(url == null) {
         return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
       }
 
     },
-    getFixedSqrUrl: function() {
-      if(this.cover) {
-        return this.cover.fixedSqrSm? this.cover.fixedSqrSm: this.cover.origin;
-      } else {
+    getCoverUrl: function(url, domain) {
+      if(url == null) {
         return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
+      }
+    },
+    getGiftUrl: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var list = SystemConstant.IMAGE_UPLOAD_TYPE[domain].list;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + list + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
+      }
+    },
+    getGiftCoverUrl: function(url, domain) {
+      if(url == null) {
+        return false;
+      }
+      var use = SystemConstant.IMAGE_UPLOAD_TYPE[domain].use;
+      var category = SystemConstant.IMAGE_UPLOAD_TYPE[domain].category;
+      var detail = SystemConstant.IMAGE_UPLOAD_TYPE[domain].detail;
+      var originUrl = SystemConstant.IMAGE_UPLOAD_TYPE[domain].originUrl;
+      var baseUrl = SystemConstant.IMAGE_BASE_URL;
+      var domainFile = url.split(baseUrl)[1];
+      if(domainFile != null) {
+        var file = url.split(originUrl)[1];
+        if(file != null) {
+          return SystemConstant.IMAGE_ACCESS_URL + '/public/' + category + '/' + use + '/' + detail + '/' + file;
+        } else {
+          return SystemConstant.IMAGE_ACCESS_URL + domainFile;
+        }
+      } else {
+        return url;
       }
     },
     getPostId: function() {

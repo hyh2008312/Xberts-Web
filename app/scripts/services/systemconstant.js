@@ -388,6 +388,22 @@ angular.module('xbertsApp')
         'use': 'details',
         'originUrl':'image/blog/details/',
         'detail': 'mo'
+      },
+      "SHARE_PRODUCT" : {
+        'category': 'product',
+        'use': 'cover',
+        'originUrl' : 'image/shareProduct/',
+        'list': 'xx',
+        'list1': 'xo',
+        'list2': 'xy',
+        'detail': 'co'
+      },
+      "GIFT" : {
+        'category': 'gift',
+        'use': 'cover',
+        'originUrl' : 'image/gift/',
+        'list': 'xy',
+        'detail': 'co'
       }
     };
 
