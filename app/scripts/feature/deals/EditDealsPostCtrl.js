@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'ShareProductService', '$state',
+  .controller('EditDealsPostCtrl', ['$rootScope', '$scope','UploadService', 'DealsService', '$state',
     'localStorageService','category','$mdDialog','$mdToast','SystemConstant','$mdMedia','systemImageSizeService',
-    function ($rootScope, $scope, UploadService, ShareProductService, $state, localStorageService, category,
+    function ($rootScope, $scope, UploadService, DealsService, $state, localStorageService, category,
               $mdDialog,$mdToast,SystemConstant,$mdMedia,systemImageSizeService) {
 
     $scope.product = {};
@@ -76,7 +76,7 @@ angular.module('xbertsApp')
       // post start
       $scope.$emit('backdropOn', 'fetch project');
       $scope.disabled = true;
-      ShareProductService.create(_product).then(function () {
+      DealsService.create(_product).then(function () {
         $scope.$emit('backdropOff', 'success');
         var name = 'posts_' + $rootScope.user.getUserId();
         // clear post list

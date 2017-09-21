@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .controller('ProductDealsListPageAdminCtrl', ['$window','$rootScope', 'DealsService', 'ShareProductService',
+  .controller('ProductDealsListPageAdminCtrl', ['$window','$rootScope', 'DealsService',
     '$mdSidenav','$timeout','$state','DealsFactory','$scope','ProductDeals','category','Paginator','$stateParams',
     'SystemConstant',
-    function ($window, $rootScope, DealsService, ShareProductService, $mdSidenav,
+    function ($window, $rootScope, DealsService, $mdSidenav,
               $timeout,$state,DealsFactory,$scope,ProductDeals,category,Paginator, $stateParams,SystemConstant) {
     var dealsCtrl = this;
 

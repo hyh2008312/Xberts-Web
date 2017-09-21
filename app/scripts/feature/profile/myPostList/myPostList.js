@@ -1,6 +1,6 @@
 angular.module('xbertsApp')
-  .directive('myPostList', ['$rootScope','$mdDialog','ShareProductService','localStorageService',
-    function($rootScope,$mdDialog, ShareProductService,localStorageService) {
+  .directive('myPostList', ['$rootScope','$mdDialog','DealsService','localStorageService',
+    function($rootScope,$mdDialog, DealsService,localStorageService) {
     return {
       restrict: 'E',
       scope: {
@@ -38,7 +38,7 @@ angular.module('xbertsApp')
               return;
             }
             scope.posts.splice(index, 1);
-            ShareProductService.delete({id:id}).then(function () {
+            DealsService.delete({id:id}).then(function () {
               var name = 'posts_' + $rootScope.user.getUserId();
               // clear post list
               localStorageService.remove(name + '_currentPage');

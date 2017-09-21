@@ -94,8 +94,8 @@ angular
           editPost: ['DealsService', '$stateParams', function (DealsService, $stateParams) {
             return DealsService.getDetail($stateParams.productId);
           }],
-          category: ['ShareProductService', function (ShareProductService) {
-            return ShareProductService.getCategoryList();
+          category: ['DealsService', function (DealsService) {
+            return DealsService.getCategoryOrder();
           }]
         }
       })
@@ -107,8 +107,8 @@ angular
           editMyQuestion: ['AskService', '$stateParams', function (AskService, $stateParams) {
             return AskService.getQuestionsDetail($stateParams.questionId);
           }],
-          category: ['ShareProductService', function (ShareProductService) {
-            return ShareProductService.getCategoryList();
+          category: ['DealsService', function (DealsService) {
+            return DealsService.getCategoryOrder();
           }]
         }
       })

@@ -12,7 +12,8 @@ angular.module('xbertsApp')
         }
       }
     });
-    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'}});
+    var DealsProductResource = $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{'patch': {method: 'PATCH'},
+      'delete':{method:'DELETE'}});
     var DealsProductRelatedResource = $resource(API_BASE_URL + '/products/:id/related/',{id:'@id'}, {
       'query' : {
         method:'GET',
@@ -22,6 +23,7 @@ angular.module('xbertsApp')
         isArray:true
       }
     });
+    var CategoryResource = $resource(API_BASE_URL + '/products/categories/', null);
 
     this.categoryId = null;
     this.priceId = null;
@@ -60,8 +62,16 @@ angular.module('xbertsApp')
       return DealsProductRelatedResource.query({id:id}).$promise.then(ProductDeals.buildList);
     };
 
+    this.create = function (data) {
+      return DealsProductResource.save(data).$promise.then(ProductDeals.build);
+    };
+
     this.update = function(data) {
       return DealsProductResource.patch(data).$promise.then(ProductDeals.build);
+    };
+
+    this.delete = function (data) {
+      return DealsProductResource.delete(data).$promise.then(ProductDeals.build);
     };
 
     this.getMaxNumber = function(arr) {
@@ -238,4 +248,12 @@ angular.module('xbertsApp')
 
     this.headImage = 'https://xberts.imgix.net/static/logo/2de5d639-3fd6-4d95-b711-8fbc837244a6.jpg?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=5f80b68fa3d73f229fde39024a386aee';
 
+    this.categoryList = null;
+
+    this.getCategoryOrder = function (params) {
+      if(this.categoryList == null) {
+        this.categoryList = CategoryResource.query(params).$promise;
+      }
+      return this.categoryList;
+    };
   }]);

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .directive('notificationItem',['MessageService', '$location', 'urlParser',
-    function(MessageService,$location,urlParser) {
+  .directive('notificationItem',['MessageService', '$location', 'urlParser','$state',
+    function(MessageService,$location,urlParser,$state) {
     return {
       restrict: 'E',
       scope: {

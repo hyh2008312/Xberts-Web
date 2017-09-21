@@ -163,8 +163,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/profile/myQuestionsList/editMyQuestions.html',
       controller: 'EditQuestionsCtrl',
       resolve: {
-        category: ['ShareProductService', function (ShareProductService) {
-          return ShareProductService.getCategoryList();
+        category: ['DealsService', function (DealsService) {
+          return DealsService.getCategoryOrder();
         }]
       }
     });

@@ -45,10 +45,10 @@ angular.module('xbertsApp')
         expert: ['ExpertService', '$stateParams', function (ExpertService, $stateParams) {
           return ExpertService.getExpert($stateParams.id);
         }],
-        creditMain: ['Paginator','CreditService','ShareProduct',function(Paginator, CreditService, ShareProduct) {
+        creditMain: ['Paginator','CreditService','ProductDeals',function(Paginator, CreditService, ProductDeals) {
           var par = {
             name: 'credit_gift_list',
-            objClass: ShareProduct,
+            objClass: ProductDeals,
             params: {
               page_size: 6
             },

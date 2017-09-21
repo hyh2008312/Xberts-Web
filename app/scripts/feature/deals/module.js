@@ -11,8 +11,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/deals/productDealsListPage.html',
       controller: 'ProductDealsListPageCtrl as dealsCtrl',
       resolve: {
-        category: ['ShareProductService', function (ShareProductService) {
-          return ShareProductService.getCategoryList();
+        category: ['DealsService', function (DealsService) {
+          return DealsService.getCategoryOrder();
         }]
       }
     })
@@ -25,8 +25,8 @@ angular.module('xbertsApp')
       controller: 'ProductDealsListPageAdminCtrl as dealsCtrl',
       reloadOnSearch: false,
       resolve: {
-        category: ['ShareProductService', function (ShareProductService) {
-          return ShareProductService.getCategoryList();
+        category: ['DealsService', function (DealsService) {
+          return DealsService.getCategoryOrder();
         }]
       }
     })
@@ -51,8 +51,8 @@ angular.module('xbertsApp')
       templateUrl: 'scripts/feature/profile/EditPost.html',
       controller: 'EditDealsPostCtrl',
       resolve: {
-        category: ['ShareProductService', function (ShareProductService) {
-          return ShareProductService.getCategoryList();
+        category: ['DealsService', function (DealsService) {
+          return DealsService.getCategoryOrder();
         }]
       }
     });

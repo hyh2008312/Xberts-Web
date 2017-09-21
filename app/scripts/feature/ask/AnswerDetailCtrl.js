@@ -1,8 +1,8 @@
 angular.module('xbertsApp')
   .controller('AnswerDetailCtrl', ['$rootScope', 'productsDetail', 'answerPaginator', '$mdDialog', '$state', 'AskService',
-    'localStorageService','AskModel','Paginator','$stateParams','$scope',
+    'localStorageService','AskModel','Paginator','$stateParams','$scope','$mdMedia',
     function ($rootScope, productsDetail, answerPaginator, $mdDialog, $state, AskService,localStorageService,
-              AskModel,Paginator,$stateParams,$scope) {
+              AskModel,Paginator,$stateParams,$scope,$mdMedia) {
 
     $scope.$parent.isPopupOpen = !$stateParams.isPopupOpen;
     $scope.isPopupOpen = $stateParams.isPopupOpen;

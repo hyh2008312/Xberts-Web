@@ -16,64 +16,75 @@ angular.module('xbertsApp')
       link: function (scope, element, attrs, ctrls) {
         scope.user = $rootScope.user;
 
-        var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
-
-        if(!scope.isPopupOpen) {
-          angular.element('.xb-body-view').bind('scroll', function(e) {
-            if(e.currentTarget.scrollTop >= _offsetTop) {
-              angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
-                display:'block',
-                position: 'fixed',
-                left:'0',
-                top: 56 +'px'
-              });
-            } else {
-              angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
-                display:'none',
-                position: 'relative',
-                top: 'auto'
+        scope.$watch('$viewContentLoading', function() {
+          if(angular.element('.xb-cover-view').length>0) {
+            angular.element('.xb-cover-view').animate({
+              scrollTop: 0
+            },10,function() {
+              var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
+              if(!$mdMedia('xs')) {
+                angular.element('.xb-cover-view').on('scroll', function(e) {
+                  if(e.currentTarget.scrollTop >= _offsetTop + 112) {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                      display:'block',
+                      position: 'fixed',
+                      left:'0',
+                      top: '0'
+                    });
+                  } else {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                      display:'none',
+                      position: 'relative',
+                      top: 'auto'
+                    });
+                  }
+                });
+              } else {
+                angular.element('.xb-cover-view > div:eq(0)').on("scroll", function(e) {
+                  if(e.currentTarget.scrollTop >= _offsetTop + 112) {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                      display:'block',
+                      position: 'fixed',
+                      left:'0',
+                      top: '0'
+                    });
+                  } else {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
+                      display:'none',
+                      position: 'relative',
+                      top: 'auto'
+                    });
+                  }
+                });
+              }
+            });
+          }
+          if(!$rootScope.showToobar) {
+            if(angular.element('.xb-body-view').length>0) {
+              angular.element('.xb-body-view').animate({
+                scrollTop: 0
+              }, 10, function() {
+                var _offsetTop = angular.element('.xb-items-bottom-line').offset().top - 112;
+                angular.element('.xb-body-view').on('scroll', function(e) {
+                  if(e.currentTarget.scrollTop >= _offsetTop) {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
+                      display:'block',
+                      position: 'fixed',
+                      left:'0',
+                      top: 56 +'px'
+                    });
+                  } else {
+                    angular.element('.xb-question-detail__fixed-top-content:eq(0)').css({
+                      display:'none',
+                      position: 'relative',
+                      top: 'auto'
+                    });
+                  }
+                });
               });
             }
-          });
-        }
-
-        if(!$mdMedia('xs')) {
-          angular.element('.xb-cover-view').bind('scroll', function(e) {
-            if(e.currentTarget.scrollTop >= _offsetTop + 112) {
-              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
-                display:'block',
-                position: 'fixed',
-                left:'0',
-                top: '0'
-              });
-            } else {
-              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
-                display:'none',
-                position: 'relative',
-                top: 'auto'
-              });
-            }
-          });
-        } else {
-          angular.element('.xb-cover-view > div:eq(0)').bind("scroll", function(e) {
-            if(e.currentTarget.scrollTop >= _offsetTop + 112) {
-              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
-                display:'block',
-                position: 'fixed',
-                left:'0',
-                top: '0'
-              });
-            } else {
-              angular.element('.xb-question-detail__fixed-top-content:eq(1)').css({
-                display:'none',
-                position: 'relative',
-                top: 'auto'
-              });
-            }
-          });
-        }
-
-        scope.user = $rootScope.user;
+          }
+        });
 
         var showConfirm = function(ev) {
           var confirm = $mdDialog.confirm()
@@ -319,10 +330,9 @@ angular.module('xbertsApp')
           });
         };
 
-        scope.user = $rootScope.user;
-
         scope.$on('$destory', function() {
           angular.element('.xb-body-view').off('scroll');
+          angular.element('.xb-cover-view').off('scroll');
         });
 
         scope.skip = function(product) {

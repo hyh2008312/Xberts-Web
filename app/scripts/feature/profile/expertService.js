@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbertsApp')
-  .service('ExpertService', ['$rootScope','$resource', 'API_BASE_URL', 'ProductDeals','$q','AskModel','ShareProduct',
+  .service('ExpertService', ['$rootScope','$resource', 'API_BASE_URL', 'ProductDeals','$q','AskModel',
     'MainModel',
-    function ($rootScope,$resource, API_BASE_URL,ProductDeals,$q,AskModel,ShareProduct,MainModel) {
+    function ($rootScope,$resource, API_BASE_URL,ProductDeals,$q,AskModel,MainModel) {
     var ExpertResource = $resource(API_BASE_URL + '/xberts/experts/:id/');
     var ExpertAchievementResource = $resource(API_BASE_URL + '/xberts/experts/:id/achievement/');
     var ExpertFollowingQuestionsResource = $resource(API_BASE_URL + '/xberts/experts/:id/followed_questions/');
@@ -18,7 +18,7 @@ angular.module('xbertsApp')
     };
 
     this.getInviteList = function (params) {
-      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/invitees/').get(params).$promise.then(ShareProduct.buildPageList);
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/invitees/').get(params).$promise.then(ProductDeals.buildPageList);
     };
     this.getPoints = function(id) {
       var delay = $q.defer();
@@ -46,11 +46,11 @@ angular.module('xbertsApp')
     };
 
     this.followees = function(params) {
-      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/followees/').get(params).$promise.then(ShareProduct.buildPageList);
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/followees/').get(params).$promise.then(ProductDeals.buildPageList);
     };
 
     this.followers = function(params) {
-      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/followers/').get(params).$promise.then(ShareProduct.buildPageList);
+      return $resource(API_BASE_URL + '/xberts/experts/'+params.id+'/followers/').get(params).$promise.then(ProductDeals.buildPageList);
     };
 
     this.getAchievement = function(id) {
