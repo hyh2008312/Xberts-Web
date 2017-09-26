@@ -1,0 +1,42 @@
+<div class="background-whitem">
+  <div class="container">
+    <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start"
+         layout-xs="column" layout-align-xs="start start">
+      <div class="xb-section__title">
+        <h2><span class="md-display-1">Inspirations from Savvy Shoppers</span></h2>
+        <h3><span class="md-body-1">Follow our savvy shoppers to get the best value for your money</span></h3>
+      </div>
+    </div>
+    <div class="container xb-deals-list-main__clear">
+      <deals-category class="xb-main-scroll" categories="categories" category-id="categoryId"
+                      on-category-change="changeCategory($index);"></deals-category>
+    </div>
+  </div>
+</div>
+<section class="xb-section" id="reviews">
+  <div class="container">
+    <div class="xb-trials">
+      <div ng-if="categoryId == null || categoryId == 2" infinite-scroll="reviews.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="reviews.loading || !reviews.next">
+        <blogs-list class="xb-reviews-list" reviews="reviews.items"
+                    index="categoryId" admin="admin" hide-xs
+                    layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></blogs-list>
+        <blogs-list class="xb-reviews-list" reviews="reviews.items"
+                    index="categoryId" admin="admin" hide-gt-xs
+                    layout-xs="column" layout-align-xs="start"></blogs-list>
+        <load-more layout="row" layout-align="center center" ng-if="reviews.loading"></load-more>
+      </div>
+      <div ng-if="categoryId == 1 || categoryId == 3" infinite-scroll="reports.loadNext()" infinite-scroll-distance='0' infinite-scroll-container='".xb-body-view "'
+           infinite-scroll-disabled="reports.loading || !reports.next">
+        <review-reports-list class="xb-reviews-list" reviews="reports.items"
+                             index="categoryId" admin="admin" hide-xs
+                             layout-gt-xs="row" layout-align-gt-xs="space-between start" layout-wrap></review-reports-list>
+        <review-reports-list class="xb-reviews-list" reviews="reports.items"
+                             index="categoryId" admin="admin" hide-gt-xs
+                             layout-xs="column" layout-align-xs="start"></review-reports-list>
+        <load-more layout="row" layout-align="center center" ng-if="reports.loading"></load-more>
+      </div>
+    </div>
+  </div>
+</section>
+

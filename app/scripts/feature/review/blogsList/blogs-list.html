@@ -1,0 +1,94 @@
+<div class="xb-reviews-list__list-1" ng-repeat="review in reviews track by $index"
+     reviews-repeat-order index="changeOrder($index)"  ng-if="$index % 8 < 6" on-finish-render="ngRepeatFinished">
+  <a class="xb-trials-list__img-bg"
+     ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
+    <img ng-src="{{review.getArticlesImage(review.cover, 'BLOG_COVER')}}"/>
+  </a>
+  <div class="xb-reviews-list__bottom">
+    <div class="xb-reviews-list__title" >
+      <a class="md-subhead md-dark-primary"
+         ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
+        {{ review.title }}
+      </a>
+    </div>
+    <div class="xb-reviews-list__description md-dark-secondary" hide-xs>
+      {{ review.description }}
+    </div>
+  </div>
+  <div layout="row" class="xb-deals-list__head">
+    <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
+                ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
+    <div layout="column" layout-align="space-between start" flex>
+      <div layout="row" layout-align="start center">
+        <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
+        <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
+      </div>
+      <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
+    </div>
+  </div>
+  <div class="md-margin-left-1 md-margin-right-1" ng-if="admin" layout="column" layout-align="stretch start">
+    <md-select  aria-label="approved" ng-model="review.approval_status" name="approved" >
+      <md-option ng-repeat="option in approveList" ng-value="option.value" >
+        {{option.value}}
+      </md-option>
+    </md-select>
+    <div layout="row" layout-align="end center">
+      <md-button class="md-raised md-primary" ng-click="updateApprove(review)">SAVE</md-button>
+      <md-button class="md-raised md-accent" ng-if="review.skipped" ng-click="updateSkipped(review)">CANCEL SKIP</md-button>
+      <md-button class="md-raised md-accent" ng-if="!review.skipped" ng-click="updateSkipped(review)">SKIP</md-button>
+    </div>
+  </div>
+</div>
+<div class="xb-reviews-list__list-2" ng-repeat="review in reviews track by $index"
+     layout-xs="column" layout-align-xs="start"
+     layout-gt-xs="row" layout-align-gt-xs="start stretch"
+     reviews-repeat-order index="changeOrder($index)" ng-if="$index % 8 >= 6" on-finish-render="ngRepeatFinished">
+  <a class="xb-reviews-list__img-bg" flex-gt-sm="45" flex-sm="35"
+     ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
+    <img ng-src="{{review.getArticlesImage(review.cover, 'BLOG_COVER')}}"/>
+  </a>
+  <div layout-gt-xs="column" layout-align-gt-xs="space-between" flex-gt-sm="55" flex-sm="65">
+    <div class="xb-reviews-list__top" flex-gt-xs>
+      <div class="xb-reviews-list__title" >
+        <a class="md-subhead md-dark-primary"
+           ui-sref="application.blogReport({blogId:review.blog})" target="_blank">
+          {{ review.title }}
+        </a>
+      </div>
+      <div class="xb-reviews-list__description md-dark-secondary" hide-xs ng-if="!admin">
+        {{ review.description }}
+      </div>
+    </div>
+    <div class="md-margin-left-2 md-margin-right-2" ng-if="admin" layout="column" layout-align="stretch start">
+      <md-select  aria-label="approved" ng-model="review.approval_status" name="approved" >
+        <md-option ng-repeat="option in approveList" ng-value="option.value" >
+          {{option.value}}
+        </md-option>
+      </md-select>
+      <div layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click="updateApprove(review)">SAVE</md-button>
+        <md-button class="md-raised md-accent" ng-if="review.skipped" ng-click="updateSkipped(review)">CANCEL SKIP</md-button>
+        <md-button class="md-raised md-accent" ng-if="!review.skipped" ng-click="updateSkipped(review)">SKIP</md-button>
+      </div>
+    </div>
+    <div layout="row" class="xb-deals-list__head">
+      <avatar-Img class="xb-pointer" flex="none" src="review.getOwner().avatar" name="review.getOwner().first_name"
+                  ui-sref="application.expert({ expertId:review.getOwner().id })"></avatar-Img>
+      <div layout="column" layout-align="space-between start" flex>
+        <div layout="row" layout-align="start center">
+          <a class="md-dark-primary" ui-sref="application.expert({ expertId:review.getOwner().id })">{{review.getOwner().first_name}}</a>
+          <credit-badge class="credit-badge" points="review.getOwner().badge_point"></credit-badge>
+        </div>
+        <md-truncate class="md-dark-secondary xb-reviews-list__fill">{{review.getOwnerPosition()}}</md-truncate>
+      </div>
+      <md-button hide class="md-primary md-margin-clear" ng-disabled="review.disabled"
+                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && !review.getOwner().userprofile.current_user.follow"
+                 ng-click="onReviewsFollow({review:review});">Follow</md-button>
+      <md-button hide class="md-warn md-margin-clear" ng-disabled="review.disabled"
+                 ng-if="!(user.isAuth() && user.getUserId() === review.getOwner().id) && review.getOwner().userprofile.current_user.follow"
+                 ng-click="onReviewsFollow({review:review});">Following</md-button>
+    </div>
+  </div>
+</div>
+
+

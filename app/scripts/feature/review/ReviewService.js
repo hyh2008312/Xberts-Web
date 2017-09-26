@@ -146,7 +146,54 @@ angular.module('xbertsApp')
       return reportList;
     };
 
+    this.getBlogPending = function (params) {
+      return $resource(API_BASE_URL + '/blogs/pending/').get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
+    this.getBlogSkipList = function(params) {
+      return $resource(API_BASE_URL + '/blogs/skipped/').get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
+    this.setBlogSkip = function(params) {
+      return $resource(API_BASE_URL + '/blogs/:id/mark_skipped/',{id:'@id'}).save(params).$promise;
+    };
+
+    this.getReviewPending = function (params) {
+      return $resource(API_BASE_URL + '/review/reports/pending/').get(params).$promise.then(Report.buildPageList);
+    };
+
+    this.getReviewSkipList = function(params) {
+      return $resource(API_BASE_URL + '/review/reports/skipped/').get(params).$promise.then(Report.buildPageList);
+    };
+
+    this.setReviewSkip = function(params) {
+      return $resource(API_BASE_URL + '/review/reports/:id/mark_skipped/',{id:'@id'},{patch:{method:'PATCH'}})
+        .patch(params).$promise;
+    };
+
     this.latestPaginater = null;
     this.trialPaginator = null;
     this.reviewsFeaturedTop = null;
+
+    this.categoryAdmin = [{
+      id: null,
+      src: null,
+      name: 'PENDING<br>BLOG',
+      value: 'everything'
+    }, {
+      id: 1,
+      src: null,
+      name: 'PENDING<br>REVIEW',
+      value: 'everything'
+    }, {
+      id: 2,
+      src: null,
+      name: 'SKIP<br>BLOG',
+      value: 'everything'
+    }, {
+      id: 3,
+      src: null,
+      name: 'SKIP<br>REVIEW',
+      value: 'everything'
+    }];
   }]);

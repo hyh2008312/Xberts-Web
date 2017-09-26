@@ -1,0 +1,38 @@
+<div>
+  <div class="xb-deals-bg">
+    <div class="background-whitem">
+      <div class="container">
+        <div class="xb-ask-title xb-deals-title" layout-gt-xs="row" layout-align-gt-xs="space-between start"
+             layout-xs="column" layout-align-xs="start start">
+          <div class="xb-section__title">
+            <h2><span class="md-display-1">Exclusive Deals Curated by Community</span></h2>
+            <h3><span class="md-body-1">Discover the latest products and deals for a better life</span></h3>
+          </div>
+        </div>
+        <div class="container xb-deals-list-main__clear">
+          <deals-category class="xb-main-scroll" categories="dealsCtrl.categories" category-id="dealsCtrl.categoryId"
+                          on-category-change="dealsCtrl.changeCategory($index);" ></deals-category>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="md-margin-top-4 md-margin-bottom-4">
+        <div class="container">
+          <div infinite-scroll="dealsCtrl.productsPaginator.loadNext()"
+               infinite-scroll-container='".xb-body-view"' infinite-scroll-distance='0'
+               infinite-scroll-disabled="dealsCtrl.productsPaginator.loading || !dealsCtrl.productsPaginator.next" flex layout="column">
+            <deals-list deals="dealsCtrl.productsPaginator.items" open-pop="dealsCtrl.openPop(dealsId)"
+                        admin="dealsCtrl.admin" index="dealsCtrl.categoryId"></deals-list>
+            <load-more class="md-margin-top-2 md-margin-bottom-4" layout="row" layout-align="center center"
+                       ng-if="dealsCtrl.productsPaginator.loading"></load-more>
+            <div class="md-margin-top-4 md-margin-bottom-4" layout="column" layout-align="center center" flex="noshrink"
+                 ng-if="dealsCtrl.productsPaginator.currentPage == 1 && dealsCtrl.productsPaginator.count == 0">
+              <img src="https://xberts.imgix.net/static/icon/06a780b5-324d-4c16-8be2-e4d7746d9b6c.png?auto=format%2Cenhance&crop=edges&fit=crop&ixlib=python-1.1.2&s=1482ddcf9ac3eb5c9ae25413ed05e9db" />
+              <div class="md-dark-secondary xb-deals-list__tag">Nothing to see here...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

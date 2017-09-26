@@ -24,6 +24,8 @@ angular.module('xbertsApp')
       }
     });
     var CategoryResource = $resource(API_BASE_URL + '/products/categories/', null);
+    var PendingResource = $resource(API_BASE_URL + '/products/pending/');
+    var SkipResource = $resource(API_BASE_URL + '/products/skipped/');
 
     this.categoryId = null;
     this.priceId = null;
@@ -54,6 +56,17 @@ angular.module('xbertsApp')
       }).get(params).$promise.then(ProductDeals.buildPageList);
     };
 
+    this.getDealsAdminList = function(params) {
+      return $resource(API_BASE_URL + '/products/:id/',{id:'@id'},{
+        'get' : {
+          method:'GET',
+          params:{
+            no_auth: true
+          }
+        }
+      }).get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
     this.getDetail = function(dealsId) {
       return DealsProductResource.get({id:dealsId}).$promise.then(ProductDeals.build);
     };
@@ -72,6 +85,18 @@ angular.module('xbertsApp')
 
     this.delete = function (data) {
       return DealsProductResource.delete(data).$promise.then(ProductDeals.build);
+    };
+
+    this.getPending = function (params) {
+      return PendingResource.get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
+    this.getSkipList = function(params) {
+      return SkipResource.get(params).$promise.then(ProductDeals.buildPageList);
+    };
+
+    this.setSkip = function(params) {
+      return $resource(API_BASE_URL + '/products/:id/mark_skipped/',{id:'@id'}).save(params).$promise;
     };
 
     this.getMaxNumber = function(arr) {
@@ -176,6 +201,18 @@ angular.module('xbertsApp')
       src: 'https://xberts.imgix.net/static/icon/3d5c57e4-34c5-4206-90d1-ca8e694ffb25.jpg?auto=format%2Cenhance%2Ccompress&crop=edges&fit=crop&ixlib=python-1.1.2&s=70c326b60a6956fe52379f4b89bc93f5',
       name: 'Women Fashion',
       value: 'women_fashion'
+    }];
+
+    this.categoryAdmin = [{
+      id: null,
+      src: null,
+      name: 'PENDING',
+      value: 'everything'
+    }, {
+      id: 1,
+      src: null,
+      name: 'SKIP',
+      value: 'everything'
     }];
 
     var _self = this;

@@ -30,15 +30,6 @@
       flex: 1 1 150px !important;
       -webkit-flex: 1 1 150px !important;
     }
-    .md-button{
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-      margin-bottom: 0;
-      margin-top: 0;
-      border-top: 1px solid rgba(0,0,0,.12);
-      line-height: 40px;
-    }
   }
   $parent: &;
   &__mask-bg{
@@ -338,6 +329,10 @@
     @include xb-xs-screen{
       margin: 16px 0;
     }
+  }
+  &__button-width{
+    min-width: 0;
+    padding: 0 20px;
   }
 }
 

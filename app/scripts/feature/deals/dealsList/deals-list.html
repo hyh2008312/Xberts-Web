@@ -1,5 +1,5 @@
 <div layout="row" layout-align="space-between stretch" layout-wrap class="xb-deals-list">
-  <div hide-xs hide-sm ng-repeat="value in [0,1,2,3]">
+  <div hide-xs hide-sm ng-repeat="value in [0,1,2,3]" on-finish-render="ngRepeatFinished">
     <div ng-repeat="item in deals track by $index" ng-if="$index % 4 == value">
       <div class="xb-deals-list__img-bg xb-deals-list__min-height">
         <a layout="column" ng-if="isDeals" layout-align="start center" ng-click="openPop({dealsId:item.id});">
@@ -25,7 +25,7 @@
           </div>
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -50,7 +50,7 @@
       </div>
       <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
         <a class="xb-deals-list__title md-dark-secondary" ng-if="!isDeals"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           {{item.title}}
         </a>
         <a class="xb-deals-list__title md-dark-secondary" ng-if="isDeals"
@@ -74,10 +74,22 @@
           </span>
         </div>
       </div>
+      <div class="md-margin-left-1 md-margin-right-1 md-padding-bottom-2" ng-if="admin" layout="column" layout-align="stretch start">
+        <md-select  aria-label="approved" ng-model="item.approvalStatus" name="approved" >
+          <md-option ng-repeat="option in approveList" ng-value="option.value" >
+            {{option.value}}
+          </md-option>
+        </md-select>
+        <div layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary xb-deals-list__button-width" ng-click="updateApprove(item)">SAVE</md-button>
+          <md-button class="md-raised md-accent" ng-if="item.skipped" ng-click="updateSkipped(item)">CANCEL SKIP</md-button>
+          <md-button class="md-raised md-accent" ng-if="!item.skipped" ng-click="updateSkipped(item)">SKIP</md-button>
+        </div>
+      </div>
     </div>
   </div>
   <div hide-xs hide-gt-sm ng-repeat="value in [0,1,2]">
-    <div ng-repeat="item in deals track by $index" ng-if="$index % 3 == value">
+    <div ng-repeat="item in deals track by $index" ng-if="$index % 3 == value" on-finish-render="ngRepeatFinished">
       <div class="xb-deals-list__img-bg xb-deals-list__min-height">
         <a layout="column" ng-if="isDeals" layout-align="start center" ng-click="openPop({dealsId:item.id});">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
@@ -102,7 +114,7 @@
           </div>
         </a>
         <a layout="column" ng-if="!isDeals" layout-align="start center"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -127,7 +139,7 @@
       </div>
       <div class="xb-deals-list__content" layout="column" layout-align="stretch start">
         <a class="xb-deals-list__title md-dark-secondary" ng-if="!isDeals"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           {{item.title}}
         </a>
         <a class="xb-deals-list__title md-dark-secondary" ng-if="isDeals"
@@ -149,6 +161,18 @@
           <span class="xb-deals-list__discount" ng-if="item.discount > 0">
             {{item.discount * 100 | number:0}}% OFF
           </span>
+        </div>
+      </div>
+      <div class="md-margin-left-1 md-margin-right-1 md-padding-bottom-2" ng-if="admin" layout="column" layout-align="stretch start">
+        <md-select  aria-label="approved" ng-model="item.approvalStatus" name="approved" >
+          <md-option ng-repeat="option in approveList" ng-value="option.value" >
+            {{option.value}}
+          </md-option>
+        </md-select>
+        <div layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary xb-deals-list__button-width" ng-click="updateApprove(item)">SAVE</md-button>
+          <md-button class="md-raised md-accent" ng-if="item.skipped" ng-click="updateSkipped(item)">CANCEL SKIP</md-button>
+          <md-button class="md-raised md-accent" ng-if="!item.skipped" ng-click="updateSkipped(item)">SKIP</md-button>
         </div>
       </div>
     </div>
@@ -189,7 +213,7 @@
           </div>
         </a>
         <a layout="column" layout-align="start center" ng-if="user.isAuth() && !isDeals"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           <img src="{{item.getImageUrl(item.imageUrl, 'SHARE_PRODUCT')}}"/>
           <div ng-if="item.getVideo() != null" class="xb-main-discover__image-button-bg" layout="row" layout-align="center center">
             <div class="xb-main-discover__image-button" layout="row" layout-align="center center">
@@ -209,7 +233,7 @@
           {{item.title}}
         </a>
         <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth() && !isDeals"
-           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})">
+           ui-sref="application.productDeals.dealsDetail({dealsId:item.id})" target="{{admin?'_blank':''}}">
           {{item.title}}
         </a>
         <a class="xb-deals-list__title md-dark-secondary" ng-if="user.isAuth() && isDeals"

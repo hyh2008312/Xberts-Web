@@ -16,20 +16,6 @@ angular.module('xbertsApp')
         }]
       }
     })
-    .state('application.adminDeals', {
-      url: '/admin/discover?tab',
-      params:{
-        tab:'everything'
-      },
-      templateUrl: 'scripts/feature/deals/productDealsListPage.html',
-      controller: 'ProductDealsListPageAdminCtrl as dealsCtrl',
-      reloadOnSearch: false,
-      resolve: {
-        category: ['DealsService', function (DealsService) {
-          return DealsService.getCategoryOrder();
-        }]
-      }
-    })
     .state('application.productDeals.dealsDetail', {
       url: '^/discover/:dealsId',
       params: {
