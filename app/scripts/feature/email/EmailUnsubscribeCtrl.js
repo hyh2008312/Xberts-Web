@@ -19,8 +19,6 @@ angular.module('xbertsApp')
           .cancel('No');
 
         $mdDialog.show(confirm).then(function() {
-          $scope.page = 1;
-          return;
           EmailService.unsubscribe({
             h_id: $scope.h_id,
             email: $scope.email
