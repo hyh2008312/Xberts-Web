@@ -1,0 +1,21 @@
+<div class="xb-section">
+  <div class="container">
+
+    <h2 class="md-margin-bottom-4">Feature Articles Unsubscribe</h2>
+
+    <div class="section-body xb-inner-section" flex ng-if="page == 0">
+      <p class="xb-bold md-headline md-margin-top-3">User : {{email}}</p>
+
+      <p>If you wish to unsubscribe Featured Articles from Xberts , please click “UNSUBSCRIBE” below.</p>
+
+      <div class="md-margin-top-4">
+        <md-button class="md-primary md-raised md-margin-clear" ng-click="unsubscribe()">Unsubscribe</md-button>
+      </div>
+    </div>
+
+    <div class="section-body xb-inner-section" flex ng-if="page == 1">
+      <p>You have been successfully unsubscribed from email communications.</p>
+    </div>
+
+  </div>
+</div>
