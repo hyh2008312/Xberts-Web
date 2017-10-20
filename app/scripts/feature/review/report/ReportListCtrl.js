@@ -57,7 +57,7 @@ angular.module('xbertsApp')
       $state.go('application.protected.reviewReport');
     };
 
-    var title = 'Articles – Inspirations from Savvy Shoppers';
+    var title = 'Articles – Inspirations from Xberts Community';
     var description = 'Follow our savvy shoppers to get the best value for your money.';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
