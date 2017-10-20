@@ -93,12 +93,12 @@ function SearchModel($state,urlParser,$sce,SystemConstant) {
       return this.latestAnswer.owner.firstName;
     },
     getLatestUserPosition: function () {
-      if(this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company) {
-        return this.latestAnswer.owner.userprofile.position +" @ "+ this.latestAnswer.owner.userprofile.company;
-      } else if(this.latestAnswer.owner.userprofile.position && !this.latestAnswer.owner.userprofile.company) {
-        return this.latestAnswer.owner.userprofile.position;
-      } else if(!this.latestAnswer.owner.userprofile.position && this.latestAnswer.owner.userprofile.company){
-        return this.latestAnswer.owner.userprofile.company;
+      if(this.latestAnswer.owner.position && this.latestAnswer.owner.company) {
+        return this.latestAnswer.owner.position +" @ "+ this.latestAnswer.owner.company;
+      } else if(this.latestAnswer.owner.position && !this.latestAnswer.owner.company) {
+        return this.latestAnswer.owner.position;
+      } else if(!this.latestAnswer.owner.position && this.latestAnswer.owner.company){
+        return this.latestAnswer.owner.company;
       } else {
         return "";
       }
