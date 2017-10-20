@@ -225,7 +225,7 @@ angular.module('xbertsApp')
       }
     };
 
-    var title = 'Discover - Exclusive Deals Curated by Community';
+    var title = 'Discover - Hand-picked Deals from Xberts';
     var description = 'Discover the latest products and deals for a better life';
     var backgroundColor = 'background-bg-light';
     var shareImage = '';
