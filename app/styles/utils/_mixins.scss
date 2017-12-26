@@ -89,7 +89,7 @@
   }
 }
 @mixin xb-lg-screen(){
-  @media screen and (min-width: 1180px) and (max-width: 1920px){
+  @media screen and (min-width: 1180px){
     @content;
   }
 }
