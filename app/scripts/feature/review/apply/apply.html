@@ -13,8 +13,8 @@
         <div>
           <p class="md-title md-form-section__title">Personal Information</p>
           <div layout="column">
-            <div layout="column" layout-gt-xs="row">
-              <md-input-container class="md-block" flex>
+            <div layout.xs="column" layout-gt-xs="row" layout-align-gt-xs="space-between start">
+              <md-input-container class="md-block md-margin-right-1 md-margin-left-1" flex>
                 <label class="md-container-ignore md-no-float">Gender</label>
                 <md-select ng-model="apply.applier.gender" name="gender" required>
                   <md-option ng-repeat="gender in apply.genders" ng-value="gender.code">
@@ -25,7 +25,7 @@
                   <div ng-message="required">This is required!</div>
                 </div>
               </md-input-container>
-              <md-input-container class="md-block" flex>
+              <md-input-container class="md-block md-margin-right-1 md-margin-left-1" flex>
                 <label class="md-container-ignore md-no-float">Country</label>
                 <md-select ng-model="apply.applier.country" name="country" required>
                   <md-option ng-repeat="country in apply.countries" ng-value="country.code">
@@ -37,8 +37,8 @@
                 </div>
               </md-input-container>
             </div>
-            <div layout="column" layout-gt-xs="row">
-              <md-input-container flex class="md-block">
+            <div layout.xs="column" layout-gt-xs="row" layout-align-gt-xs="space-between start">
+              <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
                 <label class="md-container-ignore md-no-float">Business Title</label>
                 <input name="position" ng-model="apply.applier.position" required ng-maxlength="200"/>
                 <div ng-messages="applierForm.position.$error">
@@ -46,7 +46,7 @@
                   <div ng-message="maxlength">That's too long!</div>
                 </div>
               </md-input-container>
-              <md-input-container flex class="md-block">
+              <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
                 <label class="md-container-ignore md-no-float">Company Name</label>
                 <input name="company" ng-model="apply.applier.company" required ng-maxlength="200"/>
                 <div ng-messages="applierForm.company.$error">
@@ -55,6 +55,25 @@
                 </div>
               </md-input-container>
             </div>
+            <div layout.xs="column" layout-gt-xs="row"  layout-align-gt-xs="space-between start">
+              <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
+                <label class="md-container-ignore md-no-float">Please enter your SocialCommer account email</label>
+                <input name="position" ng-model="apply.applier.scEmail" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.scEmail.$error">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="maxlength">That's too long!</div>
+                </div>
+              </md-input-container>
+              <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
+                <label class="md-container-ignore md-no-float">Please provide your SocialCommer store URL</label>
+                <input name="company" ng-model="apply.applier.scStoreUrl" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.scStoreUrl.$error">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="maxlength">That's too long!</div>
+                </div>
+              </md-input-container>
+            </div>
+            <div class="md-margin-bottom-2">Don't have an account on SocialCommer.com?  <a href="https://www.socialcommer.com" target="_blank">Click here to sign up.</a></div>
           </div>
         </div>
 

@@ -31,6 +31,8 @@ function ReviewApplyController($scope, SystemConstant, review, applier, applicat
     gender: applier.gender,
     position: applier.position,
     company: applier.company,
+    email: applier.scEmail,
+    url: applier.scStoreUrl,
     user_id: applier.user_id
   };
 
