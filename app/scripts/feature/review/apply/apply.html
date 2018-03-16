@@ -58,16 +58,16 @@
             <div layout.xs="column" layout-gt-xs="row"  layout-align-gt-xs="space-between start">
               <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
                 <label class="md-container-ignore md-no-float">Please enter your SocialCommer account email</label>
-                <input name="position" ng-model="apply.applier.scEmail" required ng-maxlength="200"/>
-                <div ng-messages="applierForm.scEmail.$error">
+                <input name="position" ng-model="apply.applier.sc_email" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.sc_email.$error">
                   <div ng-message="required">This is required!</div>
                   <div ng-message="maxlength">That's too long!</div>
                 </div>
               </md-input-container>
               <md-input-container flex class="md-block md-margin-right-1 md-margin-left-1">
                 <label class="md-container-ignore md-no-float">Please provide your SocialCommer store URL</label>
-                <input name="company" ng-model="apply.applier.scStoreUrl" required ng-maxlength="200"/>
-                <div ng-messages="applierForm.scStoreUrl.$error">
+                <input name="company" ng-model="apply.applier.sc_store_url" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.sc_store_url.$error">
                   <div ng-message="required">This is required!</div>
                   <div ng-message="maxlength">That's too long!</div>
                 </div>
