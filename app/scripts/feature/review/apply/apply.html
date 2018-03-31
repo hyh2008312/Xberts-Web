@@ -78,6 +78,19 @@
                 </div>
               </md-input-container>
             </div>
+            <div layout.xs="column" layout-gt-xs="row"  layout-align-gt-xs="space-between start">
+              <md-input-container flex class="md-block md-margin-right-1">
+                <label class="md-container-ignore md-no-float">
+                  Please paste your social media link which you have listed your SocialCommer store‘s URL:
+                </label>
+                <input name="position" ng-model="apply.applier.sc_store_media_url" required ng-maxlength="200"/>
+                <div ng-messages="applierForm.sc_store_media_url.$error">
+                  <div ng-message="required">This is required!</div>
+                  <div ng-message="maxlength">That's too long!</div>
+                </div>
+                <div class="md-margin-top-1 xb-italic md-caption">* Note: You will have a higher chance to get selected if your store is actively running with sales revenue!</div>
+              </md-input-container>
+            </div>
           </div>
         </div>
 
