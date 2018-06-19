@@ -1,6 +1,11 @@
 <div>
+<<<<<<< HEAD
   <top-banner-slides-list class="xb-top-banner-container" slides="mainCtrl.topBanner" ratio="480/270" height="670"></top-banner-slides-list>
   <div class="container xb-main-bg">
+=======
+  <top-banner-slides-list hide class="xb-top-banner-container" slides="mainCtrl.topBanner" ratio="480/270" height="670"></top-banner-slides-list>
+  <div class="container xb-main-bg" hide>
+>>>>>>> 819b9ecb8ee3d5d34f08ee12e8ff2feb5057613e
     <div class="xb-title" layout="row" layout-align="start center" >
       <h3 class="md-dark-primary" flex>Hand-picked Deals from Xberts</h3>
       <a class="md-body-1" ui-sref="application.productDeals()">SEE MORE</a>
@@ -9,7 +14,7 @@
                              class="xb-main-scroll xb-main-bg__clear xb-deals-list-main"></load-discover-main-more>
     <deals-main-list layout="row" class="xb-main-scroll xb-main-bg__clear xb-deals-list-main" deals="mainCtrl.dealsPaginator.items"></deals-main-list>
   </div>
-  <div class="background-bg-white">
+  <div class="background-bg-white" hide>
     <div class="container xb-main-bg" ng-if="mainCtrl.latestPaginater.items.length > 0" hide-xs>
       <div class="xb-title" layout="row" layout-align="start center">
         <h3 class="md-dark-primary" layout-fill>Test New Products</h3>
